@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[M_Maker]
+(
+	[PoID] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [PoName] VARCHAR(50) NOT NULL, 
+    [PoFlag] INT NOT NULL, 
+    [PoHidden] VARCHAR(MAX) NULL
+    CONSTRAINT [PK_M_Maker] PRIMARY KEY ([PoID])
+)
