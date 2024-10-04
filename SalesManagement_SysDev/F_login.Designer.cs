@@ -125,6 +125,7 @@
             B_login.TabIndex = 7;
             B_login.Text = "ログイン";
             B_login.UseVisualStyleBackColor = false;
+            B_login.Click += B_login_Click;
             // 
             // label5
             // 

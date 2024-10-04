@@ -738,5 +738,38 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+        private void B_login_Click(object sender, EventArgs e)
+        {
+            // 社員IDと入力されたパスワードが合致しているか確かめる
+            int empID;
+            if (!int.TryParse(tb_ID.Text, out empID))
+            {
+                MessageBox.Show("社員IDは数値で入力してください。");
+                return;
+            }
+
+            string pass = tb_Pass.Text;
+
+            using (var context = new SalesManagementContext())
+            {
+                var employee = context.MEmployees.SingleOrDefault(e => e.EmId == empID);
+
+                if (employee != null && employee.EmPassword == pass)
+                {
+                    // 合致していればフォーム画面遷移→メインメニュー１へ
+                    mainmenu1 mainMenu = new mainmenu1();
+                    mainMenu.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    // 合致していなければメッセージ表示「社員IDとパスワードが一致していません」
+                    MessageBox.Show("社員IDとパスワードが一致していません");
+                    // パスワードを白紙に戻し再度入力要求
+                    tb_Pass.Clear();
+                }
+            }
+        }
     }
 }
