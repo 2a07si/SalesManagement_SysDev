@@ -51,7 +51,6 @@
             btn_CleateDabase.TabIndex = 0;
             btn_CleateDabase.Text = "データベース生成";
             btn_CleateDabase.UseVisualStyleBackColor = true;
-            btn_CleateDabase.Visible = false;
             btn_CleateDabase.Click += btn_CleateDabase_Click;
             // 
             // btn_InsertSampleData
@@ -64,7 +63,6 @@
             btn_InsertSampleData.TabIndex = 0;
             btn_InsertSampleData.Text = "サンプルデータ登録";
             btn_InsertSampleData.UseVisualStyleBackColor = true;
-            btn_InsertSampleData.Visible = false;
             btn_InsertSampleData.Click += btn_InsertSampleData_Click;
             // 
             // label2
