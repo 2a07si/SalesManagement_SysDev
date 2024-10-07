@@ -39,7 +39,7 @@
             label5 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             label6 = new Label();
-            textBox1 = new TextBox();
+            tb_Pass = new TextBox();
             SuspendLayout();
             // 
             // btn_CleateDabase
@@ -143,24 +143,24 @@
             label6.Text = "YYYYMMDD";
             label6.Click += label6_Click;
             // 
-            // textBox1
+            // tb_Pass
             // 
-            textBox1.BackColor = Color.FromArgb(255, 255, 192);
-            textBox1.Location = new Point(567, 471);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(229, 50);
-            textBox1.TabIndex = 10;
+            tb_Pass.BackColor = Color.FromArgb(255, 255, 192);
+            tb_Pass.Location = new Point(567, 471);
+            tb_Pass.Multiline = true;
+            tb_Pass.Name = "tb_Pass";
+            tb_Pass.Size = new Size(229, 50);
+            tb_Pass.TabIndex = 6;
             // 
             // F_login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1333, 937);
-            Controls.Add(textBox1);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(B_login);
+            Controls.Add(tb_Pass);
             Controls.Add(tb_ID);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -186,6 +186,6 @@
         private Label label5;
         private System.Windows.Forms.Timer timer1;
         private Label label6;
-        private TextBox textBox1;
+        private TextBox tb_Pass;
     }
 }
