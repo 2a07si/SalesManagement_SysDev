@@ -217,8 +217,10 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "mainmenu1";
             Text = "mainmenu1";
+            Load += mainmenu1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
