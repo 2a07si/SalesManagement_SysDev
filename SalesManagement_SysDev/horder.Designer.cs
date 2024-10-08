@@ -38,7 +38,7 @@
             label3 = new Label();
             b_reg = new Button();
             b_hor = new Button();
-            b_lss = new Button();
+            b_rec = new Button();
             panel1 = new Panel();
             date = new DateTimePicker();
             label18 = new Label();
@@ -169,17 +169,17 @@
             b_hor.Text = "発注";
             b_hor.UseVisualStyleBackColor = false;
             // 
-            // b_lss
+            // b_rec
             // 
-            b_lss.BackColor = Color.FromArgb(255, 255, 192);
-            b_lss.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_lss.ForeColor = Color.Black;
-            b_lss.Location = new Point(15, 235);
-            b_lss.Name = "b_lss";
-            b_lss.Size = new Size(120, 47);
-            b_lss.TabIndex = 205;
-            b_lss.Text = "出庫";
-            b_lss.UseVisualStyleBackColor = false;
+            b_rec.BackColor = Color.FromArgb(255, 255, 192);
+            b_rec.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            b_rec.ForeColor = Color.Black;
+            b_rec.Location = new Point(15, 235);
+            b_rec.Name = "b_rec";
+            b_rec.Size = new Size(120, 47);
+            b_rec.TabIndex = 205;
+            b_rec.Text = "入庫";
+            b_rec.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -452,7 +452,7 @@
             Controls.Add(label3);
             Controls.Add(b_reg);
             Controls.Add(b_hor);
-            Controls.Add(b_lss);
+            Controls.Add(b_rec);
             Controls.Add(panel1);
             Controls.Add(b_logout);
             Controls.Add(label2);
@@ -478,7 +478,7 @@
         private Label label3;
         private Button b_reg;
         private Button b_hor;
-        private Button b_lss;
+        private Button b_rec;
         private Panel panel1;
         private DateTimePicker date;
         private Label label18;
