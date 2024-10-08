@@ -12,9 +12,10 @@ namespace SalesManagement_SysDev
 {
     public partial class arrival : Form
     {
-        public arrival()
+        public arrival(Form mainForm)
         {
             InitializeComponent();
+            this.mainForm = mainForm;
             timer1.Start();
         }
 

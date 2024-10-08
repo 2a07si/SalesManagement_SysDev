@@ -93,6 +93,7 @@
             close.TabIndex = 221;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
+            close.Click += close_Click;
             // 
             // label_ename
             // 
@@ -185,6 +186,7 @@
             b_ord.TabIndex = 231;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
+            b_ord.Click += b_ord_Click;
             // 
             // b_sal
             // 

@@ -31,10 +31,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
 
-        }
         private void b_logout_Click(object sender, EventArgs e)
         {
             // 確認ダイアログを表示
@@ -59,11 +56,54 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void b_juchuu_Click(object sender, EventArgs e)
+        {
+            // 現在のフォームを透明化
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0.5; // 半透明に設定
+
+            // 新しいフォームを表示
+            acceptingorders newForm = new acceptingorders(this);
+            newForm.Show();
+
+            // 現在のフォームを非表示にする
+            this.Hide();
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // 現在のフォームを透明化
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0.5; // 半透明に設定
+
+            // 新しいフォームを表示
+            horder newForm1 = new horder();
+            newForm1.Show();
+
+            // 現在のフォームを非表示にする
+            this.Hide();
+        }
+
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.Now;
             label1.Text = dateTime.ToLongTimeString();
 
+        private void b_masuta_Click(object sender, EventArgs e)
+        {
+            // 現在のフォームを透明化
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0.5; // 半透明に設定
+
+            // 新しいフォームを表示
+            employee newForm2 = new employee();
+            newForm2.Show();
+
+            // 現在のフォームを非表示にする
+            this.Hide();
             var now = System.DateTime.Now;
             label2.Text = now.ToString("yyyy年MM月dd日");
         }
