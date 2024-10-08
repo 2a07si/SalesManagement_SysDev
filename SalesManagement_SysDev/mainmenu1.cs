@@ -35,11 +35,14 @@ namespace SalesManagement_SysDev
 
         }
 
+<<<<<<< HEAD
         private void b_logout_Click(object sender, EventArgs e)
         {
 
         }
 
+=======
+>>>>>>> 926ceb485e320613716287dc9aa2fda9867905f2
         private void mainmenu1_Load(object sender, EventArgs e)
         {
 

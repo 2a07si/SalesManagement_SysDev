@@ -35,11 +35,11 @@
             label3 = new Label();
             label4 = new Label();
             tb_ID = new TextBox();
-            tb_Pass = new TextBox();
             B_login = new Button();
             label5 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             label6 = new Label();
+            tb_Pass = new TextBox();
             SuspendLayout();
             // 
             // btn_CleateDabase
@@ -51,7 +51,6 @@
             btn_CleateDabase.TabIndex = 0;
             btn_CleateDabase.Text = "データベース生成";
             btn_CleateDabase.UseVisualStyleBackColor = true;
-            btn_CleateDabase.Visible = false;
             btn_CleateDabase.Click += btn_CleateDabase_Click;
             // 
             // btn_InsertSampleData
@@ -64,7 +63,6 @@
             btn_InsertSampleData.TabIndex = 0;
             btn_InsertSampleData.Text = "サンプルデータ登録";
             btn_InsertSampleData.UseVisualStyleBackColor = true;
-            btn_InsertSampleData.Visible = false;
             btn_InsertSampleData.Click += btn_InsertSampleData_Click;
             // 
             // label2
@@ -101,18 +99,12 @@
             // tb_ID
             // 
             tb_ID.BackColor = Color.FromArgb(255, 255, 192);
-            tb_ID.Location = new Point(567, 304);
+            tb_ID.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            tb_ID.Location = new Point(567, 287);
+            tb_ID.Multiline = true;
             tb_ID.Name = "tb_ID";
-            tb_ID.Size = new Size(229, 31);
+            tb_ID.Size = new Size(229, 50);
             tb_ID.TabIndex = 5;
-            // 
-            // tb_Pass
-            // 
-            tb_Pass.BackColor = Color.FromArgb(255, 255, 192);
-            tb_Pass.Location = new Point(567, 486);
-            tb_Pass.Name = "tb_Pass";
-            tb_Pass.Size = new Size(229, 31);
-            tb_Pass.TabIndex = 6;
             // 
             // B_login
             // 
@@ -152,6 +144,16 @@
             label6.Text = "YYYYMMDD";
             label6.Click += label6_Click;
             // 
+            // tb_Pass
+            // 
+            tb_Pass.BackColor = Color.FromArgb(255, 255, 192);
+            tb_Pass.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            tb_Pass.Location = new Point(567, 471);
+            tb_Pass.Multiline = true;
+            tb_Pass.Name = "tb_Pass";
+            tb_Pass.Size = new Size(229, 50);
+            tb_Pass.TabIndex = 6;
+            // 
             // F_login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -182,10 +184,10 @@
         private Label label3;
         private Label label4;
         private TextBox tb_ID;
-        private TextBox tb_Pass;
         private Button B_login;
         private Label label5;
         private System.Windows.Forms.Timer timer1;
         private Label label6;
+        private TextBox tb_Pass;
     }
 }
