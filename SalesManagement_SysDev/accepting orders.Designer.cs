@@ -114,9 +114,9 @@
             label_ename.AutoSize = true;
             label_ename.Location = new Point(664, 28);
             label_ename.Name = "label_ename";
-            label_ename.Size = new Size(59, 25);
+            label_ename.Size = new Size(96, 25);
             label_ename.TabIndex = 255;
-            label_ename.Text = "label7";
+            label_ename.Text = "------------";
             // 
             // b_flg
             // 
@@ -134,9 +134,9 @@
             label_id.AutoSize = true;
             label_id.Location = new Point(444, 28);
             label_id.Name = "label_id";
-            label_id.Size = new Size(59, 25);
+            label_id.Size = new Size(54, 25);
             label_id.TabIndex = 254;
-            label_id.Text = "label6";
+            label_id.Text = "------";
             // 
             // b_ser
             // 
@@ -415,9 +415,9 @@
             LBTantouShain.ForeColor = Color.White;
             LBTantouShain.Location = new Point(123, 65);
             LBTantouShain.Name = "LBTantouShain";
-            LBTantouShain.Size = new Size(40, 25);
+            LBTantouShain.Size = new Size(68, 25);
             LBTantouShain.TabIndex = 59;
-            LBTantouShain.Text = "----";
+            LBTantouShain.Text = "--------";
             // 
             // label7
             // 
