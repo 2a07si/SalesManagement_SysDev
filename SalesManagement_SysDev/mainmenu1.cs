@@ -39,5 +39,10 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+        private void mainmenu1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
