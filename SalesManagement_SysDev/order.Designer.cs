@@ -167,7 +167,7 @@
             b_acc.BackColor = Color.FromArgb(255, 255, 192);
             b_acc.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_acc.ForeColor = Color.Black;
-            b_acc.Location = new Point(15, 545);
+            b_acc.Location = new Point(15, 133);
             b_acc.Name = "b_acc";
             b_acc.Size = new Size(120, 47);
             b_acc.TabIndex = 210;
@@ -179,7 +179,7 @@
             b_sal.BackColor = Color.FromArgb(255, 255, 192);
             b_sal.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_sal.ForeColor = Color.Black;
-            b_sal.Location = new Point(15, 462);
+            b_sal.Location = new Point(15, 546);
             b_sal.Name = "b_sal";
             b_sal.Size = new Size(120, 47);
             b_sal.TabIndex = 209;
@@ -191,7 +191,7 @@
             b_ord.BackColor = Color.Navy;
             b_ord.Font = new Font("Yu Gothic UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             b_ord.ForeColor = Color.White;
-            b_ord.Location = new Point(15, 356);
+            b_ord.Location = new Point(15, 202);
             b_ord.Name = "b_ord";
             b_ord.Size = new Size(120, 74);
             b_ord.TabIndex = 208;
@@ -203,7 +203,7 @@
             b_shi.BackColor = Color.FromArgb(255, 255, 192);
             b_shi.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_shi.ForeColor = Color.Black;
-            b_shi.Location = new Point(15, 278);
+            b_shi.Location = new Point(15, 468);
             b_shi.Name = "b_shi";
             b_shi.Size = new Size(120, 47);
             b_shi.TabIndex = 207;
@@ -215,7 +215,7 @@
             b_arr.BackColor = Color.FromArgb(255, 255, 192);
             b_arr.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_arr.ForeColor = Color.Black;
-            b_arr.Location = new Point(15, 202);
+            b_arr.Location = new Point(15, 388);
             b_arr.Name = "b_arr";
             b_arr.Size = new Size(120, 47);
             b_arr.TabIndex = 206;
@@ -227,7 +227,7 @@
             b_lss.BackColor = Color.FromArgb(255, 255, 192);
             b_lss.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_lss.ForeColor = Color.Black;
-            b_lss.Location = new Point(15, 133);
+            b_lss.Location = new Point(15, 307);
             b_lss.Name = "b_lss";
             b_lss.Size = new Size(120, 47);
             b_lss.TabIndex = 205;

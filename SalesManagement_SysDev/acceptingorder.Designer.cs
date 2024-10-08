@@ -559,6 +559,10 @@
         private Label label6;
         private Label label5;
         private Label label17;
+
+        public MaskedTextBox tb_eigyoushoid { get; private set; }
+        public MaskedTextBox tb_shainid { get; private set; }
+
         private Label label16;
         private MaskedTextBox maskedTextBox7;
         private MaskedTextBox maskedTextBox6;
