@@ -97,7 +97,7 @@
             b_next.Name = "b_next";
             b_next.Size = new Size(112, 47);
             b_next.TabIndex = 225;
-            b_next.Text = "次ページへ";
+            b_next.Text = "前ページへ";
             b_next.UseVisualStyleBackColor = false;
             // 
             // b_ord
