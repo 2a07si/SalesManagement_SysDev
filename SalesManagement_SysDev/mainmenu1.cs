@@ -30,19 +30,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // 現在のフォームを透明化
-            this.TransparencyKey = this.BackColor;
-            this.Opacity = 0.5; // 半透明に設定
 
-            // 新しいフォームを表示
-            horder newForm1 = new horder();
-            newForm1.Show();
-
-            // 現在のフォームを非表示にする
-            this.Hide();
-        }
         private void b_logout_Click(object sender, EventArgs e)
         {
             // 確認ダイアログを表示
@@ -76,6 +64,20 @@ namespace SalesManagement_SysDev
             // 新しいフォームを表示
             acceptingorders newForm = new acceptingorders();
             newForm.Show();
+
+            // 現在のフォームを非表示にする
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // 現在のフォームを透明化
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0.5; // 半透明に設定
+
+            // 新しいフォームを表示
+            horder newForm1 = new horder();
+            newForm1.Show();
 
             // 現在のフォームを非表示にする
             this.Hide();
