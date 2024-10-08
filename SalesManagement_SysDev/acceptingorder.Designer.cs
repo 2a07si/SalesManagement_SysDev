@@ -37,22 +37,22 @@
             label18 = new Label();
             tb_riyuu = new MaskedTextBox();
             label17 = new Label();
-            this.tb_eigyoushoid = new MaskedTextBox();
-            this.tb_shainid = new MaskedTextBox();
-            this.tb_shouhinid = new MaskedTextBox();
-            this.tb_juchuuid = new MaskedTextBox();
-            this.tb_suuryou = new MaskedTextBox();
+            tb_eigyoushoid = new MaskedTextBox();
+            tb_shainid = new MaskedTextBox();
+            tb_shouhinid = new MaskedTextBox();
+            tb_juchuuid = new MaskedTextBox();
+            tb_suuryou = new MaskedTextBox();
             tb_kokyakuid = new MaskedTextBox();
             label15 = new Label();
             label14 = new Label();
             label13 = new Label();
             label12 = new Label();
-            this.label_shouhinmei = new Label();
+            label_shouhinmei = new Label();
             label11 = new Label();
-            this.label_kokyakumei = new Label();
-            label8 = new Label();
+            label_kokyakumei = new Label();
+            kokyakumei = new Label();
             label7 = new Label();
-            label6 = new Label();
+            label_koid = new Label();
             dataGridView1 = new DataGridView();
             close = new Button();
             b_flg = new Button();
@@ -116,22 +116,22 @@
             panel1.Controls.Add(label18);
             panel1.Controls.Add(tb_riyuu);
             panel1.Controls.Add(label17);
-            panel1.Controls.Add(this.tb_eigyoushoid);
-            panel1.Controls.Add(this.tb_shainid);
-            panel1.Controls.Add(this.tb_shouhinid);
-            panel1.Controls.Add(this.tb_juchuuid);
-            panel1.Controls.Add(this.tb_suuryou);
+            panel1.Controls.Add(tb_eigyoushoid);
+            panel1.Controls.Add(tb_shainid);
+            panel1.Controls.Add(tb_shouhinid);
+            panel1.Controls.Add(tb_juchuuid);
+            panel1.Controls.Add(tb_suuryou);
             panel1.Controls.Add(tb_kokyakuid);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label13);
             panel1.Controls.Add(label12);
-            panel1.Controls.Add(this.label_shouhinmei);
+            panel1.Controls.Add(label_shouhinmei);
             panel1.Controls.Add(label11);
-            panel1.Controls.Add(this.label_kokyakumei);
-            panel1.Controls.Add(label8);
+            panel1.Controls.Add(label_kokyakumei);
+            panel1.Controls.Add(kokyakumei);
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label_koid);
             panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(147, 133);
             panel1.Name = "panel1";
@@ -177,38 +177,38 @@
             // 
             // tb_eigyoushoid
             // 
-            this.tb_eigyoushoid.Location = new Point(786, 63);
-            this.tb_eigyoushoid.Name = "tb_eigyoushoid";
-            this.tb_eigyoushoid.Size = new Size(103, 31);
-            this.tb_eigyoushoid.TabIndex = 70;
+            tb_eigyoushoid.Location = new Point(786, 63);
+            tb_eigyoushoid.Name = "tb_eigyoushoid";
+            tb_eigyoushoid.Size = new Size(103, 31);
+            tb_eigyoushoid.TabIndex = 70;
             // 
             // tb_shainid
             // 
-            this.tb_shainid.Location = new Point(786, 16);
-            this.tb_shainid.Name = "tb_shainid";
-            this.tb_shainid.Size = new Size(103, 31);
-            this.tb_shainid.TabIndex = 69;
+            tb_shainid.Location = new Point(786, 16);
+            tb_shainid.Name = "tb_shainid";
+            tb_shainid.Size = new Size(103, 31);
+            tb_shainid.TabIndex = 69;
             // 
             // tb_shouhinid
             // 
-            this.tb_shouhinid.Location = new Point(99, 63);
-            this.tb_shouhinid.Name = "tb_shouhinid";
-            this.tb_shouhinid.Size = new Size(150, 31);
-            this.tb_shouhinid.TabIndex = 67;
+            tb_shouhinid.Location = new Point(99, 63);
+            tb_shouhinid.Name = "tb_shouhinid";
+            tb_shouhinid.Size = new Size(150, 31);
+            tb_shouhinid.TabIndex = 67;
             // 
             // tb_juchuuid
             // 
-            this.tb_juchuuid.Location = new Point(572, 16);
-            this.tb_juchuuid.Name = "tb_juchuuid";
-            this.tb_juchuuid.Size = new Size(104, 31);
-            this.tb_juchuuid.TabIndex = 66;
+            tb_juchuuid.Location = new Point(572, 16);
+            tb_juchuuid.Name = "tb_juchuuid";
+            tb_juchuuid.Size = new Size(104, 31);
+            tb_juchuuid.TabIndex = 66;
             // 
             // tb_suuryou
             // 
-            this.tb_suuryou.Location = new Point(572, 63);
-            this.tb_suuryou.Name = "tb_suuryou";
-            this.tb_suuryou.Size = new Size(104, 31);
-            this.tb_suuryou.TabIndex = 65;
+            tb_suuryou.Location = new Point(572, 63);
+            tb_suuryou.Name = "tb_suuryou";
+            tb_suuryou.Size = new Size(104, 31);
+            tb_suuryou.TabIndex = 65;
             // 
             // tb_kokyakuid
             // 
@@ -263,14 +263,14 @@
             // 
             // label_shouhinmei
             // 
-            this.label_shouhinmei.AutoSize = true;
-            this.label_shouhinmei.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            this.label_shouhinmei.ForeColor = Color.White;
-            this.label_shouhinmei.Location = new Point(357, 66);
-            this.label_shouhinmei.Name = "label_shouhinmei";
-            this.label_shouhinmei.Size = new Size(69, 25);
-            this.label_shouhinmei.TabIndex = 59;
-            this.label_shouhinmei.Text = "label10";
+            label_shouhinmei.AutoSize = true;
+            label_shouhinmei.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label_shouhinmei.ForeColor = Color.White;
+            label_shouhinmei.Location = new Point(357, 66);
+            label_shouhinmei.Name = "label_shouhinmei";
+            label_shouhinmei.Size = new Size(69, 25);
+            label_shouhinmei.TabIndex = 59;
+            label_shouhinmei.Text = "label10";
             // 
             // label11
             // 
@@ -285,25 +285,25 @@
             // 
             // label_kokyakumei
             // 
-            this.label_kokyakumei.AutoSize = true;
-            this.label_kokyakumei.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            this.label_kokyakumei.ForeColor = Color.White;
-            this.label_kokyakumei.Location = new Point(357, 19);
-            this.label_kokyakumei.Name = "label_kokyakumei";
-            this.label_kokyakumei.Size = new Size(62, 25);
-            this.label_kokyakumei.TabIndex = 57;
-            this.label_kokyakumei.Text = "label9";
+            label_kokyakumei.AutoSize = true;
+            label_kokyakumei.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label_kokyakumei.ForeColor = Color.White;
+            label_kokyakumei.Location = new Point(357, 19);
+            label_kokyakumei.Name = "label_kokyakumei";
+            label_kokyakumei.Size = new Size(62, 25);
+            label_kokyakumei.TabIndex = 57;
+            label_kokyakumei.Text = "label9";
             // 
-            // label8
+            // kokyakumei
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.White;
-            label8.Location = new Point(273, 19);
-            label8.Name = "label8";
-            label8.Size = new Size(66, 25);
-            label8.TabIndex = 56;
-            label8.Text = "顧客名";
+            kokyakumei.AutoSize = true;
+            kokyakumei.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            kokyakumei.ForeColor = Color.White;
+            kokyakumei.Location = new Point(273, 19);
+            kokyakumei.Name = "kokyakumei";
+            kokyakumei.Size = new Size(66, 25);
+            kokyakumei.TabIndex = 56;
+            kokyakumei.Text = "顧客名";
             // 
             // label7
             // 
@@ -316,16 +316,16 @@
             label7.TabIndex = 55;
             label7.Text = "商品ID";
             // 
-            // label6
+            // label_koid
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(15, 22);
-            label6.Name = "label6";
-            label6.Size = new Size(66, 25);
-            label6.TabIndex = 54;
-            label6.Text = "顧客ID";
+            label_koid.AutoSize = true;
+            label_koid.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label_koid.ForeColor = Color.White;
+            label_koid.Location = new Point(15, 22);
+            label_koid.Name = "label_koid";
+            label_koid.Size = new Size(66, 25);
+            label_koid.TabIndex = 54;
+            label_koid.Text = "顧客ID";
             // 
             // dataGridView1
             // 
@@ -551,18 +551,21 @@
         private Label label2;
         private Label label1;
         private Label label12;
+        private Label label_shouhinmei;
         private Label label10;
         private Label label11;
+        private Label label_kokyakumei;
         private Label label9;
-        private Label label8;
+        private Label kokyakumei;
         private Label label7;
-        private Label label6;
+        private Label label_koid;
         private Label label5;
         private Label label17;
-
-        public MaskedTextBox tb_eigyoushoid { get; private set; }
-        public MaskedTextBox tb_shainid { get; private set; }
-
+        private MaskedTextBox tb_eigyoushoid;
+        private MaskedTextBox tb_shainid;
+        private MaskedTextBox tb_shouhinid;
+        private MaskedTextBox tb_juchuuid;
+        private MaskedTextBox tb_suuryou;
         private Label label16;
         private MaskedTextBox maskedTextBox7;
         private MaskedTextBox maskedTextBox6;
