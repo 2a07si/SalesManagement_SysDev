@@ -89,7 +89,7 @@ namespace SalesManagement_SysDev
             label1.Text = dateTime.ToLongTimeString();
 
             var now = System.DateTime.Now;
-            label6.Text = now.ToString("yyyy年MM月dd日");
+            label2.Text = now.ToString("yyyy年MM月dd日");
         }
     }
 }
