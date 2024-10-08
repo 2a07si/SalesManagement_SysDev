@@ -38,9 +38,9 @@
             b_upd = new Button();
             label3 = new Label();
             b_reg = new Button();
-            b_acc = new Button();
-            b_sal = new Button();
             b_ord = new Button();
+            b_sal = new Button();
+            b_add = new Button();
             b_shi = new Button();
             b_arr = new Button();
             b_lss = new Button();
@@ -172,17 +172,17 @@
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
             // 
-            // b_acc
+            // b_ord
             // 
-            b_acc.BackColor = Color.FromArgb(255, 255, 192);
-            b_acc.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_acc.ForeColor = Color.Black;
-            b_acc.Location = new Point(15, 130);
-            b_acc.Name = "b_acc";
-            b_acc.Size = new Size(120, 50);
-            b_acc.TabIndex = 231;
-            b_acc.Text = "受注";
-            b_acc.UseVisualStyleBackColor = false;
+            b_ord.BackColor = Color.FromArgb(255, 255, 192);
+            b_ord.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            b_ord.ForeColor = Color.Black;
+            b_ord.Location = new Point(15, 230);
+            b_ord.Name = "b_ord";
+            b_ord.Size = new Size(120, 50);
+            b_ord.TabIndex = 231;
+            b_ord.Text = "注文";
+            b_ord.UseVisualStyleBackColor = false;
             // 
             // b_sal
             // 
@@ -196,17 +196,17 @@
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
             // 
-            // b_ord
+            // b_add
             // 
-            b_ord.BackColor = Color.Navy;
-            b_ord.Font = new Font("Yu Gothic UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ord.ForeColor = Color.White;
-            b_ord.Location = new Point(15, 200);
-            b_ord.Name = "b_ord";
-            b_ord.Size = new Size(120, 75);
-            b_ord.TabIndex = 229;
-            b_ord.Text = "注文";
-            b_ord.UseVisualStyleBackColor = false;
+            b_add.BackColor = Color.Navy;
+            b_add.Font = new Font("Yu Gothic UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            b_add.ForeColor = Color.White;
+            b_add.Location = new Point(15, 140);
+            b_add.Name = "b_add";
+            b_add.Size = new Size(120, 75);
+            b_add.TabIndex = 229;
+            b_add.Text = "受注";
+            b_add.UseVisualStyleBackColor = false;
             // 
             // b_shi
             // 
@@ -518,9 +518,9 @@
             Controls.Add(b_upd);
             Controls.Add(label3);
             Controls.Add(b_reg);
-            Controls.Add(b_acc);
-            Controls.Add(b_sal);
             Controls.Add(b_ord);
+            Controls.Add(b_sal);
+            Controls.Add(b_add);
             Controls.Add(b_shi);
             Controls.Add(b_arr);
             Controls.Add(b_lss);
@@ -548,9 +548,9 @@
         private Button b_upd;
         private Label label3;
         private Button b_reg;
-        private Button b_acc;
-        private Button b_sal;
         private Button b_ord;
+        private Button b_sal;
+        private Button b_add;
         private Button b_shi;
         private Button b_arr;
         private Button b_lss;
