@@ -40,5 +40,7 @@ namespace SalesManagement_SysDev
             var now = System.DateTime.Now;
             label2.Text = now.ToString("yyyy年MM月dd日");
         }
+
+
     }
 }
