@@ -96,6 +96,7 @@
             b_juchuu.TabIndex = 23;
             b_juchuu.Text = "受注～売上";
             b_juchuu.UseVisualStyleBackColor = false;
+            b_juchuu.Click += b_juchuu_Click;
             // 
             // b_hacchuu
             // 
@@ -119,6 +120,7 @@
             b_masuta.TabIndex = 25;
             b_masuta.Text = "マスタ管理";
             b_masuta.UseVisualStyleBackColor = false;
+            b_masuta.Click += b_masuta_Click;
             // 
             // label_ename
             // 
