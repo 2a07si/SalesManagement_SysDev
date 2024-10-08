@@ -15,6 +15,7 @@ namespace SalesManagement_SysDev
         public arrival()
         {
             InitializeComponent();
+            timer1.Start();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -28,6 +29,15 @@ namespace SalesManagement_SysDev
 
         private void button1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime dateTime = DateTime.Now;
+            label1.Text = dateTime.ToLongTimeString();
+
+            var now = System.DateTime.Now;
+            label6.Text = now.ToString("yyyy年MM月dd日");
         }
     }
 }

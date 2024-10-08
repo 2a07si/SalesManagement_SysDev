@@ -15,6 +15,7 @@ namespace SalesManagement_SysDev
         public shipping()
         {
             InitializeComponent();
+            timer1.Start();
         }
 
         private void shipping_Load(object sender, EventArgs e)
@@ -80,6 +81,15 @@ namespace SalesManagement_SysDev
 
         private void b_logout_Click(object sender, EventArgs e)
         {
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime dateTime = DateTime.Now;
+            label1.Text = dateTime.ToLongTimeString();
+
+            var now = System.DateTime.Now;
+            label6.Text = now.ToString("yyyy年MM月dd日");
         }
     }
 }

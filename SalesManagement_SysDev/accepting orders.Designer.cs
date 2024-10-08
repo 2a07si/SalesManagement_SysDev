@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             clear = new Button();
             close = new Button();
             label_ename = new Label();
@@ -69,6 +70,7 @@
             label2 = new Label();
             label1 = new Label();
             kakutei = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -502,6 +504,10 @@
             kakutei.Text = "確定";
             kakutei.UseVisualStyleBackColor = false;
             // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
+            // 
             // acceptingorders
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -529,6 +535,7 @@
             Controls.Add(label1);
             Name = "acceptingorders";
             Text = "Form1";
+            Load += acceptingorders_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -579,5 +586,6 @@
         private Label label2;
         private Label label1;
         private Button kakutei;
+        private System.Windows.Forms.Timer timer1;
     }
 }
