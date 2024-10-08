@@ -30,5 +30,10 @@ namespace SalesManagement_SysDev
             // 現在のフォームを閉じる
             this.Close();
         }
+
+        private void b_ord_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
