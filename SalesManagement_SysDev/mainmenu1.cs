@@ -35,9 +35,26 @@ namespace SalesManagement_SysDev
 
         }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         private void b_logout_Click(object sender, EventArgs e)
+        {
+            // 現在のフォームを閉じる
+        this.Close();
+
+            // ログインフォームを開く
+            F_login loginForm = new F_login();
+            loginForm.Show();
+        }
+<<<<<<< Updated upstream
+=======
+
+        private void mainmenu1_Load(object sender, EventArgs e)
         {
 
         }
+>>>>>>> Stashed changes
     }
 }
