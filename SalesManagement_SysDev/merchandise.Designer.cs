@@ -30,7 +30,6 @@
         {
             label1 = new Label();
             label2 = new Label();
-            b_logout = new Button();
             dataGridView1 = new DataGridView();
             label6 = new Label();
             label7 = new Label();
@@ -61,12 +60,13 @@
             label_id = new Label();
             b_flg = new Button();
             label_ename = new Label();
-            close = new Button();
             b_sto = new Button();
             b_cus = new Button();
             b_mer = new Button();
             b_emp = new Button();
+            kakutei = new Button();
             clear = new Button();
+            close = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -88,15 +88,6 @@
             label2.Size = new Size(156, 25);
             label2.TabIndex = 204;
             label2.Text = "yyyy年mm月dd日";
-            // 
-            // b_logout
-            // 
-            b_logout.Location = new Point(917, 13);
-            b_logout.Name = "b_logout";
-            b_logout.Size = new Size(112, 47);
-            b_logout.TabIndex = 205;
-            b_logout.Text = "ログアウト";
-            b_logout.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -407,15 +398,6 @@
             label_ename.TabIndex = 210;
             label_ename.Text = "label7";
             // 
-            // close
-            // 
-            close.Location = new Point(924, 79);
-            close.Name = "close";
-            close.Size = new Size(129, 48);
-            close.TabIndex = 202;
-            close.Text = "閉じる";
-            close.UseVisualStyleBackColor = true;
-            // 
             // b_sto
             // 
             b_sto.BackColor = Color.FromArgb(255, 255, 192);
@@ -464,27 +446,48 @@
             b_emp.Text = "社員";
             b_emp.UseVisualStyleBackColor = false;
             // 
+            // kakutei
+            // 
+            kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            kakutei.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            kakutei.Location = new Point(795, 80);
+            kakutei.Name = "kakutei";
+            kakutei.Size = new Size(129, 48);
+            kakutei.TabIndex = 249;
+            kakutei.Text = "確定";
+            kakutei.UseVisualStyleBackColor = false;
+            // 
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(785, 79);
+            clear.Location = new Point(935, 80);
             clear.Name = "clear";
             clear.Size = new Size(112, 48);
-            clear.TabIndex = 215;
+            clear.TabIndex = 248;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            // 
+            // close
+            // 
+            close.Location = new Point(925, 15);
+            close.Name = "close";
+            close.Size = new Size(129, 48);
+            close.TabIndex = 247;
+            close.Text = "閉じる";
+            close.UseVisualStyleBackColor = true;
             // 
             // merchandise
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 667);
+            Controls.Add(kakutei);
             Controls.Add(clear);
+            Controls.Add(close);
             Controls.Add(b_emp);
             Controls.Add(b_mer);
             Controls.Add(b_cus);
             Controls.Add(b_sto);
-            Controls.Add(close);
             Controls.Add(label_ename);
             Controls.Add(b_flg);
             Controls.Add(label_id);
@@ -494,7 +497,6 @@
             Controls.Add(label3);
             Controls.Add(b_reg);
             Controls.Add(panel1);
-            Controls.Add(b_logout);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "merchandise";
@@ -510,7 +512,6 @@
 
         private Label label1;
         private Label label2;
-        private Button b_logout;
         private DataGridView dataGridView1;
         private Label label6;
         private Label label7;
@@ -541,11 +542,12 @@
         private Label label_id;
         private Button b_flg;
         private Label label_ename;
-        private Button close;
         private Button b_sto;
         private Button b_cus;
         private Button b_mer;
         private Button b_emp;
+        private Button kakutei;
         private Button clear;
+        private Button close;
     }
 }

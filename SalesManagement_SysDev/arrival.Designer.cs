@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            close = new Button();
             label_ename = new Label();
             b_flg = new Button();
             label_id = new Label();
@@ -59,7 +58,6 @@
             label7 = new Label();
             label6 = new Label();
             dataGridView1 = new DataGridView();
-            b_logout = new Button();
             label2 = new Label();
             label1 = new Label();
             b_acc = new Button();
@@ -68,19 +66,12 @@
             b_shi = new Button();
             b_arr = new Button();
             b_lss = new Button();
+            kakutei = new Button();
             clear = new Button();
+            close = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // close
-            // 
-            close.Location = new Point(923, 79);
-            close.Name = "close";
-            close.Size = new Size(129, 48);
-            close.TabIndex = 143;
-            close.Text = "閉じる";
-            close.UseVisualStyleBackColor = true;
             // 
             // label_ename
             // 
@@ -391,15 +382,6 @@
             dataGridView1.Size = new Size(874, 345);
             dataGridView1.TabIndex = 52;
             // 
-            // b_logout
-            // 
-            b_logout.Location = new Point(916, 13);
-            b_logout.Name = "b_logout";
-            b_logout.Size = new Size(112, 47);
-            b_logout.TabIndex = 146;
-            b_logout.Text = "ログアウト";
-            b_logout.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -488,29 +470,53 @@
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
             // 
+            // kakutei
+            // 
+            kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            kakutei.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            kakutei.Location = new Point(795, 80);
+            kakutei.Name = "kakutei";
+            kakutei.Size = new Size(129, 48);
+            kakutei.TabIndex = 240;
+            kakutei.Text = "確定";
+            kakutei.UseVisualStyleBackColor = false;
+            kakutei.Click += button1_Click;
+            // 
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(784, 79);
+            clear.Location = new Point(935, 80);
             clear.Name = "clear";
             clear.Size = new Size(112, 48);
-            clear.TabIndex = 216;
+            clear.TabIndex = 239;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            clear.Click += button2_Click;
+            // 
+            // close
+            // 
+            close.Location = new Point(925, 15);
+            close.Name = "close";
+            close.Size = new Size(129, 48);
+            close.TabIndex = 238;
+            close.Text = "閉じる";
+            close.UseVisualStyleBackColor = true;
+            close.Click += button3_Click;
             // 
             // arrival
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 667);
+            Controls.Add(kakutei);
             Controls.Add(clear);
+            Controls.Add(close);
             Controls.Add(b_acc);
             Controls.Add(b_sal);
             Controls.Add(b_ord);
             Controls.Add(b_shi);
             Controls.Add(b_arr);
             Controls.Add(b_lss);
-            Controls.Add(close);
             Controls.Add(label_ename);
             Controls.Add(b_flg);
             Controls.Add(label_id);
@@ -520,7 +526,6 @@
             Controls.Add(label3);
             Controls.Add(b_reg);
             Controls.Add(panel1);
-            Controls.Add(b_logout);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "arrival";
@@ -533,8 +538,6 @@
         }
 
         #endregion
-
-        private Button close;
         private Label label_ename;
         private Button b_flg;
         private Label label_id;
@@ -565,7 +568,6 @@
         private Label label7;
         private Label label6;
         private DataGridView dataGridView1;
-        private Button b_logout;
         private Label label2;
         private Label label1;
         private Button b_acc;
@@ -574,6 +576,8 @@
         private Button b_shi;
         private Button b_arr;
         private Button b_lss;
+        private Button kakutei;
         private Button clear;
+        private Button close;
     }
 }

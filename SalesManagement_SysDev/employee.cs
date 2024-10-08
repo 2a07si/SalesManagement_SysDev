@@ -16,5 +16,6 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
         }
+
     }
 }

@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace SalesManagement_SysDev
 {
-    public partial class acceptingorder : Form
+    public partial class acceptingorders : Form
     {
-        public acceptingorder()
+        public acceptingorders()
         {
             InitializeComponent();
         }
+
+
     }
 }

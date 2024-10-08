@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            close = new Button();
             label_ename = new Label();
             b_flg = new Button();
             label_id = new Label();
@@ -65,22 +64,14 @@
             label7 = new Label();
             label6 = new Label();
             dataGridView1 = new DataGridView();
-            b_logout = new Button();
             label2 = new Label();
             label1 = new Label();
+            kakutei = new Button();
             clear = new Button();
+            close = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // close
-            // 
-            close.Location = new Point(923, 79);
-            close.Name = "close";
-            close.Size = new Size(129, 48);
-            close.TabIndex = 162;
-            close.Text = "閉じる";
-            close.UseVisualStyleBackColor = true;
             // 
             // label_ename
             // 
@@ -461,15 +452,6 @@
             dataGridView1.Size = new Size(874, 345);
             dataGridView1.TabIndex = 52;
             // 
-            // b_logout
-            // 
-            b_logout.Location = new Point(916, 13);
-            b_logout.Name = "b_logout";
-            b_logout.Size = new Size(112, 47);
-            b_logout.TabIndex = 165;
-            b_logout.Text = "ログアウト";
-            b_logout.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -488,21 +470,42 @@
             label1.TabIndex = 163;
             label1.Text = "11:11:11";
             // 
+            // kakutei
+            // 
+            kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            kakutei.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            kakutei.Location = new Point(795, 80);
+            kakutei.Name = "kakutei";
+            kakutei.Size = new Size(129, 48);
+            kakutei.TabIndex = 246;
+            kakutei.Text = "確定";
+            kakutei.UseVisualStyleBackColor = false;
+            // 
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(787, 80);
+            clear.Location = new Point(935, 80);
             clear.Name = "clear";
             clear.Size = new Size(112, 48);
-            clear.TabIndex = 216;
+            clear.TabIndex = 245;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            // 
+            // close
+            // 
+            close.Location = new Point(925, 15);
+            close.Name = "close";
+            close.Size = new Size(129, 48);
+            close.TabIndex = 244;
+            close.Text = "閉じる";
+            close.UseVisualStyleBackColor = true;
             // 
             // lssue
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 667);
+            Controls.Add(kakutei);
             Controls.Add(clear);
             Controls.Add(close);
             Controls.Add(label_ename);
@@ -520,7 +523,6 @@
             Controls.Add(b_arr);
             Controls.Add(b_lss);
             Controls.Add(panel1);
-            Controls.Add(b_logout);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "lssue";
@@ -533,8 +535,6 @@
         }
 
         #endregion
-
-        private Button close;
         private Label label_ename;
         private Button b_flg;
         private Label label_id;
@@ -571,9 +571,10 @@
         private Label label7;
         private Label label6;
         private DataGridView dataGridView1;
-        private Button b_logout;
         private Label label2;
         private Label label1;
+        private Button kakutei;
         private Button clear;
+        private Button close;
     }
 }
