@@ -66,6 +66,7 @@
             b_logout = new Button();
             label2 = new Label();
             label1 = new Label();
+            clear = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -119,7 +120,7 @@
             // 
             // close
             // 
-            close.Location = new Point(900, 79);
+            close.Location = new Point(924, 79);
             close.Name = "close";
             close.Size = new Size(129, 48);
             close.TabIndex = 183;
@@ -462,11 +463,22 @@
             label1.TabIndex = 184;
             label1.Text = "11:11:11";
             // 
+            // clear
+            // 
+            clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            clear.Location = new Point(787, 79);
+            clear.Name = "clear";
+            clear.Size = new Size(112, 48);
+            clear.TabIndex = 216;
+            clear.Text = "クリア";
+            clear.UseVisualStyleBackColor = true;
+            // 
             // employee
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 667);
+            Controls.Add(clear);
             Controls.Add(b_emp);
             Controls.Add(b_mer);
             Controls.Add(b_cus);
@@ -533,5 +545,6 @@
         private Button b_logout;
         private Label label2;
         private Label label1;
+        private Button clear;
     }
 }

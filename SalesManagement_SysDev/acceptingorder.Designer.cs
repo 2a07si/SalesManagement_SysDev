@@ -33,6 +33,9 @@
             label4 = new Label();
             label3 = new Label();
             panel1 = new Panel();
+            date = new DateTimePicker();
+            label18 = new Label();
+            tb_riyuu = new MaskedTextBox();
             label17 = new Label();
             this.tb_eigyoushoid = new MaskedTextBox();
             this.tb_shainid = new MaskedTextBox();
@@ -59,15 +62,13 @@
             b_logout = new Button();
             label2 = new Label();
             label1 = new Label();
-            tb_riyuu = new MaskedTextBox();
-            label18 = new Label();
-            date = new DateTimePicker();
             button1 = new Button();
             b_ord = new Button();
             b_shi = new Button();
             b_arr = new Button();
             b_lss = new Button();
             b_sal = new Button();
+            clear = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -136,6 +137,32 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(905, 520);
             panel1.TabIndex = 127;
+            // 
+            // date
+            // 
+            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            date.Location = new Point(589, 109);
+            date.Name = "date";
+            date.Size = new Size(300, 31);
+            date.TabIndex = 75;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label18.ForeColor = Color.White;
+            label18.Location = new Point(478, 114);
+            label18.Name = "label18";
+            label18.Size = new Size(102, 25);
+            label18.TabIndex = 74;
+            label18.Text = "受注年月日";
+            // 
+            // tb_riyuu
+            // 
+            tb_riyuu.Location = new Point(123, 109);
+            tb_riyuu.Name = "tb_riyuu";
+            tb_riyuu.Size = new Size(325, 31);
+            tb_riyuu.TabIndex = 73;
             // 
             // label17
             // 
@@ -313,7 +340,7 @@
             // 
             // close
             // 
-            close.Location = new Point(899, 79);
+            close.Location = new Point(923, 79);
             close.Name = "close";
             close.Size = new Size(129, 48);
             close.TabIndex = 57;
@@ -391,32 +418,6 @@
             label1.TabIndex = 123;
             label1.Text = "11:11:11";
             // 
-            // tb_riyuu
-            // 
-            tb_riyuu.Location = new Point(123, 109);
-            tb_riyuu.Name = "tb_riyuu";
-            tb_riyuu.Size = new Size(325, 31);
-            tb_riyuu.TabIndex = 73;
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label18.ForeColor = Color.White;
-            label18.Location = new Point(478, 114);
-            label18.Name = "label18";
-            label18.Size = new Size(102, 25);
-            label18.TabIndex = 74;
-            label18.Text = "受注年月日";
-            // 
-            // date
-            // 
-            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(589, 109);
-            date.Name = "date";
-            date.Size = new Size(300, 31);
-            date.TabIndex = 75;
-            // 
             // button1
             // 
             button1.BackColor = Color.Navy;
@@ -489,11 +490,22 @@
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
             // 
+            // clear
+            // 
+            clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            clear.Location = new Point(781, 79);
+            clear.Name = "clear";
+            clear.Size = new Size(112, 48);
+            clear.TabIndex = 237;
+            clear.Text = "クリア";
+            clear.UseVisualStyleBackColor = true;
+            // 
             // acceptingorder
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 667);
+            Controls.Add(clear);
             Controls.Add(b_sal);
             Controls.Add(b_ord);
             Controls.Add(b_shi);
@@ -566,5 +578,6 @@
         private Button b_arr;
         private Button b_lss;
         private Button b_sal;
+        private Button clear;
     }
 }

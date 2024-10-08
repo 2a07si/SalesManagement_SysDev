@@ -68,13 +68,14 @@
             b_shi = new Button();
             b_arr = new Button();
             b_lss = new Button();
+            clear = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // close
             // 
-            close.Location = new Point(899, 79);
+            close.Location = new Point(923, 79);
             close.Name = "close";
             close.Size = new Size(129, 48);
             close.TabIndex = 143;
@@ -487,11 +488,22 @@
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
             // 
+            // clear
+            // 
+            clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            clear.Location = new Point(784, 79);
+            clear.Name = "clear";
+            clear.Size = new Size(112, 48);
+            clear.TabIndex = 216;
+            clear.Text = "クリア";
+            clear.UseVisualStyleBackColor = true;
+            // 
             // arrival
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 667);
+            Controls.Add(clear);
             Controls.Add(b_acc);
             Controls.Add(b_sal);
             Controls.Add(b_ord);
@@ -562,5 +574,6 @@
         private Button b_shi;
         private Button b_arr;
         private Button b_lss;
+        private Button clear;
     }
 }

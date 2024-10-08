@@ -66,6 +66,7 @@
             b_cus = new Button();
             b_mer = new Button();
             b_emp = new Button();
+            clear = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -408,7 +409,7 @@
             // 
             // close
             // 
-            close.Location = new Point(900, 79);
+            close.Location = new Point(924, 79);
             close.Name = "close";
             close.Size = new Size(129, 48);
             close.TabIndex = 202;
@@ -463,11 +464,22 @@
             b_emp.Text = "社員";
             b_emp.UseVisualStyleBackColor = false;
             // 
+            // clear
+            // 
+            clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            clear.Location = new Point(785, 79);
+            clear.Name = "clear";
+            clear.Size = new Size(112, 48);
+            clear.TabIndex = 215;
+            clear.Text = "クリア";
+            clear.UseVisualStyleBackColor = true;
+            // 
             // merchandise
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 667);
+            Controls.Add(clear);
             Controls.Add(b_emp);
             Controls.Add(b_mer);
             Controls.Add(b_cus);
@@ -534,5 +546,6 @@
         private Button b_cus;
         private Button b_mer;
         private Button b_emp;
+        private Button clear;
     }
 }
