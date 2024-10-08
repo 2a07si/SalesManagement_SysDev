@@ -757,7 +757,8 @@ namespace SalesManagement_SysDev
 
                 if (employee != null && employee.EmPassword == pass)
                 {
-                    // 合致していればフォーム画面遷移→メインメニュー１へ
+                    // 合致していれば社員IDを記憶し、フォーム画面遷移→メインメニュー１へ
+                    Global.EmployeeID = empID;
                     mainmenu1 mainMenu = new mainmenu1();
                     mainMenu.Show();
                     this.Hide();
@@ -771,5 +772,12 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
+    //Globalで社員IDを記憶
+    public static class Global
+        {
+            public static int EmployeeID;
+        }
+
     }
 }

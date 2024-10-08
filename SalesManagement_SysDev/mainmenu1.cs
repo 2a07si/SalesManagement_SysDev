@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SalesManagement_SysDev.F_login;
 
 namespace SalesManagement_SysDev
 {
@@ -17,11 +18,31 @@ namespace SalesManagement_SysDev
             InitializeComponent();
         }
 
+        private void LoadEmployeeName()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                var employee = context.MEmployees.SingleOrDefault(e => e.EmId == Global.EmployeeID);
+                if (employee != null)
+                {
+                    label_id.Text = employee.EmName;
+                }
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
 
         }
 
+<<<<<<< HEAD
+        private void b_logout_Click(object sender, EventArgs e)
+        {
+
+        }
+
+=======
+>>>>>>> 926ceb485e320613716287dc9aa2fda9867905f2
         private void mainmenu1_Load(object sender, EventArgs e)
         {
 
