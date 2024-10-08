@@ -33,9 +33,9 @@
             label3 = new Label();
             label4 = new Label();
             b_logout = new Button();
-            b_ = new Button();
-            b_cus = new Button();
-            b_mer = new Button();
+            b_juchuu = new Button();
+            b_hacchuu = new Button();
+            b_masuta = new Button();
             label_ename = new Label();
             label_id = new Label();
             SuspendLayout();
@@ -85,39 +85,39 @@
             b_logout.Text = "ログアウト";
             b_logout.UseVisualStyleBackColor = true;
             // 
-            // b_
+            // b_juchuu
             // 
-            b_.BackColor = Color.FromArgb(255, 255, 192);
-            b_.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_.Location = new Point(33, 162);
-            b_.Name = "b_";
-            b_.Size = new Size(331, 493);
-            b_.TabIndex = 23;
-            b_.Text = "受注～発注";
-            b_.UseVisualStyleBackColor = false;
+            b_juchuu.BackColor = Color.FromArgb(255, 255, 192);
+            b_juchuu.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_juchuu.Location = new Point(33, 162);
+            b_juchuu.Name = "b_juchuu";
+            b_juchuu.Size = new Size(331, 493);
+            b_juchuu.TabIndex = 23;
+            b_juchuu.Text = "受注～売上";
+            b_juchuu.UseVisualStyleBackColor = false;
             // 
-            // b_cus
+            // b_hacchuu
             // 
-            b_cus.BackColor = Color.FromArgb(255, 255, 192);
-            b_cus.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_cus.Location = new Point(370, 162);
-            b_cus.Name = "b_cus";
-            b_cus.Size = new Size(331, 493);
-            b_cus.TabIndex = 24;
-            b_cus.Text = "発注～入庫";
-            b_cus.UseVisualStyleBackColor = false;
-            b_cus.Click += button2_Click;
+            b_hacchuu.BackColor = Color.FromArgb(255, 255, 192);
+            b_hacchuu.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_hacchuu.Location = new Point(370, 162);
+            b_hacchuu.Name = "b_hacchuu";
+            b_hacchuu.Size = new Size(331, 493);
+            b_hacchuu.TabIndex = 24;
+            b_hacchuu.Text = "発注～入庫";
+            b_hacchuu.UseVisualStyleBackColor = false;
+            b_hacchuu.Click += button2_Click;
             // 
-            // b_mer
+            // b_masuta
             // 
-            b_mer.BackColor = Color.FromArgb(255, 255, 192);
-            b_mer.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_mer.Location = new Point(707, 162);
-            b_mer.Name = "b_mer";
-            b_mer.Size = new Size(331, 493);
-            b_mer.TabIndex = 25;
-            b_mer.Text = "マスタ管理";
-            b_mer.UseVisualStyleBackColor = false;
+            b_masuta.BackColor = Color.FromArgb(255, 255, 192);
+            b_masuta.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_masuta.Location = new Point(707, 162);
+            b_masuta.Name = "b_masuta";
+            b_masuta.Size = new Size(331, 493);
+            b_masuta.TabIndex = 25;
+            b_masuta.Text = "マスタ管理";
+            b_masuta.UseVisualStyleBackColor = false;
             // 
             // label_ename
             // 
@@ -145,9 +145,9 @@
             ClientSize = new Size(1067, 667);
             Controls.Add(label_ename);
             Controls.Add(label_id);
-            Controls.Add(b_mer);
-            Controls.Add(b_cus);
-            Controls.Add(b_);
+            Controls.Add(b_masuta);
+            Controls.Add(b_hacchuu);
+            Controls.Add(b_juchuu);
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -170,9 +170,9 @@
         private TextBox textBox1;
         private TextBox textBox2;
         private Button b_logout;
-        private Button b_;
-        private Button b_cus;
-        private Button b_mer;
+        private Button b_juchuu;
+        private Button b_hacchuu;
+        private Button b_masuta;
         private Label label_ename;
         private Label label_id;
     }
