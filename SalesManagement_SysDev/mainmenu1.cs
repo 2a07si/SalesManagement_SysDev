@@ -62,12 +62,13 @@ namespace SalesManagement_SysDev
             this.Opacity = 0.5; // 半透明に設定
 
             // 新しいフォームを表示
-            acceptingorders newForm = new acceptingorders();
+            acceptingorders newForm = new acceptingorders(this);
             newForm.Show();
 
             // 現在のフォームを非表示にする
             this.Hide();
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
