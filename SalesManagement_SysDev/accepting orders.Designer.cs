@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            kakutei = new Button();
             components = new System.ComponentModel.Container();
+            kakutei = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
+            button1 = new Button();
             clear = new Button();
             close = new Button();
             label_ename = new Label();
@@ -66,22 +68,27 @@
             dataGridView1 = new DataGridView();
             label2 = new Label();
             label1 = new Label();
-            kakutei = new Button();
-            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // kakutei
             // 
-            kakutei.BackColor = Color.FromArgb(255, 192, 192);
-            kakutei.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(794, 78);
+            kakutei.Location = new Point(0, 0);
             kakutei.Name = "kakutei";
-            kakutei.Size = new Size(129, 48);
-            kakutei.TabIndex = 257;
-            kakutei.Text = "確定";
-            kakutei.UseVisualStyleBackColor = false;
+            kakutei.Size = new Size(75, 23);
+            kakutei.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(255, 192, 192);
+            button1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Location = new Point(794, 78);
+            button1.Name = "button1";
+            button1.Size = new Size(129, 48);
+            button1.TabIndex = 257;
+            button1.Text = "確定";
+            button1.UseVisualStyleBackColor = false;
             // 
             // clear
             // 
@@ -101,16 +108,15 @@
             close.TabIndex = 242;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
-            close.Click += close_Click;
             // 
             // label_ename
             // 
             label_ename.AutoSize = true;
             label_ename.Location = new Point(664, 28);
             label_ename.Name = "label_ename";
-            label_ename.Size = new Size(68, 25);
+            label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 255;
-            label_ename.Text = "--------";
+            label_ename.Text = "label7";
             // 
             // b_flg
             // 
@@ -128,9 +134,9 @@
             label_id.AutoSize = true;
             label_id.Location = new Point(444, 28);
             label_id.Name = "label_id";
-            label_id.Size = new Size(61, 25);
+            label_id.Size = new Size(59, 25);
             label_id.TabIndex = 254;
-            label_id.Text = "-------";
+            label_id.Text = "label6";
             // 
             // b_ser
             // 
@@ -194,16 +200,6 @@
             b_ord.TabIndex = 251;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
-            b_ord.BackColor = Color.FromArgb(255, 255, 192);
-            b_ord.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ord.ForeColor = Color.Black;
-            b_ord.Location = new Point(15, 230);
-            b_ord.Name = "b_ord";
-            b_ord.Size = new Size(120, 50);
-            b_ord.TabIndex = 231;
-            b_ord.Text = "注文";
-            b_ord.UseVisualStyleBackColor = false;
-            b_ord.Click += b_ord_Click;
             // 
             // b_sal
             // 
@@ -226,15 +222,6 @@
             b_add.Name = "b_add";
             b_add.Size = new Size(120, 75);
             b_add.TabIndex = 249;
-            b_add.Text = "受注";
-            b_add.UseVisualStyleBackColor = false;
-            b_add.BackColor = Color.Navy;
-            b_add.Font = new Font("Yu Gothic UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            b_add.ForeColor = Color.White;
-            b_add.Location = new Point(15, 140);
-            b_add.Name = "b_add";
-            b_add.Size = new Size(120, 75);
-            b_add.TabIndex = 229;
             b_add.Text = "受注";
             b_add.UseVisualStyleBackColor = false;
             // 
@@ -428,9 +415,9 @@
             LBTantouShain.ForeColor = Color.White;
             LBTantouShain.Location = new Point(123, 65);
             LBTantouShain.Name = "LBTantouShain";
-            LBTantouShain.Size = new Size(129, 25);
+            LBTantouShain.Size = new Size(40, 25);
             LBTantouShain.TabIndex = 59;
-            LBTantouShain.Text = "-------- --------";
+            LBTantouShain.Text = "----";
             // 
             // label7
             // 
@@ -483,27 +470,12 @@
             label1.TabIndex = 243;
             label1.Text = "11:11:11";
             // 
-            // kakutei
-            // 
-            kakutei.BackColor = Color.FromArgb(255, 192, 192);
-            kakutei.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(795, 80);
-            kakutei.Name = "kakutei";
-            kakutei.Size = new Size(129, 48);
-            kakutei.TabIndex = 237;
-            kakutei.Text = "確定";
-            kakutei.UseVisualStyleBackColor = false;
-            // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
-            // 
             // acceptingorders
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 667);
-            Controls.Add(kakutei);
+            Controls.Add(button1);
             Controls.Add(clear);
             Controls.Add(close);
             Controls.Add(label_ename);
@@ -536,6 +508,8 @@
         #endregion
 
         private Button kakutei;
+        private System.Windows.Forms.Timer timer1;
+        private Button button1;
         private Button clear;
         private Button close;
         private Label label_ename;
@@ -572,7 +546,5 @@
         private DataGridView dataGridView1;
         private Label label2;
         private Label label1;
-        private Button kakutei;
-        private System.Windows.Forms.Timer timer1;
     }
 }

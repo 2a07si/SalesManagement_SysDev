@@ -34,20 +34,20 @@ namespace SalesManagement_SysDev
         private void acceptingorders_Load(object sender, EventArgs e)
         {
 
-        private void b_ord_Click(object sender, EventArgs e)
-        {
+            private void b_ord_Click(object sender, EventArgs e)
+            {
 
+            }
         }
     }
-        }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            DateTime dateTime = DateTime.Now;
-            label1.Text = dateTime.ToLongTimeString();
+    private void timer1_Tick(object sender, EventArgs e)
+    {
+        DateTime dateTime = DateTime.Now;
+        label1.Text = dateTime.ToLongTimeString();
 
-            var now = System.DateTime.Now;
-            label2.Text = now.ToString("yyyy年MM月dd日");
-        }
+        var now = System.DateTime.Now;
+        label2.Text = now.ToString("yyyy年MM月dd日");
     }
+}
 }
