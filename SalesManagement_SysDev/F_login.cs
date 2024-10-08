@@ -777,6 +777,11 @@ namespace SalesManagement_SysDev
     public static class Global
         {
             public static int EmployeeID;
+            public static void Reset()
+            {
+                EmployeeID = 0;
+            }
+
         }
 
     }

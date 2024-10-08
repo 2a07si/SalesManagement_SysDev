@@ -34,15 +34,25 @@ namespace SalesManagement_SysDev
         {
 
         }
-
-<<<<<<< HEAD
         private void b_logout_Click(object sender, EventArgs e)
         {
+            // 確認ダイアログを表示
+            var result = MessageBox.Show("ログアウトしてもよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes)
+            {
+                // グローバル変数を初期化
+                Global.Reset();
+
+                // 現在のフォームを閉じる
+                this.Close();
+
+                // ログインフォームを開く
+                F_login loginForm = new F_login();
+                loginForm.Show();
+            }
         }
 
-=======
->>>>>>> 926ceb485e320613716287dc9aa2fda9867905f2
         private void mainmenu1_Load(object sender, EventArgs e)
         {
 
