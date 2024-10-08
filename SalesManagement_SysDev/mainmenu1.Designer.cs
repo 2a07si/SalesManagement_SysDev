@@ -89,6 +89,7 @@
             b_logout.TabIndex = 21;
             b_logout.Text = "ログアウト";
             b_logout.UseVisualStyleBackColor = true;
+            b_logout.Click += b_logout_Click;
             // 
             // b_next
             // 
@@ -192,9 +193,9 @@
             label_id.AutoSize = true;
             label_id.Location = new Point(726, 47);
             label_id.Name = "label_id";
-            label_id.Size = new Size(59, 25);
+            label_id.Size = new Size(110, 25);
             label_id.TabIndex = 109;
-            label_id.Text = "label8";
+            label_id.Text = "label_empID";
             // 
             // mainmenu1
             // 
