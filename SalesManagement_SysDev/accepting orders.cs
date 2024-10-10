@@ -70,12 +70,14 @@ namespace SalesManagement_SysDev
         {
             order orderForm = new order();
             orderForm.ShowDialog();
+            this.Close();
         }
 
         private void b_lss_Click(object sender, EventArgs e)
         {
             lssue lssueForm = new lssue();
             lssueForm.ShowDialog();
+            this.Close();
         }
 
 
