@@ -81,7 +81,7 @@ namespace SalesManagement_SysDev
 
         private void b_arr_Click_1(object sender, EventArgs e)
         {
-            arrival arrivalForm = new arrival();
+            arrival arrivalForm = new arrival(this);
 
             // arrival フォームを表示
             arrivalForm.Show();
@@ -94,38 +94,39 @@ namespace SalesManagement_SysDev
         {
             shipping shippingForm = new shipping();
             shippingForm.ShowDialog();
+            this.Close();
         }
 
         private void b_sal_Click(object sender, EventArgs e)
         {
             sales saleseForm = new sales();
             saleseForm.ShowDialog();
+            this.Close();
         }
 
         private void b_ord_Click_1(object sender, EventArgs e)
         {
             order orderForm = new order();
             orderForm.ShowDialog();
+            this.Close();
         }
 
         private void b_lss_Click_1(object sender, EventArgs e)
         {
             lssue lssue = new lssue();
             lssue.ShowDialog();
+            this.Close();
         }
-
-<<<<<<< HEAD
         private void b_arr_Click(object sender, EventArgs e)
         {
             arrival arrivalForm = new arrival(this);
             arrivalForm.ShowDialog();
+            this.Close();
         }
 
         private void b_add_Click(object sender, EventArgs e)
         {
 
         }
-=======
->>>>>>> d35b2f1be617a9173529a3b3301c312a1e4eda76
     }
 }
