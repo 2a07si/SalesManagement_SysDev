@@ -108,6 +108,7 @@
             close.TabIndex = 242;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
+            close.Click += close_Click_1;
             // 
             // label_ename
             // 

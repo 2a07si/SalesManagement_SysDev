@@ -17,12 +17,9 @@ namespace SalesManagement_SysDev
         public arrival(Form mainForm)
         {
             InitializeComponent();
-<<<<<<< HEAD
-            
-=======
             this.mainForm = mainForm;
             timer1.Start();
->>>>>>> 19220900cacd19464f759fd4271fe9c34c0d6435
+
         }
 
         private void button3_Click(object sender, EventArgs e)
