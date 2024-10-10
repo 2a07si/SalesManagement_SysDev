@@ -128,15 +128,5 @@ namespace SalesManagement_SysDev
         {
 
         }
-
-        private void b_ord_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void b_add_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
