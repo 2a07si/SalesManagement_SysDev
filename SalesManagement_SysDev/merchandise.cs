@@ -12,9 +12,11 @@ namespace SalesManagement_SysDev
 {
     public partial class merchandise : Form
     {
+        private Form mainForm;
         public merchandise()
         {
             InitializeComponent();
+            this.mainForm = new Form();
             timer1.Start();
         }
 
@@ -30,6 +32,17 @@ namespace SalesManagement_SysDev
 
             var now = System.DateTime.Now;
             label2.Text = now.ToString("yyyy年MM月dd日");
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            // メインフォームを再表示
+            mainForm.Opacity = 1.0;
+            mainForm.TransparencyKey = Color.Empty; // 透明化を解除
+            mainForm.Show();
+
+            // 現在のフォームを閉じる
+            this.Close();
         }
     }
 }

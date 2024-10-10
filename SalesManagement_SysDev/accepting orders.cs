@@ -78,10 +78,12 @@ namespace SalesManagement_SysDev
             lssueForm.ShowDialog();
         }
 
-        private void b_arr_Click_1(object sender, EventArgs e)
+        private void b_arr_Click(object sender, EventArgs e)
         {
-            arrival arrivalForm = new arrival();
-            arrivalForm.ShowDialog();
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0; // 透明に設定
+            arrival arrivalform = new arrival();
+            arrivalform.ShowDialog();
         }
 
         private void b_shi_Click(object sender, EventArgs e)
