@@ -108,10 +108,5 @@ namespace SalesManagement_SysDev
             lssue.ShowDialog();
         }
 
-        private void b_arr_Click(object sender, EventArgs e)
-        {
-            arrival arrivalForm = new arrival();
-            arrivalForm.ShowDialog();
-        }
     }
 }
