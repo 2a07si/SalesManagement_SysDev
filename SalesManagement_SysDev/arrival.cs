@@ -19,25 +19,11 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             this.mainForm = mainForm;
             timer1.Start();
-<<<<<<< HEAD
-
-=======
-        }
-
-        public arrival()
-        {
->>>>>>> 9e0ab279486c009c7101cc106f544ca9a3d4cfad
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // メインフォームを再表示
-            mainForm.Opacity = 1.0;
-            mainForm.TransparencyKey = Color.Empty; // 透明化を解除
-            mainForm.Show();
 
-            // 現在のフォームを閉じる
-            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
