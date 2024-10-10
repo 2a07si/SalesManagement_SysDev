@@ -119,11 +119,7 @@ namespace SalesManagement_SysDev
             lssue.ShowDialog();
             this.Close();
         }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 5d1e950caac82159435c7eaac452471f95cc2671
         private void b_arr_Click(object sender, EventArgs e)
         {
             arrival arrivalForm = new arrival(this);
@@ -135,5 +131,7 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+
     }
 }
