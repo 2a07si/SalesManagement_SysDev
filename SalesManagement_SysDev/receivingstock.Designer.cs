@@ -451,6 +451,7 @@
             close.TabIndex = 250;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
+            close.Click += close_Click;
             // 
             // timer1
             // 

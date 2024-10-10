@@ -255,7 +255,7 @@
             b_arr.TabIndex = 247;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
-            b_arr.Click += b_arr_Click;
+            b_arr.Click += b_arr_Click_1;
             // 
             // b_lss
             // 
@@ -268,6 +268,7 @@
             b_lss.TabIndex = 246;
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click_1;
             // 
             // panel1
             // 
@@ -311,7 +312,7 @@
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.LavenderBlush;
-            DelFlag.Location = new Point(15, 109);
+            DelFlag.Location = new Point(15, 110);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 78;
@@ -506,7 +507,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "acceptingorders";
-            Text = "Form1";
+            Text = "受注";
             Load += acceptingorders_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
