@@ -69,5 +69,16 @@ namespace SalesManagement_SysDev
         {
 
         }
+<<<<<<< HEAD
+=======
+
+        private void b_ord_Click(object sender, EventArgs e)
+        {
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0; // 半透明に設定
+            order orderform = new order();
+            orderform.ShowDialog();
+        }
+>>>>>>> 9e0ab279486c009c7101cc106f544ca9a3d4cfad
     }
 }
