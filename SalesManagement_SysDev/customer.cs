@@ -37,12 +37,31 @@ namespace SalesManagement_SysDev
 
         private void close_Click(object sender, EventArgs e)
         {
-            // メインフォームを再表示
-            mainForm.Opacity = 1.0;
-            mainForm.TransparencyKey = Color.Empty; // 透明化を解除
-            mainForm.Show();
+            mainmenu1 mainmenu1 = new mainmenu1();
+            mainmenu1.Show();
 
             // 現在のフォームを閉じる
+            this.Close();
+        }
+
+        private void b_emp_Click(object sender, EventArgs e)
+        {
+            employee employee = new employee();
+            employee.Show();
+            this.Close();
+        }
+
+        private void b_mer_Click(object sender, EventArgs e)
+        {
+            merchandise merchandise = new merchandise();
+            merchandise.Show();
+            this.Close();
+        }
+
+        private void b_sto_Click(object sender, EventArgs e)
+        {
+            stock stock = new stock();
+            stock.Show();
             this.Close();
         }
     }

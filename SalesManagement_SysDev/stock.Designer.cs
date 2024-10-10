@@ -84,18 +84,20 @@
             b_emp.TabIndex = 231;
             b_emp.Text = "社員";
             b_emp.UseVisualStyleBackColor = false;
+            b_emp.Click += b_emp_Click;
             // 
             // b_mer
             // 
             b_mer.BackColor = Color.FromArgb(255, 255, 192);
             b_mer.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_mer.ForeColor = Color.Black;
-            b_mer.Location = new Point(13, 202);
+            b_mer.Location = new Point(13, 211);
             b_mer.Name = "b_mer";
             b_mer.Size = new Size(120, 47);
             b_mer.TabIndex = 230;
             b_mer.Text = "商品";
             b_mer.UseVisualStyleBackColor = false;
+            b_mer.Click += b_mer_Click;
             // 
             // b_cus
             // 
@@ -108,6 +110,7 @@
             b_cus.TabIndex = 229;
             b_cus.Text = "顧客";
             b_cus.UseVisualStyleBackColor = false;
+            b_cus.Click += b_cus_Click;
             // 
             // b_sto
             // 
