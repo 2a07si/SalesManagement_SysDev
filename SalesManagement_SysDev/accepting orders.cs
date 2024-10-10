@@ -44,7 +44,8 @@ namespace SalesManagement_SysDev
         }
 
         private void label_id_Click(object sender, EventArgs e)
-        {
+        { 
+            
         }
         private void Timer1_Tick(object sender, EventArgs e)
         {
@@ -81,7 +82,7 @@ namespace SalesManagement_SysDev
 
         private void b_arr_Click_1(object sender, EventArgs e)
         {
-            arrival arrivalForm = new arrival();
+            arrival arrivalForm = new arrival(this);
 
             // arrival フォームを表示
             arrivalForm.Show();
@@ -114,7 +115,7 @@ namespace SalesManagement_SysDev
             lssue.ShowDialog();
         }
 
-<<<<<<< HEAD
+
         private void b_arr_Click(object sender, EventArgs e)
         {
             arrival arrivalForm = new arrival(this);
@@ -125,7 +126,5 @@ namespace SalesManagement_SysDev
         {
 
         }
-=======
->>>>>>> d35b2f1be617a9173529a3b3301c312a1e4eda76
     }
 }

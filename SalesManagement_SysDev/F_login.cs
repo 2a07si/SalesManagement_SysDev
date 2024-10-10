@@ -741,40 +741,71 @@ namespace SalesManagement_SysDev
 
         private void B_login_Click(object sender, EventArgs e)
         {
-            // 社員IDと入力されたパスワードが合致しているか確かめる
-            int empID;
-            if (!int.TryParse(tb_ID.Text, out empID))
+            try
             {
-                MessageBox.Show("社員IDは数値で入力してください。");
-                return;
+                // 社員IDが入力されているか確認
+                if (string.IsNullOrWhiteSpace(tb_ID.Text))
+                {
+                    MessageBox.Show("社員IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 社員IDが数値であるか確認
+                int empID;
+                if (!int.TryParse(tb_ID.Text, out empID))
+                {
+                    MessageBox.Show("社員IDは数値で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // パスワードが入力されているか確認
+                if (string.IsNullOrWhiteSpace(tb_Pass.Text))
+                {
+                    MessageBox.Show("パスワードを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string pass = tb_Pass.Text;
+
+                using (var context = new SalesManagementContext())
+                {
+                    var employee = context.MEmployees.SingleOrDefault(e => e.EmId == empID);
+
+                    if (employee != null && employee.EmPassword == pass)
+                    {
+                        // 合致していれば社員IDを記憶し、フォーム画面遷移→メインメニュー１へ
+                        Global.EmployeeID = empID;
+                        mainmenu1 mainMenu = new mainmenu1();
+                        mainMenu.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        // 合致していなければメッセージ表示「社員IDとパスワードが一致していません」
+                        MessageBox.Show("社員IDとパスワードが一致していません", "認証エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // パスワードを白紙に戻し再度入力要求
+                        tb_Pass.Clear();
+                    }
+                }
             }
-
-            string pass = tb_Pass.Text;
-
-            using (var context = new SalesManagementContext())
+            catch (FormatException ex)
             {
-                var employee = context.MEmployees.SingleOrDefault(e => e.EmId == empID);
-
-                if (employee != null && employee.EmPassword == pass)
-                {
-                    // 合致していれば社員IDを記憶し、フォーム画面遷移→メインメニュー１へ
-                    Global.EmployeeID = empID;
-                    mainmenu1 mainMenu = new mainmenu1();
-                    mainMenu.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    // 合致していなければメッセージ表示「社員IDとパスワードが一致していません」
-                    MessageBox.Show("社員IDとパスワードが一致していません");
-                    // パスワードを白紙に戻し再度入力要求
-                    tb_Pass.Clear();
-                }
+                MessageBox.Show("入力形式が正しくありません: " + ex.Message, "形式エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("データベース操作中にエラーが発生しました: " + ex.Message, "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-    //Globalで社員IDを記憶
-    public static class Global
+
+
+        //Globalで社員IDを記憶
+        public static class Global
         {
             public static int EmployeeID;
             public static void Reset()
