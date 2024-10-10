@@ -264,6 +264,7 @@
             b_lss.TabIndex = 246;
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click;
             // 
             // panel1
             // 

@@ -69,10 +69,29 @@ namespace SalesManagement_SysDev
             order orderform = new order();
             orderform.ShowDialog();
         }
+<<<<<<< HEAD
 
         private void b_arr_Click(object sender, EventArgs e)
         {
 
+=======
+>>>>>>> 9e0ab279486c009c7101cc106f544ca9a3d4cfad
+
+        private void b_lss_Click(object sender, EventArgs e)
+        {
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0; // 半透明に設定
+            lssue lssueform = new lssue();
+            lssueform.ShowDialog();
+        }
+
+        private void b_arr_Click(object sender, EventArgs e)
+        {
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0; // 透明に設定
+            arrival arrivalform = new arrival();
+            arrivalform.ShowDialog();
+>>>>>>> c0ae510487668ea29d35c75e2a45c316ea9f0c26
         }
     }
 }
