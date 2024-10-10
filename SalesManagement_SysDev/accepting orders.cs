@@ -78,10 +78,16 @@ namespace SalesManagement_SysDev
             lssueForm.ShowDialog();
         }
 
-        private void b_arr_Click(object sender, EventArgs e)
+
+        private void b_arr_Click_1(object sender, EventArgs e)
         {
-            arrival arrivalform = new arrival();
-            arrivalform.ShowDialog();
+            arrival arrivalForm = new arrival();
+
+            // arrival フォームを表示
+            arrivalForm.Show();
+
+            // 現在の acceptingorders フォームを閉じる
+            this.Close();
         }
 
         private void b_shi_Click(object sender, EventArgs e)
