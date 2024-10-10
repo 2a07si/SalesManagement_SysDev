@@ -79,6 +79,17 @@ namespace SalesManagement_SysDev
         }
 
 
+        private void b_arr_Click_1(object sender, EventArgs e)
+        {
+            arrival arrivalForm = new arrival();
+
+            // arrival フォームを表示
+            arrivalForm.Show();
+
+            // 現在の acceptingorders フォームを閉じる
+            this.Close();
+        }
+
         private void b_shi_Click(object sender, EventArgs e)
         {
             shipping shippingForm = new shipping();
