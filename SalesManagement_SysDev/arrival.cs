@@ -24,7 +24,6 @@ namespace SalesManagement_SysDev
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // メインフォームを再表示
             mainmenu1 mainmenu1 = new mainmenu1();
             mainmenu1.Show();
 
