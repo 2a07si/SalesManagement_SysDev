@@ -85,13 +85,11 @@ namespace SalesManagement_SysDev
             this.Hide();
         }
 
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.Now;
             label1.Text = dateTime.ToLongTimeString();
-
+        }
         private void b_masuta_Click(object sender, EventArgs e)
         {
             // 現在のフォームを透明化
@@ -108,4 +106,9 @@ namespace SalesManagement_SysDev
             label2.Text = now.ToString("yyyy年MM月dd日");
         }
     }
+
+    //private void timer1_Tick(object sender, EventArgs e)
+    //{
+        
+    //}
 }

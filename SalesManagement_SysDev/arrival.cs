@@ -12,6 +12,8 @@ namespace SalesManagement_SysDev
 {
     public partial class arrival : Form
     {
+        private Form mainForm;
+
         public arrival(Form mainForm)
         {
             InitializeComponent();
