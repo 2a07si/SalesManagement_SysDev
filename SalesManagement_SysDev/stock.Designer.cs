@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             b_emp = new Button();
             b_mer = new Button();
             b_cus = new Button();
@@ -67,6 +68,7 @@
             kakutei = new Button();
             clear = new Button();
             close = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -476,6 +478,10 @@
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
+            // 
             // stock
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -549,5 +555,6 @@
         private Button kakutei;
         private Button clear;
         private Button close;
+        private System.Windows.Forms.Timer timer1;
     }
 }

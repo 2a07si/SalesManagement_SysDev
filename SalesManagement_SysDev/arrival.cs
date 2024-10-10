@@ -12,10 +12,17 @@ namespace SalesManagement_SysDev
 {
     public partial class arrival : Form
     {
+        private Form mainForm;
+
         public arrival(Form mainForm)
         {
             InitializeComponent();
+<<<<<<< HEAD
             
+=======
+            this.mainForm = mainForm;
+            timer1.Start();
+>>>>>>> 19220900cacd19464f759fd4271fe9c34c0d6435
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -30,5 +37,16 @@ namespace SalesManagement_SysDev
         private void button1_Click(object sender, EventArgs e)
         {
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime dateTime = DateTime.Now;
+            label1.Text = dateTime.ToLongTimeString();
+
+            var now = System.DateTime.Now;
+            label2.Text = now.ToString("yyyy年MM月dd日");
+        }
+
+
     }
 }

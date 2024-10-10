@@ -16,6 +16,7 @@ namespace SalesManagement_SysDev
         public mainmenu1()
         {
             InitializeComponent();
+            timer1.Start();
         }
 
         private void LoadEmployeeName()
@@ -84,6 +85,11 @@ namespace SalesManagement_SysDev
             this.Hide();
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime dateTime = DateTime.Now;
+            label1.Text = dateTime.ToLongTimeString();
+        }
         private void b_masuta_Click(object sender, EventArgs e)
         {
             // 現在のフォームを透明化
@@ -96,6 +102,13 @@ namespace SalesManagement_SysDev
 
             // 現在のフォームを非表示にする
             this.Hide();
+            var now = System.DateTime.Now;
+            label2.Text = now.ToString("yyyy年MM月dd日");
         }
     }
+
+    //private void timer1_Tick(object sender, EventArgs e)
+    //{
+        
+    //}
 }

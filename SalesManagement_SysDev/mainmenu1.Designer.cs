@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -38,6 +39,7 @@
             b_masuta = new Button();
             label_ename = new Label();
             label_id = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // label1
@@ -78,7 +80,7 @@
             // 
             // b_logout
             // 
-            b_logout.Location = new Point(923, 66);
+            b_logout.Location = new Point(926, 78);
             b_logout.Name = "b_logout";
             b_logout.Size = new Size(112, 47);
             b_logout.TabIndex = 21;
@@ -120,7 +122,6 @@
             b_masuta.TabIndex = 25;
             b_masuta.Text = "マスタ管理";
             b_masuta.UseVisualStyleBackColor = false;
-            b_masuta.Click += b_masuta_Click;
             // 
             // label_ename
             // 
@@ -139,6 +140,10 @@
             label_id.Size = new Size(110, 25);
             label_id.TabIndex = 109;
             label_id.Text = "label_empID";
+            // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
             // 
             // mainmenu1
             // 
@@ -178,5 +183,6 @@
         private Button b_masuta;
         private Label label_ename;
         private Label label_id;
+        private System.Windows.Forms.Timer timer1;
     }
 }
