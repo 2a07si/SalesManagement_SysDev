@@ -82,7 +82,7 @@ namespace SalesManagement_SysDev
             this.Opacity = 0; // 透明に設定
             arrival arrivalform = new arrival();
             arrivalform.ShowDialog();
->>>>>>> c0ae510487668ea29d35c75e2a45c316ea9f0c26
+
             this.Hide();
             arrival arrival = new arrival();
             arrival.ShowDialog();
