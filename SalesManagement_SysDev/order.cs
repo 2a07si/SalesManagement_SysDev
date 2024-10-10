@@ -71,5 +71,10 @@ namespace SalesManagement_SysDev
             sales.Show();
             this.Close();
         }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
