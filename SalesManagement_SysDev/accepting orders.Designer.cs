@@ -311,7 +311,7 @@
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.LavenderBlush;
-            DelFlag.Location = new Point(15, 109);
+            DelFlag.Location = new Point(15, 110);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 78;
