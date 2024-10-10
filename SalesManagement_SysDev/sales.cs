@@ -12,9 +12,12 @@ namespace SalesManagement_SysDev
 {
     public partial class sales : Form
     {
+        private Form mainForm;
+
         public sales()
         {
             InitializeComponent();
+            this.mainForm = mainForm;
             timer1.Start();
         }
 
@@ -25,6 +28,13 @@ namespace SalesManagement_SysDev
 
             var now = System.DateTime.Now;
             label2.Text = now.ToString("yyyy年MM月dd日");
+        }
+
+        private void b_acc_Click(object sender, EventArgs e)
+        {
+            acceptingorders acceptingordersForm = new acceptingorders();
+            acceptingordersForm.ShowDialog();
+            this.Close();
         }
     }
 }
