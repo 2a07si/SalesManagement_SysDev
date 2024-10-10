@@ -53,5 +53,41 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+        private void b_acc_Click(object sender, EventArgs e)
+        {
+            acceptingorders acceptingorders = new acceptingorders(this);
+            acceptingorders.Show();
+            this.Close();
+
+        }
+
+        private void b_shi_Click(object sender, EventArgs e)
+        {
+            shipping shipping = new shipping();
+            shipping.Show();
+            this.Close();
+        }
+
+        private void b_sal_Click(object sender, EventArgs e)
+        {
+            sales sales = new sales();
+            sales.Show();
+            this.Close();
+        }
+
+        private void b_lss_Click(object sender, EventArgs e)
+        {
+            lssue lssue = new lssue();
+            lssue.Show();
+            this.Close();
+        }
+
+        private void b_ord_Click(object sender, EventArgs e)
+        {
+            order order = new order();  
+            order.Show();
+            this.Close();
+        }
     }
 }

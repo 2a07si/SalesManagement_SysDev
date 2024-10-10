@@ -368,6 +368,7 @@
             b_acc.TabIndex = 178;
             b_acc.Text = "受注";
             b_acc.UseVisualStyleBackColor = false;
+            b_acc.Click += b_acc_Click;
             // 
             // b_sal
             // 
@@ -380,6 +381,7 @@
             b_sal.TabIndex = 177;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
+            b_sal.Click += b_sal_Click;
             // 
             // b_ord
             // 
@@ -391,6 +393,7 @@
             b_ord.TabIndex = 176;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
+            b_ord.Click += b_ord_Click;
             // 
             // b_shi
             // 
@@ -402,6 +405,7 @@
             b_shi.TabIndex = 175;
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
+            b_shi.Click += b_shi_Click;
             // 
             // b_arr
             // 
@@ -426,6 +430,7 @@
             b_lss.TabIndex = 173;
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click;
             // 
             // kakutei
             // 

@@ -58,9 +58,8 @@ namespace SalesManagement_SysDev
         private void close_Click_1(object sender, EventArgs e)
         {
             // メインフォームを再表示
-            mainForm.Opacity = 1.0;
-            mainForm.TransparencyKey = Color.Empty; // 透明化を解除
-            mainForm.Show();
+            mainmenu1 mainmenu1 = new mainmenu1();
+            mainmenu1.Show();
 
             // 現在のフォームを閉じる
             this.Close();
@@ -70,12 +69,14 @@ namespace SalesManagement_SysDev
         {
             order orderForm = new order();
             orderForm.ShowDialog();
+            this.Close();
         }
 
         private void b_lss_Click(object sender, EventArgs e)
         {
             lssue lssueForm = new lssue();
             lssueForm.ShowDialog();
+            this.Close();
         }
 
 
