@@ -44,8 +44,8 @@ namespace SalesManagement_SysDev
         }
 
         private void label_id_Click(object sender, EventArgs e)
-        { 
-            
+        {
+
         }
         private void Timer1_Tick(object sender, EventArgs e)
         {
@@ -62,24 +62,23 @@ namespace SalesManagement_SysDev
             mainmenu1 mainmenu1 = new mainmenu1();
             mainmenu1.Show();
 
-            // 現在のフォームを閉じる
-            this.Close();
+            // 現在のフォームを非表示にする
+            this.Hide(); // this.Close()から変更
         }
 
         private void b_ord_Click(object sender, EventArgs e)
         {
             order orderForm = new order();
-            orderForm.ShowDialog();
-            this.Close();
+            orderForm.Show();
+            this.Hide();
         }
 
         private void b_lss_Click(object sender, EventArgs e)
         {
             lssue lssueForm = new lssue();
-            lssueForm.ShowDialog();
-            this.Close();
+            lssueForm.Show();
+            this.Hide();
         }
-
 
         private void b_arr_Click_1(object sender, EventArgs e)
         {
@@ -88,52 +87,54 @@ namespace SalesManagement_SysDev
             // arrival フォームを表示
             arrivalForm.Show();
 
-            // 現在の acceptingorders フォームを閉じる
-            this.Close();
+            // 現在の acceptingorders フォームを非表示にする
+            this.Hide();
         }
 
         private void b_shi_Click(object sender, EventArgs e)
         {
-            shipping shippingForm = new shipping();
-            shippingForm.ShowDialog();
-            this.Close();
+            shipping shippingForm = new shipping(this);
+            shippingForm.Show();
+            this.Hide();
         }
 
         private void b_sal_Click(object sender, EventArgs e)
         {
             sales saleseForm = new sales();
-            saleseForm.ShowDialog();
-            this.Close();
+            saleseForm.Show();
+            this.Hide();
         }
 
         private void b_ord_Click_1(object sender, EventArgs e)
         {
             order orderForm = new order();
             orderForm.ShowDialog();
-            this.Close();
+            this.Hide();
         }
 
         private void b_lss_Click_1(object sender, EventArgs e)
         {
             lssue lssue = new lssue();
             lssue.ShowDialog();
-            this.Close();
+            this.Hide();
         }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 5d1e950caac82159435c7eaac452471f95cc2671
         private void b_arr_Click(object sender, EventArgs e)
         {
             arrival arrivalForm = new arrival(this);
             arrivalForm.ShowDialog();
-            this.Close();
+            this.Hide();
         }
 
         private void b_add_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void b_ord_Click_2(object sender, EventArgs e)
+        {
+            order orderForm = new order();
+            orderForm.Show();
+            this.Hide();
         }
     }
 }

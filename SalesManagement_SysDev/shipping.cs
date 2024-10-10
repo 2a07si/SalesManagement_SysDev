@@ -13,10 +13,12 @@ namespace SalesManagement_SysDev
     public partial class shipping : Form
     {
         private Form mainForm;
-        public shipping()
+
+        // コンストラクターでmainFormを引数として受け取る
+        public shipping(Form mainForm)
         {
             InitializeComponent();
-            this.mainForm = new Form();
+            this.mainForm = mainForm;
             timer1.Start();
         }
 
@@ -101,8 +103,8 @@ namespace SalesManagement_SysDev
             mainForm.TransparencyKey = Color.Empty; // 透明化を解除
             mainForm.Show();
 
-            // 現在のフォームを閉じる
-            this.Close();
+            // 現在のフォームを非表示にする
+            this.Hide(); // this.Close()から変更
         }
     }
 }

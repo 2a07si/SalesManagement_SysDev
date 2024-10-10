@@ -63,7 +63,7 @@ namespace SalesManagement_SysDev
 
         private void b_shi_Click(object sender, EventArgs e)
         {
-            shipping shipping = new shipping();
+            shipping shipping = new shipping(this);
             shipping.Show();
             this.Close();
         }

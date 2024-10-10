@@ -13,6 +13,9 @@ namespace SalesManagement_SysDev
 {
     public partial class mainmenu1 : Form
     {
+        private acceptingorders acceptingOrdersForm;
+        private shipping shippingForm;
+
         public mainmenu1()
         {
             InitializeComponent();
@@ -30,7 +33,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
 
         private void b_logout_Click(object sender, EventArgs e)
         {
@@ -58,18 +60,21 @@ namespace SalesManagement_SysDev
 
         private void b_juchuu_Click(object sender, EventArgs e)
         {
+            if (acceptingOrdersForm == null || acceptingOrdersForm.IsDisposed)
+            {
+                acceptingOrdersForm = new acceptingorders(this);
+            }
+
             // 現在のフォームを透明化
             this.TransparencyKey = this.BackColor;
             this.Opacity = 0.5; // 半透明に設定
 
             // 新しいフォームを表示
-            acceptingorders newForm = new acceptingorders(this);
-            newForm.Show();
+            acceptingOrdersForm.Show();
 
             // 現在のフォームを非表示にする
             this.Hide();
         }
-
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -90,6 +95,7 @@ namespace SalesManagement_SysDev
             DateTime dateTime = DateTime.Now;
             label1.Text = dateTime.ToLongTimeString();
         }
+
         private void b_masuta_Click(object sender, EventArgs e)
         {
             // 現在のフォームを透明化
@@ -106,9 +112,4 @@ namespace SalesManagement_SysDev
             label2.Text = now.ToString("yyyy年MM月dd日");
         }
     }
-
-    //private void timer1_Tick(object sender, EventArgs e)
-    //{
-        
-    //}
 }
