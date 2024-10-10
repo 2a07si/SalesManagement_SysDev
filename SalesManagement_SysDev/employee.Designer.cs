@@ -90,6 +90,7 @@
             b_mer.TabIndex = 195;
             b_mer.Text = "商品";
             b_mer.UseVisualStyleBackColor = false;
+            b_mer.Click += b_mer_Click;
             // 
             // b_cus
             // 
@@ -102,6 +103,7 @@
             b_cus.TabIndex = 193;
             b_cus.Text = "顧客";
             b_cus.UseVisualStyleBackColor = false;
+            b_cus.Click += b_cus_Click;
             // 
             // b_sto
             // 
@@ -114,6 +116,7 @@
             b_sto.TabIndex = 192;
             b_sto.Text = "在庫";
             b_sto.UseVisualStyleBackColor = false;
+            b_sto.Click += b_sto_Click;
             // 
             // label_ename
             // 

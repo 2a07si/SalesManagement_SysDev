@@ -119,6 +119,7 @@ namespace SalesManagement_SysDev
             lssue.ShowDialog();
             this.Close();
         }
+
         private void b_arr_Click(object sender, EventArgs e)
         {
             arrival arrivalForm = new arrival(this);
@@ -130,5 +131,7 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+
     }
 }
