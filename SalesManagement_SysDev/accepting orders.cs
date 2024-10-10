@@ -60,5 +60,18 @@ namespace SalesManagement_SysDev
             var now = System.DateTime.Now;
             label2.Text = now.ToString("yyyy年MM月dd日");
         }
+
+        private void close_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void b_ord_Click(object sender, EventArgs e)
+        {
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0; // 半透明に設定
+            order orderform = new order();
+            orderform.ShowDialog();
+        }
     }
 }

@@ -17,17 +17,23 @@ namespace SalesManagement_SysDev
         public arrival(Form mainForm)
         {
             InitializeComponent();
-<<<<<<< HEAD
-            
-=======
             this.mainForm = mainForm;
             timer1.Start();
->>>>>>> 19220900cacd19464f759fd4271fe9c34c0d6435
+        }
+
+        public arrival()
+        {
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            // メインフォームを再表示
+            mainForm.Opacity = 1.0;
+            mainForm.TransparencyKey = Color.Empty; // 透明化を解除
+            mainForm.Show();
 
+            // 現在のフォームを閉じる
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
