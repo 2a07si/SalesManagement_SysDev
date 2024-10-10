@@ -105,8 +105,13 @@ namespace SalesManagement_SysDev
 
         private void b_arr_Click(object sender, EventArgs e)
         {
-            arrival arrivalForm = new arrival();
+            arrival arrivalForm = new arrival(this);
             arrivalForm.ShowDialog();
+        }
+
+        private void b_add_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

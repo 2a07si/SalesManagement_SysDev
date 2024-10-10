@@ -229,6 +229,7 @@
             b_add.TabIndex = 249;
             b_add.Text = "受注";
             b_add.UseVisualStyleBackColor = false;
+            b_add.Click += b_add_Click;
             // 
             // b_shi
             // 

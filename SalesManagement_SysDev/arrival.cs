@@ -21,9 +21,6 @@ namespace SalesManagement_SysDev
             timer1.Start();
         }
 
-        public arrival()
-        {
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
