@@ -49,13 +49,13 @@
             b_arr = new Button();
             b_lss = new Button();
             panel1 = new Panel();
-            checkBox2 = new CheckBox();
-            checkBox1 = new CheckBox();
-            maskedTextBox1 = new MaskedTextBox();
+            TyumonFlag = new CheckBox();
+            DelFlag = new CheckBox();
+            TBKokyakuId = new MaskedTextBox();
             label5 = new Label();
             date = new DateTimePicker();
             label18 = new Label();
-            tb_riyuu = new MaskedTextBox();
+            TBRiyuu = new MaskedTextBox();
             label17 = new Label();
             TBShainId = new MaskedTextBox();
             TBShopId = new MaskedTextBox();
@@ -266,13 +266,13 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Controls.Add(checkBox2);
-            panel1.Controls.Add(checkBox1);
-            panel1.Controls.Add(maskedTextBox1);
+            panel1.Controls.Add(TyumonFlag);
+            panel1.Controls.Add(DelFlag);
+            panel1.Controls.Add(TBKokyakuId);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(date);
             panel1.Controls.Add(label18);
-            panel1.Controls.Add(tb_riyuu);
+            panel1.Controls.Add(TBRiyuu);
             panel1.Controls.Add(label17);
             panel1.Controls.Add(TBShainId);
             panel1.Controls.Add(TBShopId);
@@ -288,36 +288,36 @@
             panel1.Size = new Size(900, 520);
             panel1.TabIndex = 245;
             // 
-            // checkBox2
+            // TyumonFlag
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            checkBox2.ForeColor = Color.LavenderBlush;
-            checkBox2.Location = new Point(706, 64);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(110, 29);
-            checkBox2.TabIndex = 79;
-            checkBox2.Text = "注文状態";
-            checkBox2.UseVisualStyleBackColor = true;
+            TyumonFlag.AutoSize = true;
+            TyumonFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            TyumonFlag.ForeColor = Color.LavenderBlush;
+            TyumonFlag.Location = new Point(706, 64);
+            TyumonFlag.Name = "TyumonFlag";
+            TyumonFlag.Size = new Size(110, 29);
+            TyumonFlag.TabIndex = 79;
+            TyumonFlag.Text = "注文状態";
+            TyumonFlag.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // DelFlag
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            checkBox1.ForeColor = Color.LavenderBlush;
-            checkBox1.Location = new Point(15, 109);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(92, 29);
-            checkBox1.TabIndex = 78;
-            checkBox1.Text = "非表示";
-            checkBox1.UseVisualStyleBackColor = true;
+            DelFlag.AutoSize = true;
+            DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            DelFlag.ForeColor = Color.LavenderBlush;
+            DelFlag.Location = new Point(15, 109);
+            DelFlag.Name = "DelFlag";
+            DelFlag.Size = new Size(92, 29);
+            DelFlag.TabIndex = 78;
+            DelFlag.Text = "非表示";
+            DelFlag.UseVisualStyleBackColor = true;
             // 
-            // maskedTextBox1
+            // TBKokyakuId
             // 
-            maskedTextBox1.Location = new Point(620, 20);
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(103, 31);
-            maskedTextBox1.TabIndex = 77;
+            TBKokyakuId.Location = new Point(620, 20);
+            TBKokyakuId.Name = "TBKokyakuId";
+            TBKokyakuId.Size = new Size(103, 31);
+            TBKokyakuId.TabIndex = 77;
             // 
             // label5
             // 
@@ -349,12 +349,12 @@
             label18.TabIndex = 74;
             label18.Text = "受注年月日";
             // 
-            // tb_riyuu
+            // TBRiyuu
             // 
-            tb_riyuu.Location = new Point(210, 110);
-            tb_riyuu.Name = "tb_riyuu";
-            tb_riyuu.Size = new Size(325, 31);
-            tb_riyuu.TabIndex = 73;
+            TBRiyuu.Location = new Point(210, 110);
+            TBRiyuu.Name = "TBRiyuu";
+            TBRiyuu.Size = new Size(325, 31);
+            TBRiyuu.TabIndex = 73;
             // 
             // label17
             // 
@@ -531,13 +531,13 @@
         private Button b_arr;
         private Button b_lss;
         private Panel panel1;
-        private CheckBox checkBox2;
-        private CheckBox checkBox1;
-        private MaskedTextBox maskedTextBox1;
+        private CheckBox TyumonFlag;
+        private CheckBox DelFlag;
+        private MaskedTextBox TBKokyakuId;
         private Label label5;
         private DateTimePicker date;
         private Label label18;
-        private MaskedTextBox tb_riyuu;
+        private MaskedTextBox TBRiyuu;
         private Label label17;
         private MaskedTextBox TBShainId;
         private MaskedTextBox TBShopId;
