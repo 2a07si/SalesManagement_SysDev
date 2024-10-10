@@ -21,16 +21,12 @@ namespace SalesManagement_SysDev
             timer1.Start();
         }
 
-        public arrival()
-        {
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
             // メインフォームを再表示
-            mainForm.Opacity = 1.0;
-            mainForm.TransparencyKey = Color.Empty; // 透明化を解除
-            mainForm.Show();
+            mainmenu1 mainmenu1 = new mainmenu1();
+            mainmenu1.Show();
 
             // 現在のフォームを閉じる
             this.Close();
