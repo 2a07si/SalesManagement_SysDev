@@ -255,7 +255,7 @@
             b_arr.TabIndex = 247;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
-            b_arr.Click += b_arr_Click;
+            b_arr.Click += b_arr_Click_1;
             // 
             // b_lss
             // 
@@ -507,7 +507,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "acceptingorders";
-            Text = "Form1";
+            Text = "受注";
             Load += acceptingorders_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
