@@ -75,32 +75,40 @@ namespace SalesManagement_SysDev
             // 現在のフォームを閉じる
             this.Close();
         }
-<<<<<<< HEAD
-=======
 
         private void b_ord_Click(object sender, EventArgs e)
         {
-            this.TransparencyKey = this.BackColor;
-            this.Opacity = 0; // 半透明に設定
+            this.Close();
             order orderform = new order();
             orderform.ShowDialog();
         }
->>>>>>> 9e0ab279486c009c7101cc106f544ca9a3d4cfad
 
         private void b_lss_Click(object sender, EventArgs e)
         {
-            this.TransparencyKey = this.BackColor;
-            this.Opacity = 0; // 半透明に設定
+            this.Close();
             lssue lssueform = new lssue();
             lssueform.ShowDialog();
         }
 
         private void b_arr_Click(object sender, EventArgs e)
         {
-            this.TransparencyKey = this.BackColor;
-            this.Opacity = 0; // 透明に設定
-            arrival arrivalform = new arrival();
-            arrivalform.ShowDialog();
+            this.Hide();
+            arrival arrival = new arrival();
+            arrival.ShowDialog();
+        }
+
+        private void b_shi_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            shipping shippingform = new shipping();
+            shippingform.ShowDialog();
+        }
+
+        private void b_sal_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            sales saleseform = new sales();
+            saleseform.ShowDialog();
         }
     }
 }

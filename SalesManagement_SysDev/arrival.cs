@@ -21,6 +21,10 @@ namespace SalesManagement_SysDev
             timer1.Start();
         }
 
+        public arrival()
+        {
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
 
@@ -43,6 +47,9 @@ namespace SalesManagement_SysDev
             label2.Text = now.ToString("yyyy年MM月dd日");
         }
 
+        private void b_reg_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

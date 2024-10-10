@@ -216,6 +216,7 @@
             b_sal.TabIndex = 250;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
+            b_sal.Click += b_sal_Click;
             // 
             // b_add
             // 
@@ -240,6 +241,7 @@
             b_shi.TabIndex = 248;
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
+            b_shi.Click += b_shi_Click;
             // 
             // b_arr
             // 
