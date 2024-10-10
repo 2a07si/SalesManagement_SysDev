@@ -203,6 +203,7 @@
             b_ord.TabIndex = 251;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
+            b_ord.Click += b_ord_Click_1;
             // 
             // b_sal
             // 
@@ -266,6 +267,7 @@
             b_lss.TabIndex = 246;
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click_1;
             // 
             // panel1
             // 

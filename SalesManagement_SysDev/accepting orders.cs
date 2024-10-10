@@ -21,6 +21,10 @@ namespace SalesManagement_SysDev
             timer1.Start();
         }
 
+        public acceptingorders()
+        {
+        }
+
         private void acceptingorders_Load(object sender, EventArgs e)
         {
 
@@ -64,16 +68,14 @@ namespace SalesManagement_SysDev
 
         private void b_ord_Click(object sender, EventArgs e)
         {
-            this.Close();
-            order orderform = new order();
-            orderform.ShowDialog();
+            order orderForm = new order();
+            orderForm.ShowDialog();
         }
 
         private void b_lss_Click(object sender, EventArgs e)
         {
-            this.Close();
-            lssue lssueform = new lssue();
-            lssueform.ShowDialog();
+            lssue lssueForm = new lssue();
+            lssueForm.ShowDialog();
         }
 
         private void b_arr_Click(object sender, EventArgs e)
@@ -82,24 +84,36 @@ namespace SalesManagement_SysDev
             this.Opacity = 0; // 透明に設定
             arrival arrivalform = new arrival();
             arrivalform.ShowDialog();
-
-            this.Hide();
-            arrival arrival = new arrival();
-            arrival.ShowDialog();
         }
 
         private void b_shi_Click(object sender, EventArgs e)
         {
-            this.Close();
-            shipping shippingform = new shipping();
-            shippingform.ShowDialog();
+            shipping shippingForm = new shipping();
+            shippingForm.ShowDialog();
         }
 
         private void b_sal_Click(object sender, EventArgs e)
         {
-            this.Close();
-            sales saleseform = new sales();
-            saleseform.ShowDialog();
+            sales saleseForm = new sales();
+            saleseForm.ShowDialog();
+        }
+
+        private void b_ord_Click_1(object sender, EventArgs e)
+        {
+            order orderForm = new order();
+            orderForm.ShowDialog();
+        }
+
+        private void b_lss_Click_1(object sender, EventArgs e)
+        {
+            lssue lssue = new lssue();
+            lssue.ShowDialog();
+        }
+
+        private void b_arr_Click(object sender, EventArgs e)
+        {
+            arrival arrivalForm = new arrival();
+            arrivalForm.ShowDialog();
         }
     }
 }

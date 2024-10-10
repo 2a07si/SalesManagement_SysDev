@@ -16,7 +16,7 @@ namespace SalesManagement_SysDev
         public order()
         {
             InitializeComponent();
-            this.mainForm = new Form();
+            this.mainForm = mainForm;
             timer1.Start();
         }
 
