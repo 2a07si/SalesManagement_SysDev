@@ -21,20 +21,6 @@ namespace SalesManagement_SysDev
             timer1.Start();
         }
 
-        private void close_Click(object sender, EventArgs e)
-        {
-
-
-            // メインフォームを再表示
-            mainForm.Opacity = 1.0;
-            mainForm.TransparencyKey = Color.Empty; // 透明化を解除
-            mainForm.Show();
-
-            // 現在のフォームを閉じる
-            this.Close();
-        }
-
-
         private void acceptingorders_Load(object sender, EventArgs e)
         {
 
@@ -92,6 +78,11 @@ namespace SalesManagement_SysDev
 
         private void b_arr_Click(object sender, EventArgs e)
         {
+            this.TransparencyKey = this.BackColor;
+            this.Opacity = 0; // 透明に設定
+            arrival arrivalform = new arrival();
+            arrivalform.ShowDialog();
+>>>>>>> c0ae510487668ea29d35c75e2a45c316ea9f0c26
             this.Hide();
             arrival arrival = new arrival();
             arrival.ShowDialog();
