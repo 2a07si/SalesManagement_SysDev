@@ -98,10 +98,8 @@ namespace SalesManagement_SysDev
 
         private void close_Click_1(object sender, EventArgs e)
         {
-            // メインフォームを再表示
-            mainForm.Opacity = 1.0;
-            mainForm.TransparencyKey = Color.Empty; // 透明化を解除
-            mainForm.Show();
+            mainmenu1 mainmenu1 = new mainmenu1();
+            mainmenu1.Show();
 
             // 現在のフォームを非表示にする
             this.Hide(); // this.Close()から変更

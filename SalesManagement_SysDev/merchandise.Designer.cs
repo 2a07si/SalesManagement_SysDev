@@ -411,6 +411,7 @@
             b_sto.TabIndex = 211;
             b_sto.Text = "在庫";
             b_sto.UseVisualStyleBackColor = false;
+            b_sto.Click += b_sto_Click;
             // 
             // b_cus
             // 
@@ -423,6 +424,7 @@
             b_cus.TabIndex = 212;
             b_cus.Text = "顧客";
             b_cus.UseVisualStyleBackColor = false;
+            b_cus.Click += b_cus_Click;
             // 
             // b_mer
             // 
@@ -447,6 +449,7 @@
             b_emp.TabIndex = 214;
             b_emp.Text = "社員";
             b_emp.UseVisualStyleBackColor = false;
+            b_emp.Click += b_emp_Click;
             // 
             // kakutei
             // 

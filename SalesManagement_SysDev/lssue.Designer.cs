@@ -497,6 +497,7 @@
             clear.TabIndex = 245;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            clear.Click += clear_Click;
             // 
             // close
             // 
