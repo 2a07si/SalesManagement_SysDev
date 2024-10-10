@@ -40,8 +40,12 @@
             b_hor = new Button();
             b_rec = new Button();
             panel1 = new Panel();
+            NyuukoFlag = new CheckBox();
             date = new DateTimePicker();
+            DelFlag = new CheckBox();
             label18 = new Label();
+            TBRiyuu = new MaskedTextBox();
+            label17 = new Label();
             TBShainID = new MaskedTextBox();
             TBMakerID = new MaskedTextBox();
             TBHattyuuID = new MaskedTextBox();
@@ -55,10 +59,6 @@
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
-            NyuukoFlag = new CheckBox();
-            DelFlag = new CheckBox();
-            TBRiyuu = new MaskedTextBox();
-            label17 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -166,6 +166,7 @@
             b_rec.TabIndex = 205;
             b_rec.Text = "入庫";
             b_rec.UseVisualStyleBackColor = false;
+            b_rec.Click += b_rec_Click;
             // 
             // panel1
             // 
@@ -188,6 +189,18 @@
             panel1.Size = new Size(905, 520);
             panel1.TabIndex = 204;
             // 
+            // NyuukoFlag
+            // 
+            NyuukoFlag.AutoSize = true;
+            NyuukoFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            NyuukoFlag.ForeColor = Color.LavenderBlush;
+            NyuukoFlag.Location = new Point(433, 64);
+            NyuukoFlag.Name = "NyuukoFlag";
+            NyuukoFlag.Size = new Size(110, 29);
+            NyuukoFlag.TabIndex = 247;
+            NyuukoFlag.Text = "入庫状態";
+            NyuukoFlag.UseVisualStyleBackColor = true;
+            // 
             // date
             // 
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
@@ -195,6 +208,18 @@
             date.Name = "date";
             date.Size = new Size(300, 31);
             date.TabIndex = 75;
+            // 
+            // DelFlag
+            // 
+            DelFlag.AutoSize = true;
+            DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            DelFlag.ForeColor = Color.LavenderBlush;
+            DelFlag.Location = new Point(15, 110);
+            DelFlag.Name = "DelFlag";
+            DelFlag.Size = new Size(92, 29);
+            DelFlag.TabIndex = 246;
+            DelFlag.Text = "非表示";
+            DelFlag.UseVisualStyleBackColor = true;
             // 
             // label18
             // 
@@ -206,6 +231,24 @@
             label18.Size = new Size(102, 25);
             label18.TabIndex = 74;
             label18.Text = "発注年月日";
+            // 
+            // TBRiyuu
+            // 
+            TBRiyuu.Location = new Point(215, 110);
+            TBRiyuu.Name = "TBRiyuu";
+            TBRiyuu.Size = new Size(325, 31);
+            TBRiyuu.TabIndex = 245;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label17.ForeColor = Color.White;
+            label17.Location = new Point(110, 110);
+            label17.Name = "label17";
+            label17.Size = new Size(102, 25);
+            label17.TabIndex = 244;
+            label17.Text = "非表示理由";
             // 
             // TBShainID
             // 
@@ -324,48 +367,6 @@
             // timer1
             // 
             timer1.Tick += timer1_Tick;
-            // 
-            // NyuukoFlag
-            // 
-            NyuukoFlag.AutoSize = true;
-            NyuukoFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            NyuukoFlag.ForeColor = Color.LavenderBlush;
-            NyuukoFlag.Location = new Point(433, 64);
-            NyuukoFlag.Name = "NyuukoFlag";
-            NyuukoFlag.Size = new Size(110, 29);
-            NyuukoFlag.TabIndex = 247;
-            NyuukoFlag.Text = "入庫状態";
-            NyuukoFlag.UseVisualStyleBackColor = true;
-            // 
-            // DelFlag
-            // 
-            DelFlag.AutoSize = true;
-            DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.LavenderBlush;
-            DelFlag.Location = new Point(15, 110);
-            DelFlag.Name = "DelFlag";
-            DelFlag.Size = new Size(92, 29);
-            DelFlag.TabIndex = 246;
-            DelFlag.Text = "非表示";
-            DelFlag.UseVisualStyleBackColor = true;
-            // 
-            // TBRiyuu
-            // 
-            TBRiyuu.Location = new Point(215, 110);
-            TBRiyuu.Name = "TBRiyuu";
-            TBRiyuu.Size = new Size(325, 31);
-            TBRiyuu.TabIndex = 245;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label17.ForeColor = Color.White;
-            label17.Location = new Point(110, 110);
-            label17.Name = "label17";
-            label17.Size = new Size(102, 25);
-            label17.TabIndex = 244;
-            label17.Text = "非表示理由";
             // 
             // horder
             // 

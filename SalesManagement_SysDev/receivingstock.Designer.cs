@@ -174,6 +174,7 @@
             b_hor.TabIndex = 224;
             b_hor.Text = "発注";
             b_hor.UseVisualStyleBackColor = false;
+            b_hor.Click += b_hor_Click;
             // 
             // panel1
             // 

@@ -31,12 +31,17 @@ namespace SalesManagement_SysDev
 
         private void close_Click(object sender, EventArgs e)
         {
-            // メインフォームを再表示
-            mainForm.Opacity = 1.0;
-            mainForm.TransparencyKey = Color.Empty; // 透明化を解除
-            mainForm.Show();
+            mainmenu1 mainmenu1 = new mainmenu1();
+            mainmenu1.Show();
 
             // 現在のフォームを閉じる
+            this.Close();
+        }
+
+        private void b_rec_Click(object sender, EventArgs e)
+        {
+            receivingstock receivingstock = new receivingstock();
+            receivingstock.Show();
             this.Close();
         }
     }
