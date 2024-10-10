@@ -203,7 +203,6 @@
             b_ord.TabIndex = 251;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
-            b_ord.Click += b_ord_Click;
             // 
             // b_sal
             // 
@@ -252,6 +251,7 @@
             b_arr.TabIndex = 247;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
+            b_arr.Click += b_arr_Click;
             // 
             // b_lss
             // 
