@@ -252,6 +252,7 @@
             b_arr.TabIndex = 247;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
+            b_arr.Click += b_arr_Click;
             // 
             // b_lss
             // 
@@ -264,6 +265,7 @@
             b_lss.TabIndex = 246;
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click;
             // 
             // panel1
             // 
