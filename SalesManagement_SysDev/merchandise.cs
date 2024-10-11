@@ -63,5 +63,11 @@ namespace SalesManagement_SysDev
             customer.Show();
             this.Close();
         }
+
+        private void date_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

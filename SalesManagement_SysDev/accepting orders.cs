@@ -136,5 +136,11 @@ namespace SalesManagement_SysDev
             orderForm.Show();
             this.Hide();
         }
+
+        private void TBJyutyu_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+
+        }
     }
 }
