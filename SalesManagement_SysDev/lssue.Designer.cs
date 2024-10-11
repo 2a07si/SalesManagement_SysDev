@@ -493,7 +493,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "lssue";
-            Text = "lssue";
+            Text = "出庫";
             Load += lssue_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

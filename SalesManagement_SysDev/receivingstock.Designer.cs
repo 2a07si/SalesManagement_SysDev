@@ -392,7 +392,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "receivingstock";
-            Text = "receivingstock";
+            Text = "入庫";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

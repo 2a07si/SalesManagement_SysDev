@@ -471,7 +471,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "customer";
-            Text = "customer";
+            Text = "顧客";
             Load += customer_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

@@ -489,7 +489,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "shipping";
-            Text = "shipping";
+            Text = "出荷";
             Load += shipping_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

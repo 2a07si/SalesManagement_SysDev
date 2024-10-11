@@ -383,7 +383,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "stock";
-            Text = "stock";
+            Text = "在庫";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

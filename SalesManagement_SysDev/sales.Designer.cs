@@ -480,7 +480,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "sales";
-            Text = "sales";
+            Text = "売上";
             Load += sales_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

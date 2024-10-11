@@ -517,7 +517,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "merchandise";
-            Text = "merchandise";
+            Text = "商品";
             Load += merchandise_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);

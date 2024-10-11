@@ -429,7 +429,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1067, 667);
+            ClientSize = new Size(1067, 666);
             Controls.Add(kakutei);
             Controls.Add(clear);
             Controls.Add(close);
@@ -449,7 +449,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "employee";
-            Text = "employee";
+            Text = "社員";
             Load += employee_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

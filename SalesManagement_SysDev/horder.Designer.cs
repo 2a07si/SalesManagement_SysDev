@@ -390,7 +390,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "horder";
-            Text = "horder";
+            Text = "発注";
             Load += horder_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

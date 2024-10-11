@@ -495,7 +495,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "order";
-            Text = "order";
+            Text = "注文";
             Load += order_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
