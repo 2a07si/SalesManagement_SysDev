@@ -114,5 +114,12 @@ namespace SalesManagement_SysDev
             var now = System.DateTime.Now;
             label2.Text = now.ToString("yyyy年MM月dd日");
         }
+
+        private void b_masuta_Click_1(object sender, EventArgs e)
+        {
+            employee employee = new employee();
+            employee.Show();
+            this.Close();
+        }
     }
 }
