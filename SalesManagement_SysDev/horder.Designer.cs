@@ -66,7 +66,7 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(696, 35);
+            label_ename.Location = new Point(665, 30);
             label_ename.Name = "label_ename";
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 214;
