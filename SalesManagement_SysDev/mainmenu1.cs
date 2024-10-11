@@ -19,6 +19,7 @@ namespace SalesManagement_SysDev
         public mainmenu1()
         {
             InitializeComponent();
+            this.Load += new EventHandler(mainmenu1_Load);
             timer1.Start();
         }
 
@@ -55,7 +56,9 @@ namespace SalesManagement_SysDev
 
         private void mainmenu1_Load(object sender, EventArgs e)
         {
-
+            // グローバル変数から権限名（PoName）を取得してラベルに表示
+            label_id.Text = Global.PositionName; // 権限名を表示
+            label_ename.Text = Global.EmployeeName;        // 社員名を表示
         }
 
         private void b_juchuu_Click(object sender, EventArgs e)

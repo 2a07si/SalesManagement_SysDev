@@ -769,21 +769,28 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
+                    // 社員IDに基づいて社員を取得
                     var employee = context.MEmployees.SingleOrDefault(e => e.EmId == empID);
 
+                    // 社員情報が見つかり、パスワードが一致している場合
                     if (employee != null && employee.EmPassword == pass)
                     {
-                        // 合致していれば社員IDを記憶し、フォーム画面遷移→メインメニュー１へ
+                        // 合致していれば社員IDと権限名を記憶
                         Global.EmployeeID = empID;
+                        Global.EmployeeName = employee.EmName; // 社員名を保存
+                        Global.PositionName = context.MPositions
+                            .Where(p => p.PoId == employee.PoId)
+                            .Select(p => p.PoName)
+                            .FirstOrDefault(); // 権限名を保存
                         mainmenu1 mainMenu = new mainmenu1();
                         mainMenu.Show();
                         this.Hide();
                     }
+
                     else
                     {
-                        // 合致していなければメッセージ表示「社員IDとパスワードが一致していません」
+                        // 認証エラー時の処理
                         MessageBox.Show("社員IDとパスワードが一致していません", "認証エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        // パスワードを白紙に戻し再度入力要求
                         tb_Pass.Clear();
                     }
                 }
@@ -804,16 +811,26 @@ namespace SalesManagement_SysDev
 
 
 
+
+
+
         //Globalで社員IDを記憶
         public static class Global
         {
             public static int EmployeeID;
+            public static string EmployeeName;
+            public static string EmployeePosition;
+            public static string PositionName;  // ポジション名を保存
+
             public static void Reset()
             {
                 EmployeeID = 0;
+                EmployeeName = string.Empty;
+                EmployeePosition = string.Empty;
+                PositionName = string.Empty;
             }
-
         }
+
 
     }
 }
