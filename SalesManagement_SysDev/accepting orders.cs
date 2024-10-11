@@ -134,15 +134,17 @@ namespace SalesManagement_SysDev
 
         }
 
-<<<<<<< HEAD
         private void b_ord_Click_2(object sender, EventArgs e)
         {
             order orderForm = new order();
             orderForm.Show();
             this.Hide();
         }
-=======
 
->>>>>>> 5ecce7023748eb1864063b77cd43ac4c48f526c1
+        private void TBJyutyu_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+
+        }
     }
 }

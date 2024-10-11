@@ -51,23 +51,23 @@
             panel1 = new Panel();
             TyumonFlag = new CheckBox();
             DelFlag = new CheckBox();
-            TBKokyakuId = new MaskedTextBox();
+            TBKokyakuID = new MaskedTextBox();
             label5 = new Label();
             date = new DateTimePicker();
             label18 = new Label();
             TBRiyuu = new MaskedTextBox();
             label17 = new Label();
-            TBShainId = new MaskedTextBox();
-            TBShopId = new MaskedTextBox();
-            TBJyutyu = new MaskedTextBox();
+            TBShainID = new MaskedTextBox();
+            TBShopID = new MaskedTextBox();
+            TBJyutyuID = new MaskedTextBox();
             label14 = new Label();
             label12 = new Label();
-            LBTantouShain = new Label();
             label7 = new Label();
             label6 = new Label();
             dataGridView1 = new DataGridView();
             label2 = new Label();
             label1 = new Label();
+            TBTantoName = new MaskedTextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -272,20 +272,20 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
+            panel1.Controls.Add(TBTantoName);
             panel1.Controls.Add(TyumonFlag);
             panel1.Controls.Add(DelFlag);
-            panel1.Controls.Add(TBKokyakuId);
+            panel1.Controls.Add(TBKokyakuID);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(date);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(TBRiyuu);
             panel1.Controls.Add(label17);
-            panel1.Controls.Add(TBShainId);
-            panel1.Controls.Add(TBShopId);
-            panel1.Controls.Add(TBJyutyu);
+            panel1.Controls.Add(TBShainID);
+            panel1.Controls.Add(TBShopID);
+            panel1.Controls.Add(TBJyutyuID);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label12);
-            panel1.Controls.Add(LBTantouShain);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(dataGridView1);
@@ -318,12 +318,12 @@
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
             // 
-            // TBKokyakuId
+            // TBKokyakuID
             // 
-            TBKokyakuId.Location = new Point(645, 20);
-            TBKokyakuId.Name = "TBKokyakuId";
-            TBKokyakuId.Size = new Size(130, 31);
-            TBKokyakuId.TabIndex = 77;
+            TBKokyakuID.Location = new Point(645, 20);
+            TBKokyakuID.Name = "TBKokyakuID";
+            TBKokyakuID.Size = new Size(130, 31);
+            TBKokyakuID.TabIndex = 77;
             // 
             // label5
             // 
@@ -373,26 +373,27 @@
             label17.TabIndex = 72;
             label17.Text = "非表示理由";
             // 
-            // TBShainId
+            // TBShainID
             // 
-            TBShainId.Location = new Point(440, 20);
-            TBShainId.Name = "TBShainId";
-            TBShainId.Size = new Size(130, 31);
-            TBShainId.TabIndex = 69;
+            TBShainID.Location = new Point(440, 20);
+            TBShainID.Name = "TBShainID";
+            TBShainID.Size = new Size(130, 31);
+            TBShainID.TabIndex = 69;
             // 
-            // TBShopId
+            // TBShopID
             // 
-            TBShopId.Location = new Point(310, 20);
-            TBShopId.Name = "TBShopId";
-            TBShopId.Size = new Size(50, 31);
-            TBShopId.TabIndex = 66;
+            TBShopID.Location = new Point(310, 20);
+            TBShopID.Name = "TBShopID";
+            TBShopID.Size = new Size(50, 31);
+            TBShopID.TabIndex = 66;
             // 
-            // TBJyutyu
+            // TBJyutyuID
             // 
-            TBJyutyu.Location = new Point(80, 20);
-            TBJyutyu.Name = "TBJyutyu";
-            TBJyutyu.Size = new Size(130, 31);
-            TBJyutyu.TabIndex = 64;
+            TBJyutyuID.Location = new Point(80, 20);
+            TBJyutyuID.Name = "TBJyutyuID";
+            TBJyutyuID.Size = new Size(130, 31);
+            TBJyutyuID.TabIndex = 64;
+            TBJyutyuID.MaskInputRejected += TBJyutyu_MaskInputRejected;
             // 
             // label14
             // 
@@ -415,17 +416,6 @@
             label12.Size = new Size(84, 25);
             label12.TabIndex = 60;
             label12.Text = "営業所ID";
-            // 
-            // LBTantouShain
-            // 
-            LBTantouShain.AutoSize = true;
-            LBTantouShain.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            LBTantouShain.ForeColor = Color.White;
-            LBTantouShain.Location = new Point(123, 65);
-            LBTantouShain.Name = "LBTantouShain";
-            LBTantouShain.Size = new Size(68, 25);
-            LBTantouShain.TabIndex = 59;
-            LBTantouShain.Text = "--------";
             // 
             // label7
             // 
@@ -479,6 +469,13 @@
             label1.TabIndex = 243;
             label1.Text = "11:11:11";
             label1.Click += label1_Click;
+            // 
+            // TBTantoName
+            // 
+            TBTantoName.Location = new Point(120, 65);
+            TBTantoName.Name = "TBTantoName";
+            TBTantoName.Size = new Size(150, 31);
+            TBTantoName.TabIndex = 267;
             // 
             // acceptingorders
             // 
@@ -539,22 +536,22 @@
         private Panel panel1;
         private CheckBox TyumonFlag;
         private CheckBox DelFlag;
-        private MaskedTextBox TBKokyakuId;
+        private MaskedTextBox TBKokyakuID;
         private Label label5;
         private DateTimePicker date;
         private Label label18;
         private MaskedTextBox TBRiyuu;
         private Label label17;
-        private MaskedTextBox TBShainId;
-        private MaskedTextBox TBShopId;
-        private MaskedTextBox TBJyutyu;
+        private MaskedTextBox TBShainID;
+        private MaskedTextBox TBShopID;
+        private MaskedTextBox TBJyutyuID;
         private Label label14;
         private Label label12;
-        private Label LBTantouShain;
         private Label label7;
         private Label label6;
         private DataGridView dataGridView1;
         private Label label2;
         private Label label1;
+        private MaskedTextBox TBTantoName;
     }
 }
