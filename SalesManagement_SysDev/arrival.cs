@@ -84,7 +84,7 @@ namespace SalesManagement_SysDev
 
         private void b_ord_Click(object sender, EventArgs e)
         {
-            order order = new order();  
+            order order = new order();
             order.Show();
             this.Close();
         }

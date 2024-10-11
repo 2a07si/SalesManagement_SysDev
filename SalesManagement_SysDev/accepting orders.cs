@@ -137,14 +137,16 @@ namespace SalesManagement_SysDev
             this.Hide();
         }
 
-<<<<<<< HEAD
+        private void b_add_Click_1(object sender, EventArgs e)
+        {
 
-=======
+        }
+
+
         private void TBJyutyu_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
 
         }
->>>>>>> 21b1482438c1d172867afba96532a76fa8550162
     }
 }

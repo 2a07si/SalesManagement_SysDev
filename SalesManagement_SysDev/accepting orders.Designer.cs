@@ -49,6 +49,7 @@
             b_arr = new Button();
             b_lss = new Button();
             panel1 = new Panel();
+            TBTantoName = new MaskedTextBox();
             TyumonFlag = new CheckBox();
             DelFlag = new CheckBox();
             TBKokyakuID = new MaskedTextBox();
@@ -67,7 +68,6 @@
             dataGridView1 = new DataGridView();
             label2 = new Label();
             label1 = new Label();
-            TBTantoName = new MaskedTextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -212,7 +212,7 @@
             b_sal.ForeColor = Color.Black;
             b_sal.Location = new Point(15, 510);
             b_sal.Name = "b_sal";
-            b_sal.Size = new Size(120, 47);
+            b_sal.Size = new Size(120, 50);
             b_sal.TabIndex = 250;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
@@ -229,6 +229,7 @@
             b_add.TabIndex = 249;
             b_add.Text = "受注";
             b_add.UseVisualStyleBackColor = false;
+            b_add.Click += b_add_Click_1;
             // 
             // b_shi
             // 
@@ -237,7 +238,7 @@
             b_shi.ForeColor = Color.Black;
             b_shi.Location = new Point(15, 440);
             b_shi.Name = "b_shi";
-            b_shi.Size = new Size(120, 47);
+            b_shi.Size = new Size(120, 50);
             b_shi.TabIndex = 248;
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
@@ -250,7 +251,7 @@
             b_arr.ForeColor = Color.Black;
             b_arr.Location = new Point(15, 370);
             b_arr.Name = "b_arr";
-            b_arr.Size = new Size(120, 47);
+            b_arr.Size = new Size(120, 50);
             b_arr.TabIndex = 247;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
@@ -293,6 +294,13 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(900, 520);
             panel1.TabIndex = 245;
+            // 
+            // TBTantoName
+            // 
+            TBTantoName.Location = new Point(120, 65);
+            TBTantoName.Name = "TBTantoName";
+            TBTantoName.Size = new Size(150, 31);
+            TBTantoName.TabIndex = 267;
             // 
             // TyumonFlag
             // 
@@ -393,7 +401,6 @@
             TBJyutyuID.Name = "TBJyutyuID";
             TBJyutyuID.Size = new Size(130, 31);
             TBJyutyuID.TabIndex = 64;
-            TBJyutyuID.MaskInputRejected += TBJyutyu_MaskInputRejected;
             // 
             // label14
             // 
@@ -453,7 +460,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(140, 25);
+            label2.Location = new Point(140, 30);
             label2.Name = "label2";
             label2.Size = new Size(156, 25);
             label2.TabIndex = 244;
@@ -469,13 +476,6 @@
             label1.TabIndex = 243;
             label1.Text = "11:11:11";
             label1.Click += label1_Click;
-            // 
-            // TBTantoName
-            // 
-            TBTantoName.Location = new Point(120, 65);
-            TBTantoName.Name = "TBTantoName";
-            TBTantoName.Size = new Size(150, 31);
-            TBTantoName.TabIndex = 267;
             // 
             // acceptingorders
             // 
