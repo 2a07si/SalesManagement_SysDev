@@ -50,7 +50,9 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void kakutei_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
