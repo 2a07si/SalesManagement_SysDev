@@ -320,9 +320,9 @@
             // 
             // TBKokyakuId
             // 
-            TBKokyakuId.Location = new Point(620, 20);
+            TBKokyakuId.Location = new Point(645, 20);
             TBKokyakuId.Name = "TBKokyakuId";
-            TBKokyakuId.Size = new Size(103, 31);
+            TBKokyakuId.Size = new Size(130, 31);
             TBKokyakuId.TabIndex = 77;
             // 
             // label5
@@ -330,7 +330,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(550, 20);
+            label5.Location = new Point(575, 20);
             label5.Name = "label5";
             label5.Size = new Size(66, 25);
             label5.TabIndex = 76;
@@ -377,7 +377,7 @@
             // 
             TBShainId.Location = new Point(440, 20);
             TBShainId.Name = "TBShainId";
-            TBShainId.Size = new Size(103, 31);
+            TBShainId.Size = new Size(130, 31);
             TBShainId.TabIndex = 69;
             // 
             // TBShopId
