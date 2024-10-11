@@ -85,7 +85,7 @@
             button1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             button1.Location = new Point(795, 80);
             button1.Name = "button1";
-            button1.Size = new Size(129, 48);
+            button1.Size = new Size(130, 50);
             button1.TabIndex = 257;
             button1.Text = "確定";
             button1.UseVisualStyleBackColor = false;
@@ -95,16 +95,16 @@
             clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             clear.Location = new Point(935, 80);
             clear.Name = "clear";
-            clear.Size = new Size(112, 48);
+            clear.Size = new Size(115, 50);
             clear.TabIndex = 256;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             // 
             // close
             // 
-            close.Location = new Point(925, 15);
+            close.Location = new Point(950, 15);
             close.Name = "close";
-            close.Size = new Size(129, 48);
+            close.Size = new Size(100, 40);
             close.TabIndex = 242;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             b_flg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_flg.Location = new Point(610, 80);
             b_flg.Name = "b_flg";
-            b_flg.Size = new Size(129, 48);
+            b_flg.Size = new Size(130, 50);
             b_flg.TabIndex = 241;
             b_flg.Text = "非表示";
             b_flg.UseVisualStyleBackColor = false;
@@ -146,7 +146,7 @@
             b_ser.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_ser.Location = new Point(455, 80);
             b_ser.Name = "b_ser";
-            b_ser.Size = new Size(129, 48);
+            b_ser.Size = new Size(130, 50);
             b_ser.TabIndex = 240;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
@@ -166,7 +166,7 @@
             b_upd.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_upd.Location = new Point(300, 80);
             b_upd.Name = "b_upd";
-            b_upd.Size = new Size(129, 48);
+            b_upd.Size = new Size(130, 50);
             b_upd.TabIndex = 239;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
@@ -187,7 +187,7 @@
             b_reg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_reg.Location = new Point(145, 80);
             b_reg.Name = "b_reg";
-            b_reg.Size = new Size(129, 48);
+            b_reg.Size = new Size(130, 50);
             b_reg.TabIndex = 238;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
@@ -223,9 +223,9 @@
             b_add.BackColor = Color.Navy;
             b_add.Font = new Font("Yu Gothic UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             b_add.ForeColor = Color.White;
-            b_add.Location = new Point(15, 140);
+            b_add.Location = new Point(15, 145);
             b_add.Name = "b_add";
-            b_add.Size = new Size(120, 75);
+            b_add.Size = new Size(120, 70);
             b_add.TabIndex = 249;
             b_add.Text = "受注";
             b_add.UseVisualStyleBackColor = false;
