@@ -118,10 +118,7 @@ namespace SalesManagement_SysDev
             lssue.ShowDialog();
             this.Hide();
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 5ecce7023748eb1864063b77cd43ac4c48f526c1
         private void b_arr_Click(object sender, EventArgs e)
         {
             arrival arrivalForm = new arrival(this);
@@ -134,15 +131,12 @@ namespace SalesManagement_SysDev
 
         }
 
-<<<<<<< HEAD
         private void b_ord_Click_2(object sender, EventArgs e)
         {
             order orderForm = new order();
             orderForm.Show();
             this.Hide();
         }
-=======
 
->>>>>>> 5ecce7023748eb1864063b77cd43ac4c48f526c1
     }
 }
