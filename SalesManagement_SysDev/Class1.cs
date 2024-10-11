@@ -10,8 +10,9 @@ namespace SalesManagement_SysDev
     {
         public List<int> register(int touroku)
         {
-            return new List<int>();//new class1()で作られる
-
-        }
+            return new List<int>();
+            if (String.IsNullOrEmpty(TBJyuchuID.Text))
+            {
+            }
     }
 }
