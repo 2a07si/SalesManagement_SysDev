@@ -104,5 +104,13 @@ namespace SalesManagement_SysDev
             // 現在のフォームを非表示にする
             this.Hide(); // this.Close()から変更
         }
+
+        private void TBKokyakuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+
+
     }
 }
