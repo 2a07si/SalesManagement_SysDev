@@ -481,6 +481,7 @@
             Controls.Add(label1);
             Name = "sales";
             Text = "sales";
+            Load += sales_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

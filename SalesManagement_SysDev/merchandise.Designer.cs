@@ -33,14 +33,18 @@
             label2 = new Label();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
+            TBColor = new MaskedTextBox();
+            label10 = new Label();
+            TBModel = new MaskedTextBox();
+            label9 = new Label();
             TBSyoubunrui = new MaskedTextBox();
             label8 = new Label();
             DelFlag = new CheckBox();
             TBRiyuu = new MaskedTextBox();
             label17 = new Label();
             date = new DateTimePicker();
-            label18 = new Label();
             TBSafeNum = new MaskedTextBox();
+            label18 = new Label();
             label7 = new Label();
             TBSell = new MaskedTextBox();
             label12 = new Label();
@@ -66,10 +70,6 @@
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
-            TBModel = new MaskedTextBox();
-            label9 = new Label();
-            TBColor = new MaskedTextBox();
-            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -133,6 +133,42 @@
             panel1.Size = new Size(905, 520);
             panel1.TabIndex = 206;
             // 
+            // TBColor
+            // 
+            TBColor.Location = new Point(670, 65);
+            TBColor.Name = "TBColor";
+            TBColor.Size = new Size(190, 31);
+            TBColor.TabIndex = 110;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.ForeColor = Color.White;
+            label10.Location = new Point(635, 68);
+            label10.Name = "label10";
+            label10.Size = new Size(30, 25);
+            label10.TabIndex = 109;
+            label10.Text = "色";
+            // 
+            // TBModel
+            // 
+            TBModel.Location = new Point(424, 65);
+            TBModel.Name = "TBModel";
+            TBModel.Size = new Size(190, 31);
+            TBModel.TabIndex = 108;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.ForeColor = Color.White;
+            label9.Location = new Point(371, 68);
+            label9.Name = "label9";
+            label9.Size = new Size(48, 25);
+            label9.TabIndex = 107;
+            label9.Text = "型番";
+            // 
             // TBSyoubunrui
             // 
             TBSyoubunrui.Location = new Point(305, 65);
@@ -190,6 +226,13 @@
             date.TabIndex = 101;
             date.ValueChanged += date_ValueChanged;
             // 
+            // TBSafeNum
+            // 
+            TBSafeNum.Location = new Point(120, 65);
+            TBSafeNum.Name = "TBSafeNum";
+            TBSafeNum.Size = new Size(90, 31);
+            TBSafeNum.TabIndex = 99;
+            // 
             // label18
             // 
             label18.AutoSize = true;
@@ -200,13 +243,6 @@
             label18.Size = new Size(66, 25);
             label18.TabIndex = 100;
             label18.Text = "発売日";
-            // 
-            // TBSafeNum
-            // 
-            TBSafeNum.Location = new Point(120, 65);
-            TBSafeNum.Name = "TBSafeNum";
-            TBSafeNum.Size = new Size(90, 31);
-            TBSafeNum.TabIndex = 99;
             // 
             // label7
             // 
@@ -457,42 +493,6 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
-            // TBModel
-            // 
-            TBModel.Location = new Point(424, 65);
-            TBModel.Name = "TBModel";
-            TBModel.Size = new Size(190, 31);
-            TBModel.TabIndex = 108;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.ForeColor = Color.White;
-            label9.Location = new Point(371, 68);
-            label9.Name = "label9";
-            label9.Size = new Size(48, 25);
-            label9.TabIndex = 107;
-            label9.Text = "型番";
-            // 
-            // TBColor
-            // 
-            TBColor.Location = new Point(670, 65);
-            TBColor.Name = "TBColor";
-            TBColor.Size = new Size(190, 31);
-            TBColor.TabIndex = 110;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.ForeColor = Color.White;
-            label10.Location = new Point(635, 68);
-            label10.Name = "label10";
-            label10.Size = new Size(30, 25);
-            label10.TabIndex = 109;
-            label10.Text = "色";
-            // 
             // merchandise
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -518,6 +518,7 @@
             Controls.Add(label1);
             Name = "merchandise";
             Text = "merchandise";
+            Load += merchandise_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

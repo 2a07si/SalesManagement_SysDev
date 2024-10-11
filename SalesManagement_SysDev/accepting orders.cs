@@ -27,7 +27,6 @@ namespace SalesManagement_SysDev
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -136,15 +135,10 @@ namespace SalesManagement_SysDev
             orderForm.Show();
             this.Hide();
         }
-
-<<<<<<< HEAD
-
-=======
         private void TBJyutyu_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
 
         }
->>>>>>> 21b1482438c1d172867afba96532a76fa8550162
     }
 }

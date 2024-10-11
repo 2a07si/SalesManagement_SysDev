@@ -496,6 +496,7 @@
             Controls.Add(label1);
             Name = "arrival";
             Text = "arrival";
+            Load += arrival_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

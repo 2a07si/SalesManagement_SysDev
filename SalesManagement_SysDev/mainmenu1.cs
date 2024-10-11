@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SalesManagement_SysDev.Class1;
 using static SalesManagement_SysDev.F_login;
 
 namespace SalesManagement_SysDev
@@ -56,9 +57,7 @@ namespace SalesManagement_SysDev
 
         private void mainmenu1_Load(object sender, EventArgs e)
         {
-            // グローバル変数から権限名（PoName）を取得してラベルに表示
-            label_id.Text = Global.PositionName; // 権限名を表示
-            label_ename.Text = Global.EmployeeName;        // 社員名を表示
+            GlobalUtility.UpdateLabels(label_id,label_ename);
         }
 
         private void b_juchuu_Click(object sender, EventArgs e)

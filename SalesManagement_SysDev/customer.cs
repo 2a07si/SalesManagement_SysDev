@@ -8,6 +8,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SalesManagement_SysDev.Class1;
 
 namespace SalesManagement_SysDev
 {
@@ -18,6 +19,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.mainForm = new Form();
+            this.Load += new EventHandler(customer_Load);
             timer1.Start();
         }
 
@@ -63,6 +65,11 @@ namespace SalesManagement_SysDev
             stock stock = new stock();
             stock.Show();
             this.Close();
+        }
+
+        private void customer_Load(object sender, EventArgs e)
+        {
+            GlobalUtility.UpdateLabels(label_id, label_ename);
         }
     }
 }
