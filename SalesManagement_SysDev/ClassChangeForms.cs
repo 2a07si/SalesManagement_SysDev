@@ -12,10 +12,15 @@ namespace SalesManagement_SysDev
             this.currentForm = currentForm;
         }
 
-        // 別のフォームに画面遷移する汎用メソッド
+        // 汎用メソッド: 別のフォームに画面遷移
         public void NavigateTo(Form targetForm, bool hideCurrent = true)
         {
+            // 現在のフォームを透明化
+            currentForm.TransparencyKey = currentForm.BackColor;
+            currentForm.Opacity = 0.5; // 半透明に設定
+
             targetForm.Show();
+
             if (hideCurrent)
             {
                 currentForm.Hide();

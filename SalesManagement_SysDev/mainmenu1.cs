@@ -7,13 +7,14 @@ namespace SalesManagement_SysDev
 {
     public partial class mainmenu1 : Form
     {
-        private acceptingorders acceptingOrdersForm;
+        private ClassChangeForms changeForm;
 
         public mainmenu1()
         {
             InitializeComponent();
             this.Load += new EventHandler(mainmenu1_Load);
             timer1.Start();
+            changeForm = new ClassChangeForms(this); // インスタンスを作成
         }
 
         private void LoadEmployeeName()
@@ -36,47 +37,36 @@ namespace SalesManagement_SysDev
             {
                 Global.Reset();
                 this.Close();
-                new F_login().Show(); // ログインフォームを開く
+                F_login loginForm = new F_login();
+                loginForm.Show();
             }
         }
 
         private void mainmenu1_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            LoadEmployeeName(); // 社員名を読み込む
-        }
-
-        private void OpenForm(Form form)
-        {
-            this.TransparencyKey = this.BackColor;
-            this.Opacity = 0.5; // 半透明に設定
-            form.Show();
-            this.Hide();
         }
 
         private void b_juchuu_Click(object sender, EventArgs e)
         {
-            if (acceptingOrdersForm == null || acceptingOrdersForm.IsDisposed)
-            {
-                acceptingOrdersForm = new acceptingorders(this);
-            }
-            OpenForm(acceptingOrdersForm);
+            changeForm.NavigateToOrderForm();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            OpenForm(new horder());
+            changeForm.NavigateTo(new horder());
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            labeltime.Text = DateTime.Now.ToLongTimeString();
+            DateTime dateTime = DateTime.Now;
+            labeltime.Text = dateTime.ToLongTimeString();
             labeldate.Text = DateTime.Now.ToString("yyyy年MM月dd日");
         }
 
         private void b_masuta_Click(object sender, EventArgs e)
         {
-            OpenForm(new employee());
+            changeForm.NavigateTo(new employee());
         }
     }
 }
