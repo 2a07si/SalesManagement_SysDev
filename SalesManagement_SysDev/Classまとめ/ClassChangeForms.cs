@@ -74,7 +74,7 @@ namespace SalesManagement_SysDev.Classまとめ
             NavigateTo(salesForm);
         }
 
-        // 発注書発行画面に遷移 
+        // 出庫画面に遷移 
         internal void NavigateToIssueForm()
         {
             lssue lssueForm = new lssue(); // 発注書発行画面の新しいインスタンスを作成
@@ -82,10 +82,24 @@ namespace SalesManagement_SysDev.Classまとめ
         }
 
         //注文画面に遷移
-        public void NavigateToOrderForm()
+        internal void NavigateToOrderForm()
         {
             order orderForm = new order();
             NavigateTo(orderForm);
+        }
+
+        //発注画面遷移
+        internal void NavigateToHorderForm()
+        {
+            horder horderForm = new horder();
+            NavigateTo(horderForm);
+        } 
+
+        //入庫画面遷移
+        internal void NavigateToReceivingstockForm()
+        {
+            receivingstock receivingstockForm = new receivingstock();
+            NavigateTo(receivingstockForm);
         }
     }
 }
