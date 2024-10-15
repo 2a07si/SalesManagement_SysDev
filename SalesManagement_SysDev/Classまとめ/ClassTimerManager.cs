@@ -1,13 +1,13 @@
 ﻿//////////////////////////
-//・クラス名
-//ClassTimerManager
-//・解説の内容
-//- タイマーを利用して定期的に時間と日付を更新するクラス。
-//- コンストラクタで受け取ったタイマーとラベルを使用して、1秒ごとに日時を更新する。
-//- タイマーのイベントハンドラを設定し、時間が更新されるたびにラベルに新しい時間と日付を表示する。
-//- フォームのコードを簡素化し、タイマーの管理を容易にする。
-//・その他特筆事項
-//- このクラスを使用することで、UIの更新が自動化され、ユーザー体験が向上する。
+//・クラス名 
+//-ClassTimerManager 
+//・解説の内容 
+//-UIのラベルに日付と時間を表示するためのタイマー管理クラス 
+//-指定されたラベルに現在の日時を1秒ごとに更新する機能を提供する。 
+//-コンストラクタで受け取ったタイマーとラベルを使用して、タイマーの設定や更新処理を行う。 
+//・その他特筆事項 
+//-タイマーの間隔を変更することで、更新頻度を調整できる。
+//-時間や日付のフォーマットを変更する機能を追加する余地がある。
 //////////////////////////
 
 using System;
@@ -17,31 +17,33 @@ namespace SalesManagement_SysDev.Classまとめ
 {
     public class ClassTimerManager
     {
-        private System.Windows.Forms.Timer timer; // System.Windows.Forms.Timerを指定 
-        private Label labelTime;
-        private Label labelDate;
+        private System.Windows.Forms.Timer timer; // System.Windows.Forms の Timer を使用
+        private Label labeltime; // 時間表示ラベル
+        private Label labeldate; // 日付表示ラベル
 
         public ClassTimerManager(System.Windows.Forms.Timer timer, Label timeLabel, Label dateLabel)
         {
             this.timer = timer;
-            labelTime = timeLabel;
-            labelDate = dateLabel;
+            this.labeltime = timeLabel;
+            this.labeldate = dateLabel;
 
-            this.timer.Interval = 1000; // 1秒 
-            this.timer.Tick += Timer_Tick; // タイマーのTickイベントにハンドラを追加 
-            this.timer.Start(); // タイマーを開始 
+            // タイマーの設定
+            this.timer.Interval = 1000; // 1秒ごとに更新
+            this.timer.Tick += new EventHandler(OnTimerTick); // タイマーイベントの設定
+            this.timer.Start(); // タイマーを開始
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        // タイマーがTickしたときに呼ばれるメソッド
+        private void OnTimerTick(object sender, EventArgs e)
         {
-            UpdateDateTime(); // 日付と時間を更新 
+            UpdateDateTime(); // 日時を更新
         }
 
+        // 日付と時間を更新するメソッド
         public void UpdateDateTime()
         {
-            DateTime dateTime = DateTime.Now;
-            labelTime.Text = dateTime.ToLongTimeString(); // 時間を更新 
-            labelDate.Text = dateTime.ToString("yyyy年MM月dd日"); // 日付を更新 
+            labeltime.Text = DateTime.Now.ToString("HH:mm:ss"); // 現在の時間を表示
+            labeldate.Text = DateTime.Now.ToString("yyyy/MM/dd"); // 現在の日付を表示
         }
     }
 }

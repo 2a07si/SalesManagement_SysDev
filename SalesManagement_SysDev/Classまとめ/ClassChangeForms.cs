@@ -1,50 +1,49 @@
 ﻿//////////////////////////
 //・クラス名
-//ClassChangeForms
 //・解説の内容
-//- フォームの遷移を管理するクラスで、現在表示されているフォームを保持し、新しいフォームに遷移するためのメソッドを提供。
-//- 各遷移メソッドは特定のフォームをインスタンス化し、現在のフォームを非表示または半透明にして新しいフォームを表示する。
-//- 汎用的な画面遷移メソッドを使って、コードの重複を避け、メンテナンス性を向上させることを目的としている。
-//- メインメニューや各種管理画面への遷移を明示的にサポートしており、新しい管理画面が追加された場合にも容易に拡張可能。
+//-フォーム間の遷移を管理するクラス
+//-現在のフォームを保持し、他のフォームに遷移するためのメソッドを提供する。
+//-各画面遷移メソッドは、適切なフォームを作成し、NavigateToメソッドを使用して遷移を行う。
 //・その他特筆事項
-//- フォーム遷移時に現在のフォームを半透明にすることで、ユーザーに現在の操作を視覚的に理解させる工夫がされている。
-//- 各遷移メソッドは、ユーザーの操作をスムーズに行えるように設計されている。
+//-フォーム遷移時に現在のフォームを半透明にする機能を追加。
+//-このクラスは、主にメインメニューや他の管理画面への遷移を目的とする。
 //////////////////////////
 
 using System;
 using System.Windows.Forms;
 
+
 namespace SalesManagement_SysDev.Classまとめ
 {
     internal class ClassChangeForms
     {
-        private Form currentForm;  // 現在のフォームを保持する変数
+        private Form currentForm;
 
         public ClassChangeForms(Form currentForm)
         {
-            this.currentForm = currentForm;  // コンストラクタで渡された現在のフォームを設定
+            this.currentForm = currentForm;
         }
 
-        // 汎用メソッド: 別のフォームに画面遷移 
-        public void NavigateTo(Form targetForm, bool hideCurrent = true)
+        // 汎用メソッド: 別のフォームに画面遷移
+        internal void NavigateTo(Form targetForm, bool hideCurrent = true)
         {
             // 現在のフォームを透明化 
-            currentForm.TransparencyKey = currentForm.BackColor; // 現在のフォームの背景色を透明色として設定
-            currentForm.Opacity = 0.5; // フォームを半透明に設定
+            currentForm.TransparencyKey = currentForm.BackColor;
+            currentForm.Opacity = 0.5; // 半透明に設定 
 
-            targetForm.Show(); // 指定されたターゲットフォームを表示
+            targetForm.Show();
 
             if (hideCurrent)
             {
-                currentForm.Hide(); // hideCurrentがtrueの場合、現在のフォームを非表示にする
+                currentForm.Hide();
             }
         }
 
         // メインメニューに戻る処理 
-        public void NavigateToMainMenu()
+        internal void NavigateToMainMenu()
         {
-            mainmenu1 mainMenuForm = new mainmenu1(); // メインメニューの新しいインスタンスを作成
-            NavigateTo(mainMenuForm); // メインメニューに遷移
+            mainmenu1 mainMenuForm = new mainmenu1();
+            NavigateTo(mainMenuForm);
         }
 
         // 受注管理画面に遷移 
@@ -55,28 +54,28 @@ namespace SalesManagement_SysDev.Classまとめ
         }
 
         // 出荷管理画面に遷移 
-        public void NavigateToShippingForm()
+        internal void NavigateToShippingForm()
         {
-            shipping shippingForm = new shipping(currentForm); // 出荷管理画面の新しいインスタンスを作成（現在のフォームを渡す）
-            NavigateTo(shippingForm); // 出荷管理画面に遷移
+            shipping shippingForm = new shipping(currentForm);
+            NavigateTo(shippingForm);
         }
 
         // 入荷管理画面に遷移 
-        public void NavigateToArrivalForm()
+        internal void NavigateToArrivalForm()
         {
-            arrival arrivalForm = new arrival(currentForm); // 入荷管理画面の新しいインスタンスを作成（現在のフォームを渡す）
-            NavigateTo(arrivalForm); // 入荷管理画面に遷移
+            arrival arrivalForm = new arrival(currentForm);
+            NavigateTo(arrivalForm);
         }
 
         // 売上管理画面に遷移 
-        public void NavigateToSalesForm()
+        internal void NavigateToSalesForm()
         {
-            sales salesForm = new sales(); // 売上管理画面の新しいインスタンスを作成
-            NavigateTo(salesForm); // 売上管理画面に遷移
+            sales salesForm = new sales();
+            NavigateTo(salesForm);
         }
 
         // 発注書発行画面に遷移 
-        public void NavigateToIssueForm()
+        internal void NavigateToIssueForm()
         {
             lssue lssueForm = new lssue(); // 発注書発行画面の新しいインスタンスを作成
             NavigateTo(lssueForm); // 発注書発行画面に遷移
