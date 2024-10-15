@@ -48,7 +48,7 @@ namespace SalesManagement_SysDev.Classまとめ
         }
 
         // 受注管理画面に遷移 
-        public void NavigateToOrderForm()
+        public void NavigateToAcceptingOrderForm()
         {
             acceptingorders acceptingordersForm = new acceptingorders(); // 受注管理画面の新しいインスタンスを作成
             NavigateTo(acceptingordersForm); // 受注管理画面に遷移
@@ -80,6 +80,13 @@ namespace SalesManagement_SysDev.Classまとめ
         {
             lssue lssueForm = new lssue(); // 発注書発行画面の新しいインスタンスを作成
             NavigateTo(lssueForm); // 発注書発行画面に遷移
+        }
+
+        //注文画面に遷移
+        public void NavigateToOrderForm()
+        {
+            order orderForm = new order();
+            NavigateTo(orderForm);
         }
     }
 }
