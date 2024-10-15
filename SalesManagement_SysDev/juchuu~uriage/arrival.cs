@@ -8,16 +8,15 @@ namespace SalesManagement_SysDev
     {
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassDateNamelabel dateNameLabel; // 日付と時間ラベル管理用クラス
+        private ClassTimerManager timerManager; // タイマー管理クラス
 
         public arrival(Form mainForm)
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
             this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate); // ラベルを設定
+            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化
             this.Load += new EventHandler(arrival_Load);
-            timer1.Interval = 1000; // タイマーの間隔を1秒に設定
-            timer1.Tick += new EventHandler(Timer1_Tick); // タイマーのTickイベントにハンドラを追加
-            timer1.Start(); // タイマーを開始
         }
 
         private void arrival_Load(object sender, EventArgs e)
@@ -26,14 +25,10 @@ namespace SalesManagement_SysDev
             dateNameLabel.UpdateDateTime(); // 初回表示時に日付と時間を更新
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            dateNameLabel.UpdateDateTime(); // 日付と時間のラベルを更新
-        }
-
+        // メインメニューに戻る
         private void button3_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateToMainMenu(); // メインメニューに戻る
+            formChanger.NavigateToMainMenu(); // メインメニューに遷移
         }
 
         private void b_acc_Click(object sender, EventArgs e)

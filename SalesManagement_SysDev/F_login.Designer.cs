@@ -94,7 +94,6 @@
             label4.Size = new Size(397, 96);
             label4.TabIndex = 4;
             label4.Text = "ログイン画面";
-            label4.Click += label4_Click;
             // 
             // tb_ID
             // 

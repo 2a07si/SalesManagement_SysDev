@@ -317,7 +317,6 @@
             TBKokyakuID.Name = "TBKokyakuID";
             TBKokyakuID.Size = new Size(130, 31);
             TBKokyakuID.TabIndex = 280;
-            TBKokyakuID.MaskInputRejected += TBKokyakuID_MaskInputRejected;
             // 
             // label12
             // 
@@ -457,7 +456,6 @@
             close.TabIndex = 250;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
-            close.Click += close_Click_1;
             // 
             // timer1
             // 

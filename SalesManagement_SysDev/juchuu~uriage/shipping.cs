@@ -1,116 +1,68 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SalesManagement_SysDev.labelChange;
 
 namespace SalesManagement_SysDev
 {
     public partial class shipping : Form
     {
-        private Form mainForm;
+        private ClassChangeForms formChanger; // 画面遷移管理クラス
+        private ClassTimerManager timerManager; // タイマー管理クラス
 
         // コンストラクターでmainFormを引数として受け取る
         public shipping(Form mainForm)
         {
             InitializeComponent();
-            this.mainForm = mainForm;
-            timer1.Start();
+            this.formChanger = new ClassChangeForms(this);
+            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化
+            this.Load += new EventHandler(shipping_Load);
         }
 
         private void shipping_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void b_reg_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
-        private void b_upd_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void b_ser_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void b_flg_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void close_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label_id_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label_ename_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void b_next_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void b_logout_Click(object sender, EventArgs e)
-        {
+            GlobalUtility.UpdateLabels(label_id, label_ename); // ラベルの初期化
+            timerManager.UpdateDateTime(); // 初回表示時に日付と時間を更新
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            DateTime dateTime = DateTime.Now;
-            labeltime.Text = dateTime.ToLongTimeString();
-
-            var now = System.DateTime.Now;
-            labeldate.Text = now.ToString("yyyy年MM月dd日");
+            timerManager.UpdateDateTime(); // タイマーで日付と時間を更新
         }
 
-        private void close_Click_1(object sender, EventArgs e)
+        private void b_reg_Click(object sender, EventArgs e)
         {
-            mainmenu1 mainmenu1 = new mainmenu1();
-            mainmenu1.Show();
-
-            // 現在のフォームを非表示にする
-            this.Hide(); // this.Close()から変更
+            // 登録ボタンの処理を追加
         }
 
-        private void TBKokyakuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void b_upd_Click(object sender, EventArgs e)
         {
-
+            // 更新ボタンの処理を追加
         }
 
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            // 検索ボタンの処理を追加
+        }
 
+        private void b_flg_Click(object sender, EventArgs e)
+        {
+            // フラグボタンの処理を追加
+        }
+
+        private void b_next_Click(object sender, EventArgs e)
+        {
+            // 次へボタンの処理を追加
+        }
+
+        private void b_logout_Click(object sender, EventArgs e)
+        {
+            // ログアウト処理を追加
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            formChanger.NavigateToMainMenu(); // メインメニューに遷移
+        }
 
     }
 }

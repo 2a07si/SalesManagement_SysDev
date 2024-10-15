@@ -465,10 +465,6 @@
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
             // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
-            // 
             // order
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);

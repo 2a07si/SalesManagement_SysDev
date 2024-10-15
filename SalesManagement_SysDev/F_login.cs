@@ -1,15 +1,16 @@
 using System;
+using System.Windows.Forms;
 
 namespace SalesManagement_SysDev
 {
     public partial class F_login : Form
     {
-        private ClassDateNamelabel dateNameLabel; // 日付と時間ラベル管理用クラス
+        private ClassDateNamelabel dateNameLabel;
 
         public F_login()
         {
             InitializeComponent();
-            this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate); // ラベルを設定
+            this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate);
             timer1.Start();
         }
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -722,44 +723,22 @@ namespace SalesManagement_SysDev
             MessageBox.Show("サンプルデータ登録完了");
         }
 
-
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             dateNameLabel.UpdateDateTime(); // 日付と時間のラベルを更新
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void B_login_Click(object sender, EventArgs e)
         {
             try
             {
-                // 社員IDが入力されているか確認
-                if (string.IsNullOrWhiteSpace(tb_ID.Text))
+                if (!InputValidator.IsNotEmpty(tb_ID.Text) || !InputValidator.IsValidEmployeeID(tb_ID.Text, out int empID))
                 {
-                    MessageBox.Show("社員IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("社員IDを正しく入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // 社員IDが数値であるか確認
-                int empID;
-                if (!int.TryParse(tb_ID.Text, out empID))
-                {
-                    MessageBox.Show("社員IDは数値で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // パスワードが入力されているか確認
-                if (string.IsNullOrWhiteSpace(tb_Pass.Text))
+                if (!InputValidator.IsNotEmpty(tb_Pass.Text))
                 {
                     MessageBox.Show("パスワードを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -769,27 +748,19 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
-                    // 社員IDに基づいて社員を取得
-                    var employee = context.MEmployees.SingleOrDefault(e => e.EmId == empID);
-
-                    // 社員情報が見つかり、パスワードが一致している場合
-                    if (employee != null && employee.EmPassword == pass)
+                    var employeeService = new EmployeeService(context);
+                    if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName))
                     {
-                        // 合致していれば社員IDと権限名を記憶
                         Global.EmployeeID = empID;
-                        Global.EmployeeName = employee.EmName; // 社員名を保存
-                        Global.PositionName = context.MPositions
-                            .Where(p => p.PoId == employee.PoId)
-                            .Select(p => p.PoName)
-                            .FirstOrDefault(); // 権限名を保存
+                        Global.EmployeeName = employeeName;
+                        Global.PositionName = positionName;
+
                         mainmenu1 mainMenu = new mainmenu1();
                         mainMenu.Show();
                         this.Hide();
                     }
-
                     else
                     {
-                        // 認証エラー時の処理
                         MessageBox.Show("社員IDとパスワードが一致していません", "認証エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         tb_Pass.Clear();
                     }
@@ -808,29 +779,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
-
-
-
-        //Globalで社員IDを記憶
-        public static class Global
-        {
-            public static int EmployeeID;
-            public static string EmployeeName;
-            public static string EmployeePosition;
-            public static string PositionName;  // ポジション名を保存
-
-            public static void Reset()
-            {
-                EmployeeID = 0;
-                EmployeeName = string.Empty;
-                EmployeePosition = string.Empty;
-                PositionName = string.Empty;
-            }
-        }
-
-
     }
 }
+

@@ -449,10 +449,7 @@
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
-            // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
+            
             // 
             // sales
             // 
