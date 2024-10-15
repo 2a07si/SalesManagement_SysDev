@@ -60,5 +60,10 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateToShippingForm(); // 出荷管理画面に遷移 
         }
+
+        private void b_flg_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

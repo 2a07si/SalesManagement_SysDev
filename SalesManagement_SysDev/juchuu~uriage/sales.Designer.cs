@@ -66,6 +66,7 @@
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
+            B_iti = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -73,7 +74,7 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(696, 35);
+            label_ename.Location = new Point(665, 30);
             label_ename.Name = "label_ename";
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 233;
@@ -83,12 +84,13 @@
             // 
             b_flg.BackColor = Color.FromArgb(192, 255, 255);
             b_flg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_flg.Location = new Point(626, 79);
+            b_flg.Location = new Point(710, 80);
             b_flg.Name = "b_flg";
-            b_flg.Size = new Size(129, 48);
+            b_flg.Size = new Size(130, 50);
             b_flg.TabIndex = 218;
             b_flg.Text = "非表示";
             b_flg.UseVisualStyleBackColor = false;
+            b_flg.Click += b_flg_Click;
             // 
             // label_id
             // 
@@ -103,7 +105,7 @@
             // 
             b_ser.BackColor = Color.FromArgb(192, 255, 255);
             b_ser.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ser.Location = new Point(455, 80);
+            b_ser.Location = new Point(570, 80);
             b_ser.Name = "b_ser";
             b_ser.Size = new Size(130, 50);
             b_ser.TabIndex = 217;
@@ -113,7 +115,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(603, 34);
+            label4.Location = new Point(600, 30);
             label4.Name = "label4";
             label4.Size = new Size(66, 25);
             label4.TabIndex = 231;
@@ -123,7 +125,7 @@
             // 
             b_upd.BackColor = Color.FromArgb(192, 255, 255);
             b_upd.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_upd.Location = new Point(300, 80);
+            b_upd.Location = new Point(290, 80);
             b_upd.Name = "b_upd";
             b_upd.Size = new Size(130, 50);
             b_upd.TabIndex = 216;
@@ -143,7 +145,7 @@
             // 
             b_reg.BackColor = Color.FromArgb(192, 255, 255);
             b_reg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_reg.Location = new Point(145, 80);
+            b_reg.Location = new Point(150, 80);
             b_reg.Name = "b_reg";
             b_reg.Size = new Size(130, 50);
             b_reg.TabIndex = 215;
@@ -248,7 +250,7 @@
             panel1.Controls.Add(TBShainID);
             panel1.Location = new Point(150, 135);
             panel1.Name = "panel1";
-            panel1.Size = new Size(900, 520);
+            panel1.Size = new Size(1020, 600);
             panel1.TabIndex = 223;
             // 
             // TBJyutyuID
@@ -273,11 +275,11 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(15, 160);
+            dataGridView1.Location = new Point(10, 160);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(870, 345);
+            dataGridView1.Size = new Size(1000, 430);
             dataGridView1.TabIndex = 52;
             // 
             // DelFlag
@@ -423,9 +425,9 @@
             // 
             kakutei.BackColor = Color.FromArgb(255, 192, 192);
             kakutei.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(795, 80);
+            kakutei.Location = new Point(910, 80);
             kakutei.Name = "kakutei";
-            kakutei.Size = new Size(129, 48);
+            kakutei.Size = new Size(130, 50);
             kakutei.TabIndex = 252;
             kakutei.Text = "確定";
             kakutei.UseVisualStyleBackColor = false;
@@ -433,29 +435,40 @@
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(935, 80);
+            clear.Location = new Point(1050, 80);
             clear.Name = "clear";
-            clear.Size = new Size(112, 48);
+            clear.Size = new Size(115, 50);
             clear.TabIndex = 251;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             // 
             // close
             // 
-            close.Location = new Point(925, 15);
+            close.Location = new Point(1060, 15);
             close.Name = "close";
-            close.Size = new Size(129, 48);
+            close.Size = new Size(100, 40);
             close.TabIndex = 250;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
-            
+            // 
+            // B_iti
+            // 
+            B_iti.BackColor = Color.FromArgb(192, 255, 255);
+            B_iti.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            B_iti.Location = new Point(430, 80);
+            B_iti.Name = "B_iti";
+            B_iti.Size = new Size(130, 50);
+            B_iti.TabIndex = 259;
+            B_iti.Text = "一覧";
+            B_iti.UseVisualStyleBackColor = false;
             // 
             // sales
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1067, 667);
+            ClientSize = new Size(1178, 744);
+            Controls.Add(B_iti);
             Controls.Add(kakutei);
             Controls.Add(clear);
             Controls.Add(close);
@@ -524,5 +537,6 @@
         private MaskedTextBox TBShainID;
         private MaskedTextBox TBJyutyuID;
         private Label label7;
+        private Button B_iti;
     }
 }
