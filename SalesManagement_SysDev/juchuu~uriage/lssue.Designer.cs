@@ -451,7 +451,6 @@
             clear.TabIndex = 245;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
-            clear.Click += clear_Click;
             // 
             // close
             // 
@@ -462,10 +461,6 @@
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
-            // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
             // 
             // lssue
             // 

@@ -150,7 +150,7 @@
             b_reg.TabIndex = 139;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
-            b_reg.Click += b_reg_Click;
+
             // 
             // panel1
             // 
@@ -442,7 +442,6 @@
             kakutei.TabIndex = 240;
             kakutei.Text = "確定";
             kakutei.UseVisualStyleBackColor = false;
-            kakutei.Click += button1_Click;
             // 
             // clear
             // 
@@ -453,7 +452,6 @@
             clear.TabIndex = 239;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
-            clear.Click += button2_Click;
             // 
             // close
             // 
@@ -464,10 +462,6 @@
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += button3_Click;
-            // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
             // 
             // arrival
             // 
