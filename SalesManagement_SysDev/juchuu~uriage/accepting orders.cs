@@ -13,7 +13,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            this.dateNameLabel = new ClassDateNamelabel(label1, label2); // ラベルを設定
+            this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate); // ラベルを設定
             this.Load += new EventHandler(acceptingorders_Load);
             timer1.Interval = 1000; // タイマーの間隔を1秒に設定
             timer1.Tick += new EventHandler(Timer1_Tick); // タイマーのTickイベントにハンドラを追加
@@ -24,7 +24,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            this.dateNameLabel = new ClassDateNamelabel(label1, label2); // ラベルを設定
+            this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate); // ラベルを設定
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)

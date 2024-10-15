@@ -147,7 +147,7 @@
             // 
             labeldate.AutoSize = true;
             labeldate.Font = new Font("Yu Gothic UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            labeldate.Location = new Point(902, 300);
+            labeldate.Location = new Point(907, 300);
             labeldate.Name = "labeldate";
             labeldate.Size = new Size(276, 41);
             labeldate.TabIndex = 9;

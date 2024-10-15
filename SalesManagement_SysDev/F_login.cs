@@ -1,15 +1,15 @@
 using System;
-using static SalesManagement_SysDev.datetime;
 
 namespace SalesManagement_SysDev
 {
     public partial class F_login : Form
     {
-        private datetime Datetime;
+        private ClassDateNamelabel dateNameLabel; // 日付と時間ラベル管理用クラス
+
         public F_login()
         {
             InitializeComponent();
-            this.Datetime = new datetime();
+            this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate); // ラベルを設定
             timer1.Start();
         }
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -731,7 +731,7 @@ namespace SalesManagement_SysDev
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Datetime.DateTimeLabels(labeltime, labeldate);
+            dateNameLabel.UpdateDateTime(); // 日付と時間のラベルを更新
         }
 
         private void label6_Click(object sender, EventArgs e)
