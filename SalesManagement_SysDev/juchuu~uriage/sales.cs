@@ -7,18 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SalesManagement_SysDev.Class1;
+using static SalesManagement_SysDev.labelChange;
 
 namespace SalesManagement_SysDev
 {
-    public partial class lssue : Form
+    public partial class sales : Form
     {
         private Form mainForm;
-        public lssue()
+        public sales()
         {
             InitializeComponent();
             this.mainForm = new Form();
-            this.Load += new EventHandler(lssue_Load);
+            this.Load += new EventHandler(sales_Load);
             timer1.Start();
         }
 
@@ -33,10 +33,8 @@ namespace SalesManagement_SysDev
 
         private void close_Click(object sender, EventArgs e)
         {
-            // メインフォームを再表示
             mainmenu1 mainmenu1 = new mainmenu1();
             mainmenu1.Show();
-
             // 現在のフォームを閉じる
             this.Close();
         }
@@ -55,6 +53,13 @@ namespace SalesManagement_SysDev
             this.Close();
         }
 
+        private void b_lss_Click(object sender, EventArgs e)
+        {
+            lssue lssue = new lssue();
+            lssue.Show();
+            this.Close();
+        }
+
         private void b_arr_Click(object sender, EventArgs e)
         {
             arrival arrival = new arrival(this);
@@ -69,18 +74,7 @@ namespace SalesManagement_SysDev
             this.Close();
         }
 
-        private void b_sal_Click(object sender, EventArgs e)
-        {
-            sales sales = new sales();
-            sales.Show();
-            this.Close();
-        }
-
-        private void clear_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void lssue_Load(object sender, EventArgs e)
+        private void sales_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
         }

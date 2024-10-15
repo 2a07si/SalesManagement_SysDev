@@ -7,7 +7,7 @@ using static SalesManagement_SysDev.F_login;
 
 namespace SalesManagement_SysDev
 {
-    internal class Class1
+    internal class labelChange
     {
         public static class GlobalUtility
         {
@@ -17,6 +17,8 @@ namespace SalesManagement_SysDev
                 labelId.Text = Global.PositionName;  // グローバル変数の権限名をラベルに設定
                 labelEname.Text = Global.EmployeeName;  // グローバル変数の社員名をラベルに設定
             }
+            //日付
+            
         }
     }
 }

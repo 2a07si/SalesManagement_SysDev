@@ -4,22 +4,28 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SalesManagement_SysDev.Class1;
+using static SalesManagement_SysDev.labelChange;
 
 namespace SalesManagement_SysDev
 {
-    public partial class horder : Form
+    public partial class customer : Form
     {
         private Form mainForm;
-        public horder()
+        public customer()
         {
             InitializeComponent();
             this.mainForm = new Form();
-            this.Load += new EventHandler(horder_Load);
+            this.Load += new EventHandler(customer_Load);
             timer1.Start();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -40,14 +46,28 @@ namespace SalesManagement_SysDev
             this.Close();
         }
 
-        private void b_rec_Click(object sender, EventArgs e)
+        private void b_emp_Click(object sender, EventArgs e)
         {
-            receivingstock receivingstock = new receivingstock();
-            receivingstock.Show();
+            employee employee = new employee();
+            employee.Show();
             this.Close();
         }
 
-        private void horder_Load(object sender, EventArgs e)
+        private void b_mer_Click(object sender, EventArgs e)
+        {
+            merchandise merchandise = new merchandise();
+            merchandise.Show();
+            this.Close();
+        }
+
+        private void b_sto_Click(object sender, EventArgs e)
+        {
+            stock stock = new stock();
+            stock.Show();
+            this.Close();
+        }
+
+        private void customer_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
         }

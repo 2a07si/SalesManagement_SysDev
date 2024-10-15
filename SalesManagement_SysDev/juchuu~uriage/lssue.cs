@@ -7,24 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SalesManagement_SysDev.Class1;
+using static SalesManagement_SysDev.labelChange;
 
 namespace SalesManagement_SysDev
 {
-    public partial class merchandise : Form
+    public partial class lssue : Form
     {
         private Form mainForm;
-        public merchandise()
+        public lssue()
         {
             InitializeComponent();
             this.mainForm = new Form();
-            this.Load += new EventHandler(merchandise_Load);
+            this.Load += new EventHandler(lssue_Load);
             timer1.Start();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -38,6 +33,7 @@ namespace SalesManagement_SysDev
 
         private void close_Click(object sender, EventArgs e)
         {
+            // メインフォームを再表示
             mainmenu1 mainmenu1 = new mainmenu1();
             mainmenu1.Show();
 
@@ -45,33 +41,46 @@ namespace SalesManagement_SysDev
             this.Close();
         }
 
-        private void b_emp_Click(object sender, EventArgs e)
+        private void b_acc_Click(object sender, EventArgs e)
         {
-            employee employee = new employee();
-            employee.Show();
+            acceptingorders acceptingorders = new acceptingorders(this);
+            acceptingorders.Show();
             this.Close();
         }
 
-        private void b_sto_Click(object sender, EventArgs e)
+        private void b_ord_Click(object sender, EventArgs e)
         {
-            stock stock = new stock();
-            stock.Show();
+            order order = new order();
+            order.Show();
             this.Close();
         }
 
-        private void b_cus_Click(object sender, EventArgs e)
+        private void b_arr_Click(object sender, EventArgs e)
         {
-            customer customer = new customer();
-            customer.Show();
+            arrival arrival = new arrival(this);
+            arrival.Show();
             this.Close();
         }
 
-        private void date_ValueChanged(object sender, EventArgs e)
+        private void b_shi_Click(object sender, EventArgs e)
         {
-
+            shipping shipping = new shipping(this);
+            shipping.Show();
+            this.Close();
         }
 
-        private void merchandise_Load(object sender, EventArgs e)
+        private void b_sal_Click(object sender, EventArgs e)
+        {
+            sales sales = new sales();
+            sales.Show();
+            this.Close();
+        }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void lssue_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
         }

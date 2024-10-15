@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SalesManagement_SysDev.Class1;
+using static SalesManagement_SysDev.labelChange;
 
 namespace SalesManagement_SysDev
 {

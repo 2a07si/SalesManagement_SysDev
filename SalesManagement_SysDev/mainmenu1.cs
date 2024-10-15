@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SalesManagement_SysDev.Class1;
+using static SalesManagement_SysDev.labelChange;
 using static SalesManagement_SysDev.F_login;
 
 namespace SalesManagement_SysDev
@@ -96,6 +96,9 @@ namespace SalesManagement_SysDev
         {
             DateTime dateTime = DateTime.Now;
             label1.Text = dateTime.ToLongTimeString();
+
+            var now = System.DateTime.Now;
+            label2.Text = now.ToString("yyyy年MM月dd日");
         }
 
         private void b_masuta_Click(object sender, EventArgs e)
