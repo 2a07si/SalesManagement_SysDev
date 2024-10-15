@@ -68,6 +68,7 @@
             dataGridView1 = new DataGridView();
             labeldate = new Label();
             labeltime = new Label();
+            B_iti = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -83,7 +84,7 @@
             // 
             button1.BackColor = Color.FromArgb(255, 192, 192);
             button1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(795, 80);
+            button1.Location = new Point(910, 80);
             button1.Name = "button1";
             button1.Size = new Size(130, 50);
             button1.TabIndex = 257;
@@ -93,7 +94,7 @@
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(935, 80);
+            clear.Location = new Point(1050, 80);
             clear.Name = "clear";
             clear.Size = new Size(115, 50);
             clear.TabIndex = 256;
@@ -102,7 +103,7 @@
             // 
             // close
             // 
-            close.Location = new Point(950, 15);
+            close.Location = new Point(1060, 15);
             close.Name = "close";
             close.Size = new Size(100, 40);
             close.TabIndex = 242;
@@ -123,7 +124,7 @@
             // 
             b_flg.BackColor = Color.FromArgb(192, 255, 255);
             b_flg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_flg.Location = new Point(610, 80);
+            b_flg.Location = new Point(710, 80);
             b_flg.Name = "b_flg";
             b_flg.Size = new Size(130, 50);
             b_flg.TabIndex = 241;
@@ -143,7 +144,7 @@
             // 
             b_ser.BackColor = Color.FromArgb(192, 255, 255);
             b_ser.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ser.Location = new Point(455, 80);
+            b_ser.Location = new Point(570, 80);
             b_ser.Name = "b_ser";
             b_ser.Size = new Size(130, 50);
             b_ser.TabIndex = 240;
@@ -163,7 +164,7 @@
             // 
             b_upd.BackColor = Color.FromArgb(192, 255, 255);
             b_upd.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_upd.Location = new Point(300, 80);
+            b_upd.Location = new Point(290, 80);
             b_upd.Name = "b_upd";
             b_upd.Size = new Size(130, 50);
             b_upd.TabIndex = 239;
@@ -183,7 +184,7 @@
             // 
             b_reg.BackColor = Color.FromArgb(192, 255, 255);
             b_reg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_reg.Location = new Point(145, 80);
+            b_reg.Location = new Point(150, 80);
             b_reg.Name = "b_reg";
             b_reg.Size = new Size(130, 50);
             b_reg.TabIndex = 238;
@@ -288,7 +289,7 @@
             panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(150, 135);
             panel1.Name = "panel1";
-            panel1.Size = new Size(900, 520);
+            panel1.Size = new Size(1020, 600);
             panel1.TabIndex = 245;
             // 
             // TBTantoName
@@ -446,11 +447,11 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(15, 160);
+            dataGridView1.Location = new Point(10, 160);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(870, 345);
+            dataGridView1.Size = new Size(1000, 430);
             dataGridView1.TabIndex = 52;
             // 
             // labeldate
@@ -471,11 +472,23 @@
             labeltime.TabIndex = 243;
             labeltime.Text = "11:11:11";
             // 
+            // B_iti
+            // 
+            B_iti.BackColor = Color.FromArgb(192, 255, 255);
+            B_iti.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            B_iti.Location = new Point(430, 80);
+            B_iti.Name = "B_iti";
+            B_iti.Size = new Size(130, 50);
+            B_iti.TabIndex = 258;
+            B_iti.Text = "一覧";
+            B_iti.UseVisualStyleBackColor = false;
+            // 
             // acceptingorders
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1067, 667);
+            ClientSize = new Size(1178, 744);
+            Controls.Add(B_iti);
             Controls.Add(button1);
             Controls.Add(clear);
             Controls.Add(close);
@@ -547,5 +560,6 @@
         private Label labeldate;
         private Label labeltime;
         private MaskedTextBox TBTantoName;
+        private Button B_iti;
     }
 }

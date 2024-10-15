@@ -288,11 +288,11 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(15, 160);
+            dataGridView1.Location = new Point(10, 160);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(990, 425);
+            dataGridView1.Size = new Size(1000, 430);
             dataGridView1.TabIndex = 52;
             // 
             // DelFlag
@@ -438,7 +438,7 @@
             // 
             kakutei.BackColor = Color.FromArgb(255, 192, 192);
             kakutei.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(900, 80);
+            kakutei.Location = new Point(910, 80);
             kakutei.Name = "kakutei";
             kakutei.Size = new Size(130, 50);
             kakutei.TabIndex = 249;
@@ -465,10 +465,6 @@
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
-            // 
-            // timer1
-            // 
-//            timer1.Tick += timer1_Tick;
             // 
             // B_iti
             // 
