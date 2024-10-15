@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using static SalesManagement_SysDev.labelChange;
+using SalesManagement_SysDev.Classまとめ;
+using static SalesManagement_SysDev.Classまとめ.labelChange;
 
 namespace SalesManagement_SysDev
 {
