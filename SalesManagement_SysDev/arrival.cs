@@ -95,5 +95,6 @@ namespace SalesManagement_SysDev
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
         }
+
     }
 }
