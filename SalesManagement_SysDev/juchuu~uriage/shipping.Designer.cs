@@ -457,10 +457,6 @@
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
-            // 
             // shipping
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);

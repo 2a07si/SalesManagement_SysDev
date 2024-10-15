@@ -1,32 +1,39 @@
-﻿//////////////////////////
-//・クラス名
-//Global
-//・解説の内容
-//- アプリケーション全体で共通して使用されるグローバルデータを管理する静的クラス。
-//- 社員ID、社員名、ポジション名を保持し、必要に応じてアクセスできるようにする。
-//- グローバルデータのリセットを行うメソッドを提供。
-//・その他特筆事項
-//- グローバルデータを使用することで、各フォームやクラス間で情報の共有が容易になる。
-//- 状態管理を簡素化し、コードの可読性を向上させる。
-//////////////////////////
+﻿////////////////////////// 
+//・クラス名 
+//-Global 
+//・解説の内容 
+//-アプリケーション全体で使用されるグローバル変数を管理するクラス。 
+//-役職名、社員名、社員IDのプロパティを持ち、アプリケーションの各所でアクセス可能。 
+//-Resetメソッドにより、これらの変数を初期化することができ、必要に応じてクリーンな状態に戻すことが可能。 
+//・その他特筆事項 
+//-グローバル変数の管理を行うことで、アプリケーション全体の状態を一元化し、管理の効率化を図ることができる。 
+//-必要に応じて、他のグローバルな設定や状態管理のためのメソッドを追加することができる。 
+////////////////////////// 
 
-// Global.cs
+using System;
+
 namespace SalesManagement_SysDev.Classまとめ
 {
-    public static class Global
+    // グローバル変数を管理するクラス 
+    internal static class Global
     {
-        public static int EmployeeID { get; set; }
-        public static string EmployeeName { get; set; }
-        public static string PositionName { get; set; } // ポジション名を保存 
+        // グローバル変数: 社員ID 
+        public static int EmployeeID { get; set; } // ここをintに変更 
 
-        /// <summary> 
-        /// グローバルデータをリセットする。 
-        /// </summary> 
-        public static void Reset()
+        // グローバル変数: 社員名 
+        public static string EmployeeName { get; set; }
+
+        // グローバル変数: 権限名 
+        public static string PositionName { get; set; }
+
+        // グローバル変数をリセットするメソッド 
+        public static string Reset()
         {
-            EmployeeID = 0;
-            EmployeeName = string.Empty;
-            PositionName = string.Empty;
+            // 社員ID、社員名、権限名をnullに設定 
+            EmployeeID = 0; // intなので0にリセット 
+            EmployeeName = null;
+            PositionName = null;
+            return "リセット完了"; // リセット完了のメッセージを返す 
         }
     }
 }
