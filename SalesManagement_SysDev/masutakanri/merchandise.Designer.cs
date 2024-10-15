@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            label1 = new Label();
-            label2 = new Label();
+            labeltime = new Label();
+            labeldate = new Label();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
             TBColor = new MaskedTextBox();
@@ -74,23 +74,23 @@
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // labeltime
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(40, 30);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 25);
-            label1.TabIndex = 203;
-            label1.Text = "11:11:11";
+            labeltime.AutoSize = true;
+            labeltime.Location = new Point(40, 30);
+            labeltime.Name = "labeltime";
+            labeltime.Size = new Size(80, 25);
+            labeltime.TabIndex = 203;
+            labeltime.Text = "11:11:11";
             // 
-            // label2
+            // labeldate
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(140, 30);
-            label2.Name = "label2";
-            label2.Size = new Size(156, 25);
-            label2.TabIndex = 204;
-            label2.Text = "yyyy年mm月dd日";
+            labeldate.AutoSize = true;
+            labeldate.Location = new Point(140, 30);
+            labeldate.Name = "labeldate";
+            labeldate.Size = new Size(156, 25);
+            labeldate.TabIndex = 204;
+            labeldate.Text = "yyyy年mm月dd日";
             // 
             // dataGridView1
             // 
@@ -514,8 +514,8 @@
             Controls.Add(label3);
             Controls.Add(b_reg);
             Controls.Add(panel1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(labeldate);
+            Controls.Add(labeltime);
             Name = "merchandise";
             Text = "商品";
             Load += merchandise_Load;
@@ -528,8 +528,8 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
+        private Label labeltime;
+        private Label labeldate;
         private DataGridView dataGridView1;
         private Panel panel1;
         private Button b_reg;

@@ -31,7 +31,7 @@ namespace SalesManagement_SysDev
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.Now;
-            label1.Text = dateTime.ToLongTimeString();
+            labeltime.Text = dateTime.ToLongTimeString();
 
             var now = System.DateTime.Now;
             label2.Text = now.ToString("yyyy年MM月dd日");

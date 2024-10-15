@@ -53,8 +53,8 @@
             label8 = new Label();
             label6 = new Label();
             dataGridView1 = new DataGridView();
-            label2 = new Label();
-            label1 = new Label();
+            labeldate = new Label();
+            labeltime = new Label();
             kakutei = new Button();
             clear = new Button();
             close = new Button();
@@ -315,23 +315,23 @@
             dataGridView1.Size = new Size(870, 345);
             dataGridView1.TabIndex = 52;
             // 
-            // label2
+            // labeldate
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(140, 30);
-            label2.Name = "label2";
-            label2.Size = new Size(156, 25);
-            label2.TabIndex = 202;
-            label2.Text = "yyyy年mm月dd日";
+            labeldate.AutoSize = true;
+            labeldate.Location = new Point(140, 30);
+            labeldate.Name = "labeldate";
+            labeldate.Size = new Size(156, 25);
+            labeldate.TabIndex = 202;
+            labeldate.Text = "yyyy年mm月dd日";
             // 
-            // label1
+            // labeltime
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(40, 30);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 25);
-            label1.TabIndex = 201;
-            label1.Text = "11:11:11";
+            labeltime.AutoSize = true;
+            labeltime.Location = new Point(40, 30);
+            labeltime.Name = "labeltime";
+            labeltime.Size = new Size(80, 25);
+            labeltime.TabIndex = 201;
+            labeltime.Text = "11:11:11";
             // 
             // kakutei
             // 
@@ -387,8 +387,8 @@
             Controls.Add(b_hor);
             Controls.Add(b_rec);
             Controls.Add(panel1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(labeldate);
+            Controls.Add(labeltime);
             Name = "horder";
             Text = "発注";
             Load += horder_Load;
@@ -420,8 +420,8 @@
         private Label label8;
         private Label label6;
         private DataGridView dataGridView1;
-        private Label label2;
-        private Label label1;
+        private Label labeldate;
+        private Label labeltime;
         private Button kakutei;
         private Button clear;
         private Button close;

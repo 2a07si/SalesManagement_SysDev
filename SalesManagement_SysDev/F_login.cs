@@ -1,11 +1,15 @@
+using System;
+using static SalesManagement_SysDev.datetime;
+
 namespace SalesManagement_SysDev
 {
     public partial class F_login : Form
     {
+        private datetime Datetime;
         public F_login()
         {
             InitializeComponent();
-
+            this.Datetime = new datetime();
             timer1.Start();
         }
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -727,11 +731,7 @@ namespace SalesManagement_SysDev
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            DateTime dateTime = DateTime.Now;
-            label5.Text = dateTime.ToLongTimeString();
-
-            var now = System.DateTime.Now;
-            label6.Text = now.ToString("yyyy”NMMŒŽdd“ú");
+            Datetime.DateTimeLabels(labeltime, labeldate);
         }
 
         private void label6_Click(object sender, EventArgs e)

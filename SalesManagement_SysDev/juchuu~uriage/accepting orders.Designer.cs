@@ -66,8 +66,8 @@
             label7 = new Label();
             label6 = new Label();
             dataGridView1 = new DataGridView();
-            label2 = new Label();
-            label1 = new Label();
+            labeldate = new Label();
+            labeltime = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -453,23 +453,23 @@
             dataGridView1.Size = new Size(870, 345);
             dataGridView1.TabIndex = 52;
             // 
-            // label2
+            // labeldate
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(140, 30);
-            label2.Name = "label2";
-            label2.Size = new Size(156, 25);
-            label2.TabIndex = 244;
-            label2.Text = "yyyy年mm月dd日";
+            labeldate.AutoSize = true;
+            labeldate.Location = new Point(140, 30);
+            labeldate.Name = "labeldate";
+            labeldate.Size = new Size(156, 25);
+            labeldate.TabIndex = 244;
+            labeldate.Text = "yyyy年mm月dd日";
             // 
-            // label1
+            // labeltime
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(40, 30);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 25);
-            label1.TabIndex = 243;
-            label1.Text = "11:11:11";
+            labeltime.AutoSize = true;
+            labeltime.Location = new Point(40, 30);
+            labeltime.Name = "labeltime";
+            labeltime.Size = new Size(80, 25);
+            labeltime.TabIndex = 243;
+            labeltime.Text = "11:11:11";
             // 
             // acceptingorders
             // 
@@ -494,8 +494,8 @@
             Controls.Add(b_arr);
             Controls.Add(b_lss);
             Controls.Add(panel1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(labeldate);
+            Controls.Add(labeltime);
             Name = "acceptingorders";
             Text = "受注";
             Load += acceptingorders_Load;
@@ -544,8 +544,8 @@
         private Label label7;
         private Label label6;
         private DataGridView dataGridView1;
-        private Label label2;
-        private Label label1;
+        private Label labeldate;
+        private Label labeltime;
         private MaskedTextBox TBTantoName;
     }
 }

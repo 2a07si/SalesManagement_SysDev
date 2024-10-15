@@ -60,8 +60,8 @@
             TBShopID = new MaskedTextBox();
             label17 = new Label();
             TBShainID = new MaskedTextBox();
-            label2 = new Label();
-            label1 = new Label();
+            labeldate = new Label();
+            labeltime = new Label();
             kakutei = new Button();
             clear = new Button();
             close = new Button();
@@ -401,23 +401,23 @@
             TBShainID.Size = new Size(130, 31);
             TBShainID.TabIndex = 274;
             // 
-            // label2
+            // labeldate
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(140, 30);
-            label2.Name = "label2";
-            label2.Size = new Size(156, 25);
-            label2.TabIndex = 221;
-            label2.Text = "yyyy年mm月dd日";
+            labeldate.AutoSize = true;
+            labeldate.Location = new Point(140, 30);
+            labeldate.Name = "labeldate";
+            labeldate.Size = new Size(156, 25);
+            labeldate.TabIndex = 221;
+            labeldate.Text = "yyyy年mm月dd日";
             // 
-            // label1
+            // labeltime
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(40, 30);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 25);
-            label1.TabIndex = 220;
-            label1.Text = "11:11:11";
+            labeltime.AutoSize = true;
+            labeltime.Location = new Point(40, 30);
+            labeltime.Name = "labeltime";
+            labeltime.Size = new Size(80, 25);
+            labeltime.TabIndex = 220;
+            labeltime.Text = "11:11:11";
             // 
             // kakutei
             // 
@@ -477,8 +477,8 @@
             Controls.Add(b_arr);
             Controls.Add(b_lss);
             Controls.Add(panel1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(labeldate);
+            Controls.Add(labeltime);
             Name = "sales";
             Text = "売上";
             Load += sales_Load;
@@ -506,8 +506,8 @@
         private Button b_lss;
         private Panel panel1;
         private DataGridView dataGridView1;
-        private Label label2;
-        private Label label1;
+        private Label labeldate;
+        private Label labeltime;
         private Button kakutei;
         private Button clear;
         private Button close;

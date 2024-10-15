@@ -57,7 +57,7 @@ namespace SalesManagement_SysDev
 
         private void mainmenu1_Load(object sender, EventArgs e)
         {
-            GlobalUtility.UpdateLabels(label_id,label_ename);
+            GlobalUtility.UpdateLabels(label_id, label_ename);
         }
 
         private void b_juchuu_Click(object sender, EventArgs e)
@@ -95,10 +95,10 @@ namespace SalesManagement_SysDev
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.Now;
-            label1.Text = dateTime.ToLongTimeString();
+            labeltime.Text = dateTime.ToLongTimeString();
 
             var now = System.DateTime.Now;
-            label2.Text = now.ToString("yyyy年MM月dd日");
+            labeldate.Text = now.ToString("yyyy年MM月dd日");
         }
 
         private void b_masuta_Click(object sender, EventArgs e)
@@ -114,7 +114,7 @@ namespace SalesManagement_SysDev
             // 現在のフォームを非表示にする
             this.Hide();
             var now = System.DateTime.Now;
-            label2.Text = now.ToString("yyyy年MM月dd日");
+            labeldate.Text = now.ToString("yyyy年MM月dd日");
         }
 
         private void b_masuta_Click_1(object sender, EventArgs e)

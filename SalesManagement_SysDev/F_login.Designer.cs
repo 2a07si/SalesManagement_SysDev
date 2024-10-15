@@ -36,10 +36,10 @@
             label4 = new Label();
             tb_ID = new TextBox();
             B_login = new Button();
-            label5 = new Label();
+            labeltime = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
-            label6 = new Label();
             tb_Pass = new TextBox();
+            labeldate = new Label();
             SuspendLayout();
             // 
             // btn_CleateDabase
@@ -119,30 +119,19 @@
             B_login.UseVisualStyleBackColor = false;
             B_login.Click += B_login_Click;
             // 
-            // label5
+            // labeltime
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Yu Gothic UI", 23F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(929, 341);
-            label5.Name = "label5";
-            label5.Size = new Size(205, 62);
-            label5.TabIndex = 8;
-            label5.Text = "22:22:22";
+            labeltime.AutoSize = true;
+            labeltime.Font = new Font("Yu Gothic UI", 23F, FontStyle.Bold, GraphicsUnit.Point);
+            labeltime.Location = new Point(929, 341);
+            labeltime.Name = "labeltime";
+            labeltime.Size = new Size(205, 62);
+            labeltime.TabIndex = 8;
+            labeltime.Text = "22:22:22";
             // 
             // timer1
             // 
             timer1.Tick += timer1_Tick;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(917, 279);
-            label6.Name = "label6";
-            label6.Size = new Size(173, 38);
-            label6.TabIndex = 9;
-            label6.Text = "YYYYMMDD";
-            label6.Click += label6_Click;
             // 
             // tb_Pass
             // 
@@ -154,13 +143,23 @@
             tb_Pass.Size = new Size(229, 50);
             tb_Pass.TabIndex = 6;
             // 
+            // labeldate
+            // 
+            labeldate.AutoSize = true;
+            labeldate.Font = new Font("Yu Gothic UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            labeldate.Location = new Point(902, 300);
+            labeldate.Name = "labeldate";
+            labeldate.Size = new Size(276, 41);
+            labeldate.TabIndex = 9;
+            labeldate.Text = "YYYY年MM月DD日";
+            // 
             // F_login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1333, 937);
-            Controls.Add(label6);
-            Controls.Add(label5);
+            Controls.Add(labeldate);
+            Controls.Add(labeltime);
             Controls.Add(B_login);
             Controls.Add(tb_Pass);
             Controls.Add(tb_ID);
@@ -185,9 +184,9 @@
         private Label label4;
         private TextBox tb_ID;
         private Button B_login;
-        private Label label5;
+        private Label labeltime;
         private System.Windows.Forms.Timer timer1;
-        private Label label6;
         private TextBox tb_Pass;
+        private Label labeldate;
     }
 }

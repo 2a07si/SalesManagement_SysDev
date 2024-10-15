@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            label1 = new Label();
-            label2 = new Label();
+            labeltime = new Label();
+            labeldate = new Label();
             label3 = new Label();
             label4 = new Label();
             b_logout = new Button();
@@ -42,23 +42,23 @@
             timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // label1
+            // labeltime
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(55, 47);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 25);
-            label1.TabIndex = 0;
-            label1.Text = "11:11:11";
+            labeltime.AutoSize = true;
+            labeltime.Location = new Point(55, 47);
+            labeltime.Name = "labeltime";
+            labeltime.Size = new Size(80, 25);
+            labeltime.TabIndex = 0;
+            labeltime.Text = "11:11:11";
             // 
-            // label2
+            // labeldate
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(55, 88);
-            label2.Name = "label2";
-            label2.Size = new Size(156, 25);
-            label2.TabIndex = 1;
-            label2.Text = "yyyy年mm月dd日";
+            labeldate.AutoSize = true;
+            labeldate.Location = new Point(55, 88);
+            labeldate.Name = "labeldate";
+            labeldate.Size = new Size(156, 25);
+            labeldate.TabIndex = 1;
+            labeldate.Text = "yyyy年mm月dd日";
             // 
             // label3
             // 
@@ -160,8 +160,8 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(labeldate);
+            Controls.Add(labeltime);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "mainmenu1";
             Text = "mainmenu1";
@@ -172,8 +172,8 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
+        private Label labeltime;
+        private Label labeldate;
         private Label label3;
         private Label label4;
         private TextBox textBox1;
