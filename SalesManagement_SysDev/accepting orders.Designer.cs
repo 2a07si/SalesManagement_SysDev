@@ -138,7 +138,6 @@
             label_id.Size = new Size(54, 25);
             label_id.TabIndex = 254;
             label_id.Text = "------";
-            label_id.Click += label_id_Click;
             // 
             // b_ser
             // 
@@ -179,7 +178,6 @@
             label3.Size = new Size(48, 25);
             label3.TabIndex = 252;
             label3.Text = "権限";
-            label3.Click += label3_Click;
             // 
             // b_reg
             // 
@@ -203,7 +201,6 @@
             b_ord.TabIndex = 251;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
-            b_ord.Click += b_ord_Click_2;
             // 
             // b_sal
             // 
@@ -229,7 +226,6 @@
             b_add.TabIndex = 249;
             b_add.Text = "受注";
             b_add.UseVisualStyleBackColor = false;
-            b_add.Click += b_add_Click_1;
             // 
             // b_shi
             // 
@@ -465,7 +461,6 @@
             label2.Size = new Size(156, 25);
             label2.TabIndex = 244;
             label2.Text = "yyyy年mm月dd日";
-            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -475,7 +470,6 @@
             label1.Size = new Size(80, 25);
             label1.TabIndex = 243;
             label1.Text = "11:11:11";
-            label1.Click += label1_Click;
             // 
             // acceptingorders
             // 
