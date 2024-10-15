@@ -458,8 +458,6 @@
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             // 
-<<<<<<< HEAD
-=======
             // timer1
             // 
             timer1.Tick += timer1_Tick;
@@ -475,7 +473,6 @@
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             // 
->>>>>>> bbb176341b73d7f0bdcc05544a704cc59d0c3ed7
             // shipping
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
