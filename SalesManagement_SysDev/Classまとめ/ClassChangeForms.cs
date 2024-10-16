@@ -49,7 +49,8 @@ namespace SalesManagement_SysDev.Classまとめ
         // 受注管理画面に遷移 
         public void NavigateToAcceptingOrderForm()
         {
-            acceptingorders acceptingordersForm = new acceptingorders(); // 受注管理画面の新しいインスタンスを作成
+            acceptingorders acceptingordersForm = new acceptingorders(currentForm); // 現在のフォームを渡す
+            
             NavigateTo(acceptingordersForm); // 受注管理画面に遷移
         }
 

@@ -458,10 +458,6 @@
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
-            // 
             // B_iti
             // 
             B_iti.BackColor = Color.FromArgb(192, 255, 255);

@@ -7,13 +7,20 @@ namespace SalesManagement_SysDev
     public partial class F_login : Form
     {
         private ClassDateNamelabel dateNameLabel;
+        private bool isPasswordVisible = false;  // パスワード表示状態を管理するフラグ 
 
         public F_login()
         {
             InitializeComponent();
+
+            // 初期状態でパスワードを隠す 
+            tb_Pass.UseSystemPasswordChar = false;  // パスワードを非表示にする 
+
+            // タイマーやその他の初期設定 
             this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate);
             timer1.Start();
         }
+
         private void btn_CleateDabase_Click(object sender, EventArgs e)
         {
             //データベースの生成を行います．
@@ -733,6 +740,7 @@ namespace SalesManagement_SysDev
         {
             try
             {
+                // ログイン処理
                 if (!InputValidator.IsNotEmpty(tb_ID.Text) || !InputValidator.IsValidEmployeeID(tb_ID.Text, out int empID))
                 {
                     MessageBox.Show("社員IDを正しく入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -763,7 +771,7 @@ namespace SalesManagement_SysDev
                     else
                     {
                         MessageBox.Show("社員IDとパスワードが一致していません", "認証エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        tb_Pass.Clear();
+                        tb_Pass.Clear(); // ここでパスワードをクリアしている
                     }
                 }
             }
@@ -780,6 +788,25 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void b_pwHyouji_Click(object sender, EventArgs e)
+        {
+            // パスワード表示状態をトグル
+            isPasswordVisible = !isPasswordVisible;
+
+            if (!isPasswordVisible)
+            {
+                tb_Pass.UseSystemPasswordChar = false; // パスワードを非表示 
+                b_pwHyouji.Text = "表示";  // ボタンのテキストを「表示」に変更 
+            }
+            else
+            {
+                tb_Pass.UseSystemPasswordChar = true; // パスワードを表示 
+                b_pwHyouji.Text = "非表示";  // ボタンのテキストを「非表示」に変更 
+            }
+
+            // UIを強制的に再描画
+            tb_Pass.Refresh();
+        }
     }
 }
-

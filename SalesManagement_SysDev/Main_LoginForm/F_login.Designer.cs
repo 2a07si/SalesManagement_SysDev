@@ -40,6 +40,7 @@
             timer1 = new System.Windows.Forms.Timer(components);
             tb_Pass = new TextBox();
             labeldate = new Label();
+            b_pwHyouji = new Button();
             SuspendLayout();
             // 
             // btn_CleateDabase
@@ -139,8 +140,10 @@
             tb_Pass.Location = new Point(567, 471);
             tb_Pass.Multiline = true;
             tb_Pass.Name = "tb_Pass";
+            tb_Pass.PasswordChar = '*';
             tb_Pass.Size = new Size(229, 50);
             tb_Pass.TabIndex = 6;
+            tb_Pass.UseSystemPasswordChar = true;
             // 
             // labeldate
             // 
@@ -152,11 +155,22 @@
             labeldate.TabIndex = 9;
             labeldate.Text = "YYYY年MM月DD日";
             // 
+            // b_pwHyouji
+            // 
+            b_pwHyouji.Location = new Point(811, 480);
+            b_pwHyouji.Name = "b_pwHyouji";
+            b_pwHyouji.Size = new Size(112, 34);
+            b_pwHyouji.TabIndex = 10;
+            b_pwHyouji.Text = "表示";
+            b_pwHyouji.UseVisualStyleBackColor = true;
+            b_pwHyouji.Click += b_pwHyouji_Click;
+            // 
             // F_login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1333, 937);
+            Controls.Add(b_pwHyouji);
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Controls.Add(B_login);
@@ -187,5 +201,6 @@
         private System.Windows.Forms.Timer timer1;
         private TextBox tb_Pass;
         private Label labeldate;
+        private Button b_pwHyouji;
     }
 }
