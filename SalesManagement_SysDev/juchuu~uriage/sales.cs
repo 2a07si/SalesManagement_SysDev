@@ -34,7 +34,7 @@ namespace SalesManagement_SysDev
         // 受注管理画面に遷移 
         private void b_acc_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateToOrderForm(); // 受注管理画面に遷移 
+            formChanger.NavigateToAcceptingOrderForm(); // 受注管理画面に遷移 
         }
 
         // 注文管理画面に遷移 

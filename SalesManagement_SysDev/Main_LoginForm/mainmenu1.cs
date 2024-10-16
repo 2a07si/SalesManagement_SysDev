@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 
@@ -22,14 +23,22 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                // グローバル変数からEmployeeIDを取得し、該当する従業員を取得 
-                var employee = context.MEmployees.SingleOrDefault(e => e.EmId == Global.EmployeeID); // EmployeeIDを直接比較 
+                // グローバル変数からEmployeeIDを取得し、該当する従業員を取得  
+                var employee = context.MEmployees
+                    .Include(e => e.Po) // 職位情報を含めて取得
+                    .SingleOrDefault(e => e.EmId == Global.EmployeeID); // EmployeeIDを直接比較  
+
                 if (employee != null)
                 {
-                    label_id.Text = employee.EmName; // 従業員名をラベルに表示 
+                    label_id.Text = employee.Po.PoName; // 職位名をラベルに表示  
+                }
+                else
+                {
+                    label_id.Text = "未登録"; // もし従業員が見つからなかった場合のフォールバック
                 }
             }
         }
+
 
         private void b_logout_Click(object sender, EventArgs e)
         {
@@ -56,7 +65,7 @@ namespace SalesManagement_SysDev
 
         private void b_juchuu_Click(object sender, EventArgs e)
         {
-            changeForm.NavigateToOrderForm();
+            changeForm.NavigateToAcceptingOrderForm();
         }
 
         private void button2_Click(object sender, EventArgs e)

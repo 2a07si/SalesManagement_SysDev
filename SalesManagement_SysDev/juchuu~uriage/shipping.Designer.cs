@@ -163,6 +163,7 @@
             b_acc.TabIndex = 191;
             b_acc.Text = "受注";
             b_acc.UseVisualStyleBackColor = false;
+            b_acc.Click += b_acc_Click;
             // 
             // b_sal
             // 

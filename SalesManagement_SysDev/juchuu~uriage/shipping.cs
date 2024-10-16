@@ -59,5 +59,10 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateToMainMenu(); // メインメニューに遷移 
         }
+
+        private void b_acc_Click(object sender, EventArgs e)
+        {
+            formChanger.NavigateToAcceptingOrderForm();
+        }
     }
 }
