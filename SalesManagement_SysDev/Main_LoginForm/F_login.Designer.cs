@@ -157,11 +157,11 @@
             // 
             // b_pwHyouji
             // 
-            b_pwHyouji.Location = new Point(811, 480);
+            b_pwHyouji.Location = new Point(753, 480);
             b_pwHyouji.Name = "b_pwHyouji";
-            b_pwHyouji.Size = new Size(112, 34);
+            b_pwHyouji.Size = new Size(34, 34);
             b_pwHyouji.TabIndex = 10;
-            b_pwHyouji.Text = "表示";
+            b_pwHyouji.Text = "👀";
             b_pwHyouji.UseVisualStyleBackColor = true;
             b_pwHyouji.Click += b_pwHyouji_Click;
             // 
