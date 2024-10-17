@@ -102,5 +102,33 @@ namespace SalesManagement_SysDev.Classまとめ
             receivingstock receivingstockForm = new receivingstock();
             NavigateTo(receivingstockForm);
         }
+
+        //顧客画面遷移
+        internal void NavigateCustomerForm()
+        {
+            customer customerForm = new customer();
+            NavigateTo(customerForm);
+        }
+
+        //社員画面遷移
+        internal void NavigateEmployeeForm()
+        {
+            employee employeeForm = new employee();
+            NavigateTo(employeeForm);
+        }
+
+        //商品画面遷移
+        internal void NavigateMerchandiseForm()
+        {
+            merchandise merchandiseForm = new merchandise();
+            NavigateTo(merchandiseForm);
+        }
+
+        //在庫画面遷移
+        internal void NavigateStockForm()
+        {
+            stock stockForm = new stock();
+            NavigateTo(stockForm);
+        }
     }
 }
