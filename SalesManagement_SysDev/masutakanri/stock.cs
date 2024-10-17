@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SalesManagement_SysDev.Classまとめ;
 
 namespace SalesManagement_SysDev
 {
     public partial class stock : Form
     {
         private Form mainForm;
+        private ClassChangeForms formChanger;
         public stock()
         {
             InitializeComponent();
@@ -46,23 +48,17 @@ namespace SalesManagement_SysDev
 
         private void b_emp_Click(object sender, EventArgs e)
         {
-            employee employee = new employee();
-            employee.Show();
-            this.Close();
+            formChanger.NavigateEmployeeForm();
         }
 
         private void b_mer_Click(object sender, EventArgs e)
         {
-            merchandise merchandise = new merchandise();
-            merchandise.Show();
-            this.Close();
+            formChanger.NavigateMerchandiseForm();
         }
 
         private void b_cus_Click(object sender, EventArgs e)
         {
-            customer customer = new customer();
-            customer.Show();
-            this.Close();
+            formChanger.NavigateCustomerForm();
         }
     }
 }

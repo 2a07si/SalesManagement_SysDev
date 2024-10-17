@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SalesManagement_SysDev.Classまとめ;
 
 namespace SalesManagement_SysDev
 {
     public partial class receivingstock : Form
     {
         private Form mainForm;
+        private ClassChangeForms formChanger; // 画面遷移管理クラス 
+
         public receivingstock()
         {
             InitializeComponent();
@@ -40,9 +43,7 @@ namespace SalesManagement_SysDev
 
         private void b_hor_Click(object sender, EventArgs e)
         {
-            horder horder = new horder();
-            horder.Show();
-            this.Close();
+            formChanger.NavigateToHorderForm();
         }
 
         private void label8_Click(object sender, EventArgs e)

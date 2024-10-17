@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 
 namespace SalesManagement_SysDev
@@ -14,6 +15,7 @@ namespace SalesManagement_SysDev
     public partial class employee : Form
     {
         private Form mainForm;
+        private ClassChangeForms formChanger;
         public employee()
         {
             InitializeComponent();
@@ -42,23 +44,17 @@ namespace SalesManagement_SysDev
 
         private void b_mer_Click(object sender, EventArgs e)
         {
-            merchandise merchandise = new merchandise();
-            merchandise.Show();
-            this.Close();
+            formChanger.NavigateMerchandiseForm();
         }
 
         private void b_sto_Click(object sender, EventArgs e)
         {
-            stock stock = new stock();
-            stock.Show();
-            this.Close();
+            formChanger.NavigateStockForm();
         }
 
         private void b_cus_Click(object sender, EventArgs e)
         {
-            customer customer = new customer();
-            customer.Show();
-            this.Close();
+            formChanger.NavigateCustomerForm();
         }
 
         private void employee_Load(object sender, EventArgs e)

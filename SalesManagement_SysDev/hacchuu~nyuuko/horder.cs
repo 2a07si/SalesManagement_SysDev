@@ -7,18 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 
 namespace SalesManagement_SysDev
 {
     public partial class horder : Form
     {
+        private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private Form mainForm;
         public horder()
         {
             InitializeComponent();
             this.mainForm = new Form();
             this.Load += new EventHandler(horder_Load);
+            this.formChanger = new ClassChangeForms(this);
             timer1.Start();
         }
 
@@ -42,9 +45,7 @@ namespace SalesManagement_SysDev
 
         private void b_rec_Click(object sender, EventArgs e)
         {
-            receivingstock receivingstock = new receivingstock();
-            receivingstock.Show();
-            this.Close();
+            formChanger.NavigateToReceivingstockForm();
         }
 
         private void horder_Load(object sender, EventArgs e)
