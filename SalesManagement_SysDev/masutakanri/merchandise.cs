@@ -16,11 +16,15 @@ namespace SalesManagement_SysDev
     {
         private Form mainForm;
         private ClassChangeForms formChanger;
+        private ClassDateNamelabel dateNamelabel;
+        private ClassTimerManager timerManager;
         public merchandise()
         {
             InitializeComponent();
             this.mainForm = new Form();
             this.Load += new EventHandler(merchandise_Load);
+            this.dateNamelabel = new ClassDateNamelabel(labeltime,labeldate,label_id,label_ename);
+            this.timerManager = new ClassTimerManager(timer1,labeltime,labeldate);
             timer1.Start();
         }
 
@@ -70,6 +74,7 @@ namespace SalesManagement_SysDev
         private void merchandise_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
+            dateNamelabel.UpdateDateTime();
         }
     }
 }

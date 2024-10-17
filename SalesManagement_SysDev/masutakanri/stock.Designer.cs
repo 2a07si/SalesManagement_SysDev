@@ -397,6 +397,7 @@
             Controls.Add(labeltime);
             Name = "stock";
             Text = "在庫";
+            Load += stock_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

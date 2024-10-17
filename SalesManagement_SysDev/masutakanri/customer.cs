@@ -17,11 +17,14 @@ namespace SalesManagement_SysDev
     {
         private Form mainForm;
         private ClassChangeForms formChanger;
+        private ClassDateNamelabel dateNamelabel;
+        private ClassTimerManager timerManager;
         public customer()
         {
             InitializeComponent();
             this.mainForm = new Form();
             this.Load += new EventHandler(customer_Load);
+            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate);
             timer1.Start();
         }
 
@@ -36,7 +39,7 @@ namespace SalesManagement_SysDev
             labeltime.Text = dateTime.ToLongTimeString();
 
             var now = System.DateTime.Now;
-            label2.Text = now.ToString("yyyy年MM月dd日");
+            labeldate.Text = now.ToString("yyyy年MM月dd日");
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -50,7 +53,7 @@ namespace SalesManagement_SysDev
 
         private void b_emp_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateEmployeeForm();   
+            formChanger.NavigateEmployeeForm();
         }
 
         private void b_mer_Click(object sender, EventArgs e)
@@ -66,6 +69,7 @@ namespace SalesManagement_SysDev
         private void customer_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
+
         }
     }
 }

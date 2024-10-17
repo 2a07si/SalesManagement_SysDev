@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
+using static SalesManagement_SysDev.Classまとめ.labelChange;
 
 namespace SalesManagement_SysDev
 {
@@ -15,10 +16,14 @@ namespace SalesManagement_SysDev
     {
         private Form mainForm;
         private ClassChangeForms formChanger;
+        private ClassDateNamelabel dateNamelabel;
+        private ClassTimerManager timerManager;
         public stock()
         {
             InitializeComponent();
             this.mainForm = new Form();
+            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename);
+            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             timer1.Start();
         }
 
@@ -59,6 +64,12 @@ namespace SalesManagement_SysDev
         private void b_cus_Click(object sender, EventArgs e)
         {
             formChanger.NavigateCustomerForm();
+        }
+
+        private void stock_Load(object sender, EventArgs e)
+        {
+            GlobalUtility.UpdateLabels(label_id, label_ename);
+            dateNamelabel.UpdateDateTime();
         }
     }
 }

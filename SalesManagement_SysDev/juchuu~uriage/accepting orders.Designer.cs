@@ -80,6 +80,10 @@
             kakutei.Size = new Size(75, 23);
             kakutei.TabIndex = 0;
             // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
+            // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(255, 192, 192);
