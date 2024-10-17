@@ -797,12 +797,12 @@ namespace SalesManagement_SysDev
             if (!isPasswordVisible)
             {
                 tb_Pass.UseSystemPasswordChar = false; // パスワードを非表示 
-                b_pwHyouji.Text = "表示";  // ボタンのテキストを「表示」に変更 
+                b_pwHyouji.Text = "閉";  // ボタンのテキストを「表示」に変更 
             }
             else
             {
                 tb_Pass.UseSystemPasswordChar = true; // パスワードを表示 
-                b_pwHyouji.Text = "非表示";  // ボタンのテキストを「非表示」に変更 
+                b_pwHyouji.Text = "開";  // ボタンのテキストを「非表示」に変更 
             }
 
             // UIを強制的に再描画

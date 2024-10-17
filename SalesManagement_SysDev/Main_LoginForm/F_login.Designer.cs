@@ -161,7 +161,7 @@
             b_pwHyouji.Name = "b_pwHyouji";
             b_pwHyouji.Size = new Size(34, 34);
             b_pwHyouji.TabIndex = 10;
-            b_pwHyouji.Text = "👀";
+            b_pwHyouji.Text = "閉";
             b_pwHyouji.UseVisualStyleBackColor = true;
             b_pwHyouji.Click += b_pwHyouji_Click;
             // 
