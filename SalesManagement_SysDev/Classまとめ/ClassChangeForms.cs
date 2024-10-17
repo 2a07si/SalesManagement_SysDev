@@ -94,7 +94,7 @@ namespace SalesManagement_SysDev.Classまとめ
         {
             horder horderForm = new horder();
             NavigateTo(horderForm);
-        } 
+        }
 
         //入庫画面遷移
         internal void NavigateToReceivingstockForm()

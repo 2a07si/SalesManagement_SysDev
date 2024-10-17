@@ -1,5 +1,4 @@
-﻿// shipping.cs
-using System;
+﻿using System;
 using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
@@ -23,6 +22,42 @@ namespace SalesManagement_SysDev
         private void shipping_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename); // ラベルの初期化 
+        }
+        private void close_Click(object sender, EventArgs e)
+        {
+            formChanger.NavigateToMainMenu(); // メインメニューに遷移 
+        }
+
+        private void b_acc_Click(object sender, EventArgs e)
+        {
+            // 受注管理画面に遷移
+            formChanger.NavigateToAcceptingOrderForm(); // acceptingorders フォームに遷移
+        }
+
+        // 注文管理画面に遷移 
+        private void b_ord_Click(object sender, EventArgs e)
+        {
+            formChanger.NavigateToOrderForm(); // 注文管理画面に遷移 
+        }
+
+        private void b_arr_Click(object sender, EventArgs e)
+        {
+            formChanger.NavigateToArrivalForm(); // 入荷管理画面に遷移 
+        }
+
+        private void b_lss_Click_2(object sender, EventArgs e)
+        {
+            formChanger.NavigateToIssueForm();//出庫管理画面に遷移
+        }
+
+        private void b_acc_Click_1(object sender, EventArgs e)
+        {
+            formChanger.NavigateToAcceptingOrderForm(); // acceptingorders フォームに遷移
+        }
+
+        private void b_sal_Click_1(object sender, EventArgs e)
+        {
+            formChanger.NavigateToSalesForm(); // 売上管理画面に遷移 
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -55,14 +90,6 @@ namespace SalesManagement_SysDev
             // ログアウト処理を追加 
         }
 
-        private void close_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToMainMenu(); // メインメニューに遷移 
-        }
 
-        private void b_acc_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToAcceptingOrderForm();
-        }
     }
 }
