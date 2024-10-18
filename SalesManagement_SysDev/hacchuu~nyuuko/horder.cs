@@ -25,6 +25,7 @@ namespace SalesManagement_SysDev
             this.mainForm = new Form();
             this.Load += new EventHandler(horder_Load);
             this.formChanger = new ClassChangeForms(this);
+            this.dateNameLabel = new ClassDateNamelabel(labeltime,labeldate,label_id,label_ename);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
             timer1.Start();
         }

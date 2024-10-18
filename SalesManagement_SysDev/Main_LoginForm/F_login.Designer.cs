@@ -184,6 +184,7 @@
             Margin = new Padding(5, 6, 5, 6);
             Name = "F_login";
             Text = "販売管理システムログイン画面";
+            Load += F_login_Load;
             ResumeLayout(false);
             PerformLayout();
         }

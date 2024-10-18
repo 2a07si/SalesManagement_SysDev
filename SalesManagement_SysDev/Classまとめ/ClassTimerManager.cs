@@ -42,7 +42,7 @@ namespace SalesManagement_SysDev.Classまとめ
         // 日付と時間を更新するメソッド
         public void UpdateDateTime()
         {
-            labeltime.Text = DateTime.Now.ToString("HH:mm:ss"); // 現在の時間を表示
+            labeltime.Text = DateTime.Now.ToString("HH:mm"); // 現在の時間を表示
             labeldate.Text = DateTime.Now.ToString("yyyy年MM月dd日"); // 現在の日付を表示
         }
     }

@@ -24,7 +24,8 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             this.mainForm = new Form();
             this.Load += new EventHandler(customer_Load);
-            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate);
+            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate,label_id , label_ename);
+            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             timer1.Start();
         }
 
@@ -69,6 +70,7 @@ namespace SalesManagement_SysDev
         private void customer_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
+            dateNamelabel.UpdateDateTime();
 
         }
     }

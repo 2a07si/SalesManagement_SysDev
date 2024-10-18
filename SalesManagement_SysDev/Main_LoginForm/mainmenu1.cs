@@ -91,7 +91,7 @@ namespace SalesManagement_SysDev
 
         private void b_masuta_Click_1(object sender, EventArgs e)
         {
-            changeForm.NavigateTo(new employee());
+            changeForm.NavigateEmployeeForm();
         }
     }
 }
