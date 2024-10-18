@@ -37,6 +37,9 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
+            Next = new Button();
+            Prev = new Button();
+            label8 = new Label();
             TBJyutyu = new MaskedTextBox();
             Nyuukaflag = new CheckBox();
             label7 = new Label();
@@ -66,9 +69,7 @@
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
             panel3 = new Panel();
-            TBGoukeiKingaku = new MaskedTextBox();
-            label11 = new Label();
-            TBJyutyuSyosaiID = new MaskedTextBox();
+            this.TBNyukoSyosaiID = new MaskedTextBox();
             dataGridView2 = new DataGridView();
             TBSuryou = new MaskedTextBox();
             label15 = new Label();
@@ -76,10 +77,7 @@
             label13 = new Label();
             TBSyohinID = new MaskedTextBox();
             label10 = new Label();
-            maskedTextBox5 = new MaskedTextBox();
-            button3 = new Button();
-            button2 = new Button();
-            label8 = new Label();
+            TBNyuukaCopy = new MaskedTextBox();
             label2 = new Label();
             label1 = new Label();
             panel1.SuspendLayout();
@@ -160,8 +158,8 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(Next);
+            panel1.Controls.Add(Prev);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(TBJyutyu);
             panel1.Controls.Add(Nyuukaflag);
@@ -182,8 +180,38 @@
             panel1.Controls.Add(TBShainId);
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
-            panel1.Size = new Size(820, 600);
+            panel1.Size = new Size(820, 750);
             panel1.TabIndex = 147;
+            // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 259;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 258;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.Snow;
+            label8.ImageAlign = ContentAlignment.MiddleRight;
+            label8.Location = new Point(690, 152);
+            label8.Name = "label8";
+            label8.Size = new Size(72, 25);
+            label8.TabIndex = 257;
+            label8.Text = "何ページ";
             // 
             // TBJyutyu
             // 
@@ -223,7 +251,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(800, 430);
+            dataGridView1.Size = new Size(800, 550);
             dataGridView1.TabIndex = 52;
             // 
             // DelFlag
@@ -467,9 +495,7 @@
             // panel3
             // 
             panel3.BackColor = Color.DarkRed;
-            panel3.Controls.Add(TBGoukeiKingaku);
-            panel3.Controls.Add(label11);
-            panel3.Controls.Add(TBJyutyuSyosaiID);
+            panel3.Controls.Add(this.TBNyukoSyosaiID);
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(TBSuryou);
             panel3.Controls.Add(label15);
@@ -477,36 +503,18 @@
             panel3.Controls.Add(label13);
             panel3.Controls.Add(TBSyohinID);
             panel3.Controls.Add(label10);
-            panel3.Controls.Add(maskedTextBox5);
+            panel3.Controls.Add(TBNyuukaCopy);
             panel3.Location = new Point(970, 145);
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 750);
             panel3.TabIndex = 261;
             // 
-            // TBGoukeiKingaku
+            // TBNyukoSyosaiID
             // 
-            TBGoukeiKingaku.Location = new Point(280, 70);
-            TBGoukeiKingaku.Name = "TBGoukeiKingaku";
-            TBGoukeiKingaku.Size = new Size(100, 31);
-            TBGoukeiKingaku.TabIndex = 279;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(190, 70);
-            label11.Name = "label11";
-            label11.Size = new Size(84, 25);
-            label11.TabIndex = 278;
-            label11.Text = "合計金額";
-            // 
-            // TBJyutyuSyosaiID
-            // 
-            TBJyutyuSyosaiID.Location = new Point(130, 20);
-            TBJyutyuSyosaiID.Name = "TBJyutyuSyosaiID";
-            TBJyutyuSyosaiID.Size = new Size(100, 31);
-            TBJyutyuSyosaiID.TabIndex = 277;
+            this.TBNyukoSyosaiID.Location = new Point(130, 20);
+            this.TBNyukoSyosaiID.Name = "TBNyukoSyosaiID";
+            this.TBNyukoSyosaiID.Size = new Size(100, 31);
+            this.TBNyukoSyosaiID.TabIndex = 277;
             // 
             // dataGridView2
             // 
@@ -535,7 +543,7 @@
             label15.Name = "label15";
             label15.Size = new Size(66, 25);
             label15.TabIndex = 268;
-            label15.Text = "受注ID";
+            label15.Text = "入庫ID";
             // 
             // label9
             // 
@@ -557,7 +565,7 @@
             label13.Name = "label13";
             label13.Size = new Size(102, 25);
             label13.TabIndex = 269;
-            label13.Text = "受注詳細ID";
+            label13.Text = "入庫詳細ID";
             // 
             // TBSyohinID
             // 
@@ -577,42 +585,12 @@
             label10.TabIndex = 271;
             label10.Text = "商品ID";
             // 
-            // maskedTextBox5
+            // TBNyuukaCopy
             // 
-            maskedTextBox5.Location = new Point(310, 20);
-            maskedTextBox5.Name = "maskedTextBox5";
-            maskedTextBox5.Size = new Size(100, 31);
-            maskedTextBox5.TabIndex = 272;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(770, 144);
-            button3.Name = "button3";
-            button3.Size = new Size(40, 40);
-            button3.TabIndex = 259;
-            button3.Text = "▶";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(640, 144);
-            button2.Name = "button2";
-            button2.Size = new Size(40, 40);
-            button2.TabIndex = 258;
-            button2.Text = "◀";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Snow;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(690, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 257;
-            label8.Text = "何ページ";
+            TBNyuukaCopy.Location = new Point(310, 20);
+            TBNyuukaCopy.Name = "TBNyuukaCopy";
+            TBNyuukaCopy.Size = new Size(100, 31);
+            TBNyuukaCopy.TabIndex = 272;
             // 
             // label2
             // 
@@ -721,9 +699,9 @@
         private Label label13;
         private MaskedTextBox TBSyohinID;
         private Label label10;
-        private MaskedTextBox maskedTextBox5;
-        private Button button3;
-        private Button button2;
+        private MaskedTextBox TBNyuukaCopy;
+        private Button Next;
+        private Button Prev;
         private Label label8;
         private Label label2;
         private Label label1;

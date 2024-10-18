@@ -49,8 +49,8 @@
             b_lss = new Button();
             panel1 = new Panel();
             dataGridView1 = new DataGridView();
-            button3 = new Button();
-            button2 = new Button();
+            Next = new Button();
+            Prev = new Button();
             label8 = new Label();
             TBTantoName = new MaskedTextBox();
             TyumonFlag = new CheckBox();
@@ -282,8 +282,8 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Controls.Add(dataGridView1);
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(Next);
+            panel1.Controls.Add(Prev);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(TBTantoName);
             panel1.Controls.Add(TyumonFlag);
@@ -317,23 +317,23 @@
             dataGridView1.Size = new Size(800, 550);
             dataGridView1.TabIndex = 52;
             // 
-            // button3
+            // Next
             // 
-            button3.Location = new Point(770, 144);
-            button3.Name = "button3";
-            button3.Size = new Size(40, 40);
-            button3.TabIndex = 2;
-            button3.Text = "▶";
-            button3.UseVisualStyleBackColor = true;
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 2;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // Prev
             // 
-            button2.Location = new Point(640, 144);
-            button2.Name = "button2";
-            button2.Size = new Size(40, 40);
-            button2.TabIndex = 1;
-            button2.Text = "◀";
-            button2.UseVisualStyleBackColor = true;
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 1;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -731,8 +731,8 @@
         private Button B_iti;
         private Panel panel3;
         private DataGridView dataGridView1;
-        private Button button3;
-        private Button button2;
+        private Button Next;
+        private Button Prev;
         private Label label8;
         private Label label1;
         private Label label2;
