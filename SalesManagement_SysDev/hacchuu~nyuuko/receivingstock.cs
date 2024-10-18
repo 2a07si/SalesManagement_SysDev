@@ -27,6 +27,7 @@ namespace SalesManagement_SysDev
             this.dateNamelabel=new ClassDateNamelabel(labeltime,labeldate,label_id,label_ename);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             timer1.Start();
+            this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
         }
