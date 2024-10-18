@@ -303,7 +303,7 @@
             panel1.Controls.Add(label6);
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
-            panel1.Size = new Size(820, 750);
+            panel1.Size = new Size(820, 690);
             panel1.TabIndex = 245;
             // 
             // dataGridView1
@@ -314,7 +314,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(800, 550);
+            dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 52;
             // 
             // Next
@@ -526,7 +526,7 @@
             panel3.Controls.Add(TBJyutyuIDcopy);
             panel3.Location = new Point(970, 145);
             panel3.Name = "panel3";
-            panel3.Size = new Size(600, 750);
+            panel3.Size = new Size(600, 690);
             panel3.TabIndex = 260;
             // 
             // TBGoukeiKingaku
@@ -562,7 +562,7 @@
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 33;
-            dataGridView2.Size = new Size(580, 550);
+            dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 52;
             // 
             // TBSuryou
@@ -656,7 +656,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1578, 944);
+            ClientSize = new Size(1578, 844);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panel3);
