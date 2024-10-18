@@ -64,7 +64,7 @@ namespace SalesManagement_SysDev
             LoadEmployeeName(); // 従業員名を読み込む 
 
             // ボタンアクセス制御を設定
-            accessManager.SetButtonAccess(new Control[] { b_masuta,b_hacchuu,b_juchuu });
+            accessManager.SetButtonAccess(new Control[] { b_masuta, b_hacchuu, b_juchuu });
         }
 
         private void b_juchuu_Click(object sender, EventArgs e)

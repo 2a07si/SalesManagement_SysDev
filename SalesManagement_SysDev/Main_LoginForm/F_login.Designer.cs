@@ -45,7 +45,7 @@
             // 
             // btn_CleateDabase
             // 
-            btn_CleateDabase.Location = new Point(1102, 665);
+            btn_CleateDabase.Location = new Point(1337, 562);
             btn_CleateDabase.Margin = new Padding(5, 6, 5, 6);
             btn_CleateDabase.Name = "btn_CleateDabase";
             btn_CleateDabase.Size = new Size(177, 102);
@@ -57,7 +57,7 @@
             // btn_InsertSampleData
             // 
             btn_InsertSampleData.AutoSize = true;
-            btn_InsertSampleData.Location = new Point(1102, 810);
+            btn_InsertSampleData.Location = new Point(1337, 698);
             btn_InsertSampleData.Margin = new Padding(5, 6, 5, 6);
             btn_InsertSampleData.Name = "btn_InsertSampleData";
             btn_InsertSampleData.Size = new Size(177, 102);
@@ -70,7 +70,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic UI", 22F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(259, 279);
+            label2.Location = new Point(405, 337);
             label2.Name = "label2";
             label2.Size = new Size(158, 60);
             label2.TabIndex = 2;
@@ -80,7 +80,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Yu Gothic UI", 22F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(259, 461);
+            label3.Location = new Point(405, 519);
             label3.Name = "label3";
             label3.Size = new Size(190, 60);
             label3.TabIndex = 3;
@@ -90,7 +90,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Yu Gothic UI", 36F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(488, 100);
+            label4.Location = new Point(597, 158);
             label4.Name = "label4";
             label4.Size = new Size(397, 96);
             label4.TabIndex = 4;
@@ -100,10 +100,10 @@
             // 
             tb_ID.BackColor = Color.FromArgb(255, 255, 192);
             tb_ID.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            tb_ID.Location = new Point(567, 287);
+            tb_ID.Location = new Point(676, 339);
             tb_ID.Multiline = true;
             tb_ID.Name = "tb_ID";
-            tb_ID.Size = new Size(229, 50);
+            tb_ID.Size = new Size(250, 55);
             tb_ID.TabIndex = 5;
             // 
             // B_login
@@ -111,7 +111,7 @@
             B_login.BackColor = Color.Navy;
             B_login.Font = new Font("Yu Gothic UI", 26F, FontStyle.Bold, GraphicsUnit.Point);
             B_login.ForeColor = Color.White;
-            B_login.Location = new Point(929, 431);
+            B_login.Location = new Point(1032, 491);
             B_login.Name = "B_login";
             B_login.Size = new Size(203, 90);
             B_login.TabIndex = 7;
@@ -123,11 +123,11 @@
             // 
             labeltime.AutoSize = true;
             labeltime.Font = new Font("Yu Gothic UI", 23F, FontStyle.Bold, GraphicsUnit.Point);
-            labeltime.Location = new Point(929, 341);
+            labeltime.Location = new Point(1066, 410);
             labeltime.Name = "labeltime";
-            labeltime.Size = new Size(205, 62);
+            labeltime.Size = new Size(142, 62);
             labeltime.TabIndex = 8;
-            labeltime.Text = "22:22:22";
+            labeltime.Text = "22:22";
             // 
             // timer1
             // 
@@ -137,11 +137,11 @@
             // 
             tb_Pass.BackColor = Color.FromArgb(255, 255, 192);
             tb_Pass.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            tb_Pass.Location = new Point(567, 471);
+            tb_Pass.Location = new Point(676, 523);
             tb_Pass.Multiline = true;
             tb_Pass.Name = "tb_Pass";
             tb_Pass.PasswordChar = '*';
-            tb_Pass.Size = new Size(229, 50);
+            tb_Pass.Size = new Size(250, 55);
             tb_Pass.TabIndex = 6;
             tb_Pass.UseSystemPasswordChar = true;
             // 
@@ -149,7 +149,7 @@
             // 
             labeldate.AutoSize = true;
             labeldate.Font = new Font("Yu Gothic UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            labeldate.Location = new Point(907, 300);
+            labeldate.Location = new Point(1016, 355);
             labeldate.Name = "labeldate";
             labeldate.Size = new Size(276, 41);
             labeldate.TabIndex = 9;
@@ -157,9 +157,9 @@
             // 
             // b_pwHyouji
             // 
-            b_pwHyouji.Location = new Point(753, 480);
+            b_pwHyouji.Location = new Point(875, 532);
             b_pwHyouji.Name = "b_pwHyouji";
-            b_pwHyouji.Size = new Size(34, 34);
+            b_pwHyouji.Size = new Size(40, 40);
             b_pwHyouji.TabIndex = 10;
             b_pwHyouji.Text = "閉";
             b_pwHyouji.UseVisualStyleBackColor = true;
@@ -169,7 +169,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1333, 937);
+            ClientSize = new Size(1578, 844);
             Controls.Add(b_pwHyouji);
             Controls.Add(labeldate);
             Controls.Add(labeltime);
