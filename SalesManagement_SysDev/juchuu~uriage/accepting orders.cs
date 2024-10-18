@@ -15,8 +15,8 @@ namespace SalesManagement_SysDev
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
-            this.formChanger = new ClassChangeForms(this);
-            this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename); // 正しい引数を渡す 
+            this.formChanger = new ClassChangeForms(this); this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename); // 正しい引数を渡す 
+
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
         }
@@ -67,6 +67,7 @@ namespace SalesManagement_SysDev
         }
 
         // 出庫管理画面に遷移
+
         private void b_lss_Click_1(object sender, EventArgs e)
         {
             formChanger.NavigateToIssueForm(); // 出庫管理画面に遷移
@@ -81,5 +82,12 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+        private void date_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
