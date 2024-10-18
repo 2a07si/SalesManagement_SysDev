@@ -19,6 +19,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger;
         private ClassDateNamelabel dateNamelabel;
         private ClassTimerManager timerManager;
+        private ClassAccessManager accessManager;
         public customer()
         {
             InitializeComponent();
@@ -27,6 +28,8 @@ namespace SalesManagement_SysDev
             this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate,label_id , label_ename);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             timer1.Start();
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+
         }
 
         private void button1_Click(object sender, EventArgs e)

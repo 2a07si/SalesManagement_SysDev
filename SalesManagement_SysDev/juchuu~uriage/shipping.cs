@@ -9,6 +9,7 @@ namespace SalesManagement_SysDev
     {
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
+        private ClassAccessManager accessManager;
 
         // コンストラクターでmainFormを引数として受け取る 
         public shipping(Form mainForm)
@@ -17,6 +18,8 @@ namespace SalesManagement_SysDev
             this.formChanger = new ClassChangeForms(this);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
             this.Load += new EventHandler(shipping_Load);
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+
         }
 
         private void shipping_Load(object sender, EventArgs e)
