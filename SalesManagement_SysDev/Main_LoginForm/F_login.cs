@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
+using static SalesManagement_SysDev.Classまとめ.labelChange;
 
 namespace SalesManagement_SysDev
 {
@@ -8,7 +9,7 @@ namespace SalesManagement_SysDev
     {
         private ClassDateNamelabel dateNameLabel;
         private bool isPasswordVisible = false;  // パスワード表示状態を管理するフラグ 
-
+        private ClassTimerManager timerManager;
         public F_login()
         {
             InitializeComponent();
@@ -18,6 +19,7 @@ namespace SalesManagement_SysDev
 
             // タイマーやその他の初期設定 
             this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate);
+            this.timerManager = new ClassTimerManager(timer1,labeltime,labeldate);
             timer1.Start();
         }
 
@@ -807,6 +809,11 @@ namespace SalesManagement_SysDev
 
             // UIを強制的に再描画
             tb_Pass.Refresh();
+        }
+
+        private void F_login_Load(object sender, EventArgs e)
+        {
+            dateNameLabel.UpdateDateTime();
         }
     }
 }
