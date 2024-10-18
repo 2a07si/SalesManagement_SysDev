@@ -19,6 +19,7 @@ namespace SalesManagement_SysDev
         private Form mainForm;
         private ClassDateNamelabel dateNameLabel; // 日付と時間ラベル管理用クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
+        private ClassAccessManager accessManager;
         public horder()
         {
             InitializeComponent();
@@ -28,6 +29,8 @@ namespace SalesManagement_SysDev
             this.dateNameLabel = new ClassDateNamelabel(labeltime,labeldate,label_id,label_ename);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
             timer1.Start();
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)

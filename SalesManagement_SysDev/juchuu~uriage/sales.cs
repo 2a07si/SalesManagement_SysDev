@@ -10,13 +10,15 @@ namespace SalesManagement_SysDev
     {
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
-
+        private ClassAccessManager accessManager;
         public sales()
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
             this.Load += new EventHandler(sales_Load);
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+
         }
 
         private void sales_Load(object sender, EventArgs e)
