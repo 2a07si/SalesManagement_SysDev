@@ -18,48 +18,33 @@ namespace SalesManagement_SysDev.Classまとめ
                 switch (employeePermission)
                 {
                     case 1:
-                        // 権限1
-                        if (button.Name == "b_masuta") // b_masutaは全体からアクセス可能
-                        {
-                            button.Enabled = true; // 有効
-                        }
-                        else
-                        {
-                            button.Enabled = false; // 無効
-                        }
+                        // 権限1: 全てのボタンを有効
+                        button.Enabled = true;
                         break;
 
                     case 2:
-                        // 権限2
-                        if (button.Name == "b_masuta") // b_masutaは全体からアクセス可能
+                        // 権限2: 受注、注文、入荷、出荷、売上は無効
+                        if (button.Name == "b_acc" || button.Name == "b_ord" ||
+                            button.Name == "b_arr" || button.Name == "b_shi" ||
+                            button.Name == "b_sal")
                         {
-                            button.Enabled = true; // 有効
-                        }
-                        else if (button.Name == "b_acc" || button.Name == "b_ord" ||
-                                 button.Name == "b_arr" || button.Name == "b_shi" ||
-                                 button.Name == "b_sal")
-                        {
-                            button.Enabled = false; // 受注、注文、入荷、出荷、売上は無効
+                            button.Enabled = false;
                         }
                         else
                         {
-                            button.Enabled = true; // その他のボタンは有効
+                            button.Enabled = true;
                         }
                         break;
 
                     case 3:
-                        // 権限3
-                        if (button.Name == "b_masuta") // b_masutaは全体からアクセス可能
+                        // 権限3: 出庫は無効
+                        if (button.Name == "b_lss")
                         {
-                            button.Enabled = true; // 有効
-                        }
-                        else if (button.Name == "b_lss")
-                        {
-                            button.Enabled = false; // 出庫は無効
+                            button.Enabled = false;
                         }
                         else
                         {
-                            button.Enabled = true; // その他のボタンは有効
+                            button.Enabled = true;
                         }
                         break;
 
