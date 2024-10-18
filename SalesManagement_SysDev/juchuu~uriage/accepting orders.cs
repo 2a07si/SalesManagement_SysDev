@@ -77,5 +77,10 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
