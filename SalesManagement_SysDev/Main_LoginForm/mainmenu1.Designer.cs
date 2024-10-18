@@ -164,6 +164,7 @@
             Controls.Add(labeltime);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "mainmenu1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "mainmenu1";
             Load += mainmenu1_Load;
             ResumeLayout(false);

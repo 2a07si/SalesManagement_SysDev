@@ -679,6 +679,7 @@
             Controls.Add(b_lss);
             Controls.Add(panel1);
             Name = "acceptingorders";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "受注";
             Load += acceptingorders_Load;
             panel1.ResumeLayout(false);

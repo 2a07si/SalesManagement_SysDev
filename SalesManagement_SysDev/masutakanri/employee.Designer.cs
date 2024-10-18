@@ -462,6 +462,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "employee";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "社員";
             Load += employee_Load;
             panel1.ResumeLayout(false);

@@ -37,6 +37,9 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
+            button3 = new Button();
+            button2 = new Button();
+            label8 = new Label();
             TBJyutyu = new MaskedTextBox();
             Nyuukaflag = new CheckBox();
             label7 = new Label();
@@ -77,9 +80,6 @@
             TBSyohinID = new MaskedTextBox();
             label10 = new Label();
             maskedTextBox5 = new MaskedTextBox();
-            button3 = new Button();
-            button2 = new Button();
-            label8 = new Label();
             label2 = new Label();
             label1 = new Label();
             panel1.SuspendLayout();
@@ -184,6 +184,36 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 600);
             panel1.TabIndex = 147;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(770, 144);
+            button3.Name = "button3";
+            button3.Size = new Size(40, 40);
+            button3.TabIndex = 259;
+            button3.Text = "▶";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(640, 144);
+            button2.Name = "button2";
+            button2.Size = new Size(40, 40);
+            button2.TabIndex = 258;
+            button2.Text = "◀";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.Snow;
+            label8.ImageAlign = ContentAlignment.MiddleRight;
+            label8.Location = new Point(690, 152);
+            label8.Name = "label8";
+            label8.Size = new Size(72, 25);
+            label8.TabIndex = 257;
+            label8.Text = "何ページ";
             // 
             // TBJyutyu
             // 
@@ -584,36 +614,6 @@
             maskedTextBox5.Size = new Size(100, 31);
             maskedTextBox5.TabIndex = 272;
             // 
-            // button3
-            // 
-            button3.Location = new Point(770, 144);
-            button3.Name = "button3";
-            button3.Size = new Size(40, 40);
-            button3.TabIndex = 259;
-            button3.Text = "▶";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(640, 144);
-            button2.Name = "button2";
-            button2.Size = new Size(40, 40);
-            button2.TabIndex = 258;
-            button2.Text = "◀";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Snow;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(690, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 257;
-            label8.Text = "何ページ";
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -661,6 +661,7 @@
             Controls.Add(b_reg);
             Controls.Add(panel1);
             Name = "arrival";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "入荷";
             Load += arrival_Load;
             panel1.ResumeLayout(false);

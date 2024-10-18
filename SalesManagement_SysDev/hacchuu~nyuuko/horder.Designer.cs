@@ -403,6 +403,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "horder";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "発注";
             Load += horder_Load;
             panel1.ResumeLayout(false);

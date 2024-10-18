@@ -25,7 +25,7 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             this.mainForm = new Form();
             this.Load += new EventHandler(customer_Load);
-            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate,label_id , label_ename);
+            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             timer1.Start();
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット

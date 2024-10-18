@@ -490,6 +490,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "sales";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "売上";
             Load += sales_Load;
             panel1.ResumeLayout(false);

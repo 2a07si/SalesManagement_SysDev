@@ -396,6 +396,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "stock";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "在庫";
             Load += stock_Load;
             panel1.ResumeLayout(false);

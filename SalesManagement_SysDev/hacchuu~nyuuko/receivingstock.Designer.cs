@@ -405,6 +405,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "receivingstock";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "入庫";
             Load += receivingstock_Load;
             panel1.ResumeLayout(false);

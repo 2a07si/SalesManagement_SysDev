@@ -501,6 +501,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "lssue";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "出庫";
             Load += lssue_Load;
             panel1.ResumeLayout(false);
