@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
@@ -760,11 +761,15 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     var employeeService = new EmployeeService(context);
-                    if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName))
+                    // PoIDも一緒に取得する
+                    if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poId))
                     {
                         Global.EmployeeID = empID;
                         Global.EmployeeName = employeeName;
                         Global.PositionName = positionName;
+
+                        // PoIDを用いて権限を決定
+                        Global.EmployeePermission = GetPermissionByPoId(poId);
 
                         mainmenu1 mainMenu = new mainmenu1();
                         mainMenu.Show();
@@ -791,6 +796,18 @@ namespace SalesManagement_SysDev
             }
         }
 
+        // PoIdに基づいて権限を決定する関数
+        private int GetPermissionByPoId(int poId)
+        {
+            // 職位IDに基づいて権限レベルを返す（例: 1, 2, 3）
+            switch (poId)
+            {
+                case 1: return 1; // 権限1
+                case 2: return 2; // 権限2
+                case 3: return 3; // 権限3
+                default: return 0; // 未定義の権限
+            }
+        }
         private void b_pwHyouji_Click(object sender, EventArgs e)
         {
             // パスワード表示状態をトグル
@@ -816,4 +833,5 @@ namespace SalesManagement_SysDev
             dateNameLabel.UpdateDateTime();
         }
     }
+
 }
