@@ -66,11 +66,8 @@ namespace SalesManagement_SysDev
             formChanger.NavigateToSalesForm(); // 売上管理画面に遷移 
         }
 
-<<<<<<< HEAD
         // 出庫管理画面に遷移
-=======
         //出庫管理画面に遷移
->>>>>>> 8cdbe6265f920e442dbd7b8976c6e7a01bc1fe12
         private void b_lss_Click_1(object sender, EventArgs e)
         {
             formChanger.NavigateToIssueForm(); // 出庫管理画面に遷移
