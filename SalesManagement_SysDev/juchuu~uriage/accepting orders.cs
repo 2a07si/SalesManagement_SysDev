@@ -10,6 +10,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassDateNamelabel dateNameLabel; // 日付と時間ラベル管理用クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
+        private ClassAccessManager accessManager; // 権限管理クラス 
 
         public acceptingorders(Form mainForm)
         {
@@ -17,12 +18,22 @@ namespace SalesManagement_SysDev
             this.formChanger = new ClassChangeForms(this);
             this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename); // 正しい引数を渡す 
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
             dateNameLabel.UpdateDateTime(); // 初回表示時に日付と時間を更新 
+
+            // ボタンアクセス制御を設定
+            accessManager.SetButtonAccess(new Control[] {
+                b_ord,
+                b_arr,
+                b_shi,
+                b_sal,
+                b_lss
+            });
         }
 
         // メインメニューに戻る 
@@ -35,12 +46,6 @@ namespace SalesManagement_SysDev
         private void b_ord_Click_2(object sender, EventArgs e)
         {
             formChanger.NavigateToOrderForm(); // 注文管理画面に遷移 
-        }
-
-        // 発注書発行画面に遷移 
-        private void b_lss_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToIssueForm(); // 発注書発行画面に遷移 
         }
 
         // 入荷管理画面に遷移 
@@ -60,11 +65,11 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateToSalesForm(); // 売上管理画面に遷移 
         }
-        
-        //出庫管理画面に遷移
+
+        // 出庫管理画面に遷移
         private void b_lss_Click_1(object sender, EventArgs e)
         {
-            formChanger.NavigateToIssueForm();//出庫管理画面に遷移
+            formChanger.NavigateToIssueForm(); // 出庫管理画面に遷移
         }
     }
 }

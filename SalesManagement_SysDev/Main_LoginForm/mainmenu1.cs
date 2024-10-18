@@ -10,6 +10,7 @@ namespace SalesManagement_SysDev
     public partial class mainmenu1 : Form
     {
         private ClassChangeForms changeForm;
+        private ClassAccessManager accessManager;
 
         public mainmenu1()
         {
@@ -17,6 +18,7 @@ namespace SalesManagement_SysDev
             this.Load += new EventHandler(mainmenu1_Load);
             timer1.Start();
             changeForm = new ClassChangeForms(this); // インスタンスを作成  
+            accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
         }
 
         private void LoadEmployeeName()
@@ -39,14 +41,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-
         private void b_logout_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("ログアウトしてもよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                // グローバル変数のリセットメソッドが存在しない場合、代わりに値をリセット 
+                // グローバル変数のリセット
                 Global.EmployeeID = 0; // または適切な初期値にリセット 
                 Global.EmployeeName = string.Empty;
                 Global.PositionName = string.Empty;
@@ -61,6 +62,9 @@ namespace SalesManagement_SysDev
         {
             GlobalUtility.UpdateLabels(label_id, label_ename); // ラベルを更新 
             LoadEmployeeName(); // 従業員名を読み込む 
+
+            // ボタンアクセス制御を設定
+            accessManager.SetButtonAccess(new Control[] { b_masuta });
         }
 
         private void b_juchuu_Click(object sender, EventArgs e)
@@ -81,6 +85,11 @@ namespace SalesManagement_SysDev
         }
 
         private void b_masuta_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateTo(new employee());
+        }
+
+        private void b_masuta_Click_1(object sender, EventArgs e)
         {
             changeForm.NavigateTo(new employee());
         }

@@ -35,5 +35,6 @@ namespace SalesManagement_SysDev.Classまとめ
             PositionName = null;
             return "リセット完了"; // リセット完了のメッセージを返す 
         }
+        public static int EmployeePermission { get; set; }  // 1, 2, 3の権限レベルを想定
     }
 }
