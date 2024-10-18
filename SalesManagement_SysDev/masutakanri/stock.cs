@@ -16,17 +16,15 @@ namespace SalesManagement_SysDev
     {
         private Form mainForm;
         private ClassChangeForms formChanger;
-        private ClassDateNamelabel dateNamelabel;
         private ClassTimerManager timerManager;
         private ClassAccessManager accessManager;
         public stock()
         {
             InitializeComponent();
             this.mainForm = new Form();
-            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename);
-            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             timer1.Start();
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+            this.formChanger = new ClassChangeForms(this);
 
         }
 
@@ -72,7 +70,6 @@ namespace SalesManagement_SysDev
         private void stock_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            dateNamelabel.UpdateDateTime();
         }
     }
 }

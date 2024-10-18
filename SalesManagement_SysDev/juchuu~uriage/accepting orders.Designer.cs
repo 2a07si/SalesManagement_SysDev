@@ -70,6 +70,8 @@
             label6 = new Label();
             B_iti = new Button();
             panel3 = new Panel();
+            TBGoukeiKingaku = new MaskedTextBox();
+            label11 = new Label();
             TBJyutyuSyosaiID = new MaskedTextBox();
             dataGridView2 = new DataGridView();
             TBSuryou = new MaskedTextBox();
@@ -81,8 +83,6 @@
             maskedTextBox5 = new MaskedTextBox();
             label1 = new Label();
             label2 = new Label();
-            TBGoukeiKingaku = new MaskedTextBox();
-            label11 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -213,6 +213,7 @@
             b_ord.TabIndex = 251;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
+            b_ord.Click += b_ord_Click;
             // 
             // b_sal
             // 
@@ -529,6 +530,24 @@
             panel3.Size = new Size(600, 750);
             panel3.TabIndex = 260;
             // 
+            // TBGoukeiKingaku
+            // 
+            TBGoukeiKingaku.Location = new Point(280, 70);
+            TBGoukeiKingaku.Name = "TBGoukeiKingaku";
+            TBGoukeiKingaku.Size = new Size(100, 31);
+            TBGoukeiKingaku.TabIndex = 279;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.White;
+            label11.Location = new Point(190, 70);
+            label11.Name = "label11";
+            label11.Size = new Size(84, 25);
+            label11.TabIndex = 278;
+            label11.Text = "合計金額";
+            // 
             // TBJyutyuSyosaiID
             // 
             TBJyutyuSyosaiID.Location = new Point(130, 20);
@@ -631,24 +650,6 @@
             label2.Size = new Size(62, 32);
             label2.TabIndex = 262;
             label2.Text = "更新";
-            // 
-            // TBGoukeiKingaku
-            // 
-            TBGoukeiKingaku.Location = new Point(280, 70);
-            TBGoukeiKingaku.Name = "TBGoukeiKingaku";
-            TBGoukeiKingaku.Size = new Size(100, 31);
-            TBGoukeiKingaku.TabIndex = 279;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(190, 70);
-            label11.Name = "label11";
-            label11.Size = new Size(84, 25);
-            label11.TabIndex = 278;
-            label11.Text = "合計金額";
             // 
             // acceptingorders
             // 

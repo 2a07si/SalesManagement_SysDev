@@ -39,7 +39,10 @@ namespace SalesManagement_SysDev.Classまとめ
 
                     case 3:
                         // 権限3: 出庫は無効
-                        if (button.Name == "b_lss")
+                        if (button.Name == "b_acc" || button.Name == "b_ord" ||
+                            button.Name == "b_cus" || button.Name == "b_emp" ||
+                            button.Name == "b_arr" || button.Name == "b_shi" ||
+                            button.Name == "b_sal")
                         {
                             button.Enabled = false;
                         }

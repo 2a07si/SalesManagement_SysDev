@@ -26,7 +26,13 @@ namespace SalesManagement_SysDev
         private void arrival_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            dateNameLabel.UpdateDateTime(); // 初回表示時に日付と時間を更新 
+            accessManager.SetButtonAccess(new Control[] {
+                b_ord,
+                b_arr,
+                b_shi,
+                b_sal,
+                b_lss
+            });
         }
 
         // メインメニューに戻る 

@@ -64,17 +64,19 @@ namespace SalesManagement_SysDev
             LoadEmployeeName(); // 従業員名を読み込む 
 
             // ボタンアクセス制御を設定
-            accessManager.SetButtonAccess(new Control[] { b_masuta });
+            accessManager.SetButtonAccess(new Control[] { b_masuta,b_hacchuu,b_juchuu });
         }
 
         private void b_juchuu_Click(object sender, EventArgs e)
         {
             changeForm.NavigateToAcceptingOrderForm();
+            accessManager.SetButtonAccess(new Control[] { b_juchuu });
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             changeForm.NavigateToHorderForm();
+            accessManager.SetButtonAccess(new Control[] { b_hacchuu });
         }
 
         private void timer1_Tick(object sender, EventArgs e)
