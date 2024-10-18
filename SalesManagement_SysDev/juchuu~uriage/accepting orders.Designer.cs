@@ -70,6 +70,8 @@
             label6 = new Label();
             B_iti = new Button();
             panel3 = new Panel();
+            TBGoukeiKingaku = new MaskedTextBox();
+            label11 = new Label();
             TBJyutyuSyosaiID = new MaskedTextBox();
             dataGridView2 = new DataGridView();
             TBSuryou = new MaskedTextBox();
@@ -78,11 +80,9 @@
             label13 = new Label();
             TBSyohinID = new MaskedTextBox();
             label10 = new Label();
-            maskedTextBox5 = new MaskedTextBox();
+            TBJyutyuIDcopy = new MaskedTextBox();
             label1 = new Label();
             label2 = new Label();
-            TBGoukeiKingaku = new MaskedTextBox();
-            label11 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -104,7 +104,7 @@
             // 
             button1.BackColor = Color.FromArgb(255, 192, 192);
             button1.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(1211, 69);
+            button1.Location = new Point(1200, 70);
             button1.Name = "button1";
             button1.Size = new Size(150, 70);
             button1.TabIndex = 257;
@@ -114,7 +114,7 @@
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(1403, 69);
+            clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
             clear.TabIndex = 256;
@@ -123,7 +123,7 @@
             // 
             // close
             // 
-            close.Location = new Point(1463, 10);
+            close.Location = new Point(1460, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
             close.TabIndex = 242;
@@ -523,11 +523,29 @@
             panel3.Controls.Add(label13);
             panel3.Controls.Add(TBSyohinID);
             panel3.Controls.Add(label10);
-            panel3.Controls.Add(maskedTextBox5);
+            panel3.Controls.Add(TBJyutyuIDcopy);
             panel3.Location = new Point(970, 145);
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 750);
             panel3.TabIndex = 260;
+            // 
+            // TBGoukeiKingaku
+            // 
+            TBGoukeiKingaku.Location = new Point(280, 70);
+            TBGoukeiKingaku.Name = "TBGoukeiKingaku";
+            TBGoukeiKingaku.Size = new Size(100, 31);
+            TBGoukeiKingaku.TabIndex = 279;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.White;
+            label11.Location = new Point(190, 70);
+            label11.Name = "label11";
+            label11.Size = new Size(84, 25);
+            label11.TabIndex = 278;
+            label11.Text = "合計金額";
             // 
             // TBJyutyuSyosaiID
             // 
@@ -605,12 +623,12 @@
             label10.TabIndex = 271;
             label10.Text = "商品ID";
             // 
-            // maskedTextBox5
+            // TBJyutyuIDcopy
             // 
-            maskedTextBox5.Location = new Point(310, 20);
-            maskedTextBox5.Name = "maskedTextBox5";
-            maskedTextBox5.Size = new Size(100, 31);
-            maskedTextBox5.TabIndex = 272;
+            TBJyutyuIDcopy.Location = new Point(310, 20);
+            TBJyutyuIDcopy.Name = "TBJyutyuIDcopy";
+            TBJyutyuIDcopy.Size = new Size(100, 31);
+            TBJyutyuIDcopy.TabIndex = 272;
             // 
             // label1
             // 
@@ -621,6 +639,7 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 261;
             label1.Text = "現在の状態";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -631,24 +650,7 @@
             label2.Size = new Size(62, 32);
             label2.TabIndex = 262;
             label2.Text = "更新";
-            // 
-            // TBGoukeiKingaku
-            // 
-            TBGoukeiKingaku.Location = new Point(280, 70);
-            TBGoukeiKingaku.Name = "TBGoukeiKingaku";
-            TBGoukeiKingaku.Size = new Size(100, 31);
-            TBGoukeiKingaku.TabIndex = 279;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(190, 70);
-            label11.Name = "label11";
-            label11.Size = new Size(84, 25);
-            label11.TabIndex = 278;
-            label11.Text = "合計金額";
+            label2.Click += label2_Click;
             // 
             // acceptingorders
             // 
@@ -742,7 +744,7 @@
         private Label label13;
         private MaskedTextBox TBSyohinID;
         private Label label10;
-        private MaskedTextBox maskedTextBox5;
+        private MaskedTextBox TBJyutyuIDcopy;
         private MaskedTextBox TBGoukeiKingaku;
         private Label label11;
     }

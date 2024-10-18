@@ -14,7 +14,7 @@ namespace SalesManagement_SysDev
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
-            this.formChanger = new ClassChangeForms(this); 
+            this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
         }
 
@@ -87,6 +87,15 @@ namespace SalesManagement_SysDev
         private void b_ser_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
         }
     }
 }
