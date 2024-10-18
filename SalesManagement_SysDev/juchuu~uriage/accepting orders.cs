@@ -15,9 +15,7 @@ namespace SalesManagement_SysDev
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
-            this.formChanger = new ClassChangeForms(this); this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename); // 正しい引数を渡す 
-
-            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
+            this.formChanger = new ClassChangeForms(this); 
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
         }
 
