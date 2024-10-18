@@ -140,7 +140,7 @@
             tb_Pass.Location = new Point(676, 523);
             tb_Pass.Multiline = true;
             tb_Pass.Name = "tb_Pass";
-            tb_Pass.PasswordChar = '*';
+            tb_Pass.PasswordChar = '⋆';
             tb_Pass.Size = new Size(250, 55);
             tb_Pass.TabIndex = 6;
             tb_Pass.UseSystemPasswordChar = true;
