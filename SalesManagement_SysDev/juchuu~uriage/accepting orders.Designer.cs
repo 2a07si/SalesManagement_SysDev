@@ -49,8 +49,8 @@
             b_lss = new Button();
             panel1 = new Panel();
             dataGridView1 = new DataGridView();
-            button3 = new Button();
-            button2 = new Button();
+            Next = new Button();
+            Prev = new Button();
             label8 = new Label();
             TBTantoName = new MaskedTextBox();
             TyumonFlag = new CheckBox();
@@ -80,7 +80,7 @@
             label13 = new Label();
             TBSyohinID = new MaskedTextBox();
             label10 = new Label();
-            maskedTextBox5 = new MaskedTextBox();
+            TBJyutyuIDcopy = new MaskedTextBox();
             label1 = new Label();
             label2 = new Label();
             panel1.SuspendLayout();
@@ -104,7 +104,7 @@
             // 
             button1.BackColor = Color.FromArgb(255, 192, 192);
             button1.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(1211, 69);
+            button1.Location = new Point(1200, 70);
             button1.Name = "button1";
             button1.Size = new Size(150, 70);
             button1.TabIndex = 257;
@@ -114,7 +114,7 @@
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(1403, 69);
+            clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
             clear.TabIndex = 256;
@@ -123,7 +123,7 @@
             // 
             // close
             // 
-            close.Location = new Point(1463, 10);
+            close.Location = new Point(1460, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
             close.TabIndex = 242;
@@ -283,8 +283,8 @@
             // 
             panel1.BackColor = Color.Navy;
             panel1.Controls.Add(dataGridView1);
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(Next);
+            panel1.Controls.Add(Prev);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(TBTantoName);
             panel1.Controls.Add(TyumonFlag);
@@ -304,7 +304,7 @@
             panel1.Controls.Add(label6);
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
-            panel1.Size = new Size(820, 750);
+            panel1.Size = new Size(820, 690);
             panel1.TabIndex = 245;
             // 
             // dataGridView1
@@ -315,26 +315,26 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(800, 550);
+            dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 52;
             // 
-            // button3
+            // Next
             // 
-            button3.Location = new Point(770, 144);
-            button3.Name = "button3";
-            button3.Size = new Size(40, 40);
-            button3.TabIndex = 2;
-            button3.Text = "▶";
-            button3.UseVisualStyleBackColor = true;
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 2;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // Prev
             // 
-            button2.Location = new Point(640, 144);
-            button2.Name = "button2";
-            button2.Size = new Size(40, 40);
-            button2.TabIndex = 1;
-            button2.Text = "◀";
-            button2.UseVisualStyleBackColor = true;
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 1;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -524,10 +524,10 @@
             panel3.Controls.Add(label13);
             panel3.Controls.Add(TBSyohinID);
             panel3.Controls.Add(label10);
-            panel3.Controls.Add(maskedTextBox5);
+            panel3.Controls.Add(TBJyutyuIDcopy);
             panel3.Location = new Point(970, 145);
             panel3.Name = "panel3";
-            panel3.Size = new Size(600, 750);
+            panel3.Size = new Size(600, 690);
             panel3.TabIndex = 260;
             // 
             // TBGoukeiKingaku
@@ -563,7 +563,7 @@
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 33;
-            dataGridView2.Size = new Size(580, 550);
+            dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 52;
             // 
             // TBSuryou
@@ -624,12 +624,12 @@
             label10.TabIndex = 271;
             label10.Text = "商品ID";
             // 
-            // maskedTextBox5
+            // TBJyutyuIDcopy
             // 
-            maskedTextBox5.Location = new Point(310, 20);
-            maskedTextBox5.Name = "maskedTextBox5";
-            maskedTextBox5.Size = new Size(100, 31);
-            maskedTextBox5.TabIndex = 272;
+            TBJyutyuIDcopy.Location = new Point(310, 20);
+            TBJyutyuIDcopy.Name = "TBJyutyuIDcopy";
+            TBJyutyuIDcopy.Size = new Size(100, 31);
+            TBJyutyuIDcopy.TabIndex = 272;
             // 
             // label1
             // 
@@ -640,6 +640,7 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 261;
             label1.Text = "現在の状態";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -650,12 +651,13 @@
             label2.Size = new Size(62, 32);
             label2.TabIndex = 262;
             label2.Text = "更新";
+            label2.Click += label2_Click;
             // 
             // acceptingorders
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1578, 944);
+            ClientSize = new Size(1578, 844);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panel3);
@@ -678,6 +680,7 @@
             Controls.Add(b_lss);
             Controls.Add(panel1);
             Name = "acceptingorders";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "受注";
             Load += acceptingorders_Load;
             panel1.ResumeLayout(false);
@@ -730,8 +733,8 @@
         private Button B_iti;
         private Panel panel3;
         private DataGridView dataGridView1;
-        private Button button3;
-        private Button button2;
+        private Button Next;
+        private Button Prev;
         private Label label8;
         private Label label1;
         private Label label2;
@@ -743,7 +746,7 @@
         private Label label13;
         private MaskedTextBox TBSyohinID;
         private Label label10;
-        private MaskedTextBox maskedTextBox5;
+        private MaskedTextBox TBJyutyuIDcopy;
         private MaskedTextBox TBGoukeiKingaku;
         private Label label11;
     }

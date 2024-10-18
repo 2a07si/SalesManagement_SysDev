@@ -484,6 +484,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "customer";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "顧客";
             Load += customer_Load;
             panel1.ResumeLayout(false);

@@ -24,7 +24,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.mainForm = new Form();
-            this.dateNamelabel=new ClassDateNamelabel(labeltime,labeldate,label_id,label_ename);
+            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             timer1.Start();
             this.formChanger = new ClassChangeForms(this);

@@ -20,7 +20,7 @@ namespace SalesManagement_SysDev
 
             // タイマーやその他の初期設定 
             this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate);
-            this.timerManager = new ClassTimerManager(timer1,labeltime,labeldate);
+            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             timer1.Start();
         }
 

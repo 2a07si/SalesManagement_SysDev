@@ -501,6 +501,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "shipping";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "出荷";
             Load += shipping_Load;
             panel1.ResumeLayout(false);

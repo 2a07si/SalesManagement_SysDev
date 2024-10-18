@@ -8,16 +8,12 @@ namespace SalesManagement_SysDev
     public partial class arrival : Form
     {
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
-        private ClassDateNamelabel dateNameLabel; // 日付と時間ラベル管理用クラス 
-        private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager;
 
         public arrival(Form mainForm)
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename); // 引数を修正 
-            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
             this.Load += new EventHandler(arrival_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
@@ -65,5 +61,7 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateToOrderForm(); // 受注管理画面に遷移 
         }
+
+
     }
 }

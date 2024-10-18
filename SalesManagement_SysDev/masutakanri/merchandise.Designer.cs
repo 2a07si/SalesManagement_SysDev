@@ -541,6 +541,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "merchandise";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "商品";
             Load += merchandise_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

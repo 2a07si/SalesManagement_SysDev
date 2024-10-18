@@ -478,7 +478,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1178, 744);
+            ClientSize = new Size(1578, 944);
             Controls.Add(B_iti);
             Controls.Add(kakutei);
             Controls.Add(clear);
@@ -501,6 +501,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "lssue";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "出庫";
             Load += lssue_Load;
             panel1.ResumeLayout(false);

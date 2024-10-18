@@ -504,6 +504,7 @@
             Controls.Add(labeldate);
             Controls.Add(labeltime);
             Name = "order";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "注文";
             Load += order_Load;
             panel1.ResumeLayout(false);
