@@ -91,6 +91,6 @@ namespace SalesManagement_SysDev
         private void b_ser_Click(object sender, EventArgs e)
         {
 
+        }
     }
-}
 }
