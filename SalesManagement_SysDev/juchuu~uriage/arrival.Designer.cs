@@ -76,9 +76,6 @@
             label13 = new Label();
             TBSyohinID = new MaskedTextBox();
             label10 = new Label();
-            maskedTextBox5 = new MaskedTextBox();
-            button3 = new Button();
-            button2 = new Button();
             label8 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -550,31 +547,7 @@
             label10.Size = new Size(66, 25);
             label10.TabIndex = 271;
             label10.Text = "商品ID";
-            // 
-            // TBNyuukaCopy
-            // 
-            maskedTextBox5.Location = new Point(310, 20);
-            maskedTextBox5.Name = "maskedTextBox5";
-            maskedTextBox5.Size = new Size(100, 31);
-            maskedTextBox5.TabIndex = 272;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(770, 144);
-            button3.Name = "button3";
-            button3.Size = new Size(40, 40);
-            button3.TabIndex = 259;
-            button3.Text = "▶";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(640, 144);
-            button2.Name = "button2";
-            button2.Size = new Size(40, 40);
-            button2.TabIndex = 258;
-            button2.Text = "◀";
-            button2.UseVisualStyleBackColor = true;
+            
             // 
             // label8
             // 

@@ -640,7 +640,6 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 261;
             label1.Text = "現在の状態";
-            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -651,7 +650,6 @@
             label2.Size = new Size(62, 32);
             label2.TabIndex = 262;
             label2.Text = "更新";
-            label2.Click += label2_Click;
             // 
             // acceptingorders
             // 
