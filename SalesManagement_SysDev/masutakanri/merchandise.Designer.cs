@@ -71,6 +71,7 @@
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -138,7 +139,7 @@
             // 
             TBColor.Location = new Point(670, 65);
             TBColor.Name = "TBColor";
-            TBColor.Size = new Size(190, 31);
+            TBColor.Size = new Size(180, 31);
             TBColor.TabIndex = 110;
             // 
             // label10
@@ -156,7 +157,7 @@
             // 
             TBModel.Location = new Point(424, 65);
             TBModel.Name = "TBModel";
-            TBModel.Size = new Size(190, 31);
+            TBModel.Size = new Size(180, 31);
             TBModel.TabIndex = 108;
             // 
             // label9
@@ -174,7 +175,7 @@
             // 
             TBSyoubunrui.Location = new Point(305, 65);
             TBSyoubunrui.Name = "TBSyoubunrui";
-            TBSyoubunrui.Size = new Size(50, 31);
+            TBSyoubunrui.Size = new Size(40, 31);
             TBSyoubunrui.TabIndex = 106;
             // 
             // label8
@@ -223,7 +224,7 @@
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             date.Location = new Point(90, 114);
             date.Name = "date";
-            date.Size = new Size(168, 31);
+            date.Size = new Size(160, 31);
             date.TabIndex = 101;
             date.ValueChanged += date_ValueChanged;
             // 
@@ -231,7 +232,7 @@
             // 
             TBSafeNum.Location = new Point(120, 65);
             TBSafeNum.Name = "TBSafeNum";
-            TBSafeNum.Size = new Size(90, 31);
+            TBSafeNum.Size = new Size(80, 31);
             TBSafeNum.TabIndex = 99;
             // 
             // label18
@@ -260,7 +261,7 @@
             // 
             TBSell.Location = new Point(750, 20);
             TBSell.Name = "TBSell";
-            TBSell.Size = new Size(130, 31);
+            TBSell.Size = new Size(100, 31);
             TBSell.TabIndex = 97;
             // 
             // label12
@@ -278,7 +279,7 @@
             // 
             TBSyohinName.Location = new Point(488, 20);
             TBSyohinName.Name = "TBSyohinName";
-            TBSyohinName.Size = new Size(190, 31);
+            TBSyohinName.Size = new Size(180, 31);
             TBSyohinName.TabIndex = 95;
             // 
             // label5
@@ -296,7 +297,7 @@
             // 
             TBShainId.Location = new Point(315, 20);
             TBShainId.Name = "TBShainId";
-            TBShainId.Size = new Size(90, 31);
+            TBShainId.Size = new Size(80, 31);
             TBShainId.TabIndex = 93;
             // 
             // label14
@@ -314,7 +315,7 @@
             // 
             TBSyohinID.Location = new Point(90, 20);
             TBSyohinID.Name = "TBSyohinID";
-            TBSyohinID.Size = new Size(130, 31);
+            TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 91;
             // 
             // label6
@@ -505,11 +506,21 @@
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(785, 52);
+            label1.Name = "label1";
+            label1.Size = new Size(73, 25);
+            label1.TabIndex = 261;
+            label1.Text = "IDPOKE";
+            // 
             // merchandise
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1178, 744);
+            Controls.Add(label1);
             Controls.Add(B_iti);
             Controls.Add(kakutei);
             Controls.Add(clear);
@@ -583,5 +594,6 @@
         private MaskedTextBox TBModel;
         private Label label9;
         private Button B_iti;
+        private Label label1;
     }
 }
