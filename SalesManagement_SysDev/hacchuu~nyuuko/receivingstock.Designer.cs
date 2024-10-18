@@ -406,6 +406,7 @@
             Controls.Add(labeltime);
             Name = "receivingstock";
             Text = "入庫";
+            Load += receivingstock_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

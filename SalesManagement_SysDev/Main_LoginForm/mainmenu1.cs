@@ -74,7 +74,7 @@ namespace SalesManagement_SysDev
 
         private void button2_Click(object sender, EventArgs e)
         {
-            changeForm.NavigateTo(new horder());
+            changeForm.NavigateToHorderForm();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace SalesManagement_SysDev
 
         private void b_masuta_Click(object sender, EventArgs e)
         {
-            changeForm.NavigateTo(new employee());
+            changeForm.NavigateEmployeeForm();
         }
 
         private void b_masuta_Click_1(object sender, EventArgs e)

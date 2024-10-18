@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 
 namespace SalesManagement_SysDev
@@ -14,11 +15,16 @@ namespace SalesManagement_SysDev
     public partial class merchandise : Form
     {
         private Form mainForm;
+        private ClassChangeForms formChanger;
+        private ClassDateNamelabel dateNamelabel;
+        private ClassTimerManager timerManager;
         public merchandise()
         {
             InitializeComponent();
             this.mainForm = new Form();
             this.Load += new EventHandler(merchandise_Load);
+            this.dateNamelabel = new ClassDateNamelabel(labeltime,labeldate,label_id,label_ename);
+            this.timerManager = new ClassTimerManager(timer1,labeltime,labeldate);
             timer1.Start();
         }
 
@@ -47,23 +53,17 @@ namespace SalesManagement_SysDev
 
         private void b_emp_Click(object sender, EventArgs e)
         {
-            employee employee = new employee();
-            employee.Show();
-            this.Close();
+            formChanger.NavigateEmployeeForm();
         }
 
         private void b_sto_Click(object sender, EventArgs e)
         {
-            stock stock = new stock();
-            stock.Show();
-            this.Close();
+            formChanger.NavigateStockForm();
         }
 
         private void b_cus_Click(object sender, EventArgs e)
         {
-            customer customer = new customer();
-            customer.Show();
-            this.Close();
+            formChanger.NavigateCustomerForm();  
         }
 
         private void date_ValueChanged(object sender, EventArgs e)
@@ -74,6 +74,7 @@ namespace SalesManagement_SysDev
         private void merchandise_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
+            dateNamelabel.UpdateDateTime();
         }
     }
 }
