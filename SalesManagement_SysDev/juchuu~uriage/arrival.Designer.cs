@@ -69,7 +69,6 @@
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
             panel3 = new Panel();
-            this.TBNyukoSyosaiID = new MaskedTextBox();
             dataGridView2 = new DataGridView();
             TBSuryou = new MaskedTextBox();
             label15 = new Label();
@@ -80,6 +79,7 @@
             TBNyuukaCopy = new MaskedTextBox();
             label2 = new Label();
             label1 = new Label();
+            TBNyukoSyosaiID = new MaskedTextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -495,7 +495,7 @@
             // panel3
             // 
             panel3.BackColor = Color.DarkRed;
-            panel3.Controls.Add(this.TBNyukoSyosaiID);
+            panel3.Controls.Add(TBNyukoSyosaiID);
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(TBSuryou);
             panel3.Controls.Add(label15);
@@ -508,13 +508,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 750);
             panel3.TabIndex = 261;
-            // 
-            // TBNyukoSyosaiID
-            // 
-            this.TBNyukoSyosaiID.Location = new Point(130, 20);
-            this.TBNyukoSyosaiID.Name = "TBNyukoSyosaiID";
-            this.TBNyukoSyosaiID.Size = new Size(100, 31);
-            this.TBNyukoSyosaiID.TabIndex = 277;
             // 
             // dataGridView2
             // 
@@ -612,6 +605,13 @@
             label1.TabIndex = 263;
             label1.Text = "現在の状態";
             // 
+            // TBNyukoSyosaiID
+            // 
+            TBNyukoSyosaiID.Location = new Point(120, 20);
+            TBNyukoSyosaiID.Name = "TBNyukoSyosaiID";
+            TBNyukoSyosaiID.Size = new Size(100, 31);
+            TBNyukoSyosaiID.TabIndex = 277;
+            // 
             // arrival
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -705,5 +705,6 @@
         private Label label8;
         private Label label2;
         private Label label1;
+        private MaskedTextBox TBNyukoSyosaiID;
     }
 }
