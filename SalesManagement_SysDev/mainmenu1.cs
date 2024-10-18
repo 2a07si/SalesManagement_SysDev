@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SalesManagement_SysDev.Class1;
 using static SalesManagement_SysDev.F_login;
 
 namespace SalesManagement_SysDev
@@ -19,6 +20,7 @@ namespace SalesManagement_SysDev
         public mainmenu1()
         {
             InitializeComponent();
+            this.Load += new EventHandler(mainmenu1_Load);
             timer1.Start();
         }
 
@@ -55,7 +57,7 @@ namespace SalesManagement_SysDev
 
         private void mainmenu1_Load(object sender, EventArgs e)
         {
-
+            GlobalUtility.UpdateLabels(label_id,label_ename);
         }
 
         private void b_juchuu_Click(object sender, EventArgs e)
@@ -110,6 +112,13 @@ namespace SalesManagement_SysDev
             this.Hide();
             var now = System.DateTime.Now;
             label2.Text = now.ToString("yyyy年MM月dd日");
+        }
+
+        private void b_masuta_Click_1(object sender, EventArgs e)
+        {
+            employee employee = new employee();
+            employee.Show();
+            this.Close();
         }
     }
 }

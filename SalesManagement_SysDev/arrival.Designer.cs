@@ -74,7 +74,7 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(696, 35);
+            label_ename.Location = new Point(665, 30);
             label_ename.Name = "label_ename";
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 157;
@@ -84,9 +84,9 @@
             // 
             b_flg.BackColor = Color.FromArgb(192, 255, 255);
             b_flg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_flg.Location = new Point(626, 79);
+            b_flg.Location = new Point(610, 80);
             b_flg.Name = "b_flg";
-            b_flg.Size = new Size(129, 48);
+            b_flg.Size = new Size(130, 50);
             b_flg.TabIndex = 142;
             b_flg.Text = "非表示";
             b_flg.UseVisualStyleBackColor = false;
@@ -94,7 +94,7 @@
             // label_id
             // 
             label_id.AutoSize = true;
-            label_id.Location = new Point(454, 35);
+            label_id.Location = new Point(445, 30);
             label_id.Name = "label_id";
             label_id.Size = new Size(59, 25);
             label_id.TabIndex = 156;
@@ -104,9 +104,9 @@
             // 
             b_ser.BackColor = Color.FromArgb(192, 255, 255);
             b_ser.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ser.Location = new Point(467, 79);
+            b_ser.Location = new Point(455, 80);
             b_ser.Name = "b_ser";
-            b_ser.Size = new Size(129, 48);
+            b_ser.Size = new Size(130, 50);
             b_ser.TabIndex = 141;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
@@ -114,7 +114,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(603, 34);
+            label4.Location = new Point(600, 30);
             label4.Name = "label4";
             label4.Size = new Size(66, 25);
             label4.TabIndex = 155;
@@ -124,9 +124,9 @@
             // 
             b_upd.BackColor = Color.FromArgb(192, 255, 255);
             b_upd.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_upd.Location = new Point(305, 79);
+            b_upd.Location = new Point(300, 80);
             b_upd.Name = "b_upd";
-            b_upd.Size = new Size(129, 48);
+            b_upd.Size = new Size(130, 50);
             b_upd.TabIndex = 140;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
@@ -134,7 +134,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(386, 35);
+            label3.Location = new Point(400, 30);
             label3.Name = "label3";
             label3.Size = new Size(48, 25);
             label3.TabIndex = 154;
@@ -144,9 +144,9 @@
             // 
             b_reg.BackColor = Color.FromArgb(192, 255, 255);
             b_reg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_reg.Location = new Point(147, 79);
+            b_reg.Location = new Point(145, 80);
             b_reg.Name = "b_reg";
-            b_reg.Size = new Size(129, 48);
+            b_reg.Size = new Size(130, 50);
             b_reg.TabIndex = 139;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
@@ -172,9 +172,9 @@
             panel1.Controls.Add(label17);
             panel1.Controls.Add(TBShopId);
             panel1.Controls.Add(TBShainId);
-            panel1.Location = new Point(147, 133);
+            panel1.Location = new Point(150, 135);
             panel1.Name = "panel1";
-            panel1.Size = new Size(905, 520);
+            panel1.Size = new Size(900, 520);
             panel1.TabIndex = 147;
             // 
             // TBJyutyu
@@ -211,11 +211,11 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(16, 162);
+            dataGridView1.Location = new Point(15, 160);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(874, 345);
+            dataGridView1.Size = new Size(870, 345);
             dataGridView1.TabIndex = 52;
             // 
             // DelFlag
@@ -362,9 +362,9 @@
             b_acc.BackColor = Color.FromArgb(255, 255, 192);
             b_acc.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_acc.ForeColor = Color.Black;
-            b_acc.Location = new Point(12, 133);
+            b_acc.Location = new Point(15, 150);
             b_acc.Name = "b_acc";
-            b_acc.Size = new Size(120, 47);
+            b_acc.Size = new Size(120, 50);
             b_acc.TabIndex = 178;
             b_acc.Text = "受注";
             b_acc.UseVisualStyleBackColor = false;
@@ -375,9 +375,9 @@
             b_sal.BackColor = Color.FromArgb(255, 255, 192);
             b_sal.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_sal.ForeColor = Color.Black;
-            b_sal.Location = new Point(12, 540);
+            b_sal.Location = new Point(15, 510);
             b_sal.Name = "b_sal";
-            b_sal.Size = new Size(120, 47);
+            b_sal.Size = new Size(120, 50);
             b_sal.TabIndex = 177;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
@@ -387,9 +387,9 @@
             // 
             b_ord.BackColor = Color.FromArgb(255, 255, 192);
             b_ord.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ord.Location = new Point(12, 205);
+            b_ord.Location = new Point(15, 220);
             b_ord.Name = "b_ord";
-            b_ord.Size = new Size(120, 47);
+            b_ord.Size = new Size(120, 50);
             b_ord.TabIndex = 176;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
@@ -399,9 +399,9 @@
             // 
             b_shi.BackColor = Color.FromArgb(255, 255, 192);
             b_shi.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_shi.Location = new Point(12, 463);
+            b_shi.Location = new Point(15, 440);
             b_shi.Name = "b_shi";
-            b_shi.Size = new Size(120, 47);
+            b_shi.Size = new Size(120, 50);
             b_shi.TabIndex = 175;
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
@@ -412,9 +412,9 @@
             b_arr.BackColor = Color.Navy;
             b_arr.Font = new Font("Yu Gothic UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             b_arr.ForeColor = Color.White;
-            b_arr.Location = new Point(12, 358);
+            b_arr.Location = new Point(15, 355);
             b_arr.Name = "b_arr";
-            b_arr.Size = new Size(120, 74);
+            b_arr.Size = new Size(120, 70);
             b_arr.TabIndex = 174;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
@@ -424,9 +424,9 @@
             b_lss.BackColor = Color.FromArgb(255, 255, 192);
             b_lss.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_lss.ForeColor = Color.Black;
-            b_lss.Location = new Point(12, 280);
+            b_lss.Location = new Point(15, 290);
             b_lss.Name = "b_lss";
-            b_lss.Size = new Size(120, 47);
+            b_lss.Size = new Size(120, 50);
             b_lss.TabIndex = 173;
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
@@ -438,7 +438,7 @@
             kakutei.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             kakutei.Location = new Point(795, 80);
             kakutei.Name = "kakutei";
-            kakutei.Size = new Size(129, 48);
+            kakutei.Size = new Size(130, 50);
             kakutei.TabIndex = 240;
             kakutei.Text = "確定";
             kakutei.UseVisualStyleBackColor = false;
@@ -449,7 +449,7 @@
             clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             clear.Location = new Point(935, 80);
             clear.Name = "clear";
-            clear.Size = new Size(112, 48);
+            clear.Size = new Size(115, 50);
             clear.TabIndex = 239;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
@@ -457,9 +457,9 @@
             // 
             // close
             // 
-            close.Location = new Point(925, 15);
+            close.Location = new Point(950, 15);
             close.Name = "close";
-            close.Size = new Size(129, 48);
+            close.Size = new Size(100, 40);
             close.TabIndex = 238;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
@@ -496,6 +496,7 @@
             Controls.Add(label1);
             Name = "arrival";
             Text = "arrival";
+            Load += arrival_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

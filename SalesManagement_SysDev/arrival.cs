@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SalesManagement_SysDev.Class1;
 
 namespace SalesManagement_SysDev
 {
@@ -18,6 +19,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.mainForm = mainForm;
+            this.Load += new EventHandler(arrival_Load);
             timer1.Start();
         }
 
@@ -84,9 +86,14 @@ namespace SalesManagement_SysDev
 
         private void b_ord_Click(object sender, EventArgs e)
         {
-            order order = new order();  
+            order order = new order();
             order.Show();
             this.Close();
+        }
+
+        private void arrival_Load(object sender, EventArgs e)
+        {
+            GlobalUtility.UpdateLabels(label_id, label_ename);
         }
     }
 }

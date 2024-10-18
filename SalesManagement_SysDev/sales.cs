@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SalesManagement_SysDev.Class1;
 
 namespace SalesManagement_SysDev
 {
@@ -17,6 +18,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.mainForm = new Form();
+            this.Load += new EventHandler(sales_Load);
             timer1.Start();
         }
 
@@ -70,6 +72,11 @@ namespace SalesManagement_SysDev
             shipping shipping = new shipping(this);
             shipping.Show();
             this.Close();
+        }
+
+        private void sales_Load(object sender, EventArgs e)
+        {
+            GlobalUtility.UpdateLabels(label_id, label_ename);
         }
     }
 }

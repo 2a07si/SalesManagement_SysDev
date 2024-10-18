@@ -49,20 +49,20 @@
             b_arr = new Button();
             b_lss = new Button();
             panel1 = new Panel();
+            TBTantoName = new MaskedTextBox();
             TyumonFlag = new CheckBox();
             DelFlag = new CheckBox();
-            TBKokyakuId = new MaskedTextBox();
+            TBKokyakuID = new MaskedTextBox();
             label5 = new Label();
             date = new DateTimePicker();
             label18 = new Label();
             TBRiyuu = new MaskedTextBox();
             label17 = new Label();
-            TBShainId = new MaskedTextBox();
-            TBShopId = new MaskedTextBox();
-            TBJyutyu = new MaskedTextBox();
+            TBShainID = new MaskedTextBox();
+            TBShopID = new MaskedTextBox();
+            TBJyutyuID = new MaskedTextBox();
             label14 = new Label();
             label12 = new Label();
-            LBTantouShain = new Label();
             label7 = new Label();
             label6 = new Label();
             dataGridView1 = new DataGridView();
@@ -85,7 +85,7 @@
             button1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             button1.Location = new Point(795, 80);
             button1.Name = "button1";
-            button1.Size = new Size(129, 48);
+            button1.Size = new Size(130, 50);
             button1.TabIndex = 257;
             button1.Text = "確定";
             button1.UseVisualStyleBackColor = false;
@@ -95,16 +95,16 @@
             clear.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             clear.Location = new Point(935, 80);
             clear.Name = "clear";
-            clear.Size = new Size(112, 48);
+            clear.Size = new Size(115, 50);
             clear.TabIndex = 256;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             // 
             // close
             // 
-            close.Location = new Point(925, 15);
+            close.Location = new Point(950, 15);
             close.Name = "close";
-            close.Size = new Size(129, 48);
+            close.Size = new Size(100, 40);
             close.TabIndex = 242;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             b_flg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_flg.Location = new Point(610, 80);
             b_flg.Name = "b_flg";
-            b_flg.Size = new Size(129, 48);
+            b_flg.Size = new Size(130, 50);
             b_flg.TabIndex = 241;
             b_flg.Text = "非表示";
             b_flg.UseVisualStyleBackColor = false;
@@ -146,7 +146,7 @@
             b_ser.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_ser.Location = new Point(455, 80);
             b_ser.Name = "b_ser";
-            b_ser.Size = new Size(129, 48);
+            b_ser.Size = new Size(130, 50);
             b_ser.TabIndex = 240;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
@@ -166,7 +166,7 @@
             b_upd.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_upd.Location = new Point(300, 80);
             b_upd.Name = "b_upd";
-            b_upd.Size = new Size(129, 48);
+            b_upd.Size = new Size(130, 50);
             b_upd.TabIndex = 239;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
@@ -187,7 +187,7 @@
             b_reg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_reg.Location = new Point(145, 80);
             b_reg.Name = "b_reg";
-            b_reg.Size = new Size(129, 48);
+            b_reg.Size = new Size(130, 50);
             b_reg.TabIndex = 238;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
@@ -212,7 +212,7 @@
             b_sal.ForeColor = Color.Black;
             b_sal.Location = new Point(15, 510);
             b_sal.Name = "b_sal";
-            b_sal.Size = new Size(120, 47);
+            b_sal.Size = new Size(120, 50);
             b_sal.TabIndex = 250;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
@@ -223,12 +223,13 @@
             b_add.BackColor = Color.Navy;
             b_add.Font = new Font("Yu Gothic UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             b_add.ForeColor = Color.White;
-            b_add.Location = new Point(15, 140);
+            b_add.Location = new Point(15, 145);
             b_add.Name = "b_add";
-            b_add.Size = new Size(120, 75);
+            b_add.Size = new Size(120, 70);
             b_add.TabIndex = 249;
             b_add.Text = "受注";
             b_add.UseVisualStyleBackColor = false;
+            b_add.Click += b_add_Click;
             // 
             // b_shi
             // 
@@ -237,7 +238,7 @@
             b_shi.ForeColor = Color.Black;
             b_shi.Location = new Point(15, 440);
             b_shi.Name = "b_shi";
-            b_shi.Size = new Size(120, 47);
+            b_shi.Size = new Size(120, 50);
             b_shi.TabIndex = 248;
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
@@ -250,7 +251,7 @@
             b_arr.ForeColor = Color.Black;
             b_arr.Location = new Point(15, 370);
             b_arr.Name = "b_arr";
-            b_arr.Size = new Size(120, 47);
+            b_arr.Size = new Size(120, 50);
             b_arr.TabIndex = 247;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
@@ -272,20 +273,20 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
+            panel1.Controls.Add(TBTantoName);
             panel1.Controls.Add(TyumonFlag);
             panel1.Controls.Add(DelFlag);
-            panel1.Controls.Add(TBKokyakuId);
+            panel1.Controls.Add(TBKokyakuID);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(date);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(TBRiyuu);
             panel1.Controls.Add(label17);
-            panel1.Controls.Add(TBShainId);
-            panel1.Controls.Add(TBShopId);
-            panel1.Controls.Add(TBJyutyu);
+            panel1.Controls.Add(TBShainID);
+            panel1.Controls.Add(TBShopID);
+            panel1.Controls.Add(TBJyutyuID);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label12);
-            panel1.Controls.Add(LBTantouShain);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(dataGridView1);
@@ -293,6 +294,13 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(900, 520);
             panel1.TabIndex = 245;
+            // 
+            // TBTantoName
+            // 
+            TBTantoName.Location = new Point(120, 65);
+            TBTantoName.Name = "TBTantoName";
+            TBTantoName.Size = new Size(150, 31);
+            TBTantoName.TabIndex = 267;
             // 
             // TyumonFlag
             // 
@@ -318,19 +326,19 @@
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
             // 
-            // TBKokyakuId
+            // TBKokyakuID
             // 
-            TBKokyakuId.Location = new Point(620, 20);
-            TBKokyakuId.Name = "TBKokyakuId";
-            TBKokyakuId.Size = new Size(103, 31);
-            TBKokyakuId.TabIndex = 77;
+            TBKokyakuID.Location = new Point(645, 20);
+            TBKokyakuID.Name = "TBKokyakuID";
+            TBKokyakuID.Size = new Size(130, 31);
+            TBKokyakuID.TabIndex = 77;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(550, 20);
+            label5.Location = new Point(575, 20);
             label5.Name = "label5";
             label5.Size = new Size(66, 25);
             label5.TabIndex = 76;
@@ -373,26 +381,26 @@
             label17.TabIndex = 72;
             label17.Text = "非表示理由";
             // 
-            // TBShainId
+            // TBShainID
             // 
-            TBShainId.Location = new Point(440, 20);
-            TBShainId.Name = "TBShainId";
-            TBShainId.Size = new Size(103, 31);
-            TBShainId.TabIndex = 69;
+            TBShainID.Location = new Point(440, 20);
+            TBShainID.Name = "TBShainID";
+            TBShainID.Size = new Size(130, 31);
+            TBShainID.TabIndex = 69;
             // 
-            // TBShopId
+            // TBShopID
             // 
-            TBShopId.Location = new Point(310, 20);
-            TBShopId.Name = "TBShopId";
-            TBShopId.Size = new Size(50, 31);
-            TBShopId.TabIndex = 66;
+            TBShopID.Location = new Point(310, 20);
+            TBShopID.Name = "TBShopID";
+            TBShopID.Size = new Size(50, 31);
+            TBShopID.TabIndex = 66;
             // 
-            // TBJyutyu
+            // TBJyutyuID
             // 
-            TBJyutyu.Location = new Point(80, 20);
-            TBJyutyu.Name = "TBJyutyu";
-            TBJyutyu.Size = new Size(130, 31);
-            TBJyutyu.TabIndex = 64;
+            TBJyutyuID.Location = new Point(80, 20);
+            TBJyutyuID.Name = "TBJyutyuID";
+            TBJyutyuID.Size = new Size(130, 31);
+            TBJyutyuID.TabIndex = 64;
             // 
             // label14
             // 
@@ -415,17 +423,6 @@
             label12.Size = new Size(84, 25);
             label12.TabIndex = 60;
             label12.Text = "営業所ID";
-            // 
-            // LBTantouShain
-            // 
-            LBTantouShain.AutoSize = true;
-            LBTantouShain.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            LBTantouShain.ForeColor = Color.White;
-            LBTantouShain.Location = new Point(123, 65);
-            LBTantouShain.Name = "LBTantouShain";
-            LBTantouShain.Size = new Size(68, 25);
-            LBTantouShain.TabIndex = 59;
-            LBTantouShain.Text = "--------";
             // 
             // label7
             // 
@@ -463,7 +460,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(140, 25);
+            label2.Location = new Point(140, 30);
             label2.Name = "label2";
             label2.Size = new Size(156, 25);
             label2.TabIndex = 244;
@@ -539,22 +536,22 @@
         private Panel panel1;
         private CheckBox TyumonFlag;
         private CheckBox DelFlag;
-        private MaskedTextBox TBKokyakuId;
+        private MaskedTextBox TBKokyakuID;
         private Label label5;
         private DateTimePicker date;
         private Label label18;
         private MaskedTextBox TBRiyuu;
         private Label label17;
-        private MaskedTextBox TBShainId;
-        private MaskedTextBox TBShopId;
-        private MaskedTextBox TBJyutyu;
+        private MaskedTextBox TBShainID;
+        private MaskedTextBox TBShopID;
+        private MaskedTextBox TBJyutyuID;
         private Label label14;
         private Label label12;
-        private Label LBTantouShain;
         private Label label7;
         private Label label6;
         private DataGridView dataGridView1;
         private Label label2;
         private Label label1;
+        private MaskedTextBox TBTantoName;
     }
 }

@@ -44,5 +44,15 @@ namespace SalesManagement_SysDev
             horder.Show();
             this.Close();
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kakutei_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

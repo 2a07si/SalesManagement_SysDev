@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SalesManagement_SysDev.Class1;
 
 namespace SalesManagement_SysDev
 {
@@ -18,6 +19,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.mainForm = mainForm;
+            this.Load += new EventHandler(acceptingorders_Load);
             timer1.Start();
         }
 
@@ -27,7 +29,7 @@ namespace SalesManagement_SysDev
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
-
+            GlobalUtility.UpdateLabels(label_id, label_ename);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -118,7 +120,6 @@ namespace SalesManagement_SysDev
             lssue.ShowDialog();
             this.Hide();
         }
-
         private void b_arr_Click(object sender, EventArgs e)
         {
             arrival arrivalForm = new arrival(this);
@@ -138,5 +139,16 @@ namespace SalesManagement_SysDev
             this.Hide();
         }
 
+        private void b_add_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void TBJyutyu_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+
+        }
     }
 }
