@@ -463,7 +463,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1178, 744);
+            ClientSize = new Size(1578, 844);
             Controls.Add(B_iti);
             Controls.Add(kakutei);
             Controls.Add(clear);

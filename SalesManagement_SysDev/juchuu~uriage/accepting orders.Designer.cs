@@ -180,6 +180,7 @@
             b_upd.TabIndex = 239;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
+            b_upd.Click += b_upd_Click;
             // 
             // label3
             // 
@@ -650,6 +651,7 @@
             label2.Size = new Size(62, 32);
             label2.TabIndex = 262;
             label2.Text = "更新";
+            label2.Click += label2_Click;
             // 
             // acceptingorders
             // 

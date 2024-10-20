@@ -93,5 +93,15 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateToOrderForm(); // 注文管理画面に遷移 
         }
+
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -66,5 +66,10 @@ namespace SalesManagement_SysDev
         {
             // クリア機能の実装 
         }
+
+        private void label_ename_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
