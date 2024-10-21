@@ -476,7 +476,7 @@
             // 
             panel2.BackColor = Color.DarkRed;
             panel2.Controls.Add(dataGridView2);
-            panel2.Location = new Point(966, 145);
+            panel2.Location = new Point(970, 145);
             panel2.Name = "panel2";
             panel2.Size = new Size(600, 690);
             panel2.TabIndex = 287;
@@ -496,17 +496,18 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.Location = new Point(1087, 100);
+            label2.Location = new Point(1100, 100);
             label2.Name = "label2";
             label2.Size = new Size(62, 32);
             label2.TabIndex = 289;
             label2.Text = "更新";
+            label2.Click += label2_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1067, 70);
+            label1.Location = new Point(1080, 70);
             label1.Name = "label1";
             label1.Size = new Size(108, 28);
             label1.TabIndex = 288;

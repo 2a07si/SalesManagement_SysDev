@@ -456,7 +456,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.Location = new Point(1106, 110);
+            label2.Location = new Point(1100, 100);
             label2.Name = "label2";
             label2.Size = new Size(62, 32);
             label2.TabIndex = 264;
@@ -466,7 +466,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1086, 80);
+            label1.Location = new Point(1080, 70);
             label1.Name = "label1";
             label1.Size = new Size(108, 28);
             label1.TabIndex = 263;

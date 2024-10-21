@@ -93,6 +93,9 @@ namespace SalesManagement_SysDev
             // ログアウト処理を追加 
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
