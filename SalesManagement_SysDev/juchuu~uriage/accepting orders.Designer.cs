@@ -166,9 +166,9 @@
             label4.AutoSize = true;
             label4.Location = new Point(100, 25);
             label4.Name = "label4";
-            label4.Size = new Size(66, 25);
+            label4.Size = new Size(70, 25);
             label4.TabIndex = 253;
-            label4.Text = "社員名";
+            label4.Text = "社員名:";
             // 
             // b_upd
             // 
@@ -187,9 +187,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(265, 25);
             label3.Name = "label3";
-            label3.Size = new Size(48, 25);
+            label3.Size = new Size(52, 25);
             label3.TabIndex = 252;
-            label3.Text = "権限";
+            label3.Text = "権限:";
             // 
             // b_reg
             // 

@@ -14,7 +14,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
+            // this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
             this.Load += new EventHandler(order_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
