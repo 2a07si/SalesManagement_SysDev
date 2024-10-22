@@ -492,10 +492,10 @@
             panel3.Size = new Size(600, 690);
             panel3.TabIndex = 261;
             // 
-            // TBNyukaIDS
+            // TBNyuukaIDS
             // 
             TBNyuukaIDS.Location = new Point(310, 20);
-            TBNyuukaIDS.Name = "TBNyukaIDS";
+            TBNyuukaIDS.Name = "TBNyuukaIDS";
             TBNyuukaIDS.Size = new Size(100, 31);
             TBNyuukaIDS.TabIndex = 258;
             // 
@@ -581,9 +581,9 @@
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label2.Location = new Point(1100, 100);
             label2.Name = "label2";
-            label2.Size = new Size(62, 32);
+            label2.Size = new Size(86, 32);
             label2.TabIndex = 264;
-            label2.Text = "登録";
+            label2.Text = "未選択";
             // 
             // label1
             // 

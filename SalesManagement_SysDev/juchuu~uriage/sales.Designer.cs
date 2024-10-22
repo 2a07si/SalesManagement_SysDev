@@ -43,6 +43,9 @@
             b_arr = new Button();
             b_lss = new Button();
             panel1 = new Panel();
+            Next = new Button();
+            Prev = new Button();
+            label8 = new Label();
             TBJyutyuID = new MaskedTextBox();
             label7 = new Label();
             dataGridView1 = new DataGridView();
@@ -68,9 +71,6 @@
             TBGoukeiKingaku = new MaskedTextBox();
             label11 = new Label();
             dataGridView2 = new DataGridView();
-            label8 = new Label();
-            Prev = new Button();
-            Next = new Button();
             TBUriageIDS = new MaskedTextBox();
             label10 = new Label();
             TBSyohinID = new MaskedTextBox();
@@ -119,6 +119,7 @@
             b_ser.TabIndex = 217;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
+            b_ser.Click += b_ser_Click;
             // 
             // label4
             // 
@@ -140,6 +141,7 @@
             b_upd.TabIndex = 216;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
+            b_upd.Click += b_upd_Click;
             // 
             // label3
             // 
@@ -160,6 +162,7 @@
             b_reg.TabIndex = 215;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
+            b_reg.Click += b_reg_Click;
             // 
             // b_acc
             // 
@@ -264,6 +267,36 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 223;
+            // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 286;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 285;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.Snow;
+            label8.ImageAlign = ContentAlignment.MiddleRight;
+            label8.Location = new Point(690, 152);
+            label8.Name = "label8";
+            label8.Size = new Size(72, 25);
+            label8.TabIndex = 284;
+            label8.Text = "何ページ";
             // 
             // TBJyutyuID
             // 
@@ -436,6 +469,7 @@
             clear.TabIndex = 251;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            clear.Click += clear_Click;
             // 
             // close
             // 
@@ -457,6 +491,7 @@
             B_iti.TabIndex = 259;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
+            B_iti.Click += B_iti_Click;
             // 
             // panel3
             // 
@@ -497,36 +532,6 @@
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 52;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Snow;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(690, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 284;
-            label8.Text = "何ページ";
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 285;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 286;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
             // 
             // TBUriageIDS
             // 
@@ -644,9 +649,9 @@
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label2.Location = new Point(1106, 100);
             label2.Name = "label2";
-            label2.Size = new Size(62, 32);
+            label2.Size = new Size(86, 32);
             label2.TabIndex = 268;
-            label2.Text = "更新";
+            label2.Text = "未選択";
             // 
             // sales
             // 

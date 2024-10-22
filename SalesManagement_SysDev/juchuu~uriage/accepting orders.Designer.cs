@@ -649,9 +649,9 @@
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label2.Location = new Point(1100, 100);
             label2.Name = "label2";
-            label2.Size = new Size(62, 32);
+            label2.Size = new Size(86, 32);
             label2.TabIndex = 262;
-            label2.Text = "登録";
+            label2.Text = "未選択";
             label2.Click += label2_Click;
             // 
             // acceptingorders
