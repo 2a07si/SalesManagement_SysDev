@@ -93,7 +93,7 @@ namespace SalesManagement_SysDev
             switch (Global.EmployeePermission)
             {
                 case 2:
-                    if(b_hacchuu.Enabled)
+                    if (b_hacchuu.Enabled)
                     {
                         changeForm.NavigateToHorderForm();
                     }
@@ -113,9 +113,9 @@ namespace SalesManagement_SysDev
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            DateTime dateTime = DateTime.Now;
-            labeltime.Text = dateTime.ToLongTimeString();
-            labeldate.Text = DateTime.Now.ToString("yyyy年MM月dd日");
+           // DateTime dateTime = DateTime.Now;
+           // labeltime.Text = dateTime.ToLongTimeString();
+           // labeldate.Text = DateTime.Now.ToString("yyyy年MM月dd日");
         }
 
         private void b_masuta_Click(object sender, EventArgs e)
@@ -144,6 +144,21 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private void label_ename_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void label_id_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
