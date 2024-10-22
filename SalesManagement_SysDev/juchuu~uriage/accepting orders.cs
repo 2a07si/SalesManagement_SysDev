@@ -128,11 +128,6 @@ namespace SalesManagement_SysDev
             date.Value = DateTime.Now;
         }
 
-<<<<<<< HEAD
-        private void b_upd_Click(object sender, EventArgs e)
-        {
-            currentStatus.RegistrationStatus(label2);
-=======
         private void B_iti_Click(object sender, EventArgs e)
         {
             currentStatus.ListStatus(label2);
@@ -177,14 +172,11 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("更新に失敗しました: " + ex.Message);
                 }
             }
->>>>>>> 3e2df8448316d5db9a202e27d0e4ddab55895f0e
         }
 
         private void b_reg_Click(object sender, EventArgs e)
         {
             currentStatus.RegistrationStatus(label2);
-<<<<<<< HEAD
-=======
             labelStatus.labelstatus(label2, b_kakutei);
             try
             {
@@ -193,143 +185,139 @@ namespace SalesManagement_SysDev
                     // SQLコマンドを作成
                     string query = @"INSERT INTO T_Order (OrId, SoId, EmId, ClId, ClCharge, OrDate, OrStateFlag, OrFlag, OrHidden)
                                      VALUES (@OrId, @SoId, @EmId, @ClId, @ClCharge, @OrDate, @OrStateFlag, @OrFlag, @OrHidden)";
->>>>>>> 3e2df8448316d5db9a202e27d0e4ddab55895f0e
 
-        }
 
-        private void B_iti_Click_1(object sender, EventArgs e)
-        {
-            currentStatus.SearchStatus(label2);
-        }
-        private void b_kakutei_Click(object sender, EventArgs e)
-        {
-            // label2の内容を確認  
-            string status = label2.Text;
-
-            // ステータスに応じて処理を実行  
-            switch (status)
-            {
-                case "更新":
-                    UpdateOrder();
-                    break;
-                case "登録":
-                    RegisterOrder();
-                    break;
-                case "一覧":
-                    DisplayOrders();
-                    break;
-                default:
-                    MessageBox.Show("無効な操作です。"); // 無効な操作の場合  
-                    break;
-            }
-        }
-
-<<<<<<< HEAD
-        // 更新メソッド 
-        private void UpdateOrder()
-        {
-            // 更新処理の具体的なコードをここに記述 
-            // 入力された受注情報を取得
-            string jyutyuID = TBJyutyuID.Text;
-            string shopID = TBShopID.Text;
-            string shainID = TBShainID.Text;
-            string kokyakuID = TBKokyakuID.Text;
-            string tantoName = TBTantoName.Text;
-            DateTime jyutyuDate = date.Value;
-            bool tyumonFlag = TyumonFlag.Checked;
-            bool delFlag = DelFlag.Checked;
-            string riyuu = TBRiyuu.Text;
-
-            // データベース接続コードをここに記述 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string query = "UPDATE T_Order SET ShopID=@shopID, ShainID=@shainID, KokyakuID=@kokyakuID, TantoName=@tantoName, JyutyuDate=@jyutyuDate, TyumonFlag=@tyumonFlag, DelFlag=@delFlag, Riyuu=@riyuu WHERE JyutyuID=@jyutyuID";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    // パラメータの設定
-                    cmd.Parameters.AddWithValue("@shopID", shopID);
-                    cmd.Parameters.AddWithValue("@shainID", shainID);
-                    cmd.Parameters.AddWithValue("@kokyakuID", kokyakuID);
-                    cmd.Parameters.AddWithValue("@tantoName", tantoName);
-                    cmd.Parameters.AddWithValue("@jyutyuDate", jyutyuDate);
-                    cmd.Parameters.AddWithValue("@tyumonFlag", tyumonFlag);
-                    cmd.Parameters.AddWithValue("@delFlag", delFlag);
-                    cmd.Parameters.AddWithValue("@riyuu", riyuu);
-                    cmd.Parameters.AddWithValue("@jyutyuID", jyutyuID);
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    MessageBox.Show(rowsAffected > 0 ? "更新が成功しました。" : "更新に失敗しました。");
                 }
             }
-        }
-
-        // 登録メソッド 
-        private void RegisterOrder()
-        {
-            // 登録処理の具体的なコードをここに記述 
-            string shopID = TBShopID.Text;
-            string shainID = TBShainID.Text;
-            string kokyakuID = TBKokyakuID.Text;
-            string tantoName = TBTantoName.Text;
-            DateTime jyutyuDate = date.Value;
-            bool tyumonFlag = TyumonFlag.Checked;
-            bool delFlag = DelFlag.Checked;
-            string riyuu = TBRiyuu.Text;
-
-            // データベース接続コードをここに記述 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            catch (Exception ex)
             {
-                conn.Open();
-                string query = "INSERT INTO T_Order (ShopID, ShainID, KokyakuID, TantoName, JyutyuDate, TyumonFlag, DelFlag, Riyuu) VALUES (@shopID, @shainID, @kokyakuID, @tantoName, @jyutyuDate, @tyumonFlag, @delFlag, @riyuu)";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    // パラメータの設定
-                    cmd.Parameters.AddWithValue("@shopID", shopID);
-                    cmd.Parameters.AddWithValue("@shainID", shainID);
-                    cmd.Parameters.AddWithValue("@kokyakuID", kokyakuID);
-                    cmd.Parameters.AddWithValue("@tantoName", tantoName);
-                    cmd.Parameters.AddWithValue("@jyutyuDate", jyutyuDate);
-                    cmd.Parameters.AddWithValue("@tyumonFlag", tyumonFlag);
-                    cmd.Parameters.AddWithValue("@delFlag", delFlag);
-                    cmd.Parameters.AddWithValue("@riyuu", riyuu);
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    MessageBox.Show(rowsAffected > 0 ? "登録が成功しました。" : "登録に失敗しました。");
-                }
+                MessageBox.Show("登録に失敗しました: " + ex.Message);
             }
         }
 
-        // 一覧表示メソッド 
-        private void DisplayOrders()
-        {
-            // 一覧表示処理の具体的なコードをここに記述 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            private void B_iti_Click_1(object sender, EventArgs e)
             {
-                conn.Open();
-                string query = "SELECT * FROM T_Order"; // 必要に応じて条件を追加 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                currentStatus.SearchStatus(label2);
+            }
+            private void b_kakutei_Click(object sender, EventArgs e)
+            {
+                // label2の内容を確認  
+                string status = label2.Text;
+
+                // ステータスに応じて処理を実行  
+                switch (status)
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    case "更新":
+                        UpdateOrder();
+                        break;
+                    case "登録":
+                        RegisterOrder();
+                        break;
+                    case "一覧":
+                        DisplayOrders();
+                        break;
+                    default:
+                        MessageBox.Show("無効な操作です。"); // 無効な操作の場合  
+                        break;
+                }
+            }
+            // 更新メソッド 
+            private void UpdateOrder()
+            {
+                // 更新処理の具体的なコードをここに記述 
+                // 入力された受注情報を取得
+                string jyutyuID = TBJyutyuID.Text;
+                string shopID = TBShopID.Text;
+                string shainID = TBShainID.Text;
+                string kokyakuID = TBKokyakuID.Text;
+                string tantoName = TBTantoName.Text;
+                DateTime jyutyuDate = date.Value;
+                bool tyumonFlag = TyumonFlag.Checked;
+                bool delFlag = DelFlag.Checked;
+                string riyuu = TBRiyuu.Text;
+
+                // データベース接続コードをここに記述 
+                string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE T_Order SET ShopID=@shopID, ShainID=@shainID, KokyakuID=@kokyakuID, TantoName=@tantoName, JyutyuDate=@jyutyuDate, TyumonFlag=@tyumonFlag, DelFlag=@delFlag, Riyuu=@riyuu WHERE JyutyuID=@jyutyuID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
-                        // DataGridViewにデータを表示 
-                        dataGridView1.DataSource = dt;
+                        // パラメータの設定
+                        cmd.Parameters.AddWithValue("@shopID", shopID);
+                        cmd.Parameters.AddWithValue("@shainID", shainID);
+                        cmd.Parameters.AddWithValue("@kokyakuID", kokyakuID);
+                        cmd.Parameters.AddWithValue("@tantoName", tantoName);
+                        cmd.Parameters.AddWithValue("@jyutyuDate", jyutyuDate);
+                        cmd.Parameters.AddWithValue("@tyumonFlag", tyumonFlag);
+                        cmd.Parameters.AddWithValue("@delFlag", delFlag);
+                        cmd.Parameters.AddWithValue("@riyuu", riyuu);
+                        cmd.Parameters.AddWithValue("@jyutyuID", jyutyuID);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected > 0 ? "更新が成功しました。" : "更新に失敗しました。");
+                    }
+                }
+            }
+
+            // 登録メソッド 
+            private void RegisterOrder()
+            {
+                // 登録処理の具体的なコードをここに記述 
+                string shopID = TBShopID.Text;
+                string shainID = TBShainID.Text;
+                string kokyakuID = TBKokyakuID.Text;
+                string tantoName = TBTantoName.Text;
+                DateTime jyutyuDate = date.Value;
+                bool tyumonFlag = TyumonFlag.Checked;
+                bool delFlag = DelFlag.Checked;
+                string riyuu = TBRiyuu.Text;
+
+                // データベース接続コードをここに記述 
+                string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "INSERT INTO T_Order (ShopID, ShainID, KokyakuID, TantoName, JyutyuDate, TyumonFlag, DelFlag, Riyuu) VALUES (@shopID, @shainID, @kokyakuID, @tantoName, @jyutyuDate, @tyumonFlag, @delFlag, @riyuu)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        // パラメータの設定
+                        cmd.Parameters.AddWithValue("@shopID", shopID);
+                        cmd.Parameters.AddWithValue("@shainID", shainID);
+                        cmd.Parameters.AddWithValue("@kokyakuID", kokyakuID);
+                        cmd.Parameters.AddWithValue("@tantoName", tantoName);
+                        cmd.Parameters.AddWithValue("@jyutyuDate", jyutyuDate);
+                        cmd.Parameters.AddWithValue("@tyumonFlag", tyumonFlag);
+                        cmd.Parameters.AddWithValue("@delFlag", delFlag);
+                        cmd.Parameters.AddWithValue("@riyuu", riyuu);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected > 0 ? "登録が成功しました。" : "登録に失敗しました。");
+                    }
+                }
+            }
+
+            // 一覧表示メソッド 
+            private void DisplayOrders()
+            {
+                // 一覧表示処理の具体的なコードをここに記述 
+                string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM T_Order"; // 必要に応じて条件を追加 
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Load(reader);
+                            // DataGridViewにデータを表示 
+                            dataGridView1.DataSource = dt;
+                        }
                     }
                 }
             }
         }
-
-
-=======
-        private void b_kakutei_Click(object sender, EventArgs e)
-        {
-            
-        }
->>>>>>> 3e2df8448316d5db9a202e27d0e4ddab55895f0e
     }
-}
