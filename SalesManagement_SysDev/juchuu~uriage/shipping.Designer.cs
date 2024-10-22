@@ -460,6 +460,7 @@
             label9.Size = new Size(48, 25);
             label9.TabIndex = 286;
             label9.Text = "数量";
+            label9.Click += label9_Click;
             // 
             // label13
             // 
@@ -471,6 +472,7 @@
             label13.Size = new Size(102, 25);
             label13.TabIndex = 282;
             label13.Text = "受注詳細ID";
+            label13.Click += label13_Click;
             // 
             // label2
             // 
@@ -492,6 +494,7 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 288;
             label1.Text = "現在の状態";
+            label1.Click += label1_Click;
             // 
             // dataGridView2
             // 
@@ -512,6 +515,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(600, 690);
             panel2.TabIndex = 287;
+            panel2.Paint += panel2_Paint;
             // 
             // shipping
             // 

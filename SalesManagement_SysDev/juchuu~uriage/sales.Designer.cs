@@ -66,8 +66,8 @@
             B_iti = new Button();
             dataGridView2 = new DataGridView();
             panel2 = new Panel();
-            label2 = new Label();
             label1 = new Label();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -459,16 +459,6 @@
             panel2.TabIndex = 288;
             panel2.Paint += panel2_Paint;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.Location = new Point(1100, 100);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 32);
-            label2.TabIndex = 290;
-            label2.Text = "更新";
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -478,6 +468,16 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 289;
             label1.Text = "現在の状態";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label2.Location = new Point(1100, 100);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 32);
+            label2.TabIndex = 290;
+            label2.Text = "更新";
             // 
             // sales
             // 
