@@ -47,11 +47,6 @@ namespace SalesManagement_SysDev
 
         private void horder_Load(object sender, EventArgs e)
         {
-            // ラベルが null でないことを確認してから初期化
-            if (labeltime != null && labeldate != null)
-            {
-                dateNameLabel.UpdateDateTime(); // 初回表示時に日付と時間を更新 
-            }
 
             GlobalUtility.UpdateLabels(label_id, label_ename); // ラベル更新
 
