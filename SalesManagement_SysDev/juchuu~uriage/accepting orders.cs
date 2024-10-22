@@ -6,6 +6,7 @@ using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 
 namespace SalesManagement_SysDev
 {
@@ -36,6 +37,8 @@ namespace SalesManagement_SysDev
                 b_sal,
                 b_lss
             });
+
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         // メインメニューに戻る 
@@ -238,6 +241,11 @@ namespace SalesManagement_SysDev
                 // DataGridViewにデータをバインドする 
                 dataGridView1.DataSource = dataTable; // dataGridView1はデザインで追加したDataGridViewの名前 
             }
+        }
+
+        private void b_kakutei_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
