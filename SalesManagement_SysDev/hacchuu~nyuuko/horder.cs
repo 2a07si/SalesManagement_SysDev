@@ -35,7 +35,7 @@ namespace SalesManagement_SysDev
         private void timer1_Tick(object sender, EventArgs e)
         {
             // タイマーが起動するたびに時間を更新
-            dateNameLabel?.UpdateDateTime(); // Nullチェックを行い、ラベルが初期化されている場合にのみ更新
+           // dateNameLabel?.UpdateDateTime(); // Nullチェックを行い、ラベルが初期化されている場合にのみ更新
         }
 
         private void close_Click(object sender, EventArgs e)

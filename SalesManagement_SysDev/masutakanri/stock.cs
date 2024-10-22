@@ -36,11 +36,11 @@ namespace SalesManagement_SysDev
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            DateTime dateTime = DateTime.Now;
+            /*DateTime dateTime = DateTime.Now;
             labeltime.Text = dateTime.ToLongTimeString();
 
             var now = System.DateTime.Now;
-            labeldate.Text = now.ToString("yyyy年MM月dd日");
+            labeldate.Text = now.ToString("yyyy年MM月dd日");*/
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -75,6 +75,11 @@ namespace SalesManagement_SysDev
                 b_mer,
                 b_cus,
             });
+        }
+
+        private void b_sto_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

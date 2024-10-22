@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            labeltime = new Label();
-            labeldate = new Label();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
             TBColor = new MaskedTextBox();
@@ -60,7 +58,6 @@
             label4 = new Label();
             b_ser = new Button();
             label_id = new Label();
-            b_flg = new Button();
             label_ename = new Label();
             b_sto = new Button();
             b_cus = new Button();
@@ -71,28 +68,9 @@
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
-            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // labeltime
-            // 
-            labeltime.AutoSize = true;
-            labeltime.Location = new Point(40, 30);
-            labeltime.Name = "labeltime";
-            labeltime.Size = new Size(80, 25);
-            labeltime.TabIndex = 203;
-            labeltime.Text = "11:11:11";
-            // 
-            // labeldate
-            // 
-            labeldate.AutoSize = true;
-            labeldate.Location = new Point(140, 30);
-            labeldate.Name = "labeldate";
-            labeldate.Size = new Size(156, 25);
-            labeldate.TabIndex = 204;
-            labeldate.Text = "yyyy年mm月dd日";
             // 
             // dataGridView1
             // 
@@ -389,17 +367,6 @@
             label_id.TabIndex = 209;
             label_id.Text = "label6";
             // 
-            // b_flg
-            // 
-            b_flg.BackColor = Color.FromArgb(192, 255, 255);
-            b_flg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_flg.Location = new Point(710, 80);
-            b_flg.Name = "b_flg";
-            b_flg.Size = new Size(130, 50);
-            b_flg.TabIndex = 201;
-            b_flg.Text = "非表示";
-            b_flg.UseVisualStyleBackColor = false;
-            // 
             // label_ename
             // 
             label_ename.AutoSize = true;
@@ -506,21 +473,11 @@
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(785, 52);
-            label1.Name = "label1";
-            label1.Size = new Size(73, 25);
-            label1.TabIndex = 261;
-            label1.Text = "IDPOKE";
-            // 
             // merchandise
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
-            Controls.Add(label1);
             Controls.Add(B_iti);
             Controls.Add(kakutei);
             Controls.Add(clear);
@@ -530,7 +487,6 @@
             Controls.Add(b_cus);
             Controls.Add(b_sto);
             Controls.Add(label_ename);
-            Controls.Add(b_flg);
             Controls.Add(label_id);
             Controls.Add(b_ser);
             Controls.Add(label4);
@@ -538,8 +494,6 @@
             Controls.Add(label3);
             Controls.Add(b_reg);
             Controls.Add(panel1);
-            Controls.Add(labeldate);
-            Controls.Add(labeltime);
             Name = "merchandise";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "商品";

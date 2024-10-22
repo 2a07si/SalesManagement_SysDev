@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             label_ename = new Label();
-            b_flg = new Button();
             label_id = new Label();
             b_ser = new Button();
             label4 = new Label();
@@ -53,8 +52,6 @@
             label8 = new Label();
             label6 = new Label();
             dataGridView1 = new DataGridView();
-            labeldate = new Label();
-            labeltime = new Label();
             kakutei = new Button();
             clear = new Button();
             close = new Button();
@@ -72,17 +69,6 @@
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 214;
             label_ename.Text = "label7";
-            // 
-            // b_flg
-            // 
-            b_flg.BackColor = Color.FromArgb(192, 255, 255);
-            b_flg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_flg.Location = new Point(710, 80);
-            b_flg.Name = "b_flg";
-            b_flg.Size = new Size(130, 50);
-            b_flg.TabIndex = 199;
-            b_flg.Text = "非表示";
-            b_flg.UseVisualStyleBackColor = false;
             // 
             // label_id
             // 
@@ -316,24 +302,6 @@
             dataGridView1.Size = new Size(1000, 430);
             dataGridView1.TabIndex = 52;
             // 
-            // labeldate
-            // 
-            labeldate.AutoSize = true;
-            labeldate.Location = new Point(140, 30);
-            labeldate.Name = "labeldate";
-            labeldate.Size = new Size(156, 25);
-            labeldate.TabIndex = 202;
-            labeldate.Text = "yyyy年mm月dd日";
-            // 
-            // labeltime
-            // 
-            labeltime.AutoSize = true;
-            labeltime.Location = new Point(40, 30);
-            labeltime.Name = "labeltime";
-            labeltime.Size = new Size(80, 25);
-            labeltime.TabIndex = 201;
-            labeltime.Text = "11:11:11";
-            // 
             // kakutei
             // 
             kakutei.BackColor = Color.FromArgb(255, 192, 192);
@@ -390,7 +358,6 @@
             Controls.Add(clear);
             Controls.Add(close);
             Controls.Add(label_ename);
-            Controls.Add(b_flg);
             Controls.Add(label_id);
             Controls.Add(b_ser);
             Controls.Add(label4);
@@ -400,8 +367,6 @@
             Controls.Add(b_hor);
             Controls.Add(b_rec);
             Controls.Add(panel1);
-            Controls.Add(labeldate);
-            Controls.Add(labeltime);
             Name = "horder";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "発注";

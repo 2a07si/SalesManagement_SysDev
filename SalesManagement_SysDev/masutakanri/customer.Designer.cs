@@ -34,7 +34,6 @@
             b_cus = new Button();
             b_sto = new Button();
             label_ename = new Label();
-            b_flg = new Button();
             label_id = new Label();
             b_ser = new Button();
             label4 = new Label();
@@ -60,8 +59,6 @@
             TBRiyuu = new MaskedTextBox();
             label14 = new Label();
             label12 = new Label();
-            labeldate = new Label();
-            labeltime = new Label();
             kakutei = new Button();
             clear = new Button();
             close = new Button();
@@ -130,17 +127,6 @@
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 244;
             label_ename.Text = "label7";
-            // 
-            // b_flg
-            // 
-            b_flg.BackColor = Color.FromArgb(192, 255, 255);
-            b_flg.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            b_flg.Location = new Point(710, 80);
-            b_flg.Name = "b_flg";
-            b_flg.Size = new Size(130, 50);
-            b_flg.TabIndex = 235;
-            b_flg.Text = "非表示";
-            b_flg.UseVisualStyleBackColor = false;
             // 
             // label_id
             // 
@@ -395,24 +381,6 @@
             label12.TabIndex = 260;
             label12.Text = "営業所ID";
             // 
-            // labeldate
-            // 
-            labeldate.AutoSize = true;
-            labeldate.Location = new Point(140, 30);
-            labeldate.Name = "labeldate";
-            labeldate.Size = new Size(156, 25);
-            labeldate.TabIndex = 238;
-            labeldate.Text = "yyyy年mm月dd日";
-            // 
-            // labeltime
-            // 
-            labeltime.AutoSize = true;
-            labeltime.Location = new Point(40, 30);
-            labeltime.Name = "labeltime";
-            labeltime.Size = new Size(80, 25);
-            labeltime.TabIndex = 237;
-            labeltime.Text = "11:11:11";
-            // 
             // kakutei
             // 
             kakutei.BackColor = Color.FromArgb(255, 192, 192);
@@ -473,7 +441,6 @@
             Controls.Add(b_cus);
             Controls.Add(b_sto);
             Controls.Add(label_ename);
-            Controls.Add(b_flg);
             Controls.Add(label_id);
             Controls.Add(b_ser);
             Controls.Add(label4);
@@ -481,8 +448,6 @@
             Controls.Add(label3);
             Controls.Add(b_reg);
             Controls.Add(panel1);
-            Controls.Add(labeldate);
-            Controls.Add(labeltime);
             Name = "customer";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "顧客";
