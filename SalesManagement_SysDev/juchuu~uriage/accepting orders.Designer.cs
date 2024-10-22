@@ -120,6 +120,7 @@
             clear.TabIndex = 256;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            clear.Click += clear_Click;
             // 
             // close
             // 
@@ -511,7 +512,6 @@
             B_iti.TabIndex = 258;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
-            B_iti.Click += B_iti_Click;
             // 
             // panel3
             // 
@@ -651,7 +651,7 @@
             label2.Name = "label2";
             label2.Size = new Size(62, 32);
             label2.TabIndex = 262;
-            label2.Text = "更新";
+            label2.Text = "登録";
             label2.Click += label2_Click;
             // 
             // acceptingorders
