@@ -296,7 +296,7 @@
             // 
             // TBJyutyuID
             // 
-            TBJyutyuID.Location = new Point(90, 70);
+            TBJyutyuID.Location = new Point(90, 71);
             TBJyutyuID.Name = "TBJyutyuID";
             TBJyutyuID.Size = new Size(100, 31);
             TBJyutyuID.TabIndex = 267;
@@ -616,9 +616,9 @@
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label2.Location = new Point(1100, 100);
             label2.Name = "label2";
-            label2.Size = new Size(62, 32);
+            label2.Size = new Size(86, 32);
             label2.TabIndex = 264;
-            label2.Text = "更新";
+            label2.Text = "未選択";
             // 
             // order
             // 

@@ -16,14 +16,12 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager; // 権限管理クラス
-        private CurrentStatus currentstatus;
 
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
-            this.currentstatus = new CurrentStatus();
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
