@@ -77,6 +77,7 @@
             label10 = new Label();
             label2 = new Label();
             label1 = new Label();
+            TBNyukoIDS = new MaskedTextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -277,7 +278,7 @@
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             date.Location = new Point(300, 68);
             date.Name = "date";
-            date.Size = new Size(180, 31);
+            date.Size = new Size(185, 31);
             date.TabIndex = 252;
             // 
             // label12
@@ -472,6 +473,7 @@
             // panel3
             // 
             panel3.BackColor = Color.DarkRed;
+            panel3.Controls.Add(TBNyukoIDS);
             panel3.Controls.Add(TBNyukoSyosaiID);
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(TBSuryou);
@@ -581,6 +583,13 @@
             label1.TabIndex = 263;
             label1.Text = "現在の状態";
             // 
+            // TBNyukoIDS
+            // 
+            TBNyukoIDS.Location = new Point(310, 20);
+            TBNyukoIDS.Name = "TBNyukoIDS";
+            TBNyukoIDS.Size = new Size(100, 31);
+            TBNyukoIDS.TabIndex = 258;
+            // 
             // arrival
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -674,5 +683,6 @@
         private Label label2;
         private Label label1;
         private MaskedTextBox TBNyukoSyosaiID;
+        private MaskedTextBox TBNyukoIDS;
     }
 }
