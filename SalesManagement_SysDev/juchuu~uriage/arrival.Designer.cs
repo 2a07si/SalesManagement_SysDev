@@ -67,7 +67,8 @@
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
             panel3 = new Panel();
-            TBNyukoSyosaiID = new MaskedTextBox();
+            TBNyukaIDS = new MaskedTextBox();
+            TBNyukaSyosaiID = new MaskedTextBox();
             dataGridView2 = new DataGridView();
             TBSuryou = new MaskedTextBox();
             label15 = new Label();
@@ -77,7 +78,6 @@
             label10 = new Label();
             label2 = new Label();
             label1 = new Label();
-            TBNyukoIDS = new MaskedTextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -473,8 +473,8 @@
             // panel3
             // 
             panel3.BackColor = Color.DarkRed;
-            panel3.Controls.Add(TBNyukoIDS);
-            panel3.Controls.Add(TBNyukoSyosaiID);
+            panel3.Controls.Add(TBNyukaIDS);
+            panel3.Controls.Add(TBNyukaSyosaiID);
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(TBSuryou);
             panel3.Controls.Add(label15);
@@ -487,12 +487,19 @@
             panel3.Size = new Size(600, 690);
             panel3.TabIndex = 261;
             // 
-            // TBNyukoSyosaiID
+            // TBNyukaIDS
             // 
-            TBNyukoSyosaiID.Location = new Point(120, 20);
-            TBNyukoSyosaiID.Name = "TBNyukoSyosaiID";
-            TBNyukoSyosaiID.Size = new Size(100, 31);
-            TBNyukoSyosaiID.TabIndex = 277;
+            TBNyukaIDS.Location = new Point(310, 20);
+            TBNyukaIDS.Name = "TBNyukaIDS";
+            TBNyukaIDS.Size = new Size(100, 31);
+            TBNyukaIDS.TabIndex = 258;
+            // 
+            // TBNyukaSyosaiID
+            // 
+            TBNyukaSyosaiID.Location = new Point(120, 20);
+            TBNyukaSyosaiID.Name = "TBNyukaSyosaiID";
+            TBNyukaSyosaiID.Size = new Size(100, 31);
+            TBNyukaSyosaiID.TabIndex = 277;
             // 
             // dataGridView2
             // 
@@ -521,7 +528,7 @@
             label15.Name = "label15";
             label15.Size = new Size(66, 25);
             label15.TabIndex = 268;
-            label15.Text = "入庫ID";
+            label15.Text = "入荷ID";
             // 
             // label9
             // 
@@ -543,7 +550,7 @@
             label13.Name = "label13";
             label13.Size = new Size(102, 25);
             label13.TabIndex = 269;
-            label13.Text = "入庫詳細ID";
+            label13.Text = "入荷詳細ID";
             // 
             // TBSyohinID
             // 
@@ -582,13 +589,6 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 263;
             label1.Text = "現在の状態";
-            // 
-            // TBNyukoIDS
-            // 
-            TBNyukoIDS.Location = new Point(310, 20);
-            TBNyukoIDS.Name = "TBNyukoIDS";
-            TBNyukoIDS.Size = new Size(100, 31);
-            TBNyukoIDS.TabIndex = 258;
             // 
             // arrival
             // 
@@ -682,7 +682,7 @@
         private Label label8;
         private Label label2;
         private Label label1;
-        private MaskedTextBox TBNyukoSyosaiID;
-        private MaskedTextBox TBNyukoIDS;
+        private MaskedTextBox TBNyukaSyosaiID;
+        private MaskedTextBox TBNyukaIDS;
     }
 }
