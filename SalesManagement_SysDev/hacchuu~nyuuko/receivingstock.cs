@@ -68,7 +68,9 @@ namespace SalesManagement_SysDev
         private void receivingstock_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            dateNamelabel.UpdateDateTime();
+            accessManager.SetButtonAccess(new Control[] {
+                b_hor
+            });
         }
     }
 }

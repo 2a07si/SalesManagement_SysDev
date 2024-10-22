@@ -24,7 +24,14 @@ namespace SalesManagement_SysDev
 
         private void shipping_Load(object sender, EventArgs e)
         {
-            GlobalUtility.UpdateLabels(label_id, label_ename); // ラベルの初期化 
+            GlobalUtility.UpdateLabels(label_id, label_ename); // ラベルの初期化
+            accessManager.SetButtonAccess(new Control[] {
+                b_ord,
+                b_arr,
+                b_acc,
+                b_sal,
+                b_lss
+            });
         }
         private void close_Click(object sender, EventArgs e)
         {

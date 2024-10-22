@@ -31,7 +31,7 @@ namespace SalesManagement_SysDev
                 b_arr,
                 b_shi,
                 b_sal,
-                b_lss
+                b_acc
             });
         }
 
