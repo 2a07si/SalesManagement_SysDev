@@ -321,21 +321,6 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 52;
-            // 
-            // labeldate
-            // 
-            labeldate.Location = new Point(0, 0);
-            labeldate.Name = "labeldate";
-            labeldate.Size = new Size(100, 23);
-            labeldate.TabIndex = 261;
-            // 
-            // labeltime
-            // 
-            labeltime.Location = new Point(0, 0);
-            labeltime.Name = "labeltime";
-            labeltime.Size = new Size(100, 23);
-            labeltime.TabIndex = 262;
-            // 
             // kakutei
             // 
             kakutei.BackColor = Color.FromArgb(255, 192, 192);
@@ -584,8 +569,6 @@
         private Label label8;
         private Label label6;
         private DataGridView dataGridView1;
-        private Label labeldate;
-        private Label labeltime;
         private Button kakutei;
         private Button clear;
         private Button close;

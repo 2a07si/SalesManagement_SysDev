@@ -106,7 +106,7 @@ namespace SalesManagement_SysDev
 
                 default:
                     // 権限1の場合は元の機能をそのまま維持
-                    changeForm.NavigateEmployeeForm();
+                    changeForm.NavigateToHorderForm();
                     break;
             }
         }
