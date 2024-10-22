@@ -62,8 +62,14 @@
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
+            label2 = new Label();
+            label1 = new Label();
+            panel2 = new Panel();
+            dataGridView2 = new DataGridView();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // b_emp
@@ -119,20 +125,20 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(97, 23);
+            label_ename.Location = new Point(165, 25);
             label_ename.Name = "label_ename";
-            label_ename.Size = new Size(59, 25);
+            label_ename.Size = new Size(96, 25);
             label_ename.TabIndex = 191;
-            label_ename.Text = "label7";
+            label_ename.Text = "------------";
             // 
             // label_id
             // 
             label_id.AutoSize = true;
-            label_id.Location = new Point(241, 23);
+            label_id.Location = new Point(310, 25);
             label_id.Name = "label_id";
-            label_id.Size = new Size(59, 25);
+            label_id.Size = new Size(54, 25);
             label_id.TabIndex = 190;
-            label_id.Text = "label6";
+            label_id.Text = "------";
             // 
             // b_ser
             // 
@@ -148,11 +154,11 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(32, 23);
+            label4.Location = new Point(100, 25);
             label4.Name = "label4";
-            label4.Size = new Size(66, 25);
+            label4.Size = new Size(70, 25);
             label4.TabIndex = 189;
-            label4.Text = "社員名";
+            label4.Text = "社員名:";
             // 
             // b_upd
             // 
@@ -168,11 +174,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(196, 23);
+            label3.Location = new Point(265, 25);
             label3.Name = "label3";
-            label3.Size = new Size(48, 25);
+            label3.Size = new Size(52, 25);
             label3.TabIndex = 188;
-            label3.Text = "権限";
+            label3.Text = "権限:";
             // 
             // b_reg
             // 
@@ -405,11 +411,54 @@
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label2.Location = new Point(1100, 101);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 32);
+            label2.TabIndex = 293;
+            label2.Text = "更新";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(1080, 71);
+            label1.Name = "label1";
+            label1.Size = new Size(108, 28);
+            label1.TabIndex = 292;
+            label1.Text = "現在の状態";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.DarkRed;
+            panel2.Controls.Add(dataGridView2);
+            panel2.Location = new Point(970, 145);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(600, 690);
+            panel2.TabIndex = 291;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.AllowUserToOrderColumns = true;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(10, 190);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 62;
+            dataGridView2.RowTemplate.Height = 33;
+            dataGridView2.Size = new Size(580, 490);
+            dataGridView2.TabIndex = 52;
+            // 
             // employee
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(panel2);
             Controls.Add(B_iti);
             Controls.Add(kakutei);
             Controls.Add(clear);
@@ -433,6 +482,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -475,5 +526,9 @@
         private DateTimePicker date;
         private Label label18;
         private Button B_iti;
+        private Label label2;
+        private Label label1;
+        private Panel panel2;
+        private DataGridView dataGridView2;
     }
 }
