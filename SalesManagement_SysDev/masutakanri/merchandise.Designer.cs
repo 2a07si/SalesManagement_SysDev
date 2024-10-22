@@ -285,7 +285,7 @@
             // 
             // TBShainId
             // 
-            TBShainId.Location = new Point(290, 20);
+            TBShainId.Location = new Point(280, 20);
             TBShainId.Name = "TBShainId";
             TBShainId.Size = new Size(80, 31);
             TBShainId.TabIndex = 93;
@@ -295,7 +295,7 @@
             label14.AutoSize = true;
             label14.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label14.ForeColor = Color.White;
-            label14.Location = new Point(208, 21);
+            label14.Location = new Point(200, 20);
             label14.Name = "label14";
             label14.Size = new Size(81, 25);
             label14.TabIndex = 92;
@@ -313,7 +313,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(15, 20);
+            label6.Location = new Point(20, 20);
             label6.Name = "label6";
             label6.Size = new Size(66, 25);
             label6.TabIndex = 90;
