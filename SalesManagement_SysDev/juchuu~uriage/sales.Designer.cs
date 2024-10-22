@@ -62,7 +62,7 @@
             TBShopID = new MaskedTextBox();
             label17 = new Label();
             TBShainID = new MaskedTextBox();
-            kakutei = new Button();
+            b_kakutei = new Button();
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
@@ -448,17 +448,17 @@
             TBShainID.Size = new Size(130, 31);
             TBShainID.TabIndex = 274;
             // 
-            // kakutei
+            // b_kakutei
             // 
-            kakutei.BackColor = Color.FromArgb(255, 192, 192);
-            kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(1200, 70);
-            kakutei.Name = "kakutei";
-            kakutei.Size = new Size(150, 70);
-            kakutei.TabIndex = 252;
-            kakutei.Text = "確定";
-            kakutei.UseVisualStyleBackColor = false;
-            kakutei.Click += kakutei_Click;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Name = "b_kakutei";
+            b_kakutei.Size = new Size(150, 70);
+            b_kakutei.TabIndex = 252;
+            b_kakutei.Text = "確定";
+            b_kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.Click += kakutei_Click;
             // 
             // clear
             // 
@@ -662,7 +662,7 @@
             Controls.Add(label1);
             Controls.Add(panel4);
             Controls.Add(B_iti);
-            Controls.Add(kakutei);
+            Controls.Add(b_kakutei);
             Controls.Add(clear);
             Controls.Add(close);
             Controls.Add(label_ename);
@@ -712,7 +712,7 @@
         private Button b_lss;
         private Panel panel1;
         private DataGridView dataGridView1;
-        private Button kakutei;
+        private Button b_kakutei;
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;

@@ -41,6 +41,9 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
+            Next = new Button();
+            Prev = new Button();
+            label1 = new Label();
             TBFax = new MaskedTextBox();
             label9 = new Label();
             TBYuubinNo = new MaskedTextBox();
@@ -59,14 +62,11 @@
             TBRiyuu = new MaskedTextBox();
             label14 = new Label();
             label12 = new Label();
-            kakutei = new Button();
+            b_kakutei = new Button();
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
-            Next = new Button();
-            Prev = new Button();
-            label1 = new Label();
             label2 = new Label();
             label10 = new Label();
             panel4 = new Panel();
@@ -233,6 +233,36 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 240;
+            // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 289;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 288;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Snow;
+            label1.ImageAlign = ContentAlignment.MiddleRight;
+            label1.Location = new Point(690, 152);
+            label1.Name = "label1";
+            label1.Size = new Size(72, 25);
+            label1.TabIndex = 287;
+            label1.Text = "何ページ";
             // 
             // TBFax
             // 
@@ -401,16 +431,16 @@
             label12.TabIndex = 260;
             label12.Text = "営業所ID";
             // 
-            // kakutei
+            // b_kakutei
             // 
-            kakutei.BackColor = Color.FromArgb(255, 192, 192);
-            kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(1200, 70);
-            kakutei.Name = "kakutei";
-            kakutei.Size = new Size(150, 70);
-            kakutei.TabIndex = 251;
-            kakutei.Text = "確定";
-            kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Name = "b_kakutei";
+            b_kakutei.Size = new Size(150, 70);
+            b_kakutei.TabIndex = 251;
+            b_kakutei.Text = "確定";
+            b_kakutei.UseVisualStyleBackColor = false;
             // 
             // clear
             // 
@@ -447,45 +477,15 @@
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 289;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 288;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Snow;
-            label1.ImageAlign = ContentAlignment.MiddleRight;
-            label1.Location = new Point(690, 152);
-            label1.Name = "label1";
-            label1.Size = new Size(72, 25);
-            label1.TabIndex = 287;
-            label1.Text = "何ページ";
-            // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label2.Location = new Point(1106, 100);
             label2.Name = "label2";
-            label2.Size = new Size(62, 32);
+            label2.Size = new Size(86, 32);
             label2.TabIndex = 271;
-            label2.Text = "更新";
+            label2.Text = "未選択";
             // 
             // label10
             // 
@@ -604,7 +604,7 @@
             ClientSize = new Size(1578, 844);
             Controls.Add(label2);
             Controls.Add(B_iti);
-            Controls.Add(kakutei);
+            Controls.Add(b_kakutei);
             Controls.Add(label10);
             Controls.Add(clear);
             Controls.Add(close);
@@ -653,7 +653,7 @@
         private DataGridView dataGridView1;
         private Label labeldate;
         private Label labeltime;
-        private Button kakutei;
+        private Button b_kakutei;
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;

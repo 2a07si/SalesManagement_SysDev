@@ -31,7 +31,10 @@
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
+            Next = new Button();
+            Prev = new Button();
             TBColor = new MaskedTextBox();
+            label2 = new Label();
             label10 = new Label();
             TBModel = new MaskedTextBox();
             label9 = new Label();
@@ -63,7 +66,7 @@
             b_cus = new Button();
             b_mer = new Button();
             b_emp = new Button();
-            kakutei = new Button();
+            b_kakutei = new Button();
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
@@ -72,9 +75,6 @@
             dataGridView2 = new DataGridView();
             label16 = new Label();
             label1 = new Label();
-            Next = new Button();
-            Prev = new Button();
-            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -125,12 +125,42 @@
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 206;
             // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 292;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 291;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
             // TBColor
             // 
             TBColor.Location = new Point(633, 65);
             TBColor.Name = "TBColor";
             TBColor.Size = new Size(180, 31);
             TBColor.TabIndex = 110;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.Snow;
+            label2.ImageAlign = ContentAlignment.MiddleRight;
+            label2.Location = new Point(690, 152);
+            label2.Name = "label2";
+            label2.Size = new Size(72, 25);
+            label2.TabIndex = 290;
+            label2.Text = "何ページ";
             // 
             // label10
             // 
@@ -439,16 +469,16 @@
             b_emp.UseVisualStyleBackColor = false;
             b_emp.Click += b_emp_Click;
             // 
-            // kakutei
+            // b_kakutei
             // 
-            kakutei.BackColor = Color.FromArgb(255, 192, 192);
-            kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(1200, 70);
-            kakutei.Name = "kakutei";
-            kakutei.Size = new Size(150, 70);
-            kakutei.TabIndex = 249;
-            kakutei.Text = "確定";
-            kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Name = "b_kakutei";
+            b_kakutei.Size = new Size(150, 70);
+            b_kakutei.TabIndex = 249;
+            b_kakutei.Text = "確定";
+            b_kakutei.UseVisualStyleBackColor = false;
             // 
             // clear
             // 
@@ -511,9 +541,9 @@
             label16.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label16.Location = new Point(1101, 101);
             label16.Name = "label16";
-            label16.Size = new Size(62, 32);
+            label16.Size = new Size(86, 32);
             label16.TabIndex = 267;
-            label16.Text = "更新";
+            label16.Text = "未選択";
             // 
             // label1
             // 
@@ -525,36 +555,6 @@
             label1.TabIndex = 269;
             label1.Text = "現在の状態";
             // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 292;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 291;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.Snow;
-            label2.ImageAlign = ContentAlignment.MiddleRight;
-            label2.Location = new Point(690, 152);
-            label2.Name = "label2";
-            label2.Size = new Size(72, 25);
-            label2.TabIndex = 290;
-            label2.Text = "何ページ";
-            // 
             // merchandise
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -564,7 +564,7 @@
             Controls.Add(panel3);
             Controls.Add(label16);
             Controls.Add(B_iti);
-            Controls.Add(kakutei);
+            Controls.Add(b_kakutei);
             Controls.Add(clear);
             Controls.Add(close);
             Controls.Add(b_emp);
@@ -610,7 +610,7 @@
         private Button b_cus;
         private Button b_mer;
         private Button b_emp;
-        private Button kakutei;
+        private Button b_kakutei;
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;

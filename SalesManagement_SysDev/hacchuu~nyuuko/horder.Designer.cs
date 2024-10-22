@@ -55,7 +55,7 @@
             label8 = new Label();
             label6 = new Label();
             dataGridView1 = new DataGridView();
-            kakutei = new Button();
+            b_kakutei = new Button();
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
@@ -352,16 +352,16 @@
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 52;
             // 
-            // kakutei
+            // b_kakutei
             // 
-            kakutei.BackColor = Color.FromArgb(255, 192, 192);
-            kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(1200, 70);
-            kakutei.Name = "kakutei";
-            kakutei.Size = new Size(150, 70);
-            kakutei.TabIndex = 243;
-            kakutei.Text = "確定";
-            kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Name = "b_kakutei";
+            b_kakutei.Size = new Size(150, 70);
+            b_kakutei.TabIndex = 243;
+            b_kakutei.Text = "確定";
+            b_kakutei.UseVisualStyleBackColor = false;
             // 
             // clear
             // 
@@ -508,7 +508,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1070, 70);
+            label1.Location = new Point(1078, 70);
             label1.Name = "label1";
             label1.Size = new Size(108, 28);
             label1.TabIndex = 268;
@@ -520,7 +520,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
             Controls.Add(B_iti);
-            Controls.Add(kakutei);
+            Controls.Add(b_kakutei);
             Controls.Add(clear);
             Controls.Add(panel3);
             Controls.Add(label2);
@@ -570,7 +570,7 @@
         private Label label8;
         private Label label6;
         private DataGridView dataGridView1;
-        private Button kakutei;
+        private Button b_kakutei;
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;
