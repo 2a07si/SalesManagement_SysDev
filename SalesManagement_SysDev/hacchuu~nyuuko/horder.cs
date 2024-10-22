@@ -26,17 +26,10 @@ namespace SalesManagement_SysDev
             this.mainForm = new Form();
             this.Load += new EventHandler(horder_Load);
             this.formChanger = new ClassChangeForms(this);
-            this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename);
-            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
-            timer1.Start();
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            // タイマーが起動するたびに時間を更新
-           // dateNameLabel?.UpdateDateTime(); // Nullチェックを行い、ラベルが初期化されている場合にのみ更新
-        }
+
 
         private void close_Click(object sender, EventArgs e)
         {
@@ -66,5 +59,7 @@ namespace SalesManagement_SysDev
             Control[] buttons = { b_rec, /* 他のボタンを追加 */ };
             accessManager.SetButtonAccess(buttons); // ボタンのアクセス設定を適用
         }
+
+
     }
 }

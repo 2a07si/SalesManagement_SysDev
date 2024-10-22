@@ -24,22 +24,11 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.mainForm = new Form();
-            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename);
-            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
-            timer1.Start();
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-           /* DateTime dateTime = DateTime.Now;
-            labeltime.Text = dateTime.ToLongTimeString();
-
-            var now = System.DateTime.Now;
-            labeldate.Text = now.ToString("yyyy年MM月dd日");*/
-        }
 
         private void close_Click(object sender, EventArgs e)
         {
@@ -72,5 +61,7 @@ namespace SalesManagement_SysDev
                 b_hor
             });
         }
+
+
     }
 }
