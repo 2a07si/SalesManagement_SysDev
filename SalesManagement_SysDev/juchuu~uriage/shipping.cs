@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
+using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 
 
 namespace SalesManagement_SysDev
@@ -34,6 +35,7 @@ namespace SalesManagement_SysDev
                 b_sal,
                 b_lss
             });
+            labelStatus.labelstatus(label2, b_kakutei);
         }
         private void close_Click(object sender, EventArgs e)
         {
@@ -127,21 +129,25 @@ namespace SalesManagement_SysDev
         private void b_reg_Click_1(object sender, EventArgs e)
         {
             currentStatus.RegistrationStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_upd_Click_1(object sender, EventArgs e)
         {
             currentStatus.UpDateStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
             currentStatus.ListStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_ser_Click_1(object sender, EventArgs e)
         {
             currentStatus.SearchStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void clear_Click(object sender, EventArgs e)

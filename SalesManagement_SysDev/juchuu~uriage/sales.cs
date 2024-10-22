@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
+using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 
 
 namespace SalesManagement_SysDev
@@ -25,7 +26,7 @@ namespace SalesManagement_SysDev
 
         private void sales_Load(object sender, EventArgs e)
         {
-
+            labelStatus.labelstatus(label2, b_kakutei);
 
             GlobalUtility.UpdateLabels(label_id, label_ename);
             // timerManager.UpdateDateTime(); // この行を削除またはコメントアウト 
@@ -97,21 +98,25 @@ namespace SalesManagement_SysDev
         private void b_reg_Click(object sender, EventArgs e)
         {
             currentStatus.RegistrationStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
             currentStatus.UpDateStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
             currentStatus.ListStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             currentStatus.SearchStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void clear_Click(object sender, EventArgs e)
