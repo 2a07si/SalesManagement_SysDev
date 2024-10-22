@@ -91,6 +91,7 @@ namespace SalesManagement_SysDev
         private void b_ser_Click(object sender, EventArgs e)
         {
             currentStatus.SearchStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_ord_Click(object sender, EventArgs e)
@@ -130,11 +131,13 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             currentStatus.ListStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
             currentStatus.ListStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -173,6 +176,7 @@ namespace SalesManagement_SysDev
         private void b_reg_Click(object sender, EventArgs e)
         {
             currentStatus.RegistrationStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))

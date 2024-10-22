@@ -16,6 +16,10 @@ namespace SalesManagement_SysDev.Classまとめ
                 {
                     b_kakutei.Enabled = false;
                 }
+                else
+                {
+                    b_kakutei.Enabled = true;
+                }
             }
         }
     }
