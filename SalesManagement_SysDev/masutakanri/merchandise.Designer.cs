@@ -72,6 +72,9 @@
             dataGridView2 = new DataGridView();
             label16 = new Label();
             label1 = new Label();
+            Next = new Button();
+            Prev = new Button();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -92,7 +95,10 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
+            panel1.Controls.Add(Next);
+            panel1.Controls.Add(Prev);
             panel1.Controls.Add(TBColor);
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(TBModel);
             panel1.Controls.Add(label9);
@@ -178,7 +184,7 @@
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.LavenderBlush;
-            DelFlag.Location = new Point(274, 114);
+            DelFlag.Location = new Point(274, 107);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 104;
@@ -187,7 +193,7 @@
             // 
             // TBRiyuu
             // 
-            TBRiyuu.Location = new Point(469, 114);
+            TBRiyuu.Location = new Point(469, 107);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
             TBRiyuu.TabIndex = 103;
@@ -197,7 +203,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label17.ForeColor = Color.White;
-            label17.Location = new Point(369, 114);
+            label17.Location = new Point(369, 107);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
             label17.TabIndex = 102;
@@ -206,7 +212,7 @@
             // date
             // 
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(90, 114);
+            date.Location = new Point(90, 107);
             date.Name = "date";
             date.Size = new Size(160, 31);
             date.TabIndex = 101;
@@ -224,7 +230,7 @@
             label18.AutoSize = true;
             label18.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label18.ForeColor = Color.White;
-            label18.Location = new Point(20, 114);
+            label18.Location = new Point(20, 107);
             label18.Name = "label18";
             label18.Size = new Size(66, 25);
             label18.TabIndex = 100;
@@ -519,6 +525,36 @@
             label1.TabIndex = 269;
             label1.Text = "現在の状態";
             // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 292;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 291;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.Snow;
+            label2.ImageAlign = ContentAlignment.MiddleRight;
+            label2.Location = new Point(690, 152);
+            label2.Name = "label2";
+            label2.Size = new Size(72, 25);
+            label2.TabIndex = 290;
+            label2.Text = "何ページ";
+            // 
             // merchandise
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -604,5 +640,8 @@
         private Panel panel3;
         private DataGridView dataGridView2;
         private Label label16;
+        private Button Next;
+        private Button Prev;
+        private Label label2;
     }
 }

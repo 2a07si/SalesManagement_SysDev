@@ -39,7 +39,7 @@ namespace SalesManagement_SysDev
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           // DateTime dateTime = DateTime.Now;
+            // DateTime dateTime = DateTime.Now;
             //labeltime.Text = dateTime.ToLongTimeString();
 
             //var now = System.DateTime.Now;

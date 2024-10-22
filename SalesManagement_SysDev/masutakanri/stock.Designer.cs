@@ -60,9 +60,9 @@
             label1 = new Label();
             dataGridView2 = new DataGridView();
             panel3 = new Panel();
-            Next = new Button();
-            Prev = new Button();
             label8 = new Label();
+            Prev = new Button();
+            Next = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -393,24 +393,6 @@
             panel3.TabIndex = 267;
             panel3.Paint += panel3_Paint;
             // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 289;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 288;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
             // label8
             // 
             label8.AutoSize = true;
@@ -422,6 +404,24 @@
             label8.Size = new Size(72, 25);
             label8.TabIndex = 287;
             label8.Text = "何ページ";
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 288;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 289;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
             // 
             // stock
             // 

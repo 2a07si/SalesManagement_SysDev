@@ -66,6 +66,9 @@
             label1 = new Label();
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
+            Next = new Button();
+            Prev = new Button();
+            label6 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -194,6 +197,9 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
+            panel1.Controls.Add(Next);
+            panel1.Controls.Add(Prev);
+            panel1.Controls.Add(label6);
             panel1.Controls.Add(date);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(dataGridView1);
@@ -451,6 +457,36 @@
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 52;
             // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 297;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 296;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.Snow;
+            label6.ImageAlign = ContentAlignment.MiddleRight;
+            label6.Location = new Point(690, 152);
+            label6.Name = "label6";
+            label6.Size = new Size(72, 25);
+            label6.TabIndex = 295;
+            label6.Text = "何ページ";
+            // 
             // employee
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -530,5 +566,8 @@
         private Label label1;
         private Panel panel2;
         private DataGridView dataGridView2;
+        private Button Next;
+        private Button Prev;
+        private Label label6;
     }
 }
