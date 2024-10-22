@@ -168,7 +168,7 @@ namespace SalesManagement_SysDev
         }
         private void b_reg_Click(object sender, EventArgs e)
         {
-            currentStatus.ListStatus(label2);
+            currentStatus.RegistrationStatus(label2);
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))

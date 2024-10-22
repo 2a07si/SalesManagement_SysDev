@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             kakutei = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
-            button1 = new Button();
+            b_kakutei = new Button();
             clear = new Button();
             close = new Button();
             label_ename = new Label();
@@ -100,16 +100,16 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
-            // button1
+            // b_kakutei
             // 
-            button1.BackColor = Color.FromArgb(255, 192, 192);
-            button1.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(1200, 70);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 70);
-            button1.TabIndex = 257;
-            button1.Text = "確定";
-            button1.UseVisualStyleBackColor = false;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Name = "b_kakutei";
+            b_kakutei.Size = new Size(150, 70);
+            b_kakutei.TabIndex = 257;
+            b_kakutei.Text = "確定";
+            b_kakutei.UseVisualStyleBackColor = false;
             // 
             // clear
             // 
@@ -647,7 +647,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.Location = new Point(1100, 100);
+            label2.Location = new Point(1100, 98);
             label2.Name = "label2";
             label2.Size = new Size(86, 32);
             label2.TabIndex = 262;
@@ -663,7 +663,7 @@
             Controls.Add(label1);
             Controls.Add(panel3);
             Controls.Add(B_iti);
-            Controls.Add(button1);
+            Controls.Add(b_kakutei);
             Controls.Add(clear);
             Controls.Add(close);
             Controls.Add(label_ename);
@@ -698,7 +698,7 @@
 
         private Button kakutei;
         private System.Windows.Forms.Timer timer1;
-        private Button button1;
+        private Button b_kakutei;
         private Button clear;
         private Button close;
         private Label label_ename;
