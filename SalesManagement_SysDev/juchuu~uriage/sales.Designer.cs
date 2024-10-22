@@ -330,6 +330,7 @@
             // DelFlag
             // 
             DelFlag.AutoSize = true;
+            DelFlag.BackColor = Color.Transparent;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.LavenderBlush;
             DelFlag.Location = new Point(20, 120);
@@ -337,7 +338,7 @@
             DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 281;
             DelFlag.Text = "非表示";
-            DelFlag.UseVisualStyleBackColor = true;
+            DelFlag.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
