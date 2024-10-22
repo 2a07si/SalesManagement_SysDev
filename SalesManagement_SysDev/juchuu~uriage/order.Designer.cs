@@ -68,7 +68,6 @@
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
-            label2 = new Label();
             TBTyumonIDS = new MaskedTextBox();
             label10 = new Label();
             TBSyohinID = new MaskedTextBox();
@@ -80,6 +79,7 @@
             TBTyumonSyosaiID = new MaskedTextBox();
             panel3 = new Panel();
             label1 = new Label();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -496,16 +496,6 @@
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.Location = new Point(1100, 100);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 32);
-            label2.TabIndex = 264;
-            label2.Text = "更新";
-            // 
             // TBTyumonIDS
             // 
             TBTyumonIDS.Location = new Point(310, 20);
@@ -616,6 +606,16 @@
             label1.TabIndex = 263;
             label1.Text = "現在の状態";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label2.Location = new Point(1100, 100);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 32);
+            label2.TabIndex = 264;
+            label2.Text = "更新";
+            // 
             // order
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -696,7 +696,6 @@
         private Button Next;
         private Button Prev;
         private Label label8;
-        private Label label2;
         private MaskedTextBox TBTyumonIDS;
         private Label label10;
         private MaskedTextBox TBSyohinID;
@@ -708,5 +707,6 @@
         private MaskedTextBox TBTyumonSyosaiID;
         private Panel panel3;
         private Label label1;
+        private Label label2;
     }
 }
