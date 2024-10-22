@@ -195,6 +195,7 @@ namespace SalesManagement_SysDev
         private void B_iti_Click_1(object sender, EventArgs e)
         {
             currentStatus.SearchStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
