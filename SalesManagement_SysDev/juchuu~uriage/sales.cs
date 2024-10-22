@@ -15,7 +15,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
+          //  this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
             this.Load += new EventHandler(sales_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
@@ -23,7 +23,9 @@ namespace SalesManagement_SysDev
 
         private void sales_Load(object sender, EventArgs e)
         {
-            800, 490GlobalUtility.UpdateLabels(label_id, label_ename);
+            
+            
+            GlobalUtility.UpdateLabels(label_id, label_ename);
             // timerManager.UpdateDateTime(); // この行を削除またはコメントアウト 
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,

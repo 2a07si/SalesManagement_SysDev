@@ -66,6 +66,8 @@
             B_iti = new Button();
             dataGridView2 = new DataGridView();
             panel2 = new Panel();
+            label2 = new Label();
+            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -457,11 +459,33 @@
             panel2.TabIndex = 288;
             panel2.Paint += panel2_Paint;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label2.Location = new Point(1068, 108);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 32);
+            label2.TabIndex = 290;
+            label2.Text = "更新";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(1080, 70);
+            label1.Name = "label1";
+            label1.Size = new Size(108, 28);
+            label1.TabIndex = 289;
+            label1.Text = "現在の状態";
+            // 
             // sales
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(panel2);
             Controls.Add(B_iti);
             Controls.Add(kakutei);
@@ -532,5 +556,7 @@
         private Button B_iti;
         private DataGridView dataGridView2;
         private Panel panel2;
+        private Label label2;
+        private Label label1;
     }
 }
