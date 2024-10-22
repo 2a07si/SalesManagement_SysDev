@@ -23,7 +23,14 @@ namespace SalesManagement_SysDev
         private void order_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            // timerManager.UpdateDateTime(); // 削除またはコメントアウト 
+            // timerManager.UpdateDateTime(); // 削除またはコメントアウト
+            accessManager.SetButtonAccess(new Control[] {
+                b_acc,
+                b_arr,
+                b_shi,
+                b_sal,
+                b_lss
+            });
         }
 
         // メインメニューに戻る 

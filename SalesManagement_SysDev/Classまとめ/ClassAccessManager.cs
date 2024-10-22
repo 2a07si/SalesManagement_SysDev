@@ -26,7 +26,7 @@ namespace SalesManagement_SysDev.Classまとめ
                         // 権限2: 受注、注文、入荷、出荷、売上は無効
                         if (button.Name == "b_mer" || button.Name == "b_sto" ||
                             button.Name == "b_emp" || button.Name == "b_lss" ||
-                            button.Name == "b_hor" || button.Name == "b_rec")
+                            button.Name == "b_hor" || button.Name == "b_rec" || button.Name == "b_hacchuu")
                         {
                             button.Enabled = false; // アクセス不可のボタン
 

@@ -68,6 +68,11 @@ namespace SalesManagement_SysDev
         private void employee_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
+            accessManager.SetButtonAccess(new Control[] {
+                b_cus,
+                b_mer,
+                b_sto,
+            });
         }
     }
 }

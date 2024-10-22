@@ -25,6 +25,13 @@ namespace SalesManagement_SysDev
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
             // timerManager.UpdateDateTime(); // この行を削除またはコメントアウト 
+            accessManager.SetButtonAccess(new Control[] {
+                b_ord,
+                b_arr,
+                b_shi,
+                b_acc,
+                b_lss
+            });
         }
 
         // メインメニューに戻る 

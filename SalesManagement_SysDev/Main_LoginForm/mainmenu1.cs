@@ -69,14 +69,46 @@ namespace SalesManagement_SysDev
 
         private void b_juchuu_Click(object sender, EventArgs e)
         {
-            changeForm.NavigateToAcceptingOrderForm();
-            accessManager.SetButtonAccess(new Control[] { b_juchuu });
+            switch (Global.EmployeePermission)
+            {
+                case 2:
+                    // 権限2の時、stockフォームに遷移
+                    changeForm.NavigateToAcceptingOrderForm();
+                    break;
+
+                case 3:
+                    // 権限3の時、merchandiseフォームに遷移
+                    changeForm.NavigateToIssueForm();
+                    break;
+
+                default:
+                    // 権限1の場合は元の機能をそのまま維持
+                    changeForm.NavigateEmployeeForm();
+                    break;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            changeForm.NavigateToHorderForm();
-            accessManager.SetButtonAccess(new Control[] { b_hacchuu });
+            switch (Global.EmployeePermission)
+            {
+                case 2:
+                    if(b_hacchuu.Enabled)
+                    {
+                        changeForm.NavigateToHorderForm();
+                    }
+                    break;
+
+                case 3:
+                    // 権限3の時、merchandiseフォームに遷移
+                    changeForm.NavigateToHorderForm();
+                    break;
+
+                default:
+                    // 権限1の場合は元の機能をそのまま維持
+                    changeForm.NavigateEmployeeForm();
+                    break;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -93,7 +125,23 @@ namespace SalesManagement_SysDev
 
         private void b_masuta_Click_1(object sender, EventArgs e)
         {
-            changeForm.NavigateEmployeeForm();
+            switch (Global.EmployeePermission)
+            {
+                case 2:
+                    // 権限2の時、stockフォームに遷移
+                    changeForm.NavigateCustomerForm();
+                    break;
+
+                case 3:
+                    // 権限3の時、merchandiseフォームに遷移
+                    changeForm.NavigateMerchandiseForm();
+                    break;
+
+                default:
+                    // 権限1の場合は元の機能をそのまま維持
+                    changeForm.NavigateEmployeeForm();
+                    break;
+            }
         }
 
 

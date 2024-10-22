@@ -70,6 +70,11 @@ namespace SalesManagement_SysDev
         private void stock_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
+            accessManager.SetButtonAccess(new Control[] {
+                b_emp,
+                b_mer,
+                b_cus,
+            });
         }
     }
 }

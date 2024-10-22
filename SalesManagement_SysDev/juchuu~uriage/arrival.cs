@@ -24,7 +24,7 @@ namespace SalesManagement_SysDev
             GlobalUtility.UpdateLabels(label_id, label_ename);
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
-                b_arr,
+                b_acc,
                 b_shi,
                 b_sal,
                 b_lss

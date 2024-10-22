@@ -73,7 +73,11 @@ namespace SalesManagement_SysDev
         private void customer_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            dateNamelabel.UpdateDateTime();
+            accessManager.SetButtonAccess(new Control[] {
+                b_emp,
+                b_mer,
+                b_sto,
+            });
 
         }
     }
