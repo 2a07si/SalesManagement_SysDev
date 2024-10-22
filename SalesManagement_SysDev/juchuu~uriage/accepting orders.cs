@@ -123,7 +123,7 @@ namespace SalesManagement_SysDev
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
             TBJyutyuSyosaiID.Text = "";
-            TBJyutyuIDcopy.Text = "";
+            TBJyutyuIDS.Text = "";
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
             TBGoukeiKingaku.Text = "";
@@ -132,11 +132,6 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             currentStatus.ListStatus(label2);
-        }
-
-        private void B_iti_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -512,7 +512,6 @@
             B_iti.TabIndex = 258;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
-            B_iti.Click += B_iti_Click;
             // 
             // panel3
             // 
