@@ -39,9 +39,12 @@
             b_hor = new Button();
             b_rec = new Button();
             panel1 = new Panel();
+            Next = new Button();
             NyuukoFlag = new CheckBox();
+            Prev = new Button();
             date = new DateTimePicker();
             DelFlag = new CheckBox();
+            label5 = new Label();
             label18 = new Label();
             TBRiyuu = new MaskedTextBox();
             label17 = new Label();
@@ -57,9 +60,6 @@
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
-            Next = new Button();
-            Prev = new Button();
-            label5 = new Label();
             panel3 = new Panel();
             TBHattyuuSyosaiID = new MaskedTextBox();
             dataGridView2 = new DataGridView();
@@ -162,7 +162,7 @@
             // b_rec
             // 
             b_rec.BackColor = Color.FromArgb(255, 255, 192);
-            b_rec.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            b_rec.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_rec.ForeColor = Color.Black;
             b_rec.Location = new Point(15, 250);
             b_rec.Name = "b_rec";
@@ -196,6 +196,15 @@
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 204;
             // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 273;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
             // NyuukoFlag
             // 
             NyuukoFlag.AutoSize = true;
@@ -207,6 +216,15 @@
             NyuukoFlag.TabIndex = 247;
             NyuukoFlag.Text = "入庫状態";
             NyuukoFlag.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 272;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
             // 
             // date
             // 
@@ -227,6 +245,18 @@
             DelFlag.TabIndex = 246;
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.Snow;
+            label5.ImageAlign = ContentAlignment.MiddleRight;
+            label5.Location = new Point(690, 152);
+            label5.Name = "label5";
+            label5.Size = new Size(72, 25);
+            label5.TabIndex = 270;
+            label5.Text = "何ページ";
             // 
             // label18
             // 
@@ -321,6 +351,7 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 52;
+            // 
             // kakutei
             // 
             kakutei.BackColor = Color.FromArgb(255, 192, 192);
@@ -362,36 +393,6 @@
             B_iti.TabIndex = 260;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
-            // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 273;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 272;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.Snow;
-            label5.ImageAlign = ContentAlignment.MiddleRight;
-            label5.Location = new Point(690, 152);
-            label5.Name = "label5";
-            label5.Size = new Size(72, 25);
-            label5.TabIndex = 270;
-            label5.Text = "何ページ";
             // 
             // panel3
             // 

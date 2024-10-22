@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
+using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
+
 
 namespace SalesManagement_SysDev
 {
@@ -72,11 +74,52 @@ namespace SalesManagement_SysDev
         private void clear_Click(object sender, EventArgs e)
         {
             // クリア機能の実装 
+            cleartext();
         }
 
         private void label_ename_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+            currentStatus.RegistrationStatus(label2);
+
+        }
+
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+            currentStatus.UpDateStatus(label2);
+
+        }
+
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            currentStatus.ListStatus(label2);
+
+        }
+
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            currentStatus.SearchStatus(label2);
+
+        }
+        private void cleartext()
+        {
+            TBTyumonID.Text = "";
+            TBShopId.Text = "";
+            TBShainId.Text = "";
+            TBKokyakuId.Text = "";
+            TBJyutyuID.Text = "";
+            TyumonFlag.Checked = false;
+            DelFlag.Checked = false;
+            TBRiyuu.Text = "";
+            TBTyumonSyosaiID.Text = "";
+            TBTyumonIDS.Text = "";
+            TBSyohinID.Text = "";
+            TBSuryou.Text = "";
         }
     }
 }
