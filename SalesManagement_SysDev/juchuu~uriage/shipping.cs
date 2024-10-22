@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
+using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
+
 
 namespace SalesManagement_SysDev
 {
@@ -122,6 +124,45 @@ namespace SalesManagement_SysDev
         {
         }
 
+        private void b_reg_Click_1(object sender, EventArgs e)
+        {
+            currentStatus.RegistrationStatus(label2);
+        }
 
+        private void b_upd_Click_1(object sender, EventArgs e)
+        {
+            currentStatus.UpDateStatus(label2);
+        }
+
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            currentStatus.ListStatus(label2);
+        }
+
+        private void b_ser_Click_1(object sender, EventArgs e)
+        {
+            currentStatus.SearchStatus(label2);
+        }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            cleartext();
+        }
+
+        private void cleartext()
+        {
+            TBSyukkaID.Text = "";
+            TBKokyakuID.Text = "";
+            TBShainID.Text = "";
+            TBShopID.Text = "";
+            TBJyutyuID.Text = "";
+            SyukkaFlag.Checked = false;
+            DelFlag.Checked = false;
+            TBRiyuu.Text = "";
+            TBSyukkaSyosaiID.Text = "";
+            TBSyukkaIDS.Text = "";
+            TBSyohinID.Text = "";
+            TBSuryou.Text = "";
+        }
     }
 }
