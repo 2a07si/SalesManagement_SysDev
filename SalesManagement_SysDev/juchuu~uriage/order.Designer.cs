@@ -176,7 +176,7 @@
             b_ord.BackColor = Color.Navy;
             b_ord.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_ord.ForeColor = Color.White;
-            b_ord.Location = new Point(15, 231);
+            b_ord.Location = new Point(15, 230);
             b_ord.Name = "b_ord";
             b_ord.Size = new Size(120, 90);
             b_ord.TabIndex = 208;
