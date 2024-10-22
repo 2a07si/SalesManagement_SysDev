@@ -95,12 +95,14 @@ namespace SalesManagement_SysDev
             TBShainId.Text = "";
             TBKokyaku.Text = "";
             TBJyutyu.Text = "";
-            Nyuukaflag.Text = "";
-            DelFlag.Text = "";
+            Nyuukaflag.Checked = false;
+            DelFlag.Checked = false;
             TBRiyuu.Text = "";
             TBNyukaSyosaiID.Text = "";
             TBNyuukaIDS.Text = "";
             TBSuryou.Text = "";
+            TBSyohinID.Text = "";
+            date.Value = DateTime.Now;
         }
     }
 }

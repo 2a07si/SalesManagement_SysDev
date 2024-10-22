@@ -67,7 +67,7 @@
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
             panel3 = new Panel();
-            TBNyukaIDS = new MaskedTextBox();
+            TBNyuukaIDS = new MaskedTextBox();
             TBNyukaSyosaiID = new MaskedTextBox();
             dataGridView2 = new DataGridView();
             TBSuryou = new MaskedTextBox();
@@ -478,7 +478,7 @@
             // panel3
             // 
             panel3.BackColor = Color.DarkRed;
-            panel3.Controls.Add(TBNyukaIDS);
+            panel3.Controls.Add(TBNyuukaIDS);
             panel3.Controls.Add(TBNyukaSyosaiID);
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(TBSuryou);
@@ -494,10 +494,10 @@
             // 
             // TBNyukaIDS
             // 
-            TBNyukaIDS.Location = new Point(310, 20);
-            TBNyukaIDS.Name = "TBNyukaIDS";
-            TBNyukaIDS.Size = new Size(100, 31);
-            TBNyukaIDS.TabIndex = 258;
+            TBNyuukaIDS.Location = new Point(310, 20);
+            TBNyuukaIDS.Name = "TBNyukaIDS";
+            TBNyuukaIDS.Size = new Size(100, 31);
+            TBNyuukaIDS.TabIndex = 258;
             // 
             // TBNyukaSyosaiID
             // 
@@ -683,11 +683,10 @@
         private Label label13;
         private MaskedTextBox TBSyohinID;
         private Label label10;
-        private MaskedTextBox TBNyuukaCopy;
+        private MaskedTextBox TBNyuukaIDS;
         private Label label8;
         private Label label2;
         private Label label1;
         private MaskedTextBox TBNyukaSyosaiID;
-        private MaskedTextBox TBNyukaIDS;
     }
 }

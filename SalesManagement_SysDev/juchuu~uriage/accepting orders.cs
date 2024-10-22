@@ -127,6 +127,7 @@ namespace SalesManagement_SysDev
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
             TBGoukeiKingaku.Text = "";
+            date.Value = DateTime.Now;
         }
 
         private void B_iti_Click(object sender, EventArgs e)
