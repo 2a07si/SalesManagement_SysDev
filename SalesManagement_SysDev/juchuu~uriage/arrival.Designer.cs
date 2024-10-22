@@ -88,23 +88,23 @@
             label_ename.AutoSize = true;
             label_ename.Location = new Point(165, 25);
             label_ename.Name = "label_ename";
-            label_ename.Size = new Size(59, 25);
+            label_ename.Size = new Size(96, 25);
             label_ename.TabIndex = 157;
-            label_ename.Text = "label7";
+            label_ename.Text = "------------";
             // 
             // label_id
             // 
             label_id.AutoSize = true;
             label_id.Location = new Point(310, 25);
             label_id.Name = "label_id";
-            label_id.Size = new Size(59, 25);
+            label_id.Size = new Size(54, 25);
             label_id.TabIndex = 156;
-            label_id.Text = "label6";
+            label_id.Text = "------";
             // 
             // b_ser
             // 
             b_ser.BackColor = Color.FromArgb(192, 255, 255);
-            b_ser.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_ser.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_ser.Location = new Point(750, 70);
             b_ser.Name = "b_ser";
             b_ser.Size = new Size(150, 70);
@@ -117,14 +117,14 @@
             label4.AutoSize = true;
             label4.Location = new Point(100, 25);
             label4.Name = "label4";
-            label4.Size = new Size(66, 25);
+            label4.Size = new Size(70, 25);
             label4.TabIndex = 155;
-            label4.Text = "社員名";
+            label4.Text = "社員名:";
             // 
             // b_upd
             // 
             b_upd.BackColor = Color.FromArgb(192, 255, 255);
-            b_upd.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_upd.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_upd.Location = new Point(350, 70);
             b_upd.Name = "b_upd";
             b_upd.Size = new Size(150, 70);
@@ -137,14 +137,14 @@
             label3.AutoSize = true;
             label3.Location = new Point(265, 25);
             label3.Name = "label3";
-            label3.Size = new Size(48, 25);
+            label3.Size = new Size(52, 25);
             label3.TabIndex = 154;
-            label3.Text = "権限";
+            label3.Text = "権限:";
             // 
             // b_reg
             // 
             b_reg.BackColor = Color.FromArgb(192, 255, 255);
-            b_reg.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_reg.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_reg.Location = new Point(150, 70);
             b_reg.Name = "b_reg";
             b_reg.Size = new Size(150, 70);
@@ -430,7 +430,7 @@
             // kakutei
             // 
             kakutei.BackColor = Color.FromArgb(255, 192, 192);
-            kakutei.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             kakutei.Location = new Point(1200, 70);
             kakutei.Name = "kakutei";
             kakutei.Size = new Size(150, 70);
@@ -440,7 +440,7 @@
             // 
             // clear
             // 
-            clear.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            clear.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
@@ -461,7 +461,7 @@
             // B_iti
             // 
             B_iti.BackColor = Color.FromArgb(192, 255, 255);
-            B_iti.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            B_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             B_iti.Location = new Point(550, 70);
             B_iti.Name = "B_iti";
             B_iti.Size = new Size(150, 70);

@@ -45,7 +45,7 @@
             // labeltime
             // 
             labeltime.AutoSize = true;
-            labeltime.Location = new Point(55, 47);
+            labeltime.Location = new Point(34, 17);
             labeltime.Name = "labeltime";
             labeltime.Size = new Size(80, 25);
             labeltime.TabIndex = 0;
@@ -54,7 +54,7 @@
             // labeldate
             // 
             labeldate.AutoSize = true;
-            labeldate.Location = new Point(55, 88);
+            labeldate.Location = new Point(34, 58);
             labeldate.Name = "labeldate";
             labeldate.Size = new Size(156, 25);
             labeldate.TabIndex = 1;
@@ -63,7 +63,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(635, 47);
+            label3.Location = new Point(1160, 17);
             label3.Name = "label3";
             label3.Size = new Size(48, 25);
             label3.TabIndex = 2;
@@ -72,7 +72,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(635, 88);
+            label4.Location = new Point(1160, 58);
             label4.Name = "label4";
             label4.Size = new Size(66, 25);
             label4.TabIndex = 3;
@@ -80,9 +80,9 @@
             // 
             // b_logout
             // 
-            b_logout.Location = new Point(926, 78);
+            b_logout.Location = new Point(1417, 10);
             b_logout.Name = "b_logout";
-            b_logout.Size = new Size(112, 47);
+            b_logout.Size = new Size(155, 56);
             b_logout.TabIndex = 21;
             b_logout.Text = "ログアウト";
             b_logout.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@
             // 
             b_juchuu.BackColor = Color.FromArgb(255, 255, 192);
             b_juchuu.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_juchuu.Location = new Point(33, 162);
+            b_juchuu.Location = new Point(268, 189);
             b_juchuu.Name = "b_juchuu";
             b_juchuu.Size = new Size(331, 493);
             b_juchuu.TabIndex = 23;
@@ -104,7 +104,7 @@
             // 
             b_hacchuu.BackColor = Color.FromArgb(255, 255, 192);
             b_hacchuu.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_hacchuu.Location = new Point(370, 162);
+            b_hacchuu.Location = new Point(605, 189);
             b_hacchuu.Name = "b_hacchuu";
             b_hacchuu.Size = new Size(331, 493);
             b_hacchuu.TabIndex = 24;
@@ -116,7 +116,7 @@
             // 
             b_masuta.BackColor = Color.FromArgb(255, 255, 192);
             b_masuta.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_masuta.Location = new Point(707, 162);
+            b_masuta.Location = new Point(942, 189);
             b_masuta.Name = "b_masuta";
             b_masuta.Size = new Size(331, 493);
             b_masuta.TabIndex = 25;
@@ -127,7 +127,7 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(726, 89);
+            label_ename.Location = new Point(1251, 59);
             label_ename.Name = "label_ename";
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 110;
@@ -136,7 +136,7 @@
             // label_id
             // 
             label_id.AutoSize = true;
-            label_id.Location = new Point(726, 47);
+            label_id.Location = new Point(1251, 17);
             label_id.Name = "label_id";
             label_id.Size = new Size(110, 25);
             label_id.TabIndex = 109;
@@ -151,7 +151,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(1067, 667);
+            ClientSize = new Size(1578, 844);
             Controls.Add(label_ename);
             Controls.Add(label_id);
             Controls.Add(b_masuta);
