@@ -114,6 +114,7 @@
             b_ser.TabIndex = 160;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
+            b_ser.Click += b_ser_Click;
             // 
             // label4
             // 
@@ -134,6 +135,7 @@
             b_upd.TabIndex = 159;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
+            b_upd.Click += b_upd_Click;
             // 
             // label3
             // 
@@ -154,6 +156,7 @@
             b_reg.TabIndex = 158;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
+            b_reg.Click += b_reg_Click;
             // 
             // b_acc
             // 
@@ -470,6 +473,7 @@
             clear.TabIndex = 245;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            clear.Click += clear_Click_1;
             // 
             // close
             // 
@@ -491,6 +495,7 @@
             B_iti.TabIndex = 259;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
+            B_iti.Click += B_iti_Click;
             // 
             // label2
             // 
@@ -500,7 +505,7 @@
             label2.Name = "label2";
             label2.Size = new Size(62, 32);
             label2.TabIndex = 264;
-            label2.Text = "更新";
+            label2.Text = "登録";
             // 
             // label1
             // 
