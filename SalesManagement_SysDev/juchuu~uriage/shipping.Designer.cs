@@ -67,14 +67,14 @@
             B_iti = new Button();
             label9 = new Label();
             label13 = new Label();
-            panel2 = new Panel();
-            dataGridView2 = new DataGridView();
             label2 = new Label();
             label1 = new Label();
+            dataGridView2 = new DataGridView();
+            panel2 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label_ename
@@ -187,7 +187,7 @@
             // b_shi
             // 
             b_shi.BackColor = Color.Navy;
-            b_shi.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_shi.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_shi.ForeColor = Color.White;
             b_shi.Location = new Point(15, 470);
             b_shi.Name = "b_shi";
@@ -472,26 +472,6 @@
             label13.TabIndex = 282;
             label13.Text = "受注詳細ID";
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.DarkRed;
-            panel2.Controls.Add(dataGridView2);
-            panel2.Location = new Point(970, 145);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(600, 690);
-            panel2.TabIndex = 287;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.AllowUserToOrderColumns = true;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(10, 190);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.RowTemplate.Height = 33;
-            dataGridView2.Size = new Size(580, 490);
-            dataGridView2.TabIndex = 52;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -512,6 +492,26 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 288;
             label1.Text = "現在の状態";
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.AllowUserToOrderColumns = true;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(10, 190);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 62;
+            dataGridView2.RowTemplate.Height = 33;
+            dataGridView2.Size = new Size(580, 490);
+            dataGridView2.TabIndex = 52;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.DarkRed;
+            panel2.Controls.Add(dataGridView2);
+            panel2.Location = new Point(970, 145);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(600, 690);
+            panel2.TabIndex = 287;
             // 
             // shipping
             // 
@@ -548,8 +548,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -593,9 +593,9 @@
         private Button B_iti;
         private Label label9;
         private Label label13;
-        private Panel panel2;
-        private DataGridView dataGridView2;
         private Label label2;
         private Label label1;
+        private DataGridView dataGridView2;
+        private Panel panel2;
     }
 }

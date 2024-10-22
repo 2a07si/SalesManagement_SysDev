@@ -174,7 +174,7 @@
             // b_ord
             // 
             b_ord.BackColor = Color.Navy;
-            b_ord.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_ord.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_ord.ForeColor = Color.White;
             b_ord.Location = new Point(15, 231);
             b_ord.Name = "b_ord";

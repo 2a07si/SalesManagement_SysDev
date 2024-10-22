@@ -23,7 +23,7 @@ namespace SalesManagement_SysDev
 
         private void sales_Load(object sender, EventArgs e)
         {
-            GlobalUtility.UpdateLabels(label_id, label_ename);
+            800, 490GlobalUtility.UpdateLabels(label_id, label_ename);
             // timerManager.UpdateDateTime(); // この行を削除またはコメントアウト 
         }
 
@@ -64,6 +64,11 @@ namespace SalesManagement_SysDev
         }
 
         private void b_flg_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
