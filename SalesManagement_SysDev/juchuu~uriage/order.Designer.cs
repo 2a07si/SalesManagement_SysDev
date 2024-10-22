@@ -296,7 +296,7 @@
             // 
             // TBJyutyuID
             // 
-            TBJyutyuID.Location = new Point(90, 70);
+            TBJyutyuID.Location = new Point(90, 71);
             TBJyutyuID.Name = "TBJyutyuID";
             TBJyutyuID.Size = new Size(100, 31);
             TBJyutyuID.TabIndex = 267;
