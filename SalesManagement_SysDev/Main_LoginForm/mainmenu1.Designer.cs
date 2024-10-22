@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            labeltime = new Label();
-            labeldate = new Label();
             label3 = new Label();
             label4 = new Label();
             b_logout = new Button();
@@ -42,41 +40,25 @@
             timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // labeltime
-            // 
-            labeltime.AutoSize = true;
-            labeltime.Location = new Point(34, 17);
-            labeltime.Name = "labeltime";
-            labeltime.Size = new Size(80, 25);
-            labeltime.TabIndex = 0;
-            labeltime.Text = "11:11:11";
-            // 
-            // labeldate
-            // 
-            labeldate.AutoSize = true;
-            labeldate.Location = new Point(34, 58);
-            labeldate.Name = "labeldate";
-            labeldate.Size = new Size(156, 25);
-            labeldate.TabIndex = 1;
-            labeldate.Text = "yyyy年mm月dd日";
-            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(1160, 17);
+            label3.Location = new Point(38, 26);
             label3.Name = "label3";
             label3.Size = new Size(48, 25);
             label3.TabIndex = 2;
             label3.Text = "権限";
+            label3.Click += label3_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1160, 58);
+            label4.Location = new Point(38, 67);
             label4.Name = "label4";
             label4.Size = new Size(66, 25);
             label4.TabIndex = 3;
             label4.Text = "社員名";
+            label4.Click += label4_Click;
             // 
             // b_logout
             // 
@@ -127,20 +109,22 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(1251, 59);
+            label_ename.Location = new Point(129, 68);
             label_ename.Name = "label_ename";
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 110;
             label_ename.Text = "label5";
+            label_ename.Click += label_ename_Click;
             // 
             // label_id
             // 
             label_id.AutoSize = true;
-            label_id.Location = new Point(1251, 17);
+            label_id.Location = new Point(129, 26);
             label_id.Name = "label_id";
             label_id.Size = new Size(110, 25);
             label_id.TabIndex = 109;
             label_id.Text = "label_empID";
+            label_id.Click += label_id_Click;
             // 
             // timer1
             // 
@@ -160,8 +144,6 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(labeldate);
-            Controls.Add(labeltime);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "mainmenu1";
             StartPosition = FormStartPosition.CenterScreen;

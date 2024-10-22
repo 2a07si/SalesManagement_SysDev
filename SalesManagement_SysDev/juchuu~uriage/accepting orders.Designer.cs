@@ -80,7 +80,7 @@
             label13 = new Label();
             TBSyohinID = new MaskedTextBox();
             label10 = new Label();
-            TBJyutyuIDcopy = new MaskedTextBox();
+            TBJyutyuIDS = new MaskedTextBox();
             label1 = new Label();
             label2 = new Label();
             panel1.SuspendLayout();
@@ -404,7 +404,7 @@
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             date.Location = new Point(390, 70);
             date.Name = "date";
-            date.Size = new Size(184, 31);
+            date.Size = new Size(185, 31);
             date.TabIndex = 75;
             date.ValueChanged += date_ValueChanged;
             // 
@@ -527,7 +527,7 @@
             panel3.Controls.Add(label13);
             panel3.Controls.Add(TBSyohinID);
             panel3.Controls.Add(label10);
-            panel3.Controls.Add(TBJyutyuIDcopy);
+            panel3.Controls.Add(TBJyutyuIDS);
             panel3.Location = new Point(970, 145);
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 690);
@@ -627,12 +627,12 @@
             label10.TabIndex = 271;
             label10.Text = "商品ID";
             // 
-            // TBJyutyuIDcopy
+            // TBJyutyuIDS
             // 
-            TBJyutyuIDcopy.Location = new Point(310, 20);
-            TBJyutyuIDcopy.Name = "TBJyutyuIDcopy";
-            TBJyutyuIDcopy.Size = new Size(100, 31);
-            TBJyutyuIDcopy.TabIndex = 272;
+            TBJyutyuIDS.Location = new Point(310, 20);
+            TBJyutyuIDS.Name = "TBJyutyuIDS";
+            TBJyutyuIDS.Size = new Size(100, 31);
+            TBJyutyuIDS.TabIndex = 272;
             // 
             // label1
             // 
@@ -748,7 +748,7 @@
         private Label label13;
         private MaskedTextBox TBSyohinID;
         private Label label10;
-        private MaskedTextBox TBJyutyuIDcopy;
+        private MaskedTextBox TBJyutyuIDS;
         private MaskedTextBox TBGoukeiKingaku;
         private Label label11;
     }

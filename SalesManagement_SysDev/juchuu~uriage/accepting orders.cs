@@ -133,5 +133,10 @@ namespace SalesManagement_SysDev
         {
             currentStatus.ListStatus(label2);
         }
+
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
