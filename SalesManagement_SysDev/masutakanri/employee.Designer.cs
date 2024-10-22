@@ -41,6 +41,9 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
+            Next = new Button();
+            Prev = new Button();
+            label6 = new Label();
             date = new DateTimePicker();
             label18 = new Label();
             dataGridView1 = new DataGridView();
@@ -57,7 +60,7 @@
             TBShopId = new MaskedTextBox();
             TBSyainName = new MaskedTextBox();
             DelFlag = new CheckBox();
-            kakutei = new Button();
+            b_kakutei = new Button();
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
@@ -66,9 +69,6 @@
             label1 = new Label();
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
-            Next = new Button();
-            Prev = new Button();
-            label6 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -221,6 +221,36 @@
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 187;
             // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 297;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 296;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.Snow;
+            label6.ImageAlign = ContentAlignment.MiddleRight;
+            label6.Location = new Point(690, 152);
+            label6.Name = "label6";
+            label6.Size = new Size(72, 25);
+            label6.TabIndex = 295;
+            label6.Text = "何ページ";
+            // 
             // date
             // 
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
@@ -371,16 +401,16 @@
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
             // 
-            // kakutei
+            // b_kakutei
             // 
-            kakutei.BackColor = Color.FromArgb(255, 192, 192);
-            kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(1200, 70);
-            kakutei.Name = "kakutei";
-            kakutei.Size = new Size(150, 70);
-            kakutei.TabIndex = 240;
-            kakutei.Text = "確定";
-            kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Name = "b_kakutei";
+            b_kakutei.Size = new Size(150, 70);
+            b_kakutei.TabIndex = 240;
+            b_kakutei.Text = "確定";
+            b_kakutei.UseVisualStyleBackColor = false;
             // 
             // clear
             // 
@@ -423,9 +453,9 @@
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label2.Location = new Point(1100, 101);
             label2.Name = "label2";
-            label2.Size = new Size(62, 32);
+            label2.Size = new Size(86, 32);
             label2.TabIndex = 293;
-            label2.Text = "更新";
+            label2.Text = "未選択";
             // 
             // label1
             // 
@@ -457,36 +487,6 @@
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 52;
             // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 297;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 296;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.Snow;
-            label6.ImageAlign = ContentAlignment.MiddleRight;
-            label6.Location = new Point(690, 152);
-            label6.Name = "label6";
-            label6.Size = new Size(72, 25);
-            label6.TabIndex = 295;
-            label6.Text = "何ページ";
-            // 
             // employee
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -496,7 +496,7 @@
             Controls.Add(label1);
             Controls.Add(panel2);
             Controls.Add(B_iti);
-            Controls.Add(kakutei);
+            Controls.Add(b_kakutei);
             Controls.Add(clear);
             Controls.Add(close);
             Controls.Add(b_emp);
@@ -542,7 +542,7 @@
         private DataGridView dataGridView1;
         private Label labeldate;
         private Label labeltime;
-        private Button kakutei;
+        private Button b_kakutei;
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;
