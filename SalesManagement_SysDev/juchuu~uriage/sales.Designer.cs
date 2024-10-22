@@ -43,9 +43,6 @@
             b_arr = new Button();
             b_lss = new Button();
             panel1 = new Panel();
-            Next = new Button();
-            Prev = new Button();
-            label8 = new Label();
             TBJyutyuID = new MaskedTextBox();
             label7 = new Label();
             dataGridView1 = new DataGridView();
@@ -81,6 +78,11 @@
             TBSyohinID = new MaskedTextBox();
             label10 = new Label();
             TBUriageIDS = new MaskedTextBox();
+            label2 = new Label();
+            label1 = new Label();
+            label8 = new Label();
+            Prev = new Button();
+            Next = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -262,36 +264,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 223;
-            // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 286;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 285;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Snow;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(690, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 284;
-            label8.Text = "何ページ";
             // 
             // TBJyutyuID
             // 
@@ -626,11 +598,63 @@
             TBUriageIDS.Size = new Size(100, 31);
             TBUriageIDS.TabIndex = 272;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label2.Location = new Point(1106, 100);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 32);
+            label2.TabIndex = 268;
+            label2.Text = "更新";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(1086, 70);
+            label1.Name = "label1";
+            label1.Size = new Size(108, 28);
+            label1.TabIndex = 267;
+            label1.Text = "現在の状態";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.Snow;
+            label8.ImageAlign = ContentAlignment.MiddleRight;
+            label8.Location = new Point(690, 152);
+            label8.Name = "label8";
+            label8.Size = new Size(72, 25);
+            label8.TabIndex = 284;
+            label8.Text = "何ページ";
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 285;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 286;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
             // sales
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(panel4);
             Controls.Add(B_iti);
             Controls.Add(kakutei);
@@ -703,9 +727,6 @@
         private MaskedTextBox TBJyutyuID;
         private Label label7;
         private Button B_iti;
-        private Button Next;
-        private Button Prev;
-        private Label label8;
         private Panel panel3;
         private MaskedTextBox TBGoukeiKingaku;
         private Label label11;
@@ -722,5 +743,10 @@
         private MaskedTextBox TBSyohinID;
         private Label label10;
         private MaskedTextBox TBUriageIDS;
+        private Label label2;
+        private Label label1;
+        private Button Next;
+        private Button Prev;
+        private Label label8;
     }
 }
