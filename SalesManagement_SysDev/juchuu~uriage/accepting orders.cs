@@ -5,6 +5,7 @@ using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace SalesManagement_SysDev
 {
@@ -213,6 +214,31 @@ namespace SalesManagement_SysDev
             {
                 // エラーメッセージを表示
                 MessageBox.Show($"エラーが発生しました: {ex.Message}");
+            }
+        }
+
+        private void B_iti_Click_1(object sender, EventArgs e)
+        {
+            DisplayOrders(); // データベースの一覧を表示するメソッドを呼び出す 
+        }
+        private void DisplayOrders()
+        {
+            // データベース接続用の文字列 
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
+
+
+            // データベースからデータを取得する 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); // データベース接続を開く 
+
+                string query = "SELECT * FROM T_Order"; // データを取得するクエリ 
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable); // データをデータテーブルに読み込む 
+
+                // DataGridViewにデータをバインドする 
+                dataGridView1.DataSource = dataTable; // dataGridView1はデザインで追加したDataGridViewの名前 
             }
         }
     }
