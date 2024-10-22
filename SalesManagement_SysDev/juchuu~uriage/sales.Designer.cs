@@ -43,6 +43,9 @@
             b_arr = new Button();
             b_lss = new Button();
             panel1 = new Panel();
+            Next = new Button();
+            Prev = new Button();
+            label8 = new Label();
             TBJyutyuID = new MaskedTextBox();
             label7 = new Label();
             dataGridView1 = new DataGridView();
@@ -64,14 +67,13 @@
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
-            Next = new Button();
-            Prev = new Button();
-            label8 = new Label();
             panel3 = new Panel();
             TBGoukeiKingaku = new MaskedTextBox();
             label11 = new Label();
-            TBUriageSyosaiID = new MaskedTextBox();
             dataGridView2 = new DataGridView();
+            panel4 = new Panel();
+            TBUriageSyosaiID = new MaskedTextBox();
+            dataGridView3 = new DataGridView();
             TBSuryou = new MaskedTextBox();
             label15 = new Label();
             label9 = new Label();
@@ -83,6 +85,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             SuspendLayout();
             // 
             // label_ename
@@ -258,6 +262,36 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 223;
+            // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 286;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 285;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.Snow;
+            label8.ImageAlign = ContentAlignment.MiddleRight;
+            label8.Location = new Point(690, 152);
+            label8.Name = "label8";
+            label8.Size = new Size(72, 25);
+            label8.TabIndex = 284;
+            label8.Text = "何ページ";
             // 
             // TBJyutyuID
             // 
@@ -452,50 +486,12 @@
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 286;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 285;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Snow;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(690, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 284;
-            label8.Text = "何ページ";
-            // 
             // panel3
             // 
             panel3.BackColor = Color.DarkRed;
             panel3.Controls.Add(TBGoukeiKingaku);
             panel3.Controls.Add(label11);
-            panel3.Controls.Add(TBUriageSyosaiID);
             panel3.Controls.Add(dataGridView2);
-            panel3.Controls.Add(TBSuryou);
-            panel3.Controls.Add(label15);
-            panel3.Controls.Add(label9);
-            panel3.Controls.Add(label13);
-            panel3.Controls.Add(TBSyohinID);
-            panel3.Controls.Add(label10);
-            panel3.Controls.Add(TBUriageIDS);
             panel3.Location = new Point(970, 145);
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 690);
@@ -519,13 +515,6 @@
             label11.TabIndex = 278;
             label11.Text = "合計金額";
             // 
-            // TBUriageSyosaiID
-            // 
-            TBUriageSyosaiID.Location = new Point(130, 20);
-            TBUriageSyosaiID.Name = "TBUriageSyosaiID";
-            TBUriageSyosaiID.Size = new Size(100, 31);
-            TBUriageSyosaiID.TabIndex = 277;
-            // 
             // dataGridView2
             // 
             dataGridView2.AllowUserToOrderColumns = true;
@@ -536,6 +525,41 @@
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 52;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.DarkRed;
+            panel4.Controls.Add(TBUriageSyosaiID);
+            panel4.Controls.Add(dataGridView3);
+            panel4.Controls.Add(TBSuryou);
+            panel4.Controls.Add(label15);
+            panel4.Controls.Add(label9);
+            panel4.Controls.Add(label13);
+            panel4.Controls.Add(TBSyohinID);
+            panel4.Controls.Add(label10);
+            panel4.Controls.Add(TBUriageIDS);
+            panel4.Location = new Point(970, 145);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(600, 690);
+            panel4.TabIndex = 266;
+            // 
+            // TBUriageSyosaiID
+            // 
+            TBUriageSyosaiID.Location = new Point(130, 20);
+            TBUriageSyosaiID.Name = "TBUriageSyosaiID";
+            TBUriageSyosaiID.Size = new Size(100, 31);
+            TBUriageSyosaiID.TabIndex = 277;
+            // 
+            // dataGridView3
+            // 
+            dataGridView3.AllowUserToOrderColumns = true;
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Location = new Point(10, 190);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.RowHeadersWidth = 62;
+            dataGridView3.RowTemplate.Height = 33;
+            dataGridView3.Size = new Size(580, 490);
+            dataGridView3.TabIndex = 52;
             // 
             // TBSuryou
             // 
@@ -602,32 +626,12 @@
             TBUriageIDS.Size = new Size(100, 31);
             TBUriageIDS.TabIndex = 272;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1080, 70);
-            label1.Name = "label1";
-            label1.Size = new Size(108, 28);
-            label1.TabIndex = 289;
-            label1.Text = "現在の状態";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.Location = new Point(1100, 100);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 32);
-            label2.TabIndex = 290;
-            label2.Text = "更新";
-            // 
             // sales
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
-            Controls.Add(panel2);
+            Controls.Add(panel4);
             Controls.Add(B_iti);
             Controls.Add(kakutei);
             Controls.Add(clear);
@@ -656,6 +660,9 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -702,8 +709,18 @@
         private Panel panel3;
         private MaskedTextBox TBGoukeiKingaku;
         private Label label11;
-        private MaskedTextBox TBUriageSyosaiID;
+        private MaskedTextBox TBaaaaaID;
         private DataGridView dataGridView2;
         private Panel panel2;
+        private Panel panel4;
+        private MaskedTextBox TBUriageSyosaiID;
+        private DataGridView dataGridView3;
+        private MaskedTextBox TBSuryou;
+        private Label label15;
+        private Label label9;
+        private Label label13;
+        private MaskedTextBox TBSyohinID;
+        private Label label10;
+        private MaskedTextBox TBUriageIDS;
     }
 }

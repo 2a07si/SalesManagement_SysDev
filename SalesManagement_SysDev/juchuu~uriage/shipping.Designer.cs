@@ -77,6 +77,10 @@
             TBSyohinID = new MaskedTextBox();
             label10 = new Label();
             TBSyukkaIDS = new MaskedTextBox();
+            label8 = new Label();
+            Next = new Button();
+            Prev = new Button();
+            label11 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -231,7 +235,10 @@
             // panel1
             // 
             panel1.BackColor = Color.Navy;
+            panel1.Controls.Add(Next);
             panel1.Controls.Add(label7);
+            panel1.Controls.Add(Prev);
+            panel1.Controls.Add(label11);
             panel1.Controls.Add(TBSyukkaID);
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(SyukkaFlag);
@@ -456,30 +463,6 @@
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.ForeColor = Color.White;
-            label9.Location = new Point(980, 214);
-            label9.Name = "label9";
-            label9.Size = new Size(48, 25);
-            label9.TabIndex = 286;
-            label9.Text = "数量";
-            label9.Click += label9_Click;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.ForeColor = Color.White;
-            label13.Location = new Point(980, 164);
-            label13.Name = "label13";
-            label13.Size = new Size(102, 25);
-            label13.TabIndex = 282;
-            label13.Text = "受注詳細ID";
-            label13.Click += label13_Click;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -505,6 +488,7 @@
             // panel3
             // 
             panel3.BackColor = Color.DarkRed;
+            panel3.Controls.Add(label8);
             panel3.Controls.Add(TBSyukkaSyosaiID);
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(TBSuryou);
@@ -565,6 +549,7 @@
             label9.Size = new Size(48, 25);
             label9.TabIndex = 275;
             label9.Text = "数量";
+            label9.Click += label9_Click;
             // 
             // label13
             // 
@@ -576,6 +561,7 @@
             label13.Size = new Size(102, 25);
             label13.TabIndex = 269;
             label13.Text = "出荷詳細ID";
+            label13.Click += label13_Click;
             // 
             // TBSyohinID
             // 
@@ -584,12 +570,60 @@
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 274;
             // 
-            panel2.BackColor = Color.DarkRed;
-            panel2.Controls.Add(dataGridView2);
-            panel2.Location = new Point(970, 145);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(600, 690);
-            panel2.TabIndex = 287;
+            // label10
+            // 
+            label10.Location = new Point(0, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(100, 23);
+            label10.TabIndex = 278;
+            // 
+            // TBSyukkaIDS
+            // 
+            TBSyukkaIDS.Location = new Point(310, 20);
+            TBSyukkaIDS.Name = "TBSyukkaIDS";
+            TBSyukkaIDS.Size = new Size(100, 31);
+            TBSyukkaIDS.TabIndex = 279;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.White;
+            label8.Location = new Point(420, 20);
+            label8.Name = "label8";
+            label8.Size = new Size(66, 25);
+            label8.TabIndex = 280;
+            label8.Text = "商品ID";
+            // 
+            // Next
+            // 
+            Next.Location = new Point(770, 144);
+            Next.Name = "Next";
+            Next.Size = new Size(40, 40);
+            Next.TabIndex = 293;
+            Next.Text = "▶";
+            Next.UseVisualStyleBackColor = true;
+            // 
+            // Prev
+            // 
+            Prev.Location = new Point(640, 144);
+            Prev.Name = "Prev";
+            Prev.Size = new Size(40, 40);
+            Prev.TabIndex = 292;
+            Prev.Text = "◀";
+            Prev.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.Snow;
+            label11.ImageAlign = ContentAlignment.MiddleRight;
+            label11.Location = new Point(690, 152);
+            label11.Name = "label11";
+            label11.Size = new Size(72, 25);
+            label11.TabIndex = 291;
+            label11.Text = "何ページ";
             // 
             // shipping
             // 
@@ -680,5 +714,9 @@
         private MaskedTextBox TBSyohinID;
         private Label label10;
         private MaskedTextBox TBSyukkaIDS;
+        private Label label8;
+        private Button Next;
+        private Button Prev;
+        private Label label11;
     }
 }
