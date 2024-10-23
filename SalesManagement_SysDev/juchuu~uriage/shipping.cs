@@ -170,5 +170,10 @@ namespace SalesManagement_SysDev
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
         }
+
+        private void close_Click_1(object sender, EventArgs e)
+        {
+            formChanger.NavigateToMainMenu(); // メインメニューに遷移 
+        }
     }
 }

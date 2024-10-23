@@ -126,6 +126,7 @@ namespace SalesManagement_SysDev
             TBTyumonIDS.Text = "";
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
+            date.Value = DateTime.Now;
         }
     }
 }

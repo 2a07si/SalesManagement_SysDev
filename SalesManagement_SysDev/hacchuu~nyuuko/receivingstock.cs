@@ -105,8 +105,7 @@ namespace SalesManagement_SysDev
             TBNyuukoIDS.Text = "";
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
-
-
+            date.Value = DateTime.Now;
         }
 
     }

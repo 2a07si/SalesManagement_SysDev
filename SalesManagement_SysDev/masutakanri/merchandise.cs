@@ -84,5 +84,23 @@ namespace SalesManagement_SysDev
                 b_sto,
             });
         }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            cleartext();
+        }
+
+        private void cleartext()
+        {
+            TBSyohinID.Text = "";
+            TBMakerId.Text = "";
+            TBSyohinName.Text = "";
+            TBSafeNum.Text = "";
+            TBSyohinName.Text = "";
+            TBModel.Text = "";
+            TBColor.Text = "";
+            DelFlag.Checked = false;
+            TBRiyuu.Text = "";
+        }
     }
 }

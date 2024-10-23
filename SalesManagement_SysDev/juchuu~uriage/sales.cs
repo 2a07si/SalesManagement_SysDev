@@ -136,6 +136,7 @@ namespace SalesManagement_SysDev
             TBUriageIDS.Text = "";
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
+            date.Value = DateTime.Now;
         }
     }
 }

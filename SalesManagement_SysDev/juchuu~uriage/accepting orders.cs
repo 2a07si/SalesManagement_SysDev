@@ -135,7 +135,7 @@ namespace SalesManagement_SysDev
 
         private void b_upd_Click(object sender, EventArgs e)
         {
-            currentStatus.ListStatus(label2);
+            currentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

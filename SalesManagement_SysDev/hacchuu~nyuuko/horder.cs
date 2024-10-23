@@ -98,7 +98,7 @@ namespace SalesManagement_SysDev
             TBHattyuIDS.Text = "";
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
-
+            date.Value = DateTime.Now;
         }
     }
 }

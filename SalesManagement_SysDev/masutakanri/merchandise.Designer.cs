@@ -51,7 +51,7 @@
             label12 = new Label();
             TBSyohinName = new MaskedTextBox();
             label5 = new Label();
-            TBShainId = new MaskedTextBox();
+            TBMakerId = new MaskedTextBox();
             label14 = new Label();
             TBSyohinID = new MaskedTextBox();
             label6 = new Label();
@@ -115,7 +115,7 @@
             panel1.Controls.Add(label12);
             panel1.Controls.Add(TBSyohinName);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(TBShainId);
+            panel1.Controls.Add(TBMakerId);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(TBSyohinID);
             panel1.Controls.Add(label6);
@@ -313,12 +313,12 @@
             label5.TabIndex = 94;
             label5.Text = "商品名";
             // 
-            // TBShainId
+            // TBMakerId
             // 
-            TBShainId.Location = new Point(280, 20);
-            TBShainId.Name = "TBShainId";
-            TBShainId.Size = new Size(80, 31);
-            TBShainId.TabIndex = 93;
+            TBMakerId.Location = new Point(280, 20);
+            TBMakerId.Name = "TBMakerId";
+            TBMakerId.Size = new Size(80, 31);
+            TBMakerId.TabIndex = 93;
             // 
             // label14
             // 
@@ -489,6 +489,7 @@
             clear.TabIndex = 248;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            clear.Click += clear_Click;
             // 
             // close
             // 
@@ -623,7 +624,7 @@
         private Label label12;
         private MaskedTextBox TBSyohinName;
         private Label label5;
-        private MaskedTextBox TBShainId;
+        private MaskedTextBox TBMakerId;
         private Label label14;
         private MaskedTextBox TBSyohinID;
         private Label label6;
