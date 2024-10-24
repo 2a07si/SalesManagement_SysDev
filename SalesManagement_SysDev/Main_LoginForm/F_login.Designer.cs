@@ -101,9 +101,8 @@
             tb_ID.BackColor = Color.FromArgb(255, 255, 192);
             tb_ID.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             tb_ID.Location = new Point(676, 339);
-            tb_ID.Multiline = true;
             tb_ID.Name = "tb_ID";
-            tb_ID.Size = new Size(250, 55);
+            tb_ID.Size = new Size(250, 45);
             tb_ID.TabIndex = 5;
             // 
             // B_login
@@ -138,10 +137,9 @@
             tb_Pass.BackColor = Color.FromArgb(255, 255, 192);
             tb_Pass.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             tb_Pass.Location = new Point(676, 523);
-            tb_Pass.Multiline = true;
             tb_Pass.Name = "tb_Pass";
             tb_Pass.PasswordChar = '⋆';
-            tb_Pass.Size = new Size(250, 55);
+            tb_Pass.Size = new Size(250, 45);
             tb_Pass.TabIndex = 6;
             tb_Pass.UseSystemPasswordChar = true;
             // 

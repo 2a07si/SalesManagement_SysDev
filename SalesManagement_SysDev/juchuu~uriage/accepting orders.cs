@@ -257,7 +257,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        // 登録メソッド
+        // 登録メソッド 
         private void RegisterOrder()
         {
             string shopID = TBShopID.Text;
@@ -270,26 +270,46 @@ namespace SalesManagement_SysDev
             string riyuu = TBRiyuu.Text;
 
             string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string query = "INSERT INTO T_Order (ShopID, ShainID, KokyakuID, TantoName, JyutyuDate, TyumonFlag, DelFlag, Riyuu) VALUES (@shopID, @shainID, @kokyakuID, @tantoName, @jyutyuDate, @tyumonFlag, @delFlag, @riyuu)";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@shopID", shopID);
-                    cmd.Parameters.AddWithValue("@shainID", shainID);
-                    cmd.Parameters.AddWithValue("@kokyakuID", kokyakuID);
-                    cmd.Parameters.AddWithValue("@tantoName", tantoName);
-                    cmd.Parameters.AddWithValue("@jyutyuDate", jyutyuDate);
-                    cmd.Parameters.AddWithValue("@tyumonFlag", tyumonFlag);
-                    cmd.Parameters.AddWithValue("@delFlag", delFlag);
-                    cmd.Parameters.AddWithValue("@riyuu", riyuu);
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    MessageBox.Show(rowsAffected > 0 ? "登録が成功しました。" : "登録に失敗しました。");
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    // クエリを正しい列名に修正
+                    string query = "INSERT INTO T_Order (SoID, EmID, ClID, ClCharge, OrDate, OrStateFlag, OrFlag, OrHidden) " +
+                                   "VALUES (@soID, @emID, @clID, @clCharge, @orDate, @orStateFlag, @orFlag, @orHidden)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        // パラメータの追加 
+                        cmd.Parameters.AddWithValue("@soID", shopID);
+                        cmd.Parameters.AddWithValue("@emID", shainID);
+                        cmd.Parameters.AddWithValue("@clID", kokyakuID);
+                        cmd.Parameters.AddWithValue("@clCharge", tantoName);
+                        cmd.Parameters.AddWithValue("@orDate", jyutyuDate);
+                        cmd.Parameters.AddWithValue("@orStateFlag", tyumonFlag);
+                        cmd.Parameters.AddWithValue("@orFlag", delFlag);
+                        cmd.Parameters.AddWithValue("@orHidden", riyuu);
+
+                        // SQLクエリの実行 
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected > 0 ? "登録が成功しました。" : "登録に失敗しました。");
+                    }
                 }
             }
+            catch (SqlException ex)
+            {
+                // SQLエラー時のエラーメッセージ表示 
+                MessageBox.Show($"データベースエラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // その他のエラー時のエラーメッセージ表示 
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         // 一覧表示メソッド
         private void DisplayOrders()
