@@ -209,7 +209,7 @@
             // 
             NyuukoFlag.AutoSize = true;
             NyuukoFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            NyuukoFlag.ForeColor = Color.LavenderBlush;
+            NyuukoFlag.ForeColor = Color.White;
             NyuukoFlag.Location = new Point(300, 70);
             NyuukoFlag.Name = "NyuukoFlag";
             NyuukoFlag.Size = new Size(110, 29);
@@ -238,7 +238,7 @@
             // 
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.LavenderBlush;
+            DelFlag.ForeColor = Color.White;
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);

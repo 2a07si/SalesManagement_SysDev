@@ -326,7 +326,7 @@
             // 
             SyukkaFlag.AutoSize = true;
             SyukkaFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            SyukkaFlag.ForeColor = Color.LavenderBlush;
+            SyukkaFlag.ForeColor = Color.White;
             SyukkaFlag.Location = new Point(490, 70);
             SyukkaFlag.Name = "SyukkaFlag";
             SyukkaFlag.Size = new Size(110, 29);
@@ -349,7 +349,7 @@
             // 
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.LavenderBlush;
+            DelFlag.ForeColor = Color.White;
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);

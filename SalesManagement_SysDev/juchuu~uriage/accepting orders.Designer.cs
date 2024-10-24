@@ -361,7 +361,7 @@
             // 
             TyumonFlag.AutoSize = true;
             TyumonFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            TyumonFlag.ForeColor = Color.LavenderBlush;
+            TyumonFlag.ForeColor = Color.White;
             TyumonFlag.Location = new Point(590, 70);
             TyumonFlag.Name = "TyumonFlag";
             TyumonFlag.Size = new Size(110, 29);
