@@ -304,14 +304,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-        private void b_reg_Click_1(object sender, EventArgs e)
-        {
-            CurrentStatus.RegistrationStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
-        }
-
-        private void b_reg_Click_2(object sender, EventArgs e)
+        private void b_reg_Click_3(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
