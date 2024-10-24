@@ -80,22 +80,22 @@ namespace SalesManagement_SysDev
 
         private void b_reg_Click(object sender, EventArgs e)
         {
-            currentStatus.RegistrationStatus(label2);
+            CurrentStatus.RegistrationStatus(label2);
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
-            currentStatus.UpDateStatus(label2);
+            CurrentStatus.UpDateStatus(label2);
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
-            currentStatus.ListStatus(label2);
+            CurrentStatus.ListStatus(label2);
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
-            currentStatus.SearchStatus(label2);
+            CurrentStatus.SearchStatus(label2);
         }
 
         private void clear_Click_1(object sender, EventArgs e)
