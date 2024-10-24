@@ -129,25 +129,37 @@ namespace SalesManagement_SysDev
         private void b_reg_Click_1(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
+<<<<<<< HEAD
+=======
             labelStatus.labelstatus(label2, b_kakutei);
+>>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
         }
 
         private void b_upd_Click_1(object sender, EventArgs e)
         {
             CurrentStatus.UpDateStatus(label2);
+<<<<<<< HEAD
+=======
             labelStatus.labelstatus(label2, b_kakutei);
+>>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
+<<<<<<< HEAD
+=======
             labelStatus.labelstatus(label2, b_kakutei);
+>>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
         }
 
         private void b_ser_Click_1(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
+<<<<<<< HEAD
+=======
             labelStatus.labelstatus(label2, b_kakutei);
+>>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -169,7 +181,6 @@ namespace SalesManagement_SysDev
             TBSyukkaIDS.Text = "";
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
-            date.Value = DateTime.Now;
         }
 
         private void close_Click_1(object sender, EventArgs e)
