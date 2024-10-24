@@ -33,6 +33,7 @@
             panel1 = new Panel();
             Next = new Button();
             Prev = new Button();
+            TBColor = new MaskedTextBox();
             label2 = new Label();
             label10 = new Label();
             TBModel = new MaskedTextBox();
@@ -42,6 +43,7 @@
             DelFlag = new CheckBox();
             TBRiyuu = new MaskedTextBox();
             label17 = new Label();
+            date = new DateTimePicker();
             TBSafeNum = new MaskedTextBox();
             label18 = new Label();
             label7 = new Label();
@@ -71,8 +73,6 @@
             B_iti = new Button();
             label16 = new Label();
             label1 = new Label();
-            date = new DateTimePicker();
-            TBColor = new MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -138,6 +138,13 @@
             Prev.TabIndex = 291;
             Prev.Text = "◀";
             Prev.UseVisualStyleBackColor = true;
+            // 
+            // TBColor
+            // 
+            TBColor.Location = new Point(290, 70);
+            TBColor.Name = "TBColor";
+            TBColor.Size = new Size(180, 31);
+            TBColor.TabIndex = 110;
             // 
             // label2
             // 
@@ -227,6 +234,15 @@
             label17.Size = new Size(102, 25);
             label17.TabIndex = 102;
             label17.Text = "非表示理由";
+            // 
+            // date
+            // 
+            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            date.Location = new Point(550, 70);
+            date.Name = "date";
+            date.Size = new Size(160, 31);
+            date.TabIndex = 101;
+            date.ValueChanged += date_ValueChanged;
             // 
             // TBSafeNum
             // 
@@ -453,7 +469,7 @@
             // 
             b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
             b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Location = new Point(1150, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
             b_kakutei.TabIndex = 249;
@@ -463,7 +479,7 @@
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(1300, 70);
+            clear.Location = new Point(1310, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
             clear.TabIndex = 248;
@@ -500,7 +516,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label16.Location = new Point(1001, 101);
+            label16.Location = new Point(1051, 101);
             label16.Name = "label16";
             label16.Size = new Size(86, 32);
             label16.TabIndex = 267;
@@ -510,27 +526,11 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(980, 70);
+            label1.Location = new Point(1030, 70);
             label1.Name = "label1";
             label1.Size = new Size(108, 28);
             label1.TabIndex = 269;
             label1.Text = "現在の状態";
-            // 
-            // date
-            // 
-            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(550, 70);
-            date.Name = "date";
-            date.Size = new Size(160, 31);
-            date.TabIndex = 101;
-            date.ValueChanged += date_ValueChanged;
-            // 
-            // TBColor
-            // 
-            TBColor.Location = new Point(290, 70);
-            TBColor.Name = "TBColor";
-            TBColor.Size = new Size(180, 31);
-            TBColor.TabIndex = 110;
             // 
             // merchandise
             // 
