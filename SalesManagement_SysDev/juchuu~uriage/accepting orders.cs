@@ -135,8 +135,6 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-<<<<<<< HEAD
-=======
             labelStatus.labelstatus(label2, b_kakutei);
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -172,7 +170,6 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("更新に失敗しました: " + ex.Message);
                 }
             }
->>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -184,8 +181,6 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
-<<<<<<< HEAD
-=======
             labelStatus.labelstatus(label2, b_kakutei);
             try
             {
@@ -205,7 +200,6 @@ namespace SalesManagement_SysDev
         private void B_iti_Click_1(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
->>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
             labelStatus.labelstatus(label2, b_kakutei);
         }
         // ボタンクリックイベント
@@ -242,11 +236,6 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
-
-<<<<<<< HEAD
-        // 更新メソッド
-=======
->>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
         private void UpdateOrder()
         {
             string jyutyuID = TBJyutyuID.Text;
@@ -343,14 +332,9 @@ namespace SalesManagement_SysDev
                     }
                 }
             }
-<<<<<<< HEAD
             catch (Exception ex)
             {
                 MessageBox.Show("エラーが発生しました: " + ex.Message);
-=======
-            catch(Exception ex)
-            {
-                 MessageBox.Show("表示に失敗しました: " + ex.Message);
             }
         }
 
