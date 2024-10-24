@@ -659,6 +659,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             ClientSize = new Size(1578, 844);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -682,7 +683,7 @@
             Controls.Add(b_lss);
             Controls.Add(panel1);
             Name = "acceptingorders";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "受注";
             Load += acceptingorders_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
