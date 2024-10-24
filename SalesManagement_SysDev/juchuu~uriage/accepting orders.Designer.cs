@@ -110,10 +110,7 @@
             b_kakutei.TabIndex = 257;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
-<<<<<<< HEAD
             b_kakutei.Click += b_kakutei_Click_1;
-=======
->>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
             // 
             // clear
             // 
@@ -517,11 +514,7 @@
             B_iti.TabIndex = 258;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
-<<<<<<< HEAD
             B_iti.Click += B_iti_Click;
-=======
-            //B_iti.Click += B_iti_Click_1;
->>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
             // 
             // panel3
             // 

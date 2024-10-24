@@ -268,7 +268,7 @@ namespace SalesManagement_SysDev
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
 
-                    if (dataTable.Rows.Count > 0)
+                    if (dataTable.Rows.Count >= 0)
                     {
                         dataGridView1.DataSource = dataTable;
                         dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
