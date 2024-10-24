@@ -86,5 +86,19 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            cleartext();
+        }
+
+        private void cleartext()
+        {
+            TBZaikoID.Text = "";
+            TBSyohinID.Text = "";
+            TBZaiko.Text = "";
+            DelFlag.Checked = false;
+            TBRiyuu.Text = "";
+        }
     }
 }

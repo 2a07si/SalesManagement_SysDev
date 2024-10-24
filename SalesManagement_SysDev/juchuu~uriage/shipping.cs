@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
+using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 
 
 namespace SalesManagement_SysDev
@@ -34,6 +35,7 @@ namespace SalesManagement_SysDev
                 b_sal,
                 b_lss
             });
+            labelStatus.labelstatus(label2, b_kakutei);
         }
         private void close_Click(object sender, EventArgs e)
         {
@@ -126,22 +128,42 @@ namespace SalesManagement_SysDev
 
         private void b_reg_Click_1(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             CurrentStatus.RegistrationStatus(label2);
+=======
+            currentStatus.RegistrationStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
         }
 
         private void b_upd_Click_1(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             CurrentStatus.UpDateStatus(label2);
+=======
+            currentStatus.UpDateStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             CurrentStatus.ListStatus(label2);
+=======
+            currentStatus.ListStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
         }
 
         private void b_ser_Click_1(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             CurrentStatus.SearchStatus(label2);
+=======
+            currentStatus.SearchStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -163,6 +185,11 @@ namespace SalesManagement_SysDev
             TBSyukkaIDS.Text = "";
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
+        }
+
+        private void close_Click_1(object sender, EventArgs e)
+        {
+            formChanger.NavigateToMainMenu(); // メインメニューに遷移 
         }
     }
 }

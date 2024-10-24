@@ -81,5 +81,23 @@ namespace SalesManagement_SysDev
             });
 
         }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            cleartext();
+        }
+
+        private void cleartext()
+        {
+            TBKokyakuID.Text = "";
+            TBShopID.Text = "";
+            TBKokyakuName.Text = "";
+            TBJyusyo.Text = "";
+            TBYuubinNo.Text = "";
+            TBTellNo.Text = "";
+            TBFax.Text = "";
+            DelFlag.Checked = false;
+            TBRiyuu.Text = "";
+        }
     }
 }

@@ -110,7 +110,10 @@
             b_kakutei.TabIndex = 257;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
+<<<<<<< HEAD
             b_kakutei.Click += b_kakutei_Click_1;
+=======
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
             // 
             // clear
             // 
@@ -203,7 +206,7 @@
             b_reg.TabIndex = 238;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
-            b_reg.Click += b_reg_Click;
+            //b_reg.Click += b_reg_Click;
             // 
             // b_ord
             // 
@@ -373,11 +376,12 @@
             // DelFlag
             // 
             DelFlag.AutoSize = true;
+            DelFlag.FlatStyle = FlatStyle.Flat;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.LavenderBlush;
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
-            DelFlag.Size = new Size(92, 29);
+            DelFlag.Size = new Size(87, 29);
             DelFlag.TabIndex = 78;
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
@@ -513,7 +517,11 @@
             B_iti.TabIndex = 258;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
+<<<<<<< HEAD
             B_iti.Click += B_iti_Click;
+=======
+            //B_iti.Click += B_iti_Click_1;
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
             // 
             // panel3
             // 
