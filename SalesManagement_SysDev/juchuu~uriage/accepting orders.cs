@@ -180,25 +180,6 @@ namespace SalesManagement_SysDev
 
         private void B_iti_Click(object sender, EventArgs e)
         {
-            CurrentStatus.ListStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    // SQLコマンドを作成
-                    string query = @"INSERT INTO T_Order (OrId, SoId, EmId, ClId, ClCharge, OrDate, OrStateFlag, OrFlag, OrHidden)
-                                     VALUES (@OrId, @SoId, @EmId, @ClId, @ClCharge, @OrDate, @OrStateFlag, @OrFlag, @OrHidden)";
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("登録に失敗しました: " + ex.Message);
-            }
-        }
-        private void B_iti_Click_1(object sender, EventArgs e)
-        {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
