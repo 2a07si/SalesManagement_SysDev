@@ -329,10 +329,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
-                        // DataGridViewにデータを表示 
-                        dataGridView1.DataSource = dt;
+                        MessageBox.Show("1");
                     }
                 }
             }
