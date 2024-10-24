@@ -10,7 +10,7 @@ namespace SalesManagement_SysDev.Classまとめ
         {
             未設定, // デフォルトの状態
             登録,
-            更新,
+            更新,　
             検索,
             一覧
         }
