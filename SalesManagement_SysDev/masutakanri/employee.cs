@@ -90,5 +90,11 @@ namespace SalesManagement_SysDev
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
         }
+
+        private void date_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
