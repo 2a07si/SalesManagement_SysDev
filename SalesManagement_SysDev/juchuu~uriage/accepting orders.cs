@@ -18,6 +18,7 @@ namespace SalesManagement_SysDev
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager; // 権限管理クラス
 
+
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
@@ -88,11 +89,6 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void b_ser_Click(object sender, EventArgs e)
-        {
-            currentStatus.SearchStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
-        }
 
         private void b_ord_Click(object sender, EventArgs e)
         {
@@ -127,14 +123,25 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.Text = "";
             date.Value = DateTime.Now;
         }
+<<<<<<< HEAD
+
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            CurrentStatus.SearchStatus(label2);
+=======
         private void B_iti_Click(object sender, EventArgs e)
         {
             currentStatus.ListStatus(label2);
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+            CurrentStatus.UpDateStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
+=======
             currentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -171,10 +178,20 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("更新に失敗しました: " + ex.Message);
                 }
             }
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
         }
 
         private void b_reg_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+            CurrentStatus.RegistrationStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
+        }
+
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            CurrentStatus.ListStatus(label2);
+=======
             currentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             try
@@ -195,36 +212,51 @@ namespace SalesManagement_SysDev
         private void B_iti_Click_1(object sender, EventArgs e)
         {
             currentStatus.SearchStatus(label2);
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
             labelStatus.labelstatus(label2, b_kakutei);
         }
+        // ボタンクリックイベント
         private void b_kakutei_Click(object sender, EventArgs e)
         {
-            // label2の内容を確認  
-            string status = label2.Text;
+        }
 
-            // ステータスに応じて処理を実行  
-            switch (status)
+        // 状態リセットメソッド（必要ならボタンにバインド）
+        private void ResetStatus()
+        {
+            CurrentStatus.ResetStatus(label2);
+        }
+
+        private void b_kakutei_Click_1(object sender, EventArgs e)
+        {            // 現在の状態を確認
+            switch (CurrentStatus.CurrentStatusValue)
             {
-                case "更新":
+                case CurrentStatus.Status.更新:
                     UpdateOrder();
                     break;
-                case "登録":
+
+                case CurrentStatus.Status.登録:
                     RegisterOrder();
                     break;
-                case "一覧":
+
+                case CurrentStatus.Status.一覧:
+                    MessageBox.Show("一覧状態で動作してます。");
                     DisplayOrders();
+                    MessageBox.Show("DisplayOrdersが終了しました。");
                     break;
+
                 default:
-                    MessageBox.Show("無効な操作です。"); // 無効な操作の場合  
+                    MessageBox.Show("無効な操作です。");
                     break;
             }
         }
 
+<<<<<<< HEAD
+        // 更新メソッド
+=======
         // 更新メソッド 
+>>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
         private void UpdateOrder()
         {
-            // 更新処理の具体的なコードをここに記述 
-            // 入力された受注情報を取得
             string jyutyuID = TBJyutyuID.Text;
             string shopID = TBShopID.Text;
             string shainID = TBShainID.Text;
@@ -235,7 +267,6 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            // データベース接続コードをここに記述 
             string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -243,7 +274,6 @@ namespace SalesManagement_SysDev
                 string query = "UPDATE T_Order SET ShopID=@shopID, ShainID=@shainID, KokyakuID=@kokyakuID, TantoName=@tantoName, JyutyuDate=@jyutyuDate, TyumonFlag=@tyumonFlag, DelFlag=@delFlag, Riyuu=@riyuu WHERE JyutyuID=@jyutyuID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    // パラメータの設定
                     cmd.Parameters.AddWithValue("@shopID", shopID);
                     cmd.Parameters.AddWithValue("@shainID", shainID);
                     cmd.Parameters.AddWithValue("@kokyakuID", kokyakuID);
@@ -260,10 +290,9 @@ namespace SalesManagement_SysDev
             }
         }
 
-        // 登録メソッド 
+        // 登録メソッド
         private void RegisterOrder()
         {
-            // 登録処理の具体的なコードをここに記述 
             string shopID = TBShopID.Text;
             string shainID = TBShainID.Text;
             string kokyakuID = TBKokyakuID.Text;
@@ -273,7 +302,6 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            // データベース接続コードをここに記述 
             string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -281,7 +309,6 @@ namespace SalesManagement_SysDev
                 string query = "INSERT INTO T_Order (ShopID, ShainID, KokyakuID, TantoName, JyutyuDate, TyumonFlag, DelFlag, Riyuu) VALUES (@shopID, @shainID, @kokyakuID, @tantoName, @jyutyuDate, @tyumonFlag, @delFlag, @riyuu)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    // パラメータの設定
                     cmd.Parameters.AddWithValue("@shopID", shopID);
                     cmd.Parameters.AddWithValue("@shainID", shainID);
                     cmd.Parameters.AddWithValue("@kokyakuID", kokyakuID);
@@ -297,18 +324,28 @@ namespace SalesManagement_SysDev
             }
         }
 
-        // 一覧表示メソッド 
+        // 一覧表示メソッド
         private void DisplayOrders()
         {
-            // 一覧表示処理の具体的なコードをここに記述 
             string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+
+            try
             {
-                conn.Open();
-                string query = "SELECT * FROM T_Order"; // 必要に応じて条件を追加 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    connection.Open();
+
+                    string query = "SELECT * FROM T_Order";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        dataGridView1.DataSource = dataTable;
+                        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    }
+                    else
                     {
                         DataTable dt = new DataTable();
                         dt.Load(reader);
@@ -326,3 +363,4 @@ namespace SalesManagement_SysDev
         }
     }
 }
+
