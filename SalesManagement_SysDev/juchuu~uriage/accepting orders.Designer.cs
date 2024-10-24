@@ -110,10 +110,7 @@
             b_kakutei.TabIndex = 257;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
-<<<<<<< HEAD
             b_kakutei.Click += b_kakutei_Click_1;
-=======
->>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
             // 
             // clear
             // 

@@ -17,6 +17,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager; // 権限管理クラス
+        private CurrentStatus currentStatus;
 
 
         public acceptingorders(Form mainForm)
@@ -123,26 +124,17 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.Text = "";
             date.Value = DateTime.Now;
         }
-<<<<<<< HEAD
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
-=======
-        private void B_iti_Click(object sender, EventArgs e)
-        {
-            currentStatus.ListStatus(label2);
->>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-=======
-            currentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -178,12 +170,10 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("更新に失敗しました: " + ex.Message);
                 }
             }
->>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
         }
 
         private void b_reg_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
@@ -191,8 +181,6 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
-=======
-            currentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             try
             {
@@ -211,8 +199,7 @@ namespace SalesManagement_SysDev
         }
         private void B_iti_Click_1(object sender, EventArgs e)
         {
-            currentStatus.SearchStatus(label2);
->>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
+            CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
         // ボタンクリックイベント
@@ -250,11 +237,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-<<<<<<< HEAD
-        // 更新メソッド
-=======
-        // 更新メソッド 
->>>>>>> 6a1b639335110a2011b32b2ee8e14bb94ff21d06
         private void UpdateOrder()
         {
             string jyutyuID = TBJyutyuID.Text;
@@ -354,11 +336,15 @@ namespace SalesManagement_SysDev
                     }
                 }
             }
+            catch(Exception ex)
+            {
+                 MessageBox.Show("表示に失敗しました: " + ex.Message);
+            }
         }
 
         private void b_reg_Click_1(object sender, EventArgs e)
         {
-            currentStatus.RegistrationStatus(label2);
+            CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
     }
