@@ -135,41 +135,6 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            labelStatus.labelstatus(label2, b_kakutei);
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    // 更新クエリの作成
-                    string query = "UPDATE T_Order SET SoId = @SoId, EmId = @EmId, ClId = @ClId, ClCharge = @ClCharge, " +
-                                   "OrDate = @OrDate, OrStateFlag = @OrStateFlag, OrHidden = @OrHidden " +
-                                   "WHERE OrId = @OrId";
-
-                    SqlCommand command = new SqlCommand(query, connection);
-
-                    // テキストボックスやDateTimePickerから値を取得してパラメータに設定
-                    command.Parameters.AddWithValue("@OrId", Convert.ToInt32(TBJyutyuID.Text));
-                    command.Parameters.AddWithValue("@SoId", Convert.ToInt32(TBShopID.Text));
-                    command.Parameters.AddWithValue("@EmId", Convert.ToInt32(TBShainID.Text));
-                    command.Parameters.AddWithValue("@ClId", Convert.ToInt32(TBKokyakuID.Text));
-                    command.Parameters.AddWithValue("@ClCharge", TBTantoName.Text);
-                    command.Parameters.AddWithValue("@OrDate", date.Value);
-                    command.Parameters.AddWithValue("@OrStateFlag", TyumonFlag.Checked ? 1 : 0);
-                    command.Parameters.AddWithValue("@OrHidden", TBRiyuu.Text);
-
-                    // データベース接続を開いて更新を実行
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
-
-                    // 成功メッセージ
-                    MessageBox.Show("受注情報を更新しました");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("更新に失敗しました: " + ex.Message);
-                }
-            }
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -180,7 +145,7 @@ namespace SalesManagement_SysDev
 
         private void B_iti_Click(object sender, EventArgs e)
         {
-            CurrentStatus.SearchStatus(label2);
+            CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
         // ボタンクリックイベント
