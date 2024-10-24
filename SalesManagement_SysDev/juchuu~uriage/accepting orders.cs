@@ -18,6 +18,8 @@ namespace SalesManagement_SysDev
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager; // 権限管理クラス
         private CurrentStatus currentStatus;
+        /*private float originalWidth;
+        private float originalHeight;*/
 
 
         public acceptingorders(Form mainForm)
@@ -25,8 +27,27 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+            this.WindowState = FormWindowState.Minimized;
+            /*originalHeight = this.Height;
+            originalWidth = this.Width;
+
+            this.Resize += new EventHandler(Form_change);*/
         }
 
+        /*private void Form_change(object sender, EventArgs e)
+        {
+            float scalex = this.Width / originalWidth;
+            float scaley = this.Height / originalHeight;
+
+            foreach (Control control in this.Controls)
+            {
+                control.Scale(new System.Drawing.SizeF(scalex, scaley));
+            }
+
+            originalWidth = this.Width;
+            originalHeight = this.Height;
+        }
+        */
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
@@ -39,7 +60,6 @@ namespace SalesManagement_SysDev
                 b_sal,
                 b_lss
             });
-
             labelStatus.labelstatus(label2, b_kakutei);
         }
 

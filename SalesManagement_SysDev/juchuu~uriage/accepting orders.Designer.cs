@@ -104,7 +104,7 @@
             // 
             b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
             b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Location = new Point(1230, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
             b_kakutei.TabIndex = 257;
@@ -115,7 +115,7 @@
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(1400, 70);
+            clear.Location = new Point(1420, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
             clear.TabIndex = 256;
@@ -125,7 +125,7 @@
             // 
             // close
             // 
-            close.Location = new Point(1460, 10);
+            close.Location = new Point(1470, 9);
             close.Name = "close";
             close.Size = new Size(100, 40);
             close.TabIndex = 242;
@@ -660,6 +660,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             ClientSize = new Size(1578, 844);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -683,7 +684,7 @@
             Controls.Add(b_lss);
             Controls.Add(panel1);
             Name = "acceptingorders";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "受注";
             Load += acceptingorders_Load;
             panel1.ResumeLayout(false);
