@@ -202,7 +202,7 @@
             b_reg.TabIndex = 238;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
-            //b_reg.Click += b_reg_Click;
+            b_reg.Click += b_reg_Click_1;
             // 
             // b_ord
             // 
@@ -360,27 +360,29 @@
             // TyumonFlag
             // 
             TyumonFlag.AutoSize = true;
+            TyumonFlag.BackColor = Color.Transparent;
             TyumonFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            TyumonFlag.ForeColor = Color.LavenderBlush;
+            TyumonFlag.ForeColor = Color.White;
             TyumonFlag.Location = new Point(590, 70);
             TyumonFlag.Name = "TyumonFlag";
             TyumonFlag.Size = new Size(110, 29);
             TyumonFlag.TabIndex = 79;
             TyumonFlag.Text = "注文状態";
-            TyumonFlag.UseVisualStyleBackColor = true;
+            TyumonFlag.UseVisualStyleBackColor = false;
             // 
             // DelFlag
             // 
             DelFlag.AutoSize = true;
-            DelFlag.FlatStyle = FlatStyle.Flat;
+            DelFlag.BackColor = Color.Transparent;
+            DelFlag.BackgroundImageLayout = ImageLayout.Stretch;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.LavenderBlush;
+            DelFlag.ForeColor = Color.White;
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
-            DelFlag.Size = new Size(87, 29);
+            DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 78;
             DelFlag.Text = "非表示";
-            DelFlag.UseVisualStyleBackColor = true;
+            DelFlag.UseVisualStyleBackColor = false;
             // 
             // TBKokyakuID
             // 
@@ -513,7 +515,6 @@
             B_iti.TabIndex = 258;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
-            //B_iti.Click += B_iti_Click_1;
             // 
             // panel3
             // 
