@@ -17,6 +17,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager; // 権限管理クラス
+        private CurrentStatus currentStatus;
 
 
         public acceptingorders(Form mainForm)
@@ -134,6 +135,44 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+<<<<<<< HEAD
+=======
+            labelStatus.labelstatus(label2, b_kakutei);
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    // 更新クエリの作成
+                    string query = "UPDATE T_Order SET SoId = @SoId, EmId = @EmId, ClId = @ClId, ClCharge = @ClCharge, " +
+                                   "OrDate = @OrDate, OrStateFlag = @OrStateFlag, OrHidden = @OrHidden " +
+                                   "WHERE OrId = @OrId";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // テキストボックスやDateTimePickerから値を取得してパラメータに設定
+                    command.Parameters.AddWithValue("@OrId", Convert.ToInt32(TBJyutyuID.Text));
+                    command.Parameters.AddWithValue("@SoId", Convert.ToInt32(TBShopID.Text));
+                    command.Parameters.AddWithValue("@EmId", Convert.ToInt32(TBShainID.Text));
+                    command.Parameters.AddWithValue("@ClId", Convert.ToInt32(TBKokyakuID.Text));
+                    command.Parameters.AddWithValue("@ClCharge", TBTantoName.Text);
+                    command.Parameters.AddWithValue("@OrDate", date.Value);
+                    command.Parameters.AddWithValue("@OrStateFlag", TyumonFlag.Checked ? 1 : 0);
+                    command.Parameters.AddWithValue("@OrHidden", TBRiyuu.Text);
+
+                    // データベース接続を開いて更新を実行
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+
+                    // 成功メッセージ
+                    MessageBox.Show("受注情報を更新しました");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("更新に失敗しました: " + ex.Message);
+                }
+            }
+>>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -145,6 +184,28 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
+<<<<<<< HEAD
+=======
+            labelStatus.labelstatus(label2, b_kakutei);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    // SQLコマンドを作成
+                    string query = @"INSERT INTO T_Order (OrId, SoId, EmId, ClId, ClCharge, OrDate, OrStateFlag, OrFlag, OrHidden)
+                                     VALUES (@OrId, @SoId, @EmId, @ClId, @ClCharge, @OrDate, @OrStateFlag, @OrFlag, @OrHidden)";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("登録に失敗しました: " + ex.Message);
+            }
+        }
+        private void B_iti_Click_1(object sender, EventArgs e)
+        {
+            CurrentStatus.SearchStatus(label2);
+>>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
             labelStatus.labelstatus(label2, b_kakutei);
         }
         // ボタンクリックイベント
@@ -182,7 +243,10 @@ namespace SalesManagement_SysDev
             }
         }
 
+<<<<<<< HEAD
         // 更新メソッド
+=======
+>>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
         private void UpdateOrder()
         {
             string jyutyuID = TBJyutyuID.Text;
@@ -279,9 +343,15 @@ namespace SalesManagement_SysDev
                     }
                 }
             }
+<<<<<<< HEAD
             catch (Exception ex)
             {
                 MessageBox.Show("エラーが発生しました: " + ex.Message);
+=======
+            catch(Exception ex)
+            {
+                 MessageBox.Show("表示に失敗しました: " + ex.Message);
+>>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
             }
         }
 
@@ -289,12 +359,15 @@ namespace SalesManagement_SysDev
         private void b_reg_Click_1(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
+<<<<<<< HEAD
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_reg_Click_2(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
+=======
+>>>>>>> bfb9988ec52a22d8bd885c0f89b67200da2e2bb4
             labelStatus.labelstatus(label2, b_kakutei);
         }
     }
