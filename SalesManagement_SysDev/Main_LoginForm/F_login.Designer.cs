@@ -155,7 +155,7 @@
             // 
             // b_pwHyouji
             // 
-            b_pwHyouji.Location = new Point(875, 532);
+            b_pwHyouji.Location = new Point(875, 525);
             b_pwHyouji.Name = "b_pwHyouji";
             b_pwHyouji.Size = new Size(40, 40);
             b_pwHyouji.TabIndex = 10;
