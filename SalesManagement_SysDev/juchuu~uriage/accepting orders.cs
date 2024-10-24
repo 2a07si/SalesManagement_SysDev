@@ -214,7 +214,7 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
+            string connectionString = "ここに接続文字列を記入";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -249,7 +249,7 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
+            string connectionString = "ここに接続文字列を記入";
 
             try
             {
@@ -294,7 +294,7 @@ namespace SalesManagement_SysDev
         // 一覧表示メソッド
         private void DisplayOrders()
         {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\kento\\source\\repos\\SalesManagement_SysDev_git\\SalesManagement_SysDev\\DataBase_1.mdf;Integrated Security=True";
+            string connectionString = "ここに接続文字列を記入";
 
             try
             {
