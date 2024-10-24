@@ -203,7 +203,6 @@
             b_reg.TabIndex = 238;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
-            b_reg.Click += b_reg_Click_2;
             // 
             // b_ord
             // 
@@ -373,12 +372,11 @@
             // DelFlag
             // 
             DelFlag.AutoSize = true;
-            DelFlag.FlatStyle = FlatStyle.Flat;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.LavenderBlush;
+            DelFlag.ForeColor = Color.White;
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
-            DelFlag.Size = new Size(87, 29);
+            DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 78;
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;

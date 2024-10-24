@@ -164,6 +164,7 @@
             b_ser.TabIndex = 234;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
+            b_ser.Click += b_ser_Click;
             // 
             // label4
             // 
@@ -184,6 +185,7 @@
             b_upd.TabIndex = 233;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
+            b_upd.Click += b_upd_Click;
             // 
             // label3
             // 
@@ -204,6 +206,7 @@
             b_reg.TabIndex = 232;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
+            b_reg.Click += b_reg_Click;
             // 
             // panel1
             // 
@@ -477,6 +480,7 @@
             B_iti.TabIndex = 260;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
+            B_iti.Click += B_iti_Click;
             // 
             // label2
             // 

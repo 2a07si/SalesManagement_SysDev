@@ -205,6 +205,26 @@ namespace SalesManagement_SysDev
         // ボタンクリックイベント
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.更新:
+                    UpdateOrder();
+                    break;
+
+                case CurrentStatus.Status.登録:
+                    RegisterOrder();
+                    break;
+
+                case CurrentStatus.Status.一覧:
+                    MessageBox.Show("一覧状態で動作してます。");
+                    DisplayOrders();
+                    MessageBox.Show("DisplayOrdersが終了しました。");
+                    break;
+
+                default:
+                    MessageBox.Show("無効な操作です。");
+                    break;
+            }
         }
 
         // 状態リセットメソッド（必要ならボタンにバインド）
