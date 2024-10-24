@@ -96,10 +96,6 @@
             kakutei.Size = new Size(75, 23);
             kakutei.TabIndex = 0;
             // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -201,7 +197,6 @@
             date.Name = "date";
             date.Size = new Size(185, 31);
             date.TabIndex = 75;
-            date.ValueChanged += date_ValueChanged;
             // 
             // label5
             // 
@@ -396,7 +391,6 @@
             b_ord.TabIndex = 251;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
-            b_ord.Click += b_ord_Click;
             // 
             // b_reg
             // 
@@ -653,7 +647,6 @@
             label2.Size = new Size(86, 32);
             label2.TabIndex = 262;
             label2.Text = "未選択";
-            label2.Click += label2_Click;
             // 
             // acceptingorders
             // 

@@ -14,45 +14,24 @@ namespace SalesManagement_SysDev
     {
         // データベース接続文字列を定義
         string connectionString = "ここにパス入力";
-        private ClassChangeForms formChanger; // 画面遷移管理クラス 
-        private ClassTimerManager timerManager; // タイマー管理クラス 
-        private ClassAccessManager accessManager; // 権限管理クラス
+        private ClassChangeForms formChanger; // 画面遷移管理クラス  
+        private ClassTimerManager timerManager; // タイマー管理クラス  
+        private ClassAccessManager accessManager; // 権限管理クラス 
         private CurrentStatus currentStatus;
-        /*private float originalWidth;
-        private float originalHeight;*/
-
 
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット 
             this.WindowState = FormWindowState.Minimized;
-            /*originalHeight = this.Height;
-            originalWidth = this.Width;
-
-            this.Resize += new EventHandler(Form_change);*/
         }
 
-        /*private void Form_change(object sender, EventArgs e)
-        {
-            float scalex = this.Width / originalWidth;
-            float scaley = this.Height / originalHeight;
-
-            foreach (Control control in this.Controls)
-            {
-                control.Scale(new System.Drawing.SizeF(scalex, scaley));
-            }
-
-            originalWidth = this.Width;
-            originalHeight = this.Height;
-        }
-        */
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
 
-            // ボタンアクセス制御を設定
+            // ボタンアクセス制御を設定 
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
                 b_arr,
@@ -63,63 +42,40 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        // メインメニューに戻る 
+        // メインメニューに戻る  
         private void close_Click_1(object sender, EventArgs e)
         {
-            formChanger.NavigateToMainMenu(); // メインメニューに遷移 
+            formChanger.NavigateToMainMenu(); // メインメニューに遷移  
         }
 
-        // 注文管理画面に遷移 
+        // 注文管理画面に遷移  
         private void b_ord_Click_2(object sender, EventArgs e)
         {
-            formChanger.NavigateToOrderForm(); // 注文管理画面に遷移 
+            formChanger.NavigateToOrderForm(); // 注文管理画面に遷移  
         }
 
-        // 入荷管理画面に遷移 
+        // 入荷管理画面に遷移  
         private void b_arr_Click_1(object sender, EventArgs e)
         {
-            formChanger.NavigateToArrivalForm(); // 入荷管理画面に遷移 
+            formChanger.NavigateToArrivalForm(); // 入荷管理画面に遷移  
         }
 
-        // 出荷管理画面に遷移 
+        // 出荷管理画面に遷移  
         private void b_shi_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateToShippingForm(); // 出荷管理画面に遷移 
+            formChanger.NavigateToShippingForm(); // 出荷管理画面に遷移  
         }
 
-        // 売上管理画面に遷移 
+        // 売上管理画面に遷移  
         private void b_sal_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateToSalesForm(); // 売上管理画面に遷移 
+            formChanger.NavigateToSalesForm(); // 売上管理画面に遷移  
         }
 
-        // 出庫管理画面に遷移
-
+        // 出庫管理画面に遷移 
         private void b_lss_Click_1(object sender, EventArgs e)
         {
-            formChanger.NavigateToIssueForm(); // 出庫管理画面に遷移
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void date_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void b_ord_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToOrderForm(); // 注文管理画面に遷移 
-        }
-
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
+            formChanger.NavigateToIssueForm(); // 出庫管理画面に遷移 
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -168,39 +124,16 @@ namespace SalesManagement_SysDev
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
-        // ボタンクリックイベント
-        private void b_kakutei_Click(object sender, EventArgs e)
-        {
-            switch (CurrentStatus.CurrentStatusValue)
-            {
-                case CurrentStatus.Status.更新:
-                    UpdateOrder();
-                    break;
 
-                case CurrentStatus.Status.登録:
-                    RegisterOrder();
-                    break;
-
-                case CurrentStatus.Status.一覧:
-                    MessageBox.Show("一覧状態で動作してます。");
-                    DisplayOrders();
-                    MessageBox.Show("DisplayOrdersが終了しました。");
-                    break;
-
-                default:
-                    MessageBox.Show("無効な操作です。");
-                    break;
-            }
-        }
-
-        // 状態リセットメソッド（必要ならボタンにバインド）
+        // 状態リセットメソッド（必要ならボタンにバインド） 
         private void ResetStatus()
         {
             CurrentStatus.ResetStatus(label2);
         }
 
         private void b_kakutei_Click_1(object sender, EventArgs e)
-        {            // 現在の状態を確認
+        {
+            // 現在の状態を確認 
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
@@ -212,9 +145,8 @@ namespace SalesManagement_SysDev
                     break;
 
                 case CurrentStatus.Status.一覧:
-                    MessageBox.Show("一覧状態で動作してます。");
                     DisplayOrders();
-                    MessageBox.Show("DisplayOrdersが終了しました。");
+                    MessageBox.Show("一覧表示が完了しました。");
                     break;
 
                 default:
@@ -222,6 +154,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+
         private void UpdateOrder()
         {
             string jyutyuID = TBJyutyuID.Text;
@@ -234,7 +167,6 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            string connectionString = "ここに接続文字列を記入";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -257,7 +189,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        // 登録メソッド 
+        // 登録メソッド  
         private void RegisterOrder()
         {
             string shopID = TBShopID.Text;
@@ -269,86 +201,65 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            string connectionString = "ここに接続文字列を記入";
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    // クエリを正しい列名に修正
-                    string query = "INSERT INTO T_Order (SoID, EmID, ClID, ClCharge, OrDate, OrStateFlag, OrFlag, OrHidden) " +
-                                   "VALUES (@soID, @emID, @clID, @clCharge, @orDate, @orStateFlag, @orFlag, @orHidden)";
+                    // クエリを正しい列名に修正 
+                    string query = "INSERT INTO T_Order (ShopID, ShainID, KokyakuID, TantoName, JyutyuDate, TyumonFlag, DelFlag, Riyuu) " +
+                                   "VALUES (@shopID, @shainID, @kokyakuID, @tantoName, @jyutyuDate, @tyumonFlag, @delFlag, @riyuu)";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        // パラメータの追加 
-                        cmd.Parameters.AddWithValue("@soID", shopID);
-                        cmd.Parameters.AddWithValue("@emID", shainID);
-                        cmd.Parameters.AddWithValue("@clID", kokyakuID);
-                        cmd.Parameters.AddWithValue("@clCharge", tantoName);
-                        cmd.Parameters.AddWithValue("@orDate", jyutyuDate);
-                        cmd.Parameters.AddWithValue("@orStateFlag", tyumonFlag);
-                        cmd.Parameters.AddWithValue("@orFlag", delFlag);
-                        cmd.Parameters.AddWithValue("@orHidden", riyuu);
+                        // パラメータの追加  
+                        cmd.Parameters.AddWithValue("@shopID", shopID);
+                        cmd.Parameters.AddWithValue("@shainID", shainID);
+                        cmd.Parameters.AddWithValue("@kokyakuID", kokyakuID);
+                        cmd.Parameters.AddWithValue("@tantoName", tantoName);
+                        cmd.Parameters.AddWithValue("@jyutyuDate", jyutyuDate);
+                        cmd.Parameters.AddWithValue("@tyumonFlag", tyumonFlag);
+                        cmd.Parameters.AddWithValue("@delFlag", delFlag);
+                        cmd.Parameters.AddWithValue("@riyuu", riyuu);
 
-                        // SQLクエリの実行 
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        MessageBox.Show(rowsAffected > 0 ? "登録が成功しました。" : "登録に失敗しました。");
+                        // ExecuteNonQueryメソッドで登録を実行 
+                        cmd.ExecuteNonQuery();
                     }
                 }
-            }
-            catch (SqlException ex)
-            {
-                // SQLエラー時のエラーメッセージ表示 
-                MessageBox.Show($"データベースエラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("受注登録が成功しました。");
             }
             catch (Exception ex)
             {
-                // その他のエラー時のエラーメッセージ表示 
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("登録中にエラーが発生しました: " + ex.Message);
             }
         }
 
-
-        // 一覧表示メソッド
+        // 一覧表示メソッド 
         private void DisplayOrders()
         {
-            string connectionString = "ここに接続文字列を記入";
-
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    connection.Open();
-
-                    string query = "SELECT * FROM T_Order";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
-                    if (dataTable.Rows.Count >= 0)
+                    conn.Open();
+                    string query = "SELECT * FROM T_Order"; // すべての受注を取得するクエリ 
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        dataGridView1.DataSource = dataTable;
-                        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    }
-                    else
-                    {
-                        MessageBox.Show("データが見つかりませんでした。");
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // 必要な列を取得し、適宜処理する 
+                                // 例: Console.WriteLine($"{reader["JyutyuID"]}, {reader["ShopID"]}, ..."); 
+                            }
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラーが発生しました: " + ex.Message);
+                MessageBox.Show("一覧表示中にエラーが発生しました: " + ex.Message);
             }
-        }
-
-        private void b_reg_Click_3(object sender, EventArgs e)
-        {
-            CurrentStatus.RegistrationStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
         }
     }
 }
-
