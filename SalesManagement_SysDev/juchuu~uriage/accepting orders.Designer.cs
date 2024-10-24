@@ -110,6 +110,7 @@
             b_kakutei.TabIndex = 257;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.Click += b_kakutei_Click_1;
             // 
             // clear
             // 
@@ -202,7 +203,7 @@
             b_reg.TabIndex = 238;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
-            //b_reg.Click += b_reg_Click;
+            b_reg.Click += b_reg_Click_2;
             // 
             // b_ord
             // 
@@ -513,7 +514,7 @@
             B_iti.TabIndex = 258;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
-            //B_iti.Click += B_iti_Click_1;
+            B_iti.Click += B_iti_Click;
             // 
             // panel3
             // 

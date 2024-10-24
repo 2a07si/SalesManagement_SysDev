@@ -67,12 +67,8 @@
             B_iti = new Button();
             label2 = new Label();
             label1 = new Label();
-            panel2 = new Panel();
-            dataGridView2 = new DataGridView();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // b_emp
@@ -218,12 +214,12 @@
             panel1.Controls.Add(DelFlag);
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
-            panel1.Size = new Size(820, 690);
+            panel1.Size = new Size(1400, 690);
             panel1.TabIndex = 187;
             // 
             // Next
             // 
-            Next.Location = new Point(770, 144);
+            Next.Location = new Point(1350, 144);
             Next.Name = "Next";
             Next.Size = new Size(40, 40);
             Next.TabIndex = 297;
@@ -232,7 +228,7 @@
             // 
             // Prev
             // 
-            Prev.Location = new Point(640, 144);
+            Prev.Location = new Point(1220, 144);
             Prev.Name = "Prev";
             Prev.Size = new Size(40, 40);
             Prev.TabIndex = 296;
@@ -245,7 +241,7 @@
             label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.Snow;
             label6.ImageAlign = ContentAlignment.MiddleRight;
-            label6.Location = new Point(690, 152);
+            label6.Location = new Point(1270, 152);
             label6.Name = "label6";
             label6.Size = new Size(72, 25);
             label6.TabIndex = 295;
@@ -254,17 +250,18 @@
             // date
             // 
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(125, 65);
+            date.Location = new Point(870, 20);
             date.Name = "date";
-            date.Size = new Size(300, 31);
+            date.Size = new Size(165, 31);
             date.TabIndex = 294;
+            date.ValueChanged += date_ValueChanged;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label18.ForeColor = Color.White;
-            label18.Location = new Point(15, 65);
+            label18.Location = new Point(760, 20);
             label18.Name = "label18";
             label18.Size = new Size(102, 25);
             label18.TabIndex = 293;
@@ -278,7 +275,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(800, 490);
+            dataGridView1.Size = new Size(1380, 490);
             dataGridView1.TabIndex = 52;
             // 
             // label5
@@ -286,7 +283,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(15, 20);
+            label5.Location = new Point(20, 20);
             label5.Name = "label5";
             label5.Size = new Size(66, 25);
             label5.TabIndex = 286;
@@ -297,7 +294,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label12.ForeColor = Color.White;
-            label12.Location = new Point(465, 20);
+            label12.Location = new Point(480, 20);
             label12.Name = "label12";
             label12.Size = new Size(84, 25);
             label12.TabIndex = 280;
@@ -308,7 +305,7 @@
             label14.AutoSize = true;
             label14.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label14.ForeColor = Color.White;
-            label14.Location = new Point(190, 20);
+            label14.Location = new Point(200, 20);
             label14.Name = "label14";
             label14.Size = new Size(66, 25);
             label14.TabIndex = 281;
@@ -316,14 +313,14 @@
             // 
             // TBTellNo
             // 
-            TBTellNo.Location = new Point(520, 65);
+            TBTellNo.Location = new Point(1131, 20);
             TBTellNo.Name = "TBTellNo";
             TBTellNo.Size = new Size(200, 31);
             TBTellNo.TabIndex = 292;
             // 
             // TBRiyuu
             // 
-            TBRiyuu.Location = new Point(210, 110);
+            TBRiyuu.Location = new Point(230, 70);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
             TBRiyuu.TabIndex = 285;
@@ -333,7 +330,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(430, 65);
+            label8.Location = new Point(1041, 20);
             label8.Name = "label8";
             label8.Size = new Size(84, 25);
             label8.TabIndex = 291;
@@ -341,14 +338,14 @@
             // 
             // TBSyainID
             // 
-            TBSyainID.Location = new Point(80, 20);
+            TBSyainID.Location = new Point(90, 20);
             TBSyainID.Name = "TBSyainID";
-            TBSyainID.Size = new Size(103, 31);
+            TBSyainID.Size = new Size(100, 31);
             TBSyainID.TabIndex = 287;
             // 
             // TBJobID
             // 
-            TBJobID.Location = new Point(690, 20);
+            TBJobID.Location = new Point(700, 20);
             TBJobID.Name = "TBJobID";
             TBJobID.Size = new Size(50, 31);
             TBJobID.TabIndex = 279;
@@ -358,7 +355,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label17.ForeColor = Color.White;
-            label17.Location = new Point(110, 110);
+            label17.Location = new Point(120, 70);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
             label17.TabIndex = 284;
@@ -369,7 +366,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(620, 20);
+            label7.Location = new Point(630, 20);
             label7.Name = "label7";
             label7.Size = new Size(66, 25);
             label7.TabIndex = 278;
@@ -377,14 +374,14 @@
             // 
             // TBShopId
             // 
-            TBShopId.Location = new Point(555, 20);
+            TBShopId.Location = new Point(570, 20);
             TBShopId.Name = "TBShopId";
             TBShopId.Size = new Size(50, 31);
             TBShopId.TabIndex = 282;
             // 
             // TBSyainName
             // 
-            TBSyainName.Location = new Point(260, 20);
+            TBSyainName.Location = new Point(270, 20);
             TBSyainName.Name = "TBSyainName";
             TBSyainName.Size = new Size(200, 31);
             TBSyainName.TabIndex = 283;
@@ -394,7 +391,7 @@
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.LavenderBlush;
-            DelFlag.Location = new Point(15, 109);
+            DelFlag.Location = new Point(20, 70);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 288;
@@ -421,6 +418,7 @@
             clear.TabIndex = 239;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            clear.Click += clear_Click;
             // 
             // close
             // 
@@ -467,26 +465,6 @@
             label1.TabIndex = 292;
             label1.Text = "現在の状態";
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.DarkRed;
-            panel2.Controls.Add(dataGridView2);
-            panel2.Location = new Point(970, 145);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(600, 690);
-            panel2.TabIndex = 291;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.AllowUserToOrderColumns = true;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(10, 190);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.RowTemplate.Height = 33;
-            dataGridView2.Size = new Size(580, 490);
-            dataGridView2.TabIndex = 52;
-            // 
             // employee
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -494,7 +472,6 @@
             ClientSize = new Size(1578, 844);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(panel2);
             Controls.Add(B_iti);
             Controls.Add(b_kakutei);
             Controls.Add(clear);
@@ -518,8 +495,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -564,8 +539,6 @@
         private Button B_iti;
         private Label label2;
         private Label label1;
-        private Panel panel2;
-        private DataGridView dataGridView2;
         private Button Next;
         private Button Prev;
         private Label label6;

@@ -74,5 +74,27 @@ namespace SalesManagement_SysDev
                 b_sto,
             });
         }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cleartext()
+        {
+            TBSyainID.Text = "";
+            TBSyainName.Text = "";
+            TBShopId.Text = "";
+            TBJobID.Text = "";
+            TBTellNo.Text = "";
+            DelFlag.Checked = false;
+            TBRiyuu.Text = "";
+        }
+
+        private void date_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
