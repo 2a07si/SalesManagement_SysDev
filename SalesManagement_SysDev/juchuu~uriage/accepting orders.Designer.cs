@@ -203,7 +203,7 @@
             b_reg.TabIndex = 238;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
-            //b_reg.Click += b_reg_Click;
+            b_reg.Click += b_reg_Click_2;
             // 
             // b_ord
             // 

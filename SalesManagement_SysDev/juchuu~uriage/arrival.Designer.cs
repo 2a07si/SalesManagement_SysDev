@@ -502,7 +502,7 @@
             // 
             // TBNyukaSyosaiID
             // 
-            TBNyukaSyosaiID.Location = new Point(120, 20);
+            TBNyukaSyosaiID.Location = new Point(130, 20);
             TBNyukaSyosaiID.Name = "TBNyukaSyosaiID";
             TBNyukaSyosaiID.Size = new Size(100, 31);
             TBNyukaSyosaiID.TabIndex = 277;

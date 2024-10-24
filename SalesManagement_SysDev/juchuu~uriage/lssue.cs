@@ -82,31 +82,22 @@ namespace SalesManagement_SysDev
 
         private void b_reg_Click(object sender, EventArgs e)
         {
-
             CurrentStatus.RegistrationStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
-
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
-
             CurrentStatus.UpDateStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
-
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
-
             CurrentStatus.SearchStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void clear_Click_1(object sender, EventArgs e)
