@@ -100,7 +100,6 @@ namespace SalesManagement_SysDev
 
         private void b_ser_Click(object sender, EventArgs e)
         {
-            CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
