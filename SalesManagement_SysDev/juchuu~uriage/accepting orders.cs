@@ -199,8 +199,11 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+<<<<<<< HEAD
     
        
+=======
+>>>>>>> f99a50bcb4491c5122f3a59aa23920363a3a24c9
 
         private void UpdateOrder()
         {
@@ -343,10 +346,15 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
             }
         }
+<<<<<<< HEAD
 
 
         // 受注詳細の更新機能
         public void UpdateOrderDetails()
+=======
+        // DataGridViewのセルがクリックされたときのイベントハンドラ
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+>>>>>>> f99a50bcb4491c5122f3a59aa23920363a3a24c9
         {
             // 受注詳細の更新機能が動作しました
             MessageBox.Show("受注詳細の更新機能が動作しました");
@@ -381,8 +389,22 @@ namespace SalesManagement_SysDev
             // 表示名を切り替える
             if (isOrderSelected)
             {
+<<<<<<< HEAD
                 FormSelector = "受注";
                 b_FormSelector.Text = "受注詳細操作"; // TOrder詳細側を選択
+=======
+                // クリックした行のデータを取得
+                var row = dataGridView1.Rows[e.RowIndex];
+                // 各テキストボックスにデータを設定
+                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+                TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+                TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
+                date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
+                TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
+                DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
+>>>>>>> f99a50bcb4491c5122f3a59aa23920363a3a24c9
             }
             else
             {
