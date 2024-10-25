@@ -138,7 +138,7 @@
             tb_Pass.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             tb_Pass.Location = new Point(676, 523);
             tb_Pass.Name = "tb_Pass";
-            tb_Pass.PasswordChar = '⋆';
+            tb_Pass.PasswordChar = '●';
             tb_Pass.Size = new Size(250, 45);
             tb_Pass.TabIndex = 6;
             tb_Pass.UseSystemPasswordChar = true;

@@ -9,7 +9,7 @@ namespace SalesManagement_SysDev
     public partial class F_login : Form
     {
         private ClassDateNamelabel dateNameLabel;
-        private bool isPasswordVisible = false;  // パスワード表示状態を管理するフラグ 
+        private bool isPasswordVisible = true;  // パスワード表示状態を管理するフラグ 
         private ClassTimerManager timerManager;
         public F_login()
         {
@@ -812,32 +812,21 @@ namespace SalesManagement_SysDev
         {
             // パスワード表示状態をトグル
             isPasswordVisible = !isPasswordVisible;
-            tb_Pass = new TextBox();
-            tb_Pass.PasswordChar = '*'; // 初期状態でパスワードを非表示
 
-            b_pwHyouji = new Button();
-            b_pwHyouji.Text = "表示/非表示";
-            b_pwHyouji.Click += TogglePasswordVisibility;
-            // UIを強制的に再描画
-            tb_Pass.Refresh();
-        }
-
-        // パスワード表示/非表示を切り替えるメソッド
-        private void TogglePasswordVisibility(object sender, EventArgs e)
-        {
-            if (tb_Pass.PasswordChar == '*')
+            if (!isPasswordVisible)
             {
-                // パスワードを表示
+                tb_Pass.UseSystemPasswordChar = false; // パスワードを非表示 
                 tb_Pass.PasswordChar = '\0';
-                b_pwHyouji.Text = "閉";
+                b_pwHyouji.Text = "開";  // ボタンのテキストを「表示」に変更 
             }
             else
             {
-                // パスワードを非表示
-                tb_Pass.PasswordChar = '*';
-                b_pwHyouji.Text = "開";
+                tb_Pass.UseSystemPasswordChar = true; // パスワードを表示 
+
+                b_pwHyouji.Text = "閉";  // ボタンのテキストを「非表示」に変更 
             }
         }
+
 
         private void F_login_Load(object sender, EventArgs e)
         {

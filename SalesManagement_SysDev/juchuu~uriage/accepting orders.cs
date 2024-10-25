@@ -322,6 +322,11 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateToOrderForm();
         }
+
+        private void colord_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
