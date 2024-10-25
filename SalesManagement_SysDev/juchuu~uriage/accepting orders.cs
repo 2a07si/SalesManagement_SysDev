@@ -30,8 +30,8 @@ namespace SalesManagement_SysDev
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-
-            // ボタンアクセス制御を設定 
+            this.WindowState = FormWindowState.Normal;
+            // ボタンアクセス制御を設定
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
                 b_arr,
@@ -261,5 +261,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("一覧表示中にエラーが発生しました: " + ex.Message);
             }
         }
+
+
     }
 }
