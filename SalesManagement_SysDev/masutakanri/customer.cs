@@ -100,6 +100,7 @@ namespace SalesManagement_SysDev
             TBFax.Text = "";
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
+            CurrentStatus.ResetStatus(label2);
         }
 
         private void b_reg_Click(object sender, EventArgs e)

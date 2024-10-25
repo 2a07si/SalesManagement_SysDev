@@ -402,6 +402,7 @@
             b_reg.TabIndex = 238;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
+            b_reg.Click += b_reg_Click_1;
             // 
             // label3
             // 
@@ -646,7 +647,7 @@
             label2.Name = "label2";
             label2.Size = new Size(86, 32);
             label2.TabIndex = 262;
-            label2.Text = "未選択";
+            label2.Text = "未設定";
             // 
             // acceptingorders
             // 

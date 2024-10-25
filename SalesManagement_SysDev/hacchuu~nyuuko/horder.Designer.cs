@@ -372,6 +372,7 @@
             clear.TabIndex = 242;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            clear.Click += clear_Click;
             // 
             // close
             // 
@@ -502,7 +503,7 @@
             label2.Name = "label2";
             label2.Size = new Size(86, 32);
             label2.TabIndex = 269;
-            label2.Text = "未選択";
+            label2.Text = "未設定";
             // 
             // label1
             // 

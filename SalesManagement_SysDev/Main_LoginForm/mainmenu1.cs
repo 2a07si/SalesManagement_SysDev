@@ -113,9 +113,9 @@ namespace SalesManagement_SysDev
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           // DateTime dateTime = DateTime.Now;
-           // labeltime.Text = dateTime.ToLongTimeString();
-           // labeldate.Text = DateTime.Now.ToString("yyyy年MM月dd日");
+            // DateTime dateTime = DateTime.Now;
+            // labeltime.Text = dateTime.ToLongTimeString();
+            // labeldate.Text = DateTime.Now.ToString("yyyy年MM月dd日");
         }
 
         private void b_masuta_Click(object sender, EventArgs e)

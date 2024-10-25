@@ -50,7 +50,6 @@ namespace SalesManagement_SysDev.Classまとめ
         public void NavigateToAcceptingOrderForm()
         {
             acceptingorders acceptingordersForm = new acceptingorders(currentForm); // 現在のフォームを渡す
-            
             NavigateTo(acceptingordersForm); // 受注管理画面に遷移
         }
 

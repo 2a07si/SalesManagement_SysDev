@@ -5,6 +5,7 @@ using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using System.Linq; // LINQの使用を許可
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
+using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 
 namespace SalesManagement_SysDev
 {
@@ -17,15 +18,23 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
+<<<<<<< HEAD
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット  
             this.WindowState = FormWindowState.Minimized;
+=======
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット 
+>>>>>>> ffd8f30e21a68989d330899b4c9eaaf7f45974f0
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
+<<<<<<< HEAD
 
             // ボタンアクセス制御を設定  
+=======
+            // ボタンアクセス制御を設定
+>>>>>>> ffd8f30e21a68989d330899b4c9eaaf7f45974f0
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
                 b_arr,
@@ -93,6 +102,7 @@ namespace SalesManagement_SysDev
             TBSuryou.Text = "";
             TBGoukeiKingaku.Text = "";
             date.Value = DateTime.Now;
+            CurrentStatus.ResetStatus(label2);
         }
 
         private void b_ser_Click(object sender, EventArgs e)
@@ -257,6 +267,14 @@ namespace SalesManagement_SysDev
             }
         }
 
+<<<<<<< HEAD
+=======
+        private void b_reg_Click_1(object sender, EventArgs e)
+        {
+            CurrentStatus.RegistrationStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
+        }
+>>>>>>> ffd8f30e21a68989d330899b4c9eaaf7f45974f0
     }
 
 }

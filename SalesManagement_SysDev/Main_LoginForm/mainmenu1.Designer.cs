@@ -38,6 +38,7 @@
             label_ename = new Label();
             label_id = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            Loginkanri = new Button();
             SuspendLayout();
             // 
             // label3
@@ -130,12 +131,22 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // Loginkanri
+            // 
+            Loginkanri.Location = new Point(1191, 106);
+            Loginkanri.Name = "Loginkanri";
+            Loginkanri.Size = new Size(112, 34);
+            Loginkanri.TabIndex = 111;
+            Loginkanri.Text = "ログイン管理";
+            Loginkanri.UseVisualStyleBackColor = true;
+            // 
             // mainmenu1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1578, 844);
+            Controls.Add(Loginkanri);
             Controls.Add(label_ename);
             Controls.Add(label_id);
             Controls.Add(b_masuta);
@@ -168,5 +179,6 @@
         private Label label_ename;
         private Label label_id;
         private System.Windows.Forms.Timer timer1;
+        private Button Loginkanri;
     }
 }

@@ -55,6 +55,25 @@ namespace SalesManagement_SysDev
             accessManager.SetButtonAccess(buttons); // ボタンのアクセス設定を適用
         }
 
+        private void clear_Click(object sender, EventArgs e)
+        {
+            cleartext();
+        }
 
+        private void cleartext()
+        {
+            TBHattyuuID.Text = "";
+            TBMakerID.Text = "";
+            TBShainID.Text = "";
+            NyuukoFlag.Checked = false;
+            DelFlag.Checked = false;
+            TBRiyuu.Text = "";
+            TBHattyuuSyosaiID.Text = "";
+            TBHattyuIDS.Text = "";
+            TBSyohinID.Text = "";
+            TBSuryou.Text = "";
+            date.Value = DateTime.Now;
+            CurrentStatus.ResetStatus(label2);
+        }
     }
 }

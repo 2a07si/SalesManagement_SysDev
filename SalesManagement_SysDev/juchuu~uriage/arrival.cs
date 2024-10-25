@@ -110,6 +110,7 @@ namespace SalesManagement_SysDev
             TBSuryou.Text = "";
             TBSyohinID.Text = "";
             date.Value = DateTime.Now;
+            CurrentStatus.ResetStatus(label2);
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)

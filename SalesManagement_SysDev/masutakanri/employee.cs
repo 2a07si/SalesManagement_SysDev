@@ -91,6 +91,7 @@ namespace SalesManagement_SysDev
             TBTellNo.Text = "";
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
+            CurrentStatus.ResetStatus(label2);
         }
 
         private void date_ValueChanged(object sender, EventArgs e)

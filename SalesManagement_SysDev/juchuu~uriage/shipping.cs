@@ -169,6 +169,7 @@ namespace SalesManagement_SysDev
             TBSyukkaIDS.Text = "";
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
+            CurrentStatus.ResetStatus(label2);
         }
 
         private void close_Click_1(object sender, EventArgs e)

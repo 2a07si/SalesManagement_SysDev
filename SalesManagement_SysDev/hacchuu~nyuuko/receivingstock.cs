@@ -62,6 +62,25 @@ namespace SalesManagement_SysDev
             });
         }
 
+        private void clear_Click(object sender, EventArgs e)
+        {
+            cleartext();
+        }
 
+        private void cleartext()
+        {
+            TBNyukoID.Text = "";
+            TBHattyuuID.Text = "";
+            TBShainID.Text = "";
+            NyuukoFlag.Checked = false;
+            DelFlag.Checked = false;
+            TBRiyuu.Text = "";
+            TBNyuukoSyosaiID.Text = "";
+            TBNyuukoIDS.Text = "";
+            TBSyohinID.Text = "";
+            TBSuryou.Text = "";
+            date.Value = DateTime.Now;
+            CurrentStatus.ResetStatus(label2);
+        }
     }
 }

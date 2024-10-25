@@ -123,6 +123,7 @@ namespace SalesManagement_SysDev
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
             date.Value = DateTime.Now;
+            CurrentStatus.ResetStatus(label2);
         }
     }
 }
