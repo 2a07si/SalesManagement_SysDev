@@ -28,12 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "LoginKanriGamen";
+            PasswordChange = new Button();
+            NewAccount = new Button();
+            close = new Button();
+            SuspendLayout();
+            // 
+            // PasswordChange
+            // 
+            PasswordChange.BackColor = Color.Navy;
+            PasswordChange.Font = new Font("Yu Gothic UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            PasswordChange.ForeColor = Color.Snow;
+            PasswordChange.Location = new Point(100, 189);
+            PasswordChange.Name = "PasswordChange";
+            PasswordChange.Size = new Size(200, 90);
+            PasswordChange.TabIndex = 0;
+            PasswordChange.Text = "パスワード変更";
+            PasswordChange.UseVisualStyleBackColor = false;
+            // 
+            // NewAccount
+            // 
+            NewAccount.BackColor = Color.Navy;
+            NewAccount.Font = new Font("Yu Gothic UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            NewAccount.ForeColor = Color.Snow;
+            NewAccount.Location = new Point(480, 189);
+            NewAccount.Name = "NewAccount";
+            NewAccount.Size = new Size(200, 90);
+            NewAccount.TabIndex = 1;
+            NewAccount.Text = "新規アカウント作成";
+            NewAccount.UseVisualStyleBackColor = false;
+            // 
+            // close
+            // 
+            close.Location = new Point(650, 20);
+            close.Name = "close";
+            close.Size = new Size(100, 40);
+            close.TabIndex = 245;
+            close.Text = "閉じる";
+            close.UseVisualStyleBackColor = true;
+            close.Click += close_Click;
+            // 
+            // LoginKanriGamen
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(778, 444);
+            Controls.Add(close);
+            Controls.Add(NewAccount);
+            Controls.Add(PasswordChange);
+            Name = "LoginKanriGamen";
+            Text = "ログイン管理画面";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button PasswordChange;
+        private Button NewAccount;
+        private Button close;
     }
 }

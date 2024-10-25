@@ -160,5 +160,20 @@ namespace SalesManagement_SysDev
         private void label3_Click(object sender, EventArgs e)
         {
         }
+
+        private void Loginkanri_Click(object sender, EventArgs e)
+        {
+            switch (Global.EmployeePermission)
+            {
+                case 1:
+                    changeForm.NavigateToLogForm();
+                    break;
+
+                default:
+                    changeForm.NavigateToMainMenu();
+                    MessageBox.Show("この操作ができるのは管理者のみです。");
+                    break;
+            }
+        }
     }
 }

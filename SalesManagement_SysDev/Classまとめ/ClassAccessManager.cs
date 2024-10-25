@@ -23,10 +23,12 @@ namespace SalesManagement_SysDev.Classまとめ
                         break;
 
                     case 2:
-                        // 権限2: 受注、注文、入荷、出荷、売上は無効
+                        // 権限2:　商品、在庫、社員、出荷、発注、入庫、ログイン画面が無効
                         if (button.Name == "b_mer" || button.Name == "b_sto" ||
                             button.Name == "b_emp" || button.Name == "b_lss" ||
-                            button.Name == "b_hor" || button.Name == "b_rec" || button.Name == "b_hacchuu")
+                            button.Name == "b_hor" || button.Name == "b_rec" ||
+                            button.Name == "b_hacchuu" || button.Name == "Loginkanri" ||
+                            button.Name == "PasswordChange" || button.Name == "NewAccount")
                         {
                             button.Enabled = false; // アクセス不可のボタン
 
@@ -42,7 +44,8 @@ namespace SalesManagement_SysDev.Classまとめ
                         if (button.Name == "b_acc" || button.Name == "b_ord" ||
                             button.Name == "b_cus" || button.Name == "b_emp" ||
                             button.Name == "b_arr" || button.Name == "b_shi" ||
-                            button.Name == "b_sal")
+                            button.Name == "b_sal" || button.Name == "Loginkanri" ||
+                            button.Name == "PasswordChange" || button.Name == "NewAccount")
                         {
                             button.Enabled = false;
                         }

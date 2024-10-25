@@ -19,15 +19,23 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
+<<<<<<< HEAD
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット   
             this.WindowState = FormWindowState.Minimized;
+=======
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット 
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+>>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
+<<<<<<< HEAD
 
             // ボタンアクセス制御を設定   
+=======
+>>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
                 b_arr,
@@ -147,11 +155,16 @@ namespace SalesManagement_SysDev
                     break;
 
                 case CurrentStatus.Status.検索:
+<<<<<<< HEAD
                     searchKeyword = TBJyutyuID.Text; 
                     SearchOrders();
 
                     MessageBox.Show("検索が完了しました。");
                     break;
+=======
+                    SearchOrders();
+                　　break;
+>>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
 
                 default:
                     MessageBox.Show("無効な操作です。");
@@ -261,6 +274,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("データの取得中にエラーが発生しました: " + ex.Message);
             }
         }
+<<<<<<< HEAD
 
         private void SearchOrders()
         {
@@ -276,6 +290,14 @@ namespace SalesManagement_SysDev
                                     o.ClId.ToString().Contains(searchKeyword) ||
                                     o.ClCharge.Contains(searchKeyword))
                         .ToList();
+=======
+        private void b_reg_Click_1(object sender, EventArgs e)
+        {
+            CurrentStatus.RegistrationStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
+        }
+    }
+>>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
 
                     // DataGridViewに表示するために変換
                     dataGridView1.DataSource = orders.Select(o => new

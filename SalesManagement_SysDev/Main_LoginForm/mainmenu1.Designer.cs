@@ -139,6 +139,7 @@
             Loginkanri.TabIndex = 111;
             Loginkanri.Text = "ログイン管理";
             Loginkanri.UseVisualStyleBackColor = true;
+            Loginkanri.Click += Loginkanri_Click;
             // 
             // mainmenu1
             // 

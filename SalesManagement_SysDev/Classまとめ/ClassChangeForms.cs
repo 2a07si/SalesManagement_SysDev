@@ -9,6 +9,7 @@
 //-このクラスは、主にメインメニューや他の管理画面への遷移を目的とする。
 //////////////////////////
 
+using SalesManagement_SysDev.Main_LoginForm;
 using System;
 using System.Windows.Forms;
 
@@ -128,6 +129,13 @@ namespace SalesManagement_SysDev.Classまとめ
         {
             stock stockForm = new stock();
             NavigateTo(stockForm);
+        }
+
+        //パスワード変更、新規アカウント作成画面遷移
+        internal void NavigateToLogForm()
+        {
+            LoginKanriGamen loginKanriGamenForm = new LoginKanriGamen();
+            NavigateTo(loginKanriGamenForm);
         }
     }
 }
