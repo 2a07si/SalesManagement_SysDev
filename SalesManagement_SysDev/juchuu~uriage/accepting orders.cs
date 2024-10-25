@@ -18,23 +18,13 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-<<<<<<< HEAD
-            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット  
-            this.WindowState = FormWindowState.Minimized;
-=======
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット 
->>>>>>> ffd8f30e21a68989d330899b4c9eaaf7f45974f0
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-<<<<<<< HEAD
-
-            // ボタンアクセス制御を設定  
-=======
-            // ボタンアクセス制御を設定
->>>>>>> ffd8f30e21a68989d330899b4c9eaaf7f45974f0
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
                 b_arr,
@@ -153,6 +143,10 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("一覧表示が完了しました。");
                     break;
 
+                case CurrentStatus.Status.検索:
+                    SearchOrders();
+                　　break;
+
                 default:
                     MessageBox.Show("無効な操作です。");
                     break;
@@ -266,15 +260,11 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("一覧表示中にエラーが発生しました: " + ex.Message);
             }
         }
-
-<<<<<<< HEAD
-=======
         private void b_reg_Click_1(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
->>>>>>> ffd8f30e21a68989d330899b4c9eaaf7f45974f0
     }
 
 }
