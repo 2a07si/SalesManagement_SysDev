@@ -158,7 +158,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(label8);
             panel1.Controls.Add(TBJyutyu);
             panel1.Controls.Add(Nyuukaflag);
@@ -408,7 +408,7 @@
             // 
             // b_arr
             // 
-            b_arr.BackColor = Color.Navy;
+            b_arr.BackColor = Color.RoyalBlue;
             b_arr.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_arr.ForeColor = Color.White;
             b_arr.Location = new Point(15, 390);

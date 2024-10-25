@@ -106,7 +106,7 @@
             // 
             // b_sto
             // 
-            b_sto.BackColor = Color.Navy;
+            b_sto.BackColor = Color.RoyalBlue;
             b_sto.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_sto.ForeColor = Color.White;
             b_sto.Location = new Point(15, 310);
@@ -191,7 +191,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(DelFlag);

@@ -332,7 +332,7 @@ namespace SalesManagement_SysDev
             else
             {
                 flag = 0;
-                panel1.BackColor = Color.Navy;
+                panel1.BackColor = Color.RoyalBlue;
             }
         }
     }

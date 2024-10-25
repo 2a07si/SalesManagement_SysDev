@@ -90,7 +90,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(TBColor);
@@ -445,7 +445,7 @@
             // 
             // b_mer
             // 
-            b_mer.BackColor = Color.Navy;
+            b_mer.BackColor = Color.RoyalBlue;
             b_mer.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_mer.ForeColor = Color.White;
             b_mer.Location = new Point(15, 230);

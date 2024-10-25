@@ -35,7 +35,7 @@
             // 
             // PasswordChange
             // 
-            PasswordChange.BackColor = Color.Navy;
+            PasswordChange.BackColor = Color.RoyalBlue;
             PasswordChange.Font = new Font("Yu Gothic UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             PasswordChange.ForeColor = Color.White;
             PasswordChange.Location = new Point(100, 189);
@@ -47,7 +47,7 @@
             // 
             // NewAccount
             // 
-            NewAccount.BackColor = Color.Navy;
+            NewAccount.BackColor = Color.RoyalBlue;
             NewAccount.Font = new Font("Yu Gothic UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             NewAccount.ForeColor = Color.White;
             NewAccount.Location = new Point(480, 189);

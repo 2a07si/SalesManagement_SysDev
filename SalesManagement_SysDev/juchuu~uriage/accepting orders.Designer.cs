@@ -292,7 +292,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
@@ -359,7 +359,7 @@
             // 
             // b_add
             // 
-            b_add.BackColor = Color.Navy;
+            b_add.BackColor = Color.RoyalBlue;
             b_add.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_add.ForeColor = Color.White;
             b_add.Location = new Point(15, 150);

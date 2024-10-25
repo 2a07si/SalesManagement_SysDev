@@ -179,7 +179,7 @@
             // 
             // b_sal
             // 
-            b_sal.BackColor = Color.Navy;
+            b_sal.BackColor = Color.RoyalBlue;
             b_sal.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_sal.ForeColor = Color.White;
             b_sal.Location = new Point(15, 550);
@@ -243,7 +243,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(label8);

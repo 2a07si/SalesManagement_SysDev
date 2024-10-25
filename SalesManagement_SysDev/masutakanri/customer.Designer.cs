@@ -101,7 +101,7 @@
             // 
             // b_cus
             // 
-            b_cus.BackColor = Color.Navy;
+            b_cus.BackColor = Color.RoyalBlue;
             b_cus.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_cus.ForeColor = Color.White;
             b_cus.Location = new Point(15, 390);
@@ -198,7 +198,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(label1);

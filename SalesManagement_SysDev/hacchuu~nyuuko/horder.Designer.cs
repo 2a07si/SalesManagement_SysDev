@@ -149,7 +149,7 @@
             // 
             // b_hor
             // 
-            b_hor.BackColor = Color.Navy;
+            b_hor.BackColor = Color.RoyalBlue;
             b_hor.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_hor.ForeColor = Color.White;
             b_hor.Location = new Point(15, 150);
@@ -174,7 +174,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(NyuukoFlag);
             panel1.Controls.Add(Prev);

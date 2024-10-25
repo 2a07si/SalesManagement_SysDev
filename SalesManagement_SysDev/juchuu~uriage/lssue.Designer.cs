@@ -223,7 +223,7 @@
             // 
             // b_lss
             // 
-            b_lss.BackColor = Color.Navy;
+            b_lss.BackColor = Color.RoyalBlue;
             b_lss.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_lss.ForeColor = Color.White;
             b_lss.Location = new Point(15, 310);
@@ -235,7 +235,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(SyukkoFlag);
             panel1.Controls.Add(Prev);

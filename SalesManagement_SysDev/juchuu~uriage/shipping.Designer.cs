@@ -199,7 +199,7 @@
             // 
             // b_shi
             // 
-            b_shi.BackColor = Color.Navy;
+            b_shi.BackColor = Color.RoyalBlue;
             b_shi.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_shi.ForeColor = Color.White;
             b_shi.Location = new Point(15, 470);
@@ -237,7 +237,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(Prev);
