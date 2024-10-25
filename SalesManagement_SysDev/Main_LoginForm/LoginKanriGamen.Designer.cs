@@ -35,25 +35,31 @@
             // 
             // PasswordChange
             // 
-            PasswordChange.Location = new Point(227, 178);
+            PasswordChange.BackColor = Color.Navy;
+            PasswordChange.Font = new Font("Yu Gothic UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            PasswordChange.ForeColor = Color.Snow;
+            PasswordChange.Location = new Point(100, 189);
             PasswordChange.Name = "PasswordChange";
-            PasswordChange.Size = new Size(169, 34);
+            PasswordChange.Size = new Size(200, 90);
             PasswordChange.TabIndex = 0;
             PasswordChange.Text = "パスワード変更";
-            PasswordChange.UseVisualStyleBackColor = true;
+            PasswordChange.UseVisualStyleBackColor = false;
             // 
             // NewAccount
             // 
-            NewAccount.Location = new Point(440, 178);
+            NewAccount.BackColor = Color.Navy;
+            NewAccount.Font = new Font("Yu Gothic UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            NewAccount.ForeColor = Color.Snow;
+            NewAccount.Location = new Point(480, 189);
             NewAccount.Name = "NewAccount";
-            NewAccount.Size = new Size(178, 34);
+            NewAccount.Size = new Size(200, 90);
             NewAccount.TabIndex = 1;
             NewAccount.Text = "新規アカウント作成";
-            NewAccount.UseVisualStyleBackColor = true;
+            NewAccount.UseVisualStyleBackColor = false;
             // 
             // close
             // 
-            close.Location = new Point(641, 38);
+            close.Location = new Point(650, 20);
             close.Name = "close";
             close.Size = new Size(100, 40);
             close.TabIndex = 245;
@@ -65,12 +71,12 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(778, 444);
             Controls.Add(close);
             Controls.Add(NewAccount);
             Controls.Add(PasswordChange);
             Name = "LoginKanriGamen";
-            Text = "LoginKanriGamen";
+            Text = "ログイン管理画面";
             ResumeLayout(false);
         }
 
