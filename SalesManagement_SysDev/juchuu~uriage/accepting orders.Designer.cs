@@ -501,6 +501,7 @@ namespace SalesManagement_SysDev
             b_kakutei.TabIndex = 257;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.Click += b_kakutei_Click_1;
             // 
             // B_iti
             // 
@@ -671,7 +672,6 @@ namespace SalesManagement_SysDev
             colord.TabIndex = 264;
             colord.Text = "色変え";
             colord.UseVisualStyleBackColor = true;
-<<<<<<< HEAD
             // 
             // b_FormSelector
             // 
@@ -681,9 +681,6 @@ namespace SalesManagement_SysDev
             b_FormSelector.TabIndex = 265;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
-=======
-            //colord.Click += colord_Click;
->>>>>>> f99a50bcb4491c5122f3a59aa23920363a3a24c9
             // 
             // acceptingorders
             // 

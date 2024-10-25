@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
-using SalesManagement_SysDev.Classまとめ;
+using SalesManagement_SysDev.Classまとめ; // 各種クラスを使用する
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
-using System.Linq; // LINQの使用を許可 
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
@@ -13,24 +13,24 @@ namespace SalesManagement_SysDev
     public partial class acceptingorders : Form
     {
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
-
         private ClassDataGridViewClearer dgvClearer;
-        private string searchKeyword = "";
-        private ClassChangeForms formChanger; // 画面遷移管理クラス    
-        private ClassAccessManager accessManager; // 権限管理クラス   
-        private string FormSelector = "";
+        private ClassChangeForms formChanger; // 画面遷移管理クラス
+        private ClassAccessManager accessManager; // 権限管理クラス
+        private string orderFlag = "注文"; // 初期状態を「注文」に設定
+
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
-            this.formChanger = new ClassChangeForms(this);
-            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+            formChanger = new ClassChangeForms(this);
+            accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            // ボタンアクセス制御を設定   
-            accessManager.SetButtonAccess(new Control[] {
+            // ボタンアクセス制御を設定
+            accessManager.SetButtonAccess(new Control[]
+            {
                 b_ord,
                 b_arr,
                 b_shi,
@@ -40,48 +40,22 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        // メインメニューに戻る    
+        // メインメニューに戻る
         private void close_Click_1(object sender, EventArgs e)
         {
-            formChanger.NavigateToMainMenu(); // メインメニューに遷移    
+            formChanger.NavigateToMainMenu(); // メインメニューに遷移
         }
 
-        // 注文管理画面に遷移    
-        private void b_ord_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToOrderForm(); // 注文管理画面に遷移    
-        }
+        // 各ボタンでの画面遷移
+        private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToOrderForm();
+        private void b_arr_Click_1(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
+        private void b_shi_Click(object sender, EventArgs e) => formChanger.NavigateToShippingForm();
+        private void b_sal_Click(object sender, EventArgs e) => formChanger.NavigateToSalesForm();
+        private void b_lss_Click_1(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
 
-        // 入荷管理画面に遷移    
-        private void b_arr_Click_1(object sender, EventArgs e)
-        {
-            formChanger.NavigateToArrivalForm(); // 入荷管理画面に遷移    
-        }
+        private void clear_Click(object sender, EventArgs e) => ClearText();
 
-        // 出荷管理画面に遷移    
-        private void b_shi_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToShippingForm(); // 出荷管理画面に遷移    
-        }
-
-        // 売上管理画面に遷移    
-        private void b_sal_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToSalesForm(); // 売上管理画面に遷移    
-        }
-
-        // 出庫管理画面に遷移   
-        private void b_lss_Click_1(object sender, EventArgs e)
-        {
-            formChanger.NavigateToIssueForm(); // 出庫管理画面に遷移   
-        }
-
-        private void clear_Click(object sender, EventArgs e)
-        {
-            cleartext();
-        }
-
-        private void cleartext()
+        private void ClearText()
         {
             TBJyutyuID.Text = "";
             TBShopID.Text = "";
@@ -100,110 +74,113 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
         }
 
-        private void b_ser_Click(object sender, EventArgs e)
-        {
+        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
 
+        private void PerformSearch()
+        {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e)
-        {
+        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
 
+        private void UpdateStatus()
+        {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click(object sender, EventArgs e)
+        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+
+        private void RegisterStatus()
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            //new UpdatorButton().AddUpdator(label14).OnUpdate();
-
         }
 
-        private void B_iti_Click(object sender, EventArgs e)
+        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
+
+        private void ListStatus()
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        // 状態リセットメソッド（必要ならボタンにバインド）   
+        // 状態リセットメソッド（必要ならボタンにバインド）
         private void ResetStatus()
         {
             CurrentStatus.ResetStatus(label2);
         }
+
         private void b_kakutei_Click_1(object sender, EventArgs e)
         {
-            // モードに応じた処理を実行
-            switch (FormSelector)
+            try
             {
-                case "受注":
-                    // 受注モードの処理
-                    switch (CurrentStatus.CurrentStatusValue) // CurrentStatusを参照するように変更
-                    {
-                        case CurrentStatus.Status.更新:
-                            UpdateOrder();
-                            break;
+                // モードに基づいて処理を分岐
+                switch (CurrentStatus.CurrentMode)
+                {
+                    case CurrentStatus.Mode.通常:
+                        HandleOrderOperation();
+                        break;
+                    case CurrentStatus.Mode.詳細:
+                        HandleOrderDetailOperation();
+                        break;
+                    default:
+                        MessageBox.Show("現在のモードは無効です。");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message);
+            }
+        }
 
-                        case CurrentStatus.Status.登録:
-                            RegisterOrder();
-                            break;
-
-                        case CurrentStatus.Status.一覧:
-                            DisplayOrders();
-                            MessageBox.Show("一覧表示が完了しました。");
-                            break;
-
-                        case CurrentStatus.Status.検索:
-                            searchKeyword = TBJyutyuID.Text;
-                            SearchOrders();
-                            break;
-
-                        default:
-                            MessageBox.Show("無効な操作です。");
-                            break;
-                    }
+        private void HandleOrderOperation()
+        {
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.更新:
+                    UpdateOrder();
                     break;
-
-                case "受注詳細":
-                    // 受注詳細モードの処理
-                    switch (CurrentStatus.CurrentStatusValue) // CurrentStatusを参照するように変更
-                    {
-                        case CurrentStatus.Status.更新:
-                            UpdateOrderDetails();
-                            break;
-
-                        case CurrentStatus.Status.登録:
-                            RegisterOrderDetails(); // 新たに追加する登録処理
-                            break;
-
-                        case CurrentStatus.Status.一覧:
-                            DisplayOrderDetails();
-                            MessageBox.Show("受注詳細の一覧表示が完了しました。");
-                            break;
-
-                        case CurrentStatus.Status.検索:
-                            searchKeyword = TBJyutyuID.Text; // 受注詳細の検索条件を取得
-                            SearchOrderDetails(); // 受注詳細の検索処理
-                            break;
-
-                        default:
-                            MessageBox.Show("無効な操作です。");
-                            break;
-                    }
+                case CurrentStatus.Status.登録:
+                    RegisterOrder();
                     break;
-
+                case CurrentStatus.Status.一覧:
+                    DisplayOrders();
+                    MessageBox.Show("一覧表示が完了しました。");
+                    break;
+                case CurrentStatus.Status.検索:
+                    SearchOrders(TBJyutyuID.Text);
+                    break;
                 default:
-                    MessageBox.Show("現在のモードは無効です。");
+                    MessageBox.Show("無効な操作です。");
                     break;
             }
         }
-<<<<<<< HEAD
-    
-       
-=======
->>>>>>> f99a50bcb4491c5122f3a59aa23920363a3a24c9
+
+        private void HandleOrderDetailOperation()
+        {
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.更新:
+                    UpdateOrderDetails();
+                    break;
+                case CurrentStatus.Status.登録:
+                    RegisterOrderDetails();
+                    break;
+                case CurrentStatus.Status.一覧:
+                    DisplayOrderDetails();
+                    MessageBox.Show("受注詳細の一覧表示が完了しました。");
+                    break;
+                case CurrentStatus.Status.検索:
+                    SearchOrderDetails(TBJyutyuID.Text);
+                    break;
+                default:
+                    MessageBox.Show("無効な操作です。");
+                    break;
+            }
+        }
 
         private void UpdateOrder()
         {
@@ -215,29 +192,27 @@ namespace SalesManagement_SysDev
             DateTime jyutyuDate = date.Value;
             bool tyumonFlag = TyumonFlag.Checked;
             bool delFlag = DelFlag.Checked;
-            string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
-                // JyutyuID ではなく OrId で検索する必要があります 
                 var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == jyutyuID);
                 if (order != null)
                 {
-                    order.SoId = int.Parse(shopID); // SoIdの設定 
-                    order.EmId = int.Parse(shainID); // EmIdの設定 
-                    order.ClId = int.Parse(kokyakuID); // ClIdの設定 
-                    order.ClCharge = tantoName; // ClChargeの設定 
-                    order.OrDate = jyutyuDate; // OrDateの設定 
-                    order.OrStateFlag = null; // OrStateFlagは適宜初期化 
-                    order.OrFlag = tyumonFlag ? 1 : 0; // OrFlagの設定 
-                    order.OrHidden = delFlag ? "1" : "0"; // OrHiddenの設定 
+                    order.SoId = int.Parse(shopID);
+                    order.EmId = int.Parse(shainID);
+                    order.ClId = int.Parse(kokyakuID);
+                    order.ClCharge = tantoName;
+                    order.OrDate = jyutyuDate;
+                    order.OrStateFlag = null; // 適宜初期化
+                    order.OrFlag = tyumonFlag ? 1 : 0;
+                    order.OrHidden = delFlag ? "1" : "0";
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
                 }
                 else
                 {
-                    MessageBox.Show("指定された受注IDが見つかりませんでした。");
+                    MessageBox.Show("該当する受注が見つかりません。");
                 }
             }
         }
@@ -251,43 +226,34 @@ namespace SalesManagement_SysDev
             DateTime jyutyuDate = date.Value;
             bool tyumonFlag = TyumonFlag.Checked;
             bool delFlag = DelFlag.Checked;
-            string riyuu = TBRiyuu.Text;
 
-            try
+            using (var context = new SalesManagementContext())
             {
-                using (var context = new SalesManagementContext())
+                var newOrder = new TOrder
                 {
-                    var order = new TOrder
-                    {
-                        SoId = int.Parse(shopID), // SoIdの設定 
-                        EmId = int.Parse(shainID), // EmIdの設定 
-                        ClId = int.Parse(kokyakuID), // ClIdの設定 
-                        ClCharge = tantoName, // ClChargeの設定 
-                        OrDate = jyutyuDate, // OrDateの設定 
-                        OrStateFlag = null, // OrStateFlagは適宜初期化 
-                        OrFlag = tyumonFlag ? 1 : 0, // OrFlagの設定 
-                        OrHidden = delFlag ? "1" : "0", // OrHiddenの設定 
-                    };
+                    SoId = int.Parse(shopID),
+                    EmId = int.Parse(shainID),
+                    ClId = int.Parse(kokyakuID),
+                    ClCharge = tantoName,
+                    OrDate = jyutyuDate,
+                    OrStateFlag = null,
+                    OrFlag = tyumonFlag ? 1 : 0,
+                    OrHidden = delFlag ? "1" : "0"
+                };
 
-                    context.TOrders.Add(order);
-                    context.SaveChanges();
-                }
-                MessageBox.Show("受注登録が成功しました。");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("登録中にエラーが発生しました: " + ex.Message);
+                context.TOrders.Add(newOrder);
+                context.SaveChanges();
+                MessageBox.Show("登録が成功しました。");
             }
         }
 
-        // 一覧表示メソッド    
         private void DisplayOrders()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var orders = context.TOrders.ToList(); // すべての受注を取得 
+                    var orders = context.TOrders.ToList();
 
                     dataGridView1.DataSource = orders.Select(o => new
                     {
@@ -304,116 +270,69 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("データの取得中にエラーが発生しました: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message);
             }
         }
-        private void SearchOrders()
+
+        private void SearchOrders(string orderID)
         {
-            try
+            using (var context = new SalesManagementContext())
             {
-                using (var context = new SalesManagementContext())
+                var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == orderID);
+                if (order != null)
                 {
-                    // 検索条件に基づいて受注をフィルタリング
-                    var orders = context.TOrders
-                        .Where(o => o.OrId.ToString().Contains(searchKeyword) ||
-                                    o.SoId.ToString().Contains(searchKeyword) ||
-                                    o.EmId.ToString().Contains(searchKeyword) ||
-                                    o.ClId.ToString().Contains(searchKeyword) ||
-                                    o.ClCharge.Contains(searchKeyword))
-                        .ToList();
-                    // DataGridViewに表示するために変換
-                    dataGridView1.DataSource = orders.Select(o => new
-                    {
-                        受注ID = o.OrId,
-                        営業所ID = o.SoId,
-                        社員ID = o.EmId,
-                        顧客ID = o.ClId,
-                        顧客担当者 = o.ClCharge,
-                        受注日 = o.OrDate,
-                        受注フラグ = o.OrFlag,
-                        非表示フラグ = o.OrHidden
-                    }).ToList();
-
-                    // 検索結果が0件の場合のメッセージ
-                    if (orders.Count == 0)
-                    {
-                        MessageBox.Show("該当する受注が見つかりませんでした。");
-                    }
+                    MessageBox.Show($"受注ID: {order.OrId}\n営業所ID: {order.SoId}\n社員ID: {order.EmId}\n顧客ID: {order.ClId}\n担当者: {order.ClCharge}\n受注日: {order.OrDate}");
+                }
+                else
+                {
+                    MessageBox.Show("該当する受注が見つかりません。");
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
-            }
-        }
-<<<<<<< HEAD
-
-
-        // 受注詳細の更新機能
-        public void UpdateOrderDetails()
-=======
-        // DataGridViewのセルがクリックされたときのイベントハンドラ
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
->>>>>>> f99a50bcb4491c5122f3a59aa23920363a3a24c9
-        {
-            // 受注詳細の更新機能が動作しました
-            MessageBox.Show("受注詳細の更新機能が動作しました");
         }
 
-        // 受注詳細の追加機能
-        public void RegisterOrderDetails()
+        private void UpdateOrderDetails()
         {
-            // 受注詳細の追加機能が動作しました
-            MessageBox.Show("受注詳細の追加機能が動作しました");
+            // 詳細更新処理を追加
         }
 
-        // 受注詳細の検索機能
-        public void SearchOrderDetails()
+        private void RegisterOrderDetails()
         {
-            // 受注詳細の検索機能が動作しました
-            MessageBox.Show("受注詳細の検索機能が動作しました");
+            // 詳細登録処理を追加
         }
 
-        // 受注詳細の一覧機能
-        public void DisplayOrderDetails()
+        private void DisplayOrderDetails()
         {
-            // 受注詳細の一覧機能が動作しました
-            MessageBox.Show("受注詳細の一覧機能が動作しました");
+            // 詳細表示処理を追加
         }
 
-        private void b_FormSelector_Click(object sender, EventArgs e)
+        private void SearchOrderDetails(string orderID)
         {
-            // 現在の選択状態を反転
-            isOrderSelected = !isOrderSelected;
+            // 詳細検索処理を追加
+        }
 
-            // 表示名を切り替える
-            if (isOrderSelected)
-            {
-<<<<<<< HEAD
-                FormSelector = "受注";
-                b_FormSelector.Text = "受注詳細操作"; // TOrder詳細側を選択
-=======
-                // クリックした行のデータを取得
-                var row = dataGridView1.Rows[e.RowIndex];
-                // 各テキストボックスにデータを設定
-                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
-                date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
-                TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
-                DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
->>>>>>> f99a50bcb4491c5122f3a59aa23920363a3a24c9
-            }
-            else
-            {
-                FormSelector = "受注詳細";
-                b_FormSelector.Text = "受注操作"; // TOrder側を選択
-            }
+        private void b_FornSelector_Click(object sender, EventArgs e)
+        {
+            // 状態を切り替える処理
+            ToggleOrderSelection();
 
-            // ここで選択状態に応じた処理を行うことも可能
-            // 例えば、受注詳細フォームを表示する場合など
+            // 現在の状態をメッセージボックスで表示
+            MessageBox.Show($"現在の状態: {orderFlag}");
+
+            // b_FlagSelectorのテキストを現在の状態に更新
+            UpdateFlagButtonText();
+        }
+
+        private void ToggleOrderSelection()
+        {
+            isOrderSelected = !isOrderSelected; // 状態をトグル
+            orderFlag = isOrderSelected ? "注文" : "詳細"; // 表示するフラグを更新
+            label2.Text = orderFlag; // 状態をラベルに表示
+        }
+
+        private void UpdateFlagButtonText()
+        {
+            // b_FlagSelectorのテキストを現在の状態に合わせる
+            b_FormSelector.Text = orderFlag;
         }
 
     }
