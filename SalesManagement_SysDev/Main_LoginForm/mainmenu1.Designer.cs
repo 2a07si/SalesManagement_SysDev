@@ -73,7 +73,7 @@
             // 
             // b_juchuu
             // 
-            b_juchuu.BackColor = Color.FromArgb(255, 255, 192);
+            b_juchuu.BackColor = SystemColors.InactiveCaption;
             b_juchuu.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_juchuu.Location = new Point(268, 189);
             b_juchuu.Name = "b_juchuu";
@@ -85,7 +85,7 @@
             // 
             // b_hacchuu
             // 
-            b_hacchuu.BackColor = Color.FromArgb(255, 255, 192);
+            b_hacchuu.BackColor = SystemColors.InactiveCaption;
             b_hacchuu.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_hacchuu.Location = new Point(605, 189);
             b_hacchuu.Name = "b_hacchuu";
@@ -97,7 +97,7 @@
             // 
             // b_masuta
             // 
-            b_masuta.BackColor = Color.FromArgb(255, 255, 192);
+            b_masuta.BackColor = SystemColors.InactiveCaption;
             b_masuta.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_masuta.Location = new Point(942, 189);
             b_masuta.Name = "b_masuta";
