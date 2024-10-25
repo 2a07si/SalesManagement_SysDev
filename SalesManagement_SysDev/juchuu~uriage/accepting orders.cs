@@ -27,6 +27,7 @@ namespace SalesManagement_SysDev
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
+            // ボタンアクセス制御を設定   
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
                 b_arr,
@@ -111,7 +112,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click_1(object sender, EventArgs e)
+        private void b_reg_Click(object sender, EventArgs e)
         {
             dgvClearer.Clear();
             CurrentStatus.RegistrationStatus(label2);
@@ -133,6 +134,38 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
         }
 
+<<<<<<< HEAD
+=======
+        private void b_kakutei_Click_1(object sender, EventArgs e)
+        {
+            // 現在の状態を確認   
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.更新:
+                    UpdateOrder();
+                    break;
+
+                case CurrentStatus.Status.登録:
+                    RegisterOrder();
+                    break;
+
+                case CurrentStatus.Status.一覧:
+                    DisplayOrders();
+                    MessageBox.Show("一覧表示が完了しました。");
+                    break;
+
+                case CurrentStatus.Status.検索:
+                    searchKeyword = TBJyutyuID.Text;
+                    SearchOrders();
+                    break;
+
+
+                default:
+                    MessageBox.Show("無効な操作です。");
+                    break;
+            }
+        }
+>>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
 
         private void UpdateOrder()
         {
@@ -236,8 +269,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("データの取得中にエラーが発生しました: " + ex.Message);
             }
         }
-
-        // 検索処理を行うメソッド
         private void SearchOrders()
         {
             try
@@ -252,7 +283,6 @@ namespace SalesManagement_SysDev
                                     o.ClId.ToString().Contains(searchKeyword) ||
                                     o.ClCharge.Contains(searchKeyword))
                         .ToList();
-
                     // DataGridViewに表示するために変換
                     dataGridView1.DataSource = orders.Select(o => new
                     {
@@ -277,8 +307,11 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
             }
-        }
 
+<<<<<<< HEAD
+=======
+        }
+>>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
         // DataGridViewのセルがクリックされたときのイベントハンドラ
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -287,7 +320,10 @@ namespace SalesManagement_SysDev
             {
                 // クリックした行のデータを取得
                 var row = dataGridView1.Rows[e.RowIndex];
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
                 // 各テキストボックスにデータを設定
                 TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
                 TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
@@ -300,5 +336,15 @@ namespace SalesManagement_SysDev
             }
         }
 
+<<<<<<< HEAD
     }
 }
+=======
+        private void b_ord_Click(object sender, EventArgs e)
+        {
+            formChanger.NavigateToOrderForm();
+        }
+    }
+}
+
+>>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496

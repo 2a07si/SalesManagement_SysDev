@@ -98,7 +98,7 @@
             // 
             // tb_ID
             // 
-            tb_ID.BackColor = Color.FromArgb(255, 255, 192);
+            tb_ID.BackColor = SystemColors.InactiveCaption;
             tb_ID.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             tb_ID.Location = new Point(676, 339);
             tb_ID.Name = "tb_ID";
@@ -107,7 +107,7 @@
             // 
             // B_login
             // 
-            B_login.BackColor = Color.Navy;
+            B_login.BackColor = Color.RoyalBlue;
             B_login.Font = new Font("Yu Gothic UI", 26F, FontStyle.Bold, GraphicsUnit.Point);
             B_login.ForeColor = Color.White;
             B_login.Location = new Point(1032, 491);
@@ -134,7 +134,7 @@
             // 
             // tb_Pass
             // 
-            tb_Pass.BackColor = Color.FromArgb(255, 255, 192);
+            tb_Pass.BackColor = SystemColors.InactiveCaption;
             tb_Pass.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             tb_Pass.Location = new Point(676, 523);
             tb_Pass.Name = "tb_Pass";
