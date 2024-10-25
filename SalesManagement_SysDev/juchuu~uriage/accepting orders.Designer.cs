@@ -1,4 +1,6 @@
-﻿namespace SalesManagement_SysDev
+﻿using SalesManagement_SysDev.juchuu_uriage;
+
+namespace SalesManagement_SysDev
 {
     partial class acceptingorders
     {
@@ -34,7 +36,7 @@
             label6 = new Label();
             label7 = new Label();
             label12 = new Label();
-            label14 = new Label();
+            label14 = new UpdateLabel2();
             TBJyutyuID = new MaskedTextBox();
             TBShopID = new MaskedTextBox();
             TBShainID = new MaskedTextBox();
@@ -498,7 +500,6 @@
             b_kakutei.TabIndex = 257;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
-            b_kakutei.Click += b_kakutei_Click_1;
             // 
             // B_iti
             // 
@@ -746,7 +747,7 @@
         private MaskedTextBox TBShainID;
         private MaskedTextBox TBShopID;
         private MaskedTextBox TBJyutyuID;
-        private Label label14;
+        private UpdateLabel2 label14;
         private Label label12;
         private Label label7;
         private Label label6;

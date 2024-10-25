@@ -6,11 +6,13 @@ using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using System.Linq; // LINQの使用を許可 
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
+using SalesManagement_SysDev.juchuu_uriage;
 
 namespace SalesManagement_SysDev
 {
     public partial class acceptingorders : Form
     {
+        private ClassDataGridViewClearer dgvClearer;
         private string searchKeyword = "";
         private ClassChangeForms formChanger; // 画面遷移管理クラス    
         private ClassAccessManager accessManager; // 権限管理クラス   
@@ -43,7 +45,7 @@ namespace SalesManagement_SysDev
         }
 
         // 注文管理画面に遷移    
-        private void b_ord_Click_2(object sender, EventArgs e)
+        private void b_ord_Click(object sender, EventArgs e)
         {
             formChanger.NavigateToOrderForm(); // 注文管理画面に遷移    
         }
@@ -98,24 +100,30 @@ namespace SalesManagement_SysDev
 
         private void b_ser_Click(object sender, EventArgs e)
         {
+            dgvClearer.Clear();
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
+            dgvClearer.Clear();
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_reg_Click(object sender, EventArgs e)
         {
+            dgvClearer.Clear();
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            //new UpdatorButton().AddUpdator(label14).OnUpdate();
+
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
+            dgvClearer.Clear();
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
@@ -126,6 +134,8 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
         }
 
+<<<<<<< HEAD
+=======
         private void b_kakutei_Click_1(object sender, EventArgs e)
         {
             // 現在の状態を確認   
@@ -155,6 +165,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+>>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
 
         private void UpdateOrder()
         {
@@ -297,7 +308,10 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
             }
 
+<<<<<<< HEAD
+=======
         }
+>>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
         // DataGridViewのセルがクリックされたときのイベントハンドラ
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -306,6 +320,10 @@ namespace SalesManagement_SysDev
             {
                 // クリックした行のデータを取得
                 var row = dataGridView1.Rows[e.RowIndex];
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
                 // 各テキストボックスにデータを設定
                 TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
                 TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
@@ -318,6 +336,10 @@ namespace SalesManagement_SysDev
             }
         }
 
+<<<<<<< HEAD
+    }
+}
+=======
         private void b_ord_Click(object sender, EventArgs e)
         {
             formChanger.NavigateToOrderForm();
@@ -330,3 +352,4 @@ namespace SalesManagement_SysDev
     }
 }
 
+>>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
