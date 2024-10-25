@@ -134,8 +134,6 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
         }
 
-<<<<<<< HEAD
-=======
         private void b_kakutei_Click_1(object sender, EventArgs e)
         {
             // 現在の状態を確認   
@@ -165,7 +163,6 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
->>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
 
         private void UpdateOrder()
         {
@@ -308,10 +305,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
             }
 
-<<<<<<< HEAD
-=======
         }
->>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
         // DataGridViewのセルがクリックされたときのイベントハンドラ
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -320,10 +314,6 @@ namespace SalesManagement_SysDev
             {
                 // クリックした行のデータを取得
                 var row = dataGridView1.Rows[e.RowIndex];
-<<<<<<< HEAD
-
-=======
->>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
                 // 各テキストボックスにデータを設定
                 TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
                 TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
@@ -336,14 +326,9 @@ namespace SalesManagement_SysDev
             }
         }
 
-<<<<<<< HEAD
-    }
-}
-=======
-        private void b_ord_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToOrderForm();
-        }
+    
+
+       
 
         private void colord_Click(object sender, EventArgs e)
         {
@@ -352,4 +337,3 @@ namespace SalesManagement_SysDev
     }
 }
 
->>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496

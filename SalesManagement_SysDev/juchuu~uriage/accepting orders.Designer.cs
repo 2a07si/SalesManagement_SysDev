@@ -670,7 +670,7 @@ namespace SalesManagement_SysDev
             colord.TabIndex = 264;
             colord.Text = "色変え";
             colord.UseVisualStyleBackColor = true;
-            colord.Click += colord_Click;
+            //colord.Click += colord_Click;
             // 
             // acceptingorders
             // 
