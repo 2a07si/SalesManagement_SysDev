@@ -64,6 +64,11 @@ namespace SalesManagement_SysDev
 
         private void clear_Click(object sender, EventArgs e)
         {
+            cleartext();
+        }
+
+        private void cleartext()
+        {
             TBNyukoID.Text = "";
             TBHattyuuID.Text = "";
             TBShainID.Text = "";
