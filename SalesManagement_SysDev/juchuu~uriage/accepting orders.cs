@@ -145,7 +145,7 @@ namespace SalesManagement_SysDev
 
                 case CurrentStatus.Status.検索:
                     SearchOrders();
-                　　break;
+                    break;
 
                 default:
                     MessageBox.Show("無効な操作です。");
@@ -255,32 +255,70 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("データの取得中にエラーが発生しました: " + ex.Message);
             }
         }
-        private void b_reg_Click_1(object sender, EventArgs e)
+
+        // 検索処理を行うメソッド
+        private void SearchOrders()
         {
-            CurrentStatus.RegistrationStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // 検索条件に基づいて受注をフィルタリング
+                    var orders = context.TOrders
+                        .Where(o => o.OrId.ToString().Contains(searchKeyword) ||
+                                    o.SoId.ToString().Contains(searchKeyword) ||
+                                    o.EmId.ToString().Contains(searchKeyword) ||
+                                    o.ClId.ToString().Contains(searchKeyword) ||
+                                    o.ClCharge.Contains(searchKeyword))
+                        .ToList();
+
+                    // DataGridViewに表示するために変換
+                    dataGridView1.DataSource = orders.Select(o => new
+                    {
+                        受注ID = o.OrId,
+                        営業所ID = o.SoId,
+                        社員ID = o.EmId,
+                        顧客ID = o.ClId,
+                        顧客担当者 = o.ClCharge,
+                        受注日 = o.OrDate,
+                        受注フラグ = o.OrFlag,
+                        非表示フラグ = o.OrHidden
+                    }).ToList();
+
+                    // 検索結果が0件の場合のメッセージ
+                    if (orders.Count == 0)
+                    {
+                        MessageBox.Show("該当する受注が見つかりませんでした。");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
+            }
         }
-    }
 
             // DataGridViewのセルがクリックされたときのイベントハンドラ
             private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // クリックした行のインデックスが有効かどうかを確認
-            if (e.RowIndex >= 0)
             {
-                // クリックした行のデータを取得
-                var row = dataGridView1.Rows[e.RowIndex];
+                // クリックした行のインデックスが有効かどうかを確認
+                if (e.RowIndex >= 0)
+                {
+                    // クリックした行のデータを取得
+                    var row = dataGridView1.Rows[e.RowIndex];
 
-                // 各テキストボックスにデータを設定
-                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
-                date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
-                TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
-                DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
+                    // 各テキストボックスにデータを設定
+                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+                    TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
+                    date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
+                    TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
+                    DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
+                }
             }
+
+
         }
     }
-}
