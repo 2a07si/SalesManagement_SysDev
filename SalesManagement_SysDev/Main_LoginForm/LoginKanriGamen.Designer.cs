@@ -28,12 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "LoginKanriGamen";
+            PasswordChange = new Button();
+            NewAccount = new Button();
+            close = new Button();
+            SuspendLayout();
+            // 
+            // PasswordChange
+            // 
+            PasswordChange.Location = new Point(227, 178);
+            PasswordChange.Name = "PasswordChange";
+            PasswordChange.Size = new Size(169, 34);
+            PasswordChange.TabIndex = 0;
+            PasswordChange.Text = "パスワード変更";
+            PasswordChange.UseVisualStyleBackColor = true;
+            // 
+            // NewAccount
+            // 
+            NewAccount.Location = new Point(440, 178);
+            NewAccount.Name = "NewAccount";
+            NewAccount.Size = new Size(178, 34);
+            NewAccount.TabIndex = 1;
+            NewAccount.Text = "新規アカウント作成";
+            NewAccount.UseVisualStyleBackColor = true;
+            // 
+            // close
+            // 
+            close.Location = new Point(641, 38);
+            close.Name = "close";
+            close.Size = new Size(100, 40);
+            close.TabIndex = 245;
+            close.Text = "閉じる";
+            close.UseVisualStyleBackColor = true;
+            close.Click += close_Click;
+            // 
+            // LoginKanriGamen
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(close);
+            Controls.Add(NewAccount);
+            Controls.Add(PasswordChange);
+            Name = "LoginKanriGamen";
+            Text = "LoginKanriGamen";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button PasswordChange;
+        private Button NewAccount;
+        private Button close;
     }
 }
