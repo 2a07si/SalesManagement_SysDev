@@ -524,7 +524,7 @@
             label16.Name = "label16";
             label16.Size = new Size(86, 32);
             label16.TabIndex = 267;
-            label16.Text = "未選択";
+            label16.Text = "未設定";
             // 
             // label1
             // 
