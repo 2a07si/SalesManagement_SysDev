@@ -6,6 +6,7 @@ using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using System.Linq; // LINQの使用を許可 
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
+using SalesManagement_SysDev.juchuu_uriage;
 
 namespace SalesManagement_SysDev
 {
@@ -111,6 +112,8 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            //new UpdatorButton().AddUpdator(label14).OnUpdate();
+
         }
 
         private void B_iti_Click(object sender, EventArgs e)
@@ -125,33 +128,6 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
         }
 
-        private void b_kakutei_Click_1(object sender, EventArgs e)
-        {
-            // 現在の状態を確認   
-            switch (CurrentStatus.CurrentStatusValue)
-            {
-                case CurrentStatus.Status.更新:
-                    UpdateOrder();
-                    break;
-
-                case CurrentStatus.Status.登録:
-                    RegisterOrder();
-                    break;
-
-                case CurrentStatus.Status.一覧:
-                    DisplayOrders();
-                    MessageBox.Show("一覧表示が完了しました。");
-                    break;
-
-                case CurrentStatus.Status.検索:
-                    SearchOrders();
-                    break;
-
-                default:
-                    MessageBox.Show("無効な操作です。");
-                    break;
-            }
-        }
 
         private void UpdateOrder()
         {
