@@ -12,6 +12,7 @@ namespace SalesManagement_SysDev
 {
     public partial class acceptingorders : Form
     {
+        private ClassDataGridViewClearer dgvClearer;
         private string searchKeyword = "";
         private ClassChangeForms formChanger; // 画面遷移管理クラス    
         private ClassAccessManager accessManager; // 権限管理クラス   
@@ -43,7 +44,7 @@ namespace SalesManagement_SysDev
         }
 
         // 注文管理画面に遷移    
-        private void b_ord_Click_2(object sender, EventArgs e)
+        private void b_ord_Click(object sender, EventArgs e)
         {
             formChanger.NavigateToOrderForm(); // 注文管理画面に遷移    
         }
@@ -98,18 +99,21 @@ namespace SalesManagement_SysDev
 
         private void b_ser_Click(object sender, EventArgs e)
         {
+            dgvClearer.Clear();
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
+            dgvClearer.Clear();
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_reg_Click_1(object sender, EventArgs e)
         {
+            dgvClearer.Clear();
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             //new UpdatorButton().AddUpdator(label14).OnUpdate();
@@ -118,6 +122,7 @@ namespace SalesManagement_SysDev
 
         private void B_iti_Click(object sender, EventArgs e)
         {
+            dgvClearer.Clear();
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
@@ -274,27 +279,26 @@ namespace SalesManagement_SysDev
             }
         }
 
-            // DataGridViewのセルがクリックされたときのイベントハンドラ
-            private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        // DataGridViewのセルがクリックされたときのイベントハンドラ
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // クリックした行のインデックスが有効かどうかを確認
+            if (e.RowIndex >= 0)
             {
-                // クリックした行のインデックスが有効かどうかを確認
-                if (e.RowIndex >= 0)
-                {
-                    // クリックした行のデータを取得
-                    var row = dataGridView1.Rows[e.RowIndex];
+                // クリックした行のデータを取得
+                var row = dataGridView1.Rows[e.RowIndex];
 
-                    // 各テキストボックスにデータを設定
-                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                    TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
-                    date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
-                    TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
-                    DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
-                }
+                // 各テキストボックスにデータを設定
+                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+                TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+                TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
+                date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
+                TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
+                DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
             }
-
-
         }
+
     }
+}
