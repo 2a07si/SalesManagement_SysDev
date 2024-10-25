@@ -19,23 +19,12 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-<<<<<<< HEAD
-            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット   
-            this.WindowState = FormWindowState.Minimized;
-=======
-            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット 
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
->>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-<<<<<<< HEAD
-
-            // ボタンアクセス制御を設定   
-=======
->>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
                 b_arr,
@@ -155,16 +144,8 @@ namespace SalesManagement_SysDev
                     break;
 
                 case CurrentStatus.Status.検索:
-<<<<<<< HEAD
-                    searchKeyword = TBJyutyuID.Text; 
-                    SearchOrders();
-
-                    MessageBox.Show("検索が完了しました。");
-                    break;
-=======
                     SearchOrders();
                 　　break;
->>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
 
                 default:
                     MessageBox.Show("無効な操作です。");
@@ -274,56 +255,12 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("データの取得中にエラーが発生しました: " + ex.Message);
             }
         }
-<<<<<<< HEAD
-
-        private void SearchOrders()
-        {
-            try
-            {
-                using (var context = new SalesManagementContext())
-                {
-                    // 検索条件に基づいて受注をフィルタリング
-                    var orders = context.TOrders
-                        .Where(o => o.OrId.ToString().Contains(searchKeyword) ||
-                                    o.SoId.ToString().Contains(searchKeyword) ||
-                                    o.EmId.ToString().Contains(searchKeyword) ||
-                                    o.ClId.ToString().Contains(searchKeyword) ||
-                                    o.ClCharge.Contains(searchKeyword))
-                        .ToList();
-=======
         private void b_reg_Click_1(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
     }
->>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
-
-                    // DataGridViewに表示するために変換
-                    dataGridView1.DataSource = orders.Select(o => new
-                    {
-                        受注ID = o.OrId,
-                        営業所ID = o.SoId,
-                        社員ID = o.EmId,
-                        顧客ID = o.ClId,
-                        顧客担当者 = o.ClCharge,
-                        受注日 = o.OrDate,
-                        受注フラグ = o.OrFlag,
-                        非表示フラグ = o.OrHidden
-                    }).ToList();
-
-                    // 検索結果が0件の場合のメッセージ
-                    if (orders.Count == 0)
-                    {
-                        MessageBox.Show("該当する受注が見つかりませんでした。");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
-            }
-        }
 
             // DataGridViewのセルがクリックされたときのイベントハンドラ
             private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
