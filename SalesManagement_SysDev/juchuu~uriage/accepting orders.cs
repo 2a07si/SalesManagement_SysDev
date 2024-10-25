@@ -150,8 +150,6 @@ namespace SalesManagement_SysDev
                 case CurrentStatus.Status.検索:
                     searchKeyword = TBJyutyuID.Text;
                     SearchOrders();
-
-                    MessageBox.Show("検索が完了しました。");
                     break;
 
 
@@ -277,6 +275,19 @@ namespace SalesManagement_SysDev
                                     o.ClId.ToString().Contains(searchKeyword) ||
                                     o.ClCharge.Contains(searchKeyword))
                         .ToList();
+
+                    // DataGridViewに表示するために変換
+                    dataGridView1.DataSource = orders.Select(o => new
+                    {
+                        受注ID = o.OrId,
+                        営業所ID = o.SoId,
+                        社員ID = o.EmId,
+                        顧客ID = o.ClId,
+                        顧客担当者 = o.ClCharge,
+                        受注日 = o.OrDate,
+                        受注フラグ = o.OrFlag,
+                        非表示フラグ = o.OrHidden
+                    }).ToList();
                     private void b_reg_Click_1(object sender, EventArgs e)
                     {
                         CurrentStatus.RegistrationStatus(label2);
@@ -309,6 +320,14 @@ namespace SalesManagement_SysDev
             }
 }
 
+            // DataGridViewのセルがクリックされたときのイベントハンドラ
+            private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+            {
+                // クリックした行のインデックスが有効かどうかを確認
+                if (e.RowIndex >= 0)
+                {
+                    // クリックした行のデータを取得
+                    var row = dataGridView1.Rows[e.RowIndex];
 // DataGridViewのセルがクリックされたときのイベントハンドラ
 private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
 {
@@ -318,6 +337,21 @@ private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         // クリックした行のデータを取得
         var row = dataGridView1.Rows[e.RowIndex];
 
+                    // 各テキストボックスにデータを設定
+                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+                    TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
+                    date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
+                    TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
+                    DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
+                }
+            }
+
+
+        }
+    }
         // 各テキストボックスにデータを設定
         TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
         TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
