@@ -83,6 +83,8 @@
             panel3 = new Panel();
             label1 = new Label();
             label2 = new Label();
+            現在オフ = new Label();
+            colord = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -251,7 +253,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Snow;
+            label8.ForeColor = Color.White;
             label8.ImageAlign = ContentAlignment.MiddleRight;
             label8.Location = new Point(690, 152);
             label8.Name = "label8";
@@ -648,12 +650,33 @@
             label2.TabIndex = 262;
             label2.Text = "未設定";
             // 
+            // 現在オフ
+            // 
+            現在オフ.AutoSize = true;
+            現在オフ.Location = new Point(980, 40);
+            現在オフ.Name = "現在オフ";
+            現在オフ.Size = new Size(74, 25);
+            現在オフ.TabIndex = 263;
+            現在オフ.Text = "現在オフ";
+            // 
+            // colord
+            // 
+            colord.Location = new Point(962, 68);
+            colord.Name = "colord";
+            colord.Size = new Size(112, 34);
+            colord.TabIndex = 264;
+            colord.Text = "色変え";
+            colord.UseVisualStyleBackColor = true;
+
+            // 
             // acceptingorders
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1578, 844);
+            Controls.Add(colord);
+            Controls.Add(現在オフ);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panel3);
@@ -745,5 +768,7 @@
         private MaskedTextBox TBJyutyuIDS;
         private MaskedTextBox TBGoukeiKingaku;
         private Label label11;
+        private Label 現在オフ;
+        private Button colord;
     }
 }

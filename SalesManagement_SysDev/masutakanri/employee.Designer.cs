@@ -242,7 +242,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.Snow;
+            label6.ForeColor = Color.White;
             label6.ImageAlign = ContentAlignment.MiddleRight;
             label6.Location = new Point(1270, 152);
             label6.Name = "label6";

@@ -320,6 +320,21 @@ namespace SalesManagement_SysDev
                 DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
             }
         }
+
+        private void colord_Click(object sender, EventArgs e)
+        {
+            int flag = 0;
+            if(flag==0)
+            {
+                flag = 1;
+                panel1.BackColor = Color.Cyan;
+            }
+            else
+            {
+                flag = 0;
+                panel1.BackColor = Color.Navy;
+            }
+        }
     }
 }
 
