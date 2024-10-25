@@ -12,11 +12,13 @@ namespace SalesManagement_SysDev
 {
     public partial class acceptingorders : Form
     {
+        private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
+
         private ClassDataGridViewClearer dgvClearer;
         private string searchKeyword = "";
         private ClassChangeForms formChanger; // 画面遷移管理クラス    
         private ClassAccessManager accessManager; // 権限管理クラス   
-
+        private string FormSelector = "";
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
@@ -100,21 +102,20 @@ namespace SalesManagement_SysDev
 
         private void b_ser_Click(object sender, EventArgs e)
         {
-            dgvClearer.Clear();
+
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
-            dgvClearer.Clear();
+
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
         private void b_reg_Click(object sender, EventArgs e)
         {
-            dgvClearer.Clear();
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             //new UpdatorButton().AddUpdator(label14).OnUpdate();
@@ -123,7 +124,6 @@ namespace SalesManagement_SysDev
 
         private void B_iti_Click(object sender, EventArgs e)
         {
-            dgvClearer.Clear();
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
@@ -133,39 +133,74 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ResetStatus(label2);
         }
-
-<<<<<<< HEAD
-=======
         private void b_kakutei_Click_1(object sender, EventArgs e)
         {
-            // 現在の状態を確認   
-            switch (CurrentStatus.CurrentStatusValue)
+            // モードに応じた処理を実行
+            switch (FormSelector)
             {
-                case CurrentStatus.Status.更新:
-                    UpdateOrder();
+                case "受注":
+                    // 受注モードの処理
+                    switch (CurrentStatus.CurrentStatusValue) // CurrentStatusを参照するように変更
+                    {
+                        case CurrentStatus.Status.更新:
+                            UpdateOrder();
+                            break;
+
+                        case CurrentStatus.Status.登録:
+                            RegisterOrder();
+                            break;
+
+                        case CurrentStatus.Status.一覧:
+                            DisplayOrders();
+                            MessageBox.Show("一覧表示が完了しました。");
+                            break;
+
+                        case CurrentStatus.Status.検索:
+                            searchKeyword = TBJyutyuID.Text;
+                            SearchOrders();
+                            break;
+
+                        default:
+                            MessageBox.Show("無効な操作です。");
+                            break;
+                    }
                     break;
 
-                case CurrentStatus.Status.登録:
-                    RegisterOrder();
-                    break;
+                case "受注詳細":
+                    // 受注詳細モードの処理
+                    switch (CurrentStatus.CurrentStatusValue) // CurrentStatusを参照するように変更
+                    {
+                        case CurrentStatus.Status.更新:
+                            UpdateOrderDetails();
+                            break;
 
-                case CurrentStatus.Status.一覧:
-                    DisplayOrders();
-                    MessageBox.Show("一覧表示が完了しました。");
-                    break;
+                        case CurrentStatus.Status.登録:
+                            RegisterOrderDetails(); // 新たに追加する登録処理
+                            break;
 
-                case CurrentStatus.Status.検索:
-                    searchKeyword = TBJyutyuID.Text;
-                    SearchOrders();
-                    break;
+                        case CurrentStatus.Status.一覧:
+                            DisplayOrderDetails();
+                            MessageBox.Show("受注詳細の一覧表示が完了しました。");
+                            break;
 
+                        case CurrentStatus.Status.検索:
+                            searchKeyword = TBJyutyuID.Text; // 受注詳細の検索条件を取得
+                            SearchOrderDetails(); // 受注詳細の検索処理
+                            break;
+
+                        default:
+                            MessageBox.Show("無効な操作です。");
+                            break;
+                    }
+                    break;
 
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("現在のモードは無効です。");
                     break;
             }
         }
->>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
+    
+       
 
         private void UpdateOrder()
         {
@@ -307,49 +342,57 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
             }
-
-<<<<<<< HEAD
-=======
         }
->>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
-        // DataGridViewのセルがクリックされたときのイベントハンドラ
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+
+
+        // 受注詳細の更新機能
+        public void UpdateOrderDetails()
         {
-            // クリックした行のインデックスが有効かどうかを確認
-            if (e.RowIndex >= 0)
+            // 受注詳細の更新機能が動作しました
+            MessageBox.Show("受注詳細の更新機能が動作しました");
+        }
+
+        // 受注詳細の追加機能
+        public void RegisterOrderDetails()
+        {
+            // 受注詳細の追加機能が動作しました
+            MessageBox.Show("受注詳細の追加機能が動作しました");
+        }
+
+        // 受注詳細の検索機能
+        public void SearchOrderDetails()
+        {
+            // 受注詳細の検索機能が動作しました
+            MessageBox.Show("受注詳細の検索機能が動作しました");
+        }
+
+        // 受注詳細の一覧機能
+        public void DisplayOrderDetails()
+        {
+            // 受注詳細の一覧機能が動作しました
+            MessageBox.Show("受注詳細の一覧機能が動作しました");
+        }
+
+        private void b_FormSelector_Click(object sender, EventArgs e)
+        {
+            // 現在の選択状態を反転
+            isOrderSelected = !isOrderSelected;
+
+            // 表示名を切り替える
+            if (isOrderSelected)
             {
-                // クリックした行のデータを取得
-                var row = dataGridView1.Rows[e.RowIndex];
-<<<<<<< HEAD
-
-=======
->>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
-                // 各テキストボックスにデータを設定
-                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
-                date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
-                TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
-                DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
+                FormSelector = "受注";
+                b_FormSelector.Text = "受注詳細操作"; // TOrder詳細側を選択
             }
+            else
+            {
+                FormSelector = "受注詳細";
+                b_FormSelector.Text = "受注操作"; // TOrder側を選択
+            }
+
+            // ここで選択状態に応じた処理を行うことも可能
+            // 例えば、受注詳細フォームを表示する場合など
         }
 
-<<<<<<< HEAD
     }
 }
-=======
-        private void b_ord_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToOrderForm();
-        }
-
-        private void colord_Click(object sender, EventArgs e)
-        {
-
-        }
-    }
-}
-
->>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496
