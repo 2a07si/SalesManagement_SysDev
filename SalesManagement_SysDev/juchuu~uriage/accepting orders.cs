@@ -19,23 +19,16 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-<<<<<<< HEAD
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット   
             this.WindowState = FormWindowState.Minimized;
-=======
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット 
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
->>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-<<<<<<< HEAD
-
             // ボタンアクセス制御を設定   
-=======
->>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
                 b_arr,
@@ -155,16 +148,12 @@ namespace SalesManagement_SysDev
                     break;
 
                 case CurrentStatus.Status.検索:
-<<<<<<< HEAD
-                    searchKeyword = TBJyutyuID.Text; 
+                    searchKeyword = TBJyutyuID.Text;
                     SearchOrders();
 
                     MessageBox.Show("検索が完了しました。");
                     break;
-=======
-                    SearchOrders();
-                　　break;
->>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
+
 
                 default:
                     MessageBox.Show("無効な操作です。");
@@ -274,8 +263,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("データの取得中にエラーが発生しました: " + ex.Message);
             }
         }
-<<<<<<< HEAD
-
         private void SearchOrders()
         {
             try
@@ -290,60 +277,57 @@ namespace SalesManagement_SysDev
                                     o.ClId.ToString().Contains(searchKeyword) ||
                                     o.ClCharge.Contains(searchKeyword))
                         .ToList();
-=======
-        private void b_reg_Click_1(object sender, EventArgs e)
-        {
-            CurrentStatus.RegistrationStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
-        }
-    }
->>>>>>> f394ef58edbcf8b912e1f589633b49733dc1d381
-
-                    // DataGridViewに表示するために変換
-                    dataGridView1.DataSource = orders.Select(o => new
+                    private void b_reg_Click_1(object sender, EventArgs e)
                     {
-                        受注ID = o.OrId,
-                        営業所ID = o.SoId,
-                        社員ID = o.EmId,
-                        顧客ID = o.ClId,
-                        顧客担当者 = o.ClCharge,
-                        受注日 = o.OrDate,
-                        受注フラグ = o.OrFlag,
-                        非表示フラグ = o.OrHidden
-                    }).ToList();
-
-                    // 検索結果が0件の場合のメッセージ
-                    if (orders.Count == 0)
-                    {
-                        MessageBox.Show("該当する受注が見つかりませんでした。");
+                        CurrentStatus.RegistrationStatus(label2);
+                        labelStatus.labelstatus(label2, b_kakutei);
                     }
                 }
+                // DataGridViewに表示するために変換
+                dataGridView1.DataSource = orders.Select(o => new
+                {
+                    受注ID = o.OrId,
+                    営業所ID = o.SoId,
+                    社員ID = o.EmId,
+                    顧客ID = o.ClId,
+                    顧客担当者 = o.ClCharge,
+                    受注日 = o.OrDate,
+                    受注フラグ = o.OrFlag,
+                    非表示フラグ = o.OrHidden
+                }).ToList();
+
+                // 検索結果が0件の場合のメッセージ
+                if (orders.Count == 0)
+                {
+                    MessageBox.Show("該当する受注が見つかりませんでした。");
+                }
+            }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
             }
-        }
+}
 
-            // DataGridViewのセルがクリックされたときのイベントハンドラ
-            private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // クリックした行のインデックスが有効かどうかを確認
-            if (e.RowIndex >= 0)
-            {
-                // クリックした行のデータを取得
-                var row = dataGridView1.Rows[e.RowIndex];
+// DataGridViewのセルがクリックされたときのイベントハンドラ
+private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+{
+    // クリックした行のインデックスが有効かどうかを確認
+    if (e.RowIndex >= 0)
+    {
+        // クリックした行のデータを取得
+        var row = dataGridView1.Rows[e.RowIndex];
 
-                // 各テキストボックスにデータを設定
-                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
-                date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
-                TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
-                DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
-            }
-        }
+        // 各テキストボックスにデータを設定
+        TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+        TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+        TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+        TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+        TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
+        date.Value = DateTime.Parse(row.Cells["受注日"].Value.ToString()); // 日付を設定
+        TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
+        DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
+    }
+}
     }
 }
