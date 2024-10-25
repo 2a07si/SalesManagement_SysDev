@@ -85,7 +85,7 @@
             // 
             // b_mer
             // 
-            b_mer.BackColor = Color.FromArgb(255, 255, 192);
+            b_mer.BackColor = SystemColors.InactiveCaption;
             b_mer.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_mer.Location = new Point(15, 250);
             b_mer.Name = "b_mer";
@@ -97,7 +97,7 @@
             // 
             // b_cus
             // 
-            b_cus.BackColor = Color.FromArgb(255, 255, 192);
+            b_cus.BackColor = SystemColors.InactiveCaption;
             b_cus.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_cus.ForeColor = Color.Black;
             b_cus.Location = new Point(15, 410);
@@ -110,7 +110,7 @@
             // 
             // b_sto
             // 
-            b_sto.BackColor = Color.FromArgb(255, 255, 192);
+            b_sto.BackColor = SystemColors.InactiveCaption;
             b_sto.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_sto.ForeColor = Color.Black;
             b_sto.Location = new Point(15, 330);
@@ -141,7 +141,7 @@
             // 
             // b_ser
             // 
-            b_ser.BackColor = Color.FromArgb(192, 255, 255);
+            b_ser.BackColor = Color.FromArgb(255, 255, 192);
             b_ser.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_ser.Location = new Point(750, 70);
             b_ser.Name = "b_ser";
@@ -162,7 +162,7 @@
             // 
             // b_upd
             // 
-            b_upd.BackColor = Color.FromArgb(192, 255, 255);
+            b_upd.BackColor = Color.FromArgb(255, 255, 192);
             b_upd.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_upd.Location = new Point(350, 70);
             b_upd.Name = "b_upd";
@@ -183,7 +183,7 @@
             // 
             // b_reg
             // 
-            b_reg.BackColor = Color.FromArgb(192, 255, 255);
+            b_reg.BackColor = Color.FromArgb(255, 255, 192);
             b_reg.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_reg.Location = new Point(150, 70);
             b_reg.Name = "b_reg";
@@ -439,7 +439,7 @@
             // 
             // B_iti
             // 
-            B_iti.BackColor = Color.FromArgb(192, 255, 255);
+            B_iti.BackColor = Color.FromArgb(255, 255, 192);
             B_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             B_iti.Location = new Point(550, 70);
             B_iti.Name = "B_iti";
