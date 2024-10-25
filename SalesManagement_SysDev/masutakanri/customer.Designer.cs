@@ -101,7 +101,7 @@
             // 
             // b_cus
             // 
-            b_cus.BackColor = Color.Navy;
+            b_cus.BackColor = Color.RoyalBlue;
             b_cus.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_cus.ForeColor = Color.White;
             b_cus.Location = new Point(15, 390);
@@ -198,7 +198,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(label1);
@@ -247,7 +247,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Snow;
+            label1.ForeColor = Color.White;
             label1.ImageAlign = ContentAlignment.MiddleRight;
             label1.Location = new Point(1070, 152);
             label1.Name = "label1";
@@ -349,7 +349,7 @@
             // 
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.Snow;
+            DelFlag.ForeColor = Color.White;
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);

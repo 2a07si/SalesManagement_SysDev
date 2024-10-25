@@ -80,7 +80,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.Navy;
+            button1.BackColor = Color.RoyalBlue;
             button1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
             button1.Location = new Point(12, 130);
@@ -92,7 +92,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(150, 130);
             panel1.Name = "panel1";

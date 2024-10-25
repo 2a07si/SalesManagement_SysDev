@@ -107,7 +107,7 @@
             // 
             // B_login
             // 
-            B_login.BackColor = Color.Navy;
+            B_login.BackColor = Color.RoyalBlue;
             B_login.Font = new Font("Yu Gothic UI", 26F, FontStyle.Bold, GraphicsUnit.Point);
             B_login.ForeColor = Color.White;
             B_login.Location = new Point(1032, 491);

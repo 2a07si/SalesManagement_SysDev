@@ -223,7 +223,7 @@
             // 
             // b_lss
             // 
-            b_lss.BackColor = Color.Navy;
+            b_lss.BackColor = Color.RoyalBlue;
             b_lss.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_lss.ForeColor = Color.White;
             b_lss.Location = new Point(15, 310);
@@ -235,7 +235,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(SyukkoFlag);
             panel1.Controls.Add(Prev);
@@ -295,7 +295,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Snow;
+            label8.ForeColor = Color.White;
             label8.ImageAlign = ContentAlignment.MiddleRight;
             label8.Location = new Point(690, 152);
             label8.Name = "label8";

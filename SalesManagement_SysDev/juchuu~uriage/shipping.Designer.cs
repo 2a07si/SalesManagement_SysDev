@@ -199,7 +199,7 @@
             // 
             // b_shi
             // 
-            b_shi.BackColor = Color.Navy;
+            b_shi.BackColor = Color.RoyalBlue;
             b_shi.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_shi.ForeColor = Color.White;
             b_shi.Location = new Point(15, 470);
@@ -237,7 +237,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(Next);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(Prev);
@@ -296,7 +296,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.Snow;
+            label11.ForeColor = Color.White;
             label11.ImageAlign = ContentAlignment.MiddleRight;
             label11.Location = new Point(690, 152);
             label11.Name = "label11";
