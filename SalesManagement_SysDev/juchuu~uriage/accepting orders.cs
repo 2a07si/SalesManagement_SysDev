@@ -100,6 +100,7 @@ namespace SalesManagement_SysDev
             TBSuryou.Text = "";
             TBGoukeiKingaku.Text = "";
             date.Value = DateTime.Now;
+            CurrentStatus.ResetStatus(label2);
         }
 
         private void b_ser_Click(object sender, EventArgs e)
