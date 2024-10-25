@@ -25,13 +25,11 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット 
-            this.WindowState = FormWindowState.Minimized;
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            this.WindowState = FormWindowState.Normal; //WindowStatusが最小化という意味→普通のサイズでだす
             // ボタンアクセス制御を設定
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
