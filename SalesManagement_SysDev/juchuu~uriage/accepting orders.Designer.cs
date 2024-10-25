@@ -391,6 +391,7 @@
             b_ord.TabIndex = 251;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
+            b_ord.Click += b_ord_Click;
             // 
             // b_reg
             // 
@@ -402,6 +403,7 @@
             b_reg.TabIndex = 238;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
+            b_reg.Click += b_reg_Click;
             // 
             // label3
             // 

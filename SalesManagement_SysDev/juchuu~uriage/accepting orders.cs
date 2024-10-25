@@ -19,9 +19,6 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット   
-            this.WindowState = FormWindowState.Minimized;
-            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット 
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
         }
 
@@ -111,7 +108,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click_1(object sender, EventArgs e)
+        private void b_reg_Click(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
@@ -319,6 +316,11 @@ namespace SalesManagement_SysDev
                 TyumonFlag.Checked = Convert.ToBoolean(row.Cells["受注フラグ"].Value); // フラグの設定
                 DelFlag.Checked = row.Cells["非表示フラグ"].Value.ToString() == "1"; // 非表示フラグの設定
             }
+        }
+
+        private void b_ord_Click(object sender, EventArgs e)
+        {
+            formChanger.NavigateToOrderForm();
         }
     }
 }
