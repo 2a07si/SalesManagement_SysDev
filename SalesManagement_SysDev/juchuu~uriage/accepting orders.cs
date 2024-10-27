@@ -295,25 +295,104 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrderDetails()
         {
-            // 詳細更新処理を追加
+            string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
+            string jyutyuID = TBJyutyuIDS.Text;
+            string syohinID = TBSyohinID.Text;
+            string suryou = TBSuryou.Text;
+            string goukeiKingaku = TBGoukeiKingaku.Text;
+
+            using (var context = new SalesManagementContext())
+            {
+                var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
+                if (orderDetail != null)
+                {
+                    orderDetail.OrId = int.Parse(jyutyuID);
+                    orderDetail.PrId = int.Parse(syohinID);
+                    orderDetail.OrQuantity = int.Parse(suryou);
+                    orderDetail.OrTotalPrice = decimal.Parse(goukeiKingaku);
+
+                    context.SaveChanges();
+                    MessageBox.Show("受注詳細の更新が成功しました。");
+                }
+                else
+                {
+                    MessageBox.Show("該当する受注詳細が見つかりません。");
+                }
+            }
         }
 
         private void RegisterOrderDetails()
         {
-            // 詳細登録処理を追加
+            string jyutyuID = TBJyutyuIDS.Text;
+            string syohinID = TBSyohinID.Text;
+            string suryou = TBSuryou.Text;
+            string goukeiKingaku = TBGoukeiKingaku.Text;
+
+            using (var context = new SalesManagementContext())
+            {
+                var newOrderDetail = new TOrderDetail
+                {
+                    OrId = int.Parse(jyutyuID),
+                    PrId = int.Parse(syohinID),
+                    OrQuantity = int.Parse(suryou),
+                    OrTotalPrice = decimal.Parse(goukeiKingaku)
+                };
+
+                context.TOrderDetails.Add(newOrderDetail);
+                context.SaveChanges();
+                MessageBox.Show("受注詳細の登録が成功しました。");
+            }
         }
 
         private void DisplayOrderDetails()
         {
-            // 詳細表示処理を追加
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var orderDetails = context.TOrderDetails.ToList();
+
+                    dataGridView2.DataSource = orderDetails.Select(od => new
+                    {
+                        受注詳細ID = od.OrDetailId,
+                        受注ID = od.OrId,
+                        商品ID = od.PrId,
+                        数量 = od.OrQuantity,
+                        合計金額 = od.OrTotalPrice
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message);
+            }
         }
 
         private void SearchOrderDetails(string orderID)
         {
-            // 詳細検索処理を追加
+            using (var context = new SalesManagementContext())
+            {
+                var orderDetails = context.TOrderDetails.Where(od => od.OrId.ToString() == orderID).ToList();
+                if (orderDetails.Any())
+                {
+                    dataGridView2.DataSource = orderDetails.Select(od => new
+                    {
+                        受注詳細ID = od.OrDetailId,
+                        受注ID = od.OrId,
+                        商品ID = od.PrId,
+                        数量 = od.OrQuantity,
+                        合計金額 = od.OrTotalPrice
+                    }).ToList();
+                }
+                else
+                {
+                    MessageBox.Show("該当する受注詳細が見つかりません。");
+                }
+            }
         }
+    
 
-        private void ToggleOrderSelection()
+            private void ToggleOrderSelection()
         {
             isOrderSelected = !isOrderSelected;
             orderFlag = isOrderSelected ? "注文" : "詳細";
