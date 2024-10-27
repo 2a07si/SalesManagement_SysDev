@@ -18,6 +18,7 @@ namespace SalesManagement_SysDev
         private ClassAccessManager accessManager; // 権限管理クラス
         private string orderFlag = "注文"; // 初期状態を「注文」に設定
 
+
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace SalesManagement_SysDev
                 b_lss
             });
             labelStatus.labelstatus(label2, b_kakutei);
+            b_FormSelector.Text = "注文";
         }
 
         // メインメニューに戻る
@@ -182,6 +184,7 @@ namespace SalesManagement_SysDev
             }
         }
 
+
         private void UpdateOrder()
         {
             string jyutyuID = TBJyutyuID.Text;
@@ -310,7 +313,17 @@ namespace SalesManagement_SysDev
             // 詳細検索処理を追加
         }
 
-        private void b_FornSelector_Click(object sender, EventArgs e)
+        private void ToggleOrderSelection()
+        {
+            isOrderSelected = !isOrderSelected;
+            orderFlag = isOrderSelected ? "注文" : "詳細";
+
+            // CurrentStatusのモードを切り替える
+            CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+        }
+
+
+        private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
             ToggleOrderSelection();
@@ -318,22 +331,15 @@ namespace SalesManagement_SysDev
             // 現在の状態をメッセージボックスで表示
             MessageBox.Show($"現在の状態: {orderFlag}");
 
-            // b_FlagSelectorのテキストを現在の状態に更新
+            // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
         }
 
-        private void ToggleOrderSelection()
-        {
-            isOrderSelected = !isOrderSelected; // 状態をトグル
-            orderFlag = isOrderSelected ? "注文" : "詳細"; // 表示するフラグを更新
-            label2.Text = orderFlag; // 状態をラベルに表示
-        }
 
         private void UpdateFlagButtonText()
         {
             // b_FlagSelectorのテキストを現在の状態に合わせる
             b_FormSelector.Text = orderFlag;
         }
-
     }
 }
