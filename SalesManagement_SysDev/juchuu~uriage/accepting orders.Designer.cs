@@ -87,6 +87,7 @@ namespace SalesManagement_SysDev
             label2 = new Label();
             現在オフ = new Label();
             colord = new Button();
+            b_FormSelector = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -501,6 +502,7 @@ namespace SalesManagement_SysDev
             b_kakutei.TabIndex = 257;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.Click += b_kakutei_Click_1;
             // 
             // B_iti
             // 
@@ -672,12 +674,23 @@ namespace SalesManagement_SysDev
             colord.Text = "色変え";
             colord.UseVisualStyleBackColor = true;
             // 
+            // b_FormSelector
+            // 
+            b_FormSelector.Location = new Point(962, 108);
+            b_FormSelector.Name = "b_FormSelector";
+            b_FormSelector.Size = new Size(112, 34);
+            b_FormSelector.TabIndex = 265;
+            b_FormSelector.Text = "button1";
+            b_FormSelector.UseVisualStyleBackColor = true;
+            b_FormSelector.Click += b_FormSelector_Click;
+            // 
             // acceptingorders
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1578, 844);
+            Controls.Add(b_FormSelector);
             Controls.Add(colord);
             Controls.Add(現在オフ);
             Controls.Add(label2);
@@ -773,5 +786,6 @@ namespace SalesManagement_SysDev
         private Label label11;
         private Label 現在オフ;
         private Button colord;
+        private Button b_FormSelector;
     }
 }
