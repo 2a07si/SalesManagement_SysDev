@@ -10,13 +10,23 @@ namespace SalesManagement_SysDev.Classまとめ
         {
             未設定, // デフォルトの状態
             登録,
-            更新,　
+            更新,
             検索,
             一覧
         }
 
+        // モードを表す列挙型
+        public enum Mode
+        {
+            通常,
+            詳細
+        }
+
         // グローバル変数としての現在の状態を保持
         public static Status CurrentStatusValue { get; private set; } = Status.未設定;
+
+        // モードを保持
+        public static Mode CurrentMode { get; private set; } = Mode.通常;
 
         // 状態の変更とラベルの更新
         public static void RegistrationStatus(Label label2)
@@ -43,11 +53,16 @@ namespace SalesManagement_SysDev.Classまとめ
             label2.Text = "一覧";
         }
 
-        // 状態をリセットするメソッド
         public static void ResetStatus(Label label2)
         {
             CurrentStatusValue = Status.未設定;
             label2.Text = "未設定";
+        }
+
+        // モードを変更するメソッド
+        public static void SetMode(Mode mode)
+        {
+            CurrentMode = mode;
         }
     }
 }

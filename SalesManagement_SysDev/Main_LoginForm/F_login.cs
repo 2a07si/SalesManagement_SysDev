@@ -757,19 +757,20 @@ namespace SalesManagement_SysDev
                 }
 
                 string pass = tb_Pass.Text;
+                bool isLoginSuccessful = false; // 初期化して成功状態を保存する変数
 
                 using (var context = new SalesManagementContext())
                 {
                     var employeeService = new EmployeeService(context);
-                    // PoIDも一緒に取得する
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poId))
                     {
                         Global.EmployeeID = empID;
                         Global.EmployeeName = employeeName;
                         Global.PositionName = positionName;
-
-                        // PoIDを用いて権限を決定
                         Global.EmployeePermission = GetPermissionByPoId(poId);
+
+                        // ログイン成功時の処理
+                        isLoginSuccessful = true;
 
                         mainmenu1 mainMenu = new mainmenu1();
                         mainMenu.Show();
@@ -778,8 +779,21 @@ namespace SalesManagement_SysDev
                     else
                     {
                         MessageBox.Show("社員IDとパスワードが一致していません", "認証エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        tb_Pass.Clear(); // ここでパスワードをクリアしている
+                        tb_Pass.Clear(); // パスワードをクリア
                     }
+
+                    // ログイン履歴の保存
+                    //var loginHistoryLog = new LoginHistoryLog(
+                    //    id: 0, // 自動生成されることが前提
+                    //    loginId: tb_ID.Text,
+                    //    password: pass, 
+                    //    loginDateTime: DateTime.Now,
+                    //   isSuccessful: isLoginSuccessful
+                    //);
+
+                    //context.LoginHistoryLog.Add(loginHistoryLog);
+                    //context.SaveChanges();
+                    
                 }
             }
             catch (FormatException ex)
