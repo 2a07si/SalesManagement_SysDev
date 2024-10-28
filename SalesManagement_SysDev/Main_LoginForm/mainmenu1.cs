@@ -175,5 +175,11 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+
+        private void mainmenu1_KeyDown(object sender, KeyEventArgs e)
+        {
+            b_logout.PerformClick(); // ボタンのクリックイベントを呼び出す
+
+        }
     }
 }

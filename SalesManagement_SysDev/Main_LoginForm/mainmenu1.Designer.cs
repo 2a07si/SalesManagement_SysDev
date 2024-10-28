@@ -63,13 +63,15 @@
             // 
             // b_logout
             // 
-            b_logout.Location = new Point(1417, 10);
+            b_logout.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            b_logout.Location = new Point(1400, 10);
             b_logout.Name = "b_logout";
-            b_logout.Size = new Size(155, 56);
+            b_logout.Size = new Size(160, 60);
             b_logout.TabIndex = 21;
-            b_logout.Text = "ログアウト";
+            b_logout.Text = "ログアウト(Esc)";
             b_logout.UseVisualStyleBackColor = true;
             b_logout.Click += b_logout_Click;
+            b_logout.KeyDown += mainmenu1_KeyDown;
             // 
             // b_juchuu
             // 
@@ -133,9 +135,10 @@
             // 
             // Loginkanri
             // 
-            Loginkanri.Location = new Point(1417, 98);
+            Loginkanri.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            Loginkanri.Location = new Point(1400, 82);
             Loginkanri.Name = "Loginkanri";
-            Loginkanri.Size = new Size(112, 34);
+            Loginkanri.Size = new Size(160, 60);
             Loginkanri.TabIndex = 111;
             Loginkanri.Text = "ログイン管理";
             Loginkanri.UseVisualStyleBackColor = true;
