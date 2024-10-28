@@ -217,7 +217,7 @@
             panel1.Controls.Add(DelFlag);
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1400, 690);
+            panel1.Size = new Size(1420, 690);
             panel1.TabIndex = 187;
             // 
             // Next
@@ -278,7 +278,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(1380, 490);
+            dataGridView1.Size = new Size(1400, 490);
             dataGridView1.TabIndex = 52;
             // 
             // label5
@@ -425,7 +425,7 @@
             // 
             // close
             // 
-            close.Location = new Point(1460, 10);
+            close.Location = new Point(1450, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
             close.TabIndex = 238;

@@ -85,7 +85,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(1300, 490);
+            dataGridView1.Size = new Size(1400, 490);
             dataGridView1.TabIndex = 52;
             // 
             // panel1
@@ -118,12 +118,12 @@
             panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1320, 690);
+            panel1.Size = new Size(1420, 690);
             panel1.TabIndex = 206;
             // 
             // Next
             // 
-            Next.Location = new Point(1250, 144);
+            Next.Location = new Point(1350, 144);
             Next.Name = "Next";
             Next.Size = new Size(40, 40);
             Next.TabIndex = 292;
@@ -132,7 +132,7 @@
             // 
             // Prev
             // 
-            Prev.Location = new Point(1120, 144);
+            Prev.Location = new Point(1220, 144);
             Prev.Name = "Prev";
             Prev.Size = new Size(40, 40);
             Prev.TabIndex = 291;
@@ -152,7 +152,7 @@
             label2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
             label2.ImageAlign = ContentAlignment.MiddleRight;
-            label2.Location = new Point(1170, 152);
+            label2.Location = new Point(1270, 152);
             label2.Name = "label2";
             label2.Size = new Size(72, 25);
             label2.TabIndex = 290;
@@ -472,7 +472,7 @@
             // 
             b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
             b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_kakutei.Location = new Point(1150, 70);
+            b_kakutei.Location = new Point(1200, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
             b_kakutei.TabIndex = 249;
@@ -482,7 +482,7 @@
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(1310, 70);
+            clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
             clear.TabIndex = 248;
@@ -492,7 +492,7 @@
             // 
             // close
             // 
-            close.Location = new Point(1360, 10);
+            close.Location = new Point(1450, 17);
             close.Name = "close";
             close.Size = new Size(100, 40);
             close.TabIndex = 247;
@@ -520,7 +520,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label16.Location = new Point(1051, 101);
+            label16.Location = new Point(1100, 101);
             label16.Name = "label16";
             label16.Size = new Size(86, 32);
             label16.TabIndex = 267;
@@ -530,7 +530,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1030, 70);
+            label1.Location = new Point(1080, 71);
             label1.Name = "label1";
             label1.Size = new Size(108, 28);
             label1.TabIndex = 269;
@@ -540,7 +540,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1478, 844);
+            ClientSize = new Size(1578, 844);
             Controls.Add(label1);
             Controls.Add(label16);
             Controls.Add(B_iti);

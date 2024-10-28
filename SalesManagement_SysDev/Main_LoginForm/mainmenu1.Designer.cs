@@ -67,7 +67,7 @@
             b_logout.Location = new Point(1400, 10);
             b_logout.Name = "b_logout";
             b_logout.Size = new Size(160, 60);
-            b_logout.TabIndex = 21;
+            b_logout.TabIndex = 27;
             b_logout.Text = "ログアウト(Esc)";
             b_logout.UseVisualStyleBackColor = true;
             b_logout.Click += b_logout_Click;
@@ -139,7 +139,7 @@
             Loginkanri.Location = new Point(1400, 82);
             Loginkanri.Name = "Loginkanri";
             Loginkanri.Size = new Size(160, 60);
-            Loginkanri.TabIndex = 111;
+            Loginkanri.TabIndex = 26;
             Loginkanri.Text = "ログイン管理";
             Loginkanri.UseVisualStyleBackColor = true;
             Loginkanri.Click += Loginkanri_Click;
