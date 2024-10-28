@@ -66,6 +66,8 @@ public partial class SalesManagementContext : DbContext
 
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
+    public virtual DbSet<LoginHistoryLog> LoginHistoryLog { get; set; }  // LoginHistoryLog テーブルを追加
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer($"Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=SalesManagement;Integrated Security=True");
