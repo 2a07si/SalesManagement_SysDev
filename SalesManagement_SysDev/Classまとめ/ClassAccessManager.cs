@@ -31,6 +31,7 @@ namespace SalesManagement_SysDev.Classまとめ
                             button.Name == "PasswordChange" || button.Name == "NewAccount")
                         {
                             button.Enabled = false; // アクセス不可のボタン
+                            button.BackColor = Color.Gray;
 
                         }
                         else
@@ -48,6 +49,7 @@ namespace SalesManagement_SysDev.Classまとめ
                             button.Name == "PasswordChange" || button.Name == "NewAccount")
                         {
                             button.Enabled = false;
+                            button.BackColor = Color.Gray;
                         }
                         else
                         {
