@@ -133,9 +133,6 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ResetStatus(label2);
         }
-
-<<<<<<< HEAD
-=======
         private void b_kakutei_Click_1(object sender, EventArgs e)
         {
             // 現在の状態を確認   
@@ -306,9 +303,6 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("検索中にエラーが発生しました: " + ex.Message);
             }
-
-<<<<<<< HEAD
-=======
         }
         // DataGridViewのセルがクリックされたときのイベントハンドラ
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -330,14 +324,9 @@ namespace SalesManagement_SysDev
             }
         }
 
-<<<<<<< HEAD
-    }
-}
-=======
-        private void b_ord_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToOrderForm();
-        }
+
+
+
 
         private void colord_Click(object sender, EventArgs e)
         {
@@ -346,4 +335,3 @@ namespace SalesManagement_SysDev
     }
 }
 
->>>>>>> 8506cc025c0e0473fd343d6ce157ad3d1543c496

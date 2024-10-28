@@ -146,6 +146,7 @@ namespace SalesManagement_SysDev
             // 
             // TBJyutyuID
             // 
+            TBJyutyuID.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             TBJyutyuID.Location = new Point(90, 20);
             TBJyutyuID.Name = "TBJyutyuID";
             TBJyutyuID.Size = new Size(100, 31);
@@ -670,7 +671,6 @@ namespace SalesManagement_SysDev
             colord.TabIndex = 264;
             colord.Text = "色変え";
             colord.UseVisualStyleBackColor = true;
-            //colord.Click += colord_Click;
             // 
             // acceptingorders
             // 

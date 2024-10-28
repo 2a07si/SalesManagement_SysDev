@@ -133,7 +133,7 @@
             // 
             // Loginkanri
             // 
-            Loginkanri.Location = new Point(1191, 106);
+            Loginkanri.Location = new Point(1417, 98);
             Loginkanri.Name = "Loginkanri";
             Loginkanri.Size = new Size(112, 34);
             Loginkanri.TabIndex = 111;
