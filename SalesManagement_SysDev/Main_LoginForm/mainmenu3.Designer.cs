@@ -109,7 +109,6 @@
             JU.Name = "JU";
             JU.Size = new Size(1200, 600);
             JU.TabIndex = 133;
-            JU.Paint += JU_Paint;
             // 
             // b_sal
             // 
@@ -121,6 +120,7 @@
             b_sal.TabIndex = 47;
             b_sal.Text = "売上管理";
             b_sal.UseVisualStyleBackColor = false;
+            b_sal.Click += b_sal_Click;
             // 
             // b_lss
             // 
@@ -132,6 +132,7 @@
             b_lss.TabIndex = 46;
             b_lss.Text = "出庫管理";
             b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click;
             // 
             // b_arr
             // 
@@ -143,6 +144,7 @@
             b_arr.TabIndex = 45;
             b_arr.Text = "入荷管理";
             b_arr.UseVisualStyleBackColor = false;
+            b_arr.Click += b_arr_Click;
             // 
             // b_shi
             // 
@@ -154,6 +156,7 @@
             b_shi.TabIndex = 44;
             b_shi.Text = "出荷管理";
             b_shi.UseVisualStyleBackColor = false;
+            b_shi.Click += b_shi_Click;
             // 
             // b_ord
             // 
@@ -254,6 +257,7 @@
             b_sto.TabIndex = 44;
             b_sto.Text = "在庫管理";
             b_sto.UseVisualStyleBackColor = false;
+            b_sto.Click += b_sto_Click;
             // 
             // b_cus
             // 
@@ -265,6 +269,7 @@
             b_cus.TabIndex = 43;
             b_cus.Text = "顧客管理";
             b_cus.UseVisualStyleBackColor = false;
+            b_cus.Click += b_cus_Click;
             // 
             // b_mer
             // 
@@ -276,6 +281,7 @@
             b_mer.TabIndex = 42;
             b_mer.Text = "商品管理";
             b_mer.UseVisualStyleBackColor = false;
+            b_mer.Click += b_mer_Click;
             // 
             // b_emp
             // 
@@ -287,6 +293,7 @@
             b_emp.TabIndex = 41;
             b_emp.Text = "社員管理";
             b_emp.UseVisualStyleBackColor = false;
+            b_emp.Click += b_emp_Click;
             // 
             // HN
             // 
@@ -309,6 +316,7 @@
             b_rec.TabIndex = 42;
             b_rec.Text = "入庫管理";
             b_rec.UseVisualStyleBackColor = false;
+            b_rec.Click += b_rec_Click;
             // 
             // b_hor
             // 
@@ -336,10 +344,6 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(mas);
-
-            Controls.Add(HN);
-            Controls.Add(JU);
             Controls.Add(HN);
             Controls.Add(JU);
             Controls.Add(mas);

@@ -58,17 +58,17 @@ namespace SalesManagement_SysDev
 
         private void b_emp_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateEmployeeForm();
+            formChanger.NavigateToEmployeeForm();
         }
 
         private void b_sto_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateStockForm();
+            formChanger.NavigateToStockForm();
         }
 
         private void b_cus_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateCustomerForm();
+            formChanger.NavigateToCustomerForm();
         }
 
         private void date_ValueChanged(object sender, EventArgs e)

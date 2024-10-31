@@ -88,32 +88,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
         }
 
 
-
-        private void b_add_Click(object sender, EventArgs e)
-        {
-            switch (Global.EmployeePermission)
-            {
-                case 2:
-                    // 権限2の時、stockフォームに遷移
-                    changeForm.NavigateToAcceptingOrderForm();
-                    break;
-
-                case 3:
-                    // 権限3の時、merchandiseフォームに遷移
-                    changeForm.NavigateToIssueForm();
-                    break;
-
-                default:
-                    // 権限1の場合は元の機能をそのまま維持
-                    changeForm.NavigateToAcceptingOrderForm();
-                    break;
-            }
-        }
-
-        private void b_ord_Click(object sender, EventArgs e)
-        {
-
-        }
         private void SetButtonPermissions()
         {
             // ボタンをリスト化
@@ -121,7 +95,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
     {
         b_hor, b_rec, b_cus, b_mer, b_sto, b_emp,
         b_add, b_ord, b_lss, b_arr, b_shi, b_sal,
-        b_JU,b_mas,b_logout,Loginkanri
+        b_JU,b_HN,b_mas,b_logout,Loginkanri
     };
             List<Button> allowedButtons = new List<Button>();
             // ボタンの権限に応じて有効・無効を設定
@@ -132,15 +106,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
                         button.Enabled = true;
                     break;
 
-                case 3: // 作業 (フラグ2): b_rec, b_cus, b_ord, b_hor, b_add のみ有効
+                case 2: // 営業 (フラグ2): b_cus, b_emp, b_add, b_ord, b_shi, b_sal のみ有効
                     foreach (var button in buttons)
-                        button.Enabled = new[] { b_mer,b_sto,b_rec,b_lss, b_hor, b_JU, b_HN, b_mas, b_logout }.Contains(button);
+                        button.Enabled = new[] { b_cus, b_add, b_arr, b_ord, b_shi, b_sal, b_JU, b_mas, b_logout }.Contains(button);
                     break;
-                    
-                case 2: // 社員 (フラグ3): b_cus, b_emp, b_add, b_ord, b_shi, b_sal のみ有効
+
+                case 3:
+                    // 物流 (フラグ3): b_rec, b_cus, b_ord, b_hor, b_add のみ有効
                     foreach (var button in buttons)
-                        button.Enabled = new[] { b_cus,b_add,b_arr, b_ord, b_shi, b_sal, b_JU, b_mas, b_logout }.Contains(button);
-                    
+                        button.Enabled = new[] { b_mer, b_sto, b_rec, b_lss, b_hor, b_JU, b_HN, b_mas, b_logout }.Contains(button);
+
                     break;
 
                 default:
@@ -162,14 +137,65 @@ namespace SalesManagement_SysDev.Main_LoginForm
             }
         }
 
-        private void JU_Paint(object sender, PaintEventArgs e)
+        private void b_add_Click(object sender, EventArgs e)
         {
+            changeForm.NavigateToAcceptingOrderForm();
+        }
 
+        private void b_ord_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToOrderForm();
+        }
+
+
+        private void b_lss_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToIssueForm();
+        }
+
+        private void b_arr_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToArrivalForm();
+        }
+
+        private void b_shi_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToShippingForm();
+        }
+
+        private void b_sal_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToSalesForm();
+        }
+
+        private void b_emp_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToEmployeeForm();
+        }
+
+        private void b_mer_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToMerchandiseForm();
+        }
+
+        private void b_sto_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToStockForm();
+        }
+
+        private void b_cus_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToCustomerForm();
         }
 
         private void b_hor_Click(object sender, EventArgs e)
         {
+            changeForm.NavigateToHorderForm();
+        }
 
+        private void b_rec_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateToReceivingstockForm();
         }
     }
 }
