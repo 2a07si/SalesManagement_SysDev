@@ -59,7 +59,7 @@
             // 
             // Loginkanri
             // 
-            Loginkanri.Location = new Point(27, 95);
+            Loginkanri.Location = new Point(27, 105);
             Loginkanri.Name = "Loginkanri";
             Loginkanri.Size = new Size(112, 34);
             Loginkanri.TabIndex = 132;
@@ -69,7 +69,7 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(97, 67);
+            label_ename.Location = new Point(97, 72);
             label_ename.Name = "label_ename";
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 131;
@@ -219,7 +219,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(27, 67);
+            label4.Location = new Point(27, 72);
             label4.Name = "label4";
             label4.Size = new Size(66, 25);
             label4.TabIndex = 125;
@@ -344,9 +344,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
+            Controls.Add(JU);
             Controls.Add(mas);
             Controls.Add(HN);
-            Controls.Add(JU);
             Name = "mainmenu3";
             Text = "mainmenu";
             Load += mainmenu3_Load;
