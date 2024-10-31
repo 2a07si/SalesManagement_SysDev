@@ -8,7 +8,6 @@ using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
-using static SalesManagement_SysDev.Classまとめ.IrekaeButton;
 
 namespace SalesManagement_SysDev
 {
@@ -19,7 +18,6 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
         private string orderFlag = "←通常"; // 初期状態を「注文」に設定
-        private IrekaeButton irekae;
 
 
         public acceptingorders(Form mainForm)
@@ -492,16 +490,35 @@ namespace SalesManagement_SysDev
         }
 
 
+
+
+        private void ToggleOrderSelection()
+        {
+            isOrderSelected = !isOrderSelected;
+            orderFlag = isOrderSelected ? "←通常" : "詳細→";
+
+            // CurrentStatusのモードを切り替える
+            CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+        }
+
+
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
-            irekae.ToggleOrderSelection();
+            ToggleOrderSelection();
 
             // 現在の状態をメッセージボックスで表示
             MessageBox.Show($"現在の状態: {orderFlag}");
 
             // b_FormSelectorのテキストを現在の状態に更新
-            irekae.UpdateFlagButtonText(b_FormSelector);
+            UpdateFlagButtonText();
+        }
+
+
+        private void UpdateFlagButtonText()
+        {
+            // b_FlagSelectorのテキストを現在の状態に合わせる
+            b_FormSelector.Text = orderFlag;
         }
 
     }
