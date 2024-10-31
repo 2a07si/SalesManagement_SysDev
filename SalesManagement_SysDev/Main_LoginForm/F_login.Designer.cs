@@ -51,7 +51,9 @@
             btn_CleateDabase.Size = new Size(177, 102);
             btn_CleateDabase.TabIndex = 0;
             btn_CleateDabase.Text = "データベース生成";
+            btn_CleateDabase.TextImageRelation = TextImageRelation.TextAboveImage;
             btn_CleateDabase.UseVisualStyleBackColor = true;
+            btn_CleateDabase.Visible = false;
             btn_CleateDabase.Click += btn_CleateDabase_Click;
             // 
             // btn_InsertSampleData
