@@ -123,7 +123,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         b_add, b_ord, b_lss, b_arr, b_shi, b_sal,
         b_JU,b_HN,b_mas,b_logout
     };
-
+            List<Button> allowedButtons = new List<Button>();
             // ボタンの権限に応じて有効・無効を設定
             switch (Global.EmployeePermission)
             {
@@ -134,21 +134,40 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 case 2: // 作業 (フラグ2): b_rec, b_cus, b_ord, b_hor, b_add のみ有効
                     foreach (var button in buttons)
-                        button.Enabled = new[] { b_rec, b_cus, b_ord, b_hor, b_add, b_JU, b_HN, b_mas, b_logout }.Contains(button);
+                        
+                        button.Enabled = new[] { b_cus, b_emp, b_add, b_ord, b_shi, b_sal, b_JU, b_HN, b_mas, b_logout }.Contains(button);
                     break;
 
                 case 3: // 社員 (フラグ3): b_cus, b_emp, b_add, b_ord, b_shi, b_sal のみ有効
                     foreach (var button in buttons)
-                        button.Enabled = new[] { b_cus, b_emp, b_add, b_ord, b_shi, b_sal, b_JU, b_HN, b_mas, b_logout }.Contains(button);
+                        button.Enabled = new[] { b_rec, b_cus, b_ord, b_hor, b_add, b_JU, b_HN, b_mas, b_logout }.Contains(button);
                     break;
 
                 default:
                     // 無効にするなど、その他の処理があれば追加
                     break;
             }
+            foreach (var button in buttons)
+            {
+                if (allowedButtons.Contains(button))
+                {
+                    button.Enabled = true;
+                    button.BackColor = SystemColors.Control; // デフォルトの背景色
+                }
+                else
+                {
+                    button.Enabled = false;
+                    button.BackColor = Color.DarkGray; // 入れないボタンの色を濃い灰色に
+                }
+            }
         }
 
         private void JU_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void b_hor_Click(object sender, EventArgs e)
         {
 
         }
