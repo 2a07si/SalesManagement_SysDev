@@ -92,11 +92,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             // ボタンをリスト化
             List<Button> buttons = new List<Button>
-    {
+            {
         b_hor, b_rec, b_cus, b_mer, b_sto, b_emp,
         b_add, b_ord, b_lss, b_arr, b_shi, b_sal,
         b_JU,b_HN,b_mas,Loginkanri
-    };
+            };
             List<Button> allowedButtons = new List<Button>();
             // ボタンの権限に応じて有効・無効を設定
             switch (Global.EmployeePermission)
