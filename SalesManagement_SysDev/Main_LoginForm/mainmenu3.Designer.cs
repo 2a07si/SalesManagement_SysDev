@@ -86,7 +86,7 @@
             // 
             // b_mas
             // 
-            b_mas.BackColor = Color.FromArgb(128, 255, 128);
+            b_mas.BackColor = Color.FromArgb(178, 228, 210);
             b_mas.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_mas.Location = new Point(977, 132);
             b_mas.Name = "b_mas";
@@ -184,7 +184,7 @@
             // 
             // b_HN
             // 
-            b_HN.BackColor = Color.FromArgb(128, 255, 255);
+            b_HN.BackColor = Color.FromArgb(197, 212, 224);
             b_HN.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_HN.Location = new Point(577, 132);
             b_HN.Name = "b_HN";
@@ -196,7 +196,7 @@
             // 
             // b_JU
             // 
-            b_JU.BackColor = Color.FromArgb(255, 192, 128);
+            b_JU.BackColor = Color.FromArgb(244, 226, 207);
             b_JU.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_JU.Location = new Point(177, 132);
             b_JU.Name = "b_JU";
@@ -344,9 +344,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
+            Controls.Add(mas);
             Controls.Add(HN);
             Controls.Add(JU);
-            Controls.Add(mas);
             Name = "mainmenu3";
             Text = "mainmenu";
             Load += mainmenu3_Load;
