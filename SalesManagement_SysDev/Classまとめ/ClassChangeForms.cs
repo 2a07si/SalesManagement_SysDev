@@ -104,28 +104,28 @@ namespace SalesManagement_SysDev.Classまとめ
         }
 
         //顧客画面遷移
-        internal void NavigateCustomerForm()
+        internal void NavigateToCustomerForm()
         {
             customer customerForm = new customer();
             NavigateTo(customerForm);
         }
 
         //社員画面遷移
-        internal void NavigateEmployeeForm()
+        internal void NavigateToEmployeeForm()
         {
             employee employeeForm = new employee();
             NavigateTo(employeeForm);
         }
 
         //商品画面遷移
-        internal void NavigateMerchandiseForm()
+        internal void NavigateToMerchandiseForm()
         {
             merchandise merchandiseForm = new merchandise();
             NavigateTo(merchandiseForm);
         }
 
         //在庫画面遷移
-        internal void NavigateStockForm()
+        internal void NavigateToStockForm()
         {
             stock stockForm = new stock();
             NavigateTo(stockForm);

@@ -59,7 +59,7 @@
             // 
             // Loginkanri
             // 
-            Loginkanri.Location = new Point(27, 95);
+            Loginkanri.Location = new Point(27, 105);
             Loginkanri.Name = "Loginkanri";
             Loginkanri.Size = new Size(112, 34);
             Loginkanri.TabIndex = 132;
@@ -69,7 +69,7 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(97, 67);
+            label_ename.Location = new Point(97, 72);
             label_ename.Name = "label_ename";
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 131;
@@ -86,7 +86,7 @@
             // 
             // b_mas
             // 
-            b_mas.BackColor = Color.FromArgb(128, 255, 128);
+            b_mas.BackColor = Color.FromArgb(178, 228, 210);
             b_mas.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_mas.Location = new Point(977, 132);
             b_mas.Name = "b_mas";
@@ -98,7 +98,7 @@
             // 
             // JU
             // 
-            JU.BackColor = Color.FromArgb(255, 224, 192);
+            JU.BackColor = Color.FromArgb(244, 226, 207);
             JU.Controls.Add(b_sal);
             JU.Controls.Add(b_lss);
             JU.Controls.Add(b_arr);
@@ -109,7 +109,6 @@
             JU.Name = "JU";
             JU.Size = new Size(1200, 600);
             JU.TabIndex = 133;
-            JU.Paint += JU_Paint;
             // 
             // b_sal
             // 
@@ -121,6 +120,7 @@
             b_sal.TabIndex = 47;
             b_sal.Text = "売上管理";
             b_sal.UseVisualStyleBackColor = false;
+            b_sal.Click += b_sal_Click;
             // 
             // b_lss
             // 
@@ -132,6 +132,7 @@
             b_lss.TabIndex = 46;
             b_lss.Text = "出庫管理";
             b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click;
             // 
             // b_arr
             // 
@@ -143,6 +144,7 @@
             b_arr.TabIndex = 45;
             b_arr.Text = "入荷管理";
             b_arr.UseVisualStyleBackColor = false;
+            b_arr.Click += b_arr_Click;
             // 
             // b_shi
             // 
@@ -154,6 +156,7 @@
             b_shi.TabIndex = 44;
             b_shi.Text = "出荷管理";
             b_shi.UseVisualStyleBackColor = false;
+            b_shi.Click += b_shi_Click;
             // 
             // b_ord
             // 
@@ -181,7 +184,7 @@
             // 
             // b_HN
             // 
-            b_HN.BackColor = Color.FromArgb(128, 255, 255);
+            b_HN.BackColor = Color.FromArgb(197, 212, 224);
             b_HN.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_HN.Location = new Point(577, 132);
             b_HN.Name = "b_HN";
@@ -193,7 +196,7 @@
             // 
             // b_JU
             // 
-            b_JU.BackColor = Color.FromArgb(255, 192, 128);
+            b_JU.BackColor = Color.FromArgb(244, 226, 207);
             b_JU.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_JU.Location = new Point(177, 132);
             b_JU.Name = "b_JU";
@@ -216,7 +219,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(27, 67);
+            label4.Location = new Point(27, 72);
             label4.Name = "label4";
             label4.Size = new Size(66, 25);
             label4.TabIndex = 125;
@@ -233,7 +236,7 @@
             // 
             // mas
             // 
-            mas.BackColor = Color.FromArgb(192, 255, 192);
+            mas.BackColor = Color.FromArgb(178, 228, 210);
             mas.Controls.Add(b_sto);
             mas.Controls.Add(b_cus);
             mas.Controls.Add(b_mer);
@@ -254,6 +257,7 @@
             b_sto.TabIndex = 44;
             b_sto.Text = "在庫管理";
             b_sto.UseVisualStyleBackColor = false;
+            b_sto.Click += b_sto_Click;
             // 
             // b_cus
             // 
@@ -265,6 +269,7 @@
             b_cus.TabIndex = 43;
             b_cus.Text = "顧客管理";
             b_cus.UseVisualStyleBackColor = false;
+            b_cus.Click += b_cus_Click;
             // 
             // b_mer
             // 
@@ -276,6 +281,7 @@
             b_mer.TabIndex = 42;
             b_mer.Text = "商品管理";
             b_mer.UseVisualStyleBackColor = false;
+            b_mer.Click += b_mer_Click;
             // 
             // b_emp
             // 
@@ -287,10 +293,11 @@
             b_emp.TabIndex = 41;
             b_emp.Text = "社員管理";
             b_emp.UseVisualStyleBackColor = false;
+            b_emp.Click += b_emp_Click;
             // 
             // HN
             // 
-            HN.BackColor = Color.FromArgb(192, 255, 255);
+            HN.BackColor = Color.FromArgb(197, 212, 224);
             HN.Controls.Add(b_rec);
             HN.Controls.Add(b_hor);
             HN.Location = new Point(177, 207);
@@ -309,6 +316,7 @@
             b_rec.TabIndex = 42;
             b_rec.Text = "入庫管理";
             b_rec.UseVisualStyleBackColor = false;
+            b_rec.Click += b_rec_Click;
             // 
             // b_hor
             // 
@@ -336,13 +344,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(mas);
-
-            Controls.Add(HN);
-            Controls.Add(JU);
-            Controls.Add(HN);
             Controls.Add(JU);
             Controls.Add(mas);
+            Controls.Add(HN);
             Name = "mainmenu3";
             Text = "mainmenu";
             Load += mainmenu3_Load;

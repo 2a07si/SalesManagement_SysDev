@@ -120,7 +120,7 @@ namespace SalesManagement_SysDev
 
         private void b_masuta_Click(object sender, EventArgs e)
         {
-            changeForm.NavigateEmployeeForm();
+            changeForm.NavigateToEmployeeForm();
         }
 
         private void b_masuta_Click_1(object sender, EventArgs e)
@@ -129,17 +129,17 @@ namespace SalesManagement_SysDev
             {
                 case 2:
                     // 権限2の時、stockフォームに遷移
-                    changeForm.NavigateCustomerForm();
+                    changeForm.NavigateToCustomerForm();
                     break;
 
                 case 3:
                     // 権限3の時、merchandiseフォームに遷移
-                    changeForm.NavigateMerchandiseForm();
+                    changeForm.NavigateToMerchandiseForm();
                     break;
 
                 default:
                     // 権限1の場合は元の機能をそのまま維持
-                    changeForm.NavigateEmployeeForm();
+                    changeForm.NavigateToEmployeeForm();
                     break;
             }
         }
