@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
-    public partial class mainmenu : Form
+    public partial class mainmenu3 : Form
     {
-        public mainmenu()
+        public mainmenu3()
         {
             InitializeComponent();
         }
