@@ -16,5 +16,31 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             InitializeComponent();
         }
+
+        private void b_JU_Click(object sender, EventArgs e)
+        {
+            HN.Visible = false;
+            mas.Visible = false;
+            JU.Visible = true;
+        }
+
+        private void b_HN_Click(object sender, EventArgs e)
+        {
+            JU.Visible = false;
+            mas.Visible = false;
+            HN.Visible = true;
+        }
+
+        private void b_mas_Click(object sender, EventArgs e)
+        {
+            HN.Visible = false;
+            JU.Visible = false;
+            mas.Visible = true;
+        }
+
+        private void mainmenu3_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
