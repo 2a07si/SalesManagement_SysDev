@@ -784,7 +784,7 @@ namespace SalesManagement_SysDev
 
                     // ƒƒOƒCƒ“—š—ğ‚Ì•Û‘¶
                     //var loginHistoryLog = new LoginHistoryLog(
-                    //    id: 0, // ©“®¶¬‚³‚ê‚é‚±‚Æ‚ª‘O’ñ
+                    //    id: 0,
                     //    loginId: tb_ID.Text,
                     //    password: pass, 
                     //    loginDateTime: DateTime.Now,
