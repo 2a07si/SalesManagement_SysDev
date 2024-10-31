@@ -123,7 +123,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         b_add, b_ord, b_lss, b_arr, b_shi, b_sal,
         b_JU,b_mas,b_logout,Loginkanri
     };
-
+            List<Button> allowedButtons = new List<Button>();
             // ボタンの権限に応じて有効・無効を設定
             switch (Global.EmployeePermission)
             {
@@ -147,9 +147,27 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     // 無効にするなど、その他の処理があれば追加
                     break;
             }
+            foreach (var button in buttons)
+            {
+                if (allowedButtons.Contains(button))
+                {
+                    button.Enabled = true;
+                    button.BackColor = SystemColors.Control; // デフォルトの背景色
+                }
+                else
+                {
+                    button.Enabled = false;
+                    button.BackColor = Color.DarkGray; // 入れないボタンの色を濃い灰色に
+                }
+            }
         }
 
         private void JU_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void b_hor_Click(object sender, EventArgs e)
         {
 
         }

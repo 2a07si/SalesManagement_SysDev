@@ -320,6 +320,7 @@
             b_hor.TabIndex = 41;
             b_hor.Text = "発注管理";
             b_hor.UseVisualStyleBackColor = false;
+            b_hor.Click += b_hor_Click;
             // 
             // mainmenu3
             // 
