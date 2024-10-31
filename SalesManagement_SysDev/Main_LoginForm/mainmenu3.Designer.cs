@@ -335,9 +335,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(JU);
             Controls.Add(mas);
             Controls.Add(HN);
+            Controls.Add(JU);
             Name = "mainmenu3";
             Text = "mainmenu";
             Load += mainmenu3_Load;
