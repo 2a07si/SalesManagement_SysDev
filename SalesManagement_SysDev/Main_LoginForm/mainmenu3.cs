@@ -92,32 +92,32 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             // ボタンをリスト化
             List<Button> buttons = new List<Button>
-    {
+            {
         b_hor, b_rec, b_cus, b_mer, b_sto, b_emp,
         b_add, b_ord, b_lss, b_arr, b_shi, b_sal,
-        b_JU,b_HN,b_mas,b_logout,Loginkanri
-    };
+        b_JU,b_HN,b_mas,Loginkanri
+            };
             List<Button> allowedButtons = new List<Button>();
             // ボタンの権限に応じて有効・無効を設定
             switch (Global.EmployeePermission)
             {
-                case 1: // 管理者 (フラグ1): すべてのボタンを有効
-                    foreach (var button in buttons)
-                        button.Enabled = true;
-                    break;
+
 
                 case 2: // 営業 (フラグ2): b_cus, b_emp, b_add, b_ord, b_shi, b_sal のみ有効
                     foreach (var button in buttons)
-                        button.Enabled = new[] { b_cus, b_add, b_arr, b_ord, b_shi, b_sal, b_JU, b_mas, b_logout }.Contains(button);
+                        button.Enabled = new[] { b_cus, b_add, b_arr, b_ord, b_shi, b_sal, b_JU, b_mas }.Contains(button);
                     break;
 
                 case 3:
                     // 物流 (フラグ3): b_rec, b_cus, b_ord, b_hor, b_add のみ有効
                     foreach (var button in buttons)
-                        button.Enabled = new[] { b_mer, b_sto, b_rec, b_lss, b_hor, b_JU, b_HN, b_mas, b_logout }.Contains(button);
-
+                        button.Enabled = new[] { b_mer, b_sto, b_rec, b_lss, b_hor, b_JU, b_HN, b_mas }.Contains(button);
                     break;
 
+                case 1: // 管理者 (フラグ1): すべてのボタンを有効
+                    foreach (var button in buttons)
+                        button.Enabled = true;
+                    break;
                 default:
                     // 無効にするなど、その他の処理があれば追加
                     break;
@@ -196,6 +196,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private void b_rec_Click(object sender, EventArgs e)
         {
             changeForm.NavigateToReceivingstockForm();
+        }
+
+        private void JU_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
