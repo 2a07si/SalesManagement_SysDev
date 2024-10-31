@@ -23,12 +23,16 @@ namespace SalesManagement_SysDev.Classまとめ
                         break;
 
                     case 2:
+                        if(button.Name == "Loginkanri")
+                        {
+                            button.Visible = false;
+                        }
+                        
                         // 権限2:　商品、在庫、社員、出荷、発注、入庫、ログイン画面が無効
                         if (button.Name == "b_mer" || button.Name == "b_sto" ||
                             button.Name == "b_emp" || button.Name == "b_lss" ||
                             button.Name == "b_hor" || button.Name == "b_rec" ||
-                            button.Name == "b_hacchuu" || button.Name == "Loginkanri" ||
-                            button.Name == "PasswordChange" || button.Name == "NewAccount")
+                            button.Name == "b_hacchuu")
                         {
                             button.Enabled = false; // アクセス不可のボタン
                             button.BackColor = Color.Gray;
@@ -42,11 +46,14 @@ namespace SalesManagement_SysDev.Classまとめ
 
                     case 3:
                         // 権限3: 出庫は無効
+                        if (button.Name == "Loginkanri")
+                        {
+                            button.Visible = false;
+                        }
                         if (button.Name == "b_acc" || button.Name == "b_ord" ||
                             button.Name == "b_cus" || button.Name == "b_emp" ||
                             button.Name == "b_arr" || button.Name == "b_shi" ||
-                            button.Name == "b_sal" || button.Name == "Loginkanri" ||
-                            button.Name == "PasswordChange" || button.Name == "NewAccount")
+                            button.Name == "b_sal" )
                         {
                             button.Enabled = false;
                             button.BackColor = Color.Gray;
