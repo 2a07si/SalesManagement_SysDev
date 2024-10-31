@@ -125,7 +125,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
     };
 
             // ボタンの権限に応じて有効・無効を設定
-            switch (accessManager)
+            switch (Global.EmployeePermission)
             {
                 case 1: // 管理者 (フラグ1): すべてのボタンを有効
                     foreach (var button in buttons)
