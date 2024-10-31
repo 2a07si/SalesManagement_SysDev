@@ -181,5 +181,10 @@ namespace SalesManagement_SysDev
             b_logout.PerformClick(); // ボタンのクリックイベントを呼び出す
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            changeForm.NavigateTo3();
+        }
     }
 }

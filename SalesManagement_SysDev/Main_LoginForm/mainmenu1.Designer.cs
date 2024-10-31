@@ -39,6 +39,7 @@
             label_id = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             Loginkanri = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label3
@@ -144,6 +145,16 @@
             Loginkanri.UseVisualStyleBackColor = true;
             Loginkanri.Click += Loginkanri_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(579, 126);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 111;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // mainmenu1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -151,6 +162,7 @@
             AutoScroll = true;
             CancelButton = b_logout;
             ClientSize = new Size(1578, 844);
+            Controls.Add(button1);
             Controls.Add(Loginkanri);
             Controls.Add(label_ename);
             Controls.Add(label_id);
@@ -185,5 +197,6 @@
         private Label label_id;
         private System.Windows.Forms.Timer timer1;
         private Button Loginkanri;
+        private Button button1;
     }
 }

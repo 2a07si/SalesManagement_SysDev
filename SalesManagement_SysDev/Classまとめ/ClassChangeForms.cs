@@ -137,5 +137,11 @@ namespace SalesManagement_SysDev.Classまとめ
             LoginKanriGamen loginKanriGamenForm = new LoginKanriGamen();
             NavigateTo(loginKanriGamenForm);
         }
+
+        internal void NavigateTo3()
+        {
+            mainmenu3 mainmenu3Form = new mainmenu3();
+            NavigateTo(mainmenu3Form);
+        }
     }
 }

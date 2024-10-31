@@ -335,6 +335,10 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
+            Controls.Add(mas);
+
+            Controls.Add(HN);
+            Controls.Add(JU);
             Controls.Add(HN);
             Controls.Add(JU);
             Controls.Add(mas);
