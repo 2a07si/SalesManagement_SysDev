@@ -233,7 +233,7 @@
             // 
             // mas
             // 
-            mas.BackColor = Color.FromArgb(192, 255, 255);
+            mas.BackColor = Color.FromArgb(192, 255, 192);
             mas.Controls.Add(b_sto);
             mas.Controls.Add(b_cus);
             mas.Controls.Add(b_mer);
@@ -290,7 +290,7 @@
             // 
             // HN
             // 
-            HN.BackColor = Color.FromArgb(192, 255, 192);
+            HN.BackColor = Color.FromArgb(192, 255, 255);
             HN.Controls.Add(b_rec);
             HN.Controls.Add(b_hor);
             HN.Location = new Point(177, 207);
@@ -335,9 +335,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
+            Controls.Add(HN);
             Controls.Add(JU);
             Controls.Add(mas);
-            Controls.Add(HN);
             Name = "mainmenu3";
             Text = "mainmenu";
             Load += mainmenu3_Load;
