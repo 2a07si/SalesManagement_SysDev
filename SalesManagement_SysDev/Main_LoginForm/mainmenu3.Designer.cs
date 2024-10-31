@@ -98,7 +98,7 @@
             // 
             // JU
             // 
-            JU.BackColor = Color.FromArgb(255, 224, 192);
+            JU.BackColor = Color.FromArgb(244, 226, 207);
             JU.Controls.Add(b_sal);
             JU.Controls.Add(b_lss);
             JU.Controls.Add(b_arr);
@@ -236,7 +236,7 @@
             // 
             // mas
             // 
-            mas.BackColor = Color.FromArgb(192, 255, 192);
+            mas.BackColor = Color.FromArgb(178, 228, 210);
             mas.Controls.Add(b_sto);
             mas.Controls.Add(b_cus);
             mas.Controls.Add(b_mer);
@@ -297,7 +297,7 @@
             // 
             // HN
             // 
-            HN.BackColor = Color.FromArgb(192, 255, 255);
+            HN.BackColor = Color.FromArgb(197, 212, 224);
             HN.Controls.Add(b_rec);
             HN.Controls.Add(b_hor);
             HN.Location = new Point(177, 207);
