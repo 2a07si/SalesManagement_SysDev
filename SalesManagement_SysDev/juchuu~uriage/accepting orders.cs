@@ -507,9 +507,6 @@ namespace SalesManagement_SysDev
             // 状態を切り替える処理
             ToggleOrderSelection();
 
-            // 現在の状態をメッセージボックスで表示
-            MessageBox.Show($"現在の状態: {orderFlag}");
-
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
         }
