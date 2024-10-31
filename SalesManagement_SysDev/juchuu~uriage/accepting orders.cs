@@ -16,7 +16,7 @@ namespace SalesManagement_SysDev
         private ClassDataGridViewClearer dgvClearer;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
-        private string orderFlag = "注文"; // 初期状態を「注文」に設定
+        private string orderFlag = "←通常"; // 初期状態を「注文」に設定
 
 
         public acceptingorders(Form mainForm)
@@ -39,7 +39,7 @@ namespace SalesManagement_SysDev
                 b_lss
             });
             labelStatus.labelstatus(label2, b_kakutei);
-            b_FormSelector.Text = "注文";
+            b_FormSelector.Text = "←通常";
         }
 
         // メインメニューに戻る
@@ -395,7 +395,7 @@ namespace SalesManagement_SysDev
             private void ToggleOrderSelection()
         {
             isOrderSelected = !isOrderSelected;
-            orderFlag = isOrderSelected ? "注文" : "詳細";
+            orderFlag = isOrderSelected ? "←通常" : "詳細→";
 
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);

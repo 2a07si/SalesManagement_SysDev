@@ -80,6 +80,9 @@
             TBSyohinID = new MaskedTextBox();
             label10 = new Label();
             TBSyukkoIDS = new MaskedTextBox();
+            b_FormSelector = new Button();
+            colord = new Button();
+            現在オフ = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -617,11 +620,41 @@
             TBSyukkoIDS.Size = new Size(100, 31);
             TBSyukkoIDS.TabIndex = 272;
             // 
+            // b_FormSelector
+            // 
+            b_FormSelector.Location = new Point(962, 108);
+            b_FormSelector.Name = "b_FormSelector";
+            b_FormSelector.Size = new Size(112, 34);
+            b_FormSelector.TabIndex = 268;
+            b_FormSelector.Text = "button1";
+            b_FormSelector.UseVisualStyleBackColor = true;
+            // 
+            // colord
+            // 
+            colord.Location = new Point(962, 68);
+            colord.Name = "colord";
+            colord.Size = new Size(112, 34);
+            colord.TabIndex = 267;
+            colord.Text = "色変え";
+            colord.UseVisualStyleBackColor = true;
+            // 
+            // 現在オフ
+            // 
+            現在オフ.AutoSize = true;
+            現在オフ.Location = new Point(980, 40);
+            現在オフ.Name = "現在オフ";
+            現在オフ.Size = new Size(74, 25);
+            現在オフ.TabIndex = 266;
+            現在オフ.Text = "現在オフ";
+            // 
             // lssue
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(b_FormSelector);
+            Controls.Add(colord);
+            Controls.Add(現在オフ);
             Controls.Add(panel3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -709,5 +742,8 @@
         private Button Next;
         private Button Prev;
         private Label label8;
+        private Button b_FormSelector;
+        private Button colord;
+        private Label 現在オフ;
     }
 }
