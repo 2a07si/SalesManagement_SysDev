@@ -7,6 +7,7 @@ using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesManagement_SysDev
 {
@@ -150,10 +151,9 @@ namespace SalesManagement_SysDev
                     break;
                 case CurrentStatus.Status.一覧:
                     DisplayOrders();
-                    MessageBox.Show("一覧表示が完了しました。");
                     break;
                 case CurrentStatus.Status.検索:
-                    SearchOrders(TBJyutyuID.Text);
+                    SearchOrders();
                     break;
                 default:
                     MessageBox.Show("無効な操作です。");
@@ -173,10 +173,9 @@ namespace SalesManagement_SysDev
                     break;
                 case CurrentStatus.Status.一覧:
                     DisplayOrderDetails();
-                    MessageBox.Show("受注詳細の一覧表示が完了しました。");
                     break;
                 case CurrentStatus.Status.検索:
-                    SearchOrderDetails(TBJyutyuID.Text);
+                    SearchOrderDetails();
                     break;
                 default:
                     MessageBox.Show("無効な操作です。");
@@ -277,21 +276,77 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void SearchOrders(string orderID)
+        private void SearchOrders()
         {
             using (var context = new SalesManagementContext())
             {
-                var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == orderID);
-                if (order != null)
+                // 各テキストボックスの値を取得
+                var jyutyuID = TBJyutyuID.Text.Trim();       // 受注ID
+                var shopID = TBShopID.Text.Trim();           // 営業所ID
+                var shainID = TBShainID.Text.Trim();         // 社員ID
+                var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID
+                var tantoName = TBTantoName.Text.Trim();     // 担当者
+
+                // 基本的なクエリ
+                var query = context.TOrders.AsQueryable();
+
+                // 受注IDを検索条件に追加
+                if (!string.IsNullOrEmpty(jyutyuID) && int.TryParse(jyutyuID, out int parsedJyutyuID))
                 {
-                    MessageBox.Show($"受注ID: {order.OrId}\n営業所ID: {order.SoId}\n社員ID: {order.EmId}\n顧客ID: {order.ClId}\n担当者: {order.ClCharge}\n受注日: {order.OrDate}");
+                    query = query.Where(o => o.OrId == parsedJyutyuID);
+                }
+
+                // 営業所IDを検索条件に追加
+                if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
+                {
+                    query = query.Where(o => o.SoId == parsedShopID);
+                }
+
+                // 社員IDを検索条件に追加
+                if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
+                {
+                    query = query.Where(o => o.EmId == parsedShainID);
+                }
+
+                // 顧客IDを検索条件に追加
+                if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedKokyakuID))
+                {
+                    query = query.Where(o => o.ClId == parsedKokyakuID);
+                }
+
+                // 担当者名を検索条件に追加
+                if (!string.IsNullOrEmpty(tantoName))
+                {
+                    query = query.Where(o => o.ClCharge.Contains(tantoName));
+                }
+
+                
+                // 結果を取得
+                var orders = query.ToList();
+
+                if (orders.Any())
+                {
+                    // dataGridView1 に結果を表示
+                    dataGridView1.DataSource = orders.Select(order => new
+                    {
+                        受注ID = order.OrId,
+                        営業所ID = order.SoId,
+                        社員ID = order.EmId,
+                        顧客ID = order.ClId,
+                        担当者 = order.ClCharge,
+                        受注日 = order.OrDate,
+                        注文フラグ = TyumonFlag.Checked ? "〇" : "×",
+                        削除フラグ = DelFlag.Checked ? "〇" : "×"
+                    }).ToList();
                 }
                 else
                 {
                     MessageBox.Show("該当する受注が見つかりません。");
+                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
                 }
             }
         }
+
 
         private void UpdateOrderDetails()
         {
@@ -368,11 +423,54 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void SearchOrderDetails(string orderID)
+        private void SearchOrderDetails()
         {
             using (var context = new SalesManagementContext())
             {
-                var orderDetails = context.TOrderDetails.Where(od => od.OrId.ToString() == orderID).ToList();
+                // 各テキストボックスの値を取得
+                var jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
+                var jyutyuID = TBJyutyuIDS.Text;
+                var syohinID = TBSyohinID.Text;
+                var suryou = TBSuryou.Text;
+                var goukeiKingaku = TBGoukeiKingaku.Text;
+
+                // 基本的なクエリ
+                var query = context.TOrderDetails.AsQueryable();
+
+                // 各条件を追加
+                if (!string.IsNullOrEmpty(jyutyuSyosaiID))
+                {
+                    // 受注詳細IDを検索条件に追加
+                    query = query.Where(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
+                }
+
+                if (!string.IsNullOrEmpty(jyutyuID))
+                {
+                    // 受注IDを検索条件に追加
+                    query = query.Where(od => od.OrId.ToString() == jyutyuID);
+                }
+
+                if (!string.IsNullOrEmpty(syohinID))
+                {
+                    // 商品IDを検索条件に追加
+                    query = query.Where(od => od.PrId.ToString() == syohinID);
+                }
+
+                if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
+                {
+                    // 数量を検索条件に追加
+                    query = query.Where(od => od.OrQuantity == quantity);
+                }
+
+                if (!string.IsNullOrEmpty(goukeiKingaku) && decimal.TryParse(goukeiKingaku, out decimal totalPrice))
+                {
+                    // 合計金額を検索条件に追加
+                    query = query.Where(od => od.OrTotalPrice == totalPrice);
+                }
+
+                // 結果を取得
+                var orderDetails = query.ToList();
+
                 if (orderDetails.Any())
                 {
                     dataGridView2.DataSource = orderDetails.Select(od => new
@@ -390,9 +488,11 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-    
 
-            private void ToggleOrderSelection()
+
+
+
+        private void ToggleOrderSelection()
         {
             isOrderSelected = !isOrderSelected;
             orderFlag = isOrderSelected ? "注文" : "詳細";
@@ -420,5 +520,6 @@ namespace SalesManagement_SysDev
             // b_FlagSelectorのテキストを現在の状態に合わせる
             b_FormSelector.Text = orderFlag;
         }
+
     }
 }
