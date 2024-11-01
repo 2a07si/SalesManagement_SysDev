@@ -1,6 +1,6 @@
 ﻿namespace SalesManagement_SysDev
 {
-    partial class lssue
+    partial class issue
     {
         /// <summary>
         /// Required designer variable.
@@ -658,7 +658,7 @@
             dateCheckBox.Text = "受注年月日を検索に含む";
             dateCheckBox.UseVisualStyleBackColor = true;
             // 
-            // lssue
+            // issue
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -688,10 +688,10 @@
             Controls.Add(b_arr);
             Controls.Add(b_lss);
             Controls.Add(panel1);
-            Name = "lssue";
+            Name = "issue";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "出庫";
-            Load += lssue_Load;
+            Load += issue_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
