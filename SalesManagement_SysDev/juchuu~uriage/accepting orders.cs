@@ -14,11 +14,10 @@ namespace SalesManagement_SysDev
     public partial class acceptingorders : Form
     {
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
-        private string orderFlag = "←通常"; // 初期状態を「注文」に設定
-
         private ClassDataGridViewClearer dgvClearer;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
+        private string orderFlag = "←通常"; // 初期状態を「注文」に設定
 
 
         public acceptingorders(Form mainForm)
@@ -575,4 +574,6 @@ namespace SalesManagement_SysDev
 
 
     }
+
+
 }
