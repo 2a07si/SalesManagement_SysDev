@@ -1,20 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SalesManagement_SysDev.Classまとめ;
+using SalesManagement_SysDev.Classまとめ; // 各種クラスを使用する
 using static SalesManagement_SysDev.Classまとめ.labelChange;
+using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
+using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
+using SalesManagement_SysDev.juchuu_uriage;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesManagement_SysDev
 {
     public partial class stock : Form
     {
+        private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
+        private string orderFlag = "←通常"; // 初期状態を「注文」に設定
+
         private Form mainForm;
         private ClassChangeForms formChanger;
         private ClassTimerManager timerManager;
@@ -126,5 +127,77 @@ namespace SalesManagement_SysDev
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
-    }
+        private void b_kakutei_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // モードに基づいて処理を分岐
+                switch (CurrentStatus.CurrentMode)
+                {
+                    case CurrentStatus.Mode.通常:
+                        HandleOrderOperation();
+                        break;
+                    default:
+                        MessageBox.Show("現在のモードは無効です。");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message);
+            }
+        }
+        //乾の途中
+        private void HandleOrderOperation()
+        {
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.更新:
+                    UpdateStock();
+                    break;
+                case CurrentStatus.Status.登録:
+                    RegisterStock();
+                    break;
+                case CurrentStatus.Status.一覧:
+                    DisplayStock();
+                    break;
+                case CurrentStatus.Status.検索:
+                    SearchStock();
+                    break;
+                default:
+                    MessageBox.Show("無効な操作です。");
+                    break;
+            }
+        }
+        private void UpdateStock()
+        {
+            string ShainID = TBSyainID.Text;
+            string ShainName = TBSyainName.Text;
+            string ShopID = TBShopId.Text;
+            string JobID = TBJobID.Text;
+            DateTime ShainDate = date.Value;
+            string TelNo = TBTellNo.Text;
+            bool delFlag = DelFlag.Checked;
+
+            using (var context = new SalesManagementContext())
+            {
+                var employee = context.MEmployees.SingleOrDefault(e => e.EmId.ToString() == ShainID);
+                if (employee != null)
+                {
+                    employee.EmName = ShainName;
+                    employee.SoId = int.Parse(ShopID);
+                    employee.PoId = int.Parse(JobID);
+                    employee.EmHiredate = ShainDate;
+                    employee.EmPhone = TelNo;
+                    employee.EmHidden = delFlag ? "1" : "0";
+
+                    context.SaveChanges();
+                    MessageBox.Show("更新が成功しました。");
+                }
+                else
+                {
+                    MessageBox.Show("該当する受注が見つかりません。");
+                }
+            }
+        }
 }
