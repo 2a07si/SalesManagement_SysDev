@@ -196,8 +196,10 @@ namespace SalesManagement_SysDev
                     merchandise.PrSafetyStock = int.Parse(SafeNum);
                     merchandise.ScId = int.Parse(Sclass);
                     merchandise.PrReleaseDate = SyohinDate;
-                    merchandise.EmPhone = TelNo;
-                    merchandise.EmHidden = delFlag ? "1" : "0";
+                    merchandise.PrModelNumber = TModel;
+                    merchandise.PrColor = TColor;
+                    merchandise.PrReleaseDate = SyohinDate;
+                    merchandise.PrHidden = delFlag ? "1" : "0";
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
