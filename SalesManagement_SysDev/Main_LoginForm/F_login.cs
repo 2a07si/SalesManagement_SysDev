@@ -848,6 +848,26 @@ namespace SalesManagement_SysDev
             //  btn_CleateDabase.Visible = false;
             dateNameLabel.UpdateDateTime();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tb_ID.Text = "1111";
+            tb_Pass.Text = "999";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            tb_ID.Text = "1007";
+            tb_Pass.Text = "1007";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            tb_ID.Text = "1227";
+            tb_Pass.Text = "1227";
+        }
     }
 
 }

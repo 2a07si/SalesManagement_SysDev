@@ -433,7 +433,7 @@ namespace SalesManagement_SysDev
             b_upd.TabIndex = 239;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
-            b_upd.Click += b_upd_Click;
+            
             // 
             // label4
             // 
