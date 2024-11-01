@@ -65,6 +65,7 @@
             Loginkanri.TabIndex = 132;
             Loginkanri.Text = "ログイン管理";
             Loginkanri.UseVisualStyleBackColor = true;
+            Loginkanri.Click += Loginkanri_Click;
             // 
             // label_ename
             // 
