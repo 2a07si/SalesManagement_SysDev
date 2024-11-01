@@ -294,6 +294,7 @@ namespace SalesManagement_SysDev
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 52;
+            dataGridView1.CellClick += dataGridView1_CellClick; //dataGridViewCellClickイベント追加
             // 
             // panel1
             // 

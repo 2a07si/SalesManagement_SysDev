@@ -25,6 +25,7 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             formChanger = new ClassChangeForms(this);
             accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+        
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
@@ -525,5 +526,33 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = orderFlag;
         }
 
+        // CellClickイベントハンドラ
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // クリックした行のインデックスを取得
+            int rowIndex = e.RowIndex;
+
+            // 行インデックスが有効かどうかをチェック
+            if (rowIndex >= 0)
+            {
+                // 行データを取得
+                DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                // 各テキストボックスにデータを入力
+                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+                TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+                TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
+                date.Value = Convert.ToDateTime(row.Cells["受注日"].Value);
+                // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
+                // 非表示ボタンや非表示理由もここで設定
+                // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
+                // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+            }
+        }
+
     }
+
+
 }
