@@ -8,6 +8,7 @@ using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace SalesManagement_SysDev
 {
@@ -155,7 +156,7 @@ namespace SalesManagement_SysDev
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    Updatesemerchandise();
+                    Updatemerchandise();
                     break;
                 case CurrentStatus.Status.登録:
                     Registermerchandise();
@@ -228,17 +229,21 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var merchandise = new MProduct
+                var newmerchandise = new MProduct
                 {
                     PrId = int.Parse(SyohinID),
                     MaId = int.Parse(MakerID),
-                    PrId = int.Parse(SyohinID),
-                    PoId = int.Parse(JobID),
-                    EmHiredate = ShainDate,
-                    EmHidden = delFlag ? "1" : "0"
+                    PrName = SyohinName,
+                    Price = int.Parse(Sell),
+                    PrSafetyStock = int.Parse(SafeNum),
+                    ScId = int.Parse(Sclass),
+                    PrModelNumber=TModel,
+                    PrColor= TColor,
+                    PrReleaseDate = SyohinDate,
+                    PrHidden = delFlag ? "1" : "0"
                 };
 
-                context.MProducts.Add(newMerchandise);
+                context.MProducts.Add(newmerchandise);
                 context.SaveChanges();
                 MessageBox.Show("登録が成功しました。");
             }
@@ -253,15 +258,15 @@ namespace SalesManagement_SysDev
 
                     dataGridView1.DataSource = merchandises.Select(m => new
                     {
-                       商品ID = m.EmId,
-                        メーカーID = m.EmName,
-                        商品名 = m.EmId,
-                        値段 = m.PoId,
-                        安全在庫数 = m.EmHiredate,
-                        小分類 = m.EmPhone,
-                        型番 = m.EmPhone,
-
-                        非表示フラグ = m.EmHidden
+                       商品ID = m.PrId,
+                        メーカーID = m.MaId,
+                        商品名 = m.PrName,
+                        値段 = m.Price,
+                        安全在庫数 = m.PrSafetyStock,
+                        小分類 = m.ScId,
+                        型番 = m.PrModelNumber,
+                        色=m.PrColor,
+                        非表示フラグ = m.PrHidden
                     }).ToList();
                 }
             }
@@ -276,17 +281,23 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得 
-                var ShainID = TBSyainID.Text.Trim();       // 社員ID 
-                var ShaiName = TBSyainName.Text.Trim();           // 営業所ID 
-                var ShopID = TBShopId.Text.Trim();         // 社員ID 
-                var JobID = TBJobID.Text.Trim();     // 顧客ID 
-                var TelNo = TBTellNo.Text.Trim();     // 担当者 
+                var SyohinID = TBSyohinID.Text.Trim();
+                var MakerID = TBMakerId.Text.Trim();
+                var SyohinName = TBSyohinName.Text.Trim();
+                var Sell = TBSell.Text.Trim();
+                var SafeNum = TBSafeNum.Text.Trim();
+                var Sclass = TBSyoubunrui.Text.Trim();
+                var TModel = TBModel.Text.Trim();
+                var TColor = TBColor.Text.Trim();
+
+
+
 
                 // 基本的なクエリ 
                 var query = context.MEmployees.AsQueryable();
 
                 // 社員IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(ShainID) && int.TryParse(ShainID, out int parsedJyutyuID))
+                if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int parsedJyutyuID))
                 {
                     query = query.Where(e => e.EmId == parsedJyutyuID);
                 }
