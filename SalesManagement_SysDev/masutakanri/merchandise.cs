@@ -155,7 +155,7 @@ namespace SalesManagement_SysDev
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    Updatemerchandise();
+                    Updatesemerchandise();
                     break;
                 case CurrentStatus.Status.登録:
                     Registermerchandise();
@@ -213,21 +213,24 @@ namespace SalesManagement_SysDev
         }
         private void Registermerchandise()
         {
-            string ShainID = TBSyainID.Text;
-            string ShainName = TBSyainName.Text;
-            string ShopID = TBShopId.Text;
-            string JobID = TBJobID.Text;
-            DateTime ShainDate = date.Value;
-            string TelNo = TBTellNo.Text;
+            string SyohinID = TBSyohinID.Text;
+            string MakerID = TBMakerId.Text;
+            string SyohinName = TBSyohinName.Text;
+            string Sell = TBSell.Text;
+            string SafeNum = TBSafeNum.Text;
+            string Sclass = TBSyoubunrui.Text;
+            string TModel = TBModel.Text;
+            string TColor = TBColor.Text;
+            DateTime SyohinDate = date.Value;
             bool delFlag = DelFlag.Checked;
 
             using (var context = new SalesManagementContext())
             {
-                var newEmployee = new MEmployee
+                var merchandise = new MProduct
                 {
-                    EmId = int.Parse(ShainID),
-                    EmName = ShainName,
-                    SoId = int.Parse(ShopID),
+                    PrId = int.Parse(SyohinID),
+                    MaId = int.Parse(MakerID),
+                    PrId = int.Parse(SyohinID),
                     PoId = int.Parse(JobID),
                     EmHiredate = ShainDate,
                     EmHidden = delFlag ? "1" : "0"
