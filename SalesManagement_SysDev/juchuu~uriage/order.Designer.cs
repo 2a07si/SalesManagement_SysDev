@@ -46,7 +46,7 @@
             Next = new Button();
             Prev = new Button();
             label8 = new Label();
-            TBJyutyuID = new MaskedTextBox();
+            TBJyutyuId = new MaskedTextBox();
             label7 = new Label();
             TyumonFlag = new CheckBox();
             dataGridView1 = new DataGridView();
@@ -59,7 +59,7 @@
             label18 = new Label();
             label14 = new Label();
             TBRiyuu = new MaskedTextBox();
-            TBTyumonID = new MaskedTextBox();
+            TBTyumonId = new MaskedTextBox();
             label17 = new Label();
             TBShopId = new MaskedTextBox();
             TBShainId = new MaskedTextBox();
@@ -70,13 +70,13 @@
             B_iti = new Button();
             TBTyumonIDS = new MaskedTextBox();
             label10 = new Label();
-            TBSyohinID = new MaskedTextBox();
+            TBSyohinId = new MaskedTextBox();
             label13 = new Label();
             label9 = new Label();
             label15 = new Label();
             TBSuryou = new MaskedTextBox();
             dataGridView2 = new DataGridView();
-            TBTyumonSyosaiID = new MaskedTextBox();
+            TBTyumonSyosaiId = new MaskedTextBox();
             panel3 = new Panel();
             label1 = new Label();
             label2 = new Label();
@@ -98,7 +98,6 @@
             label_ename.Size = new Size(96, 25);
             label_ename.TabIndex = 214;
             label_ename.Text = "------------";
-            label_ename.Click += label_ename_Click;
             // 
             // label_id
             // 
@@ -246,7 +245,7 @@
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(TBJyutyuID);
+            panel1.Controls.Add(TBJyutyuId);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(TyumonFlag);
             panel1.Controls.Add(dataGridView1);
@@ -259,7 +258,7 @@
             panel1.Controls.Add(label18);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(TBRiyuu);
-            panel1.Controls.Add(TBTyumonID);
+            panel1.Controls.Add(TBTyumonId);
             panel1.Controls.Add(label17);
             panel1.Controls.Add(TBShopId);
             panel1.Controls.Add(TBShainId);
@@ -298,12 +297,12 @@
             label8.TabIndex = 269;
             label8.Text = "何ページ";
             // 
-            // TBJyutyuID
+            // TBJyutyuId
             // 
-            TBJyutyuID.Location = new Point(90, 71);
-            TBJyutyuID.Name = "TBJyutyuID";
-            TBJyutyuID.Size = new Size(100, 31);
-            TBJyutyuID.TabIndex = 267;
+            TBJyutyuId.Location = new Point(90, 71);
+            TBJyutyuId.Name = "TBJyutyuId";
+            TBJyutyuId.Size = new Size(100, 31);
+            TBJyutyuId.TabIndex = 267;
             // 
             // label7
             // 
@@ -428,12 +427,12 @@
             TBRiyuu.Size = new Size(325, 31);
             TBRiyuu.TabIndex = 259;
             // 
-            // TBTyumonID
+            // TBTyumonId
             // 
-            TBTyumonID.Location = new Point(90, 20);
-            TBTyumonID.Name = "TBTyumonID";
-            TBTyumonID.Size = new Size(100, 31);
-            TBTyumonID.TabIndex = 255;
+            TBTyumonId.Location = new Point(90, 20);
+            TBTyumonId.Name = "TBTyumonId";
+            TBTyumonId.Size = new Size(100, 31);
+            TBTyumonId.TabIndex = 255;
             // 
             // label17
             // 
@@ -522,12 +521,12 @@
             label10.TabIndex = 271;
             label10.Text = "商品ID";
             // 
-            // TBSyohinID
+            // TBSyohinId
             // 
-            TBSyohinID.Location = new Point(490, 20);
-            TBSyohinID.Name = "TBSyohinID";
-            TBSyohinID.Size = new Size(100, 31);
-            TBSyohinID.TabIndex = 274;
+            TBSyohinId.Location = new Point(490, 20);
+            TBSyohinId.Name = "TBSyohinId";
+            TBSyohinId.Size = new Size(100, 31);
+            TBSyohinId.TabIndex = 274;
             // 
             // label13
             // 
@@ -580,23 +579,23 @@
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 52;
             // 
-            // TBTyumonSyosaiID
+            // TBTyumonSyosaiId
             // 
-            TBTyumonSyosaiID.Location = new Point(130, 20);
-            TBTyumonSyosaiID.Name = "TBTyumonSyosaiID";
-            TBTyumonSyosaiID.Size = new Size(100, 31);
-            TBTyumonSyosaiID.TabIndex = 277;
+            TBTyumonSyosaiId.Location = new Point(130, 20);
+            TBTyumonSyosaiId.Name = "TBTyumonSyosaiId";
+            TBTyumonSyosaiId.Size = new Size(100, 31);
+            TBTyumonSyosaiId.TabIndex = 277;
             // 
             // panel3
             // 
             panel3.BackColor = Color.IndianRed;
-            panel3.Controls.Add(TBTyumonSyosaiID);
+            panel3.Controls.Add(TBTyumonSyosaiId);
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(TBSuryou);
             panel3.Controls.Add(label15);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(label13);
-            panel3.Controls.Add(TBSyohinID);
+            panel3.Controls.Add(TBSyohinId);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(TBTyumonIDS);
             panel3.Location = new Point(970, 145);
@@ -735,11 +734,11 @@
         private Label label18;
         private Label label14;
         private MaskedTextBox TBRiyuu;
-        private MaskedTextBox TBTyumonID;
+        private MaskedTextBox TBTyumonId;
         private Label label17;
         private MaskedTextBox TBShopId;
         private MaskedTextBox TBShainId;
-        private MaskedTextBox TBJyutyuID;
+        private MaskedTextBox TBJyutyuId;
         private Label label7;
         private Button B_iti;
         private Button Next;
@@ -747,13 +746,13 @@
         private Label label8;
         private MaskedTextBox TBTyumonIDS;
         private Label label10;
-        private MaskedTextBox TBSyohinID;
+        private MaskedTextBox TBSyohinId;
         private Label label13;
         private Label label9;
         private Label label15;
         private MaskedTextBox TBSuryou;
         private DataGridView dataGridView2;
-        private MaskedTextBox TBTyumonSyosaiID;
+        private MaskedTextBox TBTyumonSyosaiId;
         private Panel panel3;
         private Label label1;
         private Label label2;
