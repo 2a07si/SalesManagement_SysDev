@@ -196,13 +196,10 @@ namespace SalesManagement_SysDev
                     merchandise.Price = int.Parse(Sell);
                     merchandise.PrSafetyStock = int.Parse(SafeNum);
                     merchandise.ScId = int.Parse(Sclass);
-                    merchandise.PrModelNumber = TModel;
-                    merchandise.PrColor = TColor;
                     merchandise.PrReleaseDate = SyohinDate;
                     merchandise.PrModelNumber = TModel;
                     merchandise.PrColor = TColor;
-                    merchandise.PrReleaseDate = SyohinDate;
-                    merchandise.PrHidden = delFlag ? "1" : "0";
+                    merchandise.PrFlag = int.Parse(delFlag ? "1" : "0");
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
@@ -229,23 +226,27 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var newmerchandise = new MProduct
+                var merchandise = context.MProducts.SingleOrDefault(e => e.PrId.ToString() == SyohinID);
+                if (merchandise == null)
                 {
-                    PrId = int.Parse(SyohinID),
-                    MaId = int.Parse(MakerID),
-                    PrName = SyohinName,
-                    Price = int.Parse(Sell),
-                    PrSafetyStock = int.Parse(SafeNum),
-                    ScId = int.Parse(Sclass),
-                    PrModelNumber=TModel,
-                    PrColor= TColor,
-                    PrReleaseDate = SyohinDate,
-                    PrHidden = delFlag ? "1" : "0"
-                };
+                    merchandise.PrId = int.Parse(SyohinID);
+                    merchandise.MaId = int.Parse(MakerID);
+                    merchandise.PrName = SyohinName;
+                    merchandise.Price = int.Parse(Sell);
+                    merchandise.PrSafetyStock = int.Parse(SafeNum);
+                    merchandise.ScId = int.Parse(Sclass);
+                    merchandise.PrReleaseDate = SyohinDate;
+                    merchandise.PrModelNumber = TModel;
+                    merchandise.PrColor = TColor;
+                    merchandise.PrFlag = int.Parse(delFlag ? "1" : "0");
 
-                context.MProducts.Add(newmerchandise);
-                context.SaveChanges();
-                MessageBox.Show("登録が成功しました。");
+                    context.SaveChanges();
+                    MessageBox.Show("登録が成功しました。");
+                }
+                else
+                {
+                    MessageBox.Show("該当する受注が見つかりません。");
+                }
             }
         }
         private void Displaymerchandise()
@@ -265,8 +266,8 @@ namespace SalesManagement_SysDev
                         安全在庫数 = m.PrSafetyStock,
                         小分類 = m.ScId,
                         型番 = m.PrModelNumber,
-                        色=m.PrColor,
-                        非表示フラグ = m.PrHidden
+
+                        非表示フラグ = m.PrFlag
                     }).ToList();
                 }
             }
@@ -278,20 +279,15 @@ namespace SalesManagement_SysDev
 
         private void Searchmerchandise()
         {
+
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得 
-                var SyohinID = TBSyohinID.Text.Trim();
-                var MakerID = TBMakerId.Text.Trim();
-                var SyohinName = TBSyohinName.Text.Trim();
-                var Sell = TBSell.Text.Trim();
-                var SafeNum = TBSafeNum.Text.Trim();
-                var Sclass = TBSyoubunrui.Text.Trim();
-                var TModel = TBModel.Text.Trim();
-                var TColor = TBColor.Text.Trim();
-
-
-
+                var SyohinID = TBSyohinID.Text.Trim();       // 商品
+                var MakerId = TBMakerId.Text.Trim();           // めーかー 
+                var SyohinName = TBSyohinName.Text.Trim();         //商品名
+                var Sell = TBSell.Text.Trim();     // 値段
+                var Model = TBModel.Text.Trim();     // かたばｊｎ 
 
                 // 基本的なクエリ 
                 var query = context.MEmployees.AsQueryable();
@@ -303,27 +299,27 @@ namespace SalesManagement_SysDev
                 }
 
                 // 社員名を検索条件に追加 
-                if (!string.IsNullOrEmpty(ShaiName) && int.TryParse(ShaiName, out int parsedShopID))
+                if (!string.IsNullOrEmpty(MakerId) && int.TryParse(MakerId, out int parsedShopID))
                 {
                     query = query.Where(o => o.SoId == parsedShopID);
                 }
 
                 // 営業所IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(ShopID) && int.TryParse(ShopID, out int parsedShainID))
+                if (!string.IsNullOrEmpty(SyohinName) && int.TryParse(SyohinName, out int parsedShainID))
                 {
                     query = query.Where(o => o.EmId == parsedShainID);
                 }
 
                 // 顧客IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(JobID) && int.TryParse(JobID, out int parsedKokyakuID))
+                if (!string.IsNullOrEmpty(Sell) && int.TryParse(Sell, out int parsedKokyakuID))
                 {
                     query = query.Where(e => e.SoId == parsedKokyakuID);
                 }
 
                 // 担当者名を検索条件に追加 
-                if (!string.IsNullOrEmpty(TelNo))
+                if (!string.IsNullOrEmpty(Model))
                 {
-                    query = query.Where(e => e.EmPhone.Contains(TelNo));
+                    query = query.Where(e => e.EmPhone.Contains(Model));
                 }
 
 

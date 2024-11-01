@@ -25,7 +25,7 @@ public partial class MProduct
 
     public DateTime PrReleaseDate { get; set; }
 
-    public int PrFlag { get; set; }
+    public int? PrFlag { get; set; }
 
     public string? PrHidden { get; set; }
 
