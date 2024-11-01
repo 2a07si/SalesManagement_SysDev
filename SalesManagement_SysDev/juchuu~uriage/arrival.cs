@@ -288,30 +288,11 @@ namespace SalesManagement_SysDev
                 else
                 {
                     MessageBox.Show("既に入荷が存在しています。");
-                }       try
-        {
-            context.SaveChanges();
-            MessageBox.Show("登録が成功しました。");
-        }
-        catch (DbUpdateException ex)
-        {
-            // inner exception の詳細を表示する
-            if (ex.InnerException != null)
-            {
-                MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
-            }
-            else
-            {
-                MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                }
             }
         }
-        catch (Exception ex)
-        {
-            // その他のエラーに対処する
-            MessageBox.Show($"エラーが発生しました: {ex.Message}");
-        }
-    }
-}
+    
+
 
 
         private void DisplayArrivals()
