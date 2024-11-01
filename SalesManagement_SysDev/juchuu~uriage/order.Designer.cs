@@ -469,6 +469,7 @@
             b_kakutei.TabIndex = 249;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.Click += b_kakutei_Click;
             // 
             // clear
             // 
@@ -631,6 +632,7 @@
             b_FormSelector.TabIndex = 269;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
+            b_FormSelector.Click += b_FormSelector_Click;
             // 
             // colord
             // 
