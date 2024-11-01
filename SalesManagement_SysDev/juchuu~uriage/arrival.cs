@@ -240,7 +240,7 @@ namespace SalesManagement_SysDev
             {
                 // 入荷が既に存在するか確認
                 var arrival = context.TArrivals.SingleOrDefault(o => o.OrId.ToString() == NyuukaId);
-                if (arrival != null)
+                if (arrival == null)
                 {
                     // 新しい入荷情報を作成
                     var newArrival = new TArrival
