@@ -28,6 +28,9 @@ namespace SalesManagement_SysDev
             this.Load += new EventHandler(order_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
+
+            labelStatus.labelstatus(label2, b_kakutei);
+            b_FormSelector.Text = "←通常";
         }
 
 
