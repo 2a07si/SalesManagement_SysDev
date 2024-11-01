@@ -15,8 +15,8 @@ namespace SalesManagement_SysDev
     {
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
         private string orderFlag = "←通常"; // 初期状態を「注文」に設定
-
         private ClassDataGridViewClearer dgvClearer;
+        
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
@@ -87,7 +87,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
+        private void b_upd_Click_1(object sender, EventArgs e) => UpdateStatus();
 
         private void UpdateStatus()
         {
@@ -497,9 +497,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
-
 
         private void ToggleOrderSelection()
         {

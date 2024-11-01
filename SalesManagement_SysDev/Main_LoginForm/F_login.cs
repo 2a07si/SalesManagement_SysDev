@@ -3,6 +3,8 @@ using System.Security.Cryptography;
 using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
+using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
+using System.Diagnostics;
 
 namespace SalesManagement_SysDev
 {
@@ -11,6 +13,7 @@ namespace SalesManagement_SysDev
         private ClassDateNamelabel dateNameLabel;
         private bool isPasswordVisible = true;  // パスワード表示状態を管理するフラグ 
         private ClassTimerManager timerManager;
+        private ClassChangeForms classChangeForms;
         public F_login()
         {
             InitializeComponent();
@@ -21,6 +24,7 @@ namespace SalesManagement_SysDev
             // タイマーやその他の初期設定 
             this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
+            this.classChangeForms = new ClassChangeForms(this);
             timer1.Start();
         }
 
@@ -772,9 +776,7 @@ namespace SalesManagement_SysDev
                         // ログイン成功時の処理
                         isLoginSuccessful = true;
 
-                        mainmenu1 mainMenu = new mainmenu1();
-                        mainMenu.Show();
-                        this.Hide();
+                        classChangeForms.NavigateTo3();
                     }
                     else
                     {
@@ -847,6 +849,26 @@ namespace SalesManagement_SysDev
             //    btn_InsertSampleData.Visible = false;
             //  btn_CleateDabase.Visible = false;
             dateNameLabel.UpdateDateTime();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tb_ID.Text = "1111";
+            tb_Pass.Text = "999";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            tb_ID.Text = "1007";
+            tb_Pass.Text = "1007";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            tb_ID.Text = "1227";
+            tb_Pass.Text = "1227";
         }
     }
 
