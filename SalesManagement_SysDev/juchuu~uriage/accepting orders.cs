@@ -526,7 +526,6 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = orderFlag;
         }
 
-<<<<<<< HEAD
         // CellClickイベントハンドラ
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -572,36 +571,7 @@ namespace SalesManagement_SysDev
                 TBGoukeiKingaku.Text = row.Cells["合計金額"].Value.ToString();
             }
         }
-
-
-=======
-        public void dataGridView1_CurrentCellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //クリックされた行データをテキストボックスへ
-            if (dataGridView1.CurrentRow != null)
-            {
-                // 各TextBoxおよびCheckBoxにデータを設定
-                TBJyutyuID.Text = dataGridView1.CurrentRow.Cells[0].Value?.ToString() ?? "";
-                TBShopID.Text = dataGridView1.CurrentRow.Cells[1].Value?.ToString() ?? "";
-                TBShainID.Text = dataGridView1.CurrentRow.Cells[2].Value?.ToString() ?? "";
-                TBKokyakuID.Text = dataGridView1.CurrentRow.Cells[3].Value?.ToString() ?? "";
-                TBTantoName.Text = dataGridView1.CurrentRow.Cells[4].Value?.ToString() ?? "";
-                date.Text = dataGridView1.CurrentRow.Cells[5].Value?.ToString() ?? "";
-
-                // CheckBoxにデータを設定（boolに変換してチェック状態を反映）
-                bool tyumonFlag = false;
-                bool delFlag = false;
-                bool.TryParse(dataGridView1.CurrentRow.Cells[6].Value?.ToString(), out tyumonFlag);
-                bool.TryParse(dataGridView1.CurrentRow.Cells[7].Value?.ToString(), out delFlag);
-
-                TyumonFlag.Checked = tyumonFlag;
-                DelFlag.Checked = delFlag;
-
-                TBRiyuu.Text = dataGridView1.CurrentRow.Cells[8].Value?.ToString() ?? "";
-            }
-        }
-
->>>>>>> da7220b164d8c69221df680b7dd7afc7426f2fc2
+        
     }
 
 
