@@ -155,7 +155,7 @@ namespace SalesManagement_SysDev
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    Updatemerchandise();
+                    Updatesemerchandise();
                     break;
                 case CurrentStatus.Status.登録:
                     Registermerchandise();
@@ -171,7 +171,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
-        private void Updatesemerchandise()
+        private void Updatemerchandise()
         {
             string SyohinID = TBSyohinID.Text;
             string MakerID = TBMakerId.Text;
@@ -195,9 +195,13 @@ namespace SalesManagement_SysDev
                     merchandise.Price = int.Parse(Sell);
                     merchandise.PrSafetyStock = int.Parse(SafeNum);
                     merchandise.ScId = int.Parse(Sclass);
+                    merchandise.PrModelNumber = TModel;
+                    merchandise.PrColor = TColor;
                     merchandise.PrReleaseDate = SyohinDate;
-                    merchandise.EmPhone = TelNo;
-                    merchandise.EmHidden = delFlag ? "1" : "0";
+                    merchandise.PrModelNumber = TModel;
+                    merchandise.PrColor = TColor;
+                    merchandise.PrReleaseDate = SyohinDate;
+                    merchandise.PrHidden = delFlag ? "1" : "0";
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
@@ -211,27 +215,30 @@ namespace SalesManagement_SysDev
         }
         private void Registermerchandise()
         {
-            string ShainID = TBSyainID.Text;
-            string ShainName = TBSyainName.Text;
-            string ShopID = TBShopId.Text;
-            string JobID = TBJobID.Text;
-            DateTime ShainDate = date.Value;
-            string TelNo = TBTellNo.Text;
+            string SyohinID = TBSyohinID.Text;
+            string MakerID = TBMakerId.Text;
+            string SyohinName = TBSyohinName.Text;
+            string Sell = TBSell.Text;
+            string SafeNum = TBSafeNum.Text;
+            string Sclass = TBSyoubunrui.Text;
+            string TModel = TBModel.Text;
+            string TColor = TBColor.Text;
+            DateTime SyohinDate = date.Value;
             bool delFlag = DelFlag.Checked;
 
             using (var context = new SalesManagementContext())
             {
-                var newEmployee = new MEmployee
+                var merchandise = new MProduct
                 {
-                    EmId = int.Parse(ShainID),
-                    EmName = ShainName,
-                    SoId = int.Parse(ShopID),
+                    PrId = int.Parse(SyohinID),
+                    MaId = int.Parse(MakerID),
+                    PrId = int.Parse(SyohinID),
                     PoId = int.Parse(JobID),
                     EmHiredate = ShainDate,
                     EmHidden = delFlag ? "1" : "0"
                 };
 
-                context.MEmployees.Add(newEmployee);
+                context.MProducts.Add(newMerchandise);
                 context.SaveChanges();
                 MessageBox.Show("登録が成功しました。");
             }
@@ -242,17 +249,19 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var employees = context.MEmployees.ToList();
+                    var merchandises = context.MProducts.ToList();
 
-                    dataGridView1.DataSource = employees.Select(e => new
+                    dataGridView1.DataSource = merchandises.Select(m => new
                     {
-                        社員ID = e.EmId,
-                        社員名 = e.EmName,
-                        営業所ID = e.EmId,
-                        役職ID = e.PoId,
-                        入社年月日 = e.EmHiredate,
-                        電話番号 = e.EmPhone,
-                        非表示フラグ = e.EmHidden
+                       商品ID = m.EmId,
+                        メーカーID = m.EmName,
+                        商品名 = m.EmId,
+                        値段 = m.PoId,
+                        安全在庫数 = m.EmHiredate,
+                        小分類 = m.EmPhone,
+                        型番 = m.EmPhone,
+
+                        非表示フラグ = m.EmHidden
                     }).ToList();
                 }
             }
