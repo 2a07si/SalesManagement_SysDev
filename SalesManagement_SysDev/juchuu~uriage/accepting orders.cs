@@ -571,8 +571,7 @@ namespace SalesManagement_SysDev
                 TBGoukeiKingaku.Text = row.Cells["合計金額"].Value.ToString();
             }
         }
-        
+
+
     }
-
-
 }
