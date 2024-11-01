@@ -1,16 +1,4 @@
-﻿/*using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SalesManagement_SysDev.Classまとめ;
-using static SalesManagement_SysDev.Classまとめ.labelChange;
-using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
-using static SalesManagement_SysDev.Classまとめ.LabelStatus;*/
+﻿
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -156,12 +144,13 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
+
         private void HandleOrderOperation()
         {
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    UpdateOrder();
+                    UpdateEmployee();
                     break;
                 case CurrentStatus.Status.登録:
                     RegisterEmployee();
@@ -177,7 +166,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
-        private void UpdateOrder()
+        private void UpdateEmployee()
         {
             string ShainID = TBSyainID.Text;
             string ShainName = TBSyainName.Text;
