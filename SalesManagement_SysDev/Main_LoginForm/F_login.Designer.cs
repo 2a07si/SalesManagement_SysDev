@@ -41,6 +41,9 @@
             tb_Pass = new TextBox();
             labeldate = new Label();
             b_pwHyouji = new Button();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
             // btn_CleateDabase
@@ -164,11 +167,44 @@
             b_pwHyouji.UseVisualStyleBackColor = true;
             b_pwHyouji.Click += b_pwHyouji_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(811, 735);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 11;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(970, 735);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 12;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(1123, 735);
+            button3.Name = "button3";
+            button3.Size = new Size(112, 34);
+            button3.TabIndex = 13;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // F_login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(button3);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(b_pwHyouji);
             Controls.Add(labeldate);
             Controls.Add(labeltime);
@@ -203,5 +239,8 @@
         private TextBox tb_Pass;
         private Label labeldate;
         private Button b_pwHyouji;
+        private Button button1;
+        private Button button2;
+        private Button button3;
     }
 }

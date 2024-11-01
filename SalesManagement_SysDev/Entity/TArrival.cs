@@ -30,6 +30,6 @@ public partial class TArrival
     public virtual TOrder Or { get; set; } = null!;
 
     public virtual MSalesOffice So { get; set; } = null!;
-
+    
     public virtual ICollection<TArrivalDetail> TArrivalDetails { get; set; } = new List<TArrivalDetail>();
 }

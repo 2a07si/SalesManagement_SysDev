@@ -38,20 +38,20 @@
             b_reg = new Button();
             panel1 = new Panel();
             label8 = new Label();
-            TBJyutyu = new MaskedTextBox();
-            Nyuukaflag = new CheckBox();
+            TBJyutyuId = new MaskedTextBox();
+            NyuukaFlag = new CheckBox();
             label7 = new Label();
             dataGridView1 = new DataGridView();
             DelFlag = new CheckBox();
             label6 = new Label();
-            TBKokyaku = new MaskedTextBox();
+            TBKokyakuId = new MaskedTextBox();
             label5 = new Label();
             date = new DateTimePicker();
             label12 = new Label();
             label18 = new Label();
             label14 = new Label();
             TBRiyuu = new MaskedTextBox();
-            TBNyuuka = new MaskedTextBox();
+            TBNyuukaId = new MaskedTextBox();
             label17 = new Label();
             TBShopId = new MaskedTextBox();
             TBShainId = new MaskedTextBox();
@@ -81,6 +81,7 @@
             b_FormSelector = new Button();
             colord = new Button();
             現在オフ = new Label();
+            dateCheckBox = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -163,20 +164,20 @@
             // 
             panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(TBJyutyu);
-            panel1.Controls.Add(Nyuukaflag);
+            panel1.Controls.Add(TBJyutyuId);
+            panel1.Controls.Add(NyuukaFlag);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(DelFlag);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(TBKokyaku);
+            panel1.Controls.Add(TBKokyakuId);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(date);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(TBRiyuu);
-            panel1.Controls.Add(TBNyuuka);
+            panel1.Controls.Add(TBNyuukaId);
             panel1.Controls.Add(label17);
             panel1.Controls.Add(TBShopId);
             panel1.Controls.Add(TBShainId);
@@ -197,24 +198,25 @@
             label8.TabIndex = 257;
             label8.Text = "何ページ";
             // 
-            // TBJyutyu
+            // TBJyutyuId
             // 
-            TBJyutyu.Location = new Point(90, 70);
-            TBJyutyu.Name = "TBJyutyu";
-            TBJyutyu.Size = new Size(100, 31);
-            TBJyutyu.TabIndex = 242;
+            TBJyutyuId.Location = new Point(90, 70);
+            TBJyutyuId.Name = "TBJyutyuId";
+            TBJyutyuId.Size = new Size(100, 31);
+            TBJyutyuId.TabIndex = 242;
             // 
-            // Nyuukaflag
+            // NyuukaFlag
             // 
-            Nyuukaflag.AutoSize = true;
-            Nyuukaflag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            Nyuukaflag.ForeColor = Color.White;
-            Nyuukaflag.Location = new Point(500, 70);
-            Nyuukaflag.Name = "Nyuukaflag";
-            Nyuukaflag.Size = new Size(110, 29);
-            Nyuukaflag.TabIndex = 256;
-            Nyuukaflag.Text = "注文状態";
-            Nyuukaflag.UseVisualStyleBackColor = true;
+            NyuukaFlag.AutoSize = true;
+            NyuukaFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            NyuukaFlag.ForeColor = Color.White;
+            NyuukaFlag.Location = new Point(500, 70);
+            NyuukaFlag.Name = "NyuukaFlag";
+            NyuukaFlag.Size = new Size(110, 29);
+            NyuukaFlag.TabIndex = 256;
+            NyuukaFlag.Text = "注文状態";
+            NyuukaFlag.UseVisualStyleBackColor = true;
+            NyuukaFlag.CheckedChanged += Nyuukaflag_CheckedChanged;
             // 
             // label7
             // 
@@ -261,12 +263,12 @@
             label6.TabIndex = 241;
             label6.Text = "入荷ID";
             // 
-            // TBKokyaku
+            // TBKokyakuId
             // 
-            TBKokyaku.Location = new Point(590, 20);
-            TBKokyaku.Name = "TBKokyaku";
-            TBKokyaku.Size = new Size(100, 31);
-            TBKokyaku.TabIndex = 254;
+            TBKokyakuId.Location = new Point(590, 20);
+            TBKokyakuId.Name = "TBKokyakuId";
+            TBKokyakuId.Size = new Size(100, 31);
+            TBKokyakuId.TabIndex = 254;
             // 
             // label5
             // 
@@ -327,12 +329,12 @@
             TBRiyuu.Size = new Size(325, 31);
             TBRiyuu.TabIndex = 250;
             // 
-            // TBNyuuka
+            // TBNyuukaId
             // 
-            TBNyuuka.Location = new Point(90, 20);
-            TBNyuuka.Name = "TBNyuuka";
-            TBNyuuka.Size = new Size(100, 31);
-            TBNyuuka.TabIndex = 246;
+            TBNyuukaId.Location = new Point(90, 20);
+            TBNyuukaId.Name = "TBNyuukaId";
+            TBNyuukaId.Size = new Size(100, 31);
+            TBNyuukaId.TabIndex = 246;
             // 
             // label17
             // 
@@ -465,7 +467,7 @@
             close.TabIndex = 238;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
-            close.Click += button3_Click;
+            close.Click += close_Click;
             // 
             // B_iti
             // 
@@ -607,6 +609,7 @@
             b_FormSelector.TabIndex = 268;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
+            b_FormSelector.Click += b_FormSelector_Click;
             // 
             // colord
             // 
@@ -626,11 +629,22 @@
             現在オフ.TabIndex = 266;
             現在オフ.Text = "現在オフ";
             // 
+            // dateCheckBox
+            // 
+            dateCheckBox.AutoSize = true;
+            dateCheckBox.Location = new Point(963, 8);
+            dateCheckBox.Name = "dateCheckBox";
+            dateCheckBox.Size = new Size(225, 29);
+            dateCheckBox.TabIndex = 267;
+            dateCheckBox.Text = "受注年月日を検索に含む";
+            dateCheckBox.UseVisualStyleBackColor = true;
+            // 
             // arrival
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(dateCheckBox);
             Controls.Add(b_FormSelector);
             Controls.Add(colord);
             Controls.Add(現在オフ);
@@ -689,21 +703,21 @@
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;
-        private CheckBox Nyuukaflag;
+        private CheckBox NyuukaFlag;
         private CheckBox DelFlag;
         private Label label6;
-        private MaskedTextBox TBKokyaku;
+        private MaskedTextBox TBKokyakuId;
         private Label label5;
         private DateTimePicker date;
         private Label label12;
         private Label label18;
         private Label label14;
         private MaskedTextBox TBRiyuu;
-        private MaskedTextBox TBNyuuka;
+        private MaskedTextBox TBNyuukaId;
         private Label label17;
         private MaskedTextBox TBShopId;
         private MaskedTextBox TBShainId;
-        private MaskedTextBox TBJyutyu;
+        private MaskedTextBox TBJyutyuId;
         private Label label7;
         private Button B_iti;
         private Panel panel3;
@@ -725,5 +739,6 @@
         private Button b_FormSelector;
         private Button colord;
         private Label 現在オフ;
+        private CheckBox dateCheckBox;
     }
 }
