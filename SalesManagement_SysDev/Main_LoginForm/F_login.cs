@@ -5,6 +5,8 @@ using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using System.Diagnostics;
+using Microsoft.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace SalesManagement_SysDev
 {
@@ -747,60 +749,62 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                // ログイン処理
+                // 入力検証
                 if (!InputValidator.IsNotEmpty(tb_ID.Text) || !InputValidator.IsValidEmployeeID(tb_ID.Text, out int empID))
                 {
                     MessageBox.Show("社員IDを正しく入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tb_ID.Focus(); // ID テキストボックスにフォーカス 
+                    return;
+                }
+
+                // 社員IDが3～4桁の数字かどうかをチェック 
+                if (tb_ID.Text.Length < 3 || tb_ID.Text.Length > 4 || !Regex.IsMatch(tb_ID.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("社員IDは3～4桁の数字で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tb_ID.Focus(); // ID テキストボックスにフォーカス 
                     return;
                 }
 
                 if (!InputValidator.IsNotEmpty(tb_Pass.Text))
                 {
                     MessageBox.Show("パスワードを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
+                    return;
+                }
+
+                // パスワードが3～4桁の数字かどうかをチェック 
+                if (tb_Pass.Text.Length < 3 || tb_Pass.Text.Length > 4 || !Regex.IsMatch(tb_Pass.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("パスワードは3～4桁の数字で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
                     return;
                 }
 
                 string pass = tb_Pass.Text;
-                bool isLoginSuccessful = false; // 初期化して成功状態を保存する変数
+                bool isLoginSuccessful = false; // 初期化して成功状態を保存する変数  
 
                 using (var context = new SalesManagementContext())
                 {
                     var employeeService = new EmployeeService(context);
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poId))
                     {
-                        Global.EmployeeID = empID;
-                        Global.EmployeeName = employeeName;
-                        Global.PositionName = positionName;
-                        Global.EmployeePermission = GetPermissionByPoId(poId);
-
-                        // ログイン成功時の処理
-                        isLoginSuccessful = true;
-
-                        classChangeForms.NavigateTo3();
+                        HandleSuccessfulLogin(empID, employeeName, positionName, poId);
                     }
                     else
                     {
                         MessageBox.Show("社員IDとパスワードが一致していません", "認証エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        tb_Pass.Clear(); // パスワードをクリア
+                        tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
+                        return;
                     }
-
-                    // ログイン履歴の保存
-                    //var loginHistoryLog = new LoginHistoryLog(
-                    //    id: 0,
-                    //    loginId: tb_ID.Text,
-                    //    password: pass, 
-                    //    loginDateTime: DateTime.Now,
-                    //   isSuccessful: isLoginSuccessful
-                    //);
-
-                    //context.LoginHistoryLog.Add(loginHistoryLog);
-                    //context.SaveChanges();
-
                 }
             }
-            catch (FormatException ex)
+            catch (SqlException ex) when (ex.Number == -2) // タイムアウトエラー 
             {
-                MessageBox.Show("入力形式が正しくありません: " + ex.Message, "形式エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("データベース接続がタイムアウトしました。ネットワーク状態を確認し、再試行してください。", "接続タイムアウト", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("データベースに接続できません。ネットワーク状態を確認してください: " + ex.Message, "接続エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (InvalidOperationException ex)
             {
@@ -808,22 +812,42 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("予期しないエラーが発生しました。システム管理者にお問い合わせください。", "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // PoIdに基づいて権限を決定する関数
+        private void HandleSuccessfulLogin(int empID, string employeeName, string positionName, int poId)
+        {
+            Global.EmployeeID = empID;
+            Global.EmployeeName = employeeName;
+            Global.PositionName = positionName;
+            Global.EmployeePermission = GetPermissionByPoId(poId);
+
+            // 権限が不足している場合 
+            if (Global.EmployeePermission == 0)
+            {
+                MessageBox.Show("権限が設定されていません。詳しくは管理者に問い合わせてください。", "権限エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // ログイン成功時の処理 
+            classChangeForms.NavigateTo3();
+        }
+
+        // PoIdに基づいて権限を決定する関数  
         private int GetPermissionByPoId(int poId)
         {
-            // 職位IDに基づいて権限レベルを返す（例: 1, 2, 3）
+            // 職位IDに基づいて権限レベルを返す（例: 1, 2, 3）  
             switch (poId)
             {
-                case 1: return 1; // 権限1
-                case 2: return 2; // 権限2
-                case 3: return 3; // 権限3
-                default: return 0; // 未定義の権限
+                case 1: return 1; // 権限1  
+                case 2: return 2; // 権限2  
+                case 3: return 3; // 権限3  
+                default: return 0; // 未定義の権限  
             }
         }
+
+
         private void b_pwHyouji_Click(object sender, EventArgs e)
         {
             // パスワード表示状態をトグル
