@@ -278,15 +278,13 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
                         }
                     }
-                    MessageBox.Show("入荷が正常に登録されました。");
-                    CurrentStatus.ResetStatus(label2);
+
                     catch (Exception ex)
                     {
                         // その他のエラーに対処する
                         MessageBox.Show($"エラーが発生しました: {ex.Message}");
                     }
                 }
-            }
                 else
                 {
                     MessageBox.Show("既に入荷が存在しています。");
