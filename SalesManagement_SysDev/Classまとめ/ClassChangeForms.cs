@@ -43,7 +43,7 @@ namespace SalesManagement_SysDev.Classまとめ
         // メインメニューに戻る処理 
         internal void NavigateToMainMenu()
         {
-            mainmenu1 mainMenuForm = new mainmenu1();
+            mainmenu3 mainMenuForm = new mainmenu3();
             NavigateTo(mainMenuForm);
         }
 
