@@ -59,9 +59,9 @@
             // 
             // Loginkanri
             // 
-            Loginkanri.Location = new Point(27, 105);
+            Loginkanri.Location = new Point(27, 118);
             Loginkanri.Name = "Loginkanri";
-            Loginkanri.Size = new Size(112, 34);
+            Loginkanri.Size = new Size(129, 45);
             Loginkanri.TabIndex = 132;
             Loginkanri.Text = "ログイン管理";
             Loginkanri.UseVisualStyleBackColor = true;
