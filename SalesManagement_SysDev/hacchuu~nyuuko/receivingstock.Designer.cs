@@ -109,6 +109,7 @@
             b_ser.TabIndex = 217;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
+            b_ser.Click += b_ser_Click;
             // 
             // label4
             // 
@@ -149,6 +150,7 @@
             b_reg.TabIndex = 215;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
+            b_reg.Click += b_reg_Click;
             // 
             // b_rec
             // 
@@ -315,7 +317,6 @@
             label8.Size = new Size(66, 25);
             label8.TabIndex = 254;
             label8.Text = "入庫ID";
-            label8.Click += label8_Click;
             // 
             // TBRiyuu
             // 
@@ -399,6 +400,7 @@
             B_iti.TabIndex = 260;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
+            B_iti.Click += B_iti_Click;
             // 
             // label2
             // 
@@ -528,6 +530,7 @@
             b_FormSelector.TabIndex = 268;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
+            b_FormSelector.Click += b_FormSelector_Click_1;
             // 
             // colord
             // 

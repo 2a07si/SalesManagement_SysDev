@@ -52,7 +52,7 @@
             label17 = new Label();
             date = new DateTimePicker();
             label18 = new Label();
-            TBJyutyu = new MaskedTextBox();
+            TBJyutyuId = new MaskedTextBox();
             label7 = new Label();
             TBShopId = new MaskedTextBox();
             label12 = new Label();
@@ -60,7 +60,7 @@
             label5 = new Label();
             TBShainId = new MaskedTextBox();
             label14 = new Label();
-            TBSyukkoID = new MaskedTextBox();
+            TBSyukkoId = new MaskedTextBox();
             label6 = new Label();
             dataGridView1 = new DataGridView();
             b_kakutei = new Button();
@@ -71,18 +71,19 @@
             label2 = new Label();
             label1 = new Label();
             panel3 = new Panel();
-            TBSyukkoSyosaiID = new MaskedTextBox();
+            TBSyukkoSyosaiId = new MaskedTextBox();
             dataGridView2 = new DataGridView();
             TBSuryou = new MaskedTextBox();
             label15 = new Label();
             label9 = new Label();
             label13 = new Label();
-            TBSyohinID = new MaskedTextBox();
+            TBSyohinId = new MaskedTextBox();
             label10 = new Label();
             TBSyukkoIDS = new MaskedTextBox();
             b_FormSelector = new Button();
             colord = new Button();
             現在オフ = new Label();
+            dateCheckBox = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -248,7 +249,7 @@
             panel1.Controls.Add(label17);
             panel1.Controls.Add(date);
             panel1.Controls.Add(label18);
-            panel1.Controls.Add(TBJyutyu);
+            panel1.Controls.Add(TBJyutyuId);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(TBShopId);
             panel1.Controls.Add(label12);
@@ -256,7 +257,7 @@
             panel1.Controls.Add(label5);
             panel1.Controls.Add(TBShainId);
             panel1.Controls.Add(label14);
-            panel1.Controls.Add(TBSyukkoID);
+            panel1.Controls.Add(TBSyukkoId);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(150, 145);
@@ -355,12 +356,12 @@
             label18.TabIndex = 84;
             label18.Text = "出庫年月日";
             // 
-            // TBJyutyu
+            // TBJyutyuId
             // 
-            TBJyutyu.Location = new Point(90, 70);
-            TBJyutyu.Name = "TBJyutyu";
-            TBJyutyu.Size = new Size(100, 31);
-            TBJyutyu.TabIndex = 83;
+            TBJyutyuId.Location = new Point(90, 70);
+            TBJyutyuId.Name = "TBJyutyuId";
+            TBJyutyuId.Size = new Size(100, 31);
+            TBJyutyuId.TabIndex = 83;
             // 
             // label7
             // 
@@ -427,12 +428,12 @@
             label14.TabIndex = 70;
             label14.Text = "社員ID";
             // 
-            // TBSyukkoID
+            // TBSyukkoId
             // 
-            TBSyukkoID.Location = new Point(90, 20);
-            TBSyukkoID.Name = "TBSyukkoID";
-            TBSyukkoID.Size = new Size(100, 31);
-            TBSyukkoID.TabIndex = 64;
+            TBSyukkoId.Location = new Point(90, 20);
+            TBSyukkoId.Name = "TBSyukkoId";
+            TBSyukkoId.Size = new Size(100, 31);
+            TBSyukkoId.TabIndex = 64;
             // 
             // label6
             // 
@@ -476,7 +477,7 @@
             clear.TabIndex = 245;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
-            clear.Click += clear_Click_1;
+            clear.Click += clear_Click;
             // 
             // close
             // 
@@ -523,13 +524,13 @@
             // panel3
             // 
             panel3.BackColor = Color.IndianRed;
-            panel3.Controls.Add(TBSyukkoSyosaiID);
+            panel3.Controls.Add(TBSyukkoSyosaiId);
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(TBSuryou);
             panel3.Controls.Add(label15);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(label13);
-            panel3.Controls.Add(TBSyohinID);
+            panel3.Controls.Add(TBSyohinId);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(TBSyukkoIDS);
             panel3.Location = new Point(970, 145);
@@ -537,12 +538,12 @@
             panel3.Size = new Size(600, 690);
             panel3.TabIndex = 265;
             // 
-            // TBSyukkoSyosaiID
+            // TBSyukkoSyosaiId
             // 
-            TBSyukkoSyosaiID.Location = new Point(130, 20);
-            TBSyukkoSyosaiID.Name = "TBSyukkoSyosaiID";
-            TBSyukkoSyosaiID.Size = new Size(100, 31);
-            TBSyukkoSyosaiID.TabIndex = 277;
+            TBSyukkoSyosaiId.Location = new Point(130, 20);
+            TBSyukkoSyosaiId.Name = "TBSyukkoSyosaiId";
+            TBSyukkoSyosaiId.Size = new Size(100, 31);
+            TBSyukkoSyosaiId.TabIndex = 277;
             // 
             // dataGridView2
             // 
@@ -595,12 +596,12 @@
             label13.TabIndex = 269;
             label13.Text = "出庫詳細ID";
             // 
-            // TBSyohinID
+            // TBSyohinId
             // 
-            TBSyohinID.Location = new Point(490, 20);
-            TBSyohinID.Name = "TBSyohinID";
-            TBSyohinID.Size = new Size(100, 31);
-            TBSyohinID.TabIndex = 274;
+            TBSyohinId.Location = new Point(490, 20);
+            TBSyohinId.Name = "TBSyohinId";
+            TBSyohinId.Size = new Size(100, 31);
+            TBSyohinId.TabIndex = 274;
             // 
             // label10
             // 
@@ -647,11 +648,22 @@
             現在オフ.TabIndex = 266;
             現在オフ.Text = "現在オフ";
             // 
+            // dateCheckBox
+            // 
+            dateCheckBox.AutoSize = true;
+            dateCheckBox.Location = new Point(962, 8);
+            dateCheckBox.Name = "dateCheckBox";
+            dateCheckBox.Size = new Size(225, 29);
+            dateCheckBox.TabIndex = 269;
+            dateCheckBox.Text = "受注年月日を検索に含む";
+            dateCheckBox.UseVisualStyleBackColor = true;
+            // 
             // lssue
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(dateCheckBox);
             Controls.Add(b_FormSelector);
             Controls.Add(colord);
             Controls.Add(現在オフ);
@@ -705,7 +717,7 @@
         private Button b_arr;
         private Button b_lss;
         private Panel panel1;
-        private MaskedTextBox TBSyukkoID;
+        private MaskedTextBox TBSyukkoId;
         private Label label6;
         private DataGridView dataGridView1;
         private Button b_kakutei;
@@ -720,7 +732,7 @@
         private Label label12;
         private DateTimePicker date;
         private Label label18;
-        private MaskedTextBox TBJyutyu;
+        private MaskedTextBox TBJyutyuId;
         private Label label7;
         private CheckBox SyukkoFlag;
         private CheckBox DelFlag;
@@ -730,13 +742,13 @@
         private Label label2;
         private Label label1;
         private Panel panel3;
-        private MaskedTextBox TBSyukkoSyosaiID;
+        private MaskedTextBox TBSyukkoSyosaiId;
         private DataGridView dataGridView2;
         private MaskedTextBox TBSuryou;
         private Label label15;
         private Label label9;
         private Label label13;
-        private MaskedTextBox TBSyohinID;
+        private MaskedTextBox TBSyohinId;
         private Label label10;
         private MaskedTextBox TBSyukkoIDS;
         private Button Next;
@@ -745,5 +757,6 @@
         private Button b_FormSelector;
         private Button colord;
         private Label 現在オフ;
+        private CheckBox dateCheckBox;
     }
 }

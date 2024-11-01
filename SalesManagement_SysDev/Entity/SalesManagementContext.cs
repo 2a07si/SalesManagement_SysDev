@@ -64,6 +64,7 @@ public partial class SalesManagementContext : DbContext
 
     public virtual DbSet<TWarehousing> TWarehousings { get; set; }
 
+
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
     public virtual DbSet<LoginHistoryLog> LoginHistoryLog { get; set; }  // LoginHistoryLog テーブルを追加

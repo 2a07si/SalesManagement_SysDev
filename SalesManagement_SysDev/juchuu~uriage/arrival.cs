@@ -50,7 +50,7 @@ namespace SalesManagement_SysDev
         }
 
         // 各ボタンでの画面遷移
-        private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
+        private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToOrderForm();
         private void b_acc_Click(object sender, EventArgs e) => formChanger.NavigateToAcceptingOrderForm();
         private void b_shi_Click(object sender, EventArgs e) => formChanger.NavigateToShippingForm();
         private void b_sal_Click(object sender, EventArgs e) => formChanger.NavigateToSalesForm();
@@ -242,27 +242,24 @@ namespace SalesManagement_SysDev
                 var arrival = context.TArrivals.SingleOrDefault(o => o.OrId.ToString() == NyuukaId);
                 if (arrival == null)
                 {
-                    // 新しい入荷情報を作成
-                    var newArrival = new TArrival
-                    {
-                        SoId = int.Parse(ShopId),                           // 店舗ID
-                        EmId = int.Parse(ShainId), // 社員ID（null許容）
-                        ClId = int.Parse(KokyakuId),                        // クライアントID
-                        OrId = int.Parse(JyutyuId),                         // 受注ID
-                        ArDate = Nyuukodate,                                // 入荷日
-                        ArStateFlag = NyuukaFlg ? 1 : 0,                    // 入荷状態フラグ
-                        ArFlag = DelFlg ? 1 : 0,                            // 削除フラグ
-                        ArHidden = Riyuu
-                    };
-
-                    // 入荷情報をコンテキストに追加
-                    context.TArrivals.Add(newArrival);
-
-                    // データベースに保存
-                    context.SaveChanges();
-
                     try
-                    {
+                    { // 新しい入荷情報を作成
+                            var newArrival = new TArrival
+                        {
+                            SoId = int.Parse(ShopId),                           // 店舗ID
+                            EmId = int.Parse(ShainId), // 社員ID（null許容）
+                            ClId = int.Parse(KokyakuId),                        // クライアントID
+                            OrId = int.Parse(JyutyuId),                         // 受注ID
+                            ArDate = Nyuukodate,                                // 入荷日
+                            ArStateFlag = NyuukaFlg ? 1 : 0,                    // 入荷状態フラグ
+                            ArFlag = DelFlg ? 1 : 0,                            // 削除フラグ
+                            ArHidden = Riyuu
+                        };
+
+                        // 入荷情報をコンテキストに追加
+                        context.TArrivals.Add(newArrival);
+
+
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
                     }
