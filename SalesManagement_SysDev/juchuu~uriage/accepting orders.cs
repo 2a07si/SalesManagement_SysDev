@@ -25,7 +25,7 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             formChanger = new ClassChangeForms(this);
             accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
-        
+
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
@@ -551,6 +551,27 @@ namespace SalesManagement_SysDev
                 // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
             }
         }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // クリックした行のインデックスを取得 
+            int rowIndex = e.RowIndex;
+
+            // 行インデックスが有効かどうかをチェック 
+            if (rowIndex >= 0)
+            {
+                // 行データを取得 
+                DataGridViewRow row = dataGridView2.Rows[rowIndex];
+
+                // 各テキストボックスにデータを入力
+                TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value.ToString();
+                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
+                TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                TBGoukeiKingaku.Text = row.Cells["合計金額"].Value.ToString();
+            }
+        }
+
 
     }
 

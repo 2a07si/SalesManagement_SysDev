@@ -283,6 +283,7 @@ namespace SalesManagement_SysDev
             Next.TabIndex = 2;
             Next.Text = "▶";
             Next.UseVisualStyleBackColor = true;
+
             // 
             // dataGridView1
             // 
@@ -294,7 +295,7 @@ namespace SalesManagement_SysDev
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 52;
-            dataGridView1.CellClick += dataGridView1_CellClick; //dataGridViewCellClickイベント追加
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // panel1
             // 
@@ -593,6 +594,7 @@ namespace SalesManagement_SysDev
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 52;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // TBJyutyuSyosaiID
             // 
@@ -740,6 +742,7 @@ namespace SalesManagement_SysDev
             ResumeLayout(false);
             PerformLayout();
         }
+
 
         #endregion
 
