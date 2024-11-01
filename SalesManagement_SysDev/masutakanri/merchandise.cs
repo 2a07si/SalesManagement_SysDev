@@ -155,7 +155,7 @@ namespace SalesManagement_SysDev
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    Updatesemerchandise();
+                    Updatemerchandise();
                     break;
                 case CurrentStatus.Status.登録:
                     Registermerchandise();
@@ -258,15 +258,15 @@ namespace SalesManagement_SysDev
 
                     dataGridView1.DataSource = merchandises.Select(m => new
                     {
-                       商品ID = m.EmId,
-                        メーカーID = m.EmName,
-                        商品名 = m.EmId,
-                        値段 = m.PoId,
-                        安全在庫数 = m.EmHiredate,
-                        小分類 = m.EmPhone,
-                        型番 = m.EmPhone,
+                       商品ID = m.PrId,
+                        メーカーID = m.MaId,
+                        商品名 = m.PrName,
+                        値段 = m.Price,
+                        安全在庫数 = m.PrSafetyStock,
+                        小分類 = m.ScId,
+                        型番 = m.PrModelNumber,
 
-                        非表示フラグ = m.EmHidden
+                        非表示フラグ = m.PrFlag
                     }).ToList();
                 }
             }

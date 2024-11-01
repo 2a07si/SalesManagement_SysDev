@@ -78,13 +78,10 @@ namespace SalesManagement_SysDev.Classまとめ
         // 出庫画面に遷移 
         internal void NavigateToIssueForm()
         {
-<<<<<<< HEAD
+
             issue issueForm = new issue(); // 発注書発行画面の新しいインスタンスを作成
             NavigateTo(issueForm); // 発注書発行画面に遷移
-=======
-            lssue lssueForm = new lssue(currentForm); // 発注書発行画面の新しいインスタンスを作成
-            NavigateTo(lssueForm); // 発注書発行画面に遷移
->>>>>>> b84fcb72b5b58e9680f3071fd1dba193912e3a06
+
         }
 
         //注文画面に遷移
