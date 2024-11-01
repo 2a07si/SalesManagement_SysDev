@@ -317,12 +317,12 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = employees.Select(employee => new
                     {
-                        社員ID = employee.OrId,
-                        社員名 = employee.SoId,
+                        社員ID = employee.EmId,
+                        社員名 = employee.EmName,
                         営業所ID = employee.EmId,
-                       　役職ID = employee.ClId,
-                        入社年月日 = employee.OrDate,
-                        電話番号 = employee.ClPhone,
+                       　役職ID = employee.PoId,
+                        入社年月日 = employee.EmHiredate,
+                        電話番号 = employee.EmPhone,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
                 }
