@@ -256,6 +256,12 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int ShopNum;
+                if (!int.TryParse(shopID, out ShopNum) || !context.MEmployees.Any(e => e.EmId == ShopNum))
+                {
+                    MessageBox.Show("営業所IDが存在しません。");
+                    return;
+                }
                 var newSale = new TSale
                 {
                     SoId = int.Parse(shopID),
@@ -268,27 +274,9 @@ namespace SalesManagement_SysDev
                 };
 
                 context.TSales.Add(newSale);
-                try
-                {
-                    context.SaveChanges(); MessageBox.Show("登録が成功しました。");
-                }
-                catch (DbUpdateException ex)
-                {
-                    // inner exception の詳細を表示する
-                    if (ex.InnerException != null)             
-                    {
-                        MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
-                    }
-                    else
-                    { 
-                        MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。"); 
-                    }
-                }
-                catch (Exception ex) 
-                { 
-                    // その他のエラーに対処する
-                    MessageBox.Show($"エラーが発生しました: {ex.Message}");
-                }
+                context.SaveChanges();
+                MessageBox.Show("登録が成功しました。");
+
             }
         }
 

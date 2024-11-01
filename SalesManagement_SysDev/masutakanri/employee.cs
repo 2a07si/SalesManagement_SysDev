@@ -322,7 +322,7 @@ namespace SalesManagement_SysDev
                         営業所ID = employee.EmId,
                        　役職ID = employee.ClId,
                         入社年月日 = employee.OrDate,
-                        電話番号 = employee.ClCharge,
+                        電話番号 = employee.ClPhone,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
                 }
