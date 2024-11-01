@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SalesManagement_SysDev.Classまとめ;
+using SalesManagement_SysDev.Classまとめ; // 各種クラスを使用する
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
+using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
+using SalesManagement_SysDev.juchuu_uriage;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesManagement_SysDev
 {
     public partial class customer : Form
     {
+        
+
         private Form mainForm;
         private ClassChangeForms formChanger;
         private ClassDateNamelabel dateNamelabel;
@@ -81,7 +79,6 @@ namespace SalesManagement_SysDev
                 b_mer,
                 b_sto,
             });
-
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -126,5 +123,267 @@ namespace SalesManagement_SysDev
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
+
+        private void b_kakutei_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // モードに基づいて処理を分岐
+                switch (CurrentStatus.CurrentMode)
+                {
+                    case CurrentStatus.Mode.通常:
+                        HandleCustomerOperation();
+                        break;
+                    default:
+                        MessageBox.Show("現在のモードは無効です。");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message);
+            }
+        }
+        private void HandleCustomerOperation()
+        {
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.更新:
+                    UpdateCustomer();
+                    break;
+                case CurrentStatus.Status.登録:
+                    RegisterCustomer();
+                    break;
+                case CurrentStatus.Status.一覧:
+                    DisplayCustomer();
+                    break;
+                case CurrentStatus.Status.検索:
+                    SearchCustomer();
+                    break;
+                default:
+                    MessageBox.Show("無効な操作です。");
+                    break;
+            }
+        }
+
+
+        private void UpdateCustomer()
+        {
+            string kokyakuID = TBKokyakuID.Text;
+            string shopID = TBShopID.Text;
+            string kokyakuname = TBKokyakuName.Text;
+            string juusho = TBJyusyo.Text;
+            string yuubinbangou = TBYuubinNo.Text;
+            string tel = TBTellNo.Text;
+            string fax = TBFax.Text;
+
+            using (var context = new SalesManagementContext())
+            {
+                var customer = context.MClients.SingleOrDefault(c => c.ClId.ToString() == kokyakuID);
+                if (customer != null)
+                {
+                    customer.SoId = int.Parse(shopID);
+                    customer.ClPostal = yuubinbangou;
+                    customer.ClName = kokyakuname;
+                    customer.ClId = int.Parse(kokyakuID);
+                    customer.ClAddress = juusho;
+                    customer.ClPhone = tel;
+                    customer.ClFax = fax;
+
+                    context.SaveChanges();
+                    MessageBox.Show("更新が成功しました。");
+                }
+                else
+                {
+                    MessageBox.Show("該当する出荷情報が見つかりません。");
+                }
+            }
+        }
+
+        private void RegisterCustomer()
+        {
+            string kokyakuID = TBKokyakuID.Text;
+            string shopID = TBShopID.Text;
+            string kokyakuname = TBKokyakuName.Text;
+            string juusho = TBJyusyo.Text;
+            string yuubinbangou = TBYuubinNo.Text;
+            string tel = TBTellNo.Text;
+            string fax = TBFax.Text;
+
+            using (var context = new SalesManagementContext())
+            {
+                var newcustomer = new MClient
+                {
+                    SoId = int.Parse(shopID),
+                    ClPostal = yuubinbangou,
+                    ClId = int.Parse(kokyakuID),
+                    ClAddress = juusho,
+                    ClName = kokyakuname,
+                    ClPhone = tel,
+                    ClFax = fax,
+            };
+
+                context.MClients.Add(newcustomer);
+                try
+                {
+                    context.SaveChanges(); MessageBox.Show("登録が成功しました。");
+                }
+                catch (DbUpdateException ex)
+                {
+                    // inner exception の詳細を表示する
+                    if (ex.InnerException != null)
+                    {
+                        MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // その他のエラーに対処する
+                    MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                }
+            }
+        }
+
+        private void DisplayCustomer()
+        {
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var customer = context.MClients.ToList();
+
+                    dataGridView1.DataSource = customer.Select(c => new
+                    {
+                        顧客ID = c.ClId,
+                        営業所ID = c.SoId,
+                        顧客名 = c.ClName,
+                        住所 = c.ClAddress,
+                        郵便番号 = c.ClPostal,
+                        電話番号 = c.ClPhone,
+                        FAX = c.ClFax
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message);
+            }
+        }
+
+        private void SearchCustomer()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                // 各テキストボックスの値を取得 
+                var kokyakuID = TBKokyakuID.Text.Trim();       // 受注ID 
+                var shopID = TBShopID.Text.Trim();           // 営業所ID 
+                var kokyakuname = TBKokyakuName.Text.Trim();         // 社員ID 
+                var juusho = TBJyusyo.Text.Trim();     // 顧客ID 
+                var yuubinbangou = TBYuubinNo.Text.Trim();     // 担当者
+                var tel = TBTellNo.Text.Trim();
+                var fax = TBFax.Text.Trim();
+
+
+
+                // 基本的なクエリ 
+                var query = context.MClients.AsQueryable();
+
+                // 受注IDを検索条件に追加 
+                if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedkokyakuID))
+                {
+                    query = query.Where(c => c.ClId == parsedkokyakuID);
+                }
+
+                // 営業所IDを検索条件に追加 
+                if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
+                {
+                    query = query.Where(sh => sh.SoId == parsedShopID);
+                }
+
+                // 社員IDを検索条件に追加 
+                if (!string.IsNullOrEmpty(kokyakuname))
+                {
+                    query = query.Where(o => o.ClName.Contains(kokyakuname));
+                }
+
+                // 顧客IDを検索条件に追加 
+                if (!string.IsNullOrEmpty(juusho))
+                {
+                    query = query.Where(o => o.ClAddress.Contains(juusho));
+                }
+
+                // 担当者名を検索条件に追加 
+                if (!string.IsNullOrEmpty(yuubinbangou))
+                {
+                    query = query.Where(o => o.ClPostal.Contains(yuubinbangou));
+                }
+
+                // 受注日を検索条件に追加（チェックボックスがチェックされている場合） 
+                if (!string.IsNullOrEmpty(tel))
+                {
+                    query = query.Where(o => o.ClPhone.Contains(tel));
+                }
+                if (!string.IsNullOrEmpty(fax))
+                {
+                    query = query.Where(o => o.ClFax.Contains(fax));
+                }
+
+                // 結果を取得 
+                var customer = query.ToList();
+
+                if (customer.Any())
+                {
+                    // dataGridView1 に結果を表示 
+                    dataGridView1.DataSource = customer.Select(c => new
+                    {
+                        顧客ID = c.ClId,
+                        営業所ID = c.SoId,
+                        顧客名 = c.ClName,
+                        住所 = c.ClAddress,
+                        郵便番号 = c.ClPostal,
+                        電話番号 = c.ClPhone,
+                        FAX = c.ClFax
+                    }).ToList();
+                }
+                else
+                {
+                    MessageBox.Show("該当する受注が見つかりません。");
+                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
+                }
+            }
+        }
+
+        // CellClickイベントハンドラ
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // クリックした行のインデックスを取得
+            int rowIndex = e.RowIndex;
+
+            // 行インデックスが有効かどうかをチェック
+            if (rowIndex >= 0)
+            {
+                // 行データを取得
+                DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                // 各テキストボックスにデータを入力
+                TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+                TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+                TBKokyakuName.Text = row.Cells["顧客名"].Value.ToString();
+                TBJyusyo.Text = row.Cells["住所"].Value.ToString();
+                TBYuubinNo.Text = row.Cells["郵便番号"].Value.ToString();
+                TBTellNo.Text = row.Cells["電話番号"].Value.ToString();
+                TBFax.Text = row.Cells["FAX"].Value.ToString();
+                // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
+                // 非表示ボタンや非表示理由もここで設定
+                // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
+                // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+            }
+        }
     }
+
+
 }
