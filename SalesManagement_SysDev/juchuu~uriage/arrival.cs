@@ -565,7 +565,7 @@ namespace SalesManagement_SysDev
                 TBShopId.Text = row.Cells["営業所ID"].Value.ToString();
                 TBShainId.Text = row.Cells["社員ID"].Value.ToString();
                 TBKokyakuId.Text = row.Cells["顧客ID"].Value.ToString();
-                TBJyutyuId.Text = row.Cells["顧客担当者"].Value.ToString();
+                TBJyutyuId.Text = row.Cells["受注ID"].Value.ToString();
                 date.Value = Convert.ToDateTime(row.Cells["入荷日"].Value);
                 // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                 // 非表示ボタンや非表示理由もここで設定
