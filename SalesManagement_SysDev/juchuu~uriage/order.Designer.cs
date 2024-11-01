@@ -83,6 +83,7 @@
             b_FormSelector = new Button();
             colord = new Button();
             現在オフ = new Label();
+            dateCheckBox = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -650,11 +651,22 @@
             現在オフ.TabIndex = 267;
             現在オフ.Text = "現在オフ";
             // 
+            // dateCheckBox
+            // 
+            dateCheckBox.AutoSize = true;
+            dateCheckBox.Location = new Point(961, 8);
+            dateCheckBox.Name = "dateCheckBox";
+            dateCheckBox.Size = new Size(225, 29);
+            dateCheckBox.TabIndex = 270;
+            dateCheckBox.Text = "受注年月日を検索に含む";
+            dateCheckBox.UseVisualStyleBackColor = true;
+            // 
             // order
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(dateCheckBox);
             Controls.Add(b_FormSelector);
             Controls.Add(colord);
             Controls.Add(現在オフ);
@@ -748,5 +760,6 @@
         private Button b_FormSelector;
         private Button colord;
         private Label 現在オフ;
+        private CheckBox dateCheckBox;
     }
 }

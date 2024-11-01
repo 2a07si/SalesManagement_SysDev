@@ -1,41 +1,47 @@
-﻿// lssue.cs
-using System;
+﻿using System;
+using System.Linq;
 using System.Windows.Forms;
-using SalesManagement_SysDev.Classまとめ;
+using SalesManagement_SysDev.Classまとめ; // 各種クラスを使用する
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
+using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
+using SalesManagement_SysDev.juchuu_uriage;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace SalesManagement_SysDev
 {
     public partial class lssue : Form
     {
-        private ClassChangeForms formChanger; // 画面遷移管理クラス 
-        private ClassTimerManager timerManager; // タイマー管理クラス 
-        private ClassAccessManager accessManager;
+        private bool isLssueSelected = true; // 初期状態を出庫(TSyukko)に設定
+        private string lssueFlag = "←通常"; // 初期状態を「注文」に設定
 
-        public lssue()
+        private ClassDataGridViewClearer dgvClearer;
+        private ClassChangeForms formChanger; // 画面遷移管理クラス
+        private ClassAccessManager accessManager; // 権限管理クラス
+
+        public lssue(Form mainForm)
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            //this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate); // タイマー管理クラスを初期化 
             this.Load += new EventHandler(lssue_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
         }
 
+
         private void lssue_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            // timerManager.UpdateDateTime(); // この行を削除またはコメントアウト 
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
-                b_arr,
+                b_acc,
                 b_shi,
                 b_sal,
-                b_acc
+                b_lss
             });
+
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
@@ -45,85 +51,578 @@ namespace SalesManagement_SysDev
             formChanger.NavigateToMainMenu(); // メインメニューに遷移 
         }
 
-        // 受注管理画面に遷移 
-        private void b_acc_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToAcceptingOrderForm(); // 受注管理画面に遷移 
-        }
+        // 各ボタンでの画面遷移
+        private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToOrderForm();
+        private void b_acc_Click(object sender, EventArgs e) => formChanger.NavigateToAcceptingOrderForm();
+        private void b_shi_Click(object sender, EventArgs e) => formChanger.NavigateToShippingForm();
+        private void b_sal_Click(object sender, EventArgs e) => formChanger.NavigateToSalesForm();
+        private void b_arr_Click(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
+        private void clear_Click(object sender, EventArgs e) => ClearText();
 
-        // 注文管理画面に遷移 
-        private void b_ord_Click(object sender, EventArgs e)
+        private void ClearText()
         {
-            formChanger.NavigateToOrderForm(); // 注文管理画面に遷移 
+            TBSyukkoId.Text = "";
+            TBShopId.Text = "";
+            TBShainId.Text = "";
+            TBKokyakuId.Text = "";
+            TBJyutyuId.Text = "";
+            SyukkoFlag.Checked = false;
+            DelFlag.Checked = false;
+            TBRiyuu.Text = "";
+            TBSyukkoSyosaiId.Text = "";
+            TBSyukkoIDS.Text = "";
+            TBSuryou.Text = "";
+            TBSyohinId.Text = "";
+            date.Value = DateTime.Now;
+            CurrentStatus.ResetStatus(label2);
         }
-
-        // 入荷管理画面に遷移 
-        private void b_arr_Click(object sender, EventArgs e)
+        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
+        private void PerformSearch()
         {
-            formChanger.NavigateToArrivalForm(); // 入荷管理画面に遷移 
-        }
-
-        // 出荷管理画面に遷移 
-        private void b_shi_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToShippingForm(); // 出荷管理画面に遷移 
-        }
-
-        // 売上管理画面に遷移 
-        private void b_sal_Click(object sender, EventArgs e)
-        {
-            formChanger.NavigateToSalesForm(); // 売上管理画面に遷移 
-        }
-
-        private void clear_Click(object sender, EventArgs e)
-        {
-            // クリア機能の実装 
-        }
-
-        private void b_reg_Click(object sender, EventArgs e)
-        {
-            CurrentStatus.RegistrationStatus(label2);
+            CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e)
+        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
+
+        private void UpdateStatus()
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void B_iti_Click(object sender, EventArgs e)
+        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+
+        private void RegisterStatus()
+        {
+            CurrentStatus.RegistrationStatus(label2);
+            labelStatus.labelstatus(label2, b_kakutei);
+        }
+
+        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
+
+        private void ListStatus()
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_ser_Click(object sender, EventArgs e)
+        // 状態リセットメソッド（必要ならボタンにバインド）
+        private void ResetStatus()
         {
-            labelStatus.labelstatus(label2, b_kakutei);
-        }
-
-        private void clear_Click_1(object sender, EventArgs e)
-        {
-            cleartext();
-        }
-
-        private void cleartext()
-        {
-            TBSyukkoID.Text = "";
-            TBShainId.Text = "";
-            TBKokyakuId.Text = "";
-            TBShopId.Text = "";
-            TBJyutyu.Text = "";
-            SyukkoFlag.Checked = false;
-            DelFlag.Checked = false;
-            TBRiyuu.Text = "";
-            TBSyukkoSyosaiID.Text = "";
-            TBSyukkoIDS.Text = "";
-            TBSyohinID.Text = "";
-            TBSuryou.Text = "";
-            date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
         }
+        private void b_kakutei_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // モードに基づいて処理を分岐
+                switch (CurrentStatus.CurrentMode)
+                {
+                    case CurrentStatus.Mode.通常:
+                        HandleLssueOperation();
+                        break;
+                    case CurrentStatus.Mode.詳細:
+                        HandleLssueDetailOperation();
+                        break;
+                    default:
+                        MessageBox.Show("現在のモードは無効です。");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message);
+            }
+        }
+        private void HandleLssueOperation()
+        {
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.更新:
+                    UpdateLssue();
+                    break;
+                case CurrentStatus.Status.登録:
+                    RegisterLssue();
+                    break;
+                case CurrentStatus.Status.一覧:
+                    DisplayLssues();
+                    break;
+                case CurrentStatus.Status.検索:
+                    SearchLssues();
+                    break;
+                default:
+                    MessageBox.Show("無効な操作です。");
+                    break;
+            }
+        }
+
+        private void HandleLssueDetailOperation()
+        {
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.更新:
+                    UpdateLssueDetails();
+                    break;
+                case CurrentStatus.Status.登録:
+                    RegisterLssueDetails();
+                    break;
+                case CurrentStatus.Status.一覧:
+                    DisplayLssueDetails();
+                    break;
+                case CurrentStatus.Status.検索:
+                    SearchLssueDetails();
+                    break;
+                default:
+                    MessageBox.Show("無効な操作です。");
+                    break;
+            }
+        }
+
+
+        private void UpdateLssue()
+        {
+            string SyukkoId = TBSyukkoId.Text;
+            string ShopId = TBShopId.Text;
+            string ShainId = TBShainId.Text;
+            string KokyakuId = TBKokyakuId.Text;
+            string JyutyuId = TBJyutyuId.Text;
+            bool SyukkoFlg = SyukkoFlag.Checked;
+            bool DelFlg = DelFlag.Checked;
+            string Riyuu = TBRiyuu.Text;
+            DateTime Syukkodate = date.Value;
+            CurrentStatus.ResetStatus(label2);
+
+
+
+            using (var context = new SalesManagementContext())
+            {
+                var lssue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
+                if (lssue != null)
+                {
+                    // 新しい出庫情報を作成
+                    var Lssue = new TSyukko
+                    {
+                        SoId = int.Parse(ShopId),                    // 店舗ID
+                        EmId = int.Parse(ShainId),// 社員ID（null許容）
+                        ClId = int.Parse(KokyakuId),                 // クライアントID
+                        OrId = int.Parse(JyutyuId),                       // 受注ID
+                        SyDate = Syukkodate,                         // 出庫日
+                        SyStateFlag = SyukkoFlg ? 1 : 0,             // 出庫状態フラグ
+                        SyFlag = DelFlg ? 1 : 0,                     // 削除フラグ
+                        SyHidden = Riyuu                              // 理由
+                    };
+
+                    context.SaveChanges();
+                    MessageBox.Show("更新が成功しました。");
+                }
+                else
+                {
+                    MessageBox.Show("該当する出庫が見つかりません。");
+                }
+            }
+        }
+
+
+
+        private void RegisterLssue()
+        {
+            string SyukkoId = TBSyukkoId.Text;
+            string ShopId = TBShopId.Text;
+            string ShainId = TBShainId.Text;
+            string KokyakuId = TBKokyakuId.Text;
+            string JyutyuId = TBJyutyuId.Text;
+            bool SyukkoFlg = SyukkoFlag.Checked;
+            bool DelFlg = DelFlag.Checked;
+            string Riyuu = TBRiyuu.Text;
+            DateTime Syukkodate = date.Value;
+            CurrentStatus.ResetStatus(label2);
+
+            using (var context = new SalesManagementContext())
+            {
+                // 出庫が既に存在するか確認
+                var lssue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == SyukkoId);
+                if (lssue == null)
+                {
+                    try
+                    { // 新しい出庫情報を作成
+                        var newLssue = new TSyukko
+                        {
+                            SoId = int.Parse(ShopId),                           // 店舗ID
+                            EmId = int.Parse(ShainId), // 社員ID（null許容）
+                            ClId = int.Parse(KokyakuId),                        // クライアントID
+                            OrId = int.Parse(JyutyuId),                         // 受注ID
+                            SyDate = Syukkodate,                                // 出庫日
+                            SyStateFlag = SyukkoFlg ? 1 : 0,                    // 出庫状態フラグ
+                            SyFlag = DelFlg ? 1 : 0,                            // 削除フラグ
+                            SyHidden = Riyuu
+                        };
+
+                        // 出庫情報をコンテキストに追加
+                        context.TSyukkos.Add(newLssue);
+
+
+                        context.SaveChanges();
+                        MessageBox.Show("登録が成功しました。");
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        // inner exception の詳細を表示する
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        // その他のエラーに対処する
+                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("既に出庫が存在しています。");
+                }
+            }
+        }
+
+
+
+
+        private void DisplayLssues()
+        {
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var lssues = context.TSyukkos.ToList();
+
+                    // データを選択してDataGridViewに表示
+                    dataGridView1.DataSource = lssues.Select(o => new
+                    {
+                        LssueID = o.SyId,            // 出庫ID
+                        StoreID = o.SoId,              // 店舗ID
+                        EmployeeID = o.EmId,           // 社員ID
+                        ClientID = o.ClId,             // クライアントID
+                        OrderID = o.OrId,              // 受注ID
+                        LssueDate = o.SyDate,        // 出庫日
+                        StateFlag = o.SyStateFlag,     // 出庫状態フラグ
+                        DeleteFlag = o.SyFlag,         // 削除フラグ
+                        Reason = o.SyHidden            // 理由
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message);
+            }
+        }
+
+
+        private void SearchLssues()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                // 各テキストボックスの値を取得
+                string nyuukaId = TBSyukkoId.Text;
+                string shopId = TBShopId.Text;
+                string shainId = TBShainId.Text;
+                string kokyakuId = TBKokyakuId.Text;
+                string jyutyuId = TBJyutyuId.Text;
+                DateTime? nyuukodate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
+
+                // 基本的なクエリ
+                var query = context.TSyukkos.AsQueryable();
+
+                // 出庫IDを検索条件に追加
+                if (!string.IsNullOrEmpty(nyuukaId))
+                {
+                    int arId = int.Parse(nyuukaId);
+                    query = query.Where(lssue => lssue.SyId == arId);
+                }
+
+                // 店舗IDを検索条件に追加
+                if (!string.IsNullOrEmpty(shopId))
+                {
+                    int soId = int.Parse(shopId);
+                    query = query.Where(lssue => lssue.SoId == soId);
+                }
+
+                // 社員IDを検索条件に追加
+                if (!string.IsNullOrEmpty(shainId))
+                {
+                    int emId = int.Parse(shainId);
+                    query = query.Where(lssue => lssue.EmId == emId);
+                }
+
+                // 顧客IDを検索条件に追加
+                if (!string.IsNullOrEmpty(kokyakuId))
+                {
+                    int clId = int.Parse(kokyakuId);
+                    query = query.Where(lssue => lssue.ClId == clId);
+                }
+
+                // 受注IDを検索条件に追加
+                if (!string.IsNullOrEmpty(jyutyuId))
+                {
+                    int orId = int.Parse(jyutyuId);
+                    query = query.Where(lssue => lssue.OrId == orId);
+                }
+
+                // 出庫日を検索条件に追加（チェックボックスがチェックされている場合）
+                if (nyuukodate.HasValue)
+                {
+                    query = query.Where(lssue => lssue.SyDate == nyuukodate.Value);
+                }
+
+                // 結果を取得
+                var lssues = query.ToList();
+
+                if (lssues.Any())
+                {
+                    // dataGridView1 に結果を表示
+                    dataGridView1.DataSource = lssues.Select(lssue => new
+                    {
+                        LssueID = lssue.SyId,         // 出庫ID
+                        StoreID = lssue.SoId,           // 店舗ID
+                        EmployeeID = lssue.EmId,        // 社員ID
+                        ClientID = lssue.ClId,          // クライアントID
+                        OrderID = lssue.OrId,           // 受注ID
+                        LssueDate = lssue.SyDate,     // 出庫日
+                        StateFlag = lssue.SyStateFlag,  // 出庫状態フラグ
+                        DeleteFlag = lssue.SyFlag,      // 削除フラグ
+                        Reason = lssue.SyHidden         // 理由
+                    }).ToList();
+                }
+                else
+                {
+                    MessageBox.Show("該当する出庫が見つかりません。");
+                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
+                }
+            }
+        }
+
+
+
+
+        private void UpdateLssueDetails()
+        {
+            string NyutyuSyosaiID = TBSyukkoSyosaiId.Text;
+            string jyutyuID = TBSyukkoIDS.Text;
+            string syohinID = TBSyohinId.Text;
+            string suryou = TBSuryou.Text;
+
+            using (var context = new SalesManagementContext())
+            {
+                var lssueDetail = context.TSyukkoDetails.SingleOrDefault(od => od.SyDetailId.ToString() == NyutyuSyosaiID);
+                if (lssueDetail != null)
+                {
+                    lssueDetail.SyId = int.Parse(jyutyuID);
+                    lssueDetail.PrId = int.Parse(syohinID);
+                    lssueDetail.SyQuantity = int.Parse(suryou);
+
+                    context.SaveChanges();
+                    MessageBox.Show("出庫詳細の更新が成功しました。");
+                }
+                else
+                {
+                    MessageBox.Show("該当する出庫詳細が見つかりません。");
+                }
+            }
+        }
+
+        private void RegisterLssueDetails()
+        {
+            string SyukkoSyosaiID = TBSyukkoSyosaiId.Text;
+            string jyutyuID = TBSyukkoIDS.Text;
+            string syohinID = TBSyohinId.Text;
+            string suryou = TBSuryou.Text;
+
+            using (var context = new SalesManagementContext())
+            {
+                var newLssueDetail = new TSyukkoDetail
+                {
+                    SyId = int.Parse(jyutyuID),
+                    PrId = int.Parse(syohinID),
+                    SyQuantity = int.Parse(suryou),
+                };
+
+                context.TSyukkoDetails.Add(newLssueDetail);
+                context.SaveChanges();
+                MessageBox.Show("出庫詳細の登録が成功しました。");
+            }
+        }
+
+        private void DisplayLssueDetails()
+        {
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var lssueDetails = context.TSyukkoDetails.ToList();
+
+                    dataGridView2.DataSource = lssueDetails.Select(od => new
+                    {
+                        出庫詳細ID = od.SyDetailId,
+                        出庫ID = od.SyId,
+                        商品ID = od.PrId,
+                        数量 = od.SyQuantity,
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message);
+            }
+        }
+
+        private void SearchLssueDetails()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                // 各テキストボックスの値を取得
+                var SyukkoSyosaiID = TBSyukkoSyosaiId.Text;
+                var SyukkoIdS = TBSyukkoIDS.Text;
+                var syohinID = TBSyohinId.Text;
+                var suryou = TBSuryou.Text;
+
+                // 基本的なクエリ
+                var query = context.TSyukkoDetails.AsQueryable();
+
+                // 各条件を追加
+                if (!string.IsNullOrEmpty(SyukkoSyosaiID))
+                {
+                    // 出庫詳細IDを検索条件に追加
+                    query = query.Where(od => od.SyDetailId.ToString() == SyukkoSyosaiID);
+                }
+
+                if (!string.IsNullOrEmpty(SyukkoIdS))
+                {
+                    //出庫IDを検索条件に追加
+                    query = query.Where(od => od.SyId.ToString() == SyukkoIdS);
+                }
+
+                if (!string.IsNullOrEmpty(syohinID))
+                {
+                    // 商品IDを検索条件に追加
+                    query = query.Where(od => od.PrId.ToString() == syohinID);
+                }
+
+                if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
+                {
+                    // 数量を検索条件に追加
+                    query = query.Where(od => od.SyQuantity == quantity);
+                }
+
+
+
+                // 結果を取得
+                var lssueDetails = query.ToList();
+
+                if (lssueDetails.Any())
+                {
+                    dataGridView2.DataSource = lssueDetails.Select(od => new
+                    {
+                        出庫詳細ID = od.SyDetailId,
+                        出庫ID = od.SyId,
+                        商品ID = od.PrId,
+                        数量 = od.SyQuantity,
+                    }).ToList();
+                }
+                else
+                {
+                    MessageBox.Show("該当する出庫詳細が見つかりません。");
+                }
+            }
+        }
+
+
+
+
+        private void ToggleLssueSelection()
+        {
+            isLssueSelected = !isLssueSelected;
+            lssueFlag = isLssueSelected ? "←通常" : "詳細→";
+
+            // CurrentStatusのモードを切り替える
+            CurrentStatus.SetMode(isLssueSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+        }
+
+
+        private void b_FormSelector_Click(object sender, EventArgs e)
+        {
+            // 状態を切り替える処理
+            ToggleLssueSelection();
+
+            // b_FormSelectorのテキストを現在の状態に更新
+            UpdateFlagButtonText();
+        }
+
+
+        private void UpdateFlagButtonText()
+        {
+            // b_FlagSelectorのテキストを現在の状態に合わせる
+            b_FormSelector.Text = lssueFlag;
+        }
+
+        // CellClickイベントハンドラ
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // クリックした行のインデックスを取得
+            int rowIndex = e.RowIndex;
+
+            // 行インデックスが有効かどうかをチェック
+            if (rowIndex >= 0)
+            {
+                // 行データを取得
+                DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                // 各テキストボックスにデータを入力
+                TBSyukkoId.Text = row.Cells["出庫ID"].Value.ToString();
+                TBShopId.Text = row.Cells["営業所ID"].Value.ToString();
+                TBShainId.Text = row.Cells["社員ID"].Value.ToString();
+                TBKokyakuId.Text = row.Cells["顧客ID"].Value.ToString();
+                TBJyutyuId.Text = row.Cells["受注ID"].Value.ToString();
+                date.Value = Convert.ToDateTime(row.Cells["出庫日"].Value);
+                // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
+                // 非表示ボタンや非表示理由もここで設定
+                // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
+                // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+            }
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // クリックした行のインデックスを取得 
+            int rowIndex = e.RowIndex;
+
+            // 行インデックスが有効かどうかをチェック 
+            if (rowIndex >= 0)
+            {
+                // 行データを取得 
+                DataGridViewRow row = dataGridView2.Rows[rowIndex];
+
+                // 各テキストボックスにデータを入力
+                TBSyukkoSyosaiId.Text = row.Cells["出庫詳細ID"].Value.ToString();
+                TBSyukkoIDS.Text = row.Cells["出庫ID"].Value.ToString();
+                TBSyohinId.Text = row.Cells["商品ID"].Value.ToString();
+                TBSuryou.Text = row.Cells["数量"].Value.ToString();
+            }
+        }
+
+        private void Syukkoflag_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
+
+
 }
+
