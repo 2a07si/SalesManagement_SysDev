@@ -80,8 +80,6 @@ namespace SalesManagement_SysDev.Classまとめ
         {
             issue issueForm = new issue(); // 発注書発行画面の新しいインスタンスを作成
             NavigateTo(issueForm); // 発注書発行画面に遷移
-
-
         }
 
         //注文画面に遷移
