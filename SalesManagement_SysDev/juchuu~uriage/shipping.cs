@@ -15,8 +15,9 @@ namespace SalesManagement_SysDev
     public partial class shipping : Form
     {
 
-        private bool isSaleSelected = true; // 初期状態を受注(TOrder)に設定
-        private string saleFlag = "←通常"; // 初期状態を「注文」に設定
+        private bool isShippingSelected = true; // 初期状態を受注(TOrder)に設定
+        private string shippingFlag = "←通常"; // 初期状態を「注文」に設定
+
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager;
@@ -208,7 +209,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
-        private void HandleSaleOperation()
+        private void HandleShippingOperation()
         {
             switch (CurrentStatus.CurrentStatusValue)
             {
@@ -378,7 +379,7 @@ namespace SalesManagement_SysDev
                 // 受注IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(jyutyuID) && int.TryParse(jyutyuID, out int parsedJyutyuID))
                 {
-                    query = query.Where(sh => s.OrId == parsedJyutyuID);
+                    query = query.Where(sh => sh.OrId == parsedJyutyuID);
                 }
 
                 // 営業所IDを検索条件に追加 
@@ -512,7 +513,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void SearchSaleDetails()
+        private void SearchShippingDetails()
         {
             using (var context = new SalesManagementContext())
             {
@@ -595,7 +596,7 @@ namespace SalesManagement_SysDev
         private void UpdateFlagButtonText()
         {
             // b_FlagSelectorのテキストを現在の状態に合わせる
-            b_FormSelector.Text = saleFlag;
+            b_FormSelector.Text = shippingFlag;
         }
 
         // CellClickイベントハンドラ
@@ -654,6 +655,4 @@ namespace SalesManagement_SysDev
     }
 
 
-}
-    }
 }

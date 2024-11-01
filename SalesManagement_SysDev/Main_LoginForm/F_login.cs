@@ -3,6 +3,8 @@ using System.Security.Cryptography;
 using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
+using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
+using System.Diagnostics;
 
 namespace SalesManagement_SysDev
 {
@@ -11,6 +13,7 @@ namespace SalesManagement_SysDev
         private ClassDateNamelabel dateNameLabel;
         private bool isPasswordVisible = true;  // パスワード表示状態を管理するフラグ 
         private ClassTimerManager timerManager;
+        private ClassChangeForms classChangeForms;
         public F_login()
         {
             InitializeComponent();
@@ -21,6 +24,7 @@ namespace SalesManagement_SysDev
             // タイマーやその他の初期設定 
             this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
+            this.classChangeForms = new ClassChangeForms(this);
             timer1.Start();
         }
 
@@ -772,9 +776,7 @@ namespace SalesManagement_SysDev
                         // ログイン成功時の処理
                         isLoginSuccessful = true;
 
-                        mainmenu1 mainMenu = new mainmenu1();
-                        mainMenu.Show();
-                        this.Hide();
+                        classChangeForms.NavigateTo3();
                     }
                     else
                     {
