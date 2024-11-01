@@ -155,7 +155,7 @@ namespace SalesManagement_SysDev
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    Updatemerchandise();
+                    Updatesemerchandise();
                     break;
                 case CurrentStatus.Status.登録:
                     Registermerchandise();
@@ -198,6 +198,9 @@ namespace SalesManagement_SysDev
                     merchandise.PrModelNumber = TModel;
                     merchandise.PrColor = TColor;
                     merchandise.PrReleaseDate = SyohinDate;
+                    merchandise.PrModelNumber = TModel;
+                    merchandise.PrColor = TColor;
+                    merchandise.PrReleaseDate = SyohinDate;
                     merchandise.PrHidden = delFlag ? "1" : "0";
 
                     context.SaveChanges();
@@ -225,16 +228,14 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var newMerchandise = new MProduct
+                var merchandise = new MProduct
                 {
                     PrId = int.Parse(SyohinID),
                     MaId = int.Parse(MakerID),
-                    PrName = SyohinName,
-                    PrSafetyStock = int.Parse(SafeNum),
-                    ScId = int.Parse(Sclass),
-                    PrModelNumber = TModel,
-                    PrReleaseDate = SyohinDate,
-                    PrHidden = delFlag ? "1" : "0"
+                    PrId = int.Parse(SyohinID),
+                    PoId = int.Parse(JobID),
+                    EmHiredate = ShainDate,
+                    EmHidden = delFlag ? "1" : "0"
                 };
 
                 context.MProducts.Add(newMerchandise);

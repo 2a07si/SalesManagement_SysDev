@@ -9,29 +9,27 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace SalesManagement_SysDev
 {
-    public partial class lssue : Form
+    public partial class issue : Form
     {
-        private bool isLssueSelected = true; // 初期状態を出庫(TSyukko)に設定
-        private string lssueFlag = "←通常"; // 初期状態を「注文」に設定
+        private bool isIssueSelected = true; // 初期状態を出庫(TSyukko)に設定
+        private string issueFlag = "←通常"; // 初期状態を「注文」に設定
 
         private ClassDataGridViewClearer dgvClearer;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
-        public lssue(Form mainForm)
+        public issue()
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            this.Load += new EventHandler(lssue_Load);
+            this.Load += new EventHandler(issue_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
         }
 
-
-        private void lssue_Load(object sender, EventArgs e)
+        private void issue_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
             accessManager.SetButtonAccess(new Control[] {
@@ -120,10 +118,10 @@ namespace SalesManagement_SysDev
                 switch (CurrentStatus.CurrentMode)
                 {
                     case CurrentStatus.Mode.通常:
-                        HandleLssueOperation();
+                        HandleIssueOperation();
                         break;
                     case CurrentStatus.Mode.詳細:
-                        HandleLssueDetailOperation();
+                        HandleIssueDetailOperation();
                         break;
                     default:
                         MessageBox.Show("現在のモードは無効です。");
@@ -135,21 +133,21 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
-        private void HandleLssueOperation()
+        private void HandleIssueOperation()
         {
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    UpdateLssue();
+                    UpdateIssue();
                     break;
                 case CurrentStatus.Status.登録:
-                    RegisterLssue();
+                    RegisterIssue();
                     break;
                 case CurrentStatus.Status.一覧:
-                    DisplayLssues();
+                    DisplayIssues();
                     break;
                 case CurrentStatus.Status.検索:
-                    SearchLssues();
+                    SearchIssues();
                     break;
                 default:
                     MessageBox.Show("無効な操作です。");
@@ -157,21 +155,21 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void HandleLssueDetailOperation()
+        private void HandleIssueDetailOperation()
         {
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    UpdateLssueDetails();
+                    UpdateIssueDetails();
                     break;
                 case CurrentStatus.Status.登録:
-                    RegisterLssueDetails();
+                    RegisterIssueDetails();
                     break;
                 case CurrentStatus.Status.一覧:
-                    DisplayLssueDetails();
+                    DisplayIssueDetails();
                     break;
                 case CurrentStatus.Status.検索:
-                    SearchLssueDetails();
+                    SearchIssueDetails();
                     break;
                 default:
                     MessageBox.Show("無効な操作です。");
@@ -180,7 +178,7 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void UpdateLssue()
+        private void UpdateIssue()
         {
             string SyukkoId = TBSyukkoId.Text;
             string ShopId = TBShopId.Text;
@@ -197,11 +195,11 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var lssue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
-                if (lssue != null)
+                var issue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
+                if (issue != null)
                 {
                     // 新しい出庫情報を作成
-                    var Lssue = new TSyukko
+                    var Issue = new TSyukko
                     {
                         SoId = int.Parse(ShopId),                    // 店舗ID
                         EmId = int.Parse(ShainId),// 社員ID（null許容）
@@ -225,7 +223,7 @@ namespace SalesManagement_SysDev
 
 
 
-        private void RegisterLssue()
+        private void RegisterIssue()
         {
             string SyukkoId = TBSyukkoId.Text;
             string ShopId = TBShopId.Text;
@@ -241,12 +239,12 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 出庫が既に存在するか確認
-                var lssue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == SyukkoId);
-                if (lssue == null)
+                var issue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == SyukkoId);
+                if (issue == null)
                 {
                     try
                     { // 新しい出庫情報を作成
-                        var newLssue = new TSyukko
+                        var newIssue = new TSyukko
                         {
                             SoId = int.Parse(ShopId),                           // 店舗ID
                             EmId = int.Parse(ShainId), // 社員ID（null許容）
@@ -259,7 +257,7 @@ namespace SalesManagement_SysDev
                         };
 
                         // 出庫情報をコンテキストに追加
-                        context.TSyukkos.Add(newLssue);
+                        context.TSyukkos.Add(newIssue);
 
 
                         context.SaveChanges();
@@ -294,23 +292,23 @@ namespace SalesManagement_SysDev
 
 
 
-        private void DisplayLssues()
+        private void DisplayIssues()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var lssues = context.TSyukkos.ToList();
+                    var issues = context.TSyukkos.ToList();
 
                     // データを選択してDataGridViewに表示
-                    dataGridView1.DataSource = lssues.Select(o => new
+                    dataGridView1.DataSource = issues.Select(o => new
                     {
-                        LssueID = o.SyId,            // 出庫ID
+                        IssueID = o.SyId,            // 出庫ID
                         StoreID = o.SoId,              // 店舗ID
                         EmployeeID = o.EmId,           // 社員ID
                         ClientID = o.ClId,             // クライアントID
                         OrderID = o.OrId,              // 受注ID
-                        LssueDate = o.SyDate,        // 出庫日
+                        IssueDate = o.SyDate,        // 出庫日
                         StateFlag = o.SyStateFlag,     // 出庫状態フラグ
                         DeleteFlag = o.SyFlag,         // 削除フラグ
                         Reason = o.SyHidden            // 理由
@@ -324,7 +322,7 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void SearchLssues()
+        private void SearchIssues()
         {
             using (var context = new SalesManagementContext())
             {
@@ -343,60 +341,60 @@ namespace SalesManagement_SysDev
                 if (!string.IsNullOrEmpty(nyuukaId))
                 {
                     int arId = int.Parse(nyuukaId);
-                    query = query.Where(lssue => lssue.SyId == arId);
+                    query = query.Where(issue => issue.SyId == arId);
                 }
 
                 // 店舗IDを検索条件に追加
                 if (!string.IsNullOrEmpty(shopId))
                 {
                     int soId = int.Parse(shopId);
-                    query = query.Where(lssue => lssue.SoId == soId);
+                    query = query.Where(issue => issue.SoId == soId);
                 }
 
                 // 社員IDを検索条件に追加
                 if (!string.IsNullOrEmpty(shainId))
                 {
                     int emId = int.Parse(shainId);
-                    query = query.Where(lssue => lssue.EmId == emId);
+                    query = query.Where(issue => issue.EmId == emId);
                 }
 
                 // 顧客IDを検索条件に追加
                 if (!string.IsNullOrEmpty(kokyakuId))
                 {
                     int clId = int.Parse(kokyakuId);
-                    query = query.Where(lssue => lssue.ClId == clId);
+                    query = query.Where(issue => issue.ClId == clId);
                 }
 
                 // 受注IDを検索条件に追加
                 if (!string.IsNullOrEmpty(jyutyuId))
                 {
                     int orId = int.Parse(jyutyuId);
-                    query = query.Where(lssue => lssue.OrId == orId);
+                    query = query.Where(issue => issue.OrId == orId);
                 }
 
                 // 出庫日を検索条件に追加（チェックボックスがチェックされている場合）
                 if (nyuukodate.HasValue)
                 {
-                    query = query.Where(lssue => lssue.SyDate == nyuukodate.Value);
+                    query = query.Where(issue => issue.SyDate == nyuukodate.Value);
                 }
 
                 // 結果を取得
-                var lssues = query.ToList();
+                var issues = query.ToList();
 
-                if (lssues.Any())
+                if (issues.Any())
                 {
                     // dataGridView1 に結果を表示
-                    dataGridView1.DataSource = lssues.Select(lssue => new
+                    dataGridView1.DataSource = issues.Select(issue => new
                     {
-                        LssueID = lssue.SyId,         // 出庫ID
-                        StoreID = lssue.SoId,           // 店舗ID
-                        EmployeeID = lssue.EmId,        // 社員ID
-                        ClientID = lssue.ClId,          // クライアントID
-                        OrderID = lssue.OrId,           // 受注ID
-                        LssueDate = lssue.SyDate,     // 出庫日
-                        StateFlag = lssue.SyStateFlag,  // 出庫状態フラグ
-                        DeleteFlag = lssue.SyFlag,      // 削除フラグ
-                        Reason = lssue.SyHidden         // 理由
+                        IssueID = issue.SyId,         // 出庫ID
+                        StoreID = issue.SoId,           // 店舗ID
+                        EmployeeID = issue.EmId,        // 社員ID
+                        ClientID = issue.ClId,          // クライアントID
+                        OrderID = issue.OrId,           // 受注ID
+                        IssueDate = issue.SyDate,     // 出庫日
+                        StateFlag = issue.SyStateFlag,  // 出庫状態フラグ
+                        DeleteFlag = issue.SyFlag,      // 削除フラグ
+                        Reason = issue.SyHidden         // 理由
                     }).ToList();
                 }
                 else
@@ -410,7 +408,7 @@ namespace SalesManagement_SysDev
 
 
 
-        private void UpdateLssueDetails()
+        private void UpdateIssueDetails()
         {
             string NyutyuSyosaiID = TBSyukkoSyosaiId.Text;
             string jyutyuID = TBSyukkoIDS.Text;
@@ -419,12 +417,12 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var lssueDetail = context.TSyukkoDetails.SingleOrDefault(od => od.SyDetailId.ToString() == NyutyuSyosaiID);
-                if (lssueDetail != null)
+                var issueDetail = context.TSyukkoDetails.SingleOrDefault(od => od.SyDetailId.ToString() == NyutyuSyosaiID);
+                if (issueDetail != null)
                 {
-                    lssueDetail.SyId = int.Parse(jyutyuID);
-                    lssueDetail.PrId = int.Parse(syohinID);
-                    lssueDetail.SyQuantity = int.Parse(suryou);
+                    issueDetail.SyId = int.Parse(jyutyuID);
+                    issueDetail.PrId = int.Parse(syohinID);
+                    issueDetail.SyQuantity = int.Parse(suryou);
 
                     context.SaveChanges();
                     MessageBox.Show("出庫詳細の更新が成功しました。");
@@ -436,7 +434,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void RegisterLssueDetails()
+        private void RegisterIssueDetails()
         {
             string SyukkoSyosaiID = TBSyukkoSyosaiId.Text;
             string jyutyuID = TBSyukkoIDS.Text;
@@ -445,28 +443,28 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var newLssueDetail = new TSyukkoDetail
+                var newIssueDetail = new TSyukkoDetail
                 {
                     SyId = int.Parse(jyutyuID),
                     PrId = int.Parse(syohinID),
                     SyQuantity = int.Parse(suryou),
                 };
 
-                context.TSyukkoDetails.Add(newLssueDetail);
+                context.TSyukkoDetails.Add(newIssueDetail);
                 context.SaveChanges();
                 MessageBox.Show("出庫詳細の登録が成功しました。");
             }
         }
 
-        private void DisplayLssueDetails()
+        private void DisplayIssueDetails()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var lssueDetails = context.TSyukkoDetails.ToList();
+                    var issueDetails = context.TSyukkoDetails.ToList();
 
-                    dataGridView2.DataSource = lssueDetails.Select(od => new
+                    dataGridView2.DataSource = issueDetails.Select(od => new
                     {
                         出庫詳細ID = od.SyDetailId,
                         出庫ID = od.SyId,
@@ -481,7 +479,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void SearchLssueDetails()
+        private void SearchIssueDetails()
         {
             using (var context = new SalesManagementContext())
             {
@@ -522,11 +520,11 @@ namespace SalesManagement_SysDev
 
 
                 // 結果を取得
-                var lssueDetails = query.ToList();
+                var issueDetails = query.ToList();
 
-                if (lssueDetails.Any())
+                if (issueDetails.Any())
                 {
-                    dataGridView2.DataSource = lssueDetails.Select(od => new
+                    dataGridView2.DataSource = issueDetails.Select(od => new
                     {
                         出庫詳細ID = od.SyDetailId,
                         出庫ID = od.SyId,
@@ -544,20 +542,20 @@ namespace SalesManagement_SysDev
 
 
 
-        private void ToggleLssueSelection()
+        private void ToggleIssueSelection()
         {
-            isLssueSelected = !isLssueSelected;
-            lssueFlag = isLssueSelected ? "←通常" : "詳細→";
+            isIssueSelected = !isIssueSelected;
+            issueFlag = isIssueSelected ? "←通常" : "詳細→";
 
             // CurrentStatusのモードを切り替える
-            CurrentStatus.SetMode(isLssueSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+            CurrentStatus.SetMode(isIssueSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
 
 
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
-            ToggleLssueSelection();
+            ToggleIssueSelection();
 
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
@@ -567,7 +565,7 @@ namespace SalesManagement_SysDev
         private void UpdateFlagButtonText()
         {
             // b_FlagSelectorのテキストを現在の状態に合わせる
-            b_FormSelector.Text = lssueFlag;
+            b_FormSelector.Text = issueFlag;
         }
 
         // CellClickイベントハンドラ

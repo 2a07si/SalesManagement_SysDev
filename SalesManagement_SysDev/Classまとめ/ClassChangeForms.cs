@@ -78,14 +78,14 @@ namespace SalesManagement_SysDev.Classまとめ
         // 出庫画面に遷移 
         internal void NavigateToIssueForm()
         {
-            lssue lssueForm = new lssue(); // 発注書発行画面の新しいインスタンスを作成
+            lssue lssueForm = new lssue(currentForm); // 発注書発行画面の新しいインスタンスを作成
             NavigateTo(lssueForm); // 発注書発行画面に遷移
         }
 
         //注文画面に遷移
         internal void NavigateToOrderForm()
         {
-            order orderForm = new order();
+            order orderForm = new order(currentForm);
             NavigateTo(orderForm);
         }
 
