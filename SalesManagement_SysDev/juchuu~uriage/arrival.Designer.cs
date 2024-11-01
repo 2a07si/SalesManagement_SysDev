@@ -609,6 +609,7 @@
             b_FormSelector.TabIndex = 268;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
+            b_FormSelector.Click += b_FormSelector_Click;
             // 
             // colord
             // 

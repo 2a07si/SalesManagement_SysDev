@@ -428,7 +428,7 @@ namespace SalesManagement_SysDev
                     ArId = int.Parse(jyutyuID),
                     PrId = int.Parse(syohinID),
                     ArQuantity = int.Parse(suryou),
-                 };
+                };
 
                 context.TArrivalDetails.Add(newArrivalDetail);
                 context.SaveChanges();
@@ -497,7 +497,7 @@ namespace SalesManagement_SysDev
                     query = query.Where(od => od.ArQuantity == quantity);
                 }
 
-               
+
 
                 // 結果を取得
                 var arrivalDetails = query.ToList();
@@ -507,7 +507,7 @@ namespace SalesManagement_SysDev
                     dataGridView2.DataSource = arrivalDetails.Select(od => new
                     {
                         入荷詳細ID = od.ArDetailId,
-                        入荷ID = od. ArId,
+                        入荷ID = od.ArId,
                         商品ID = od.PrId,
                         数量 = od.ArQuantity,
                     }).ToList();
@@ -597,6 +597,8 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+
     }
 
 
