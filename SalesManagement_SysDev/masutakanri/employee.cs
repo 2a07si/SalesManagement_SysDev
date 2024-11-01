@@ -319,7 +319,7 @@ namespace SalesManagement_SysDev
                     {
                         社員ID = employee.EmId,
                         社員名 = employee.EmName,
-                        営業所ID = employee.EmId,
+                        営業所ID = employee.SoId,
                        　役職ID = employee.PoId,
                         入社年月日 = employee.EmHiredate,
                         電話番号 = employee.EmPhone,

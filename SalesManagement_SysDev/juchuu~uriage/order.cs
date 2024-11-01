@@ -21,7 +21,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
-        public order(Form mainForm)
+        public order()
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
