@@ -15,34 +15,120 @@ namespace SalesManagement_SysDev.Main_LoginForm
 {
     public partial class mainmenu3 : Form
     {
-        private ClassChangeForms changeForm;
-        private ClassAccessManager accessManager;
+        private ClassChangeForms changeForm; // フォーム遷移を管理するクラスのインスタンス 
+        private ClassAccessManager accessManager; // アクセス権限を管理するクラスのインスタンス 
+
         public mainmenu3()
         {
             InitializeComponent();
-            this.Load += new EventHandler(mainmenu3_Load);
-            changeForm = new ClassChangeForms(this); // インスタンスを作成  
-            accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+            this.Load += new EventHandler(mainmenu3_Load); // フォームの読み込みイベントにメソッドを追加 
+            changeForm = new ClassChangeForms(this); // フォーム遷移用クラスのインスタンス作成 
+            accessManager = new ClassAccessManager(Global.EmployeePermission); // グローバル変数から権限を設定 
         }
+
+        // フォームの初期化処理
+        private void mainmenu3_Load(object sender, EventArgs e)
+        {
+            GlobalUtility.UpdateLabels(label_id, label_ename); // ラベルを更新  
+            LoadEmployeeName(); // 従業員名をデータベースから取得して表示 
+            SetButtonPermissions(); // ボタンの権限を設定 
+        }
+
+        // 従業員名をデータベースから取得して表示するメソッド
         private void LoadEmployeeName()
         {
-            using (var context = new SalesManagementContext())
+            try
             {
-                // グローバル変数からEmployeeIDを取得し、該当する従業員を取得  
-                var employee = context.MEmployees
-                    .Include(e => e.Po) // 職位情報を含めて取得
-                    .SingleOrDefault(e => e.EmId == Global.EmployeeID); // EmployeeIDを直接比較  
+                using (var context = new SalesManagementContext())
+                {
+                    // Global.EmployeeIDに基づいて従業員情報を取得
+                    var employee = context.MEmployees
+                        .Include(e => e.Po) // 職位情報を含めて取得 
+                        .SingleOrDefault(e => e.EmId == Global.EmployeeID); // EmployeeIDを直接比較 
 
-                if (employee != null)
-                {
-                    label_id.Text = employee.Po.PoName; // 職位名をラベルに表示  
+                    // 従業員が見つかった場合
+                    if (employee != null)
+                    {
+                        label_id.Text = employee.Po.PoName; // 職位名をラベルに表示   
+                    }
+                    else
+                    {
+                        label_id.Text = "未登録"; // 従業員が見つからなかった場合のフォールバック 
+                    }
                 }
-                else
+            }
+            catch (DbUpdateException dbEx)
+            {
+                // データベースエラーが発生した場合の処理
+                MessageBox.Show($"データベースのエラーが発生しました: {dbEx.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // その他の予期しないエラーが発生した場合の処理
+                MessageBox.Show($"予期しないエラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ボタンの権限を設定するメソッド
+        private void SetButtonPermissions()
+        {
+            // 操作可能なボタンのリスト
+            List<Button> buttons = new List<Button>
+            {
+                b_hor, b_rec, b_cus, b_mer, b_sto, b_emp,
+                b_add, b_ord, b_lss, b_arr, b_shi, b_sal,
+                b_JU, b_HN, b_mas, Loginkanri
+            };
+
+            // グローバル変数から権限に応じてボタンを有効・無効に設定
+            switch (Global.EmployeePermission)
+            {
+                case 1: // 管理者
+                    foreach (var button in buttons)
+                        button.Enabled = true; // 全ボタンを有効化 
+                    break;
+
+                case 2: // 営業
+                    foreach (var button in buttons)
+                        button.Enabled = new[] { b_cus, b_add, b_arr, b_ord, b_shi, b_sal, b_JU, b_mas }.Contains(button);
+                    break;
+
+                case 3: // 物流
+                    foreach (var button in buttons)
+                        button.Enabled = new[] { b_mer, b_sto, b_rec, b_lss, b_hor, b_JU, b_HN, b_mas }.Contains(button);
+                    break;
+
+                default:
+                    foreach (var button in buttons)
+                        button.Enabled = false; // 権限が不明な場合はすべてのボタンを無効化 
+                    break;
+            }
+
+            // 無効なボタンの色を濃い灰色に変更
+            foreach (var button in buttons)
+            {
+                if (!button.Enabled)
                 {
-                    label_id.Text = "未登録"; // もし従業員が見つからなかった場合のフォールバック
+                    button.BackColor = Color.DarkGray; // 入れないボタンの色を変更 
                 }
             }
         }
+
+        // エラーハンドリング用メソッド
+        private void HandleNavigationError(Action action)
+        {
+            try
+            {
+                action(); // 引数で渡されたアクションを実行
+            }
+            catch (Exception ex)
+            {
+                // ナビゲーション中にエラーが発生した場合の処理
+                MessageBox.Show($"ナビゲーション中にエラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ログアウトボタンのクリックイベント
         private void b_logout_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("ログアウトしてもよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -50,24 +136,96 @@ namespace SalesManagement_SysDev.Main_LoginForm
             if (result == DialogResult.Yes)
             {
                 // グローバル変数のリセット
-                Global.EmployeeID = 0; // または適切な初期値にリセット 
+                Global.EmployeeID = 0; // または適切な初期値にリセット  
                 Global.EmployeeName = string.Empty;
                 Global.PositionName = string.Empty;
 
-                this.Close();
-                F_login loginForm = new F_login();
-                loginForm.Show();
+                this.Close(); // 現在のフォームを閉じる 
+                F_login loginForm = new F_login(); // ログインフォームを作成 
+                loginForm.Show(); // ログインフォームを表示 
             }
         }
-        private void mainmenu3_Load(object sender, EventArgs e)
-        {
-            GlobalUtility.UpdateLabels(label_id, label_ename); // ラベルを更新 
-            LoadEmployeeName(); // 従業員名を読み込む 
 
-            SetButtonPermissions();//buttonけしシステム
+        // 各ボタンのクリックイベント（ナビゲーション）
+        private void b_add_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToAcceptingOrderForm()); // 受注登録フォームに遷移 
         }
+
+        private void b_ord_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToOrderForm()); // 発注フォームに遷移 
+        }
+
+        private void b_lss_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToIssueForm()); // 出荷フォームに遷移 
+        }
+
+        private void b_arr_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToArrivalForm()); // 入庫フォームに遷移 
+        }
+
+        private void b_shi_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToShippingForm()); // 配送フォームに遷移 
+        }
+
+        private void b_sal_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToSalesForm()); // 売上フォームに遷移 
+        }
+
+        private void b_emp_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToEmployeeForm()); // 従業員フォームに遷移 
+        }
+
+        private void b_mer_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToMerchandiseForm()); // 商品フォームに遷移 
+        }
+
+        private void b_sto_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToStockForm()); // 在庫フォームに遷移 
+        }
+
+        private void b_cus_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToCustomerForm()); // 顧客フォームに遷移 
+        }
+
+        private void b_hor_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToHorderForm()); // 注文フォームに遷移 
+        }
+        private void b_rec_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.NavigateToReceivingstockForm());
+        }
+
+        private void Loginkanri_Click(object sender, EventArgs e)
+        {
+            // ログ管理ボタンのクリックイベント
+            switch (Global.EmployeePermission)
+            {
+                case 1: // 管理者 
+                    HandleNavigationError(() => changeForm.NavigateToLogForm()); // ログ管理フォームに遷移 
+                    break;
+
+                default:
+                    // 権限がない場合はメインメニューに遷移
+                    changeForm.NavigateToMainMenu();
+                    MessageBox.Show("この操作ができるのは管理者のみです。"); // エラーメッセージを表示 
+                    break;
+            }
+        }
+
         private void b_JU_Click(object sender, EventArgs e)
         {
+            // JUタブを表示する処理
             HN.Visible = false;
             mas.Visible = false;
             JU.Visible = true;
@@ -75,6 +233,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void b_HN_Click(object sender, EventArgs e)
         {
+            // HNタブを表示する処理
             JU.Visible = false;
             mas.Visible = false;
             HN.Visible = true;
@@ -82,135 +241,15 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void b_mas_Click(object sender, EventArgs e)
         {
+            // masタブを表示する処理
             HN.Visible = false;
             JU.Visible = false;
             mas.Visible = true;
         }
 
-
-        private void SetButtonPermissions()
-        {
-            // ボタンをリスト化
-            List<Button> buttons = new List<Button>
-    {
-        b_hor, b_rec, b_cus, b_mer, b_sto, b_emp,
-        b_add, b_ord, b_lss, b_arr, b_shi, b_sal,
-        b_JU, b_HN, b_mas, Loginkanri
-    };
-
-            // 権限に応じてボタンを有効・無効に設定
-            switch (Global.EmployeePermission)
-            {
-                case 2: // 営業 (フラグ2)
-                    foreach (var button in buttons)
-                        button.Enabled = new[] { b_cus, b_add, b_arr, b_ord, b_shi, b_sal, b_JU, b_mas }.Contains(button);
-                    break;
-
-                case 3: // 物流 (フラグ3)
-                    foreach (var button in buttons)
-                        button.Enabled = new[] { b_mer, b_sto, b_rec, b_lss, b_hor, b_JU, b_HN, b_mas }.Contains(button);
-                    break;
-
-                case 1: // 管理者 (フラグ1)
-                    foreach (var button in buttons)
-                        button.Enabled = true;
-                    break;
-
-                default:
-                    foreach (var button in buttons)
-                        button.Enabled = false; // 権限が不明な場合はすべてのボタンを無効化
-                    break;
-            }
-
-            // 無効なボタンの色のみ変更
-            foreach (var button in buttons)
-            {
-                if (!button.Enabled)
-                {
-                    button.BackColor = Color.DarkGray; // 入れないボタンの色を濃い灰色に
-                }
-            }
-        }
-
-        private void b_add_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToAcceptingOrderForm();
-        }
-
-        private void b_ord_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToOrderForm();
-        }
-
-
-        private void b_lss_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToIssueForm();
-        }
-
-        private void b_arr_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToArrivalForm();
-        }
-
-        private void b_shi_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToShippingForm();
-        }
-
-        private void b_sal_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToSalesForm();
-        }
-
-        private void b_emp_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToEmployeeForm();
-        }
-
-        private void b_mer_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToMerchandiseForm();
-        }
-
-        private void b_sto_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToStockForm();
-        }
-
-        private void b_cus_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToCustomerForm();
-        }
-
-        private void b_hor_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToHorderForm();
-        }
-
-        private void b_rec_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToReceivingstockForm();
-        }
-
         private void JU_Paint(object sender, PaintEventArgs e)
         {
-
-        }
-
-        private void Loginkanri_Click(object sender, EventArgs e)
-        {
-            switch (Global.EmployeePermission)
-            {
-                case 1:
-                    changeForm.NavigateToLogForm();
-                    break;
-
-                default:
-                    changeForm.NavigateToMainMenu();
-                    MessageBox.Show("この操作ができるのは管理者のみです。");
-                    break;
-            }
+            // Paint処理（必要に応じて実装） 
         }
     }
 }
