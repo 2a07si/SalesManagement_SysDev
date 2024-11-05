@@ -81,7 +81,7 @@
             b_emp.Location = new Point(15, 150);
             b_emp.Name = "b_emp";
             b_emp.Size = new Size(120, 90);
-            b_emp.TabIndex = 197;
+            b_emp.TabIndex = 7;
             b_emp.Text = "社員";
             b_emp.UseVisualStyleBackColor = false;
             // 
@@ -92,7 +92,7 @@
             b_mer.Location = new Point(15, 250);
             b_mer.Name = "b_mer";
             b_mer.Size = new Size(120, 70);
-            b_mer.TabIndex = 195;
+            b_mer.TabIndex = 8;
             b_mer.Text = "商品";
             b_mer.UseVisualStyleBackColor = false;
             b_mer.Click += b_mer_Click;
@@ -105,7 +105,7 @@
             b_cus.Location = new Point(15, 410);
             b_cus.Name = "b_cus";
             b_cus.Size = new Size(120, 70);
-            b_cus.TabIndex = 193;
+            b_cus.TabIndex = 10;
             b_cus.Text = "顧客";
             b_cus.UseVisualStyleBackColor = false;
             b_cus.Click += b_cus_Click;
@@ -118,7 +118,7 @@
             b_sto.Location = new Point(15, 330);
             b_sto.Name = "b_sto";
             b_sto.Size = new Size(120, 70);
-            b_sto.TabIndex = 192;
+            b_sto.TabIndex = 9;
             b_sto.Text = "在庫";
             b_sto.UseVisualStyleBackColor = false;
             b_sto.Click += b_sto_Click;
@@ -148,7 +148,7 @@
             b_ser.Location = new Point(750, 70);
             b_ser.Name = "b_ser";
             b_ser.Size = new Size(150, 70);
-            b_ser.TabIndex = 181;
+            b_ser.TabIndex = 3;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
             b_ser.Click += b_ser_Click;
@@ -169,7 +169,7 @@
             b_upd.Location = new Point(350, 70);
             b_upd.Name = "b_upd";
             b_upd.Size = new Size(150, 70);
-            b_upd.TabIndex = 180;
+            b_upd.TabIndex = 1;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
             b_upd.Click += b_upd_Click;
@@ -190,7 +190,7 @@
             b_reg.Location = new Point(150, 70);
             b_reg.Name = "b_reg";
             b_reg.Size = new Size(150, 70);
-            b_reg.TabIndex = 179;
+            b_reg.TabIndex = 0;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
             b_reg.Click += b_reg_Click;
@@ -222,14 +222,14 @@
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
             panel1.Size = new Size(1420, 690);
-            panel1.TabIndex = 187;
+            panel1.TabIndex = 4;
             // 
             // TBPass
             // 
             TBPass.Location = new Point(110, 70);
             TBPass.Name = "TBPass";
             TBPass.Size = new Size(200, 31);
-            TBPass.TabIndex = 299;
+            TBPass.TabIndex = 11;
             // 
             // label9
             // 
@@ -239,7 +239,7 @@
             label9.Location = new Point(20, 70);
             label9.Name = "label9";
             label9.Size = new Size(80, 25);
-            label9.TabIndex = 298;
+            label9.TabIndex = 10;
             label9.Text = "パスワード";
             // 
             // Next
@@ -247,7 +247,7 @@
             Next.Location = new Point(1350, 144);
             Next.Name = "Next";
             Next.Size = new Size(40, 40);
-            Next.TabIndex = 297;
+            Next.TabIndex = 18;
             Next.Text = "▶";
             Next.UseVisualStyleBackColor = true;
             // 
@@ -256,7 +256,7 @@
             Prev.Location = new Point(1220, 144);
             Prev.Name = "Prev";
             Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 296;
+            Prev.TabIndex = 17;
             Prev.Text = "◀";
             Prev.UseVisualStyleBackColor = true;
             // 
@@ -278,7 +278,7 @@
             date.Location = new Point(870, 20);
             date.Name = "date";
             date.Size = new Size(165, 31);
-            date.TabIndex = 294;
+            date.TabIndex = 9;
             date.ValueChanged += date_ValueChanged;
             // 
             // label18
@@ -289,7 +289,7 @@
             label18.Location = new Point(760, 20);
             label18.Name = "label18";
             label18.Size = new Size(102, 25);
-            label18.TabIndex = 293;
+            label18.TabIndex = 8;
             label18.Text = "入社年月日";
             // 
             // dataGridView1
@@ -301,7 +301,7 @@
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(1400, 490);
-            dataGridView1.TabIndex = 52;
+            dataGridView1.TabIndex = 19;
             // 
             // label5
             // 
@@ -311,7 +311,7 @@
             label5.Location = new Point(20, 20);
             label5.Name = "label5";
             label5.Size = new Size(66, 25);
-            label5.TabIndex = 286;
+            label5.TabIndex = 0;
             label5.Text = "社員ID";
             // 
             // label12
@@ -322,7 +322,7 @@
             label12.Location = new Point(480, 20);
             label12.Name = "label12";
             label12.Size = new Size(84, 25);
-            label12.TabIndex = 280;
+            label12.TabIndex = 4;
             label12.Text = "営業所ID";
             // 
             // label14
@@ -333,7 +333,7 @@
             label14.Location = new Point(200, 20);
             label14.Name = "label14";
             label14.Size = new Size(66, 25);
-            label14.TabIndex = 281;
+            label14.TabIndex = 2;
             label14.Text = "社員名";
             // 
             // TBTellNo
@@ -341,7 +341,7 @@
             TBTellNo.Location = new Point(406, 70);
             TBTellNo.Name = "TBTellNo";
             TBTellNo.Size = new Size(200, 31);
-            TBTellNo.TabIndex = 292;
+            TBTellNo.TabIndex = 13;
             TBTellNo.MaskInputRejected += TBTellNo_MaskInputRejected;
             // 
             // TBRiyuu
@@ -349,7 +349,7 @@
             TBRiyuu.Location = new Point(230, 120);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
-            TBRiyuu.TabIndex = 285;
+            TBRiyuu.TabIndex = 16;
             // 
             // label8
             // 
@@ -359,7 +359,7 @@
             label8.Location = new Point(316, 70);
             label8.Name = "label8";
             label8.Size = new Size(84, 25);
-            label8.TabIndex = 291;
+            label8.TabIndex = 12;
             label8.Text = "電話番号";
             // 
             // TBSyainID
@@ -367,14 +367,14 @@
             TBSyainID.Location = new Point(90, 20);
             TBSyainID.Name = "TBSyainID";
             TBSyainID.Size = new Size(100, 31);
-            TBSyainID.TabIndex = 287;
+            TBSyainID.TabIndex = 1;
             // 
             // TBJobID
             // 
             TBJobID.Location = new Point(700, 20);
             TBJobID.Name = "TBJobID";
             TBJobID.Size = new Size(50, 31);
-            TBJobID.TabIndex = 279;
+            TBJobID.TabIndex = 7;
             // 
             // label17
             // 
@@ -384,7 +384,7 @@
             label17.Location = new Point(120, 120);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
-            label17.TabIndex = 284;
+            label17.TabIndex = 15;
             label17.Text = "非表示理由";
             // 
             // label7
@@ -395,7 +395,7 @@
             label7.Location = new Point(630, 20);
             label7.Name = "label7";
             label7.Size = new Size(66, 25);
-            label7.TabIndex = 278;
+            label7.TabIndex = 6;
             label7.Text = "役職ID";
             // 
             // TBShopId
@@ -403,14 +403,14 @@
             TBShopId.Location = new Point(570, 20);
             TBShopId.Name = "TBShopId";
             TBShopId.Size = new Size(50, 31);
-            TBShopId.TabIndex = 282;
+            TBShopId.TabIndex = 5;
             // 
             // TBSyainName
             // 
             TBSyainName.Location = new Point(270, 20);
             TBSyainName.Name = "TBSyainName";
             TBSyainName.Size = new Size(200, 31);
-            TBSyainName.TabIndex = 283;
+            TBSyainName.TabIndex = 3;
             // 
             // DelFlag
             // 
@@ -420,7 +420,7 @@
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
-            DelFlag.TabIndex = 288;
+            DelFlag.TabIndex = 14;
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
             // 
@@ -431,7 +431,7 @@
             b_kakutei.Location = new Point(1200, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
-            b_kakutei.TabIndex = 240;
+            b_kakutei.TabIndex = 5;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
             b_kakutei.Click += b_kakutei_Click;
@@ -442,7 +442,7 @@
             clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
-            clear.TabIndex = 239;
+            clear.TabIndex = 6;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             clear.Click += clear_Click;
@@ -452,7 +452,7 @@
             close.Location = new Point(1450, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
-            close.TabIndex = 238;
+            close.TabIndex = 11;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
@@ -468,7 +468,7 @@
             B_iti.Location = new Point(550, 70);
             B_iti.Name = "B_iti";
             B_iti.Size = new Size(150, 70);
-            B_iti.TabIndex = 259;
+            B_iti.TabIndex = 2;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             B_iti.Click += B_iti_Click;
