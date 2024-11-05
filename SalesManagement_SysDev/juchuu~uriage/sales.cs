@@ -257,10 +257,32 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                int salesNum;
-                if (!int.TryParse(salesID, out salesNum) || !context.TSales.Any(s => s.SaId == salesNum))
+                int shop;
+                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
                 {
-                    MessageBox.Show("売上IDが存在しません。");
+                    MessageBox.Show("営業所IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int employeeId;
+                if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                {
+                    MessageBox.Show("社員IDが存在しません。");
+                    return;
+                }
+                int kokyaku;
+                if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
+                {
+                    MessageBox.Show("顧客IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int juchu;
+                if (!int.TryParse(jyutyuID, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
+                {
+                    MessageBox.Show("受注IDが存在しません。");
                     return;
                 }
                 var newSale = new TSale
@@ -425,6 +447,18 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int uriage;
+                if (!int.TryParse(uriageID, out uriage) || !context.TSales.Any(s => s.SaId == uriage))
+                {
+                    MessageBox.Show("売上IDが存在しません。");
+                    return;
+                }
+                int shouhin;
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                {
+                    MessageBox.Show("商品IDが存在しません。");
+                    return;
+                }
                 var newSaleDetail = new TSaleDetail
                 {
                     SaDetailId = int.Parse(uriageID),

@@ -210,6 +210,20 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int shop;
+                if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                {
+                    MessageBox.Show("営業所IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int job;
+                if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoId == job))
+                {
+                    MessageBox.Show("社員IDが存在しません。");
+                    return;
+                }
                 var newEmployee = new MEmployee
                 {
                     EmId = int.Parse(ShainID),

@@ -236,7 +236,7 @@ namespace SalesManagement_SysDev
                 int maker;
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaId == maker))
                 {
-                    MessageBox.Show("発注IDが存在しません。");
+                    MessageBox.Show("メーカーIDが存在しません。");
                     return;
                 }
 
