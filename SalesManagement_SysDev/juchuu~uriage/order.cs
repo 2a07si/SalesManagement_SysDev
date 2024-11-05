@@ -201,7 +201,7 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
+                var order = context.TChumons.SingleOrDefault(o => o.OrId.ToString() == OrderId);
                 if (order != null)
                 {
                     // 新しい注文情報を作成
@@ -273,25 +273,26 @@ namespace SalesManagement_SysDev
                     return;
                 }
                 // 注文が既に存在するか確認
-                var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == OrderId);
+                var order = context.TChumons.SingleOrDefault(o => o.OrId.ToString() == OrderId);
                 if (order == null)
                 {
                     try
                     { // 新しい注文情報を作成
-                        var newOrder = new TOrder
+                        var newOrder = new TChumon
                         {
+
                             SoId = int.Parse(ShopId),                           // 店舗ID
                             EmId = int.Parse(ShainId), // 社員ID（null許容）
                             ClId = int.Parse(KokyakuId),                        // クライアントID
                             OrId = int.Parse(JyutyuId),                         // 受注ID
-                            OrDate = Orderdate,                                // 注文日
-                            OrStateFlag = OrderFlg ? 1 : 0,                    // 注文状態フラグ
-                            OrFlag = DelFlg ? 1 : 0,                            // 削除フラグ
-                            OrHidden = Riyuu
+                            ChDate = Orderdate,                                // 注文日
+                            ChStateFlag = OrderFlg ? 1 : 0,                    // 注文状態フラグ
+                            ChFlag = DelFlg ? 1 : 0,                            // 削除フラグ
+                            ChHidden = Riyuu
                         };
 
                         // 注文情報をコンテキストに追加
-                        context.TOrders.Add(newOrder);
+                        context.TChumons.Add(newOrder);
 
 
                         context.SaveChanges();
@@ -332,7 +333,7 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var orders = context.TOrders.ToList();
+                    var orders = context.TChumons.ToList();
 
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = orders.Select(o => new
@@ -369,7 +370,7 @@ namespace SalesManagement_SysDev
                 DateTime? nyuukodate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
 
                 // 基本的なクエリ
-                var query = context.TOrders.AsQueryable();
+                var query = context.TChumons.AsQueryable();
 
                 // 注文IDを検索条件に追加
                 if (!string.IsNullOrEmpty(nyuukaId))
@@ -409,7 +410,7 @@ namespace SalesManagement_SysDev
                 // 注文日を検索条件に追加（チェックボックスがチェックされている場合）
                 if (nyuukodate.HasValue)
                 {
-                    query = query.Where(order => order.OrDate == nyuukodate.Value);
+                    query = query.Where(order => order.ChDate == nyuukodate.Value);
                 }
 
                 // 結果を取得
@@ -420,6 +421,7 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示
                     dataGridView1.DataSource = orders.Select(o => new
                     {
+<<<<<<< HEAD
                         注文ID = o.OrId,            // 注文ID
                         店舗ID = o.SoId,              // 店舗ID
                         社員ID = o.EmId,           // 社員ID
@@ -429,6 +431,17 @@ namespace SalesManagement_SysDev
                         注文フラグ = o.OrStateFlag,     // 注文状態フラグ
                         非表示フラグ = o.OrFlag,         // 削除フラグ
                         非表示理由 = o.OrHidden            // 理由
+=======
+                        TyumonID = order.ChId,         // 注文ID
+                        StoreID = order.SoId,           // 店舗ID
+                        EmployeeID = order.EmId,        // 社員ID
+                        ClientID = order.ClId,          // クライアントID
+                        JyutyuID = order.OrId,           // 受注ID
+                        OrderDate = order.ChDate,     // 注文日
+                        StateFlag = order.ChStateFlag,  // 注文状態フラグ
+                        DeleteFlag = order.ChFlag,      // 削除フラグ
+                        Reason = order.ChHidden         // 理由
+>>>>>>> a03f386a008091fd3d55a36905da64e79ad77968
                     }).ToList();
                 }
                 else
@@ -451,12 +464,12 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == NyutyuSyosaiID);
+                var orderDetail = context.TChumonDetails.SingleOrDefault(od => od.ChDetailId.ToString() == NyutyuSyosaiID);
                 if (orderDetail != null)
                 {
-                    orderDetail.OrId = int.Parse(jyutyuID);
+                    orderDetail.ChId = int.Parse(jyutyuID);
                     orderDetail.PrId = int.Parse(syohinID);
-                    orderDetail.OrQuantity = int.Parse(suryou);
+                    orderDetail.ChQuantity = int.Parse(suryou);
 
                     context.SaveChanges();
                     MessageBox.Show("注文詳細の更新が成功しました。");
@@ -489,14 +502,14 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("商品IDが存在しません。");
                     return;
                 }
-                var newOrderDetail = new TOrderDetail
+                var newOrderDetail = new TChumonDetail
                 {
-                    OrId = int.Parse(chuumon),
+                    ChId = int.Parse(chuumon),
                     PrId = int.Parse(syohinID),
-                    OrQuantity = int.Parse(suryou),
+                    ChQuantity = int.Parse(suryou),
                 };
 
-                context.TOrderDetails.Add(newOrderDetail);
+                context.TChumonDetails.Add(newOrderDetail);
                 context.SaveChanges();
                 MessageBox.Show("注文詳細の登録が成功しました。");
             }
@@ -508,14 +521,14 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var orderDetails = context.TOrderDetails.ToList();
+                    var orderDetails = context.TChumonDetails.ToList();
 
                     dataGridView2.DataSource = orderDetails.Select(od => new
                     {
-                        注文詳細ID = od.OrDetailId,
-                        注文ID = od.OrId,
+                        注文詳細ID = od.ChDetailId,
+                        注文ID = od.ChId,
                         商品ID = od.PrId,
-                        数量 = od.OrQuantity,
+                        数量 = od.ChQuantity,
                     }).ToList();
                 }
             }
@@ -536,19 +549,19 @@ namespace SalesManagement_SysDev
                 var suryou = TBSuryou.Text;
 
                 // 基本的なクエリ
-                var query = context.TOrderDetails.AsQueryable();
+                var query = context.TChumonDetails.AsQueryable();
 
                 // 各条件を追加
                 if (!string.IsNullOrEmpty(OrderSyosaiID))
                 {
                     // 注文詳細IDを検索条件に追加
-                    query = query.Where(od => od.OrDetailId.ToString() == OrderSyosaiID);
+                    query = query.Where(od => od.ChDetailId.ToString() == OrderSyosaiID);
                 }
 
                 if (!string.IsNullOrEmpty(OrderIdS))
                 {
                     //注文IDを検索条件に追加
-                    query = query.Where(od => od.OrId.ToString() == OrderIdS);
+                    query = query.Where(od => od.ChId.ToString() == OrderIdS);
                 }
 
                 if (!string.IsNullOrEmpty(syohinID))
@@ -560,7 +573,7 @@ namespace SalesManagement_SysDev
                 if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
                 {
                     // 数量を検索条件に追加
-                    query = query.Where(od => od.OrQuantity == quantity);
+                    query = query.Where(od => od.ChQuantity == quantity);
                 }
 
 
@@ -572,10 +585,10 @@ namespace SalesManagement_SysDev
                 {
                     dataGridView2.DataSource = orderDetails.Select(od => new
                     {
-                        注文詳細ID = od.OrDetailId,
-                        注文ID = od.OrId,
+                        注文詳細ID = od.ChDetailId,
+                        注文ID = od.ChId,
                         商品ID = od.PrId,
-                        数量 = od.OrQuantity,
+                        数量 = od.ChQuantity,
                     }).ToList();
                 }
                 else
@@ -664,7 +677,15 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
 

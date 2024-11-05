@@ -337,6 +337,7 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 18;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // DelFlag
             // 
@@ -579,6 +580,7 @@
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 8;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // TBTyumonSyosaiId
             // 

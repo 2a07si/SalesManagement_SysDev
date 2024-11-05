@@ -6,6 +6,8 @@ namespace SalesManagement_SysDev;
 public partial class TChumon
 {
     public int ChId { get; set; }
+    
+
 
     public int SoId { get; set; }
 
