@@ -232,6 +232,14 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                // HaIDがTHattyuテーブルに存在するか確認
+                int maker;
+                if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaId == maker))
+                {
+                    MessageBox.Show("発注IDが存在しません。");
+                    return;
+                }
+
                 // EmIdがMEmployeeテーブルに存在するか確認
                 int employeeId;
                 if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
