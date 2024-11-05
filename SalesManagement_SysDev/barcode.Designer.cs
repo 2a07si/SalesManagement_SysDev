@@ -80,9 +80,9 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.RoyalBlue;
+            button1.BackColor = Color.FromArgb(244, 226, 207);
             button1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
+            button1.ForeColor = Color.Black;
             button1.Location = new Point(12, 130);
             button1.Name = "button1";
             button1.Size = new Size(120, 74);
@@ -92,7 +92,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.RoyalBlue;
+            panel1.BackColor = Color.FromArgb(244, 226, 207);
             panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(150, 130);
             panel1.Name = "panel1";
@@ -113,7 +113,7 @@
             // 
             // b_cus
             // 
-            b_cus.BackColor = SystemColors.InactiveCaption;
+            b_cus.BackColor = Color.FromArgb(252, 252, 192);
             b_cus.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_cus.Location = new Point(12, 231);
             b_cus.Name = "b_cus";
@@ -124,7 +124,7 @@
             // 
             // b_mer
             // 
-            b_mer.BackColor = SystemColors.InactiveCaption;
+            b_mer.BackColor = Color.FromArgb(252, 252, 192);
             b_mer.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_mer.Location = new Point(12, 309);
             b_mer.Name = "b_mer";
@@ -135,7 +135,7 @@
             // 
             // b_sto
             // 
-            b_sto.BackColor = SystemColors.InactiveCaption;
+            b_sto.BackColor = Color.FromArgb(252, 252, 192);
             b_sto.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_sto.Location = new Point(12, 383);
             b_sto.Name = "b_sto";
@@ -146,7 +146,7 @@
             // 
             // b_emp
             // 
-            b_emp.BackColor = SystemColors.InactiveCaption;
+            b_emp.BackColor = Color.FromArgb(252, 252, 192);
             b_emp.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_emp.Location = new Point(12, 459);
             b_emp.Name = "b_emp";
@@ -157,7 +157,7 @@
             // 
             // b_sal
             // 
-            b_sal.BackColor = SystemColors.InactiveCaption;
+            b_sal.BackColor = Color.FromArgb(252, 252, 192);
             b_sal.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_sal.Location = new Point(12, 534);
             b_sal.Name = "b_sal";
@@ -168,7 +168,7 @@
             // 
             // b_acc
             // 
-            b_acc.BackColor = SystemColors.InactiveCaption;
+            b_acc.BackColor = Color.FromArgb(252, 252, 192);
             b_acc.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_acc.Location = new Point(12, 605);
             b_acc.Name = "b_acc";
@@ -179,7 +179,7 @@
             // 
             // b_next
             // 
-            b_next.BackColor = Color.FromArgb(255, 255, 192);
+            b_next.BackColor = Color.FromArgb(212, 222, 255);
             b_next.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             b_next.Location = new Point(919, 67);
             b_next.Name = "b_next";

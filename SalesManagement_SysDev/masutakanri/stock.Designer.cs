@@ -41,6 +41,7 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
+            StFlag = new CheckBox();
             Next = new Button();
             Prev = new Button();
             DelFlag = new CheckBox();
@@ -61,14 +62,13 @@
             B_iti = new Button();
             label2 = new Label();
             label1 = new Label();
-            StFlag = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // b_emp
             // 
-            b_emp.BackColor = SystemColors.InactiveCaption;
+            b_emp.BackColor = Color.FromArgb(190, 255, 255);
             b_emp.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_emp.ForeColor = Color.Black;
             b_emp.Location = new Point(15, 150);
@@ -81,7 +81,7 @@
             // 
             // b_mer
             // 
-            b_mer.BackColor = SystemColors.InactiveCaption;
+            b_mer.BackColor = Color.FromArgb(190, 255, 255);
             b_mer.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_mer.ForeColor = Color.Black;
             b_mer.Location = new Point(15, 230);
@@ -94,7 +94,7 @@
             // 
             // b_cus
             // 
-            b_cus.BackColor = SystemColors.InactiveCaption;
+            b_cus.BackColor = Color.FromArgb(190, 255, 255);
             b_cus.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_cus.ForeColor = Color.Black;
             b_cus.Location = new Point(15, 410);
@@ -107,9 +107,9 @@
             // 
             // b_sto
             // 
-            b_sto.BackColor = Color.RoyalBlue;
+            b_sto.BackColor = Color.FromArgb(160, 220, 190);
             b_sto.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_sto.ForeColor = Color.White;
+            b_sto.ForeColor = Color.Black;
             b_sto.Location = new Point(15, 310);
             b_sto.Name = "b_sto";
             b_sto.Size = new Size(120, 90);
@@ -138,7 +138,7 @@
             // 
             // b_ser
             // 
-            b_ser.BackColor = Color.FromArgb(255, 255, 192);
+            b_ser.BackColor = Color.FromArgb(190, 255, 200);
             b_ser.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_ser.Location = new Point(660, 70);
             b_ser.Name = "b_ser";
@@ -159,7 +159,7 @@
             // 
             // b_upd
             // 
-            b_upd.BackColor = Color.FromArgb(255, 255, 192);
+            b_upd.BackColor = Color.FromArgb(190, 255, 200);
             b_upd.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_upd.Location = new Point(320, 70);
             b_upd.Name = "b_upd";
@@ -180,7 +180,7 @@
             // 
             // b_reg
             // 
-            b_reg.BackColor = Color.FromArgb(255, 255, 192);
+            b_reg.BackColor = Color.FromArgb(190, 255, 200);
             b_reg.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_reg.Location = new Point(150, 70);
             b_reg.Name = "b_reg";
@@ -192,7 +192,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.RoyalBlue;
+            panel1.BackColor = Color.FromArgb(160, 220, 190);
             panel1.Controls.Add(StFlag);
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
@@ -211,6 +211,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1420, 690);
             panel1.TabIndex = 223;
+            // 
+            // StFlag
+            // 
+            StFlag.AutoSize = true;
+            StFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            StFlag.ForeColor = Color.Black;
+            StFlag.Location = new Point(200, 70);
+            StFlag.Name = "StFlag";
+            StFlag.Size = new Size(110, 29);
+            StFlag.TabIndex = 290;
+            StFlag.Text = "在庫管理";
+            StFlag.UseVisualStyleBackColor = true;
             // 
             // Next
             // 
@@ -234,7 +246,7 @@
             // 
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.White;
+            DelFlag.ForeColor = Color.Black;
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
@@ -246,7 +258,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.White;
+            label8.ForeColor = Color.Black;
             label8.ImageAlign = ContentAlignment.MiddleRight;
             label8.Location = new Point(1270, 152);
             label8.Name = "label8";
@@ -265,7 +277,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label17.ForeColor = Color.White;
+            label17.ForeColor = Color.Black;
             label17.Location = new Point(120, 120);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
@@ -308,7 +320,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.White;
+            label6.ForeColor = Color.Black;
             label6.Location = new Point(20, 20);
             label6.Name = "label6";
             label6.Size = new Size(66, 25);
@@ -319,7 +331,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.ForeColor = Color.White;
+            label12.ForeColor = Color.Black;
             label12.Location = new Point(20, 70);
             label12.Name = "label12";
             label12.Size = new Size(66, 25);
@@ -330,7 +342,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.ForeColor = Color.White;
+            label14.ForeColor = Color.Black;
             label14.Location = new Point(200, 20);
             label14.Name = "label14";
             label14.Size = new Size(66, 25);
@@ -375,7 +387,7 @@
             // 
             // B_iti
             // 
-            B_iti.BackColor = Color.FromArgb(255, 255, 192);
+            B_iti.BackColor = Color.FromArgb(190, 255, 200);
             B_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             B_iti.Location = new Point(490, 70);
             B_iti.Name = "B_iti";
@@ -404,18 +416,6 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 265;
             label1.Text = "現在の状態";
-            // 
-            // StFlag
-            // 
-            StFlag.AutoSize = true;
-            StFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            StFlag.ForeColor = Color.White;
-            StFlag.Location = new Point(200, 70);
-            StFlag.Name = "StFlag";
-            StFlag.Size = new Size(110, 29);
-            StFlag.TabIndex = 290;
-            StFlag.Text = "在庫管理";
-            StFlag.UseVisualStyleBackColor = true;
             // 
             // stock
             // 

@@ -255,7 +255,7 @@ namespace SalesManagement_SysDev
 
                     dataGridView1.DataSource = merchandises.Select(m => new
                     {
-                       商品ID = m.PrId,
+                        商品ID = m.PrId,
                         メーカーID = m.MaId,
                         商品名 = m.PrName,
                         値段 = m.Price,
