@@ -127,7 +127,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
-        private void b_kakutei_Click(object sender, EventArgs e)
+        private void b_kakutei_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace SalesManagement_SysDev
                 switch (CurrentStatus.CurrentMode)
                 {
                     case CurrentStatus.Mode.通常:
-                        HandleOrderOperation();
+                        HandleStockOperation();
                         break;
                     default:
                         MessageBox.Show("現在のモードは無効です。");
@@ -147,8 +147,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
-        //乾の途中
-        private void HandleOrderOperation()
+        private void HandleStockOperation()
         {
             switch (CurrentStatus.CurrentStatusValue)
             {
@@ -169,56 +168,81 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+
+
         private void UpdateStock()
         {
-            string ZaikoID = TBZaikoID.Text;
-            string SyohinID = TBSyohinID.Text;
-            string Zaikosuu = TBZaiko.Text;
-            bool delFlag = DelFlag.Checked;
-            bool stockflag = 
+            string zaikoID = TBZaikoID.Text;
+            string syohinID = TBSyohinID.Text;
+            string zaiko = TBZaiko.Text;
+            bool stflag = StFlag.Checked;
+            bool delflag = DelFlag.Checked;
+            string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
-                var stock = context.TStocks.SingleOrDefault(e => e.StId.ToString() == ZaikoID);
+                var stock = context.TStocks.SingleOrDefault(s => s.StId.ToString() == zaikoID);
                 if (stock != null)
                 {
-                    stock.PrId = SyohinID;
-                    stock.StQuantity = int.Parse(Zaikosuu);
-                    stock.StFlag = delFlag ? "1" : "0";
+                    stock.StId = int.Parse(zaikoID);
+                    stock.PrId = int.Parse(syohinID);
+                    stock.StQuantity = int.Parse(zaiko);
+                    stock.StFlag = stflag ? 1 : 0;
+                    
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注が見つかりません。");
+                    MessageBox.Show("該当する出荷情報が見つかりません。");
                 }
             }
         }
 
         private void RegisterStock()
         {
-            string ZaikoID = TBZaikoID.Text;
-            string SyohinID = TBSyohinID.Text;
-            string Zaikosuu = TBZaiko.Text;
-            bool delFlag = DelFlag.Checked;
+            string zaikoID = TBZaikoID.Text;
+            string syohinID = TBSyohinID.Text;
+            string zaiko = TBZaiko.Text;
+            bool stflag = StFlag.Checked;
+            bool delflag = DelFlag.Checked;
+            string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
-                var newStock = new TStock
+                var newstock = new TStock
                 {
-                    stock = ZaikoID;
-                   stock.PrId = SyohinID;
-                    stock.StQuantity = int.Parse(Zaikosuu);
-                    stock.StFlag = delFlag ? "1" : "0";
+                    StId = int.Parse(zaikoID),
+                    PrId = int.Parse(syohinID),
+                    StQuantity = int.Parse(zaiko),
+                    StFlag = stflag ? 1:0,
                 };
 
-                context.MEmployees.Add(newStock);
-                context.SaveChanges();
-                MessageBox.Show("登録が成功しました。");
+                context.TStocks.Add(newstock);
+                try
+                {
+                    context.SaveChanges(); MessageBox.Show("登録が成功しました。");
+                }
+                catch (DbUpdateException ex)
+                {
+                    // inner exception の詳細を表示する
+                    if (ex.InnerException != null)
+                    {
+                        MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // その他のエラーに対処する
+                    MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                }
             }
         }
-
 
         private void DisplayStock()
         {
@@ -226,23 +250,98 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var employees = context.MEmployees.ToList();
+                    var stock = context.TStocks.ToList();
 
-                    dataGridView1.DataSource = employees.Select(e => new
+                    dataGridView1.DataSource = stock.Select(s => new
                     {
-                        社員ID = e.EmId,
-                        社員名 = e.EmName,
-                        営業所ID = e.EmId,
-                        役職ID = e.PoId,
-                        入社年月日 = e.EmHiredate,
-                        電話番号 = e.EmPhone,
-                        非表示フラグ = e.EmHidden
+                        在庫ID = s.StId,
+                        商品ID = s.PrId,
+                        在庫数 = s.StQuantity,
+                        在庫管理フラグ = s.StFlag,
                     }).ToList();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("エラー: " + ex.Message);
+            }
+        }
+
+        private void SearchStock()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                // 各テキストボックスの値を取得 
+                var zaikoID = TBZaikoID.Text.Trim();       // 受注ID 
+                var syohinID = TBSyohinID.Text.Trim();           // 営業所ID 
+                var zaiko = TBZaiko.Text.Trim(); 
+
+
+
+                // 基本的なクエリ 
+                var query = context.TStocks.AsQueryable();
+
+                // 受注IDを検索条件に追加 
+                if (!string.IsNullOrEmpty(zaikoID) && int.TryParse(zaikoID, out int parsedzaikoID))
+                {
+                    query = query.Where(s => s.StId == parsedzaikoID);
+                }
+
+                // 営業所IDを検索条件に追加 
+                if (!string.IsNullOrEmpty(syohinID) && int.TryParse(syohinID, out int parsedsyohinID))
+                {
+                    query = query.Where(s => s.PrId == parsedsyohinID);
+                }
+
+                // 営業所IDを検索条件に追加 
+                if (!string.IsNullOrEmpty(zaiko) && int.TryParse(zaiko, out int parsedzaiko))
+                {
+                    query = query.Where(s => s.StQuantity == parsedzaiko);
+                }
+
+                // 結果を取得 
+                var stock = query.ToList();
+
+                if (stock.Any())
+                {
+                    // dataGridView1 に結果を表示 
+                    dataGridView1.DataSource = stock.Select(s => new
+                    {
+                        在庫ID = s.StId,
+                        商品ID = s.PrId,
+                        在庫数 = s.StQuantity,
+                        在庫管理フラグ = s.StFlag,
+                    }).ToList();
+                }
+                else
+                {
+                    MessageBox.Show("該当する受注が見つかりません。");
+                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
+                }
+            }
+        }
+
+        // CellClickイベントハンドラ
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // クリックした行のインデックスを取得
+            int rowIndex = e.RowIndex;
+
+            // 行インデックスが有効かどうかをチェック
+            if (rowIndex >= 0)
+            {
+                // 行データを取得
+                DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                // 各テキストボックスにデータを入力
+                TBZaikoID.Text = row.Cells["在庫ID"].Value.ToString();
+                TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
+                TBZaiko.Text = row.Cells["在庫数"].Value.ToString();
+                TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString();
+                // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
+                // 非表示ボタンや非表示理由もここで設定
+                // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
+                // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
             }
         }
     }

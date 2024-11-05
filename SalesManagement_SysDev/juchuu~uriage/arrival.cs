@@ -46,7 +46,7 @@ namespace SalesManagement_SysDev
         // メインメニューに戻る 
         private void close_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateToMainMenu(); // メインメニューに遷移 
+            formChanger.NavigateTo3();
         }
 
         // 各ボタンでの画面遷移
