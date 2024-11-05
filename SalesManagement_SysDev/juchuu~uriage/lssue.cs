@@ -205,7 +205,7 @@ namespace SalesManagement_SysDev
                     // 新しい出庫情報を作成
                     var Issue = new TSyukko
                     {
-                        ShID = int.Parse(ShopId),                    // 店舗ID
+                        SoId = int.Parse(ShopId),                    // 店舗ID
                         EmId = int.Parse(ShainId),// 社員ID（null許容）
                         ClId = int.Parse(KokyakuId),                 // クライアントID
                         OrId = int.Parse(JyutyuId),                       // 受注ID
