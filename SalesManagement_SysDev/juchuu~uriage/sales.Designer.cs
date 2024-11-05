@@ -68,7 +68,6 @@
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
             panel3 = new Panel();
-            TBGoukeiKingaku = new MaskedTextBox();
             label11 = new Label();
             dataGridView2 = new DataGridView();
             TBUriageIDS = new MaskedTextBox();
@@ -81,8 +80,8 @@
             dataGridView3 = new DataGridView();
             TBUriageSyosaiID = new MaskedTextBox();
             panel4 = new Panel();
-            TBGoukei = new MaskedTextBox();
-            label16 = new Label();
+            TBTotal = new TextBox();
+            label19 = new Label();
             label1 = new Label();
             label2 = new Label();
             b_FormSelector = new Button();
@@ -503,20 +502,12 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(212, 222, 255);
-            panel3.Controls.Add(TBGoukeiKingaku);
             panel3.Controls.Add(label11);
             panel3.Controls.Add(dataGridView2);
             panel3.Location = new Point(970, 145);
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 690);
             panel3.TabIndex = 261;
-            // 
-            // TBGoukeiKingaku
-            // 
-            TBGoukeiKingaku.Location = new Point(280, 70);
-            TBGoukeiKingaku.Name = "TBGoukeiKingaku";
-            TBGoukeiKingaku.Size = new Size(100, 31);
-            TBGoukeiKingaku.TabIndex = 279;
             // 
             // label11
             // 
@@ -626,6 +617,8 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(255, 128, 128);
+            panel4.Controls.Add(TBTotal);
+            panel4.Controls.Add(label19);
             panel4.Controls.Add(TBUriageSyosaiID);
             panel4.Controls.Add(dataGridView3);
             panel4.Controls.Add(TBSuryou);
@@ -658,23 +651,24 @@
             label16.TabIndex = 9;
             label16.Text = "合計金額";
             // 
-            // TBGoukei
+            // TBTotal
             // 
-            TBGoukei.Location = new Point(290, 70);
-            TBGoukei.Name = "TBGoukei";
-            TBGoukei.Size = new Size(100, 31);
-            TBGoukei.TabIndex = 279;
+            TBTotal.ImeMode = ImeMode.NoControl;
+            TBTotal.Location = new Point(280, 70);
+            TBTotal.Name = "TBTotal";
+            TBTotal.Size = new Size(150, 31);
+            TBTotal.TabIndex = 279;
             // 
-            // label16
+            // label19
             // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label16.ForeColor = Color.White;
-            label16.Location = new Point(200, 70);
-            label16.Name = "label16";
-            label16.Size = new Size(84, 25);
-            label16.TabIndex = 278;
-            label16.Text = "合計金額";
+            label19.AutoSize = true;
+            label19.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label19.ForeColor = Color.Black;
+            label19.Location = new Point(190, 70);
+            label19.Name = "label19";
+            label19.Size = new Size(84, 25);
+            label19.TabIndex = 278;
+            label19.Text = "合計金額";
             // 
             // label1
             // 
@@ -818,7 +812,6 @@
         private Label label7;
         private Button B_iti;
         private Panel panel3;
-        private MaskedTextBox TBGoukeiKingaku;
         private Label label11;
         private MaskedTextBox TBaaaaaID;
         private DataGridView dataGridView2;
@@ -842,7 +835,7 @@
         private Button colord;
         private Label 現在オフ;
         private CheckBox checkBoxDateFilter;
-        private MaskedTextBox TBGoukei;
-        private Label label16;
+        private Label label19;
+        private TextBox TBTotal;
     }
 }
