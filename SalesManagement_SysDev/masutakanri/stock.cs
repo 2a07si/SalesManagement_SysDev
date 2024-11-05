@@ -171,25 +171,20 @@ namespace SalesManagement_SysDev
         }
         private void UpdateStock()
         {
-            string ShainID = TBSyainID.Text;
-            string ShainName = TBSyainName.Text;
-            string ShopID = TBShopId.Text;
-            string JobID = TBJobID.Text;
-            DateTime ShainDate = date.Value;
-            string TelNo = TBTellNo.Text;
+            string ZaikoID = TBZaikoID.Text;
+            string SyohinID = TBSyohinID.Text;
+            string Zaikosuu = TBZaiko.Text;
             bool delFlag = DelFlag.Checked;
+            bool stockflag = 
 
             using (var context = new SalesManagementContext())
             {
-                var employee = context.MEmployees.SingleOrDefault(e => e.EmId.ToString() == ShainID);
-                if (employee != null)
+                var stock = context.TStocks.SingleOrDefault(e => e.StId.ToString() == ZaikoID);
+                if (stock != null)
                 {
-                    employee.EmName = ShainName;
-                    employee.SoId = int.Parse(ShopID);
-                    employee.PoId = int.Parse(JobID);
-                    employee.EmHiredate = ShainDate;
-                    employee.EmPhone = TelNo;
-                    employee.EmHidden = delFlag ? "1" : "0";
+                    stock.PrId = SyohinID;
+                    stock.StQuantity = int.Parse(Zaikosuu);
+                    stock.StFlag = delFlag ? "1" : "0";
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
@@ -200,4 +195,55 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
+        private void RegisterStock()
+        {
+            string ZaikoID = TBZaikoID.Text;
+            string SyohinID = TBSyohinID.Text;
+            string Zaikosuu = TBZaiko.Text;
+            bool delFlag = DelFlag.Checked;
+
+            using (var context = new SalesManagementContext())
+            {
+                var newStock = new TStock
+                {
+                    stock = ZaikoID;
+                   stock.PrId = SyohinID;
+                    stock.StQuantity = int.Parse(Zaikosuu);
+                    stock.StFlag = delFlag ? "1" : "0";
+                };
+
+                context.MEmployees.Add(newStock);
+                context.SaveChanges();
+                MessageBox.Show("登録が成功しました。");
+            }
+        }
+
+
+        private void DisplayStock()
+        {
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var employees = context.MEmployees.ToList();
+
+                    dataGridView1.DataSource = employees.Select(e => new
+                    {
+                        社員ID = e.EmId,
+                        社員名 = e.EmName,
+                        営業所ID = e.EmId,
+                        役職ID = e.PoId,
+                        入社年月日 = e.EmHiredate,
+                        電話番号 = e.EmPhone,
+                        非表示フラグ = e.EmHidden
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message);
+            }
+        }
+    }
 }
