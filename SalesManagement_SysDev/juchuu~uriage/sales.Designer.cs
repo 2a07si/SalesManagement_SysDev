@@ -633,24 +633,6 @@
             panel4.Size = new Size(600, 690);
             panel4.TabIndex = 6;
             // 
-            // TBGoukei
-            // 
-            TBGoukei.Location = new Point(290, 70);
-            TBGoukei.Name = "TBGoukei";
-            TBGoukei.Size = new Size(100, 31);
-            TBGoukei.TabIndex = 10;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label16.ForeColor = Color.White;
-            label16.Location = new Point(200, 70);
-            label16.Name = "label16";
-            label16.Size = new Size(84, 25);
-            label16.TabIndex = 9;
-            label16.Text = "合計金額";
-            // 
             // TBTotal
             // 
             TBTotal.ImeMode = ImeMode.NoControl;
