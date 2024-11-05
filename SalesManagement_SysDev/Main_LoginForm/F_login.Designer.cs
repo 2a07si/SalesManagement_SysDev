@@ -79,7 +79,7 @@
             label2.Location = new Point(405, 337);
             label2.Name = "label2";
             label2.Size = new Size(158, 60);
-            label2.TabIndex = 2;
+            label2.TabIndex = 1;
             label2.Text = "社員ID";
             // 
             // label3
@@ -89,7 +89,7 @@
             label3.Location = new Point(405, 519);
             label3.Name = "label3";
             label3.Size = new Size(190, 60);
-            label3.TabIndex = 3;
+            label3.TabIndex = 2;
             label3.Text = "パスワード";
             // 
             // label4
@@ -99,7 +99,7 @@
             label4.Location = new Point(597, 158);
             label4.Name = "label4";
             label4.Size = new Size(397, 96);
-            label4.TabIndex = 4;
+            label4.TabIndex = 0;
             label4.Text = "ログイン画面";
             // 
             // tb_ID
@@ -131,7 +131,7 @@
             labeltime.Location = new Point(1032, 410);
             labeltime.Name = "labeltime";
             labeltime.Size = new Size(142, 62);
-            labeltime.TabIndex = 8;
+            labeltime.TabIndex = 4;
             labeltime.Text = "22:22";
             // 
             // timer1
@@ -156,7 +156,7 @@
             labeldate.Location = new Point(1038, 355);
             labeldate.Name = "labeldate";
             labeldate.Size = new Size(276, 41);
-            labeldate.TabIndex = 9;
+            labeldate.TabIndex = 3;
             labeldate.Text = "YYYY年MM月DD日";
             // 
             // b_pwHyouji
@@ -164,7 +164,7 @@
             b_pwHyouji.Location = new Point(875, 527);
             b_pwHyouji.Name = "b_pwHyouji";
             b_pwHyouji.Size = new Size(40, 40);
-            b_pwHyouji.TabIndex = 10;
+            b_pwHyouji.TabIndex = 8;
             b_pwHyouji.Text = "閉";
             b_pwHyouji.UseVisualStyleBackColor = true;
             b_pwHyouji.Click += b_pwHyouji_Click;
