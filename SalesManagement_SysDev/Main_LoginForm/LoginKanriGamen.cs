@@ -64,7 +64,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private void b_PCOK_Click(object sender, EventArgs e)
         {
             UpdatePassword();
-            
+
         }
         private void UpdatePassword()
         {

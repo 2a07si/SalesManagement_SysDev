@@ -254,8 +254,8 @@
             Controls.Add(b_NewAccount);
             Controls.Add(b_PassChange);
             Controls.Add(close);
-            Controls.Add(p_PC);
             Controls.Add(p_NA);
+            Controls.Add(p_PC);
             Name = "LoginKanriGamen";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ログイン管理画面";
