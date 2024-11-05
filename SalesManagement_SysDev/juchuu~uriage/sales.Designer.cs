@@ -87,6 +87,8 @@
             colord = new Button();
             現在オフ = new Label();
             checkBoxDateFilter = new CheckBox();
+            TBGoukei = new MaskedTextBox();
+            label16 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -624,6 +626,8 @@
             // panel4
             // 
             panel4.BackColor = Color.IndianRed;
+            panel4.Controls.Add(TBGoukei);
+            panel4.Controls.Add(label16);
             panel4.Controls.Add(TBUriageSyosaiID);
             panel4.Controls.Add(dataGridView3);
             panel4.Controls.Add(TBSuryou);
@@ -695,6 +699,24 @@
             checkBoxDateFilter.TabIndex = 287;
             checkBoxDateFilter.Text = "受注年月日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
+            // 
+            // TBGoukei
+            // 
+            TBGoukei.Location = new Point(290, 70);
+            TBGoukei.Name = "TBGoukei";
+            TBGoukei.Size = new Size(100, 31);
+            TBGoukei.TabIndex = 279;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label16.ForeColor = Color.White;
+            label16.Location = new Point(200, 70);
+            label16.Name = "label16";
+            label16.Size = new Size(84, 25);
+            label16.TabIndex = 278;
+            label16.Text = "合計金額";
             // 
             // sales
             // 
@@ -804,5 +826,7 @@
         private Button colord;
         private Label 現在オフ;
         private CheckBox checkBoxDateFilter;
+        private MaskedTextBox TBGoukei;
+        private Label label16;
     }
 }

@@ -371,7 +371,7 @@ namespace SalesManagement_SysDev
                 var shainID = TBShainID.Text.Trim();         // 社員ID 
                 var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID 
                 var shukkaID = TBSyukkaID.Text.Trim();     // 担当者
-                
+
 
                 // 基本的なクエリ 
                 var query = context.TShipments.AsQueryable();
@@ -482,7 +482,7 @@ namespace SalesManagement_SysDev
                     PrId = int.Parse(syohinID),
                     ShId = int.Parse(shukkaID),
                     ShQuantity = int.Parse(suryou)
-            };
+                };
 
                 context.TShipmentDetails.Add(newShippingDetail);
                 context.SaveChanges();
@@ -645,6 +645,15 @@ namespace SalesManagement_SysDev
         }
 
         private void b_FormSelector_Click_1(object sender, EventArgs e)
+        {
+            // 状態を切り替える処理
+            ToggleShippingSelection();
+
+            // b_FormSelectorのテキストを現在の状態に更新
+            UpdateFlagButtonText();
+        }
+
+        private void b_FormSelector_Click_2(object sender, EventArgs e)
         {
             // 状態を切り替える処理
             ToggleShippingSelection();

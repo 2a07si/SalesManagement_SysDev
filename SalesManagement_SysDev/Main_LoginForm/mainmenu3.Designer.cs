@@ -62,7 +62,7 @@
             Loginkanri.Location = new Point(27, 118);
             Loginkanri.Name = "Loginkanri";
             Loginkanri.Size = new Size(129, 45);
-            Loginkanri.TabIndex = 132;
+            Loginkanri.TabIndex = 3;
             Loginkanri.Text = "ログイン管理";
             Loginkanri.UseVisualStyleBackColor = true;
             Loginkanri.Click += Loginkanri_Click;
@@ -94,7 +94,7 @@
             b_mas.Location = new Point(977, 132);
             b_mas.Name = "b_mas";
             b_mas.Size = new Size(400, 75);
-            b_mas.TabIndex = 129;
+            b_mas.TabIndex = 2;
             b_mas.Text = "マスタ管理";
             b_mas.UseVisualStyleBackColor = false;
             b_mas.Click += b_mas_Click;
@@ -120,7 +120,7 @@
             b_sal.Location = new Point(850, 300);
             b_sal.Name = "b_sal";
             b_sal.Size = new Size(259, 164);
-            b_sal.TabIndex = 47;
+            b_sal.TabIndex = 5;
             b_sal.Text = "売上管理";
             b_sal.UseVisualStyleBackColor = false;
             b_sal.Click += b_sal_Click;
@@ -132,7 +132,7 @@
             b_lss.Location = new Point(850, 100);
             b_lss.Name = "b_lss";
             b_lss.Size = new Size(259, 164);
-            b_lss.TabIndex = 46;
+            b_lss.TabIndex = 2;
             b_lss.Text = "出庫管理";
             b_lss.UseVisualStyleBackColor = false;
             b_lss.Click += b_lss_Click;
@@ -144,7 +144,7 @@
             b_arr.Location = new Point(100, 300);
             b_arr.Name = "b_arr";
             b_arr.Size = new Size(259, 164);
-            b_arr.TabIndex = 45;
+            b_arr.TabIndex = 3;
             b_arr.Text = "入荷管理";
             b_arr.UseVisualStyleBackColor = false;
             b_arr.Click += b_arr_Click;
@@ -156,7 +156,7 @@
             b_shi.Location = new Point(475, 300);
             b_shi.Name = "b_shi";
             b_shi.Size = new Size(259, 164);
-            b_shi.TabIndex = 44;
+            b_shi.TabIndex = 4;
             b_shi.Text = "出荷管理";
             b_shi.UseVisualStyleBackColor = false;
             b_shi.Click += b_shi_Click;
@@ -168,7 +168,7 @@
             b_ord.Location = new Point(475, 100);
             b_ord.Name = "b_ord";
             b_ord.Size = new Size(259, 164);
-            b_ord.TabIndex = 42;
+            b_ord.TabIndex = 1;
             b_ord.Text = "注文管理";
             b_ord.UseVisualStyleBackColor = false;
             b_ord.Click += b_ord_Click;
@@ -180,7 +180,7 @@
             b_add.Location = new Point(100, 100);
             b_add.Name = "b_add";
             b_add.Size = new Size(259, 164);
-            b_add.TabIndex = 41;
+            b_add.TabIndex = 0;
             b_add.Text = "受注管理";
             b_add.UseVisualStyleBackColor = false;
             b_add.Click += b_add_Click;
@@ -192,7 +192,7 @@
             b_HN.Location = new Point(577, 132);
             b_HN.Name = "b_HN";
             b_HN.Size = new Size(400, 75);
-            b_HN.TabIndex = 128;
+            b_HN.TabIndex = 1;
             b_HN.Text = "発注～入庫";
             b_HN.UseVisualStyleBackColor = false;
             b_HN.Click += b_HN_Click;
@@ -204,7 +204,7 @@
             b_JU.Location = new Point(177, 132);
             b_JU.Name = "b_JU";
             b_JU.Size = new Size(400, 75);
-            b_JU.TabIndex = 127;
+            b_JU.TabIndex = 0;
             b_JU.Text = "受注～売上";
             b_JU.UseVisualStyleBackColor = false;
             b_JU.Click += b_JU_Click;
@@ -215,7 +215,7 @@
             b_logout.Location = new Point(1397, 37);
             b_logout.Name = "b_logout";
             b_logout.Size = new Size(155, 56);
-            b_logout.TabIndex = 126;
+            b_logout.TabIndex = 4;
             b_logout.Text = "ログアウト(Esc)";
             b_logout.UseVisualStyleBackColor = true;
             b_logout.Click += b_logout_Click;

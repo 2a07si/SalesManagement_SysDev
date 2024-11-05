@@ -200,6 +200,7 @@ namespace SalesManagement_SysDev
                     break;
                 case CurrentStatus.Status.一覧:
                     DisplaySaleDetails();
+                    MessageBox.Show("(^^)");
                     break;
                 case CurrentStatus.Status.検索:
                     SearchSaleDetails();
@@ -256,10 +257,10 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                int ShopNum;
-                if (!int.TryParse(shopID, out ShopNum) || !context.MSalesOffices.Any(e => e.SoId == ShopNum))
+                int salesNum;
+                if (!int.TryParse(salesID, out salesNum) || !context.TSales.Any(s => s.SaId == salesNum))
                 {
-                    MessageBox.Show("営業所IDが存在しません。");
+                    MessageBox.Show("売上IDが存在しません。");
                     return;
                 }
                 var newSale = new TSale
