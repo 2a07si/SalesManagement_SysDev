@@ -39,7 +39,7 @@ namespace SalesManagement_SysDev
                 b_sal,
                 b_lss
             });
-
+            b_FormSelector.Text = "←通常";
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
