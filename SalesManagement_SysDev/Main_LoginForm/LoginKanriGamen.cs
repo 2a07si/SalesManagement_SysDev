@@ -35,20 +35,20 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void b_PassChange_Click(object sender, EventArgs e)
         {
-            p_PC.Visible = false;
-            p_NA.Visible = true;
+            p_PC.Visible = true;
+            p_NA.Visible = false;
         }
 
         private void b_NewAccount_Click(object sender, EventArgs e)
         {
-            p_NA.Visible = false;
-            p_PC.Visible = true;
+            p_NA.Visible = true;
+            p_PC.Visible = false;
         }
 
         private void LoginKanriGamen_Load(object sender, EventArgs e)
         {
-            p_PC.Visible = false;
-            p_NA.Visible = true;
+            p_PC.Visible = true;
+            p_NA.Visible = false;
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private void b_PCOK_Click(object sender, EventArgs e)
         {
             UpdatePassword();
-            
+
         }
         private void UpdatePassword()
         {
