@@ -56,6 +56,7 @@ namespace SalesManagement_SysDev
             accessManager.SetButtonAccess(buttons); // ボタンのアクセス設定を適用
             labelStatus.labelstatus(label2, b_kakutei);
             b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
         }
 
         private void clear_Click(object sender, EventArgs e)
