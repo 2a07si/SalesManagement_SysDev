@@ -107,7 +107,7 @@
             b_ser.Location = new Point(750, 70);
             b_ser.Name = "b_ser";
             b_ser.Size = new Size(150, 70);
-            b_ser.TabIndex = 198;
+            b_ser.TabIndex = 3;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
             b_ser.Click += b_ser_Click_1;
@@ -128,7 +128,7 @@
             b_upd.Location = new Point(350, 70);
             b_upd.Name = "b_upd";
             b_upd.Size = new Size(150, 70);
-            b_upd.TabIndex = 197;
+            b_upd.TabIndex = 1;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
             b_upd.Click += b_upd_Click;
@@ -149,7 +149,7 @@
             b_reg.Location = new Point(150, 70);
             b_reg.Name = "b_reg";
             b_reg.Size = new Size(150, 70);
-            b_reg.TabIndex = 196;
+            b_reg.TabIndex = 0;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
             b_reg.Click += b_reg_Click_1;
@@ -162,7 +162,7 @@
             b_hor.Location = new Point(15, 150);
             b_hor.Name = "b_hor";
             b_hor.Size = new Size(120, 90);
-            b_hor.TabIndex = 207;
+            b_hor.TabIndex = 8;
             b_hor.Text = "発注";
             b_hor.UseVisualStyleBackColor = false;
             // 
@@ -174,7 +174,7 @@
             b_rec.Location = new Point(15, 250);
             b_rec.Name = "b_rec";
             b_rec.Size = new Size(120, 70);
-            b_rec.TabIndex = 205;
+            b_rec.TabIndex = 9;
             b_rec.Text = "入庫";
             b_rec.UseVisualStyleBackColor = false;
             b_rec.Click += b_rec_Click;
@@ -201,14 +201,14 @@
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
-            panel1.TabIndex = 204;
+            panel1.TabIndex = 4;
             // 
             // Next
             // 
             Next.Location = new Point(770, 144);
             Next.Name = "Next";
             Next.Size = new Size(40, 40);
-            Next.TabIndex = 273;
+            Next.TabIndex = 13;
             Next.Text = "▶";
             Next.UseVisualStyleBackColor = true;
             // 
@@ -220,7 +220,7 @@
             NyuukoFlag.Location = new Point(300, 70);
             NyuukoFlag.Name = "NyuukoFlag";
             NyuukoFlag.Size = new Size(110, 29);
-            NyuukoFlag.TabIndex = 247;
+            NyuukoFlag.TabIndex = 8;
             NyuukoFlag.Text = "入庫状態";
             NyuukoFlag.UseVisualStyleBackColor = true;
             // 
@@ -229,7 +229,7 @@
             Prev.Location = new Point(640, 144);
             Prev.Name = "Prev";
             Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 272;
+            Prev.TabIndex = 12;
             Prev.Text = "◀";
             Prev.UseVisualStyleBackColor = true;
             // 
@@ -239,7 +239,7 @@
             date.Location = new Point(130, 70);
             date.Name = "date";
             date.Size = new Size(165, 31);
-            date.TabIndex = 75;
+            date.TabIndex = 7;
             // 
             // DelFlag
             // 
@@ -249,7 +249,7 @@
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
-            DelFlag.TabIndex = 246;
+            DelFlag.TabIndex = 9;
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
             // 
@@ -273,7 +273,7 @@
             label18.Location = new Point(20, 70);
             label18.Name = "label18";
             label18.Size = new Size(102, 25);
-            label18.TabIndex = 74;
+            label18.TabIndex = 6;
             label18.Text = "発注年月日";
             // 
             // TBRiyuu
@@ -281,7 +281,7 @@
             TBRiyuu.Location = new Point(230, 120);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
-            TBRiyuu.TabIndex = 245;
+            TBRiyuu.TabIndex = 11;
             // 
             // label17
             // 
@@ -291,7 +291,7 @@
             label17.Location = new Point(120, 120);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
-            label17.TabIndex = 244;
+            label17.TabIndex = 10;
             label17.Text = "非表示理由";
             // 
             // TBShainID
@@ -299,21 +299,21 @@
             TBShainID.Location = new Point(450, 20);
             TBShainID.Name = "TBShainID";
             TBShainID.Size = new Size(100, 31);
-            TBShainID.TabIndex = 69;
+            TBShainID.TabIndex = 5;
             // 
             // TBMakerID
             // 
             TBMakerID.Location = new Point(270, 20);
             TBMakerID.Name = "TBMakerID";
             TBMakerID.Size = new Size(100, 31);
-            TBMakerID.TabIndex = 66;
+            TBMakerID.TabIndex = 3;
             // 
             // TBHattyuuID
             // 
             TBHattyuuID.Location = new Point(90, 20);
             TBHattyuuID.Name = "TBHattyuuID";
             TBHattyuuID.Size = new Size(100, 31);
-            TBHattyuuID.TabIndex = 64;
+            TBHattyuuID.TabIndex = 1;
             // 
             // label14
             // 
@@ -323,7 +323,7 @@
             label14.Location = new Point(380, 20);
             label14.Name = "label14";
             label14.Size = new Size(66, 25);
-            label14.TabIndex = 62;
+            label14.TabIndex = 4;
             label14.Text = "社員ID";
             // 
             // label8
@@ -334,7 +334,7 @@
             label8.Location = new Point(200, 20);
             label8.Name = "label8";
             label8.Size = new Size(69, 25);
-            label8.TabIndex = 56;
+            label8.TabIndex = 2;
             label8.Text = "メーカID";
             // 
             // label6
@@ -345,7 +345,7 @@
             label6.Location = new Point(20, 20);
             label6.Name = "label6";
             label6.Size = new Size(66, 25);
-            label6.TabIndex = 54;
+            label6.TabIndex = 0;
             label6.Text = "発注ID";
             // 
             // dataGridView1
@@ -357,7 +357,7 @@
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(800, 490);
-            dataGridView1.TabIndex = 52;
+            dataGridView1.TabIndex = 14;
             // 
             // b_kakutei
             // 
@@ -366,7 +366,7 @@
             b_kakutei.Location = new Point(1200, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
-            b_kakutei.TabIndex = 243;
+            b_kakutei.TabIndex = 6;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
             b_kakutei.Click += b_kakutei_Click;
@@ -377,7 +377,7 @@
             clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
-            clear.TabIndex = 242;
+            clear.TabIndex = 7;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             clear.Click += clear_Click;
@@ -387,7 +387,7 @@
             close.Location = new Point(1460, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
-            close.TabIndex = 241;
+            close.TabIndex = 10;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
@@ -399,7 +399,7 @@
             B_iti.Location = new Point(550, 70);
             B_iti.Name = "B_iti";
             B_iti.Size = new Size(150, 70);
-            B_iti.TabIndex = 260;
+            B_iti.TabIndex = 2;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
             B_iti.Click += B_iti_Click_1;
@@ -419,14 +419,14 @@
             panel3.Location = new Point(970, 145);
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 690);
-            panel3.TabIndex = 271;
+            panel3.TabIndex = 5;
             // 
             // TBHattyuuSyosaiID
             // 
             TBHattyuuSyosaiID.Location = new Point(130, 20);
             TBHattyuuSyosaiID.Name = "TBHattyuuSyosaiID";
             TBHattyuuSyosaiID.Size = new Size(100, 31);
-            TBHattyuuSyosaiID.TabIndex = 277;
+            TBHattyuuSyosaiID.TabIndex = 1;
             // 
             // dataGridView2
             // 
@@ -437,14 +437,14 @@
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.Size = new Size(580, 490);
-            dataGridView2.TabIndex = 52;
+            dataGridView2.TabIndex = 8;
             // 
             // TBSuryou
             // 
             TBSuryou.Location = new Point(80, 70);
             TBSuryou.Name = "TBSuryou";
             TBSuryou.Size = new Size(100, 31);
-            TBSuryou.TabIndex = 276;
+            TBSuryou.TabIndex = 7;
             // 
             // label15
             // 
@@ -454,7 +454,7 @@
             label15.Location = new Point(240, 20);
             label15.Name = "label15";
             label15.Size = new Size(66, 25);
-            label15.TabIndex = 268;
+            label15.TabIndex = 2;
             label15.Text = "発注ID";
             // 
             // label9
@@ -465,7 +465,7 @@
             label9.Location = new Point(20, 70);
             label9.Name = "label9";
             label9.Size = new Size(48, 25);
-            label9.TabIndex = 275;
+            label9.TabIndex = 6;
             label9.Text = "数量";
             // 
             // label13
@@ -476,7 +476,7 @@
             label13.Location = new Point(20, 20);
             label13.Name = "label13";
             label13.Size = new Size(102, 25);
-            label13.TabIndex = 269;
+            label13.TabIndex = 0;
             label13.Text = "発注詳細ID";
             // 
             // TBSyohinID
@@ -484,7 +484,7 @@
             TBSyohinID.Location = new Point(490, 20);
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
-            TBSyohinID.TabIndex = 274;
+            TBSyohinID.TabIndex = 5;
             // 
             // label10
             // 
@@ -494,7 +494,7 @@
             label10.Location = new Point(420, 20);
             label10.Name = "label10";
             label10.Size = new Size(66, 25);
-            label10.TabIndex = 271;
+            label10.TabIndex = 4;
             label10.Text = "商品ID";
             // 
             // TBHattyuIDS
@@ -502,7 +502,7 @@
             TBHattyuIDS.Location = new Point(310, 20);
             TBHattyuIDS.Name = "TBHattyuIDS";
             TBHattyuIDS.Size = new Size(100, 31);
-            TBHattyuIDS.TabIndex = 272;
+            TBHattyuIDS.TabIndex = 3;
             // 
             // label2
             // 
@@ -529,7 +529,7 @@
             b_FormSelector.Location = new Point(962, 108);
             b_FormSelector.Name = "b_FormSelector";
             b_FormSelector.Size = new Size(112, 34);
-            b_FormSelector.TabIndex = 274;
+            b_FormSelector.TabIndex = 12;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
             b_FormSelector.Click += b_FormSelector_Click_1;
@@ -539,7 +539,7 @@
             colord.Location = new Point(962, 68);
             colord.Name = "colord";
             colord.Size = new Size(112, 34);
-            colord.TabIndex = 273;
+            colord.TabIndex = 11;
             colord.Text = "色変え";
             colord.UseVisualStyleBackColor = true;
             // 
