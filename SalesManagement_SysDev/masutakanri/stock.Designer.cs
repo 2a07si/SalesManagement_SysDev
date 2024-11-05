@@ -61,6 +61,7 @@
             B_iti = new Button();
             label2 = new Label();
             label1 = new Label();
+            StFlag = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -192,6 +193,7 @@
             // panel1
             // 
             panel1.BackColor = Color.RoyalBlue;
+            panel1.Controls.Add(StFlag);
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(DelFlag);
@@ -233,7 +235,7 @@
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.White;
-            DelFlag.Location = new Point(20, 70);
+            DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 261;
@@ -254,7 +256,7 @@
             // 
             // TBRiyuu
             // 
-            TBRiyuu.Location = new Point(230, 70);
+            TBRiyuu.Location = new Point(230, 120);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
             TBRiyuu.TabIndex = 260;
@@ -264,7 +266,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label17.ForeColor = Color.White;
-            label17.Location = new Point(120, 70);
+            label17.Location = new Point(120, 120);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
             label17.TabIndex = 259;
@@ -297,7 +299,7 @@
             // 
             // TBZaiko
             // 
-            TBZaiko.Location = new Point(451, 20);
+            TBZaiko.Location = new Point(90, 70);
             TBZaiko.Name = "TBZaiko";
             TBZaiko.Size = new Size(90, 31);
             TBZaiko.TabIndex = 257;
@@ -318,7 +320,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label12.ForeColor = Color.White;
-            label12.Location = new Point(381, 20);
+            label12.Location = new Point(20, 70);
             label12.Name = "label12";
             label12.Size = new Size(66, 25);
             label12.TabIndex = 254;
@@ -403,6 +405,18 @@
             label1.TabIndex = 265;
             label1.Text = "現在の状態";
             // 
+            // StFlag
+            // 
+            StFlag.AutoSize = true;
+            StFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            StFlag.ForeColor = Color.White;
+            StFlag.Location = new Point(200, 70);
+            StFlag.Name = "StFlag";
+            StFlag.Size = new Size(110, 29);
+            StFlag.TabIndex = 290;
+            StFlag.Text = "在庫管理";
+            StFlag.UseVisualStyleBackColor = true;
+            // 
             // stock
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -474,5 +488,6 @@
         private Button Next;
         private Button Prev;
         private Label label8;
+        private CheckBox StFlag;
     }
 }
