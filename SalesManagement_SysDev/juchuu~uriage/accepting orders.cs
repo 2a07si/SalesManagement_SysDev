@@ -87,7 +87,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click_1(object sender, EventArgs e) => UpdateStatus();
+        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
 
         private void UpdateStatus()
         {
@@ -723,5 +723,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
