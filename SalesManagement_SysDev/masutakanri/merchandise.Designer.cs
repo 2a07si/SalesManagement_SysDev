@@ -495,7 +495,7 @@
             close.Location = new Point(1450, 17);
             close.Name = "close";
             close.Size = new Size(100, 40);
-            close.TabIndex = 8;
+            close.TabIndex = 13;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
