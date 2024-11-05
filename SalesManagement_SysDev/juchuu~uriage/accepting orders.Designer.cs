@@ -271,7 +271,7 @@ namespace SalesManagement_SysDev
             Prev.Location = new Point(640, 144);
             Prev.Name = "Prev";
             Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 10;
+            Prev.TabIndex = 18;
             Prev.Text = "◀";
             Prev.UseVisualStyleBackColor = true;
             // 
@@ -280,7 +280,7 @@ namespace SalesManagement_SysDev
             Next.Location = new Point(770, 144);
             Next.Name = "Next";
             Next.Size = new Size(40, 40);
-            Next.TabIndex = 11;
+            Next.TabIndex = 19;
             Next.Text = "▶";
             Next.UseVisualStyleBackColor = true;
             // 
