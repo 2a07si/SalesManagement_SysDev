@@ -139,6 +139,7 @@ namespace SalesManagement_SysDev
             TBUriageIDS.Text = "";
             TBSyohinID.Text = "";
             TBSuryou.Text = "";
+            TBTotal.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
         }
@@ -414,7 +415,7 @@ namespace SalesManagement_SysDev
             string uriageID = TBUriageIDS.Text;
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
-            string total = TBGoukei.Text;
+            string total = TBTotal.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -443,7 +444,7 @@ namespace SalesManagement_SysDev
             string uriageID = TBUriageIDS.Text;
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
-            string total = TBGoukei.Text;
+            string total = TBTotal.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -508,7 +509,7 @@ namespace SalesManagement_SysDev
                 string uriageID = TBUriageIDS.Text;
                 string syohinID = TBSyohinID.Text;
                 string suryou = TBSuryou.Text;
-                string total = TBGoukei.Text;
+                string total = TBTotal.Text;
 
                 // 基本的なクエリ
                 var query = context.TSaleDetails.AsQueryable();
@@ -612,7 +613,6 @@ namespace SalesManagement_SysDev
                 TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                 TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
                 date.Value = Convert.ToDateTime(row.Cells["売上日時"].Value);
-                TBGoukei.Text = row.Cells["合計金額"].Value.ToString();
                 // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                 // 非表示ボタンや非表示理由もここで設定
                 // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
@@ -636,6 +636,7 @@ namespace SalesManagement_SysDev
                 TBUriageIDS.Text = row.Cells["売上ID"].Value.ToString();
                 TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                 TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                TBTotal.Text = row.Cells["合計金額"].Value.ToString();
             }
         }
 
@@ -652,6 +653,8 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+
     }
 
 

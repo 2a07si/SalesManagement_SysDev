@@ -273,7 +273,7 @@ namespace SalesManagement_SysDev
                 {
                     try
                     { // 新しい入荷情報を作成
-                            var newArrival = new TArrival
+                        var newArrival = new TArrival
                         {
                             SoId = int.Parse(ShopId),                           // 店舗ID
                             EmId = int.Parse(ShainId), // 社員ID（null許容）
@@ -317,7 +317,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-    
+
 
 
 

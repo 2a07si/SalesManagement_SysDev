@@ -187,7 +187,7 @@
             // 
             // b_HN
             // 
-            b_HN.BackColor = Color.FromArgb(197, 212, 224);
+            b_HN.BackColor = Color.FromArgb(212, 222, 255);
             b_HN.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_HN.Location = new Point(577, 132);
             b_HN.Name = "b_HN";
@@ -303,7 +303,7 @@
             // 
             // HN
             // 
-            HN.BackColor = Color.FromArgb(197, 212, 224);
+            HN.BackColor = Color.FromArgb(212, 222, 255);
             HN.Controls.Add(b_rec);
             HN.Controls.Add(b_hor);
             HN.Location = new Point(177, 207);
@@ -351,9 +351,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
+            Controls.Add(HN);
             Controls.Add(JU);
             Controls.Add(mas);
-            Controls.Add(HN);
             Name = "mainmenu3";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "mainmenu";

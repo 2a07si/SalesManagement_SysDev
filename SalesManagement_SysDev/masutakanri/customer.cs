@@ -13,7 +13,7 @@ namespace SalesManagement_SysDev
 {
     public partial class customer : Form
     {
-        
+
 
         private Form mainForm;
         private ClassChangeForms formChanger;
@@ -224,7 +224,7 @@ namespace SalesManagement_SysDev
                     ClName = kokyakuname,
                     ClPhone = tel,
                     ClFax = fax,
-            };
+                };
 
                 context.MClients.Add(newcustomer);
                 try
