@@ -256,7 +256,7 @@ namespace SalesManagement_SysDev
                 int kokyaku;
                 if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
-                    MessageBox.Show("発注IDが存在しません。");
+                    MessageBox.Show("顧客IDが存在しません。");
                     return;
                 }
 
@@ -264,7 +264,7 @@ namespace SalesManagement_SysDev
                 int juchu;
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
-                    MessageBox.Show("社員IDが存在しません。");
+                    MessageBox.Show("受注IDが存在しません。");
                     return;
                 }
                 // 入荷が既に存在するか確認

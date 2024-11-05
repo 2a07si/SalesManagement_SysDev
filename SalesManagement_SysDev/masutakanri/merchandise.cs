@@ -222,6 +222,20 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int maker;
+                if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaId == maker))
+                {
+                    MessageBox.Show("メーカーIDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int shoubunrui;
+                if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScId == shoubunrui))
+                {
+                    MessageBox.Show("小分類IDが存在しません。");
+                    return;
+                }
                 var merchandise = context.MProducts.SingleOrDefault(e => e.PrId.ToString() == SyohinID);
                 if (merchandise == null)
                 {

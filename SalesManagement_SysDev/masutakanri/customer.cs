@@ -209,6 +209,12 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int shop;
+                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                {
+                    MessageBox.Show("営業所IDが存在しません。");
+                    return;
+                }
                 var newcustomer = new MClient
                 {
                     SoId = int.Parse(shopID),

@@ -242,6 +242,34 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int shop;
+                if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                {
+                    MessageBox.Show("営業所IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int employeeId;
+                if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                {
+                    MessageBox.Show("社員IDが存在しません。");
+                    return;
+                }
+                int kokyaku;
+                if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
+                {
+                    MessageBox.Show("顧客IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int juchu;
+                if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
+                {
+                    MessageBox.Show("受注IDが存在しません。");
+                    return;
+                }
                 // 出庫が既に存在するか確認
                 var issue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == SyukkoId);
                 if (issue == null)
@@ -441,15 +469,29 @@ namespace SalesManagement_SysDev
         private void RegisterIssueDetails()
         {
             string SyukkoSyosaiID = TBSyukkoSyosaiId.Text;
-            string jyutyuID = TBSyukkoIDS.Text;
+            string SyukkoID = TBSyukkoIDS.Text;
             string syohinID = TBSyohinId.Text;
             string suryou = TBSuryou.Text;
 
             using (var context = new SalesManagementContext())
             {
+                int shukko;
+                if (!int.TryParse(SyukkoID, out shukko) || !context.TSyukkos.Any(s => s.SyId == shukko))
+                {
+                    MessageBox.Show("出庫IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int shouhin;
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                {
+                    MessageBox.Show("商品IDが存在しません。");
+                    return;
+                }
                 var newIssueDetail = new TSyukkoDetail
                 {
-                    SyId = int.Parse(jyutyuID),
+                    SyId = int.Parse(SyukkoID),
                     PrId = int.Parse(syohinID),
                     SyQuantity = int.Parse(suryou),
                 };

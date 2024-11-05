@@ -244,6 +244,34 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int shop;
+                if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                {
+                    MessageBox.Show("営業所IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int employeeId;
+                if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                {
+                    MessageBox.Show("社員IDが存在しません。");
+                    return;
+                }
+                int kokyaku;
+                if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
+                {
+                    MessageBox.Show("顧客IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int juchu;
+                if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
+                {
+                    MessageBox.Show("受注IDが存在しません。");
+                    return;
+                }
                 // 注文が既に存在するか確認
                 var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == OrderId);
                 if (order == null)
@@ -443,15 +471,27 @@ namespace SalesManagement_SysDev
         private void RegisterOrderDetails()
         {
             string OrderSyosaiID = TBTyumonSyosaiId.Text;
-            string jyutyuID = TBTyumonIDS.Text;
+            string chuumon = TBTyumonIDS.Text;
             string syohinID = TBSyohinId.Text;
             string suryou = TBSuryou.Text;
 
             using (var context = new SalesManagementContext())
             {
+                int tyuumon;
+                if (!int.TryParse(chuumon, out tyuumon) || !context.TChumons.Any(s => s.ChId == tyuumon))
+                {
+                    MessageBox.Show("注文IDが存在しません。");
+                    return;
+                }
+                int shouhin;
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                {
+                    MessageBox.Show("商品IDが存在しません。");
+                    return;
+                }
                 var newOrderDetail = new TOrderDetail
                 {
-                    OrId = int.Parse(jyutyuID),
+                    OrId = int.Parse(chuumon),
                     PrId = int.Parse(syohinID),
                     OrQuantity = int.Parse(suryou),
                 };

@@ -207,6 +207,12 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int shouhin;
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                {
+                    MessageBox.Show("商品IDが存在しません。");
+                    return;
+                }
                 var newstock = new TStock
                 {
                     StId = int.Parse(zaikoID),
