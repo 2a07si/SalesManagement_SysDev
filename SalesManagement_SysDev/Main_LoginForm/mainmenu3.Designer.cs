@@ -62,7 +62,7 @@
             Loginkanri.Location = new Point(27, 118);
             Loginkanri.Name = "Loginkanri";
             Loginkanri.Size = new Size(129, 45);
-            Loginkanri.TabIndex = 3;
+            Loginkanri.TabIndex = 1000;
             Loginkanri.Text = "ログイン管理";
             Loginkanri.UseVisualStyleBackColor = true;
             Loginkanri.Click += Loginkanri_Click;
@@ -111,7 +111,7 @@
             JU.Location = new Point(177, 207);
             JU.Name = "JU";
             JU.Size = new Size(1200, 600);
-            JU.TabIndex = 133;
+            JU.TabIndex = 0;
             // 
             // b_sal
             // 
@@ -215,7 +215,7 @@
             b_logout.Location = new Point(1397, 37);
             b_logout.Name = "b_logout";
             b_logout.Size = new Size(155, 56);
-            b_logout.TabIndex = 4;
+            b_logout.TabIndex = 999;
             b_logout.Text = "ログアウト(Esc)";
             b_logout.UseVisualStyleBackColor = true;
             b_logout.Click += b_logout_Click;
@@ -260,7 +260,7 @@
             b_sto.Location = new Point(270, 300);
             b_sto.Name = "b_sto";
             b_sto.Size = new Size(259, 164);
-            b_sto.TabIndex = 44;
+            b_sto.TabIndex = 2;
             b_sto.Text = "在庫管理";
             b_sto.UseVisualStyleBackColor = false;
             b_sto.Click += b_sto_Click;
@@ -272,7 +272,7 @@
             b_cus.Location = new Point(680, 300);
             b_cus.Name = "b_cus";
             b_cus.Size = new Size(259, 164);
-            b_cus.TabIndex = 43;
+            b_cus.TabIndex = 3;
             b_cus.Text = "顧客管理";
             b_cus.UseVisualStyleBackColor = false;
             b_cus.Click += b_cus_Click;
@@ -284,7 +284,7 @@
             b_mer.Location = new Point(680, 100);
             b_mer.Name = "b_mer";
             b_mer.Size = new Size(259, 164);
-            b_mer.TabIndex = 42;
+            b_mer.TabIndex = 1;
             b_mer.Text = "商品管理";
             b_mer.UseVisualStyleBackColor = false;
             b_mer.Click += b_mer_Click;
@@ -296,7 +296,7 @@
             b_emp.Location = new Point(270, 100);
             b_emp.Name = "b_emp";
             b_emp.Size = new Size(259, 164);
-            b_emp.TabIndex = 41;
+            b_emp.TabIndex = 0;
             b_emp.Text = "社員管理";
             b_emp.UseVisualStyleBackColor = false;
             b_emp.Click += b_emp_Click;
@@ -309,7 +309,7 @@
             HN.Location = new Point(177, 207);
             HN.Name = "HN";
             HN.Size = new Size(1200, 600);
-            HN.TabIndex = 134;
+            HN.TabIndex = 0;
             HN.Visible = false;
             // 
             // b_rec
@@ -351,9 +351,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
+            Controls.Add(mas);
             Controls.Add(HN);
             Controls.Add(JU);
-            Controls.Add(mas);
             Name = "mainmenu3";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "mainmenu";

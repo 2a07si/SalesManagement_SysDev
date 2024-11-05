@@ -338,15 +338,15 @@ namespace SalesManagement_SysDev
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = orders.Select(o => new
                     {
-                        TyumonID = o.ChId,            // 注文ID
-                        StoreID = o.SoId,              // 店舗ID
-                        EmployeeID = o.EmId,           // 社員ID
-                        ClientID = o.ClId,             // クライアントID
-                        JyutyuID = o.OrId,              // 受注ID
-                        OrderDate = o.ChDate,        // 注文日
-                        StateFlag = o.ChStateFlag,     // 注文状態フラグ
-                        DeleteFlag = o.ChFlag,         // 削除フラグ
-                        Reason = o.ChHidden            // 理由
+                        注文ID = o.OrId,            // 注文ID
+                        店舗ID = o.SoId,              // 店舗ID
+                        社員ID = o.EmId,           // 社員ID
+                        顧客ID = o.ClId,             // クライアントID
+                        受注ID = o.OrId,              // 受注ID
+                        受注年月日 = o.OrDate,        // 注文日
+                        注文フラグ = o.OrStateFlag,     // 注文状態フラグ
+                        非表示フラグ = o.OrFlag,         // 削除フラグ
+                        非表示理由 = o.OrHidden            // 理由
                     }).ToList();
                 }
             }
