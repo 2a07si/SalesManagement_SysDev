@@ -14,9 +14,6 @@ namespace SalesManagement_SysDev
 {
     public partial class merchandise : Form
     {
-        private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
-        private string orderFlag = "←通常"; // 初期状態を「注文」に設定
-
         private Form mainForm;
         private ClassChangeForms formChanger;
         private ClassDateNamelabel dateNamelabel;
@@ -98,8 +95,10 @@ namespace SalesManagement_SysDev
             TBSyohinName.Text = "";
             TBModel.Text = "";
             TBColor.Text = "";
+            TBSyoubunrui.Text = "";
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
+            date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
         }
 
@@ -128,23 +127,7 @@ namespace SalesManagement_SysDev
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // モードに基づいて処理を分岐
-                switch (CurrentStatus.CurrentMode)
-                {
-                    case CurrentStatus.Mode.通常:
-                        HandleOrderOperation();
-                        break;
-                    default:
-                        MessageBox.Show("現在のモードは無効です。");
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("エラー: " + ex.Message);
-            }
+            HandleOrderOperation();
         }
 
         private void HandleOrderOperation()
