@@ -51,11 +51,7 @@ namespace SalesManagement_SysDev
 
         private void close_Click(object sender, EventArgs e)
         {
-            mainmenu1 mainmenu1 = new mainmenu1();
-            mainmenu1.Show();
-
-            // 現在のフォームを閉じる
-            this.Close();
+            formChanger.NavigateTo3();
         }
 
         private void b_emp_Click(object sender, EventArgs e)
