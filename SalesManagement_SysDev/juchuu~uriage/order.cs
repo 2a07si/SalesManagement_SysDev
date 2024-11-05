@@ -208,7 +208,7 @@ namespace SalesManagement_SysDev
                     var Order = new TOrder
                     {
                         SoId = int.Parse(ShopId),                    // 店舗ID
-                        EmId = int.Parse(ShainId),// 社員ID（null許容）
+                        EmId = int.Parse(ShainId),                  　// 社員ID（null許容）
                         ClId = int.Parse(KokyakuId),                 // クライアントID
                         OrId = int.Parse(JyutyuId),                       // 受注ID
                         OrDate = Orderdate,                         // 注文日
@@ -419,17 +419,17 @@ namespace SalesManagement_SysDev
                 if (orders.Any())
                 {
                     // dataGridView1 に結果を表示
-                    dataGridView1.DataSource = orders.Select(order => new
+                    dataGridView1.DataSource = orders.Select(o => new
                     {
-                        TyumonID = order.ChId,         // 注文ID
-                        StoreID = order.SoId,           // 店舗ID
-                        EmployeeID = order.EmId,        // 社員ID
-                        ClientID = order.ClId,          // クライアントID
-                        JyutyuID = order.OrId,           // 受注ID
-                        OrderDate = order.ChDate,     // 注文日
-                        StateFlag = order.ChStateFlag,  // 注文状態フラグ
-                        DeleteFlag = order.ChFlag,      // 削除フラグ
-                        Reason = order.ChHidden         // 理由
+                        注文ID = o.OrId,            // 注文ID
+                        店舗ID = o.SoId,              // 店舗ID
+                        社員ID = o.EmId,           // 社員ID
+                        顧客ID = o.ClId,             // クライアントID
+                        受注ID = o.OrId,              // 受注ID
+                        受注年月日 = o.ChDate,        // 注文日
+                        注文フラグ = o.ChStateFlag,     // 注文状態フラグ
+                        非表示フラグ = o. ChFlag,         // 削除フラグ
+                        非表示理由 = o.ChHidden            // 理由
                     }).ToList();
                 }
                 else

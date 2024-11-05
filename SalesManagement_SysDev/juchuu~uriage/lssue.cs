@@ -335,15 +335,15 @@ namespace SalesManagement_SysDev
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = issues.Select(o => new
                     {
-                        IssueID = o.SyId,            // 出庫ID
-                        StoreID = o.SoId,              // 店舗ID
-                        EmployeeID = o.EmId,           // 社員ID
-                        ClientID = o.ClId,             // クライアントID
-                        OrderID = o.OrId,              // 受注ID
-                        IssueDate = o.SyDate,        // 出庫日
-                        StateFlag = o.SyStateFlag,     // 出庫状態フラグ
-                        DeleteFlag = o.SyFlag,         // 削除フラグ
-                        Reason = o.SyHidden            // 理由
+                        出庫ID = o.SyId,            // 出庫ID
+                        店舗ID = o.SoId,              // 店舗ID
+                        社員ID = o.EmId,           // 社員ID
+                        顧客ID = o.ClId,             // クライアントID
+                        受注ID = o.OrId,              // 受注ID
+                        出庫年月日 = o.SyDate,        // 出庫日
+                        出庫状態フラグ = o.SyStateFlag,     // 出庫状態フラグ
+                        非表示フラグ = o.SyFlag,         // 削除フラグ
+                        非表示理由 = o.SyHidden            // 理由
                     }).ToList();
                 }
             }
