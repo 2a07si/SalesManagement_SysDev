@@ -85,6 +85,7 @@ namespace SalesManagement_SysDev
             TBSyainName.Text = "";
             TBShopId.Text = "";
             TBJobID.Text = "";
+            TBPass.Text = "";
             TBTellNo.Text = "";
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
@@ -169,6 +170,7 @@ namespace SalesManagement_SysDev
             string ShopID = TBShopId.Text;
             string JobID = TBJobID.Text;
             DateTime ShainDate = date.Value;
+            string Pass = TBPass.Text;
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
 
@@ -182,6 +184,7 @@ namespace SalesManagement_SysDev
                     employee.PoId = int.Parse(JobID);
                     employee.EmHiredate = ShainDate;
                     employee.EmPhone = TelNo;
+                    employee.EmPassword = Pass;
                     employee.EmHidden = delFlag ? "1" : "0";
 
                     context.SaveChanges();
@@ -201,6 +204,7 @@ namespace SalesManagement_SysDev
             string ShopID = TBShopId.Text;
             string JobID = TBJobID.Text;
             DateTime ShainDate = date.Value;
+            string Pass = TBPass.Text;
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
 
@@ -213,6 +217,8 @@ namespace SalesManagement_SysDev
                     SoId = int.Parse(ShopID),
                     PoId = int.Parse(JobID),
                     EmHiredate = ShainDate,
+                    EmPassword = Pass,
+                    EmPhone = TelNo,
                     EmHidden = delFlag ? "1" : "0"
                 };
 
@@ -236,6 +242,7 @@ namespace SalesManagement_SysDev
                         営業所ID = e.EmId,
                         役職ID = e.PoId,
                         入社年月日 = e.EmHiredate,
+                        パスワード = e.EmPassword,
                         電話番号 = e.EmPhone,
                         非表示フラグ = e.EmHidden
                     }).ToList();
@@ -253,10 +260,10 @@ namespace SalesManagement_SysDev
             {
                 // 各テキストボックスの値を取得 
                 var ShainID = TBSyainID.Text.Trim();       // 社員ID 
-                var ShaiName = TBSyainName.Text.Trim();           // 営業所ID 
-                var ShopID = TBShopId.Text.Trim();         // 社員ID 
-                var JobID = TBJobID.Text.Trim();     // 顧客ID 
-                var TelNo = TBTellNo.Text.Trim();     // 担当者 
+                var ShaiName = TBSyainName.Text.Trim();           // 
+                var ShopID = TBShopId.Text.Trim();         // 店あいデー
+                var JobID = TBJobID.Text.Trim();     // 役職
+                var TelNo = TBTellNo.Text.Trim();     // でんわ 
 
                 // 基本的なクエリ 
                 var query = context.MEmployees.AsQueryable();
@@ -279,20 +286,20 @@ namespace SalesManagement_SysDev
                     query = query.Where(o => o.EmId == parsedShainID);
                 }
 
-                // 顧客IDを検索条件に追加 
+                // 役職 
                 if (!string.IsNullOrEmpty(JobID) && int.TryParse(JobID, out int parsedKokyakuID))
                 {
-                    query = query.Where(e=> e.SoId == parsedKokyakuID);
+                    query = query.Where(e => e.SoId == parsedKokyakuID);
                 }
 
-                // 担当者名を検索条件に追加 
+                // でんわ 
                 if (!string.IsNullOrEmpty(TelNo))
                 {
                     query = query.Where(e => e.EmPhone.Contains(TelNo));
                 }
 
-                
-                
+
+
 
                 // 結果を取得 
                 var employees = query.ToList();
@@ -305,8 +312,9 @@ namespace SalesManagement_SysDev
                         社員ID = employee.EmId,
                         社員名 = employee.EmName,
                         営業所ID = employee.SoId,
-                       　役職ID = employee.PoId,
+                        役職ID = employee.PoId,
                         入社年月日 = employee.EmHiredate,
+                        パスワード　= employee.EmPassword,
                         電話番号 = employee.EmPhone,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
