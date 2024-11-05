@@ -67,6 +67,8 @@
             B_iti = new Button();
             label2 = new Label();
             label1 = new Label();
+            TBPass = new MaskedTextBox();
+            label9 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -196,6 +198,8 @@
             // panel1
             // 
             panel1.BackColor = Color.RoyalBlue;
+            panel1.Controls.Add(TBPass);
+            panel1.Controls.Add(label9);
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(label6);
@@ -316,7 +320,7 @@
             // 
             // TBTellNo
             // 
-            TBTellNo.Location = new Point(1131, 20);
+            TBTellNo.Location = new Point(406, 70);
             TBTellNo.Name = "TBTellNo";
             TBTellNo.Size = new Size(200, 31);
             TBTellNo.TabIndex = 292;
@@ -324,7 +328,7 @@
             // 
             // TBRiyuu
             // 
-            TBRiyuu.Location = new Point(230, 70);
+            TBRiyuu.Location = new Point(230, 120);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
             TBRiyuu.TabIndex = 285;
@@ -334,7 +338,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(1041, 20);
+            label8.Location = new Point(316, 70);
             label8.Name = "label8";
             label8.Size = new Size(84, 25);
             label8.TabIndex = 291;
@@ -359,7 +363,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label17.ForeColor = Color.White;
-            label17.Location = new Point(120, 70);
+            label17.Location = new Point(120, 120);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
             label17.TabIndex = 284;
@@ -395,7 +399,7 @@
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.White;
-            DelFlag.Location = new Point(20, 70);
+            DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 288;
@@ -470,6 +474,24 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 292;
             label1.Text = "現在の状態";
+            // 
+            // TBPass
+            // 
+            TBPass.Location = new Point(110, 70);
+            TBPass.Name = "TBPass";
+            TBPass.Size = new Size(200, 31);
+            TBPass.TabIndex = 299;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.ForeColor = Color.White;
+            label9.Location = new Point(20, 70);
+            label9.Name = "label9";
+            label9.Size = new Size(80, 25);
+            label9.TabIndex = 298;
+            label9.Text = "パスワード";
             // 
             // employee
             // 
@@ -548,5 +570,7 @@
         private Button Next;
         private Button Prev;
         private Label label6;
+        private MaskedTextBox TBPass;
+        private Label label9;
     }
 }
