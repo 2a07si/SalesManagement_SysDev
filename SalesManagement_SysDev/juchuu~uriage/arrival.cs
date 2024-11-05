@@ -332,15 +332,15 @@ namespace SalesManagement_SysDev
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = arrivals.Select(o => new
                     {
-                        ArrivalID = o.ArId,            // 入荷ID
-                        StoreID = o.SoId,              // 店舗ID
-                        EmployeeID = o.EmId,           // 社員ID
-                        ClientID = o.ClId,             // クライアントID
-                        OrderID = o.OrId,              // 受注ID
-                        ArrivalDate = o.ArDate,        // 入荷日
-                        StateFlag = o.ArStateFlag,     // 入荷状態フラグ
-                        DeleteFlag = o.ArFlag,         // 削除フラグ
-                        Reason = o.ArHidden            // 理由
+                        入荷ID = o.ArId,            // 入荷ID
+                        店舗ID = o.SoId,              // 店舗ID
+                        社員ID = o.EmId,           // 社員ID
+                        顧客ID = o.ClId,             // クライアントID
+                        受注ID = o.OrId,              // 受注ID
+                        受注年月日 = o.ArDate,        // 入荷日
+                        入荷状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
+                        非表示フラグ = o.ArFlag,         // 削除フラグ
+                        非表示理由 = o.ArHidden            // 理由
                     }).ToList();
                 }
             }
@@ -412,18 +412,18 @@ namespace SalesManagement_SysDev
 
                 if (arrivals.Any())
                 {
-                    // dataGridView1 に結果を表示
-                    dataGridView1.DataSource = arrivals.Select(arrival => new
+                    // データを選択してDataGridViewに表示
+                    dataGridView1.DataSource = arrivals.Select(o => new
                     {
-                        ArrivalID = arrival.ArId,         // 入荷ID
-                        StoreID = arrival.SoId,           // 店舗ID
-                        EmployeeID = arrival.EmId,        // 社員ID
-                        ClientID = arrival.ClId,          // クライアントID
-                        OrderID = arrival.OrId,           // 受注ID
-                        ArrivalDate = arrival.ArDate,     // 入荷日
-                        StateFlag = arrival.ArStateFlag,  // 入荷状態フラグ
-                        DeleteFlag = arrival.ArFlag,      // 削除フラグ
-                        Reason = arrival.ArHidden         // 理由
+                        入荷ID = o.ArId,            // 入荷ID
+                        店舗ID = o.SoId,              // 店舗ID
+                        社員ID = o.EmId,           // 社員ID
+                        顧客ID = o.ClId,             // クライアントID
+                        受注ID = o.OrId,              // 受注ID
+                        受注年月日 = o.ArDate,        // 入荷日
+                        入荷状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
+                        非表示フラグ = o.ArFlag,         // 削除フラグ
+                        非表示理由 = o.ArHidden            // 理由
                     }).ToList();
                 }
                 else
