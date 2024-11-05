@@ -283,7 +283,6 @@ namespace SalesManagement_SysDev
             Next.TabIndex = 2;
             Next.Text = "▶";
             Next.UseVisualStyleBackColor = true;
-
             // 
             // dataGridView1
             // 
@@ -433,7 +432,6 @@ namespace SalesManagement_SysDev
             b_upd.TabIndex = 239;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
-            
             // 
             // label4
             // 
@@ -730,7 +728,7 @@ namespace SalesManagement_SysDev
             Controls.Add(b_lss);
             Controls.Add(panel1);
             Name = "acceptingorders";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "受注";
             Load += acceptingorders_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

@@ -76,6 +76,7 @@
             Controls.Add(NewAccount);
             Controls.Add(PasswordChange);
             Name = "LoginKanriGamen";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ログイン管理画面";
             ResumeLayout(false);
         }

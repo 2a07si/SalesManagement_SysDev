@@ -70,18 +70,20 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
+            label_ename.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label_ename.Location = new Point(97, 72);
             label_ename.Name = "label_ename";
-            label_ename.Size = new Size(59, 25);
+            label_ename.Size = new Size(62, 25);
             label_ename.TabIndex = 131;
             label_ename.Text = "label5";
             // 
             // label_id
             // 
             label_id.AutoSize = true;
+            label_id.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label_id.Location = new Point(97, 37);
             label_id.Name = "label_id";
-            label_id.Size = new Size(110, 25);
+            label_id.Size = new Size(114, 25);
             label_id.TabIndex = 130;
             label_id.Text = "label_empID";
             // 
@@ -209,17 +211,19 @@
             // 
             // b_logout
             // 
+            b_logout.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             b_logout.Location = new Point(1397, 37);
             b_logout.Name = "b_logout";
             b_logout.Size = new Size(155, 56);
             b_logout.TabIndex = 126;
-            b_logout.Text = "ログアウト";
+            b_logout.Text = "ログアウト(Esc)";
             b_logout.UseVisualStyleBackColor = true;
             b_logout.Click += b_logout_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label4.Location = new Point(27, 72);
             label4.Name = "label4";
             label4.Size = new Size(66, 25);
@@ -229,6 +233,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(27, 37);
             label3.Name = "label3";
             label3.Size = new Size(48, 25);
@@ -335,6 +340,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = b_logout;
             ClientSize = new Size(1578, 844);
             Controls.Add(Loginkanri);
             Controls.Add(label_ename);
@@ -349,6 +355,7 @@
             Controls.Add(mas);
             Controls.Add(HN);
             Name = "mainmenu3";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "mainmenu";
             Load += mainmenu3_Load;
             JU.ResumeLayout(false);

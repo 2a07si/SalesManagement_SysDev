@@ -56,6 +56,7 @@
             btn_CleateDabase.Text = "データベース生成";
             btn_CleateDabase.TextImageRelation = TextImageRelation.TextAboveImage;
             btn_CleateDabase.UseVisualStyleBackColor = true;
+            btn_CleateDabase.Visible = false;
             btn_CleateDabase.Click += btn_CleateDabase_Click;
             // 
             // btn_InsertSampleData
@@ -68,6 +69,7 @@
             btn_InsertSampleData.TabIndex = 0;
             btn_InsertSampleData.Text = "サンプルデータ登録";
             btn_InsertSampleData.UseVisualStyleBackColor = true;
+            btn_InsertSampleData.Visible = false;
             btn_InsertSampleData.Click += btn_InsertSampleData_Click;
             // 
             // label2
@@ -126,7 +128,7 @@
             // 
             labeltime.AutoSize = true;
             labeltime.Font = new Font("Yu Gothic UI", 23F, FontStyle.Bold, GraphicsUnit.Point);
-            labeltime.Location = new Point(1066, 410);
+            labeltime.Location = new Point(1032, 410);
             labeltime.Name = "labeltime";
             labeltime.Size = new Size(142, 62);
             labeltime.TabIndex = 8;
@@ -151,7 +153,7 @@
             // 
             labeldate.AutoSize = true;
             labeldate.Font = new Font("Yu Gothic UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            labeldate.Location = new Point(1016, 355);
+            labeldate.Location = new Point(1038, 355);
             labeldate.Name = "labeldate";
             labeldate.Size = new Size(276, 41);
             labeldate.TabIndex = 9;
