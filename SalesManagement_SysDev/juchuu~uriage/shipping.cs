@@ -48,7 +48,7 @@ namespace SalesManagement_SysDev
         }
         private void close_Click(object sender, EventArgs e)
         {
-            formChanger.NavigateToMainMenu(); // メインメニューに遷移 
+            formChanger.NavigateTo3();
         }
 
         private void b_acc_Click(object sender, EventArgs e)
