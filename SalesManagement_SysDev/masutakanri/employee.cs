@@ -314,7 +314,7 @@ namespace SalesManagement_SysDev
                         営業所ID = employee.SoId,
                         役職ID = employee.PoId,
                         入社年月日 = employee.EmHiredate,
-                        パスワード　= employee.EmPassword,
+                        パスワード = employee.EmPassword,
                         電話番号 = employee.EmPhone,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();

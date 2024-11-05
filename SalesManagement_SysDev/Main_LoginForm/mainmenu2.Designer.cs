@@ -46,7 +46,7 @@
             // 
             // b_ord
             // 
-            b_ord.BackColor = SystemColors.InactiveCaption;
+            b_ord.BackColor = Color.FromArgb(252, 252, 192);
             b_ord.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_ord.Location = new Point(151, 216);
             b_ord.Name = "b_ord";
@@ -102,7 +102,7 @@
             // 
             // b_hor
             // 
-            b_hor.BackColor = SystemColors.InactiveCaption;
+            b_hor.BackColor = Color.FromArgb(252, 252, 192);
             b_hor.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_hor.Location = new Point(405, 216);
             b_hor.Name = "b_hor";
@@ -113,7 +113,7 @@
             // 
             // b_rec
             // 
-            b_rec.BackColor = SystemColors.InactiveCaption;
+            b_rec.BackColor = Color.FromArgb(252, 252, 192);
             b_rec.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_rec.Location = new Point(658, 216);
             b_rec.Name = "b_rec";
@@ -124,7 +124,7 @@
             // 
             // b_shi
             // 
-            b_shi.BackColor = SystemColors.InactiveCaption;
+            b_shi.BackColor = Color.FromArgb(252, 252, 192);
             b_shi.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_shi.Location = new Point(658, 386);
             b_shi.Name = "b_shi";
@@ -135,7 +135,7 @@
             // 
             // b_arr
             // 
-            b_arr.BackColor = SystemColors.InactiveCaption;
+            b_arr.BackColor = Color.FromArgb(252, 252, 192);
             b_arr.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_arr.Location = new Point(405, 386);
             b_arr.Name = "b_arr";
@@ -146,7 +146,7 @@
             // 
             // b_lss
             // 
-            b_lss.BackColor = SystemColors.InactiveCaption;
+            b_lss.BackColor = Color.FromArgb(252, 252, 192);
             b_lss.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_lss.Location = new Point(151, 386);
             b_lss.Name = "b_lss";

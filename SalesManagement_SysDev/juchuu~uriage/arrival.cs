@@ -40,6 +40,7 @@ namespace SalesManagement_SysDev
                 b_lss
             });
             b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
@@ -238,6 +239,34 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int shop;
+                if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                {
+                    MessageBox.Show("営業所IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int employeeId;
+                if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                {
+                    MessageBox.Show("社員IDが存在しません。");
+                    return;
+                }
+                int kokyaku;
+                if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
+                {
+                    MessageBox.Show("発注IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int juchu;
+                if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
+                {
+                    MessageBox.Show("社員IDが存在しません。");
+                    return;
+                }
                 // 入荷が既に存在するか確認
                 var arrival = context.TArrivals.SingleOrDefault(o => o.OrId.ToString() == NyuukaId);
                 if (arrival == null)
@@ -436,16 +465,30 @@ namespace SalesManagement_SysDev
 
         private void RegisterArrivalDetails()
         {
-            string jyutyuSyosaiID = TBNyukaSyosaiID.Text;
-            string jyutyuID = TBNyuukaIDS.Text;
+            string NyuukaSyosaiID = TBNyukaSyosaiID.Text;
+            string NyuukaID = TBNyuukaIDS.Text;
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
             using (var context = new SalesManagementContext())
             {
+                int nyuuka;
+                if (!int.TryParse(NyuukaID, out nyuuka) || !context.TArrivals.Any(n => n.ArId == nyuuka))
+                {
+                    MessageBox.Show("発注IDが存在しません。");
+                    return;
+                }
+
+                // EmIdがMEmployeeテーブルに存在するか確認
+                int shouhin;
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                {
+                    MessageBox.Show("社員IDが存在しません。");
+                    return;
+                }
                 var newArrivalDetail = new TArrivalDetail
                 {
-                    ArId = int.Parse(jyutyuID),
+                    ArId = int.Parse(NyuukaID),
                     PrId = int.Parse(syohinID),
                     ArQuantity = int.Parse(suryou),
                 };

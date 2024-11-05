@@ -64,7 +64,7 @@
             // 
             // b_NewAccount
             // 
-            b_NewAccount.BackColor = Color.FromArgb(197, 212, 224);
+            b_NewAccount.BackColor = Color.FromArgb(212, 222, 255);
             b_NewAccount.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_NewAccount.Location = new Point(790, 85);
             b_NewAccount.Name = "b_NewAccount";
@@ -162,7 +162,7 @@
             // 
             // p_NA
             // 
-            p_NA.BackColor = Color.FromArgb(197, 212, 224);
+            p_NA.BackColor = Color.FromArgb(212, 222, 255);
             p_NA.Controls.Add(tb_NAJ);
             p_NA.Controls.Add(label4);
             p_NA.Controls.Add(tb_NAP);

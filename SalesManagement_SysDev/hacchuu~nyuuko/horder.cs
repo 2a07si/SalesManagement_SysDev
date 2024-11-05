@@ -56,6 +56,7 @@ namespace SalesManagement_SysDev
             accessManager.SetButtonAccess(buttons); // ボタンのアクセス設定を適用
             labelStatus.labelstatus(label2, b_kakutei);
             b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -231,6 +232,14 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                // HaIDがTHattyuテーブルに存在するか確認
+                int maker;
+                if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaId == maker))
+                {
+                    MessageBox.Show("発注IDが存在しません。");
+                    return;
+                }
+
                 // EmIdがMEmployeeテーブルに存在するか確認
                 int employeeId;
                 if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
@@ -566,7 +575,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        
+
     }
 
 }

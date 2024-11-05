@@ -184,7 +184,7 @@ namespace SalesManagement_SysDev
                     stock.PrId = int.Parse(syohinID);
                     stock.StQuantity = int.Parse(zaiko);
                     stock.StFlag = stflag ? 1 : 0;
-                    
+
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
@@ -212,7 +212,7 @@ namespace SalesManagement_SysDev
                     StId = int.Parse(zaikoID),
                     PrId = int.Parse(syohinID),
                     StQuantity = int.Parse(zaiko),
-                    StFlag = stflag ? 1:0,
+                    StFlag = stflag ? 1 : 0,
                 };
 
                 context.TStocks.Add(newstock);
@@ -270,7 +270,7 @@ namespace SalesManagement_SysDev
                 // 各テキストボックスの値を取得 
                 var zaikoID = TBZaikoID.Text.Trim();       // 受注ID 
                 var syohinID = TBSyohinID.Text.Trim();           // 営業所ID 
-                var zaiko = TBZaiko.Text.Trim(); 
+                var zaiko = TBZaiko.Text.Trim();
 
 
 

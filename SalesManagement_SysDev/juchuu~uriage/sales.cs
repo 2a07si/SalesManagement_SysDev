@@ -44,6 +44,7 @@ namespace SalesManagement_SysDev
                 b_lss
             });
             b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
         }
 
         // メインメニューに戻る 
@@ -200,7 +201,6 @@ namespace SalesManagement_SysDev
                     break;
                 case CurrentStatus.Status.一覧:
                     DisplaySaleDetails();
-                    MessageBox.Show("(^^)");
                     break;
                 case CurrentStatus.Status.検索:
                     SearchSaleDetails();
@@ -392,6 +392,7 @@ namespace SalesManagement_SysDev
             string uriageID = TBUriageIDS.Text;
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
+            string total = TBGoukei.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -402,6 +403,7 @@ namespace SalesManagement_SysDev
                     saleDetail.PrId = int.Parse(syohinID);
                     saleDetail.SaId = int.Parse(uriageID);
                     saleDetail.SaQuantity = int.Parse(suryou);
+                    saleDetail.SaPrTotalPrice = int.Parse(total);
 
                     context.SaveChanges();
                     MessageBox.Show("受注詳細の更新が成功しました。");
@@ -419,6 +421,7 @@ namespace SalesManagement_SysDev
             string uriageID = TBUriageIDS.Text;
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
+            string total = TBGoukei.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -428,6 +431,7 @@ namespace SalesManagement_SysDev
                     PrId = int.Parse(syohinID),
                     SaQuantity = int.Parse(suryou),
                     SaId = int.Parse(uriageID),
+                    SaPrTotalPrice = int.Parse(total),
                 };
 
                 context.TSaleDetails.Add(newSaleDetail);
@@ -444,12 +448,14 @@ namespace SalesManagement_SysDev
                 {
                     var saleDetails = context.TSaleDetails.ToList();
 
-                    dataGridView2.DataSource = saleDetails.Select(sa => new
+                    dataGridView3.DataSource = saleDetails.Select(sa => new
                     {
                         売上詳細ID = sa.SaDetailId,
                         商品ID = sa.PrId,
                         数量 = sa.SaQuantity,
-                        売上ID = sa.SaId
+                        売上ID = sa.SaId,
+                        合計金額 = sa.SaPrTotalPrice
+
                     }).ToList();
                 }
             }
@@ -468,6 +474,7 @@ namespace SalesManagement_SysDev
                 string uriageID = TBUriageIDS.Text;
                 string syohinID = TBSyohinID.Text;
                 string suryou = TBSuryou.Text;
+                string total = TBGoukei.Text;
 
                 // 基本的なクエリ
                 var query = context.TSaleDetails.AsQueryable();
@@ -496,17 +503,24 @@ namespace SalesManagement_SysDev
                     // 数量を検索条件に追加
                     query = query.Where(sa => sa.SaQuantity == quantity);
                 }
+
+                if (!string.IsNullOrEmpty(total) && int.TryParse(total, out int Gkingaku))
+                {
+                    // 数量を検索条件に追加
+                    query = query.Where(sa => sa.SaPrTotalPrice == Gkingaku);
+                }
                 // 結果を取得
                 var saleDetails = query.ToList();
 
                 if (saleDetails.Any())
                 {
-                    dataGridView2.DataSource = saleDetails.Select(sa => new
+                    dataGridView3.DataSource = saleDetails.Select(sa => new
                     {
                         売上詳細ID = sa.SaDetailId,
                         売上ID = sa.SaId,
                         商品ID = sa.PrId,
                         数量 = sa.SaQuantity,
+                        合計金額 = sa.SaPrTotalPrice
                     }).ToList();
                 }
                 else
@@ -564,6 +578,7 @@ namespace SalesManagement_SysDev
                 TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                 TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
                 date.Value = Convert.ToDateTime(row.Cells["売上日時"].Value);
+                TBGoukei.Text = row.Cells["合計金額"].Value.ToString();
                 // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                 // 非表示ボタンや非表示理由もここで設定
                 // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
@@ -597,6 +612,11 @@ namespace SalesManagement_SysDev
 
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
+        }
+
+        private void label_ename_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

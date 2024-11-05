@@ -41,6 +41,8 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
+            TBPass = new MaskedTextBox();
+            label9 = new Label();
             Next = new Button();
             Prev = new Button();
             label6 = new Label();
@@ -67,17 +69,15 @@
             B_iti = new Button();
             label2 = new Label();
             label1 = new Label();
-            TBPass = new MaskedTextBox();
-            label9 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // b_emp
             // 
-            b_emp.BackColor = Color.RoyalBlue;
+            b_emp.BackColor = Color.FromArgb(160, 220, 190);
             b_emp.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_emp.ForeColor = Color.White;
+            b_emp.ForeColor = Color.Black;
             b_emp.Location = new Point(15, 150);
             b_emp.Name = "b_emp";
             b_emp.Size = new Size(120, 90);
@@ -87,7 +87,7 @@
             // 
             // b_mer
             // 
-            b_mer.BackColor = SystemColors.InactiveCaption;
+            b_mer.BackColor = Color.FromArgb(190, 255, 255);
             b_mer.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_mer.Location = new Point(15, 250);
             b_mer.Name = "b_mer";
@@ -99,7 +99,7 @@
             // 
             // b_cus
             // 
-            b_cus.BackColor = SystemColors.InactiveCaption;
+            b_cus.BackColor = Color.FromArgb(190, 255, 255);
             b_cus.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_cus.ForeColor = Color.Black;
             b_cus.Location = new Point(15, 410);
@@ -112,7 +112,7 @@
             // 
             // b_sto
             // 
-            b_sto.BackColor = SystemColors.InactiveCaption;
+            b_sto.BackColor = Color.FromArgb(190, 255, 255);
             b_sto.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_sto.ForeColor = Color.Black;
             b_sto.Location = new Point(15, 330);
@@ -143,7 +143,7 @@
             // 
             // b_ser
             // 
-            b_ser.BackColor = Color.FromArgb(255, 255, 192);
+            b_ser.BackColor = Color.FromArgb(190, 255, 200);
             b_ser.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_ser.Location = new Point(750, 70);
             b_ser.Name = "b_ser";
@@ -164,7 +164,7 @@
             // 
             // b_upd
             // 
-            b_upd.BackColor = Color.FromArgb(255, 255, 192);
+            b_upd.BackColor = Color.FromArgb(190, 255, 200);
             b_upd.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_upd.Location = new Point(350, 70);
             b_upd.Name = "b_upd";
@@ -185,7 +185,7 @@
             // 
             // b_reg
             // 
-            b_reg.BackColor = Color.FromArgb(255, 255, 192);
+            b_reg.BackColor = Color.FromArgb(190, 255, 200);
             b_reg.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             b_reg.Location = new Point(150, 70);
             b_reg.Name = "b_reg";
@@ -197,7 +197,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.RoyalBlue;
+            panel1.BackColor = Color.FromArgb(160, 220, 190);
             panel1.Controls.Add(TBPass);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(Next);
@@ -224,6 +224,24 @@
             panel1.Size = new Size(1420, 690);
             panel1.TabIndex = 187;
             // 
+            // TBPass
+            // 
+            TBPass.Location = new Point(110, 70);
+            TBPass.Name = "TBPass";
+            TBPass.Size = new Size(200, 31);
+            TBPass.TabIndex = 299;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.ForeColor = Color.Black;
+            label9.Location = new Point(20, 70);
+            label9.Name = "label9";
+            label9.Size = new Size(80, 25);
+            label9.TabIndex = 298;
+            label9.Text = "パスワード";
+            // 
             // Next
             // 
             Next.Location = new Point(1350, 144);
@@ -246,7 +264,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.White;
+            label6.ForeColor = Color.Black;
             label6.ImageAlign = ContentAlignment.MiddleRight;
             label6.Location = new Point(1270, 152);
             label6.Name = "label6";
@@ -267,7 +285,7 @@
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label18.ForeColor = Color.White;
+            label18.ForeColor = Color.Black;
             label18.Location = new Point(760, 20);
             label18.Name = "label18";
             label18.Size = new Size(102, 25);
@@ -289,7 +307,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.White;
+            label5.ForeColor = Color.Black;
             label5.Location = new Point(20, 20);
             label5.Name = "label5";
             label5.Size = new Size(66, 25);
@@ -300,7 +318,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.ForeColor = Color.White;
+            label12.ForeColor = Color.Black;
             label12.Location = new Point(480, 20);
             label12.Name = "label12";
             label12.Size = new Size(84, 25);
@@ -311,7 +329,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.ForeColor = Color.White;
+            label14.ForeColor = Color.Black;
             label14.Location = new Point(200, 20);
             label14.Name = "label14";
             label14.Size = new Size(66, 25);
@@ -337,7 +355,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.White;
+            label8.ForeColor = Color.Black;
             label8.Location = new Point(316, 70);
             label8.Name = "label8";
             label8.Size = new Size(84, 25);
@@ -362,7 +380,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label17.ForeColor = Color.White;
+            label17.ForeColor = Color.Black;
             label17.Location = new Point(120, 120);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
@@ -373,7 +391,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.ForeColor = Color.White;
+            label7.ForeColor = Color.Black;
             label7.Location = new Point(630, 20);
             label7.Name = "label7";
             label7.Size = new Size(66, 25);
@@ -398,7 +416,7 @@
             // 
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.White;
+            DelFlag.ForeColor = Color.Black;
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
@@ -445,7 +463,7 @@
             // 
             // B_iti
             // 
-            B_iti.BackColor = Color.FromArgb(255, 255, 192);
+            B_iti.BackColor = Color.FromArgb(190, 255, 200);
             B_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             B_iti.Location = new Point(550, 70);
             B_iti.Name = "B_iti";
@@ -474,24 +492,6 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 292;
             label1.Text = "現在の状態";
-            // 
-            // TBPass
-            // 
-            TBPass.Location = new Point(110, 70);
-            TBPass.Name = "TBPass";
-            TBPass.Size = new Size(200, 31);
-            TBPass.TabIndex = 299;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.ForeColor = Color.White;
-            label9.Location = new Point(20, 70);
-            label9.Name = "label9";
-            label9.Size = new Size(80, 25);
-            label9.TabIndex = 298;
-            label9.Text = "パスワード";
             // 
             // employee
             // 
