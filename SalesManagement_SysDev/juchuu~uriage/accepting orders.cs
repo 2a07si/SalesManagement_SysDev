@@ -16,7 +16,7 @@ namespace SalesManagement_SysDev
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
         private string orderFlag = "←通常"; // 初期状態を「注文」に設定
         private ClassDataGridViewClearer dgvClearer;
-        
+
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
@@ -116,7 +116,6 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ResetStatus(label2);
         }
-
         private void b_kakutei_Click_1(object sender, EventArgs e)
         {
             try
@@ -131,125 +130,217 @@ namespace SalesManagement_SysDev
                         HandleOrderDetailOperation();
                         break;
                     default:
-                        MessageBox.Show("現在のモードは無効です。");
+                        MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void HandleOrderOperation()
         {
-            switch (CurrentStatus.CurrentStatusValue)
+            try
             {
-                case CurrentStatus.Status.更新:
-                    UpdateOrder();
-                    break;
-                case CurrentStatus.Status.登録:
-                    RegisterOrder();
-                    break;
-                case CurrentStatus.Status.一覧:
-                    DisplayOrders();
-                    break;
-                case CurrentStatus.Status.検索:
-                    SearchOrders();
-                    break;
-                default:
-                    MessageBox.Show("無効な操作です。");
-                    break;
+                switch (CurrentStatus.CurrentStatusValue)
+                {
+                    case CurrentStatus.Status.更新:
+                        UpdateOrder();
+                        break;
+                    case CurrentStatus.Status.登録:
+                        RegisterOrder();
+                        break;
+                    case CurrentStatus.Status.一覧:
+                        DisplayOrders();
+                        break;
+                    case CurrentStatus.Status.検索:
+                        SearchOrders();
+                        break;
+                    default:
+                        MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void HandleOrderDetailOperation()
         {
-            switch (CurrentStatus.CurrentStatusValue)
+            try
             {
-                case CurrentStatus.Status.更新:
-                    UpdateOrderDetails();
-                    break;
-                case CurrentStatus.Status.登録:
-                    RegisterOrderDetails();
-                    break;
-                case CurrentStatus.Status.一覧:
-                    DisplayOrderDetails();
-                    break;
-                case CurrentStatus.Status.検索:
-                    SearchOrderDetails();
-                    break;
-                default:
-                    MessageBox.Show("無効な操作です。");
-                    break;
+                switch (CurrentStatus.CurrentStatusValue)
+                {
+                    case CurrentStatus.Status.更新:
+                        UpdateOrderDetails();
+                        break;
+                    case CurrentStatus.Status.登録:
+                        RegisterOrderDetails();
+                        break;
+                    case CurrentStatus.Status.一覧:
+                        DisplayOrderDetails();
+                        break;
+                    case CurrentStatus.Status.検索:
+                        SearchOrderDetails();
+                        break;
+                    default:
+                        MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
         private void UpdateOrder()
         {
-            string jyutyuID = TBJyutyuID.Text;
-            string shopID = TBShopID.Text;
-            string shainID = TBShainID.Text;
-            string kokyakuID = TBKokyakuID.Text;
-            string tantoName = TBTantoName.Text;
-            DateTime jyutyuDate = date.Value;
-            bool tyumonFlag = TyumonFlag.Checked;
-            bool delFlag = DelFlag.Checked;
-
-            using (var context = new SalesManagementContext())
+            try
             {
-                var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == jyutyuID);
-                if (order != null)
-                {
-                    order.SoId = int.Parse(shopID);
-                    order.EmId = int.Parse(shainID);
-                    order.ClId = int.Parse(kokyakuID);
-                    order.ClCharge = tantoName;
-                    order.OrDate = jyutyuDate;
-                    order.OrStateFlag = null; // 適宜初期化
-                    order.OrFlag = tyumonFlag ? 1 : 0;
-                    order.OrHidden = delFlag ? "1" : "0";
+                string jyutyuID = TBJyutyuID.Text;
+                string shopID = TBShopID.Text;
+                string shainID = TBShainID.Text;
+                string kokyakuID = TBKokyakuID.Text;
+                string tantoName = TBTantoName.Text;
+                DateTime jyutyuDate = date.Value;
+                bool tyumonFlag = TyumonFlag.Checked;
+                bool delFlag = DelFlag.Checked;
 
-                    context.SaveChanges();
-                    MessageBox.Show("更新が成功しました。");
-                }
-                else
+                // 条件精査
+                if (!int.TryParse(jyutyuID, out int parsedJyutyuID) || jyutyuID.Length > 6)
                 {
-                    MessageBox.Show("該当する受注が見つかりません。");
+                    MessageBox.Show("受注IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+
+                if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length > 2)
+                {
+                    MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length > 6)
+                {
+                    MessageBox.Show("社員IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length > 6)
+                {
+                    MessageBox.Show("顧客IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (tantoName.Length > 50)
+                {
+                    MessageBox.Show("担当者名は最大50文字でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                using (var context = new SalesManagementContext())
+                {
+                    var order = context.TOrders.SingleOrDefault(o => o.OrId == parsedJyutyuID);
+                    if (order != null)
+                    {
+                        order.SoId = parsedShopID;
+                        order.EmId = parsedShainID;
+                        order.ClId = parsedKokyakuID;
+                        order.ClCharge = tantoName;
+                        order.OrDate = jyutyuDate;
+                        order.OrStateFlag = null; // 適宜初期化 
+                        order.OrFlag = tyumonFlag ? 1 : 0;
+                        order.OrHidden = delFlag ? "1" : "0";
+
+                        context.SaveChanges();
+                        MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("該当する受注が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("受注の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void RegisterOrder()
         {
-            string shopID = TBShopID.Text;
-            string shainID = TBShainID.Text;
-            string kokyakuID = TBKokyakuID.Text;
-            string tantoName = TBTantoName.Text;
-            DateTime jyutyuDate = date.Value;
-            bool tyumonFlag = TyumonFlag.Checked;
-            bool delFlag = DelFlag.Checked;
-
-            using (var context = new SalesManagementContext())
+            try
             {
-                var newOrder = new TOrder
-                {
-                    SoId = int.Parse(shopID),
-                    EmId = int.Parse(shainID),
-                    ClId = int.Parse(kokyakuID),
-                    ClCharge = tantoName,
-                    OrDate = jyutyuDate,
-                    OrStateFlag = null,
-                    OrFlag = tyumonFlag ? 1 : 0,
-                    OrHidden = delFlag ? "1" : "0"
-                };
+                string shopID = TBShopID.Text;
+                string shainID = TBShainID.Text;
+                string kokyakuID = TBKokyakuID.Text;
+                string tantoName = TBTantoName.Text;
+                DateTime jyutyuDate = date.Value;
+                bool tyumonFlag = TyumonFlag.Checked;
+                bool delFlag = DelFlag.Checked;
 
-                context.TOrders.Add(newOrder);
-                context.SaveChanges();
-                MessageBox.Show("登録が成功しました。");
+                // 条件精査
+                if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length > 2)
+                {
+                    MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length > 6)
+                {
+                    MessageBox.Show("社員IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length > 6)
+                {
+                    MessageBox.Show("顧客IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (tantoName.Length > 50)
+                {
+                    MessageBox.Show("担当者名は最大50文字でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                using (var context = new SalesManagementContext())
+                {
+                    var newOrder = new TOrder
+                    {
+                        SoId = parsedShopID,
+                        EmId = parsedShainID,
+                        ClId = parsedKokyakuID,
+                        ClCharge = tantoName,
+                        OrDate = jyutyuDate,
+                        OrStateFlag = null,
+                        OrFlag = tyumonFlag ? 1 : 0,
+                        OrHidden = delFlag ? "1" : "0"
+                    };
+
+                    context.TOrders.Add(newOrder);
+                    context.SaveChanges();
+                    MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("受注の登録中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void DisplayOrders()
         {
@@ -274,137 +365,164 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void SearchOrders()
         {
-            using (var context = new SalesManagementContext())
+            try
             {
-                // 各テキストボックスの値を取得 
-                var jyutyuID = TBJyutyuID.Text.Trim();       // 受注ID 
-                var shopID = TBShopID.Text.Trim();           // 営業所ID 
-                var shainID = TBShainID.Text.Trim();         // 社員ID 
-                var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID 
-                var tantoName = TBTantoName.Text.Trim();     // 担当者 
-
-                // 基本的なクエリ 
-                var query = context.TOrders.AsQueryable();
-
-                // 受注IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(jyutyuID) && int.TryParse(jyutyuID, out int parsedJyutyuID))
+                using (var context = new SalesManagementContext())
                 {
-                    query = query.Where(o => o.OrId == parsedJyutyuID);
-                }
+                    // 各テキストボックスの値を取得  
+                    var jyutyuID = TBJyutyuID.Text.Trim();       // 受注ID  
+                    var shopID = TBShopID.Text.Trim();           // 営業所ID  
+                    var shainID = TBShainID.Text.Trim();         // 社員ID  
+                    var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID  
+                    var tantoName = TBTantoName.Text.Trim();     // 担当者  
 
-                // 営業所IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
-                {
-                    query = query.Where(o => o.SoId == parsedShopID);
-                }
+                    // 基本的なクエリ  
+                    var query = context.TOrders.AsQueryable();
 
-                // 社員IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
-                {
-                    query = query.Where(o => o.EmId == parsedShainID);
-                }
-
-                // 顧客IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedKokyakuID))
-                {
-                    query = query.Where(o => o.ClId == parsedKokyakuID);
-                }
-
-                // 担当者名を検索条件に追加 
-                if (!string.IsNullOrEmpty(tantoName))
-                {
-                    query = query.Where(o => o.ClCharge.Contains(tantoName));
-                }
-
-                // 受注日を検索条件に追加（チェックボックスがチェックされている場合） 
-                if (checkBoxDateFilter.Checked)
-                {
-                    DateTime jyutyuDate = date.Value; // DateTimePickerからの値
-                    query = query.Where(o => o.OrDate.Date == jyutyuDate.Date);
-                }
-
-                // 結果を取得 
-                var orders = query.ToList();
-
-                if (orders.Any())
-                {
-                    // dataGridView1 に結果を表示 
-                    dataGridView1.DataSource = orders.Select(order => new
+                    // 受注IDを検索条件に追加  
+                    if (!string.IsNullOrEmpty(jyutyuID) && int.TryParse(jyutyuID, out int parsedJyutyuID))
                     {
-                        受注ID = order.OrId,
-                        営業所ID = order.SoId,
-                        社員ID = order.EmId,
-                        顧客ID = order.ClId,
-                        担当者 = order.ClCharge,
-                        受注日 = order.OrDate,
-                        注文フラグ = TyumonFlag.Checked ? "〇" : "×",
-                        削除フラグ = DelFlag.Checked ? "〇" : "×"
-                    }).ToList();
+                        query = query.Where(o => o.OrId == parsedJyutyuID);
+                    }
+
+                    // 営業所IDを検索条件に追加  
+                    if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
+                    {
+                        query = query.Where(o => o.SoId == parsedShopID);
+                    }
+
+                    // 社員IDを検索条件に追加  
+                    if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
+                    {
+                        query = query.Where(o => o.EmId == parsedShainID);
+                    }
+
+                    // 顧客IDを検索条件に追加  
+                    if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedKokyakuID))
+                    {
+                        query = query.Where(o => o.ClId == parsedKokyakuID);
+                    }
+
+                    // 担当者名を検索条件に追加  
+                    if (!string.IsNullOrEmpty(tantoName))
+                    {
+                        query = query.Where(o => o.ClCharge.Contains(tantoName));
+                    }
+
+                    // 受注日を検索条件に追加（チェックボックスがチェックされている場合）  
+                    if (checkBoxDateFilter.Checked)
+                    {
+                        DateTime jyutyuDate = date.Value; // DateTimePickerからの値 
+                        query = query.Where(o => o.OrDate.Date == jyutyuDate.Date);
+                    }
+
+                    // 結果を取得  
+                    var orders = query.ToList();
+
+                    if (orders.Any())
+                    {
+                        // dataGridView1 に結果を表示  
+                        dataGridView1.DataSource = orders.Select(order => new
+                        {
+                            受注ID = order.OrId,
+                            営業所ID = order.SoId,
+                            社員ID = order.EmId,
+                            顧客ID = order.ClId,
+                            担当者 = order.ClCharge,
+                            受注日 = order.OrDate,
+                            注文フラグ = TyumonFlag.Checked ? "〇" : "×",
+                            削除フラグ = DelFlag.Checked ? "〇" : "×"
+                        }).ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("該当する受注が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア  
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("該当する受注が見つかりません。");
-                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("検索中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
-
         private void UpdateOrderDetails()
         {
-            string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
-            string jyutyuID = TBJyutyuIDS.Text;
-            string syohinID = TBSyohinID.Text;
-            string suryou = TBSuryou.Text;
-            string goukeiKingaku = TBGoukeiKingaku.Text;
-
-            using (var context = new SalesManagementContext())
+            try
             {
-                var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
-                if (orderDetail != null)
-                {
-                    orderDetail.OrId = int.Parse(jyutyuID);
-                    orderDetail.PrId = int.Parse(syohinID);
-                    orderDetail.OrQuantity = int.Parse(suryou);
-                    orderDetail.OrTotalPrice = decimal.Parse(goukeiKingaku);
+                string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
+                string jyutyuID = TBJyutyuIDS.Text;
+                string syohinID = TBSyohinID.Text;
+                string suryou = TBSuryou.Text;
+                string goukeiKingaku = TBGoukeiKingaku.Text;
 
-                    context.SaveChanges();
-                    MessageBox.Show("受注詳細の更新が成功しました。");
-                }
-                else
+                using (var context = new SalesManagementContext())
                 {
-                    MessageBox.Show("該当する受注詳細が見つかりません。");
+                    var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
+                    if (orderDetail != null)
+                    {
+                        orderDetail.OrId = int.Parse(jyutyuID);
+                        orderDetail.PrId = int.Parse(syohinID);
+                        orderDetail.OrQuantity = int.Parse(suryou);
+                        orderDetail.OrTotalPrice = decimal.Parse(goukeiKingaku);
+
+                        context.SaveChanges();
+                        MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("該当する受注詳細が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("受注詳細の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void RegisterOrderDetails()
         {
-            string jyutyuID = TBJyutyuIDS.Text;
-            string syohinID = TBSyohinID.Text;
-            string suryou = TBSuryou.Text;
-            string goukeiKingaku = TBGoukeiKingaku.Text;
-
-            using (var context = new SalesManagementContext())
+            try
             {
-                var newOrderDetail = new TOrderDetail
-                {
-                    OrId = int.Parse(jyutyuID),
-                    PrId = int.Parse(syohinID),
-                    OrQuantity = int.Parse(suryou),
-                    OrTotalPrice = decimal.Parse(goukeiKingaku)
-                };
+                string jyutyuID = TBJyutyuIDS.Text;
+                string syohinID = TBSyohinID.Text;
+                string suryou = TBSuryou.Text;
+                string goukeiKingaku = TBGoukeiKingaku.Text;
 
-                context.TOrderDetails.Add(newOrderDetail);
-                context.SaveChanges();
-                MessageBox.Show("受注詳細の登録が成功しました。");
+                using (var context = new SalesManagementContext())
+                {
+                    var newOrderDetail = new TOrderDetail
+                    {
+                        OrId = int.Parse(jyutyuID),
+                        PrId = int.Parse(syohinID),
+                        OrQuantity = int.Parse(suryou),
+                        OrTotalPrice = decimal.Parse(goukeiKingaku)
+                    };
+
+                    context.TOrderDetails.Add(newOrderDetail);
+                    context.SaveChanges();
+                    MessageBox.Show("受注詳細の登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("受注詳細の登録中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -428,150 +546,182 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void SearchOrderDetails()
         {
-            using (var context = new SalesManagementContext())
+            try
             {
-                // 各テキストボックスの値を取得
-                var jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
-                var jyutyuID = TBJyutyuIDS.Text;
-                var syohinID = TBSyohinID.Text;
-                var suryou = TBSuryou.Text;
-                var goukeiKingaku = TBGoukeiKingaku.Text;
-
-                // 基本的なクエリ
-                var query = context.TOrderDetails.AsQueryable();
-
-                // 各条件を追加
-                if (!string.IsNullOrEmpty(jyutyuSyosaiID))
+                using (var context = new SalesManagementContext())
                 {
-                    // 受注詳細IDを検索条件に追加
-                    query = query.Where(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
-                }
+                    // 各テキストボックスの値を取得 
+                    var jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
+                    var jyutyuID = TBJyutyuIDS.Text;
+                    var syohinID = TBSyohinID.Text;
+                    var suryou = TBSuryou.Text;
+                    var goukeiKingaku = TBGoukeiKingaku.Text;
 
-                if (!string.IsNullOrEmpty(jyutyuID))
-                {
-                    // 受注IDを検索条件に追加
-                    query = query.Where(od => od.OrId.ToString() == jyutyuID);
-                }
+                    // 基本的なクエリ 
+                    var query = context.TOrderDetails.AsQueryable();
 
-                if (!string.IsNullOrEmpty(syohinID))
-                {
-                    // 商品IDを検索条件に追加
-                    query = query.Where(od => od.PrId.ToString() == syohinID);
-                }
-
-                if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
-                {
-                    // 数量を検索条件に追加
-                    query = query.Where(od => od.OrQuantity == quantity);
-                }
-
-                if (!string.IsNullOrEmpty(goukeiKingaku) && decimal.TryParse(goukeiKingaku, out decimal totalPrice))
-                {
-                    // 合計金額を検索条件に追加
-                    query = query.Where(od => od.OrTotalPrice == totalPrice);
-                }
-
-                // 結果を取得
-                var orderDetails = query.ToList();
-
-                if (orderDetails.Any())
-                {
-                    dataGridView2.DataSource = orderDetails.Select(od => new
+                    // 各条件を追加 
+                    if (!string.IsNullOrEmpty(jyutyuSyosaiID))
                     {
-                        受注詳細ID = od.OrDetailId,
-                        受注ID = od.OrId,
-                        商品ID = od.PrId,
-                        数量 = od.OrQuantity,
-                        合計金額 = od.OrTotalPrice
-                    }).ToList();
+                        // 受注詳細IDを検索条件に追加 
+                        query = query.Where(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
+                    }
+
+                    if (!string.IsNullOrEmpty(jyutyuID))
+                    {
+                        // 受注IDを検索条件に追加 
+                        query = query.Where(od => od.OrId.ToString() == jyutyuID);
+                    }
+
+                    if (!string.IsNullOrEmpty(syohinID) && int.TryParse(syohinID, out int productId))
+                    {
+                        // 商品IDを検索条件に追加 
+                        query = query.Where(od => od.PrId == productId);
+                    }
+
+                    if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
+                    {
+                        // 数量を検索条件に追加 
+                        query = query.Where(od => od.OrQuantity == quantity);
+                    }
+
+                    if (!string.IsNullOrEmpty(goukeiKingaku) && decimal.TryParse(goukeiKingaku, out decimal totalPrice))
+                    {
+                        // 合計金額を検索条件に追加 
+                        query = query.Where(od => od.OrTotalPrice == totalPrice);
+                    }
+
+                    // 結果を取得 
+                    var orderDetails = query.ToList();
+
+                    if (orderDetails.Any())
+                    {
+                        dataGridView2.DataSource = orderDetails.Select(od => new
+                        {
+                            受注詳細ID = od.OrDetailId,
+                            受注ID = od.OrId,
+                            商品ID = od.PrId,
+                            数量 = od.OrQuantity,
+                            合計金額 = od.OrTotalPrice
+                        }).ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("該当する受注詳細が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("該当する受注詳細が見つかりません。");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("受注詳細の検索中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ToggleOrderSelection()
         {
-            isOrderSelected = !isOrderSelected;
-            orderFlag = isOrderSelected ? "←通常" : "詳細→";
+            try
+            {
+                isOrderSelected = !isOrderSelected;
+                orderFlag = isOrderSelected ? "←通常" : "詳細→";
 
-            // CurrentStatusのモードを切り替える
-            CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+                // CurrentStatusのモードを切り替える 
+                CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("選択状態の切り替え中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
 
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
-            // 状態を切り替える処理
-            ToggleOrderSelection();
+            try
+            {
+                // 状態を切り替える処理 
+                ToggleOrderSelection();
 
-            // b_FormSelectorのテキストを現在の状態に更新
-            UpdateFlagButtonText();
+                // b_FormSelectorのテキストを現在の状態に更新 
+                UpdateFlagButtonText();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ボタンのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
 
         private void UpdateFlagButtonText()
         {
-            // b_FlagSelectorのテキストを現在の状態に合わせる
-            b_FormSelector.Text = orderFlag;
+            try
+            {
+                // b_FlagSelectorのテキストを現在の状態に合わせる 
+                b_FormSelector.Text = orderFlag;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("フラグボタンのテキスト更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        // CellClickイベントハンドラ
+        // CellClickイベントハンドラ 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // クリックした行のインデックスを取得
-            int rowIndex = e.RowIndex;
-
-            // 行インデックスが有効かどうかをチェック
-            if (rowIndex >= 0)
+            try
             {
-                // 行データを取得
-                DataGridViewRow row = dataGridView1.Rows[rowIndex];
+                // クリックした行のインデックスを取得 
+                int rowIndex = e.RowIndex;
 
-                // 各テキストボックスにデータを入力
-                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
-                date.Value = Convert.ToDateTime(row.Cells["受注日"].Value);
-                // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                // 非表示ボタンや非表示理由もここで設定
-                // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                // 行インデックスが有効かどうかをチェック 
+                if (rowIndex >= 0)
+                {
+                    // 行データを取得 
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                    // 各テキストボックスにデータを入力 
+                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+                    TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
+                    date.Value = Convert.ToDateTime(row.Cells["受注日"].Value);
+                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // クリックした行のインデックスを取得 
-            int rowIndex = e.RowIndex;
-
-            // 行インデックスが有効かどうかをチェック 
-            if (rowIndex >= 0)
+            try
             {
-                // 行データを取得 
-                DataGridViewRow row = dataGridView2.Rows[rowIndex];
+                // クリックした行のインデックスを取得  
+                int rowIndex = e.RowIndex;
 
-                // 各テキストボックスにデータを入力
-                TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value.ToString();
-                TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                TBSuryou.Text = row.Cells["数量"].Value.ToString();
-                TBGoukeiKingaku.Text = row.Cells["合計金額"].Value.ToString();
+                // 行インデックスが有効かどうかをチェック  
+                if (rowIndex >= 0)
+                {
+                    // 行データを取得  
+                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
+
+                    // 各テキストボックスにデータを入力 
+                    TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value.ToString();
+                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
+                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                    TBGoukeiKingaku.Text = row.Cells["合計金額"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
-
-
 }
