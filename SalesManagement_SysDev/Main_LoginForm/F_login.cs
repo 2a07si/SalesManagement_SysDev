@@ -890,10 +890,77 @@ namespace SalesManagement_SysDev
 
         private void button3_Click(object sender, EventArgs e)
         {
-
             tb_ID.Text = "1227";
             tb_Pass.Text = "1227";
+
+            try
+            {
+                // 入力検証
+                if (!InputValidator.IsNotEmpty(tb_ID.Text) || !InputValidator.IsValidEmployeeID(tb_ID.Text, out int empID))
+                {
+                    MessageBox.Show("社員IDを正しく入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tb_ID.Focus(); // ID テキストボックスにフォーカス 
+                    return;
+                }
+
+                // 社員IDが3～4桁の数字かどうかをチェック 
+                if (tb_ID.Text.Length < 3 || tb_ID.Text.Length > 4 || !Regex.IsMatch(tb_ID.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("社員IDは3～4桁の数字で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tb_ID.Focus(); // ID テキストボックスにフォーカス 
+                    return;
+                }
+
+                if (!InputValidator.IsNotEmpty(tb_Pass.Text))
+                {
+                    MessageBox.Show("パスワードを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
+                    return;
+                }
+
+                // パスワードが3～4桁の数字かどうかをチェック 
+                if (tb_Pass.Text.Length < 3 || tb_Pass.Text.Length > 4 || !Regex.IsMatch(tb_Pass.Text, @"^\d+$"))
+                {
+                    MessageBox.Show("パスワードは3～4桁の数字で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
+                    return;
+                }
+
+                string pass = tb_Pass.Text;
+                bool isLoginSuccessful = false; // 初期化して成功状態を保存する変数  
+
+                using (var context = new SalesManagementContext())
+                {
+                    var employeeService = new EmployeeService(context);
+                    if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poId))
+                    {
+                        HandleSuccessfulLogin(empID, employeeName, positionName, poId);
+                    }
+                    else
+                    {
+                        MessageBox.Show("社員IDとパスワードが一致していません", "認証エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
+                        return;
+                    }
+                }
+            }
+            catch (SqlException ex) when (ex.Number == -2) // タイムアウトエラー 
+            {
+                MessageBox.Show("データベース接続がタイムアウトしました。ネットワーク状態を確認し、再試行してください。", "接続タイムアウト", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("データベースに接続できません。ネットワーク状態を確認してください: " + ex.Message, "接続エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("データベース操作中にエラーが発生しました: " + ex.Message, "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("予期しないエラーが発生しました。システム管理者にお問い合わせください。", "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 
-}
+    }
