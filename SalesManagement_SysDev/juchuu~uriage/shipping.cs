@@ -372,8 +372,11 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var shipping = context.TShipments.ToList();
 
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    var shipping = checkBox_2.Checked
+                        ? context.TShipments.ToList()  // チェックされていれば全ての注文を表示
+                        : context.TShipments.Where(o => o.ShHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = shipping.Select(sh => new
                     {
                         出荷ID = sh.ShId,
