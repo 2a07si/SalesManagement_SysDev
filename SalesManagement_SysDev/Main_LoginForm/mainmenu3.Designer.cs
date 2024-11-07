@@ -63,6 +63,7 @@
             Loginkanri.Name = "Loginkanri";
             Loginkanri.Size = new Size(129, 45);
             Loginkanri.TabIndex = 1000;
+            Loginkanri.TabStop = false;
             Loginkanri.Text = "ログイン管理";
             Loginkanri.UseVisualStyleBackColor = true;
             Loginkanri.Click += Loginkanri_Click;
@@ -216,6 +217,7 @@
             b_logout.Name = "b_logout";
             b_logout.Size = new Size(155, 56);
             b_logout.TabIndex = 999;
+            b_logout.TabStop = false;
             b_logout.Text = "ログアウト(Esc)";
             b_logout.UseVisualStyleBackColor = true;
             b_logout.Click += b_logout_Click;
@@ -319,7 +321,7 @@
             b_rec.Location = new Point(680, 200);
             b_rec.Name = "b_rec";
             b_rec.Size = new Size(259, 164);
-            b_rec.TabIndex = 42;
+            b_rec.TabIndex = 1;
             b_rec.Text = "入庫管理";
             b_rec.UseVisualStyleBackColor = false;
             b_rec.Click += b_rec_Click;
@@ -331,7 +333,7 @@
             b_hor.Location = new Point(270, 200);
             b_hor.Name = "b_hor";
             b_hor.Size = new Size(259, 164);
-            b_hor.TabIndex = 41;
+            b_hor.TabIndex = 0;
             b_hor.Text = "発注管理";
             b_hor.UseVisualStyleBackColor = false;
             b_hor.Click += b_hor_Click;
