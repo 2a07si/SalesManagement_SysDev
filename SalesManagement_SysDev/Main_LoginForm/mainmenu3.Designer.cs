@@ -189,9 +189,9 @@
             // 
             b_HN.BackColor = Color.FromArgb(212, 222, 255);
             b_HN.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_HN.Location = new Point(577, 132);
+            b_HN.Location = new Point(576, 132);
             b_HN.Name = "b_HN";
-            b_HN.Size = new Size(400, 75);
+            b_HN.Size = new Size(405, 75);
             b_HN.TabIndex = 1;
             b_HN.Text = "発注～入庫";
             b_HN.UseVisualStyleBackColor = false;
