@@ -156,6 +156,8 @@ namespace SalesManagement_SysDev
             string Pass = TBPass.Text;
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
+            string riyuu = TBRiyuu.Text;
+
 
             using (var context = new SalesManagementContext())
             {
@@ -169,6 +171,7 @@ namespace SalesManagement_SysDev
                     employee.EmPhone = TelNo;
                     employee.EmPassword = Pass;
                     employee.EmHidden = delFlag ? "1" : "0";
+                    employee.EmHidden = riyuu;
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
