@@ -210,7 +210,7 @@
             NyuukaFlag.AutoSize = true;
             NyuukaFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             NyuukaFlag.ForeColor = Color.Black;
-            NyuukaFlag.Location = new Point(500, 70);
+            NyuukaFlag.Location = new Point(476, 72);
             NyuukaFlag.Name = "NyuukaFlag";
             NyuukaFlag.Size = new Size(110, 29);
             NyuukaFlag.TabIndex = 12;
@@ -239,6 +239,7 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 16;
+            dataGridView1.CellClick += dataGridView1_CellClick_1;
             // 
             // DelFlag
             // 
@@ -284,7 +285,7 @@
             // date
             // 
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(300, 68);
+            date.Location = new Point(276, 70);
             date.Name = "date";
             date.Size = new Size(185, 31);
             date.TabIndex = 11;
@@ -307,9 +308,9 @@
             label18.ForeColor = Color.Black;
             label18.Location = new Point(200, 70);
             label18.Name = "label18";
-            label18.Size = new Size(102, 25);
+            label18.Size = new Size(66, 25);
             label18.TabIndex = 10;
-            label18.Text = "受注年月日";
+            label18.Text = "入荷日";
             // 
             // label14
             // 
@@ -522,6 +523,7 @@
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 8;
+            dataGridView2.CellClick += dataGridView2_CellClick_1;
             // 
             // TBSuryou
             // 
