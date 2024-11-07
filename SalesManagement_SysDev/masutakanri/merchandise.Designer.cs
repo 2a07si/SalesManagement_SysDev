@@ -34,7 +34,7 @@
             Next = new Button();
             Prev = new Button();
             TBColor = new MaskedTextBox();
-            label2 = new Label();
+            label16 = new Label();
             label10 = new Label();
             TBModel = new MaskedTextBox();
             label9 = new Label();
@@ -71,7 +71,7 @@
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
-            label16 = new Label();
+            label2 = new Label();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -95,7 +95,7 @@
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(TBColor);
-            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label16);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(TBModel);
             panel1.Controls.Add(label9);
@@ -147,17 +147,17 @@
             TBColor.Size = new Size(180, 31);
             TBColor.TabIndex = 15;
             // 
-            // label2
+            // label16
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.Black;
-            label2.ImageAlign = ContentAlignment.MiddleRight;
-            label2.Location = new Point(1270, 152);
-            label2.Name = "label2";
-            label2.Size = new Size(72, 25);
-            label2.TabIndex = 290;
-            label2.Text = "何ページ";
+            label16.AutoSize = true;
+            label16.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label16.ForeColor = Color.Black;
+            label16.ImageAlign = ContentAlignment.MiddleRight;
+            label16.Location = new Point(1270, 152);
+            label16.Name = "label16";
+            label16.Size = new Size(72, 25);
+            label16.TabIndex = 290;
+            label16.Text = "何ページ";
             // 
             // label10
             // 
@@ -479,6 +479,7 @@
             b_kakutei.TabIndex = 6;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.Click += b_kakutei_Click_1;
             // 
             // clear
             // 
@@ -517,15 +518,15 @@
             B_iti.UseVisualStyleBackColor = false;
             B_iti.Click += B_iti_Click;
             // 
-            // label16
+            // label2
             // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label16.Location = new Point(1100, 101);
-            label16.Name = "label16";
-            label16.Size = new Size(86, 32);
-            label16.TabIndex = 267;
-            label16.Text = "未設定";
+            label2.AutoSize = true;
+            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label2.Location = new Point(1100, 101);
+            label2.Name = "label2";
+            label2.Size = new Size(86, 32);
+            label2.TabIndex = 267;
+            label2.Text = "未設定";
             // 
             // label1
             // 
@@ -543,7 +544,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
             Controls.Add(label1);
-            Controls.Add(label16);
+            Controls.Add(label2);
             Controls.Add(B_iti);
             Controls.Add(b_kakutei);
             Controls.Add(clear);
@@ -614,10 +615,10 @@
         private Label label9;
         private Button B_iti;
         private Label label1;
-        private Label label16;
+        private Label label2;
         private Button Next;
         private Button Prev;
-        private Label label2;
+        private Label label16;
         private MaskedTextBox TBColor;
         private DateTimePicker date;
     }

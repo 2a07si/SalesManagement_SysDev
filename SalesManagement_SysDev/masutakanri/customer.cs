@@ -251,6 +251,7 @@ namespace SalesManagement_SysDev
                         郵便番号 = c.ClPostal,
                         電話番号 = c.ClPhone,
                         FAX = c.ClFax
+
                     }).ToList();
                 }
             }
