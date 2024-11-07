@@ -285,56 +285,57 @@ namespace SalesManagement_SysDev
                 // 基本的なクエリ 
                 var query = context.MProducts.AsQueryable();
 
-                // 社員IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int parsedSyohinID))
+                // 商品IDを検索条件に追加 
+                if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int PrPrId))
                 {
-                    query = query.Where(m => m.PrId == parsedSyohinID);
+                    query = query.Where(e => e.PrId == PrPrId);
                 }
 
-                /* 商品名を検索条件に追加 
-                if (!string.IsNullOrEmpty(MakerId) && int.TryParse(MakerId, out int parsedShopID))
+                // めーかー 
+                if (!string.IsNullOrEmpty(MakerId) && int.TryParse(MakerId, out int PrPrID))
                 {
-                    query = query.Where(o => o.SoId == parsedShopID);
+                    query = query.Where(o => o.MaId == PrPrID);
                 }
 
-                // 営業所IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(SyohinName) && int.TryParse(SyohinName, out int parsedShainID))
+                // 商品名 
+                if (!string.IsNullOrEmpty(SyohinName))
                 {
-                    query = query.Where(o => o.EmId == parsedShainID);
+                    query = query.Where(o => o.PrName.Contains(SyohinName));
                 }
 
-                // 顧客IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(Sell) && int.TryParse(Sell, out int parsedKokyakuID))
+                // 値段 
+                if (!string.IsNullOrEmpty(Sell) && int.TryParse(Sell, out int RRRIF))
                 {
-                    query = query.Where(e => e.SoId == parsedKokyakuID);
+                    query = query.Where(e => e.Price == RRRIF);
                 }
 
-                // 担当者名を検索条件に追加 
+                // かたばｊｎ 
                 if (!string.IsNullOrEmpty(Model))
                 {
-                    query = query.Where(e => e.EmPhone.Contains(Model));
-                }*/
+                    query = query.Where(e => e.PrModelNumber.Contains(Model));
+                }
 
 
 
 
                 // 結果を取得 
-                var m = query.ToList();
+                var merchandise = query.ToList();
 
-                if (m.Any())
+                if (merchandise.Any())
                 {
                     // dataGridView1 に結果を表示 
-                    dataGridView1.DataSource = m.Select(m => new
+                    dataGridView1.DataSource = merchandise.Select(merchandise => new
                     {
-                        商品ID = m.PrId,
-                        メーカーID = m.MaId,
-                        商品名 = m.PrName,
-                        値段 = m.Price,
-                        安全在庫数 = m.PrSafetyStock,
-                        小分類 = m.ScId,
-                        型番 = m.PrModelNumber,
-                        発売日 = m.PrReleaseDate,
-                        非表示フラグ = m.PrFlag,
+                        商品ID = merchandise.PrId,
+                        営業所ID = merchandise.MaId,
+                        商品名 = merchandise.PrName,
+                        値段 = merchandise.Price,
+                        JANコード = merchandise.PrJcode,
+                        安全在庫数 = merchandise.PrSafetyStock,
+                        小分類ID = merchandise.ScId,
+                        型番 = merchandise.PrModelNumber,
+                        色 = merchandise.PrColor,
+                        発売日 = merchandise.PrReleaseDate,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
                 }
