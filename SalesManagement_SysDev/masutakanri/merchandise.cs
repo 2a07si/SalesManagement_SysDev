@@ -259,7 +259,7 @@ namespace SalesManagement_SysDev
                         安全在庫数 = m.PrSafetyStock,
                         小分類 = m.ScId,
                         型番 = m.PrModelNumber,
-
+                        発売日 = m.PrReleaseDate,
                         非表示フラグ = m.PrFlag
                     }).ToList();
                 }
@@ -283,12 +283,12 @@ namespace SalesManagement_SysDev
                 var Model = TBModel.Text.Trim();     // かたばｊｎ 
 
                 // 基本的なクエリ 
-                var query = context.MEmployees.AsQueryable();
+                var query = context.MProducts.AsQueryable();
 
                 // 社員IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int parsedJyutyuID))
+                if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int parsedSyohinID))
                 {
-                    query = query.Where(e => e.EmId == parsedJyutyuID);
+                    query = query.Where(m => m.PrId == parsedSyohinID);
                 }
 
                 // 社員名を検索条件に追加 
@@ -319,19 +319,22 @@ namespace SalesManagement_SysDev
 
 
                 // 結果を取得 
-                var employees = query.ToList();
+                var m = query.ToList();
 
-                if (employees.Any())
+                if (m.Any())
                 {
                     // dataGridView1 に結果を表示 
-                    dataGridView1.DataSource = employees.Select(employee => new
+                    dataGridView1.DataSource = m.Select(m => new
                     {
-                        社員ID = employee.EmId,
-                        社員名 = employee.EmName,
-                        営業所ID = employee.EmId,
-                        役職ID = employee.PoId,
-                        入社年月日 = employee.EmHiredate,
-                        電話番号 = employee.EmPhone,
+                        商品ID = m.PrId,
+                        メーカーID = m.MaId,
+                        商品名 = m.PrName,
+                        値段 = m.Price,
+                        安全在庫数 = m.PrSafetyStock,
+                        小分類 = m.ScId,
+                        型番 = m.PrModelNumber,
+                        発売日 = m.PrReleaseDate,
+                        非表示フラグ = m.PrFlag,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
                 }
