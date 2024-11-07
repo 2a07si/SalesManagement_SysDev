@@ -173,7 +173,7 @@ namespace SalesManagement_SysDev
             TBShopID.Text = "";
             TBJyutyuID.Text = "";
             SyukkaFlag.Checked = false;
-            DelFlag.Checked = false;
+            KanriFlag.Checked = false;
             TBRiyuu.Text = "";
             TBSyukkaSyosaiID.Text = "";
             TBSyukkaIDS.Text = "";
@@ -265,7 +265,7 @@ namespace SalesManagement_SysDev
             string kokyakuID = TBKokyakuID.Text;
             string shukkaID = TBSyukkaID.Text;
             DateTime shukkaDate = date.Value;
-            bool delFlag = DelFlag.Checked;
+            bool delFlag = KanriFlag.Checked;
 
             using (var context = new SalesManagementContext())
             {
@@ -296,9 +296,11 @@ namespace SalesManagement_SysDev
             string shopID = TBShopID.Text;
             string shainID = TBShainID.Text;
             string kokyakuID = TBKokyakuID.Text;
-            string shukkaID = TBSyukkaID.Text;
+            string syukkaID = TBSyukkaID.Text;
             DateTime shukkaDate = date.Value;
-            bool delFlag = DelFlag.Checked;
+            string riyuu = TBRiyuu.Text;
+            bool syukkaf = SyukkaFlag.Checked;
+            bool kanriFlag = KanriFlag.Checked;
 
             using (var context = new SalesManagementContext())
             {
@@ -335,10 +337,10 @@ namespace SalesManagement_SysDev
                     SoId = int.Parse(shopID),
                     EmId = int.Parse(shainID),
                     ClId = int.Parse(kokyakuID),
-                    ShId = int.Parse(shukkaID),
                     OrId = int.Parse(jyutyuID),
                     ShFinishDate = shukkaDate,
-                    ShHidden = delFlag ? "1" : "0"
+                    ShStateFlag = syukkaf ? 1 : 0,
+                    ShFlag = kanriFlag ? 1 : 0,
                 };
 
                 context.TShipments.Add(newShipping);
@@ -464,7 +466,7 @@ namespace SalesManagement_SysDev
                         出荷終了日 = sh.ShFinishDate,
                         出荷フラグ = sh.ShFlag,
                         非表示フラグ = sh.ShHidden,
-                        削除フラグ = DelFlag.Checked ? "〇" : "×"
+                        削除フラグ = KanriFlag.Checked ? "〇" : "×"
                     }).ToList();
                 }
                 else
@@ -489,7 +491,6 @@ namespace SalesManagement_SysDev
                 var shippingDetail = context.TShipmentDetails.SingleOrDefault(sh => sh.ShDetailId.ToString() == shukkasyosaiID);
                 if (shippingDetail != null)
                 {
-                    shippingDetail.ShDetailId = int.Parse(shukkasyosaiID);
                     shippingDetail.PrId = int.Parse(syohinID);
                     shippingDetail.ShId = int.Parse(shukkaID);
                     shippingDetail.ShQuantity = int.Parse(suryou);
@@ -506,7 +507,6 @@ namespace SalesManagement_SysDev
 
         private void RegisterShippingDetails()
         {
-            string shukkasyosaiID = TBSyukkaSyosaiID.Text;
             string shukkaID = TBSyukkaIDS.Text;
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
@@ -529,7 +529,6 @@ namespace SalesManagement_SysDev
                 }
                 var newShippingDetail = new TShipmentDetail
                 {
-                    ShDetailId = int.Parse(shukkasyosaiID),
                     PrId = int.Parse(syohinID),
                     ShId = int.Parse(shukkaID),
                     ShQuantity = int.Parse(suryou)

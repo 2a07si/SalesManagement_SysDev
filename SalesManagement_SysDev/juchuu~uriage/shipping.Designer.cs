@@ -51,7 +51,7 @@
             dataGridView1 = new DataGridView();
             SyukkaFlag = new CheckBox();
             label6 = new Label();
-            DelFlag = new CheckBox();
+            KanriFlag = new CheckBox();
             TBKokyakuID = new MaskedTextBox();
             label12 = new Label();
             label5 = new Label();
@@ -251,7 +251,7 @@
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(SyukkaFlag);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(DelFlag);
+            panel1.Controls.Add(KanriFlag);
             panel1.Controls.Add(TBKokyakuID);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(label5);
@@ -351,17 +351,17 @@
             label6.TabIndex = 8;
             label6.Text = "受注ID";
             // 
-            // DelFlag
+            // KanriFlag
             // 
-            DelFlag.AutoSize = true;
-            DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.Black;
-            DelFlag.Location = new Point(20, 120);
-            DelFlag.Name = "DelFlag";
-            DelFlag.Size = new Size(92, 29);
-            DelFlag.TabIndex = 13;
-            DelFlag.Text = "非表示";
-            DelFlag.UseVisualStyleBackColor = true;
+            KanriFlag.AutoSize = true;
+            KanriFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            KanriFlag.ForeColor = Color.Black;
+            KanriFlag.Location = new Point(20, 120);
+            KanriFlag.Name = "KanriFlag";
+            KanriFlag.Size = new Size(110, 29);
+            KanriFlag.TabIndex = 13;
+            KanriFlag.Text = "出荷管理";
+            KanriFlag.UseVisualStyleBackColor = true;
             // 
             // TBKokyakuID
             // 
@@ -438,7 +438,7 @@
             // 
             // TBRiyuu
             // 
-            TBRiyuu.Location = new Point(230, 120);
+            TBRiyuu.Location = new Point(244, 120);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
             TBRiyuu.TabIndex = 15;
@@ -455,7 +455,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label17.ForeColor = Color.Black;
-            label17.Location = new Point(120, 120);
+            label17.Location = new Point(136, 121);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
             label17.TabIndex = 14;
@@ -756,7 +756,7 @@
         private MaskedTextBox TBSyukkaID;
         private CheckBox SyukkaFlag;
         private Label label6;
-        private CheckBox DelFlag;
+        private CheckBox KanriFlag;
         private MaskedTextBox TBKokyakuID;
         private Label label12;
         private Label label5;
