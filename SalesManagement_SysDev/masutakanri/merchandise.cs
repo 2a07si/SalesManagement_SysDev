@@ -219,7 +219,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("小分類IDが存在しません。");
                     return;
                 }
-                var merchandise = context.MProducts.SingleOrDefault(e => e.PrId.ToString() == SyohinID);
+                var merchandise = context.MProducts.SingleOrDefault(m => m.PrId.ToString() == SyohinID);
                 if (merchandise == null)
                 {
                     merchandise.PrId = int.Parse(SyohinID);
@@ -257,10 +257,12 @@ namespace SalesManagement_SysDev
                         商品名 = m.PrName,
                         値段 = m.Price,
                         安全在庫数 = m.PrSafetyStock,
-                        小分類 = m.ScId,
+                        小分類ID = m.ScId,
                         型番 = m.PrModelNumber,
+                        色 = m.PrColor,
                         発売日 = m.PrReleaseDate,
-                        非表示フラグ = m.PrFlag
+                        非表示フラグ = m.PrFlag,
+                        非表示理由 = m.PrHidden
                     }).ToList();
                 }
             }
@@ -280,7 +282,11 @@ namespace SalesManagement_SysDev
                 var MakerId = TBMakerId.Text.Trim();           // めーかー 
                 var SyohinName = TBSyohinName.Text.Trim();         //商品名
                 var Sell = TBSell.Text.Trim();     // 値段
+                var safe = TBSafeNum.Text.Trim();
+                var shou = TBSyoubunrui.Text.Trim();
                 var Model = TBModel.Text.Trim();     // かたばｊｎ 
+                var color = TBColor.Text.Trim();
+                
 
                 // 基本的なクエリ 
                 var query = context.MProducts.AsQueryable();
@@ -291,29 +297,44 @@ namespace SalesManagement_SysDev
                     query = query.Where(m => m.PrId == parsedSyohinID);
                 }
 
-                /* 商品名を検索条件に追加 
-                if (!string.IsNullOrEmpty(MakerId) && int.TryParse(MakerId, out int parsedShopID))
+                // 商品名を検索条件に追加 
+                if (!string.IsNullOrEmpty(MakerId) && int.TryParse(MakerId, out int parsedMakerID))
                 {
-                    query = query.Where(o => o.SoId == parsedShopID);
+                    query = query.Where(m => m.MaId == parsedMakerID);
                 }
 
                 // 営業所IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(SyohinName) && int.TryParse(SyohinName, out int parsedShainID))
+                if (!string.IsNullOrEmpty(SyohinName))
                 {
-                    query = query.Where(o => o.EmId == parsedShainID);
+                    query = query.Where(m => m.PrName == SyohinName);
                 }
 
                 // 顧客IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(Sell) && int.TryParse(Sell, out int parsedKokyakuID))
+                if (!string.IsNullOrEmpty(Sell) && int.TryParse(Sell, out int parsedSell))
                 {
-                    query = query.Where(e => e.SoId == parsedKokyakuID);
+                    query = query.Where(m => m.Price == parsedSell);
+                }
+
+                if (!string.IsNullOrEmpty(safe) && int.TryParse(safe, out int parsedsafe))
+                {
+                    query = query.Where(m => m.PrSafetyStock == parsedsafe);
+                }
+
+                if (!string.IsNullOrEmpty(shou) && int.TryParse(shou, out int parsedshou))
+                {
+                    query = query.Where(m => m.ScId == parsedshou);
                 }
 
                 // 担当者名を検索条件に追加 
-                if (!string.IsNullOrEmpty(Model))
+                if (!string.IsNullOrEmpty(Model) && int.TryParse(shou, out int parsedmodel))
                 {
-                    query = query.Where(e => e.EmPhone.Contains(Model));
-                }*/
+                    query = query.Where(m => m.ScId == parsedmodel);
+                }
+
+                if (!string.IsNullOrEmpty(color))
+                {
+                    query = query.Where(m => m.PrName == color);
+                }
 
 
 
@@ -331,10 +352,12 @@ namespace SalesManagement_SysDev
                         商品名 = m.PrName,
                         値段 = m.Price,
                         安全在庫数 = m.PrSafetyStock,
-                        小分類 = m.ScId,
+                        小分類ID = m.ScId,
                         型番 = m.PrModelNumber,
+                        色 = m.PrColor,
                         発売日 = m.PrReleaseDate,
                         非表示フラグ = m.PrFlag,
+                        非表示理由 = m.PrHidden,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
                 }
