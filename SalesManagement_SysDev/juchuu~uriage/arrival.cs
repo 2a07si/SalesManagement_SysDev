@@ -8,6 +8,7 @@ using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace SalesManagement_SysDev
 {
@@ -216,6 +217,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
+                    DisplayArrivals();
                 }
                 else
                 {
@@ -293,6 +295,7 @@ namespace SalesManagement_SysDev
 
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
+                        DisplayArrivals();
                     }
                     catch (DbUpdateException ex)
                     {
@@ -457,6 +460,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("入荷詳細の更新が成功しました。");
+                    DisplayArrivalDetails();
                 }
                 else
                 {
@@ -464,6 +468,8 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
+
 
         private void RegisterArrivalDetails()
         {
@@ -481,7 +487,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // EmIdがMEmployeeテーブルに存在するか確認 
                 int shouhin;
                 if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
                 {
@@ -498,8 +504,10 @@ namespace SalesManagement_SysDev
                 context.TArrivalDetails.Add(newArrivalDetail);
                 context.SaveChanges();
                 MessageBox.Show("入荷詳細の登録が成功しました。");
+                DisplayArrivalDetails();
             }
         }
+
 
         private void DisplayArrivalDetails()
         {

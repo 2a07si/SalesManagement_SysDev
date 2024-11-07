@@ -82,8 +82,6 @@
             colord = new Button();
             現在オフ = new Label();
             dateCheckBox = new CheckBox();
-            TBGoukeiKingaku = new MaskedTextBox();
-            label11 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -487,8 +485,6 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(255, 128, 128);
-            panel3.Controls.Add(TBGoukeiKingaku);
-            panel3.Controls.Add(label11);
             panel3.Controls.Add(TBNyuukaIDS);
             panel3.Controls.Add(TBNyukaSyosaiID);
             panel3.Controls.Add(dataGridView2);
@@ -646,24 +642,6 @@
             dateCheckBox.Text = "受注年月日を検索に含む";
             dateCheckBox.UseVisualStyleBackColor = true;
             // 
-            // TBGoukeiKingaku
-            // 
-            TBGoukeiKingaku.Location = new Point(301, 70);
-            TBGoukeiKingaku.Name = "TBGoukeiKingaku";
-            TBGoukeiKingaku.Size = new Size(100, 31);
-            TBGoukeiKingaku.TabIndex = 269;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.Black;
-            label11.Location = new Point(211, 70);
-            label11.Name = "label11";
-            label11.Size = new Size(84, 25);
-            label11.TabIndex = 268;
-            label11.Text = "合計金額";
-            // 
             // arrival
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -746,8 +724,6 @@
         private Label label7;
         private Button B_iti;
         private Panel panel3;
-        private MaskedTextBox TBGoukeiKingaku;
-        private Label label11;
         private MaskedTextBox TBJyutyuSyosaiID;
         private DataGridView dataGridView2;
         private MaskedTextBox TBSuryou;
