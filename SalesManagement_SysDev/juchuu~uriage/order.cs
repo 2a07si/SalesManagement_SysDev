@@ -335,8 +335,11 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var orders = context.TChumons.ToList();
 
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    var orders = checkBox_2.Checked
+                        ? context.TChumons.ToList()  // チェックされていれば全ての注文を表示
+                        : context.TChumons.Where(o => o.ChHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = orders.Select(o => new
                     {
