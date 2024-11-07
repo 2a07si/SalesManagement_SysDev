@@ -332,6 +332,7 @@ namespace SalesManagement_SysDev
                     context.TOrders.Add(newOrder);
                     context.SaveChanges();
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DisplayOrders();
                 }
             }
             catch (FormatException)
@@ -456,44 +457,42 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void UpdateOrderDetails()
-        {
-            try
+            private void UpdateOrderDetails()
             {
-                string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
-                string jyutyuID = TBJyutyuIDS.Text;
-                string syohinID = TBSyohinID.Text;
-                string suryou = TBSuryou.Text;
-                string goukeiKingaku = TBGoukeiKingaku.Text;
-
-                using (var context = new SalesManagementContext())
+                try
                 {
-                    var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
-                    if (orderDetail != null)
-                    {
-                        orderDetail.OrId = int.Parse(jyutyuID);
-                        orderDetail.PrId = int.Parse(syohinID);
-                        orderDetail.OrQuantity = int.Parse(suryou);
-                        orderDetail.OrTotalPrice = decimal.Parse(goukeiKingaku);
+                    string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
+                    string jyutyuID = TBJyutyuIDS.Text;
+                    string syohinID = TBSyohinID.Text;
+                    string suryou = TBSuryou.Text;
 
-                        context.SaveChanges();
-                        MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
+                    using (var context = new SalesManagementContext())
                     {
-                        MessageBox.Show("該当する受注詳細が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
+                        if (orderDetail != null)
+                        {
+                            orderDetail.OrId = int.Parse(jyutyuID);
+                            orderDetail.PrId = int.Parse(syohinID);
+                            orderDetail.OrQuantity = int.Parse(suryou);
+
+                            context.SaveChanges();
+                            MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("該当する受注詳細が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
+                catch (FormatException)
+                {
+                    MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("受注詳細の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (FormatException)
-            {
-                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("受注詳細の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void RegisterOrderDetails()
         {
@@ -510,13 +509,36 @@ namespace SalesManagement_SysDev
                     {
                         OrId = int.Parse(jyutyuID),
                         PrId = int.Parse(syohinID),
-                        OrQuantity = int.Parse(suryou),
-                        OrTotalPrice = decimal.Parse(goukeiKingaku)
+                        OrQuantity = int.Parse(suryou)
                     };
+
+                    // 合計金額が入力されていない場合は自動で計算する
+                    if (string.IsNullOrEmpty(goukeiKingaku))
+                    {
+                        // 商品の価格をMProductsから取得
+                        var product = context.MProducts.SingleOrDefault(p => p.PrId == newOrderDetail.PrId);
+                        if (product != null)
+                        {
+                            // 合計金額を計算
+                            newOrderDetail.OrTotalPrice = product.Price * newOrderDetail.OrQuantity;
+                        }
+                        else
+                        {
+                            // 商品が見つからない場合の処理（適宜変更可能）
+                            MessageBox.Show("該当する商品が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;  // エラーが発生したため、処理を終了
+                        }
+                    }
+                    else
+                    {
+                        // 入力された金額がある場合は、それを使用
+                        newOrderDetail.OrTotalPrice = decimal.Parse(goukeiKingaku);
+                    }
 
                     context.TOrderDetails.Add(newOrderDetail);
                     context.SaveChanges();
                     MessageBox.Show("受注詳細の登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DisplayOrderDetails();
                 }
             }
             catch (FormatException)
@@ -543,7 +565,8 @@ namespace SalesManagement_SysDev
                         受注ID = od.OrId,
                         商品ID = od.PrId,
                         数量 = od.OrQuantity,
-                        合計金額 = od.OrTotalPrice
+                        // 合計金額がdecimal型の場合は直接ToString("N0")を適用
+                        合計金額 = od.OrTotalPrice.ToString("N0")  // 3桁区切り
                     }).ToList();
                 }
             }
@@ -552,6 +575,8 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
         private void SearchOrderDetails()
         {
             try
