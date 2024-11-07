@@ -498,6 +498,7 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 690);
             panel3.TabIndex = 5;
+            panel3.Paint += panel3_Paint;
             // 
             // TBNyuukaIDS
             // 
@@ -723,8 +724,6 @@
         private Label label7;
         private Button B_iti;
         private Panel panel3;
-        private MaskedTextBox TBGoukeiKingaku;
-        private Label label11;
         private MaskedTextBox TBJyutyuSyosaiID;
         private DataGridView dataGridView2;
         private MaskedTextBox TBSuryou;
