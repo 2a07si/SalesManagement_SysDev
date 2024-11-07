@@ -620,11 +620,6 @@ namespace SalesManagement_SysDev
 
         }
 
-<<<<<<< HEAD
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-=======
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -681,7 +676,11 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
->>>>>>> 21d7d1727b52ed8302ee1ae6a674c365f8d1db52
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 
