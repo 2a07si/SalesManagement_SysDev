@@ -320,7 +320,7 @@
             TyumonFlag.AutoSize = true;
             TyumonFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             TyumonFlag.ForeColor = Color.Black;
-            TyumonFlag.Location = new Point(510, 70);
+            TyumonFlag.Location = new Point(472, 71);
             TyumonFlag.Name = "TyumonFlag";
             TyumonFlag.Size = new Size(110, 29);
             TyumonFlag.TabIndex = 12;
@@ -384,7 +384,7 @@
             // date
             // 
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(310, 70);
+            date.Location = new Point(272, 71);
             date.Name = "date";
             date.Size = new Size(185, 31);
             date.TabIndex = 11;
@@ -407,9 +407,9 @@
             label18.ForeColor = Color.Black;
             label18.Location = new Point(200, 70);
             label18.Name = "label18";
-            label18.Size = new Size(102, 25);
+            label18.Size = new Size(66, 25);
             label18.TabIndex = 10;
-            label18.Text = "受注年月日";
+            label18.Text = "注文日";
             // 
             // label14
             // 

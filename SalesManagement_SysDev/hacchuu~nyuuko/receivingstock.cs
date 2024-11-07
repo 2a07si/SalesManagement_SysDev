@@ -293,7 +293,8 @@ namespace SalesManagement_SysDev
                         社員ID = ws.EmId,
                         入庫日 = ws.WaDate,
                         入庫フラグ = ws.WaFlag,
-                        非表示フラグ = ws.WaHidden
+                        非表示理由 = ws.WaHidden,
+                        非表示フラグ = ws.WaShelfFlag
                     }).ToList();
                 }
             }

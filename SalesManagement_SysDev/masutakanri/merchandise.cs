@@ -99,33 +99,33 @@ namespace SalesManagement_SysDev
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
             date.Value = DateTime.Now;
-            CurrentStatus.ResetStatus(label2);
+            CurrentStatus.ResetStatus(label16);
         }
 
         private void b_reg_Click(object sender, EventArgs e)
         {
-            CurrentStatus.RegistrationStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
+            CurrentStatus.RegistrationStatus(label16);
+            labelStatus.labelstatus(label16, b_kakutei);
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
-            CurrentStatus.UpDateStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
+            CurrentStatus.UpDateStatus(label16);
+            labelStatus.labelstatus(label16, b_kakutei);
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
-            CurrentStatus.ListStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
+            CurrentStatus.ListStatus(label16);
+            labelStatus.labelstatus(label16, b_kakutei);
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
-            CurrentStatus.SearchStatus(label2);
-            labelStatus.labelstatus(label2, b_kakutei);
+            CurrentStatus.SearchStatus(label16);
+            labelStatus.labelstatus(label16, b_kakutei);
         }
-        private void b_kakutei_Click(object sender, EventArgs e)
+        private void b_kakutei_Click_1(object sender, EventArgs e)
         {
             HandleOrderOperation();
         }
@@ -285,13 +285,13 @@ namespace SalesManagement_SysDev
                 // 基本的なクエリ 
                 var query = context.MEmployees.AsQueryable();
 
-                // 社員IDを検索条件に追加 
+                // 商品IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int parsedJyutyuID))
                 {
                     query = query.Where(e => e.EmId == parsedJyutyuID);
                 }
 
-                // 社員名を検索条件に追加 
+                // 商品名を検索条件に追加 
                 if (!string.IsNullOrEmpty(MakerId) && int.TryParse(MakerId, out int parsedShopID))
                 {
                     query = query.Where(o => o.SoId == parsedShopID);
@@ -326,8 +326,8 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = employees.Select(employee => new
                     {
-                        社員ID = employee.EmId,
-                        社員名 = employee.EmName,
+                        商品ID = employee.EmId,
+                        商品名 = employee.EmName,
                         営業所ID = employee.EmId,
                         役職ID = employee.PoId,
                         入社年月日 = employee.EmHiredate,
