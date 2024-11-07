@@ -222,7 +222,6 @@ namespace SalesManagement_SysDev
                 var merchandise = context.MProducts.SingleOrDefault(m => m.PrId.ToString() == SyohinID);
                 if (merchandise == null)
                 {
-                    merchandise.PrId = int.Parse(SyohinID);
                     merchandise.MaId = int.Parse(MakerID);
                     merchandise.PrName = SyohinName;
                     merchandise.Price = int.Parse(Sell);
