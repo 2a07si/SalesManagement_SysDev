@@ -69,6 +69,7 @@
             B_iti = new Button();
             label2 = new Label();
             label10 = new Label();
+            CusFlag = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -199,6 +200,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(160, 220, 190);
+            panel1.Controls.Add(CusFlag);
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
             panel1.Controls.Add(label1);
@@ -351,7 +353,7 @@
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.Black;
-            DelFlag.Location = new Point(20, 120);
+            DelFlag.Location = new Point(159, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 14;
@@ -370,7 +372,7 @@
             label17.AutoSize = true;
             label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label17.ForeColor = Color.Black;
-            label17.Location = new Point(120, 120);
+            label17.Location = new Point(259, 120);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
             label17.TabIndex = 15;
@@ -396,7 +398,7 @@
             // 
             // TBRiyuu
             // 
-            TBRiyuu.Location = new Point(230, 120);
+            TBRiyuu.Location = new Point(369, 120);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
             TBRiyuu.TabIndex = 16;
@@ -491,6 +493,17 @@
             label10.TabIndex = 270;
             label10.Text = "現在の状態";
             // 
+            // CusFlag
+            // 
+            CusFlag.AutoSize = true;
+            CusFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            CusFlag.Location = new Point(26, 119);
+            CusFlag.Name = "CusFlag";
+            CusFlag.Size = new Size(110, 29);
+            CusFlag.TabIndex = 288;
+            CusFlag.Text = "顧客管理";
+            CusFlag.UseVisualStyleBackColor = true;
+            // 
             // customer
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -570,5 +583,6 @@
         private Label label1;
         private Label label2;
         private Label label10;
+        private CheckBox CusFlag;
     }
 }

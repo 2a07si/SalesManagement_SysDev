@@ -291,7 +291,7 @@ namespace SalesManagement_SysDev
                     query = query.Where(m => m.PrId == parsedSyohinID);
                 }
 
-                // 社員名を検索条件に追加 
+                // 商品名を検索条件に追加 
                 if (!string.IsNullOrEmpty(MakerId) && int.TryParse(MakerId, out int parsedShopID))
                 {
                     query = query.Where(o => o.SoId == parsedShopID);

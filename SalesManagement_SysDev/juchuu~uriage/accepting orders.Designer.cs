@@ -89,6 +89,7 @@ namespace SalesManagement_SysDev
             colord = new Button();
             b_FormSelector = new Button();
             checkBoxDateFilter = new CheckBox();
+            checkBox_2 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -697,12 +698,23 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Text = "受注年月日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             // 
+            // checkBox_2
+            // 
+            checkBox_2.AutoSize = true;
+            checkBox_2.Location = new Point(675, 8);
+            checkBox_2.Name = "checkBox_2";
+            checkBox_2.Size = new Size(225, 29);
+            checkBox_2.TabIndex = 267;
+            checkBox_2.Text = "一覧表示に非表示も含む";
+            checkBox_2.UseVisualStyleBackColor = true;
+            // 
             // acceptingorders
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(b_FormSelector);
             Controls.Add(colord);
@@ -803,5 +815,6 @@ namespace SalesManagement_SysDev
         private Button colord;
         private Button b_FormSelector;
         private CheckBox checkBoxDateFilter;
+        private CheckBox checkBox_2;
     }
 }

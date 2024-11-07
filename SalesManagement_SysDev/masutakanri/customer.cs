@@ -40,11 +40,7 @@ namespace SalesManagement_SysDev
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            // DateTime dateTime = DateTime.Now;
-            //labeltime.Text = dateTime.ToLongTimeString();
 
-            //var now = System.DateTime.Now;
-            //labeldate.Text = now.ToString("yyyy年MM月dd日");
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -190,6 +186,8 @@ namespace SalesManagement_SysDev
             string yuubinbangou = TBYuubinNo.Text;
             string tel = TBTellNo.Text;
             string fax = TBFax.Text;
+            bool CusFlag = DelFlag.Checked;
+            bool delFlag = DelFlag.Checked;
 
             using (var context = new SalesManagementContext())
             {
@@ -208,6 +206,7 @@ namespace SalesManagement_SysDev
                     ClName = kokyakuname,
                     ClPhone = tel,
                     ClFax = fax,
+
                 };
 
                 context.MClients.Add(newcustomer);
