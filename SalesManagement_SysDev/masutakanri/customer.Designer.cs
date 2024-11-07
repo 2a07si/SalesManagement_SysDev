@@ -326,6 +326,7 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(1400, 490);
             dataGridView1.TabIndex = 19;
+            dataGridView1.CellClick += dataGridView1_CellClick_1;
             // 
             // label7
             // 
