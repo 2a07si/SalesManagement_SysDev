@@ -181,6 +181,8 @@ namespace SalesManagement_SysDev
             TBSuryou.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
+            b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
         }
 
         private void close_Click_1(object sender, EventArgs e)

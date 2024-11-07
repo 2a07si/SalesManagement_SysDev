@@ -77,6 +77,8 @@ namespace SalesManagement_SysDev
             TBSyohinId.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
+            b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
         }
         private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
         private void PerformSearch()
@@ -341,7 +343,7 @@ namespace SalesManagement_SysDev
                         顧客ID = o.ClId,             // クライアントID
                         受注ID = o.OrId,              // 受注ID
                         出庫年月日 = o.SyDate,        // 出庫日
-                        出庫状態フラグ = o.SyStateFlag,     // 出庫状態フラグ
+                        状態フラグ = o.SyStateFlag,     // 出庫状態フラグ
                         非表示フラグ = o.SyFlag,         // 削除フラグ
                         非表示理由 = o.SyHidden            // 理由
                     }).ToList();
@@ -658,6 +660,8 @@ namespace SalesManagement_SysDev
                 TBSuryou.Text = row.Cells["数量"].Value.ToString();
             }
         }
+
+        
 
         private void Syukkoflag_CheckedChanged(object sender, EventArgs e)
         {

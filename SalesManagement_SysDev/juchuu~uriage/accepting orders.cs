@@ -78,6 +78,8 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
+            b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
         }
 
         private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
@@ -738,7 +740,7 @@ namespace SalesManagement_SysDev
 
                     // 各テキストボックスにデータを入力 
                     TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value.ToString();
-                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                    TBJyutyuIDS.Text = row.Cells["受注ID"].Value.ToString();
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     TBSuryou.Text = row.Cells["数量"].Value.ToString();
                     TBGoukeiKingaku.Text = row.Cells["合計金額"].Value.ToString();
@@ -749,6 +751,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
 
     }
 }
