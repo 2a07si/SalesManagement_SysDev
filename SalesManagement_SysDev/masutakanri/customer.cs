@@ -40,11 +40,7 @@ namespace SalesManagement_SysDev
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            // DateTime dateTime = DateTime.Now;
-            //labeltime.Text = dateTime.ToLongTimeString();
 
-            //var now = System.DateTime.Now;
-            //labeldate.Text = now.ToString("yyyy年MM月dd日");
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -121,7 +117,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_kakutei_Click(object sender, EventArgs e)
+        private void b_kakutei_Click_1(object sender, EventArgs e)
         {
             HandleCustomerOperation();
         }
@@ -190,6 +186,8 @@ namespace SalesManagement_SysDev
             string yuubinbangou = TBYuubinNo.Text;
             string tel = TBTellNo.Text;
             string fax = TBFax.Text;
+            bool CusFlag = DelFlag.Checked;
+            bool delFlag = DelFlag.Checked;
 
             using (var context = new SalesManagementContext())
             {
@@ -208,6 +206,7 @@ namespace SalesManagement_SysDev
                     ClName = kokyakuname,
                     ClPhone = tel,
                     ClFax = fax,
+
                 };
 
                 context.MClients.Add(newcustomer);
@@ -251,8 +250,8 @@ namespace SalesManagement_SysDev
                         住所 = c.ClAddress,
                         郵便番号 = c.ClPostal,
                         電話番号 = c.ClPhone,
-                        FAX = c.ClFax
-
+                        FAX = c.ClFax,
+                        顧客管理フラグ = c.ClFlag
                     }).ToList();
                 }
             }
@@ -334,7 +333,8 @@ namespace SalesManagement_SysDev
                         住所 = c.ClAddress,
                         郵便番号 = c.ClPostal,
                         電話番号 = c.ClPhone,
-                        FAX = c.ClFax
+                        FAX = c.ClFax,
+                        顧客管理フラグ = c.ClFlag
                     }).ToList();
                 }
                 else
