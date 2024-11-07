@@ -390,7 +390,7 @@
             // date
             // 
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(290, 70);
+            date.Location = new Point(270, 70);
             date.Name = "date";
             date.Size = new Size(165, 31);
             date.TabIndex = 11;
@@ -413,9 +413,9 @@
             label18.ForeColor = Color.Black;
             label18.Location = new Point(200, 70);
             label18.Name = "label18";
-            label18.Size = new Size(84, 25);
+            label18.Size = new Size(66, 25);
             label18.TabIndex = 10;
-            label18.Text = "売上日時";
+            label18.Text = "売上日";
             // 
             // TBSalesID
             // 

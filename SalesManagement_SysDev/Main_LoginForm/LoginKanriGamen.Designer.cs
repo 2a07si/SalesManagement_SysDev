@@ -66,9 +66,9 @@
             // 
             b_NewAccount.BackColor = Color.FromArgb(212, 222, 255);
             b_NewAccount.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_NewAccount.Location = new Point(790, 85);
+            b_NewAccount.Location = new Point(786, 85);
             b_NewAccount.Name = "b_NewAccount";
-            b_NewAccount.Size = new Size(590, 75);
+            b_NewAccount.Size = new Size(605, 75);
             b_NewAccount.TabIndex = 247;
             b_NewAccount.Text = "新規アカウント作成";
             b_NewAccount.UseVisualStyleBackColor = false;
@@ -78,9 +78,9 @@
             // 
             b_PassChange.BackColor = Color.FromArgb(244, 226, 207);
             b_PassChange.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_PassChange.Location = new Point(200, 85);
+            b_PassChange.Location = new Point(187, 85);
             b_PassChange.Name = "b_PassChange";
-            b_PassChange.Size = new Size(590, 75);
+            b_PassChange.Size = new Size(605, 75);
             b_PassChange.TabIndex = 246;
             b_PassChange.Text = "パスワード変更";
             b_PassChange.UseVisualStyleBackColor = false;

@@ -227,7 +227,7 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var sales = context.TSales.SingleOrDefault(o => o.OrId.ToString() == jyutyuID);
+                var sales = context.TSales.SingleOrDefault(s => s.SaId.ToString() == salesID);
                 if (sales != null)
                 {
                     sales.SoId = int.Parse(shopID);
