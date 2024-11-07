@@ -430,7 +430,7 @@ namespace SalesManagement_SysDev
                         受注ID = o.OrId,              // 受注ID
                         受注年月日 = o.ChDate,        // 注文日
                         注文フラグ = o.ChStateFlag,     // 注文状態フラグ
-                        非表示フラグ = o. ChFlag,         // 削除フラグ
+                        非表示フラグ = o.ChFlag,         // 削除フラグ
                         非表示理由 = o.ChHidden            // 理由
                     }).ToList();
                 }
@@ -682,6 +682,57 @@ namespace SalesManagement_SysDev
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // クリックした行のインデックスを取得
+                int rowIndex = e.RowIndex;
+
+                // 行インデックスが有効かどうかをチェック
+                if (rowIndex >= 0)
+                {
+                    // 行データを取得
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                    // 各テキストボックスにデータを入力
+                    TBTyumonId.Text = row.Cells["注文ID"].Value.ToString();
+                    TBShopId.Text = row.Cells["営業所ID"].Value.ToString();
+                    TBShainId.Text = row.Cells["社員ID"].Value.ToString();
+                    TBKokyakuId.Text = row.Cells["顧客ID"].Value.ToString();
+                    TBJyutyuId.Text = row.Cells["受注ID"].Value.ToString();
+                    date.Value = Convert.ToDateTime(row.Cells["注文日"].Value);
+                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
+                    // 非表示ボタンや非表示理由もここで設定
+                    // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            // クリックした行のインデックスを取得 
+            int rowIndex = e.RowIndex;
+
+            // 行インデックスが有効かどうかをチェック 
+            if (rowIndex >= 0)
+            {
+                // 行データを取得 
+                DataGridViewRow row = dataGridView2.Rows[rowIndex];
+
+                // 各テキストボックスにデータを入力
+                TBTyumonSyosaiId.Text = row.Cells["注文詳細ID"].Value.ToString();
+                TBTyumonIDS.Text = row.Cells["注文ID"].Value.ToString();
+                TBSyohinId.Text = row.Cells["商品ID"].Value.ToString();
+                TBSuryou.Text = row.Cells["数量"].Value.ToString();
+            }
         }
     }
 

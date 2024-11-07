@@ -588,6 +588,58 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // クリックした行のインデックスを取得  
+                int rowIndex = e.RowIndex;
 
+                // 行インデックスが有効かどうかをチェック  
+                if (rowIndex >= 0)
+                {
+                    // 行データを取得  
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                    // 各テキストボックスにデータを入力  
+                    TBNyukoID.Text = row.Cells["入庫ID"].Value.ToString();
+                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString();
+                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                    date.Value = Convert.ToDateTime(row.Cells["入庫日"].Value);
+                    NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫フラグ"].Value);
+                    DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // クリックした行のインデックスを取得   
+                int rowIndex = e.RowIndex;
+
+                // 行インデックスが有効かどうかをチェック   
+                if (rowIndex >= 0)
+                {
+                    // 行データを取得   
+                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
+
+                    // 各テキストボックスにデータを入力  
+                    TBNyuukoSyosaiID.Text = row.Cells["入庫詳細ID"].Value.ToString();
+                    TBNyuukoIDS.Text = row.Cells["入庫ID"].Value.ToString();
+                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
+                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

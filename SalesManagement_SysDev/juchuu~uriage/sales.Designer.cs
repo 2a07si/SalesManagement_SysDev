@@ -331,6 +331,7 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 11;
+            dataGridView1.CellClick += dataGridView1_CellClick_1;
             // 
             // DelFlag
             // 
@@ -606,6 +607,7 @@
             dataGridView3.RowTemplate.Height = 33;
             dataGridView3.Size = new Size(580, 490);
             dataGridView3.TabIndex = 10;
+            dataGridView3.CellClick += dataGridView3_CellClick;
             // 
             // TBUriageSyosaiID
             // 
