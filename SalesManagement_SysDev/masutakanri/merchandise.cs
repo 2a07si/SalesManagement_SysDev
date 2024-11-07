@@ -285,13 +285,13 @@ namespace SalesManagement_SysDev
                 // 基本的なクエリ 
                 var query = context.MEmployees.AsQueryable();
 
-                // 社員IDを検索条件に追加 
+                // 商品IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int parsedJyutyuID))
                 {
                     query = query.Where(e => e.EmId == parsedJyutyuID);
                 }
 
-                // 社員名を検索条件に追加 
+                // 商品名を検索条件に追加 
                 if (!string.IsNullOrEmpty(MakerId) && int.TryParse(MakerId, out int parsedShopID))
                 {
                     query = query.Where(o => o.SoId == parsedShopID);
@@ -326,8 +326,8 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = employees.Select(employee => new
                     {
-                        社員ID = employee.EmId,
-                        社員名 = employee.EmName,
+                        商品ID = employee.EmId,
+                        商品名 = employee.EmName,
                         営業所ID = employee.EmId,
                         役職ID = employee.PoId,
                         入社年月日 = employee.EmHiredate,
