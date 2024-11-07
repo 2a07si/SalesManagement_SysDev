@@ -308,24 +308,31 @@ namespace SalesManagement_SysDev
         // CellClickイベントハンドラ
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // クリックした行のインデックスを取得
-            int rowIndex = e.RowIndex;
-
-            // 行インデックスが有効かどうかをチェック
-            if (rowIndex >= 0)
+            try
             {
-                // 行データを取得
-                DataGridViewRow row = dataGridView1.Rows[rowIndex];
+                // クリックした行のインデックスを取得
+                int rowIndex = e.RowIndex;
 
-                // 各テキストボックスにデータを入力
-                TBZaikoID.Text = row.Cells["在庫ID"].Value.ToString();
-                TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                TBZaiko.Text = row.Cells["在庫数"].Value.ToString();
-                TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString();
-                // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                // 非表示ボタンや非表示理由もここで設定
-                // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                // 行インデックスが有効かどうかをチェック
+                if (rowIndex >= 0)
+                {
+                    // 行データを取得
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                    // 各テキストボックスにデータを入力
+                    TBZaikoID.Text = row.Cells["在庫ID"].Value.ToString();
+                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
+                    TBZaiko.Text = row.Cells["在庫数"].Value.ToString();
+                    TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
+                    // 非表示ボタンや非表示理由もここで設定
+                    // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -142,6 +142,8 @@ namespace SalesManagement_SysDev
             TBTotal.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
+            b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)
@@ -471,7 +473,7 @@ namespace SalesManagement_SysDev
 
                 context.TSaleDetails.Add(newSaleDetail);
                 context.SaveChanges();
-                MessageBox.Show("受注詳細の登録が成功しました。");
+                MessageBox.Show("売上詳細の登録が成功しました。");
             }
         }
 

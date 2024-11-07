@@ -79,6 +79,8 @@ namespace SalesManagement_SysDev
             TBSyohinId.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
+            b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
         }
         private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
         private void PerformSearch()
@@ -616,7 +618,7 @@ namespace SalesManagement_SysDev
         }
 
         // CellClickイベントハンドラ
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             // クリックした行のインデックスを取得
             int rowIndex = e.RowIndex;

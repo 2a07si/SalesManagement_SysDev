@@ -74,6 +74,8 @@ namespace SalesManagement_SysDev
             TBSyohinID.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
+            b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
         }
         private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
         private void PerformSearch()
@@ -338,7 +340,7 @@ namespace SalesManagement_SysDev
                         顧客ID = o.ClId,             // クライアントID
                         受注ID = o.OrId,              // 受注ID
                         受注年月日 = o.ArDate,        // 入荷日
-                        入荷状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
+                        状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
                         非表示フラグ = o.ArFlag,         // 削除フラグ
                         非表示理由 = o.ArHidden            // 理由
                     }).ToList();
@@ -421,7 +423,7 @@ namespace SalesManagement_SysDev
                         顧客ID = o.ClId,             // クライアントID
                         受注ID = o.OrId,              // 受注ID
                         受注年月日 = o.ArDate,        // 入荷日
-                        入荷状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
+                        状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
                         非表示フラグ = o.ArFlag,         // 削除フラグ
                         非表示理由 = o.ArHidden            // 理由
                     }).ToList();
