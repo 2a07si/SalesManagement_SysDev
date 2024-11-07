@@ -376,11 +376,11 @@ namespace SalesManagement_SysDev
 
                     dataGridView1.DataSource = shipping.Select(sh => new
                     {
-                        受注ID = sh.OrId,
+                        出荷ID = sh.ShId,
                         営業所ID = sh.SoId,
                         社員ID = sh.EmId,
                         顧客ID = sh.ClId,
-                        出荷ID = sh.ShId,
+                        受注ID = sh.OrId,
                         出荷終了日 = sh.ShFinishDate,
                         出荷フラグ = sh.ShFlag,
                         非表示フラグ = sh.ShHidden
@@ -453,12 +453,14 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = shipping.Select(sh => new
                     {
-                        受注ID = sh.OrId,
-                        営業所ID = sh.SoId,
-                        社員ID = sh.EmId,
-                        顧客ID = sh.ClId,
                         出荷ID = sh.ShId,
+                        顧客ID = sh.ClId,
+                        社員ID = sh.EmId,
+                        営業所ID = sh.SoId,
+                        受注ID = sh.OrId,
                         出荷終了日 = sh.ShFinishDate,
+                        出荷フラグ = sh.ShFlag,
+                        非表示フラグ = sh.ShHidden,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
                 }

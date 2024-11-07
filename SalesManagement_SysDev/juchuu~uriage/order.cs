@@ -341,11 +341,11 @@ namespace SalesManagement_SysDev
                     dataGridView1.DataSource = orders.Select(o => new
                     {
                         注文ID = o.OrId,            // 注文ID
-                        店舗ID = o.SoId,              // 店舗ID
+                        営業所ID = o.SoId,              // 店舗ID
                         社員ID = o.EmId,           // 社員ID
                         顧客ID = o.ClId,             // クライアントID
                         受注ID = o.OrId,              // 受注ID
-                        受注年月日 = o.ChDate,        // 注文日
+                        注文日 = o.ChDate,        // 注文日
                         注文フラグ = o.ChStateFlag,     // 注文状態フラグ
                         非表示フラグ = o.ChFlag,         // 削除フラグ
                         非表示理由 = o.ChHidden            // 理由
@@ -424,11 +424,11 @@ namespace SalesManagement_SysDev
                     dataGridView1.DataSource = orders.Select(o => new
                     {
                         注文ID = o.OrId,            // 注文ID
-                        店舗ID = o.SoId,              // 店舗ID
+                        営業所ID = o.SoId,              // 店舗ID
                         社員ID = o.EmId,           // 社員ID
                         顧客ID = o.ClId,             // クライアントID
                         受注ID = o.OrId,              // 受注ID
-                        受注年月日 = o.ChDate,        // 注文日
+                        注文日 = o.ChDate,        // 注文日
                         注文フラグ = o.ChStateFlag,     // 注文状態フラグ
                         非表示フラグ = o.ChFlag,         // 削除フラグ
                         非表示理由 = o.ChHidden            // 理由
