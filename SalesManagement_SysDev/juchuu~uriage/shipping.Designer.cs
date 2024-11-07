@@ -325,6 +325,7 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 18;
+            dataGridView1.CellClick += dataGridView1_CellClick_1;
             // 
             // SyukkaFlag
             // 
@@ -572,6 +573,7 @@
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 8;
+            dataGridView2.CellClick += dataGridView2_CellClick_1;
             // 
             // TBSuryou
             // 

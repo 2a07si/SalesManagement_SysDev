@@ -701,7 +701,64 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // クリックした行のインデックスを取得
+                int rowIndex = e.RowIndex;
 
+                // 行インデックスが有効かどうかをチェック
+                if (rowIndex >= 0)
+                {
+                    // 行データを取得
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                    // 各テキストボックスにデータを入力
+                    TBSalesID.Text = row.Cells["売上ID"].Value.ToString();
+                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
+                    date.Value = Convert.ToDateTime(row.Cells["売上日時"].Value);
+                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
+                    // 非表示ボタンや非表示理由もここで設定
+                    // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // クリックした行のインデックスを取得 
+                int rowIndex = e.RowIndex;
+
+                // 行インデックスが有効かどうかをチェック 
+                if (rowIndex >= 0)
+                {
+                    // 行データを取得 
+                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
+
+                    // 各テキストボックスにデータを入力
+                    TBUriageSyosaiID.Text = row.Cells["売上詳細ID"].Value.ToString();
+                    TBUriageIDS.Text = row.Cells["売上ID"].Value.ToString();
+                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
+                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                    TBTotal.Text = row.Cells["合計金額"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 
 
