@@ -228,12 +228,8 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
-
         private void RegisterOrder()
         {
-            string OrderId = TBTyumonId.Text;
             string ShopId = TBShopId.Text;
             string ShainId = TBShainId.Text;
             string KokyakuId = TBKokyakuId.Text;
@@ -253,13 +249,14 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // 社員IDがMEmployeeテーブルに存在するか確認
                 int employeeId;
                 if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
                     MessageBox.Show("社員IDが存在しません。");
                     return;
                 }
+
                 int kokyaku;
                 if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
@@ -267,42 +264,42 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // 受注IDが存在するか確認
                 int juchu;
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
                     MessageBox.Show("受注IDが存在しません。");
                     return;
                 }
-                // 注文が既に存在するか確認
-                var order = context.TChumons.SingleOrDefault(o => o.OrId.ToString() == OrderId);
+
+                // 注文が既に存在するか確認  
+                var order = context.TChumons.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
                 if (order == null)
                 {
                     try
-                    { // 新しい注文情報を作成
+                    {
                         var newOrder = new TChumon
                         {
-
-                            SoId = int.Parse(ShopId),                           // 店舗ID
-                            EmId = int.Parse(ShainId), // 社員ID（null許容）
-                            ClId = int.Parse(KokyakuId),                        // クライアントID
-                            OrId = int.Parse(JyutyuId),                         // 受注ID
-                            ChDate = Orderdate,                                // 注文日
-                            ChStateFlag = OrderFlg ? 1 : 0,                    // 注文状態フラグ
-                            ChFlag = DelFlg ? 1 : 0,                            // 削除フラグ
-                            ChHidden = Riyuu
+                            SoId = int.Parse(ShopId),  // 営業所ID   
+                            EmId = int.Parse(ShainId),  // 社員ID   
+                            ClId = int.Parse(KokyakuId), // 顧客ID   
+                                                         // OrId は自動採番されるため、設定しない
+                            ChDate = Orderdate,  // 注文日   
+                            ChStateFlag = OrderFlg ? 1 : 0, // 注文状態フラグ   
+                            ChFlag = DelFlg ? 1 : 0,  // 削除フラグ   
+                            ChHidden = Riyuu // 理由  
                         };
 
-                        // 注文情報をコンテキストに追加
+                        // 注文情報をコンテキストに追加  
                         context.TChumons.Add(newOrder);
 
-
+                        // 保存
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
                     }
                     catch (DbUpdateException ex)
                     {
-                        // inner exception の詳細を表示する
+                        // inner exception の詳細を表示する  
                         if (ex.InnerException != null)
                         {
                             MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
@@ -315,7 +312,7 @@ namespace SalesManagement_SysDev
 
                     catch (Exception ex)
                     {
-                        // その他のエラーに対処する
+                        // その他のエラーに対処する  
                         MessageBox.Show($"エラーが発生しました: {ex.Message}");
                     }
                 }
@@ -326,32 +323,29 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
-
         private void DisplayOrders()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var orders = checkBox_2.Checked
-                        ? context.TChumons.ToList()  // チェックされていれば全ての注文を表示
+                        ? context.TChumons.ToList()  // チェックされていれば全ての受注を表示
                         : context.TChumons.Where(o => o.ChHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = orders.Select(o => new
                     {
-                        注文ID = o.OrId,            // 注文ID
-                        営業所ID = o.SoId,              // 店舗ID
+                        注文ID = o.OrId,           // 注文ID
+                        営業所ID = o.SoId,         // 営業所ID
                         社員ID = o.EmId,           // 社員ID
-                        顧客ID = o.ClId,             // クライアントID
-                        受注ID = o.OrId,              // 受注ID
-                        注文日 = o.ChDate,        // 注文日
-                        注文フラグ = o.ChStateFlag,     // 注文状態フラグ
-                        非表示フラグ = o.ChFlag,         // 削除フラグ
-                        非表示理由 = o.ChHidden            // 理由
+                        顧客ID = o.ClId,           // 顧客ID
+                        受注ID = o.OrId,           // 受注ID
+                        注文日 = o.ChDate,         // 注文日
+                        注文フラグ = o.ChStateFlag,// 注文状態フラグ
+                        非表示フラグ = o.ChFlag,  // 削除フラグ
+                        非表示理由 = o.ChHidden  // 非表示理由
                     }).ToList();
                 }
             }
@@ -360,6 +354,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
+
 
 
         private void SearchOrders()
