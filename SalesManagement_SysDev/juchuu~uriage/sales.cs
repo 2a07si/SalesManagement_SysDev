@@ -439,45 +439,76 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
         private void RegisterSaleDetails()
         {
-            string uriagesyosaiID = TBUriageSyosaiID.Text;
-            string uriageID = TBUriageIDS.Text;
-            string syohinID = TBSyohinID.Text;
-            string suryou = TBSuryou.Text;
-            string total = TBTotal.Text;
-
-            using (var context = new SalesManagementContext())
+            try
             {
-                int uriage;
-                if (!int.TryParse(uriageID, out uriage) || !context.TSales.Any(s => s.SaId == uriage))
-                {
-                    MessageBox.Show("売上IDが存在しません。");
-                    return;
-                }
-                int shouhin;
-                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
-                {
-                    MessageBox.Show("商品IDが存在しません。");
-                    return;
-                }
-                var newSaleDetail = new TSaleDetail
-                {
-                    SaDetailId = int.Parse(uriageID),
-                    PrId = int.Parse(syohinID),
-                    SaQuantity = int.Parse(suryou),
-                    SaId = int.Parse(uriageID),
-                    SaPrTotalPrice = int.Parse(total),
-                };
+                string uriagesyosaiID = TBUriageSyosaiID.Text;
+                string uriageID = TBUriageIDS.Text;
+                string syohinID = TBSyohinID.Text;
+                string suryou = TBSuryou.Text;
+                string total = TBTotal.Text;
 
-                context.TSaleDetails.Add(newSaleDetail);
-                context.SaveChanges();
-                MessageBox.Show("売上詳細の登録が成功しました。");
+                using (var context = new SalesManagementContext())
+                {
+                    int uriage;
+                    if (!int.TryParse(uriageID, out uriage) || !context.TSales.Any(s => s.SaId == uriage))
+                    {
+                        MessageBox.Show("売上IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    int shouhin;
+                    if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                    {
+                        MessageBox.Show("商品IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    var newSaleDetail = new TSaleDetail
+                    {
+                        SaDetailId = int.Parse(uriagesyosaiID),
+                        SaId = uriage,
+                        PrId = shouhin,
+                        SaQuantity = int.Parse(suryou)
+                    };
+
+                    // 合計金額が入力されていない場合は自動で計算
+                    if (string.IsNullOrEmpty(total))
+                    {
+                        var product = context.MProducts.SingleOrDefault(p => p.PrId == newSaleDetail.PrId);
+                        if (product != null)
+                        {
+                            newSaleDetail.SaPrTotalPrice = product.Price * newSaleDetail.SaQuantity;
+                        }
+                        else
+                        {
+                            MessageBox.Show("該当する商品が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        newSaleDetail.SaPrTotalPrice = decimal.Parse(total);
+                    }
+
+                    context.TSaleDetails.Add(newSaleDetail);
+                    context.SaveChanges();
+                    MessageBox.Show("売上詳細の登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("売上詳細の登録中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+   
 
-        private void DisplaySaleDetails()
+    private void DisplaySaleDetails()
         {
             try
             {
