@@ -624,7 +624,7 @@ namespace SalesManagement_SysDev
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
 

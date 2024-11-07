@@ -457,7 +457,7 @@ namespace SalesManagement_SysDev
                 string suryou = TBSuryou.Text;
                 string total = TBTotal.Text;
 
-                
+
 
                 using (var context = new SalesManagementContext())
                 {
@@ -484,7 +484,7 @@ namespace SalesManagement_SysDev
 
                     var newSaleDetail = new TSaleDetail
                     {
-                        
+
                         SaId = uriage,
                         PrId = shouhin,
                         SaQuantity = quantity
@@ -539,10 +539,10 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("売上詳細の登録中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    
 
 
-    private void DisplaySaleDetails()
+
+        private void DisplaySaleDetails()
         {
             try
             {
