@@ -345,14 +345,16 @@ namespace SalesManagement_SysDev
             }
         }
 
-
         private void DisplayOrders()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var orders = context.TOrders.ToList();
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    var orders = checkBox_2.Checked
+                        ? context.TOrders.ToList()  // チェックされていれば全ての注文を表示
+                        : context.TOrders.Where(o => o.OrHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
 
                     dataGridView1.DataSource = orders.Select(o => new
                     {
@@ -360,16 +362,16 @@ namespace SalesManagement_SysDev
                         営業所ID = o.SoId,
                         社員ID = o.EmId,
                         顧客ID = o.ClId,
-                        顧客担当者 = o.ClCharge,
+                        担当者名 = o.ClCharge,
                         受注日 = o.OrDate,
-                        受注フラグ = o.OrFlag,
+                        注文フラグ = o.OrFlag,
                         非表示フラグ = o.OrHidden
                     }).ToList();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("エラー: " + ex.Message);
             }
         }
 
@@ -457,42 +459,42 @@ namespace SalesManagement_SysDev
             }
         }
 
-            private void UpdateOrderDetails()
+        private void UpdateOrderDetails()
+        {
+            try
             {
-                try
+                string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
+                string jyutyuID = TBJyutyuIDS.Text;
+                string syohinID = TBSyohinID.Text;
+                string suryou = TBSuryou.Text;
+
+                using (var context = new SalesManagementContext())
                 {
-                    string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
-                    string jyutyuID = TBJyutyuIDS.Text;
-                    string syohinID = TBSyohinID.Text;
-                    string suryou = TBSuryou.Text;
-
-                    using (var context = new SalesManagementContext())
+                    var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
+                    if (orderDetail != null)
                     {
-                        var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
-                        if (orderDetail != null)
-                        {
-                            orderDetail.OrId = int.Parse(jyutyuID);
-                            orderDetail.PrId = int.Parse(syohinID);
-                            orderDetail.OrQuantity = int.Parse(suryou);
+                        orderDetail.OrId = int.Parse(jyutyuID);
+                        orderDetail.PrId = int.Parse(syohinID);
+                        orderDetail.OrQuantity = int.Parse(suryou);
 
-                            context.SaveChanges();
-                            MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("該当する受注詳細が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        context.SaveChanges();
+                        MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("該当する受注詳細が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (FormatException)
-                {
-                    MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("受注詳細の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("受注詳細の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void RegisterOrderDetails()
         {
@@ -751,7 +753,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
 
     }
 }
