@@ -76,6 +76,7 @@
             colord = new Button();
             現在オフ = new Label();
             checkBoxDateFilter = new CheckBox();
+            checkBox_2 = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -564,11 +565,22 @@
             checkBoxDateFilter.Text = "受注年月日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             // 
+            // checkBox_2
+            // 
+            checkBox_2.AutoSize = true;
+            checkBox_2.Location = new Point(687, 8);
+            checkBox_2.Name = "checkBox_2";
+            checkBox_2.Size = new Size(225, 29);
+            checkBox_2.TabIndex = 276;
+            checkBox_2.Text = "一覧表示に非表示も含む";
+            checkBox_2.UseVisualStyleBackColor = true;
+            // 
             // horder
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(b_FormSelector);
             Controls.Add(colord);
@@ -652,5 +664,6 @@
         private Button colord;
         private Label 現在オフ;
         private CheckBox checkBoxDateFilter;
+        private CheckBox checkBox_2;
     }
 }

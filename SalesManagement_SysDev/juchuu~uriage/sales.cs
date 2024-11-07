@@ -227,7 +227,7 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var sales = context.TSales.SingleOrDefault(o => o.OrId.ToString() == jyutyuID);
+                var sales = context.TSales.SingleOrDefault(s => s.SaId.ToString() == salesID);
                 if (sales != null)
                 {
                     sales.SoId = int.Parse(shopID);
@@ -320,7 +320,10 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var sales = context.TSales.ToList();
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    var sales = checkBox_2.Checked
+                        ? context.TSales.ToList()  // チェックされていれば全ての注文を表示
+                        : context.TSales.Where(o => o.SaHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
 
                     dataGridView1.DataSource = sales.Select(s => new
                     {
@@ -457,7 +460,7 @@ namespace SalesManagement_SysDev
                 string suryou = TBSuryou.Text;
                 string total = TBTotal.Text;
 
-                
+
 
                 using (var context = new SalesManagementContext())
                 {
@@ -484,7 +487,7 @@ namespace SalesManagement_SysDev
 
                     var newSaleDetail = new TSaleDetail
                     {
-                        
+
                         SaId = uriage,
                         PrId = shouhin,
                         SaQuantity = quantity
@@ -539,10 +542,10 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("売上詳細の登録中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    
 
 
-    private void DisplaySaleDetails()
+
+        private void DisplaySaleDetails()
         {
             try
             {

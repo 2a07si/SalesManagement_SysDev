@@ -88,6 +88,7 @@
             colord = new Button();
             現在オフ = new Label();
             checkBoxDateFilter = new CheckBox();
+            checkBox_2 = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -389,7 +390,7 @@
             // date
             // 
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(290, 70);
+            date.Location = new Point(270, 70);
             date.Name = "date";
             date.Size = new Size(165, 31);
             date.TabIndex = 11;
@@ -412,9 +413,9 @@
             label18.ForeColor = Color.Black;
             label18.Location = new Point(200, 70);
             label18.Name = "label18";
-            label18.Size = new Size(84, 25);
+            label18.Size = new Size(66, 25);
             label18.TabIndex = 10;
-            label18.Text = "売上日時";
+            label18.Text = "売上日";
             // 
             // TBSalesID
             // 
@@ -712,11 +713,22 @@
             checkBoxDateFilter.Text = "受注年月日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             // 
+            // checkBox_2
+            // 
+            checkBox_2.AutoSize = true;
+            checkBox_2.Location = new Point(675, 8);
+            checkBox_2.Name = "checkBox_2";
+            checkBox_2.Size = new Size(225, 29);
+            checkBox_2.TabIndex = 288;
+            checkBox_2.Text = "一覧表示に非表示も含む";
+            checkBox_2.UseVisualStyleBackColor = true;
+            // 
             // sales
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(b_FormSelector);
             Controls.Add(colord);
@@ -821,5 +833,6 @@
         private CheckBox checkBoxDateFilter;
         private Label label19;
         private TextBox TBTotal;
+        private CheckBox checkBox_2;
     }
 }

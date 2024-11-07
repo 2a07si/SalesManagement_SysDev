@@ -121,7 +121,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
-        private void b_kakutei_Click(object sender, EventArgs e)
+        private void b_kakutei_Click_1(object sender, EventArgs e)
         {
             HandleStockOperation();
         }
@@ -323,7 +323,6 @@ namespace SalesManagement_SysDev
                     TBZaikoID.Text = row.Cells["在庫ID"].Value.ToString();
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     TBZaiko.Text = row.Cells["在庫数"].Value.ToString();
-                    TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString();
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                     // 非表示ボタンや非表示理由もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
@@ -353,7 +352,6 @@ namespace SalesManagement_SysDev
                     TBZaikoID.Text = row.Cells["在庫ID"].Value.ToString();
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     TBZaiko.Text = row.Cells["在庫数"].Value.ToString();
-                    TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString();
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                     // 非表示ボタンや非表示理由もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();

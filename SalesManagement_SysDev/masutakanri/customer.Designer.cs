@@ -41,6 +41,7 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
+            CusFlag = new CheckBox();
             Next = new Button();
             Prev = new Button();
             label1 = new Label();
@@ -69,7 +70,6 @@
             B_iti = new Button();
             label2 = new Label();
             label10 = new Label();
-            CusFlag = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -226,6 +226,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1420, 690);
             panel1.TabIndex = 5;
+            // 
+            // CusFlag
+            // 
+            CusFlag.AutoSize = true;
+            CusFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            CusFlag.Location = new Point(26, 119);
+            CusFlag.Name = "CusFlag";
+            CusFlag.Size = new Size(110, 29);
+            CusFlag.TabIndex = 288;
+            CusFlag.Text = "顧客管理";
+            CusFlag.UseVisualStyleBackColor = true;
             // 
             // Next
             // 
@@ -435,6 +446,7 @@
             b_kakutei.TabIndex = 6;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
+            b_kakutei.Click += b_kakutei_Click_1;
             // 
             // clear
             // 
@@ -492,17 +504,6 @@
             label10.Size = new Size(108, 28);
             label10.TabIndex = 270;
             label10.Text = "現在の状態";
-            // 
-            // CusFlag
-            // 
-            CusFlag.AutoSize = true;
-            CusFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            CusFlag.Location = new Point(26, 119);
-            CusFlag.Name = "CusFlag";
-            CusFlag.Size = new Size(110, 29);
-            CusFlag.TabIndex = 288;
-            CusFlag.Text = "顧客管理";
-            CusFlag.UseVisualStyleBackColor = true;
             // 
             // customer
             // 
