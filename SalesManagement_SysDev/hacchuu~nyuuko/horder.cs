@@ -218,7 +218,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注が見つかりません。");
+                    MessageBox.Show("該当する発注情報が見つかりません。");
                 }
             }
         }
@@ -344,7 +344,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注が見つかりません。");
+                    MessageBox.Show("該当する発注情報が見つかりません。");
                     dataGridView1.DataSource = null;
                 }
             }

@@ -414,7 +414,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注が見つかりません。");
+                    MessageBox.Show("該当する売上情報が見つかりません。");
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
                 }
             }
@@ -442,11 +442,11 @@ namespace SalesManagement_SysDev
                     saleDetail.SaPrTotalPrice = int.Parse(total);
 
                     context.SaveChanges();
-                    MessageBox.Show("受注詳細の更新が成功しました。");
+                    MessageBox.Show("売上詳細の更新が成功しました。");
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注詳細が見つかりません。");
+                    MessageBox.Show("該当する売上詳細が見つかりません。");
                 }
             }
         }

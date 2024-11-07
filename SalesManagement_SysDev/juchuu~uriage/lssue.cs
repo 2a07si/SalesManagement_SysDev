@@ -222,7 +222,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出庫が見つかりません。");
+                    MessageBox.Show("該当する出庫情報が見つかりません。");
                 }
             }
         }
@@ -318,7 +318,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("既に出庫が存在しています。");
+                    MessageBox.Show("既に出庫情報が存在しています。");
                 }
             }
         }
@@ -438,7 +438,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出庫が見つかりません。");
+                    MessageBox.Show("該当する出庫情報が見つかりません。");
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
                 }
             }

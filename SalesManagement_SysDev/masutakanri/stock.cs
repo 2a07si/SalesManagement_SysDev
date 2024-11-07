@@ -173,7 +173,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出荷情報が見つかりません。");
+                    MessageBox.Show("該当する在庫情報が見つかりません。");
                 }
             }
         }
@@ -299,7 +299,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注が見つかりません。");
+                    MessageBox.Show("該当する在庫情報が見つかりません。");
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
                 }
             }
