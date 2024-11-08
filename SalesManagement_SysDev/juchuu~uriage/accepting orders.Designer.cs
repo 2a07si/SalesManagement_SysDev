@@ -240,7 +240,7 @@ namespace SalesManagement_SysDev
             TyumonFlag.Name = "TyumonFlag";
             TyumonFlag.Size = new Size(110, 29);
             TyumonFlag.TabIndex = 12;
-            TyumonFlag.Text = "注文状態";
+            TyumonFlag.Text = "受注状態";
             TyumonFlag.UseVisualStyleBackColor = true;
             // 
             // TBTantoName
