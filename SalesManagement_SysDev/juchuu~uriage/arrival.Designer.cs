@@ -79,7 +79,6 @@
             label2 = new Label();
             label1 = new Label();
             b_FormSelector = new Button();
-            現在オフ = new Label();
             dateCheckBox = new CheckBox();
             checkBox_2 = new CheckBox();
             panel1.SuspendLayout();
@@ -614,15 +613,6 @@
             b_FormSelector.UseVisualStyleBackColor = true;
             b_FormSelector.Click += b_FormSelector_Click;
             // 
-            // 現在オフ
-            // 
-            現在オフ.AutoSize = true;
-            現在オフ.Location = new Point(980, 40);
-            現在オフ.Name = "現在オフ";
-            現在オフ.Size = new Size(74, 25);
-            現在オフ.TabIndex = 266;
-            現在オフ.Text = "現在オフ";
-            // 
             // dateCheckBox
             // 
             dateCheckBox.AutoSize = true;
@@ -651,7 +641,6 @@
             Controls.Add(checkBox_2);
             Controls.Add(dateCheckBox);
             Controls.Add(b_FormSelector);
-            Controls.Add(現在オフ);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panel3);
@@ -739,7 +728,6 @@
         private Label label1;
         private MaskedTextBox TBNyukaSyosaiID;
         private Button b_FormSelector;
-        private Label 現在オフ;
         private CheckBox dateCheckBox;
         private CheckBox checkBox_2;
     }

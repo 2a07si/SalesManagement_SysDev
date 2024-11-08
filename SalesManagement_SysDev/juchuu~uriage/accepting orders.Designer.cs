@@ -85,7 +85,6 @@ namespace SalesManagement_SysDev
             panel3 = new Panel();
             label1 = new Label();
             label2 = new Label();
-            現在オフ = new Label();
             b_FormSelector = new Button();
             checkBoxDateFilter = new CheckBox();
             checkBox_2 = new CheckBox();
@@ -659,15 +658,6 @@ namespace SalesManagement_SysDev
             label2.TabIndex = 262;
             label2.Text = "未設定";
             // 
-            // 現在オフ
-            // 
-            現在オフ.AutoSize = true;
-            現在オフ.Location = new Point(980, 40);
-            現在オフ.Name = "現在オフ";
-            現在オフ.Size = new Size(74, 25);
-            現在オフ.TabIndex = 263;
-            現在オフ.Text = "現在オフ";
-            // 
             // b_FormSelector
             // 
             b_FormSelector.Location = new Point(962, 108);
@@ -707,7 +697,6 @@ namespace SalesManagement_SysDev
             Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(b_FormSelector);
-            Controls.Add(現在オフ);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panel3);
