@@ -74,7 +74,7 @@ namespace SalesManagement_SysDev
 
         private void clear_Click(object sender, EventArgs e)
         {
-
+            cleartext();
         }
 
         private void cleartext()

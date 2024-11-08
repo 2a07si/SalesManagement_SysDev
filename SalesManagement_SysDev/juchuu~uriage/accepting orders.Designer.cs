@@ -662,9 +662,10 @@ namespace SalesManagement_SysDev
             // 
             // b_FormSelector
             // 
-            b_FormSelector.Location = new Point(962, 108);
+            b_FormSelector.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            b_FormSelector.Location = new Point(924, 70);
             b_FormSelector.Name = "b_FormSelector";
-            b_FormSelector.Size = new Size(112, 34);
+            b_FormSelector.Size = new Size(150, 70);
             b_FormSelector.TabIndex = 17;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
