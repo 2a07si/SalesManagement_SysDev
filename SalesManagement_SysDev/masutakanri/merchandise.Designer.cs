@@ -374,7 +374,7 @@
             // 
             b_upd.BackColor = Color.FromArgb(190, 255, 200);
             b_upd.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_upd.Location = new Point(350, 70);
+            b_upd.Location = new Point(330, 70);
             b_upd.Name = "b_upd";
             b_upd.Size = new Size(150, 70);
             b_upd.TabIndex = 1;
@@ -395,7 +395,7 @@
             // 
             b_ser.BackColor = Color.FromArgb(190, 255, 200);
             b_ser.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ser.Location = new Point(750, 70);
+            b_ser.Location = new Point(690, 70);
             b_ser.Name = "b_ser";
             b_ser.Size = new Size(150, 70);
             b_ser.TabIndex = 3;
@@ -513,7 +513,7 @@
             // 
             B_iti.BackColor = Color.FromArgb(190, 255, 200);
             B_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            B_iti.Location = new Point(550, 70);
+            B_iti.Location = new Point(510, 70);
             B_iti.Name = "B_iti";
             B_iti.Size = new Size(150, 70);
             B_iti.TabIndex = 2;

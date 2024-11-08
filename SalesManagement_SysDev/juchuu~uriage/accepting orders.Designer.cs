@@ -427,7 +427,7 @@ namespace SalesManagement_SysDev
             // 
             b_upd.BackColor = Color.FromArgb(255, 224, 192);
             b_upd.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_upd.Location = new Point(350, 70);
+            b_upd.Location = new Point(330, 70);
             b_upd.Name = "b_upd";
             b_upd.Size = new Size(150, 70);
             b_upd.TabIndex = 1;
@@ -448,7 +448,7 @@ namespace SalesManagement_SysDev
             // 
             b_ser.BackColor = Color.FromArgb(255, 224, 192);
             b_ser.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ser.Location = new Point(750, 70);
+            b_ser.Location = new Point(690, 70);
             b_ser.Name = "b_ser";
             b_ser.Size = new Size(150, 70);
             b_ser.TabIndex = 3;
@@ -511,7 +511,7 @@ namespace SalesManagement_SysDev
             // 
             B_iti.BackColor = Color.FromArgb(255, 224, 192);
             B_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            B_iti.Location = new Point(550, 70);
+            B_iti.Location = new Point(510, 70);
             B_iti.Name = "B_iti";
             B_iti.Size = new Size(150, 70);
             B_iti.TabIndex = 2;
@@ -663,7 +663,7 @@ namespace SalesManagement_SysDev
             // b_FormSelector
             // 
             b_FormSelector.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_FormSelector.Location = new Point(924, 70);
+            b_FormSelector.Location = new Point(900, 70);
             b_FormSelector.Name = "b_FormSelector";
             b_FormSelector.Size = new Size(150, 70);
             b_FormSelector.TabIndex = 17;
