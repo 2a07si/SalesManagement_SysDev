@@ -99,7 +99,7 @@ namespace SalesManagement_SysDev
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
             date.Value = DateTime.Now;
-            CurrentStatus.ResetStatus(label16);
+            CurrentStatus.ResetStatus(label2);
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -186,7 +186,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注が見つかりません。");
+                    MessageBox.Show("該当する商品情報が見つかりません。");
                 }
             }
 
@@ -220,27 +220,24 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("小分類IDが存在しません。");
                     return;
                 }
-                var merchandise = context.MProducts.SingleOrDefault(m => m.PrId.ToString() == SyohinID);
-                if (merchandise == null)
+                var newProducts = new MProduct
                 {
-                    merchandise.MaId = int.Parse(MakerID);
-                    merchandise.PrName = SyohinName;
-                    merchandise.Price = int.Parse(Sell);
-                    merchandise.PrSafetyStock = int.Parse(SafeNum);
-                    merchandise.ScId = int.Parse(Sclass);
-                    merchandise.PrReleaseDate = SyohinDate;
-                    merchandise.PrModelNumber = TModel;
-                    merchandise.PrColor = TColor;
-                    merchandise.PrFlag = int.Parse(delFlag ? "1" : "0");
+                    MaId = int.Parse(MakerID),
+                    PrName = SyohinName,
+                    Price = int.Parse(Sell),
+                    PrSafetyStock = int.Parse(SafeNum),
+                    ScId = int.Parse(Sclass),
+                    PrReleaseDate = SyohinDate,
+                    PrModelNumber = TModel,
+                    PrColor = TColor,
+                    PrFlag = int.Parse(delFlag ? "1" : "0")
+                };
 
-                    context.SaveChanges();
-                    MessageBox.Show("登録が成功しました。");
-                    Displaymerchandise();
-                }
-                else
-                {
-                    MessageBox.Show("該当する商品情報が見つかりません。");
-                }
+
+                context.SaveChanges();
+                context.MProducts.Add(newProducts);
+                MessageBox.Show("登録が成功しました。");
+                Displaymerchandise();
             }
         }
         private void Displaymerchandise()

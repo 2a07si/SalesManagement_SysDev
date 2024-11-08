@@ -208,7 +208,7 @@ namespace SalesManagement_SysDev
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoId == job))
                 {
-                    MessageBox.Show("社員IDが存在しません。");
+                    MessageBox.Show("役職IDが存在しません。");
                     return;
                 }
                 var newEmployee = new MEmployee
@@ -240,7 +240,7 @@ namespace SalesManagement_SysDev
                     {
                         社員ID = e.EmId,
                         社員名 = e.EmName,
-                        営業所ID = e.EmId,
+                        営業所ID = e.SoId,
                         役職ID = e.PoId,
                         入社年月日 = e.EmHiredate,
                         パスワード = e.EmPassword,
