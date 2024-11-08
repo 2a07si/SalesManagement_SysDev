@@ -42,9 +42,6 @@
             b_reg = new Button();
             panel1 = new Panel();
             CusFlag = new CheckBox();
-            Next = new Button();
-            Prev = new Button();
-            label1 = new Label();
             TBFax = new MaskedTextBox();
             label9 = new Label();
             TBYuubinNo = new MaskedTextBox();
@@ -202,9 +199,6 @@
             // 
             panel1.BackColor = Color.FromArgb(160, 220, 190);
             panel1.Controls.Add(CusFlag);
-            panel1.Controls.Add(Next);
-            panel1.Controls.Add(Prev);
-            panel1.Controls.Add(label1);
             panel1.Controls.Add(TBFax);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(TBYuubinNo);
@@ -238,36 +232,6 @@
             CusFlag.TabIndex = 288;
             CusFlag.Text = "顧客管理";
             CusFlag.UseVisualStyleBackColor = true;
-            // 
-            // Next
-            // 
-            Next.Location = new Point(1350, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 18;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(1220, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 17;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
-            label1.ImageAlign = ContentAlignment.MiddleRight;
-            label1.Location = new Point(1270, 152);
-            label1.Name = "label1";
-            label1.Size = new Size(72, 25);
-            label1.TabIndex = 287;
-            label1.Text = "何ページ";
             // 
             // TBFax
             // 
@@ -515,8 +479,10 @@
             // 
             // customer
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(label2);

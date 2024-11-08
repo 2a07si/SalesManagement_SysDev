@@ -42,9 +42,6 @@
             b_reg = new Button();
             panel1 = new Panel();
             StFlag = new CheckBox();
-            Next = new Button();
-            Prev = new Button();
-            label8 = new Label();
             dataGridView1 = new DataGridView();
             TBSyohinID = new MaskedTextBox();
             TBZaikoID = new MaskedTextBox();
@@ -192,9 +189,6 @@
             // 
             panel1.BackColor = Color.FromArgb(160, 220, 190);
             panel1.Controls.Add(StFlag);
-            panel1.Controls.Add(Next);
-            panel1.Controls.Add(Prev);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(TBSyohinID);
             panel1.Controls.Add(TBZaikoID);
@@ -218,36 +212,6 @@
             StFlag.TabIndex = 6;
             StFlag.Text = "在庫管理";
             StFlag.UseVisualStyleBackColor = true;
-            // 
-            // Next
-            // 
-            Next.Location = new Point(1350, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 11;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(1220, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 10;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Black;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(1270, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 287;
-            label8.Text = "何ページ";
             // 
             // dataGridView1
             // 
@@ -396,8 +360,10 @@
             // 
             // stock
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(label2);

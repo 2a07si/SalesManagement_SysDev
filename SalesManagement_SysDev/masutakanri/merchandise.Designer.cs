@@ -31,10 +31,7 @@
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
-            Next = new Button();
-            Prev = new Button();
             TBColor = new MaskedTextBox();
-            label16 = new Label();
             label10 = new Label();
             TBModel = new MaskedTextBox();
             label9 = new Label();
@@ -93,10 +90,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(160, 220, 190);
-            panel1.Controls.Add(Next);
-            panel1.Controls.Add(Prev);
             panel1.Controls.Add(TBColor);
-            panel1.Controls.Add(label16);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(TBModel);
             panel1.Controls.Add(label9);
@@ -123,42 +117,12 @@
             panel1.Size = new Size(1420, 690);
             panel1.TabIndex = 5;
             // 
-            // Next
-            // 
-            Next.Location = new Point(1350, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 22;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(1220, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 21;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
             // TBColor
             // 
             TBColor.Location = new Point(290, 70);
             TBColor.Name = "TBColor";
             TBColor.Size = new Size(180, 31);
             TBColor.TabIndex = 15;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label16.ForeColor = Color.Black;
-            label16.ImageAlign = ContentAlignment.MiddleRight;
-            label16.Location = new Point(1270, 152);
-            label16.Name = "label16";
-            label16.Size = new Size(72, 25);
-            label16.TabIndex = 290;
-            label16.Text = "何ページ";
             // 
             // label10
             // 
@@ -551,8 +515,10 @@
             // 
             // merchandise
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(label1);

@@ -43,10 +43,7 @@
             b_arr = new Button();
             b_lss = new Button();
             panel1 = new Panel();
-            Next = new Button();
             label7 = new Label();
-            Prev = new Button();
-            label11 = new Label();
             TBSyukkaID = new MaskedTextBox();
             dataGridView1 = new DataGridView();
             SyukkaFlag = new CheckBox();
@@ -241,10 +238,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(255, 192, 128);
-            panel1.Controls.Add(Next);
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(Prev);
-            panel1.Controls.Add(label11);
             panel1.Controls.Add(TBSyukkaID);
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(SyukkaFlag);
@@ -266,15 +260,6 @@
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 4;
             // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 17;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -285,27 +270,6 @@
             label7.Size = new Size(66, 25);
             label7.TabIndex = 0;
             label7.Text = "出荷ID";
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 16;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.Black;
-            label11.ImageAlign = ContentAlignment.MiddleRight;
-            label11.Location = new Point(690, 152);
-            label11.Name = "label11";
-            label11.Size = new Size(72, 25);
-            label11.TabIndex = 291;
-            label11.Text = "何ページ";
             // 
             // TBSyukkaID
             // 
@@ -670,8 +634,10 @@
             // 
             // shipping
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);

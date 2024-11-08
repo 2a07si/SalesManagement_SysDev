@@ -37,7 +37,6 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
-            label8 = new Label();
             TBJyutyuId = new MaskedTextBox();
             NyuukaFlag = new CheckBox();
             label7 = new Label();
@@ -162,7 +161,6 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(255, 192, 128);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(TBJyutyuId);
             panel1.Controls.Add(NyuukaFlag);
             panel1.Controls.Add(label7);
@@ -184,18 +182,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 4;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Black;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(690, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 257;
-            label8.Text = "何ページ";
             // 
             // TBJyutyuId
             // 
@@ -636,8 +622,10 @@
             // 
             // arrival
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(dateCheckBox);
