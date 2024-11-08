@@ -363,9 +363,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(265, 25);
             label3.Name = "label3";
-            label3.Size = new Size(48, 25);
+            label3.Size = new Size(52, 25);
             label3.TabIndex = 207;
-            label3.Text = "権限";
+            label3.Text = "権限:";
             // 
             // b_upd
             // 

@@ -86,7 +86,6 @@ namespace SalesManagement_SysDev
             label1 = new Label();
             label2 = new Label();
             現在オフ = new Label();
-            colord = new Button();
             b_FormSelector = new Button();
             checkBoxDateFilter = new CheckBox();
             checkBox_2 = new CheckBox();
@@ -669,15 +668,6 @@ namespace SalesManagement_SysDev
             現在オフ.TabIndex = 263;
             現在オフ.Text = "現在オフ";
             // 
-            // colord
-            // 
-            colord.Location = new Point(962, 68);
-            colord.Name = "colord";
-            colord.Size = new Size(112, 34);
-            colord.TabIndex = 16;
-            colord.Text = "色変え";
-            colord.UseVisualStyleBackColor = true;
-            // 
             // b_FormSelector
             // 
             b_FormSelector.Location = new Point(962, 108);
@@ -701,7 +691,7 @@ namespace SalesManagement_SysDev
             // checkBox_2
             // 
             checkBox_2.AutoSize = true;
-            checkBox_2.Location = new Point(675, 8);
+            checkBox_2.Location = new Point(675, 9);
             checkBox_2.Name = "checkBox_2";
             checkBox_2.Size = new Size(225, 29);
             checkBox_2.TabIndex = 267;
@@ -717,7 +707,6 @@ namespace SalesManagement_SysDev
             Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(b_FormSelector);
-            Controls.Add(colord);
             Controls.Add(現在オフ);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -812,7 +801,6 @@ namespace SalesManagement_SysDev
         private MaskedTextBox TBGoukeiKingaku;
         private Label label11;
         private Label 現在オフ;
-        private Button colord;
         private Button b_FormSelector;
         private CheckBox checkBoxDateFilter;
         private CheckBox checkBox_2;

@@ -333,7 +333,7 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
-                    
+
 
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var issues = checkBox_2.Checked

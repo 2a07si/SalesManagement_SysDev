@@ -73,7 +73,6 @@
             label2 = new Label();
             label1 = new Label();
             b_FormSelector = new Button();
-            colord = new Button();
             現在オフ = new Label();
             checkBoxDateFilter = new CheckBox();
             checkBox_2 = new CheckBox();
@@ -537,15 +536,6 @@
             b_FormSelector.UseVisualStyleBackColor = true;
             b_FormSelector.Click += b_FormSelector_Click_1;
             // 
-            // colord
-            // 
-            colord.Location = new Point(962, 68);
-            colord.Name = "colord";
-            colord.Size = new Size(112, 34);
-            colord.TabIndex = 11;
-            colord.Text = "色変え";
-            colord.UseVisualStyleBackColor = true;
-            // 
             // 現在オフ
             // 
             現在オフ.AutoSize = true;
@@ -583,7 +573,6 @@
             Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(b_FormSelector);
-            Controls.Add(colord);
             Controls.Add(現在オフ);
             Controls.Add(B_iti);
             Controls.Add(b_kakutei);

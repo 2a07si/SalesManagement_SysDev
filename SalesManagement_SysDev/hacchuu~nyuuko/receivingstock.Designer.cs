@@ -73,7 +73,6 @@
             label10 = new Label();
             TBNyuukoIDS = new MaskedTextBox();
             b_FormSelector = new Button();
-            colord = new Button();
             現在オフ = new Label();
             checkBox_2 = new CheckBox();
             checkBoxDateFilter = new CheckBox();
@@ -536,15 +535,6 @@
             b_FormSelector.UseVisualStyleBackColor = true;
             b_FormSelector.Click += b_FormSelector_Click_1;
             // 
-            // colord
-            // 
-            colord.Location = new Point(962, 68);
-            colord.Name = "colord";
-            colord.Size = new Size(112, 34);
-            colord.TabIndex = 11;
-            colord.Text = "色変え";
-            colord.UseVisualStyleBackColor = true;
-            // 
             // 現在オフ
             // 
             現在オフ.AutoSize = true;
@@ -582,7 +572,6 @@
             Controls.Add(checkBoxDateFilter);
             Controls.Add(checkBox_2);
             Controls.Add(b_FormSelector);
-            Controls.Add(colord);
             Controls.Add(現在オフ);
             Controls.Add(panel3);
             Controls.Add(label2);
