@@ -234,7 +234,6 @@ namespace SalesManagement_SysDev
         private void RegisterOrder()
         {
             string ChumonId = TBTyumonId.Text;
-
             string ShopId = TBShopId.Text;
             string ShainId = TBShainId.Text;
             string KokyakuId = TBKokyakuId.Text;

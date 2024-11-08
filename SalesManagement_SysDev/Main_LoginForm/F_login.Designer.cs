@@ -44,6 +44,7 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            DeleteDataButton = new Button();
             SuspendLayout();
             // 
             // btn_CleateDabase
@@ -199,11 +200,22 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // DeleteDataButton
+            // 
+            DeleteDataButton.Location = new Point(37, 37);
+            DeleteDataButton.Name = "DeleteDataButton";
+            DeleteDataButton.Size = new Size(262, 34);
+            DeleteDataButton.TabIndex = 14;
+            DeleteDataButton.Text = "⚠テーブルデータ削除ボタン⚠";
+            DeleteDataButton.UseVisualStyleBackColor = true;
+            DeleteDataButton.Click += DeleteDataButton_Click;
+            // 
             // F_login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(DeleteDataButton);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -244,5 +256,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button DeleteDataButton;
     }
 }

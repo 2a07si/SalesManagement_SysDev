@@ -154,15 +154,19 @@ namespace SalesManagement_SysDev
                 {
                     case CurrentStatus.Status.更新:
                         UpdateOrder();
+                        MessageBox.Show("更新");
                         break;
                     case CurrentStatus.Status.登録:
                         RegisterOrder();
+                        MessageBox.Show("とうろ");
                         break;
                     case CurrentStatus.Status.一覧:
                         DisplayOrders();
+                        MessageBox.Show("いちら");
                         break;
                     case CurrentStatus.Status.検索:
                         SearchOrders();
+                        MessageBox.Show("けんさ");
                         break;
                     default:
                         MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -263,23 +267,30 @@ namespace SalesManagement_SysDev
                         order.OrFlag = delFlag ? 1 : 0;
                         order.OrHidden = riyuu;
 
-                        context.SaveChanges();
-                        MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        DisplayOrders();
+                        if (TyumonFlag.Checked)
+                        {
+                            DialogResult result = MessageBox.Show("登録が確定されますがよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result == DialogResult.Yes)
+                            {
+                                context.SaveChanges();
+                                MessageBox.Show("受注更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                DisplayOrders();
+                            }
+                            else
+                            {
+                                MessageBox.Show("操作がキャンセルされました。", "キャンセル", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("該当する受注が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("受注IDが存在しません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
-            catch (FormatException)
-            {
-                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             catch (Exception ex)
             {
-                MessageBox.Show("受注の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -296,7 +307,7 @@ namespace SalesManagement_SysDev
                 bool tyumonFlag = TyumonFlag.Checked;
                 bool delFlag = DelFlag.Checked;
 
-                // 条件精査
+                // 条件精査 
                 if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length > 2)
                 {
                     MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -321,24 +332,64 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                using (var context = new SalesManagementContext())
+                // 注文状態にチェックが入っていた時 
+                if (tyumonFlag)
                 {
-                    var newOrder = new TOrder
-                    {
-                        SoId = parsedShopID,
-                        EmId = parsedShainID,
-                        ClId = parsedKokyakuID,
-                        ClCharge = tantoName,
-                        OrDate = jyutyuDate,
-                        OrStateFlag = tyumonFlag ? 1 : 0,
-                        OrFlag = delFlag ? 1 : 0,
-                        OrHidden = riyuu
-                    };
+                    DialogResult result = MessageBox.Show("登録が確定されますがよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    context.TOrders.Add(newOrder);
-                    context.SaveChanges();
-                    MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DisplayOrders();
+                    if (result == DialogResult.Yes)
+                    {
+                        Console.WriteLine("登録処理を開始します。");
+
+                        using (var context = new SalesManagementContext())
+                        {
+                            try
+                            {
+                                // トランザクションを開始
+                                using (var transaction = context.Database.BeginTransaction())
+                                {
+                                    // 受注IDを自動採番で新しく生成
+                                    var newOrder = new TOrder
+                                    {
+                                        SoId = parsedShopID,
+                                        EmId = parsedShainID,
+                                        ClId = parsedKokyakuID,
+                                        ClCharge = tantoName,
+                                        OrDate = jyutyuDate,
+                                        OrStateFlag = tyumonFlag ? 1 : 0,
+                                        OrFlag = delFlag ? 1 : 0,
+                                        OrHidden = riyuu
+                                    };
+
+                                    // TOrderへの登録
+                                    context.TOrders.Add(newOrder);
+
+                                    MessageBox.Show("TOrderの登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    context.SaveChanges();
+
+                                    // 新しく登録された受注IDをAcceptionConfirmに渡す
+                                    AcceptionConfirm(newOrder.OrId); // 受注IDを渡してTChumonへ登録
+
+                                    // すべての処理が正常ならコミット
+                                    transaction.Commit();
+
+                                    MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    DisplayOrders();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                // エラーが発生した場合はロールバック
+                                MessageBox.Show("登録に失敗しました。\nエラー内容: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return; // エラー発生時に登録処理を中止
+                            }
+                        }
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        Console.WriteLine("操作を取り消しました。");
+                        return; // ユーザーが登録を拒否した場合、登録処理を中止 
+                    }
                 }
             }
             catch (FormatException)
@@ -350,6 +401,8 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("受注の登録中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void DisplayOrders()
         {
@@ -761,6 +814,41 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void AcceptionConfirm(int orderId)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                // 引き継ぐ情報を宣言 
+                var order = context.TOrders.SingleOrDefault(o => o.OrId == orderId);
+
+                if (order == null)
+                {
+                    throw new Exception("受注IDが見つかりません。");
+                }
+
+                // 注文情報をTChumonに追加
+                var newChumon = new TChumon
+                {
+                    SoId = order.SoId,  // 営業所ID    
+                    EmId = order.EmId,  // 社員ID    
+                    ClId = order.ClId,  // 顧客ID    
+                    OrId = order.OrId,  // 受注ID 
+                    ChDate = order.OrDate // 注文日    
+                };
+
+                try
+                {
+                    context.TChumons.Add(newChumon);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TChumonへの登録に失敗しました: " + ex.Message);
+                }
+            }
+        }
+
 
 
     }

@@ -7,6 +7,7 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using System.Diagnostics;
 using Microsoft.Data.SqlClient;
 using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesManagement_SysDev
 {
@@ -961,6 +962,37 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました。システム管理者にお問い合わせください。", "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void DeleteDataFromTable()
+        {
+            try
+            {
+                // 削除したいテーブル名をコード内で指定
+                string tableName = "T_Order"; // ここで削除するテーブル名を指定します
+
+                using (var context = new SalesManagementContext())
+                {
+                    // テーブル名を指定して、SQLクエリでデータを削除
+                    context.Database.ExecuteSqlRaw($"DELETE FROM {tableName}");
+                    context.SaveChanges();
+
+                    MessageBox.Show($"テーブル {tableName} のすべてのデータを削除しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DeleteDataButton_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("指定されたテーブルのすべてのデータを削除しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                DeleteDataFromTable();
+            }
+        }
+
     }
 
 }
