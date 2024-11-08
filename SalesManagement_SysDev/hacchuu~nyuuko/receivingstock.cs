@@ -464,9 +464,16 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var receivingStockDetails = context.TWarehousingDetails.ToList();
+                    var WarehousingDetails = context.TWarehousingDetails.ToList();
 
-                    dataGridView2.DataSource = receivingStockDetails.Select(ws => new
+                    var visibleWarehousingDetails = WarehousingDetails.Where(od =>
+                    {
+                        var Warehousing = context.TWarehousings.FirstOrDefault(o => o.WaId == od.WaId);
+
+                        return Warehousing == null || (Warehousing.WaFlag != 1 && Warehousing.WaShelfFlag != 2);
+                    }).ToList();
+
+                    dataGridView2.DataSource = visibleWarehousingDetails.Select(ws => new
                     {
                         入庫詳細ID = ws.WaDetailId,
                         入庫ID = ws.WaId,

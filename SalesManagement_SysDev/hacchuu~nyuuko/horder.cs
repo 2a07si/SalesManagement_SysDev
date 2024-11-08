@@ -436,9 +436,16 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var orderDetails = context.THattyuDetails.ToList();
+                    var HattyuDetails = context.THattyuDetails.ToList();
 
-                    dataGridView2.DataSource = orderDetails.Select(od => new
+                    var visibleHattyuDetails = HattyuDetails.Where(od =>
+                    {
+                        var Hattyu = context.THattyus.FirstOrDefault(o => o.HaId == od.HaId);
+
+                        return Hattyu == null || (Hattyu.HaFlag != 1 && Hattyu.WaWarehouseFlag != 2);
+                    }).ToList();
+
+                    dataGridView2.DataSource = visibleHattyuDetails.Select(od => new
                     {
                         発注詳細ID = od.HaDetailId,
                         発注ID = od.HaId,
