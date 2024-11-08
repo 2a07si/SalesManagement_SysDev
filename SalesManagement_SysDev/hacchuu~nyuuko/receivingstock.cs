@@ -289,7 +289,7 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var receivingStocks = checkBox_2.Checked
                         ? context.TWarehousings.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TWarehousings.Where(o => o.WaHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TWarehousings.Where(o => o.WaFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = receivingStocks.Select(ws => new
                     {
                         入庫ID = ws.WaId,
@@ -297,8 +297,9 @@ namespace SalesManagement_SysDev
                         社員ID = ws.EmId,
                         入庫年月日 = ws.WaDate,
                         入庫フラグ = ws.WaFlag,
-                        非表示理由 = ws.WaHidden,
-                        非表示フラグ = ws.WaShelfFlag
+                        非表示フラグ = ws.WaShelfFlag,
+                        非表示理由 = ws.WaHidden
+
                     }).ToList();
                 }
             }

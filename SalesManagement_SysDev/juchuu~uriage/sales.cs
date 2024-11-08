@@ -323,7 +323,7 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var sales = checkBox_2.Checked
                         ? context.TSales.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TSales.Where(o => o.SaHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TSales.Where(o => o.SaFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
 
                     dataGridView1.DataSource = sales.Select(s => new
                     {

@@ -288,7 +288,8 @@ namespace SalesManagement_SysDev
                         社員ID = h.EmId,
                         発注年月日 = h.HaDate,
                         入庫フラグ = h.WaWarehouseFlag,
-                        非表示フラグ = h.HaHidden
+                        非表示フラグ = h.HaFlag,
+                        非表示理由 = h.HaHidden
                     }).ToList();
                 }
             }
