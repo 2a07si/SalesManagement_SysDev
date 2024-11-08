@@ -235,9 +235,9 @@ namespace SalesManagement_SysDev
                     PrHidden = riyuu
                 };
 
-
-                context.SaveChanges();
                 context.MProducts.Add(newProducts);
+                context.SaveChanges();
+
                 MessageBox.Show("登録が成功しました。");
                 Displaymerchandise();
             }
