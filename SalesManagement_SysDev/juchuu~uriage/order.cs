@@ -283,6 +283,7 @@ namespace SalesManagement_SysDev
                             SoId = int.Parse(ShopId),  // 営業所ID   
                             EmId = int.Parse(ShainId),  // 社員ID   
                             ClId = int.Parse(KokyakuId), // 顧客ID   
+                            OrId = int.Parse(JyutyuId), //受注ID
                                                          // OrId は自動採番されるため、設定しない
                             ChDate = Orderdate,  // 注文日   
                             ChStateFlag = OrderFlg ? 1 : 0, // 注文状態フラグ   
