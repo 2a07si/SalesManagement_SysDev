@@ -346,7 +346,7 @@ namespace SalesManagement_SysDev
                         顧客ID = o.ClId,           // 顧客ID
                         受注ID = o.OrId,           // 受注ID
                         注文日 = o.ChDate,         // 注文日
-                        注文状態 = o.ChStateFlag,// 注文状態フラグ
+                        状態フラグ = o.ChStateFlag,// 注文状態フラグ
                         非表示フラグ = o.ChFlag,  // 削除フラグ
                         非表示理由 = o.ChHidden  // 非表示理由
                     }).ToList();
@@ -430,7 +430,7 @@ namespace SalesManagement_SysDev
                         顧客ID = o.ClId,             // クライアントID
                         受注ID = o.OrId,              // 受注ID
                         注文日 = o.ChDate,        // 注文日
-                        注文フラグ = o.ChStateFlag,     // 注文状態フラグ
+                        状態フラグ = o.ChStateFlag,     // 注文状態フラグ
                         非表示フラグ = o.ChFlag,         // 削除フラグ
                         非表示理由 = o.ChHidden            // 理由
                     }).ToList();

@@ -288,7 +288,7 @@ namespace SalesManagement_SysDev
                         メーカID = h.MaId,
                         社員ID = h.EmId,
                         発注年月日 = h.HaDate,
-                        入庫フラグ = h.WaWarehouseFlag,
+                        状態フラグ = h.WaWarehouseFlag,
                         非表示フラグ = h.HaFlag,
                         非表示理由 = h.HaHidden
                     }).ToList();
@@ -341,7 +341,7 @@ namespace SalesManagement_SysDev
                         メーカID = h.MaId,
                         社員ID = h.EmId,
                         発注年月日 = h.HaDate,
-                        入庫状態 = NyuukoFlag.Checked ? "〇" : "×",
+                        発注状態 = NyuukoFlag.Checked ? "〇" : "×",
                         非表示フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
                 }

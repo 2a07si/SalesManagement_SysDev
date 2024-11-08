@@ -297,7 +297,7 @@ namespace SalesManagement_SysDev
                         発注ID = ws.HaId,
                         社員ID = ws.EmId,
                         入庫年月日 = ws.WaDate,
-                        入庫フラグ = ws.WaFlag,
+                        入庫済フラグ = ws.WaFlag,
                         非表示フラグ = ws.WaShelfFlag,
                         非表示理由 = ws.WaHidden
 
@@ -345,7 +345,7 @@ namespace SalesManagement_SysDev
                         発注ID = ws.HaId,
                         社員ID = ws.EmId,
                         入庫年月日 = ws.WaDate,
-                        入庫フラグ = ws.WaFlag,
+                        入庫済フラグ = ws.WaFlag,
                         非表示フラグ = ws.WaHidden
                     }).ToList();
                 }

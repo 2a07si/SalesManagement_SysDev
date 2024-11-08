@@ -466,7 +466,8 @@ namespace SalesManagement_SysDev
                         営業所ID = sh.SoId,
                         受注ID = sh.OrId,
                         出荷終了日 = sh.ShFinishDate,
-                        出荷フラグ = sh.ShFlag,  // 出荷フラグの表示
+                        状態フラグ = sh.ShStateFlag,  // 出荷フラグの表示
+                        管理フラグ = sh.ShFlag,
                         非表示理由 = sh.ShHidden
                        
                     }).ToList();

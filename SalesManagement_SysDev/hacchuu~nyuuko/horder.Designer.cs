@@ -205,7 +205,7 @@
             NyuukoFlag.Name = "NyuukoFlag";
             NyuukoFlag.Size = new Size(110, 29);
             NyuukoFlag.TabIndex = 8;
-            NyuukoFlag.Text = "入庫状態";
+            NyuukoFlag.Text = "発注状態";
             NyuukoFlag.UseVisualStyleBackColor = true;
             // 
             // date
