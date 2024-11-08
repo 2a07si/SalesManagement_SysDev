@@ -370,7 +370,9 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var orders = checkBox_2.Checked
                         ? context.TOrders.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TOrders.Where(o => o.OrFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TOrders
+                                  .Where(o => o.OrFlag != 1 || o.OrStateFlag != 2)  // 非表示フラグが "1" または OrStateFlag が "2" でないものを取得
+                                  .ToList();
 
                     dataGridView1.DataSource = orders.Select(o => new
                     {
@@ -391,6 +393,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
+
 
         private void SearchOrders()
         {

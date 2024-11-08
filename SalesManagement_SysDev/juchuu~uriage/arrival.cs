@@ -332,7 +332,7 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var arrivals = checkBox_2.Checked
                         ? context.TArrivals.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TArrivals.Where(o => o.ArFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TArrivals.Where(o => o.ArFlag != 1 || o.ArStateFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
 
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = arrivals.Select(o => new

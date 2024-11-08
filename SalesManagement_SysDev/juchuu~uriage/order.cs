@@ -336,7 +336,7 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var chumons = checkBox_2.Checked
                         ? context.TChumons.ToList()  // チェックされていれば全ての受注を表示
-                        : context.TChumons.Where(o => o.ChFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TChumons.Where(o => o.ChFlag != 1 || o.ChStateFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
 
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = chumons.Select(o => new
