@@ -39,12 +39,9 @@
             b_hor = new Button();
             b_rec = new Button();
             panel1 = new Panel();
-            Next = new Button();
             NyuukoFlag = new CheckBox();
-            Prev = new Button();
             date = new DateTimePicker();
             DelFlag = new CheckBox();
-            label5 = new Label();
             label18 = new Label();
             TBRiyuu = new MaskedTextBox();
             label17 = new Label();
@@ -181,12 +178,9 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(190, 190, 255);
-            panel1.Controls.Add(Next);
             panel1.Controls.Add(NyuukoFlag);
-            panel1.Controls.Add(Prev);
             panel1.Controls.Add(date);
             panel1.Controls.Add(DelFlag);
-            panel1.Controls.Add(label5);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(TBRiyuu);
             panel1.Controls.Add(label17);
@@ -202,15 +196,6 @@
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 4;
             // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 13;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
             // NyuukoFlag
             // 
             NyuukoFlag.AutoSize = true;
@@ -222,15 +207,6 @@
             NyuukoFlag.TabIndex = 8;
             NyuukoFlag.Text = "入庫状態";
             NyuukoFlag.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 12;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
             // 
             // date
             // 
@@ -251,18 +227,6 @@
             DelFlag.TabIndex = 9;
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.Black;
-            label5.ImageAlign = ContentAlignment.MiddleRight;
-            label5.Location = new Point(690, 152);
-            label5.Name = "label5";
-            label5.Size = new Size(72, 25);
-            label5.TabIndex = 270;
-            label5.Text = "何ページ";
             // 
             // label18
             // 
@@ -562,8 +526,10 @@
             // 
             // horder
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);

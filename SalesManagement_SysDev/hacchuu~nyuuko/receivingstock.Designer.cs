@@ -39,9 +39,6 @@
             b_rec = new Button();
             b_hor = new Button();
             panel1 = new Panel();
-            Next = new Button();
-            Prev = new Button();
-            label5 = new Label();
             NyuukoFlag = new CheckBox();
             dataGridView1 = new DataGridView();
             date = new DateTimePicker();
@@ -180,9 +177,6 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(190, 190, 255);
-            panel1.Controls.Add(Next);
-            panel1.Controls.Add(Prev);
-            panel1.Controls.Add(label5);
             panel1.Controls.Add(NyuukoFlag);
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(date);
@@ -200,36 +194,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 4;
-            // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 13;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 12;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.Black;
-            label5.ImageAlign = ContentAlignment.MiddleRight;
-            label5.Location = new Point(690, 152);
-            label5.Name = "label5";
-            label5.Size = new Size(72, 25);
-            label5.TabIndex = 265;
-            label5.Text = "何ページ";
             // 
             // NyuukoFlag
             // 
@@ -561,8 +525,10 @@
             // 
             // receivingstock
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(checkBox_2);

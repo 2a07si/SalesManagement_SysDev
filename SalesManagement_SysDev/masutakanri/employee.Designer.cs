@@ -43,9 +43,6 @@
             panel1 = new Panel();
             TBPass = new MaskedTextBox();
             label9 = new Label();
-            Next = new Button();
-            Prev = new Button();
-            label6 = new Label();
             date = new DateTimePicker();
             label18 = new Label();
             dataGridView1 = new DataGridView();
@@ -201,9 +198,6 @@
             panel1.BackColor = Color.FromArgb(160, 220, 190);
             panel1.Controls.Add(TBPass);
             panel1.Controls.Add(label9);
-            panel1.Controls.Add(Next);
-            panel1.Controls.Add(Prev);
-            panel1.Controls.Add(label6);
             panel1.Controls.Add(date);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(dataGridView1);
@@ -242,36 +236,6 @@
             label9.Size = new Size(80, 25);
             label9.TabIndex = 10;
             label9.Text = "パスワード";
-            // 
-            // Next
-            // 
-            Next.Location = new Point(1350, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 18;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(1220, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 17;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.Black;
-            label6.ImageAlign = ContentAlignment.MiddleRight;
-            label6.Location = new Point(1270, 152);
-            label6.Name = "label6";
-            label6.Size = new Size(72, 25);
-            label6.TabIndex = 295;
-            label6.Text = "何ページ";
             // 
             // date
             // 
@@ -509,8 +473,10 @@
             // 
             // employee
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(label2);
