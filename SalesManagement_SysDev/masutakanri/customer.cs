@@ -25,8 +25,8 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             this.mainForm = new Form();
             this.Load += new EventHandler(customer_Load);
-            this.dateNamelabel = new ClassDateNamelabel( label_id, label_ename);
-           this.formChanger = new ClassChangeForms(this);
+            this.dateNamelabel = new ClassDateNamelabel(label_id, label_ename);
+            this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
         }
@@ -60,7 +60,7 @@ namespace SalesManagement_SysDev
             // formChanger.NavigateToStockForm();
             formChanger.NavigateToStockForm();
         }
-        
+
         private void clear_Click(object sender, EventArgs e)
         {
             cleartext();
