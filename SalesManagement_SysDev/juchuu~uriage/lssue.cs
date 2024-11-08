@@ -293,6 +293,7 @@ namespace SalesManagement_SysDev
 
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
+                        DisplayIssues();
                     }
                     catch (DbUpdateException ex)
                     {
@@ -422,15 +423,15 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示
                     dataGridView1.DataSource = issues.Select(issue => new
                     {
-                        IssueID = issue.SyId,         // 出庫ID
-                        StoreID = issue.SoId,           // 店舗ID
-                        EmployeeID = issue.EmId,        // 社員ID
-                        ClientID = issue.ClId,          // クライアントID
-                        OrderID = issue.OrId,           // 受注ID
-                        IssueDate = issue.SyDate,     // 出庫日
-                        StateFlag = issue.SyStateFlag,  // 出庫状態フラグ
-                        DeleteFlag = issue.SyFlag,      // 削除フラグ
-                        Reason = issue.SyHidden         // 理由
+                        出庫ID = issue.SyId,         // 出庫ID
+                        営業所ID = issue.SoId,           // 店舗ID
+                        社員ID = issue.EmId,        // 社員ID
+                        顧客ID = issue.ClId,          // クライアントID
+                        受注ID = issue.OrId,           // 受注ID
+                        出庫日 = issue.SyDate,     // 出庫日
+                        状態フラグ = issue.SyStateFlag,  // 出庫状態フラグ
+                        非表示フラグ = issue.SyFlag,      // 削除フラグ
+                        非表示理由 = issue.SyHidden         // 理由
                     }).ToList();
                 }
                 else
@@ -504,6 +505,7 @@ namespace SalesManagement_SysDev
                 context.TSyukkoDetails.Add(newIssueDetail);
                 context.SaveChanges();
                 MessageBox.Show("出庫詳細の登録が成功しました。");
+                DisplayIssueDetails();
             }
         }
 

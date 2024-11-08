@@ -240,6 +240,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
+                    DisplaySales();
                 }
                 else
                 {
@@ -301,6 +302,7 @@ namespace SalesManagement_SysDev
                     context.TSales.Add(newSale);
                     context.SaveChanges();
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DisplaySales();
                 }
             }
             catch (FormatException)
@@ -522,6 +524,7 @@ namespace SalesManagement_SysDev
                     context.TSaleDetails.Add(newSaleDetail);
                     context.SaveChanges();
                     MessageBox.Show("売上詳細の登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DisplaySaleDetails();
 
                     // DisplaySaleDetailsの呼び出し
                     try
