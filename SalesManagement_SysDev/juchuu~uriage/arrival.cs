@@ -194,7 +194,6 @@ namespace SalesManagement_SysDev
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
             DateTime Nyuukodate = date.Value;
-            CurrentStatus.ResetStatus(label2);
 
 
 
@@ -236,7 +235,6 @@ namespace SalesManagement_SysDev
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
             DateTime Nyuukodate = date.Value;
-            CurrentStatus.ResetStatus(label2);
 
             using (var context = new SalesManagementContext())
             {
