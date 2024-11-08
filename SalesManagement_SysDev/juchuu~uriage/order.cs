@@ -207,19 +207,15 @@ namespace SalesManagement_SysDev
                 var order = context.TChumons.SingleOrDefault(o => o.ChId.ToString() == ChumonId);
                 if (order != null)
                 {
-                    // 新しい注文情報を作成
-                    var chumons = new TChumon
-                    {
-                        SoId = int.Parse(ShopId),                    // 店舗ID
-                        EmId = int.Parse(ShainId),                  　// 社員ID（null許容）
-                        ClId = int.Parse(KokyakuId),                 // クライアントID
-                        ChId = int.Parse(ChumonId),
-                        OrId = int.Parse(JyutyuId),                       // 受注ID
-                        ChDate = Orderdate,                         // 注文日
-                        ChStateFlag = OrderFlg ? 1 : 0,             // 注文状態フラグ
-                        ChFlag = DelFlg ? 1 : 0,                     // 削除フラグ
-                        ChHidden = Riyuu                              // 理由
-                    };
+                    order.SoId = int.Parse(ShopId);                    // 店舗ID
+                    order.EmId = int.Parse(ShainId);                   // 社員ID（null許容）
+                    order.ClId = int.Parse(KokyakuId);                 // クライアントID
+                    order.ChId = int.Parse(ChumonId);
+                    order.OrId = int.Parse(JyutyuId);                       // 受注ID
+                    order.ChDate = Orderdate;               // 注文日
+                    order.ChStateFlag = OrderFlg ? 1 : 0;             // 注文状態フラグ
+                    order.ChFlag = DelFlg ? 1 : 0;                     // 削除フラグ
+                    order.ChHidden = Riyuu;
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
@@ -233,6 +229,8 @@ namespace SalesManagement_SysDev
         }
         private void RegisterOrder()
         {
+            string ChumonId = TBTyumonId.Text;
+
             string ShopId = TBShopId.Text;
             string ShainId = TBShainId.Text;
             string KokyakuId = TBKokyakuId.Text;
@@ -276,7 +274,7 @@ namespace SalesManagement_SysDev
                 }
 
                 // 注文が既に存在するか確認  
-                var order = context.TChumons.SingleOrDefault(o => o.ChId.ToString() == JyutyuId);
+                var order = context.TChumons.SingleOrDefault(o => o.ChId.ToString() == ChumonId);
                 if (order == null)
                 {
                     try
