@@ -70,6 +70,7 @@ namespace SalesManagement_SysDev
                 b_mer,
                 b_sto,
             });
+            DisplayEmployee();
         }
 
         private void clear_Click(object sender, EventArgs e)

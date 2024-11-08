@@ -43,6 +43,8 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplayArrivals();
+            DisplayArrivalDetails();
         }
 
         // メインメニューに戻る 

@@ -57,6 +57,8 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            DisplayHattyus();
+            DisplayHattyuDetails();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -133,7 +135,7 @@ namespace SalesManagement_SysDev
                         HandleOrderOperation();
                         break;
                     case CurrentStatus.Mode.詳細:
-                        HandleOrderDetailOperation();
+                        HandleHattyuDetailOperation();
                         break;
                     default:
                         MessageBox.Show("現在のモードは無効です。");
@@ -168,21 +170,21 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void HandleOrderDetailOperation()
+        private void HandleHattyuDetailOperation()
         {
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    UpdateOrderDetails();
+                    UpdateHattyuDetails();
                     break;
                 case CurrentStatus.Status.登録:
-                    RegisterOrderDetails();
+                    RegisterHattyuDetails();
                     break;
                 case CurrentStatus.Status.一覧:
-                    DisplayOrderDetails();
+                    DisplayHattyuDetails();
                     break;
                 case CurrentStatus.Status.検索:
-                    SearchOrderDetails();
+                    SearchHattyuDetails();
                     break;
                 default:
                     MessageBox.Show("無効な操作です。");
@@ -354,7 +356,7 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void UpdateOrderDetails()
+        private void UpdateHattyuDetails()
         {
             string hattyuuSyosaiID = TBHattyuuSyosaiID.Text;
             string hattyuuID = TBHattyuIDS.Text;
@@ -372,7 +374,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("発注詳細の更新が成功しました。");
-                    DisplayOrderDetails();
+                    DisplayHattyuDetails();
                 }
                 else
                 {
@@ -381,7 +383,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void RegisterOrderDetails()
+        private void RegisterHattyuDetails()
         {
             string hattyuuID = TBHattyuIDS.Text;
             string syohinID = TBSyohinID.Text;
@@ -423,12 +425,12 @@ namespace SalesManagement_SysDev
                 context.THattyuDetails.Add(newOrderDetail);
                 context.SaveChanges();
                 MessageBox.Show("発注詳細の登録が成功しました。");
-                DisplayOrderDetails();
+                DisplayHattyuDetails();
             }
         }
 
 
-        private void DisplayOrderDetails()
+        private void DisplayHattyuDetails()
         {
             try
             {
@@ -451,7 +453,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void SearchOrderDetails()
+        private void SearchHattyuDetails()
         {
             using (var context = new SalesManagementContext())
             {
@@ -513,7 +515,7 @@ namespace SalesManagement_SysDev
 
 
 
-        private void ToggleOrderSelection()
+        private void ToggleHattyuSelection()
         {
             isOrderSelected = !isOrderSelected;
             orderFlag = isOrderSelected ? "←通常" : "詳細→";
@@ -526,7 +528,7 @@ namespace SalesManagement_SysDev
         private void b_FormSelector_Click_1(object sender, EventArgs e)
         {
             // 状態を切り替える処理
-            ToggleOrderSelection();
+            ToggleHattyuSelection();
 
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();

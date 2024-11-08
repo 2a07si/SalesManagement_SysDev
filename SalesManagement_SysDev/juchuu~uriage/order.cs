@@ -46,7 +46,11 @@ namespace SalesManagement_SysDev
                 b_lss
             });
 
+            b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplayOrders();
+            DisplayOrderDetails();
         }
 
         // メインメニューに戻る 

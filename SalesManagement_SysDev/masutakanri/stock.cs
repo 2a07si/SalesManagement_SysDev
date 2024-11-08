@@ -70,6 +70,7 @@ namespace SalesManagement_SysDev
                 b_mer,
                 b_cus,
             });
+            DisplayStock();
         }
 
         private void b_sto_Click(object sender, EventArgs e)

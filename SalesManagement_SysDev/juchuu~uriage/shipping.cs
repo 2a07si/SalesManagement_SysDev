@@ -46,6 +46,8 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            DisplayShipping();
+            DisplayShippingDetails();
         }
         private void close_Click(object sender, EventArgs e)
         {

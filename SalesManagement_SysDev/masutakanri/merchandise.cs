@@ -79,6 +79,7 @@ namespace SalesManagement_SysDev
                 b_cus,
                 b_sto,
             });
+            Displaymerchandise();
         }
 
         private void clear_Click(object sender, EventArgs e)

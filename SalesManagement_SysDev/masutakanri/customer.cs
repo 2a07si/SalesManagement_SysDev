@@ -38,6 +38,7 @@ namespace SalesManagement_SysDev
                 b_mer,
                 b_sto,
             });
+            DisplayCustomer();
         }
 
         private void close_Click(object sender, EventArgs e)
