@@ -70,6 +70,7 @@
             B_iti = new Button();
             label2 = new Label();
             label10 = new Label();
+            checkBox_2 = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -506,11 +507,22 @@
             label10.TabIndex = 270;
             label10.Text = "現在の状態";
             // 
+            // checkBox_2
+            // 
+            checkBox_2.AutoSize = true;
+            checkBox_2.Location = new Point(585, 10);
+            checkBox_2.Name = "checkBox_2";
+            checkBox_2.Size = new Size(225, 29);
+            checkBox_2.TabIndex = 272;
+            checkBox_2.Text = "一覧表示に非表示も含む";
+            checkBox_2.UseVisualStyleBackColor = true;
+            // 
             // customer
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBox_2);
             Controls.Add(label2);
             Controls.Add(B_iti);
             Controls.Add(b_kakutei);
@@ -586,5 +598,6 @@
         private Label label2;
         private Label label10;
         private CheckBox CusFlag;
+        private CheckBox checkBox_2;
     }
 }
