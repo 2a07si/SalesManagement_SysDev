@@ -43,9 +43,6 @@
             b_arr = new Button();
             b_lss = new Button();
             panel1 = new Panel();
-            Next = new Button();
-            Prev = new Button();
-            label8 = new Label();
             TBJyutyuId = new MaskedTextBox();
             label7 = new Label();
             TyumonFlag = new CheckBox();
@@ -241,9 +238,6 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(255, 192, 128);
-            panel1.Controls.Add(Next);
-            panel1.Controls.Add(Prev);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(TBJyutyuId);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(TyumonFlag);
@@ -265,36 +259,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 4;
-            // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 17;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 16;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Black;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(690, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 269;
-            label8.Text = "何ページ";
             // 
             // TBJyutyuId
             // 
@@ -331,9 +295,11 @@
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(10, 190);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 18;
             dataGridView1.CellClick += dataGridView1_CellClick;
@@ -575,9 +541,11 @@
             dataGridView2.AllowUserToOrderColumns = true;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(10, 190);
+            dataGridView2.MultiSelect = false;
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 33;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 8;
             dataGridView2.CellClick += dataGridView2_CellClick_1;
@@ -660,8 +628,10 @@
             // 
             // order
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(dateCheckBox);

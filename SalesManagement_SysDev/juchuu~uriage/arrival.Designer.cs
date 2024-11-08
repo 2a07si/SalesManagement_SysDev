@@ -37,7 +37,6 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
-            label8 = new Label();
             TBJyutyuId = new MaskedTextBox();
             NyuukaFlag = new CheckBox();
             label7 = new Label();
@@ -162,7 +161,6 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(255, 192, 128);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(TBJyutyuId);
             panel1.Controls.Add(NyuukaFlag);
             panel1.Controls.Add(label7);
@@ -185,18 +183,6 @@
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 4;
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Black;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(690, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 257;
-            label8.Text = "何ページ";
-            // 
             // TBJyutyuId
             // 
             TBJyutyuId.Location = new Point(90, 70);
@@ -213,7 +199,7 @@
             NyuukaFlag.Name = "NyuukaFlag";
             NyuukaFlag.Size = new Size(110, 29);
             NyuukaFlag.TabIndex = 12;
-            NyuukaFlag.Text = "注文状態";
+            NyuukaFlag.Text = "入荷状態";
             NyuukaFlag.UseVisualStyleBackColor = true;
             NyuukaFlag.CheckedChanged += Nyuukaflag_CheckedChanged;
             // 
@@ -233,9 +219,11 @@
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(10, 190);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 16;
             dataGridView1.CellClick += dataGridView1_CellClick_1;
@@ -518,9 +506,11 @@
             dataGridView2.AllowUserToOrderColumns = true;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(10, 190);
+            dataGridView2.MultiSelect = false;
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 33;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 8;
             dataGridView2.CellClick += dataGridView2_CellClick_1;
@@ -636,8 +626,10 @@
             // 
             // arrival
             // 
+            AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = clear;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(dateCheckBox);

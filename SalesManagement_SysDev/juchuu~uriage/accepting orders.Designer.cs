@@ -49,9 +49,6 @@ namespace SalesManagement_SysDev
             DelFlag = new CheckBox();
             TyumonFlag = new CheckBox();
             TBTantoName = new MaskedTextBox();
-            label8 = new Label();
-            Prev = new Button();
-            Next = new Button();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
             b_lss = new Button();
@@ -243,7 +240,7 @@ namespace SalesManagement_SysDev
             TyumonFlag.Name = "TyumonFlag";
             TyumonFlag.Size = new Size(110, 29);
             TyumonFlag.TabIndex = 12;
-            TyumonFlag.Text = "注文状態";
+            TyumonFlag.Text = "受注状態";
             TyumonFlag.UseVisualStyleBackColor = true;
             // 
             // TBTantoName
@@ -252,36 +249,6 @@ namespace SalesManagement_SysDev
             TBTantoName.Name = "TBTantoName";
             TBTantoName.Size = new Size(140, 31);
             TBTantoName.TabIndex = 9;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.Black;
-            label8.ImageAlign = ContentAlignment.MiddleRight;
-            label8.Location = new Point(690, 152);
-            label8.Name = "label8";
-            label8.Size = new Size(72, 25);
-            label8.TabIndex = 0;
-            label8.Text = "何ページ";
-            // 
-            // Prev
-            // 
-            Prev.Location = new Point(640, 144);
-            Prev.Name = "Prev";
-            Prev.Size = new Size(40, 40);
-            Prev.TabIndex = 18;
-            Prev.Text = "◀";
-            Prev.UseVisualStyleBackColor = true;
-            // 
-            // Next
-            // 
-            Next.Location = new Point(770, 144);
-            Next.Name = "Next";
-            Next.Size = new Size(40, 40);
-            Next.TabIndex = 19;
-            Next.Text = "▶";
-            Next.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -301,9 +268,6 @@ namespace SalesManagement_SysDev
             // 
             panel1.BackColor = Color.FromArgb(255, 192, 128);
             panel1.Controls.Add(dataGridView1);
-            panel1.Controls.Add(Next);
-            panel1.Controls.Add(Prev);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(TBTantoName);
             panel1.Controls.Add(TyumonFlag);
             panel1.Controls.Add(DelFlag);
