@@ -333,12 +333,12 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-                    var orders = checkBox_2.Checked
+                    var chumons = checkBox_2.Checked
                         ? context.TChumons.ToList()  // チェックされていれば全ての受注を表示
-                        : context.TChumons.Where(o => o.ChHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TChumons.Where(o => o.ChFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
 
                     // データを選択してDataGridViewに表示
-                    dataGridView1.DataSource = orders.Select(o => new
+                    dataGridView1.DataSource = chumons.Select(o => new
                     {
                         注文ID = o.ChId,           // 注文ID
                         営業所ID = o.SoId,         // 営業所ID
@@ -346,7 +346,7 @@ namespace SalesManagement_SysDev
                         顧客ID = o.ClId,           // 顧客ID
                         受注ID = o.OrId,           // 受注ID
                         注文日 = o.ChDate,         // 注文日
-                        注文フラグ = o.ChStateFlag,// 注文状態フラグ
+                        注文状態 = o.ChStateFlag,// 注文状態フラグ
                         非表示フラグ = o.ChFlag,  // 削除フラグ
                         非表示理由 = o.ChHidden  // 非表示理由
                     }).ToList();
