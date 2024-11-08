@@ -340,7 +340,7 @@ namespace SalesManagement_SysDev
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = orders.Select(o => new
                     {
-                        注文ID = o.OrId,           // 注文ID
+                        注文ID = o.ChId,           // 注文ID
                         営業所ID = o.SoId,         // 営業所ID
                         社員ID = o.EmId,           // 社員ID
                         顧客ID = o.ClId,           // 顧客ID
