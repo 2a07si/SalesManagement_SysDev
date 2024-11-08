@@ -273,7 +273,7 @@ namespace SalesManagement_SysDev
                 }
 
                 // 注文が既に存在するか確認  
-                var order = context.TChumons.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
+                var order = context.TChumons.SingleOrDefault(o => o.ChId.ToString() == JyutyuId);
                 if (order == null)
                 {
                     try
@@ -284,7 +284,7 @@ namespace SalesManagement_SysDev
                             EmId = int.Parse(ShainId),  // 社員ID   
                             ClId = int.Parse(KokyakuId), // 顧客ID   
                             OrId = int.Parse(JyutyuId), //受注ID
-                                                         // OrId は自動採番されるため、設定しない
+                                                        // OrId は自動採番されるため、設定しない
                             ChDate = Orderdate,  // 注文日   
                             ChStateFlag = OrderFlg ? 1 : 0, // 注文状態フラグ   
                             ChFlag = DelFlg ? 1 : 0,  // 削除フラグ   
