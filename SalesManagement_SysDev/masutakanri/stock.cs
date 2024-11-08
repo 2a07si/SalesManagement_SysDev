@@ -192,17 +192,15 @@ namespace SalesManagement_SysDev
                 }
                 var newstock = new TStock
                 {
-                    StId = int.Parse(zaikoID),
                     PrId = int.Parse(syohinID),
                     StQuantity = int.Parse(zaiko),
                     StFlag = stflag ? 1 : 0,
                 };
 
                 context.TStocks.Add(newstock);
-                context.SaveChanges();
                 try
                 {
-                   MessageBox.Show("登録が成功しました。");
+                    context.SaveChanges(); MessageBox.Show("登録が成功しました。");
                     DisplayStock();
 
                 }

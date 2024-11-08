@@ -203,7 +203,6 @@ namespace SalesManagement_SysDev
                 {
                     SoId = int.Parse(shopID),
                     ClPostal = yuubinbangou,
-                    ClId = int.Parse(kokyakuID),
                     ClAddress = juusho,
                     ClName = kokyakuname,
                     ClPhone = tel,
