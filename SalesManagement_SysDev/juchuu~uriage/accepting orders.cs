@@ -362,7 +362,7 @@ namespace SalesManagement_SysDev
                         営業所ID = o.SoId,
                         社員ID = o.EmId,
                         顧客ID = o.ClId,
-                        担当者名 = o.ClCharge,
+                        担当社員名 = o.ClCharge,
                         受注日 = o.OrDate,
                         注文フラグ = o.OrFlag,
                         非表示フラグ = o.OrHidden
@@ -440,7 +440,7 @@ namespace SalesManagement_SysDev
                             営業所ID = order.SoId,
                             社員ID = order.EmId,
                             顧客ID = order.ClId,
-                            担当者 = order.ClCharge,
+                            担当社員名 = order.ClCharge,
                             受注日 = order.OrDate,
                             注文フラグ = TyumonFlag.Checked ? "〇" : "×",
                             削除フラグ = DelFlag.Checked ? "〇" : "×"
@@ -716,7 +716,7 @@ namespace SalesManagement_SysDev
                     TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                    TBTantoName.Text = row.Cells["顧客担当者"].Value.ToString();
+                    TBTantoName.Text = row.Cells["担当社員名"].Value.ToString();
                     date.Value = Convert.ToDateTime(row.Cells["受注日"].Value);
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定 
                 }
