@@ -232,6 +232,10 @@ namespace SalesManagement_SysDev
                 {
                     var stock = context.TStocks.ToList();
 
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    var orders = checkBox_2.Checked
+                        ? context.TStocks.ToList()  // チェックされていれば全ての注文を表示
+                        : context.TStocks.Where(o => o.StFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = stock.Select(s => new
                     {
                         在庫ID = s.StId,
