@@ -122,7 +122,7 @@ namespace SalesManagement_SysDev
 
         private void b_ser_Click(object sender, EventArgs e)
         {
-            CurrentStatus.SearchStatus(label2   );
+            CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
         private void b_kakutei_Click_1(object sender, EventArgs e)
@@ -285,7 +285,7 @@ namespace SalesManagement_SysDev
                 var shou = TBSyoubunrui.Text.Trim();
                 var Model = TBModel.Text.Trim();     // かたばｊｎ 
                 var color = TBColor.Text.Trim();
-                
+
 
                 // 基本的なクエリ 
                 var query = context.MProducts.AsQueryable();
