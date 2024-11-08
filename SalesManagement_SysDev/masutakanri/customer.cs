@@ -201,6 +201,7 @@ namespace SalesManagement_SysDev
                 try
                 {
                     context.SaveChanges(); MessageBox.Show("登録が成功しました。");
+                    DisplayCustomer();
                 }
                 catch (DbUpdateException ex)
                 {

@@ -365,7 +365,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得
-                string nyuukaId = TBTyumonId.Text;
+                string tyumonId = TBTyumonId.Text;
                 string shopId = TBShopId.Text;
                 string shainId = TBShainId.Text;
                 string kokyakuId = TBKokyakuId.Text;
@@ -376,10 +376,10 @@ namespace SalesManagement_SysDev
                 var query = context.TChumons.AsQueryable();
 
                 // 注文IDを検索条件に追加
-                if (!string.IsNullOrEmpty(nyuukaId))
+                if (!string.IsNullOrEmpty(tyumonId))
                 {
-                    int arId = int.Parse(nyuukaId);
-                    query = query.Where(order => order.OrId == arId);
+                    int chId = int.Parse(tyumonId);
+                    query = query.Where(order => order.ChId == chId);
                 }
 
                 // 店舗IDを検索条件に追加
@@ -424,7 +424,7 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示
                     dataGridView1.DataSource = orders.Select(o => new
                     {
-                        注文ID = o.OrId,            // 注文ID
+                        注文ID = o.ChId,            // 注文ID
                         営業所ID = o.SoId,              // 店舗ID
                         社員ID = o.EmId,           // 社員ID
                         顧客ID = o.ClId,             // クライアントID

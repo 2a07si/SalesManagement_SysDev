@@ -348,6 +348,7 @@ namespace SalesManagement_SysDev
                 try
                 {
                     context.SaveChanges(); MessageBox.Show("登録が成功しました。");
+                    DisplayShipping();
                 }
                 catch (DbUpdateException ex)
                 {
@@ -539,6 +540,7 @@ namespace SalesManagement_SysDev
                 context.TShipmentDetails.Add(newShippingDetail);
                 context.SaveChanges();
                 MessageBox.Show("出荷詳細の登録が成功しました。");
+                DisplayShippingDetails();
             }
         }
 

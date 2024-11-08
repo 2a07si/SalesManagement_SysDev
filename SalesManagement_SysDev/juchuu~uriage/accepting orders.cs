@@ -367,9 +367,9 @@ namespace SalesManagement_SysDev
                         顧客ID = o.ClId,
                         担当社員名 = o.ClCharge,
                         受注日 = o.OrDate,
-                        受注状態フラグ = o.OrStateFlag,
+                        状態フラグ = o.OrStateFlag,
                         非表示フラグ = o.OrFlag,
-                        非表示理由　= o.OrHidden
+                        非表示理由 = o.OrHidden
                     }).ToList();
                 }
             }

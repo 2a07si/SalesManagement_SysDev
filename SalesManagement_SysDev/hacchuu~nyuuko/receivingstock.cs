@@ -257,6 +257,7 @@ namespace SalesManagement_SysDev
                 {
                     context.SaveChanges();
                     MessageBox.Show("登録が成功しました。");
+                    DisplayReceivingStocks();
                 }
                 catch (DbUpdateException ex)
                 {
@@ -427,6 +428,7 @@ namespace SalesManagement_SysDev
                 {
                     context.SaveChanges();
                     MessageBox.Show("入庫詳細の登録が成功しました。");
+                    DisplayReceivingStockDetails();
                 }
                 catch (DbUpdateException ex)
                 {

@@ -226,6 +226,7 @@ namespace SalesManagement_SysDev
                 context.MEmployees.Add(newEmployee);
                 context.SaveChanges();
                 MessageBox.Show("登録が成功しました。");
+                DisplayEmployee();
             }
         }
         private void DisplayEmployee()

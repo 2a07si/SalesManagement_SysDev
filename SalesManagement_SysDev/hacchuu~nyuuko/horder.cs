@@ -264,6 +264,7 @@ namespace SalesManagement_SysDev
                 context.THattyus.Add(newHattyu);
                 context.SaveChanges();
                 MessageBox.Show("登録が成功しました。");
+                DisplayHattyus();
             }
         }
 
@@ -422,6 +423,7 @@ namespace SalesManagement_SysDev
                 context.THattyuDetails.Add(newOrderDetail);
                 context.SaveChanges();
                 MessageBox.Show("発注詳細の登録が成功しました。");
+                DisplayOrderDetails();
             }
         }
 
