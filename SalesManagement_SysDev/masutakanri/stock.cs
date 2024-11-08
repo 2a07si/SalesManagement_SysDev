@@ -192,7 +192,6 @@ namespace SalesManagement_SysDev
                 }
                 var newstock = new TStock
                 {
-                    StId = int.Parse(zaikoID),
                     PrId = int.Parse(syohinID),
                     StQuantity = int.Parse(zaiko),
                     StFlag = stflag ? 1 : 0,
@@ -202,6 +201,8 @@ namespace SalesManagement_SysDev
                 try
                 {
                     context.SaveChanges(); MessageBox.Show("登録が成功しました。");
+                    DisplayStock();
+
                 }
                 catch (DbUpdateException ex)
                 {
@@ -237,7 +238,6 @@ namespace SalesManagement_SysDev
                         商品ID = s.PrId,
                         在庫数 = s.StQuantity,
                         管理フラグ = s.StFlag,
-                        非表示フラグ = s.StFlag,
                     }).ToList();
                 }
             }

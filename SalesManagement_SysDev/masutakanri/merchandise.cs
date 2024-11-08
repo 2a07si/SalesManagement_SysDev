@@ -236,9 +236,9 @@ namespace SalesManagement_SysDev
                     PrHidden = riyuu
                 };
 
-
-                context.SaveChanges();
                 context.MProducts.Add(newProducts);
+                context.SaveChanges();
+
                 MessageBox.Show("登録が成功しました。");
                 Displaymerchandise();
             }
@@ -251,6 +251,10 @@ namespace SalesManagement_SysDev
                 {
                     var merchandises = context.MProducts.ToList();
 
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    var orders = checkBox_2.Checked
+                        ? context.MProducts.ToList()  // チェックされていれば全ての注文を表示
+                        : context.MProducts.Where(o => o.PrFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = merchandises.Select(m => new
                     {
                         商品ID = m.PrId,

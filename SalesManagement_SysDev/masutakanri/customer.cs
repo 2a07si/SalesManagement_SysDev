@@ -8,6 +8,7 @@ using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace SalesManagement_SysDev
 {
@@ -18,29 +19,25 @@ namespace SalesManagement_SysDev
         private Form mainForm;
         private ClassChangeForms formChanger;
         private ClassDateNamelabel dateNamelabel;
-        private ClassTimerManager timerManager;
         private ClassAccessManager accessManager;
         public customer()
         {
             InitializeComponent();
             this.mainForm = new Form();
             this.Load += new EventHandler(customer_Load);
-            this.dateNamelabel = new ClassDateNamelabel(labeltime, labeldate, label_id, label_ename);
-            this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
-            timer1.Start();
-            this.formChanger = new ClassChangeForms(this);
+            this.dateNamelabel = new ClassDateNamelabel( label_id, label_ename);
+           this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void customer_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
+            GlobalUtility.UpdateLabels(label_id, label_ename);
+            accessManager.SetButtonAccess(new Control[] {
+                b_emp,
+                b_mer,
+                b_sto,
+            });
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -63,17 +60,7 @@ namespace SalesManagement_SysDev
             // formChanger.NavigateToStockForm();
             formChanger.NavigateToStockForm();
         }
-
-        private void customer_Load(object sender, EventArgs e)
-        {
-            GlobalUtility.UpdateLabels(label_id, label_ename);
-            accessManager.SetButtonAccess(new Control[] {
-                b_emp,
-                b_mer,
-                b_sto,
-            });
-        }
-
+        
         private void clear_Click(object sender, EventArgs e)
         {
             cleartext();
@@ -117,7 +104,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_kakutei_Click_1(object sender, EventArgs e)
+        private void b_kakutei_Click(object sender, EventArgs e)
         {
             HandleCustomerOperation();
         }
@@ -142,6 +129,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+        //
 
 
         private void UpdateCustomer()
@@ -202,7 +190,6 @@ namespace SalesManagement_SysDev
                 {
                     SoId = int.Parse(shopID),
                     ClPostal = yuubinbangou,
-                    ClId = int.Parse(kokyakuID),
                     ClAddress = juusho,
                     ClName = kokyakuname,
                     ClPhone = tel,
@@ -243,6 +230,11 @@ namespace SalesManagement_SysDev
                 {
                     var customer = context.MClients.ToList();
 
+
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    var orders = checkBox_2.Checked
+                        ? context.MClients.ToList()  // チェックされていれば全ての注文を表示
+                        : context.MClients.Where(o => o.ClFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = customer.Select(c => new
                     {
                         顧客ID = c.ClId,
