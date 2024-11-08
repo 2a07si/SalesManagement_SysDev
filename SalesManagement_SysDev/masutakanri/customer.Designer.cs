@@ -448,7 +448,7 @@
             b_kakutei.TabIndex = 6;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
-            b_kakutei.Click += b_kakutei_Click_1;
+            b_kakutei.Click += b_kakutei_Click;
             // 
             // clear
             // 
@@ -470,10 +470,6 @@
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
-            // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
             // 
             // B_iti
             // 
