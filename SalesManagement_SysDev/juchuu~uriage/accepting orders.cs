@@ -264,6 +264,10 @@ namespace SalesManagement_SysDev
                         order.OrHidden = riyuu;
 
                         context.SaveChanges();
+                        if (TyumonFlag.Checked)
+                        {
+                            AcceptionConfirm(int.Parse(jyutyuID));
+                        }
                         MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayOrders();
                     }
@@ -338,8 +342,11 @@ namespace SalesManagement_SysDev
 
                     context.TOrders.Add(newOrder);
                     context.SaveChanges();
-                    AcceptionConfirm(newOrder.OrId);
-                    context.SaveChanges();
+
+                    if (TyumonFlag.Checked)
+                    {
+                        AcceptionConfirm(newOrder.OrId);
+                    }
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplayOrders();
                 }
@@ -767,6 +774,7 @@ namespace SalesManagement_SysDev
 
         private void AcceptionConfirm(int orderId)
         {
+            MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
