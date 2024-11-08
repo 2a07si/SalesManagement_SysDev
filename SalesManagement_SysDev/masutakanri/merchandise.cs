@@ -203,6 +203,7 @@ namespace SalesManagement_SysDev
             string TColor = TBColor.Text;
             DateTime SyohinDate = date.Value;
             bool delFlag = DelFlag.Checked;
+            string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -230,7 +231,8 @@ namespace SalesManagement_SysDev
                     PrReleaseDate = SyohinDate,
                     PrModelNumber = TModel,
                     PrColor = TColor,
-                    PrFlag = int.Parse(delFlag ? "1" : "0")
+                    PrFlag = int.Parse(delFlag ? "1" : "0"),
+                    PrHidden = riyuu
                 };
 
 

@@ -271,9 +271,9 @@
             // 
             // TBFax
             // 
-            TBFax.Location = new Point(821, 70);
+            TBFax.Location = new Point(759, 70);
             TBFax.Name = "TBFax";
-            TBFax.Size = new Size(200, 31);
+            TBFax.Size = new Size(125, 31);
             TBFax.TabIndex = 13;
             // 
             // label9
@@ -281,7 +281,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label9.ForeColor = Color.Black;
-            label9.Location = new Point(771, 70);
+            label9.Location = new Point(709, 70);
             label9.Name = "label9";
             label9.Size = new Size(43, 25);
             label9.TabIndex = 12;
@@ -289,9 +289,9 @@
             // 
             // TBYuubinNo
             // 
-            TBYuubinNo.Location = new Point(744, 20);
+            TBYuubinNo.Location = new Point(727, 20);
             TBYuubinNo.Name = "TBYuubinNo";
-            TBYuubinNo.Size = new Size(140, 31);
+            TBYuubinNo.Size = new Size(84, 31);
             TBYuubinNo.TabIndex = 9;
             // 
             // label6
@@ -299,7 +299,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(651, 25);
+            label6.Location = new Point(637, 20);
             label6.Name = "label6";
             label6.Size = new Size(84, 25);
             label6.TabIndex = 8;
@@ -309,7 +309,7 @@
             // 
             TBTellNo.Location = new Point(561, 70);
             TBTellNo.Name = "TBTellNo";
-            TBTellNo.Size = new Size(200, 31);
+            TBTellNo.Size = new Size(133, 31);
             TBTellNo.TabIndex = 11;
             // 
             // label8
