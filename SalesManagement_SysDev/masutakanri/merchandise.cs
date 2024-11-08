@@ -88,6 +88,7 @@ namespace SalesManagement_SysDev
 
         private void cleartext()
         {
+            TBSell.Text = "";
             TBSyohinID.Text = "";
             TBMakerId.Text = "";
             TBSyohinName.Text = "";

@@ -341,7 +341,7 @@
             // 
             TBTellNo.Location = new Point(406, 70);
             TBTellNo.Name = "TBTellNo";
-            TBTellNo.Size = new Size(124, 31);
+            TBTellNo.Size = new Size(133, 31);
             TBTellNo.TabIndex = 13;
             TBTellNo.MaskInputRejected += TBTellNo_MaskInputRejected;
             // 
