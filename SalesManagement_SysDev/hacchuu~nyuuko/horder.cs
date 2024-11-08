@@ -283,7 +283,7 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var hattyus = checkBox_2.Checked
                         ? context.THattyus.ToList()  // チェックされていれば全ての注文を表示
-                        : context.THattyus.Where(o => o.HaHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.THattyus.Where(o => o.HaFlag != 1 || o.WaWarehouseFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = hattyus.Select(h => new
                     {
                         発注ID = h.HaId,
