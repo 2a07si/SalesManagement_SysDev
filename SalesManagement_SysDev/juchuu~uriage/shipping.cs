@@ -282,6 +282,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
+                    DisplayShipping();
                 }
                 else
                 {
@@ -497,6 +498,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("出荷詳細の更新が成功しました。");
+                    DisplayShippingDetails();
                 }
                 else
                 {

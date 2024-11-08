@@ -213,6 +213,7 @@ namespace SalesManagement_SysDev
                 DateTime jyutyuDate = date.Value;
                 bool tyumonFlag = TyumonFlag.Checked;
                 bool delFlag = DelFlag.Checked;
+                string riyuu = TBRiyuu.Text;
 
                 // 条件精査
                 if (!int.TryParse(jyutyuID, out int parsedJyutyuID) || jyutyuID.Length > 6)
@@ -247,17 +248,17 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
-                    var order = context.TOrders.SingleOrDefault(o => o.OrId == parsedJyutyuID);
+                    var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == jyutyuID);
                     if (order != null)
                     {
-                        order.SoId = parsedShopID;
-                        order.EmId = parsedShainID;
-                        order.ClId = parsedKokyakuID;
+                        order.SoId = int.Parse(shopID);
+                        order.EmId = int.Parse(shainID);
+                        order.ClId = int.Parse(kokyakuID);
                         order.ClCharge = tantoName;
                         order.OrDate = jyutyuDate;
-                        order.OrStateFlag = null; // 適宜初期化 
-                        order.OrFlag = tyumonFlag ? 1 : 0;
-                        order.OrHidden = delFlag ? "1" : "0";
+                        order.OrStateFlag = tyumonFlag ? 1 : 0; // 適宜初期化 
+                        order.OrFlag = delFlag ? 1 : 0;
+                        order.OrHidden = riyuu;
 
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
