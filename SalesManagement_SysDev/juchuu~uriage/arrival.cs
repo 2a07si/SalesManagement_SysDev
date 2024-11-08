@@ -221,7 +221,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する入荷が見つかりません。");
+                    MessageBox.Show("該当する入荷情報が見つかりません。");
                 }
             }
         }
@@ -318,7 +318,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("既に入荷が存在しています。");
+                    MessageBox.Show("既に入荷情報が存在しています。");
                 }
             }
         }
@@ -438,7 +438,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する入荷が見つかりません。");
+                    MessageBox.Show("該当する入荷情報が見つかりません。");
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
                 }
             }

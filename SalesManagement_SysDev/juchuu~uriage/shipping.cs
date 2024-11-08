@@ -471,7 +471,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注が見つかりません。");
+                    MessageBox.Show("該当する出荷情報が見つかりません。");
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
                 }
             }
@@ -496,11 +496,11 @@ namespace SalesManagement_SysDev
                     shippingDetail.ShQuantity = int.Parse(suryou);
 
                     context.SaveChanges();
-                    MessageBox.Show("受注詳細の更新が成功しました。");
+                    MessageBox.Show("出荷詳細の更新が成功しました。");
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注詳細が見つかりません。");
+                    MessageBox.Show("該当する出荷詳細が見つかりません。");
                 }
             }
         }
@@ -536,7 +536,7 @@ namespace SalesManagement_SysDev
 
                 context.TShipmentDetails.Add(newShippingDetail);
                 context.SaveChanges();
-                MessageBox.Show("受注詳細の登録が成功しました。");
+                MessageBox.Show("出荷詳細の登録が成功しました。");
             }
         }
 
@@ -615,7 +615,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注詳細が見つかりません。");
+                    MessageBox.Show("該当する出荷詳細が見つかりません。");
                 }
             }
         }

@@ -211,7 +211,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する入庫が見つかりません。");
+                    MessageBox.Show("該当する入庫情報が見つかりません。");
                 }
             }
         }
@@ -348,7 +348,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する入庫が見つかりません。");
+                    MessageBox.Show("該当する入庫情報が見つかりません。");
                     dataGridView1.DataSource = null;
                 }
             }

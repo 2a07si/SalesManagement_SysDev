@@ -222,7 +222,6 @@ namespace SalesManagement_SysDev
                 var merchandise = context.MProducts.SingleOrDefault(m => m.PrId.ToString() == SyohinID);
                 if (merchandise == null)
                 {
-                    merchandise.PrId = int.Parse(SyohinID);
                     merchandise.MaId = int.Parse(MakerID);
                     merchandise.PrName = SyohinName;
                     merchandise.Price = int.Parse(Sell);
@@ -238,7 +237,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注が見つかりません。");
+                    MessageBox.Show("該当する商品情報が見つかりません。");
                 }
             }
         }
@@ -363,7 +362,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注が見つかりません。");
+                    MessageBox.Show("該当する商品情報が見つかりません。");
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
                 }
             }
