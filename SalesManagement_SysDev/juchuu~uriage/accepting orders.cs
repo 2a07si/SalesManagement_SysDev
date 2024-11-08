@@ -41,7 +41,7 @@ namespace SalesManagement_SysDev
                 b_sal,
                 b_lss
             });
-            labelStatus.labelstatus(label2, b_kakutei);
+
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
@@ -335,7 +335,10 @@ namespace SalesManagement_SysDev
                         OrHidden = riyuu
                     };
 
+
                     context.TOrders.Add(newOrder);
+                    context.SaveChanges();
+                    AcceptionConfirm(newOrder.OrId);
                     context.SaveChanges();
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplayOrders();
@@ -762,6 +765,39 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private void AcceptionConfirm(int orderId)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                // 引き継ぐ情報を宣言 
+                var order = context.TOrders.SingleOrDefault(o => o.OrId == orderId);
+
+                if (order == null)
+                {
+                    throw new Exception("受注IDが見つかりません。");
+                }
+
+                // 注文情報をTChumonに追加
+                var newChumon = new TChumon
+                {
+                    SoId = order.SoId,  // 営業所ID    
+                    EmId = order.EmId,  // 社員ID    
+                    ClId = order.ClId,  // 顧客ID    
+                    OrId = order.OrId,  // 受注ID 
+                    ChDate = order.OrDate // 注文日    
+                };
+
+                try
+                {
+                    context.TChumons.Add(newChumon);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TChumonへの登録に失敗しました: " + ex.Message);
+                }
+            }
+        }
 
     }
 }

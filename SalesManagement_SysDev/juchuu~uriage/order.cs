@@ -48,7 +48,6 @@ namespace SalesManagement_SysDev
 
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
-            labelStatus.labelstatus(label2, b_kakutei);
             DisplayOrders();
             DisplayOrderDetails();
         }
@@ -202,7 +201,6 @@ namespace SalesManagement_SysDev
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
             DateTime Orderdate = date.Value;
-            CurrentStatus.ResetStatus(label2);
 
 
 
@@ -243,7 +241,6 @@ namespace SalesManagement_SysDev
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
             DateTime Orderdate = date.Value;
-            CurrentStatus.ResetStatus(label2);
 
             using (var context = new SalesManagementContext())
             {
