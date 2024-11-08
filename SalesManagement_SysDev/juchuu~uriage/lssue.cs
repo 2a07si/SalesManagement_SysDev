@@ -201,7 +201,7 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var issue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
+                var issue = context.TSyukkos.SingleOrDefault(o => o.SyId.ToString() == SyukkoId);
                 if (issue != null)
                 {
                     issue.SoId = int.Parse(ShopId);                    // 店舗ID
@@ -335,14 +335,14 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var issues = checkBox_2.Checked
                         ? context.TSyukkos.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TSyukkos.Where(o => o.SyHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TSyukkos.Where(o => o.SyFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = issues.Select(o => new
                     {
                         出庫ID = o.SyId,            // 出庫ID
-                        営業所ID = o.SoId,              // 店舗ID
-                        社員ID = o.EmId,           // 社員ID
+                        社員ID = o.EmId,
                         顧客ID = o.ClId,             // クライアントID
+                        営業所ID = o.SoId,              // 店舗ID
                         受注ID = o.OrId,              // 受注ID
                         出庫年月日 = o.SyDate,        // 出庫日
                         状態フラグ = o.SyStateFlag,     // 出庫状態フラグ

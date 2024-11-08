@@ -208,7 +208,7 @@ namespace SalesManagement_SysDev
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoId == job))
                 {
-                    MessageBox.Show("社員IDが存在しません。");
+                    MessageBox.Show("役職IDが存在しません。");
                     return;
                 }
                 var newEmployee = new MEmployee
@@ -240,12 +240,13 @@ namespace SalesManagement_SysDev
                     {
                         社員ID = e.EmId,
                         社員名 = e.EmName,
-                        営業所ID = e.EmId,
+                        営業所ID = e.SoId,
                         役職ID = e.PoId,
                         入社年月日 = e.EmHiredate,
                         パスワード = e.EmPassword,
                         電話番号 = e.EmPhone,
-                        非表示フラグ = e.EmHidden
+                        非表示フラグ = e.EmFlag,
+                        非表示理由 = e.EmHidden
                     }).ToList();
                 }
             }
@@ -261,7 +262,7 @@ namespace SalesManagement_SysDev
             {
                 // 各テキストボックスの値を取得 
                 var ShainID = TBSyainID.Text.Trim();       // 社員ID 
-                var ShaiName = TBSyainName.Text.Trim();           // 
+                var ShainName = TBSyainName.Text.Trim();           // 
                 var ShopID = TBShopId.Text.Trim();         // 店あいデー
                 var JobID = TBJobID.Text.Trim();     // 役職
                 var TelNo = TBTellNo.Text.Trim();     // でんわ 
@@ -270,27 +271,27 @@ namespace SalesManagement_SysDev
                 var query = context.MEmployees.AsQueryable();
 
                 // 社員IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(ShainID) && int.TryParse(ShainID, out int parsedJyutyuID))
+                if (!string.IsNullOrEmpty(ShainID) && int.TryParse(ShainID, out int parsedShainID))
                 {
-                    query = query.Where(e => e.EmId == parsedJyutyuID);
+                    query = query.Where(e => e.EmId == parsedShainID);
                 }
 
                 // 社員名を検索条件に追加 
-                if (!string.IsNullOrEmpty(ShaiName) && int.TryParse(ShaiName, out int parsedShopID))
+                if (!string.IsNullOrEmpty(ShainName))
+                {
+                    query = query.Where(o => o.EmName.Contains(ShainName));
+                }
+
+                // 営業所IDを検索条件に追加 
+                if (!string.IsNullOrEmpty(ShopID) && int.TryParse(ShopID, out int parsedShopID))
                 {
                     query = query.Where(o => o.SoId == parsedShopID);
                 }
 
-                // 営業所IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(ShopID) && int.TryParse(ShopID, out int parsedShainID))
-                {
-                    query = query.Where(o => o.EmId == parsedShainID);
-                }
-
                 // 役職 
-                if (!string.IsNullOrEmpty(JobID) && int.TryParse(JobID, out int parsedKokyakuID))
+                if (!string.IsNullOrEmpty(JobID) && int.TryParse(JobID, out int parsedJobID))
                 {
-                    query = query.Where(e => e.SoId == parsedKokyakuID);
+                    query = query.Where(e => e.SoId == parsedJobID);
                 }
 
                 // でんわ 
@@ -317,6 +318,7 @@ namespace SalesManagement_SysDev
                         入社年月日 = employee.EmHiredate,
                         パスワード = employee.EmPassword,
                         電話番号 = employee.EmPhone,
+                        非表示理由 = employee.EmHidden,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
                 }

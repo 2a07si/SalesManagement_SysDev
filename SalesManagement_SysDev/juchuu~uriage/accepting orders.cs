@@ -262,6 +262,7 @@ namespace SalesManagement_SysDev
 
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayOrders();
                     }
                     else
                     {
@@ -288,6 +289,7 @@ namespace SalesManagement_SysDev
                 string kokyakuID = TBKokyakuID.Text;
                 string tantoName = TBTantoName.Text;
                 DateTime jyutyuDate = date.Value;
+                string riyuu = TBRiyuu.Text;
                 bool tyumonFlag = TyumonFlag.Checked;
                 bool delFlag = DelFlag.Checked;
 
@@ -325,9 +327,9 @@ namespace SalesManagement_SysDev
                         ClId = parsedKokyakuID,
                         ClCharge = tantoName,
                         OrDate = jyutyuDate,
-                        OrStateFlag = null,
-                        OrFlag = tyumonFlag ? 1 : 0,
-                        OrHidden = delFlag ? "1" : "0"
+                        OrStateFlag = tyumonFlag ? 1 : 0,
+                        OrFlag = delFlag ? 1 : 0,
+                        OrHidden = riyuu
                     };
 
                     context.TOrders.Add(newOrder);
@@ -355,7 +357,7 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var orders = checkBox_2.Checked
                         ? context.TOrders.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TOrders.Where(o => o.OrHidden != "1").ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TOrders.Where(o => o.OrFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
 
                     dataGridView1.DataSource = orders.Select(o => new
                     {
@@ -365,8 +367,9 @@ namespace SalesManagement_SysDev
                         顧客ID = o.ClId,
                         担当社員名 = o.ClCharge,
                         受注日 = o.OrDate,
-                        注文フラグ = o.OrFlag,
-                        非表示フラグ = o.OrHidden
+                        受注状態フラグ = o.OrStateFlag,
+                        非表示フラグ = o.OrFlag,
+                        非表示理由　= o.OrHidden
                     }).ToList();
                 }
             }
@@ -480,6 +483,7 @@ namespace SalesManagement_SysDev
 
                         context.SaveChanges();
                         MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayOrderDetails();
                     }
                     else
                     {

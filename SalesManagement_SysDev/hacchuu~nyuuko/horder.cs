@@ -286,9 +286,10 @@ namespace SalesManagement_SysDev
                         発注ID = h.HaId,
                         メーカID = h.MaId,
                         社員ID = h.EmId,
-                        発注日 = h.HaDate,
+                        発注年月日 = h.HaDate,
                         入庫フラグ = h.WaWarehouseFlag,
-                        非表示フラグ = h.HaHidden
+                        非表示フラグ = h.HaFlag,
+                        非表示理由 = h.HaHidden
                     }).ToList();
                 }
             }
@@ -338,7 +339,7 @@ namespace SalesManagement_SysDev
                         発注ID = h.HaId,
                         メーカID = h.MaId,
                         社員ID = h.EmId,
-                        発注日 = h.HaDate,
+                        発注年月日 = h.HaDate,
                         入庫状態 = NyuukoFlag.Checked ? "〇" : "×",
                         非表示フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
@@ -555,7 +556,7 @@ namespace SalesManagement_SysDev
                     TBMakerID.Text = row.Cells["メーカID"].Value.ToString();
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
 
-                    date.Value = Convert.ToDateTime(row.Cells["発注日"].Value);
+                    date.Value = Convert.ToDateTime(row.Cells["発注年月日"].Value);
                     // 入庫状態や非表示フラグも必要に応じて設定 
                     // 例: NyuukoFlag.Checked = (row.Cells["入庫状態"].Value.ToString() == "1"); 
                     // 例: DelFlag.Checked = (row.Cells["非表示フラグ"].Value.ToString() == "1"); 
@@ -614,7 +615,7 @@ namespace SalesManagement_SysDev
                     TBMakerID.Text = row.Cells["メーカID"].Value.ToString();
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
 
-                    date.Value = Convert.ToDateTime(row.Cells["発注日"].Value);
+                    date.Value = Convert.ToDateTime(row.Cells["発注年月日"].Value);
                     // 入庫状態や非表示フラグも必要に応じて設定 
                     // 例: NyuukoFlag.Checked = (row.Cells["入庫状態"].Value.ToString() == "1"); 
                     // 例: DelFlag.Checked = (row.Cells["非表示フラグ"].Value.ToString() == "1"); 

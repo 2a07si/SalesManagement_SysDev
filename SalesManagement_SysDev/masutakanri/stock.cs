@@ -92,9 +92,7 @@ namespace SalesManagement_SysDev
             TBZaikoID.Text = "";
             TBSyohinID.Text = "";
             TBZaiko.Text = "";
-            DelFlag.Checked = false;
             StFlag.Checked = false;
-            TBRiyuu.Text = "";
             CurrentStatus.ResetStatus(label2);
         }
 
@@ -154,8 +152,6 @@ namespace SalesManagement_SysDev
             string syohinID = TBSyohinID.Text;
             string zaiko = TBZaiko.Text;
             bool stflag = StFlag.Checked;
-            bool delflag = DelFlag.Checked;
-            string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -185,8 +181,6 @@ namespace SalesManagement_SysDev
             string syohinID = TBSyohinID.Text;
             string zaiko = TBZaiko.Text;
             bool stflag = StFlag.Checked;
-            bool delflag = DelFlag.Checked;
-            string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -242,7 +236,8 @@ namespace SalesManagement_SysDev
                         在庫ID = s.StId,
                         商品ID = s.PrId,
                         在庫数 = s.StQuantity,
-                        在庫管理フラグ = s.StFlag,
+                        管理フラグ = s.StFlag,
+                        非表示フラグ = s.StFlag,
                     }).ToList();
                 }
             }
