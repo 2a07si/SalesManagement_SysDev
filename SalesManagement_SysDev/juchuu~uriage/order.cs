@@ -191,6 +191,7 @@ namespace SalesManagement_SysDev
             string OrderId = TBTyumonId.Text;
             string ShopId = TBShopId.Text;
             string ShainId = TBShainId.Text;
+            string ChumonId = TBTyumonId.Text;
             string KokyakuId = TBKokyakuId.Text;
             string JyutyuId = TBJyutyuId.Text;
             bool OrderFlg = TyumonFlag.Checked;
@@ -203,24 +204,26 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var order = context.TChumons.SingleOrDefault(o => o.OrId.ToString() == OrderId);
+                var order = context.TChumons.SingleOrDefault(o => o.ChId.ToString() == ChumonId);
                 if (order != null)
                 {
                     // 新しい注文情報を作成
-                    var Order = new TOrder
+                    var chumons = new TChumon
                     {
                         SoId = int.Parse(ShopId),                    // 店舗ID
                         EmId = int.Parse(ShainId),                  　// 社員ID（null許容）
                         ClId = int.Parse(KokyakuId),                 // クライアントID
+                        ChId = int.Parse(ChumonId),
                         OrId = int.Parse(JyutyuId),                       // 受注ID
-                        OrDate = Orderdate,                         // 注文日
-                        OrStateFlag = OrderFlg ? 1 : 0,             // 注文状態フラグ
-                        OrFlag = DelFlg ? 1 : 0,                     // 削除フラグ
-                        OrHidden = Riyuu                              // 理由
+                        ChDate = Orderdate,                         // 注文日
+                        ChStateFlag = OrderFlg ? 1 : 0,             // 注文状態フラグ
+                        ChFlag = DelFlg ? 1 : 0,                     // 削除フラグ
+                        ChHidden = Riyuu                              // 理由
                     };
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
+                    DisplayOrders();
                 }
                 else
                 {
@@ -297,6 +300,7 @@ namespace SalesManagement_SysDev
                         // 保存
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
+                        DisplayOrders();
                     }
                     catch (DbUpdateException ex)
                     {
@@ -462,6 +466,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("注文詳細の更新が成功しました。");
+                    DisplayOrderDetails();
                 }
                 else
                 {
@@ -501,6 +506,7 @@ namespace SalesManagement_SysDev
                 context.TChumonDetails.Add(newOrderDetail);
                 context.SaveChanges();
                 MessageBox.Show("注文詳細の登録が成功しました。");
+                DisplayOrderDetails();
             }
         }
 
