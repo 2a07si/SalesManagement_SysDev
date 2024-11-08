@@ -329,16 +329,15 @@ namespace SalesManagement_SysDev
         {
             try
             {
-
                 using (var context = new SalesManagementContext())
                 {
-
-
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+
                     var issues = checkBox_2.Checked
-                        ? context.TSyukkos.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TSyukkos.Where(o => o.SyFlag != 1 || o.SyStateFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
-                    // データを選択してDataGridViewに表示
+                      ? context.TSyukkos.ToList()  // チェックされていれば全ての注文を表示
+                      : context.TSyukkos
+                         .Where(o => o.SyFlag != 1 && o.SyStateFlag != 2)
+                         .ToList();       // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = issues.Select(o => new
                     {
                         出庫ID = o.SyId,            // 出庫ID

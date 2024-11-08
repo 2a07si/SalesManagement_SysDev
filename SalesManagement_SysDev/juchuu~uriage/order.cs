@@ -334,10 +334,12 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-                    var chumons = checkBox_2.Checked
-                        ? context.TChumons.ToList()  // チェックされていれば全ての受注を表示
-                        : context.TChumons.Where(o => o.ChFlag != 1 || o.ChStateFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
 
+                    var chumons = checkBox_2.Checked
+                      ? context.TChumons.ToList()  // チェックされていれば全ての注文を表示
+                      : context.TChumons
+                         .Where(o => o.ChFlag != 1 && o.ChStateFlag != 2)
+                         .ToList();
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = chumons.Select(o => new
                     {
@@ -515,9 +517,17 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var orderDetails = context.TChumonDetails.ToList();
+                    var ChumonDetails = context.TChumonDetails.ToList();
 
-                    dataGridView2.DataSource = orderDetails.Select(od => new
+                    var visibleChumonDetails = ChumonDetails.Where(od =>
+                    {
+                        var chumon = context.TChumons.FirstOrDefault(o => o.ChId == od.ChId);
+
+                        return chumon == null || chumon.ChFlag != 1 && chumon.ChStateFlag != 2);
+                    }).ToList();
+
+                    dataGridView2.DataSource = visibleChumonDetaila
+                    .Select(od => new
                     {
                         注文詳細ID = od.ChDetailId,
                         注文ID = od.ChId,

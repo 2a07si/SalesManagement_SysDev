@@ -322,9 +322,9 @@
             KanriFlag.ForeColor = Color.Black;
             KanriFlag.Location = new Point(20, 120);
             KanriFlag.Name = "KanriFlag";
-            KanriFlag.Size = new Size(110, 29);
+            KanriFlag.Size = new Size(92, 29);
             KanriFlag.TabIndex = 13;
-            KanriFlag.Text = "出荷管理";
+            KanriFlag.Text = "非表示";
             KanriFlag.UseVisualStyleBackColor = true;
             // 
             // TBKokyakuID

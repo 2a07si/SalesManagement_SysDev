@@ -367,13 +367,12 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var orders = checkBox_2.Checked
-                        ? context.TOrders.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TOrders
-                                  .Where(o => o.OrFlag != 1 || o.OrStateFlag != 2)  // 非表示フラグが "1" または OrStateFlag が "2" でないものを取得
-                                  .ToList();
-
+                      ? context.TOrders.ToList()  // チェックされていれば全ての注文を表示
+                      : context.TOrders
+                         .Where(o => o.OrFlag != 1 && o.OrStateFlag != 2)
+                         .ToList();
+                    // OrFlag が "1" または OrStateFlag が "2" でないものを取得
                     dataGridView1.DataSource = orders.Select(o => new
                     {
                         受注ID = o.OrId,
@@ -580,16 +579,27 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
+                    // 受注詳細のリストを取得
                     var orderDetails = context.TOrderDetails.ToList();
 
-                    dataGridView2.DataSource = orderDetails.Select(od => new
+                    // 受注詳細の表示条件を設定（OrFlagが1またはOrStateFlagが2の受注IDを持つ受注詳細は非表示）
+                    var visibleOrderDetails = orderDetails.Where(od =>
+                    {
+                        // 受注IDに基づいて関連する受注を取得
+                        var order = context.TOrders.FirstOrDefault(o => o.OrId == od.OrId);
+
+                        // 受注が存在し、OrFlagが1またはOrStateFlagが2の条件を満たす場合、その受注詳細は非表示
+                        return order == null || (order.OrFlag != 1 && order.OrStateFlag != 2);
+                    }).ToList();
+
+                    // データグリッドに表示
+                    dataGridView2.DataSource = visibleOrderDetails.Select(od => new
                     {
                         受注詳細ID = od.OrDetailId,
                         受注ID = od.OrId,
                         商品ID = od.PrId,
                         数量 = od.OrQuantity,
-                        // 合計金額がdecimal型の場合は直接ToString("N0")を適用
-                        合計金額 = od.OrTotalPrice.ToString("N0")  // 3桁区切り
+                        合計金額 = od.OrTotalPrice.ToString("N0")  // 3桁区切り 
                     }).ToList();
                 }
             }
