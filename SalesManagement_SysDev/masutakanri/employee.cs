@@ -296,7 +296,7 @@ namespace SalesManagement_SysDev
                 // 役職 
                 if (!string.IsNullOrEmpty(JobID) && int.TryParse(JobID, out int parsedJobID))
                 {
-                    query = query.Where(e => e.SoId == parsedJobID);
+                    query = query.Where(e => e.PoId == parsedJobID);
                 }
 
                 // でんわ 

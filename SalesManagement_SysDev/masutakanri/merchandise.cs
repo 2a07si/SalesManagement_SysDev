@@ -331,14 +331,14 @@ namespace SalesManagement_SysDev
                 }
 
                 // 担当者名を検索条件に追加 
-                if (!string.IsNullOrEmpty(Model) && int.TryParse(shou, out int parsedmodel))
+                if (!string.IsNullOrEmpty(Model))
                 {
-                    query = query.Where(m => m.ScId == parsedmodel);
+                    query = query.Where(m => m.PrModelNumber.Contains(Model));
                 }
 
                 if (!string.IsNullOrEmpty(color))
                 {
-                    query = query.Where(m => m.PrName == color);
+                    query = query.Where(m => m.PrColor.Contains(color));
                 }
 
 

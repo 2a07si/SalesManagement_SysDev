@@ -538,8 +538,8 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得
-                var jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
-                var jyutyuID = TBNyuukaIDS.Text;
+                var nyuukaSyosaiID = TBNyukaSyosaiID.Text;
+                var nyuukaID = TBNyuukaIDS.Text;
                 var syohinID = TBSyohinID.Text;
                 var suryou = TBSuryou.Text;
 
@@ -547,16 +547,16 @@ namespace SalesManagement_SysDev
                 var query = context.TArrivalDetails.AsQueryable();
 
                 // 各条件を追加
-                if (!string.IsNullOrEmpty(jyutyuSyosaiID))
+                if (!string.IsNullOrEmpty(nyuukaSyosaiID))
                 {
                     // 入荷詳細IDを検索条件に追加
-                    query = query.Where(od => od.ArDetailId.ToString() == jyutyuSyosaiID);
+                    query = query.Where(od => od.ArDetailId.ToString() == nyuukaSyosaiID);
                 }
 
-                if (!string.IsNullOrEmpty(jyutyuID))
+                if (!string.IsNullOrEmpty(nyuukaID))
                 {
                     //入荷IDを検索条件に追加
-                    query = query.Where(od => od.ArId.ToString() == jyutyuID);
+                    query = query.Where(od => od.ArId.ToString() == nyuukaID);
                 }
 
                 if (!string.IsNullOrEmpty(syohinID))
