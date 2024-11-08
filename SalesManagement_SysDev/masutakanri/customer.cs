@@ -248,11 +248,12 @@ namespace SalesManagement_SysDev
                         顧客ID = c.ClId,
                         営業所ID = c.SoId,
                         顧客名 = c.ClName,
-                        住所 = c.ClAddress,
                         郵便番号 = c.ClPostal,
+                        住所 = c.ClAddress,
                         電話番号 = c.ClPhone,
                         FAX = c.ClFax,
-                        顧客管理フラグ = c.ClFlag
+                        顧客管理フラグ = c.ClFlag,
+                        非表示理由 = c.ClHidden
                     }).ToList();
                 }
             }
@@ -331,11 +332,12 @@ namespace SalesManagement_SysDev
                         顧客ID = c.ClId,
                         営業所ID = c.SoId,
                         顧客名 = c.ClName,
-                        住所 = c.ClAddress,
                         郵便番号 = c.ClPostal,
+                        住所 = c.ClAddress,
                         電話番号 = c.ClPhone,
                         FAX = c.ClFax,
-                        顧客管理フラグ = c.ClFlag
+                        顧客管理フラグ = c.ClFlag,
+                        非表示理由 = c.ClHidden
                     }).ToList();
                 }
                 else

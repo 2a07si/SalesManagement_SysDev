@@ -44,10 +44,7 @@
             StFlag = new CheckBox();
             Next = new Button();
             Prev = new Button();
-            DelFlag = new CheckBox();
             label8 = new Label();
-            TBRiyuu = new MaskedTextBox();
-            label17 = new Label();
             dataGridView1 = new DataGridView();
             TBSyohinID = new MaskedTextBox();
             TBZaikoID = new MaskedTextBox();
@@ -196,10 +193,7 @@
             panel1.Controls.Add(StFlag);
             panel1.Controls.Add(Next);
             panel1.Controls.Add(Prev);
-            panel1.Controls.Add(DelFlag);
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(TBRiyuu);
-            panel1.Controls.Add(label17);
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(TBSyohinID);
             panel1.Controls.Add(TBZaikoID);
@@ -242,18 +236,6 @@
             Prev.Text = "◀";
             Prev.UseVisualStyleBackColor = true;
             // 
-            // DelFlag
-            // 
-            DelFlag.AutoSize = true;
-            DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            DelFlag.ForeColor = Color.Black;
-            DelFlag.Location = new Point(20, 120);
-            DelFlag.Name = "DelFlag";
-            DelFlag.Size = new Size(92, 29);
-            DelFlag.TabIndex = 7;
-            DelFlag.Text = "非表示";
-            DelFlag.UseVisualStyleBackColor = true;
-            // 
             // label8
             // 
             label8.AutoSize = true;
@@ -265,24 +247,6 @@
             label8.Size = new Size(72, 25);
             label8.TabIndex = 287;
             label8.Text = "何ページ";
-            // 
-            // TBRiyuu
-            // 
-            TBRiyuu.Location = new Point(230, 120);
-            TBRiyuu.Name = "TBRiyuu";
-            TBRiyuu.Size = new Size(325, 31);
-            TBRiyuu.TabIndex = 9;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label17.ForeColor = Color.Black;
-            label17.Location = new Point(120, 120);
-            label17.Name = "label17";
-            label17.Size = new Size(102, 25);
-            label17.TabIndex = 8;
-            label17.Text = "非表示理由";
             // 
             // dataGridView1
             // 
@@ -481,9 +445,6 @@
         private Label label6;
         private Label label12;
         private Label label14;
-        private CheckBox DelFlag;
-        private MaskedTextBox TBRiyuu;
-        private Label label17;
         private Button B_iti;
         private Label label2;
         private Label label1;

@@ -425,7 +425,7 @@
             label18.Name = "label18";
             label18.Size = new Size(102, 25);
             label18.TabIndex = 10;
-            label18.Text = "出荷年月日";
+            label18.Text = "出荷終了日";
             // 
             // TBShopID
             // 

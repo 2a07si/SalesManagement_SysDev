@@ -328,10 +328,10 @@ namespace SalesManagement_SysDev
                     dataGridView1.DataSource = sales.Select(s => new
                     {
                         売上ID = s.SaId,
-                        受注ID = s.OrId,
+                        顧客ID = s.ClId,
                         営業所ID = s.SoId,
                         社員ID = s.EmId,
-                        顧客ID = s.ClId,
+                        受注ID = s.OrId,
                         売上日 = s.SaDate,
                         売上フラグ = s.SaFlag,
                         非表示フラグ = s.SaHidden
@@ -403,11 +403,11 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = sales.Select(sale => new
                     {
-                        受注ID = sale.OrId,
+                        売上ID = sale.SaId,
+                        顧客ID = sale.ClId,
                         営業所ID = sale.SoId,
                         社員ID = sale.EmId,
-                        顧客ID = sale.ClId,
-                        売上ID = sale.SaId,
+                        受注ID = sale.OrId,
                         受注日 = sale.SaDate,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
@@ -557,9 +557,9 @@ namespace SalesManagement_SysDev
                     dataGridView3.DataSource = saleDetails.Select(sa => new
                     {
                         売上詳細ID = sa.SaDetailId,
+                        売上ID = sa.SaId,
                         商品ID = sa.PrId,
                         数量 = sa.SaQuantity,
-                        売上ID = sa.SaId,
                         合計金額 = sa.SaPrTotalPrice
 
                     }).ToList();

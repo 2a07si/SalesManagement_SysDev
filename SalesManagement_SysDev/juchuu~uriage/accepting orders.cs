@@ -262,6 +262,7 @@ namespace SalesManagement_SysDev
 
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayOrders();
                     }
                     else
                     {
@@ -480,6 +481,7 @@ namespace SalesManagement_SysDev
 
                         context.SaveChanges();
                         MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayOrderDetails();
                     }
                     else
                     {
