@@ -259,7 +259,7 @@ namespace SalesManagement_SysDev
                         order.ClId = int.Parse(kokyakuID);
                         order.ClCharge = tantoName;
                         order.OrDate = jyutyuDate;
-                        order.OrStateFlag = tyumonFlag ? 1 : 0; // 適宜初期化 
+                        order.OrStateFlag = tyumonFlag ? 2 : 0; // 適宜初期化 
                         order.OrFlag = delFlag ? 1 : 0;
                         order.OrHidden = riyuu;
 
@@ -334,7 +334,7 @@ namespace SalesManagement_SysDev
                         ClId = parsedKokyakuID,
                         ClCharge = tantoName,
                         OrDate = jyutyuDate,
-                        OrStateFlag = tyumonFlag ? 1 : 0,
+                        OrStateFlag = tyumonFlag ? 2 : 0,
                         OrFlag = delFlag ? 1 : 0,
                         OrHidden = riyuu
                     };
@@ -772,6 +772,7 @@ namespace SalesManagement_SysDev
             }
         }
 
+        //注文に登録する部分
         private void AcceptionConfirm(int orderId)
         {
             MessageBox.Show("登録開始します");
@@ -806,6 +807,12 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+        //通常が非表示であれば詳細も非表示にするやつ
+        private void DetailHide()
+        {
+
+        }
+
 
     }
 }

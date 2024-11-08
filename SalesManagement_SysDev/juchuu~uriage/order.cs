@@ -215,7 +215,7 @@ namespace SalesManagement_SysDev
                     order.ChId = int.Parse(ChumonId);
                     order.OrId = int.Parse(JyutyuId);                       // 受注ID
                     order.ChDate = Orderdate;               // 注文日
-                    order.ChStateFlag = OrderFlg ? 1 : 0;             // 注文状態フラグ
+                    order.ChStateFlag = OrderFlg ? 2 : 0;             // 注文状態フラグ
                     order.ChFlag = DelFlg ? 1 : 0;                     // 削除フラグ
                     order.ChHidden = Riyuu;
 
@@ -288,7 +288,7 @@ namespace SalesManagement_SysDev
                             OrId = int.Parse(JyutyuId), //受注ID
                                                         // OrId は自動採番されるため、設定しない
                             ChDate = Orderdate,  // 注文日   
-                            ChStateFlag = OrderFlg ? 1 : 0, // 注文状態フラグ   
+                            ChStateFlag = OrderFlg ? 2 : 0, // 注文状態フラグ   
                             ChFlag = DelFlg ? 1 : 0,  // 削除フラグ   
                             ChHidden = Riyuu // 理由  
                         };

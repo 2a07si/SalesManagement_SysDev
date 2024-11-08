@@ -207,7 +207,7 @@ namespace SalesManagement_SysDev
                     arrival.ClId = int.Parse(KokyakuId);                 // クライアントID
                     arrival.OrId = int.Parse(JyutyuId);                       // 受注ID
                     arrival.ArDate = Nyuukodate;                         // 入荷日
-                    arrival.ArStateFlag = NyuukaFlg ? 1 : 0;             // 入荷状態フラグ
+                    arrival.ArStateFlag = NyuukaFlg ?2 : 0;             // 入荷状態フラグ
                     arrival.ArFlag = DelFlg ? 1 : 0;                     // 削除フラグ
                     arrival.ArHidden = Riyuu;
 
@@ -279,7 +279,7 @@ namespace SalesManagement_SysDev
                             ClId = int.Parse(KokyakuId),                        // クライアントID
                             OrId = int.Parse(JyutyuId),                         // 受注ID
                             ArDate = Nyuukodate,                                // 入荷日
-                            ArStateFlag = NyuukaFlg ? 1 : 0,                    // 入荷状態フラグ
+                            ArStateFlag = NyuukaFlg ? 2 : 0,                    // 入荷状態フラグ
                             ArFlag = DelFlg ? 1 : 0,                            // 削除フラグ
                             ArHidden = Riyuu
                         };

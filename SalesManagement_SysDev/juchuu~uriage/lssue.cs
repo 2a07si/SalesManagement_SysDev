@@ -211,7 +211,7 @@ namespace SalesManagement_SysDev
                     issue.ClId = int.Parse(KokyakuId);                 // クライアントID
                     issue.OrId = int.Parse(JyutyuId);                       // 受注ID
                     issue.SyDate = Syukkodate;                         // 出庫日
-                    issue.SyStateFlag = SyukkoFlg ? 1 : 0;             // 出庫状態フラグ
+                    issue.SyStateFlag = SyukkoFlg ? 2 : 0;             // 出庫状態フラグ
                     issue.SyFlag = DelFlg ? 1 : 0;                     // 削除フラグ
                     issue.SyHidden = Riyuu;
 
@@ -283,7 +283,7 @@ namespace SalesManagement_SysDev
                             ClId = int.Parse(KokyakuId),                        // クライアントID
                             OrId = int.Parse(JyutyuId),                         // 受注ID
                             SyDate = Syukkodate,                                // 出庫日
-                            SyStateFlag = SyukkoFlg ? 1 : 0,                    // 出庫状態フラグ
+                            SyStateFlag = SyukkoFlg ? 2 : 0,                    // 出庫状態フラグ
                             SyFlag = DelFlg ? 1 : 0,                            // 削除フラグ
                             SyHidden = Riyuu
                         };

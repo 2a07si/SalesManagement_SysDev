@@ -266,8 +266,10 @@ namespace SalesManagement_SysDev
             string shainID = TBShainID.Text;
             string kokyakuID = TBKokyakuID.Text;
             string shukkaID = TBSyukkaID.Text;
+            bool delFlag = SyukkaFlag.Checked;
             DateTime shukkaDate = date.Value;
-            bool delFlag = KanriFlag.Checked;
+            bool shipFlag = KanriFlag.Checked;
+            string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -280,7 +282,9 @@ namespace SalesManagement_SysDev
                     shipping.ShId = int.Parse(shukkaID);
                     shipping.OrId = int.Parse(jyutyuID);
                     shipping.ShFinishDate = shukkaDate;
-                    shipping.ShHidden = delFlag ? "1" : "0";
+                    shipping.ShFlag = shipFlag ? 1 : 0;
+                    shipping.ShStateFlag = shipFlag ? 2 : 0;
+                    shipping.ShHidden = riyuu;
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
@@ -342,7 +346,7 @@ namespace SalesManagement_SysDev
                     ClId = int.Parse(kokyakuID),
                     OrId = int.Parse(jyutyuID),
                     ShFinishDate = shukkaDate,
-                    ShStateFlag = syukkaf ? 1 : 0,
+                    ShStateFlag = syukkaf ? 2 : 0,
                     ShFlag = kanriFlag ? 1 : 0,
                 };
 
