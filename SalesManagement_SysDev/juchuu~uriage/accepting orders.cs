@@ -446,8 +446,8 @@ namespace SalesManagement_SysDev
                             顧客ID = order.ClId,
                             担当社員名 = order.ClCharge,
                             受注日 = order.OrDate,
-                            注文フラグ = TyumonFlag.Checked ? "〇" : "×",
-                            削除フラグ = DelFlag.Checked ? "〇" : "×"
+                            注文フラグ = TyumonFlag.Checked ? 1 : 0,
+                            削除フラグ = DelFlag.Checked ? 1 : 0
                         }).ToList();
                     }
                     else
