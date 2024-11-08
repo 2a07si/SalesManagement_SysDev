@@ -211,8 +211,8 @@ namespace SalesManagement_SysDev
                     hattyu.MaId = int.Parse(makerID);
                     hattyu.EmId = int.Parse(shainID);
                     hattyu.HaDate = hattyuuDate;
-                    hattyu.WaWarehouseFlag = nyuukoFlag ? 1 : 0;
-                    hattyu.HaHidden = delFlag ? "1" : "0";
+                    hattyu.WaWarehouseFlag = nyuukoFlag ? 2 : 0;
+                    hattyu.HaFlag = delFlag ? 1 : 0;
                     hattyu.HaHidden = riyuu;
 
                     context.SaveChanges();
@@ -258,7 +258,7 @@ namespace SalesManagement_SysDev
                     MaId = int.Parse(makerID),
                     EmId = employeeId, // ここで存在を確認したEmIdを使用
                     HaDate = hattyuuDate,
-                    WaWarehouseFlag = nyuukoFlag ? 1 : 0,
+                    WaWarehouseFlag = nyuukoFlag ? 2 : 0,
                     HaFlag = delFlag ? 1 : 0, // 非表示フラグをHaFlagで示す
                     HaHidden = riyuu // 非表示理由を設定
                 };

@@ -197,6 +197,7 @@ namespace SalesManagement_SysDev
             DateTime nyuukoDate = date.Value;
             bool nyuukoFlag = NyuukoFlag.Checked;
             bool delFlag = DelFlag.Checked;
+            string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -206,9 +207,10 @@ namespace SalesManagement_SysDev
                     receivingStock.HaId = int.Parse(haID);
                     receivingStock.EmId = int.Parse(shainID);
                     receivingStock.WaDate = nyuukoDate;
-                    receivingStock.WaFlag = nyuukoFlag ? 1 : 0;
-                    receivingStock.WaHidden = delFlag ? "1" : "0";
-
+                    receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;
+                    receivingStock.WaDate = nyuukoDate;
+                    receivingStock.WaFlag = delFlag ? 1 : 0;
+                    receivingStock.WaHidden = riyuu;
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
                     DisplayReceivingStocks();
@@ -227,6 +229,7 @@ namespace SalesManagement_SysDev
             DateTime nyuukoDate = date.Value;
             bool nyuukoFlag = NyuukoFlag.Checked;
             bool delFlag = DelFlag.Checked;
+            string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -251,8 +254,9 @@ namespace SalesManagement_SysDev
                     HaId = hattyuId, // 発注IDを適切に設定
                     EmId = employeeId, // 社員IDを適切に設定
                     WaDate = nyuukoDate,
+                    WaShelfFlag = nyuukoFlag ? 2 : 0,
                     WaFlag = nyuukoFlag ? 1 : 0,
-                    WaHidden = delFlag ? "1" : "0"
+                    WaHidden = riyuu
                 };
 
                 context.TWarehousings.Add(newReceivingStock);
