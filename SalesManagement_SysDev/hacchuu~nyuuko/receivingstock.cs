@@ -208,6 +208,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
+                    DisplayReceivingStocks();
                 }
                 else
                 {
@@ -372,6 +373,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("入庫詳細の更新が成功しました。");
+                    DisplayReceivingStockDetails();
                 }
                 else
                 {

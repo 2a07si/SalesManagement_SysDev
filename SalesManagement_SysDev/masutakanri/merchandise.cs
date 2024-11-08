@@ -182,6 +182,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
+                    Displaymerchandise();
                 }
                 else
                 {

@@ -202,18 +202,14 @@ namespace SalesManagement_SysDev
                 var arrival = context.TArrivals.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
                 if (arrival != null)
                 {
-                    // 新しい入荷情報を作成
-                    var Arrival = new TArrival
-                    {
-                        SoId = int.Parse(ShopId),                    // 店舗ID
-                        EmId = int.Parse(ShainId),// 社員ID（null許容）
-                        ClId = int.Parse(KokyakuId),                 // クライアントID
-                        OrId = int.Parse(JyutyuId),                       // 受注ID
-                        ArDate = Nyuukodate,                         // 入荷日
-                        ArStateFlag = NyuukaFlg ? 1 : 0,             // 入荷状態フラグ
-                        ArFlag = DelFlg ? 1 : 0,                     // 削除フラグ
-                        ArHidden = Riyuu                              // 理由
-                    };
+                    arrival.SoId = int.Parse(ShopId);                    // 店舗ID
+                    arrival.EmId = int.Parse(ShainId);// 社員ID（null許容）
+                    arrival.ClId = int.Parse(KokyakuId);                 // クライアントID
+                    arrival.OrId = int.Parse(JyutyuId);                       // 受注ID
+                    arrival.ArDate = Nyuukodate;                         // 入荷日
+                    arrival.ArStateFlag = NyuukaFlg ? 1 : 0;             // 入荷状態フラグ
+                    arrival.ArFlag = DelFlg ? 1 : 0;                     // 削除フラグ
+                    arrival.ArHidden = Riyuu;
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");

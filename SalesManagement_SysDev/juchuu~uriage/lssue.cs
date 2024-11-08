@@ -204,21 +204,18 @@ namespace SalesManagement_SysDev
                 var issue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
                 if (issue != null)
                 {
-                    // 新しい出庫情報を作成
-                    var Issue = new TSyukko
-                    {
-                        SoId = int.Parse(ShopId),                    // 店舗ID
-                        EmId = int.Parse(ShainId),// 社員ID（null許容）
-                        ClId = int.Parse(KokyakuId),                 // クライアントID
-                        OrId = int.Parse(JyutyuId),                       // 受注ID
-                        SyDate = Syukkodate,                         // 出庫日
-                        SyStateFlag = SyukkoFlg ? 1 : 0,             // 出庫状態フラグ
-                        SyFlag = DelFlg ? 1 : 0,                     // 削除フラグ
-                        SyHidden = Riyuu                              // 理由
-                    };
+                    issue.SoId = int.Parse(ShopId);                    // 店舗ID
+                    issue.EmId = int.Parse(ShainId);// 社員ID（null許容）
+                    issue.ClId = int.Parse(KokyakuId);                 // クライアントID
+                    issue.OrId = int.Parse(JyutyuId);                       // 受注ID
+                    issue.SyDate = Syukkodate;                         // 出庫日
+                    issue.SyStateFlag = SyukkoFlg ? 1 : 0;             // 出庫状態フラグ
+                    issue.SyFlag = DelFlg ? 1 : 0;                     // 削除フラグ
+                    issue.SyHidden = Riyuu;
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
+                    DisplayIssues();
                 }
                 else
                 {
@@ -465,6 +462,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("出庫詳細の更新が成功しました。");
+                    DisplayIssueDetails();
                 }
                 else
                 {

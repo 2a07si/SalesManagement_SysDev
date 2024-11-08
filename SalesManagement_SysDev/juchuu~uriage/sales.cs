@@ -443,6 +443,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("売上詳細の更新が成功しました。");
+                    DisplaySaleDetails();
                 }
                 else
                 {
@@ -630,7 +631,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する受注詳細が見つかりません。");
+                    MessageBox.Show("該当する売上詳細が見つかりません。");
                 }
             }
         }
