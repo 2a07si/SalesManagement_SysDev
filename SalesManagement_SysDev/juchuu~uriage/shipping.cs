@@ -383,9 +383,9 @@ namespace SalesManagement_SysDev
                     dataGridView1.DataSource = shipping.Select(sh => new
                     {
                         出荷ID = sh.ShId,
-                        営業所ID = sh.SoId,
-                        社員ID = sh.EmId,
                         顧客ID = sh.ClId,
+                        社員ID = sh.EmId,
+                        営業所ID = sh.SoId,
                         受注ID = sh.OrId,
                         出荷終了日 = sh.ShFinishDate,
                         出荷フラグ = sh.ShFlag,
@@ -610,9 +610,9 @@ namespace SalesManagement_SysDev
                     dataGridView2.DataSource = shippingDetails.Select(sh => new
                     {
                         出荷詳細ID = sh.ShDetailId,
+                        出荷ID = sh.ShId,
                         商品ID = sh.PrId,
                         数量 = sh.ShQuantity,
-                        出荷ID = sh.ShId
                     }).ToList();
                 }
                 else
@@ -749,7 +749,7 @@ namespace SalesManagement_SysDev
                     TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                     TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["出荷完了年月日"].Value);
+                    date.Value = Convert.ToDateTime(row.Cells["出荷終了日"].Value);
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                     // 非表示ボタンや非表示理由もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();

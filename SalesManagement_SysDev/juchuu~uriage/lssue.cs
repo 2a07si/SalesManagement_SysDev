@@ -201,7 +201,7 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var issue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
+                var issue = context.TSyukkos.SingleOrDefault(o => o.SyId.ToString() == SyukkoId);
                 if (issue != null)
                 {
                     issue.SoId = int.Parse(ShopId);                    // 店舗ID
@@ -340,9 +340,9 @@ namespace SalesManagement_SysDev
                     dataGridView1.DataSource = issues.Select(o => new
                     {
                         出庫ID = o.SyId,            // 出庫ID
-                        営業所ID = o.SoId,              // 店舗ID
-                        社員ID = o.EmId,           // 社員ID
+                        社員ID = o.EmId,
                         顧客ID = o.ClId,             // クライアントID
+                        営業所ID = o.SoId,              // 店舗ID
                         受注ID = o.OrId,              // 受注ID
                         出庫年月日 = o.SyDate,        // 出庫日
                         状態フラグ = o.SyStateFlag,     // 出庫状態フラグ

@@ -235,6 +235,7 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("登録が成功しました。");
+                    Displaymerchandise();
                 }
                 else
                 {
