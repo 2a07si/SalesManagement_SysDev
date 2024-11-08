@@ -521,13 +521,12 @@ namespace SalesManagement_SysDev
 
                     var visibleChumonDetails = ChumonDetails.Where(od =>
                     {
-                        var chumon = context.TChumons.FirstOrDefault(o => o.ChId == od.ChId);
+                        var Chumon = context.TChumons.FirstOrDefault(o => o.ChId == od.ChId);
 
-                        return chumon == null || chumon.ChFlag != 1 && chumon.ChStateFlag != 2);
+                        return Chumon == null || (Chumon.ChFlag != 1 && Chumon.ChStateFlag != 2);
                     }).ToList();
 
-                    dataGridView2.DataSource = visibleChumonDetaila
-                    .Select(od => new
+                    dataGridView2.DataSource = visibleChumonDetails.Select(od => new
                     {
                         注文詳細ID = od.ChDetailId,
                         注文ID = od.ChId,

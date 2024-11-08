@@ -415,7 +415,7 @@ namespace SalesManagement_SysDev
                 var shainID = TBShainID.Text.Trim();         // 社員ID  
                 var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID  
                 var shukkaID = TBSyukkaID.Text.Trim();       // 出荷ID 
-                
+
                 var riyuu = TBRiyuu;
 
                 // 基本的なクエリ  
@@ -475,7 +475,7 @@ namespace SalesManagement_SysDev
                         状態フラグ = sh.ShStateFlag,  // 出荷フラグの表示
                         管理フラグ = sh.ShFlag,
                         非表示理由 = sh.ShHidden
-                       
+
                     }).ToList();
                 }
                 else
@@ -557,9 +557,16 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var shippingDetails = context.TShipmentDetails.ToList();
+                    var ShipmentDetails = context.TShipmentDetails.ToList();
 
-                    dataGridView2.DataSource = shippingDetails.Select(sh => new
+                    var visibleShipmentDetails = ShipmentDetails.Where(od =>
+                    {
+                        var Shipment = context.TShipments.FirstOrDefault(o => o.ShId == od.ShId);
+
+                        return Shipment == null || (Shipment.ShFlag != 1 && Shipment.ShStateFlag != 2);
+                    }).ToList();
+
+                    dataGridView2.DataSource = visibleShipmentDetails.Select(sh => new
                     {
                         出荷詳細ID = sh.ShDetailId,
                         商品ID = sh.PrId,
