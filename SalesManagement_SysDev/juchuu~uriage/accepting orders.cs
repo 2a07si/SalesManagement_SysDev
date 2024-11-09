@@ -357,6 +357,7 @@ namespace SalesManagement_SysDev
                     }
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplayOrders();
+                    DisplayOrderDetails();
                 }
             }
             catch (FormatException)
