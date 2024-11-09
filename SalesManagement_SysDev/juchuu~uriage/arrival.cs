@@ -518,14 +518,17 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-                    var arrivals = checkBox_2.Checked
-                        ? context.TArrivals.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TArrivals.Where(o => o.ArFlag != 1 || o.ArStateFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
-
                     var arrivalDetails = context.TArrivalDetails.ToList();
 
-                    dataGridView2.DataSource = arrivalDetails.Select(od => new
+                    var visibleArrivalDetails = arrivalDetails.Where(od =>
+                    {
+                        var Arrival = context.TArrivals.FirstOrDefault(o => o.ArId == od.ArId);
+
+                        return Arrival == null || (Arrival.ArFlag != 1 && Arrival.ArStateFlag != 2);
+                    }).ToList();
+
+                    
+                    dataGridView2.DataSource = visibleArrivalDetails.Select(od => new
                     {
                         入荷詳細ID = od.ArDetailId,
                         入荷ID = od.ArId,

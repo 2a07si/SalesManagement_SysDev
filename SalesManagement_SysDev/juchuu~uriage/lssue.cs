@@ -515,9 +515,16 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var issueDetails = context.TSyukkoDetails.ToList();
+                    var SyukkoDetails = context.TSyukkoDetails.ToList();
 
-                    dataGridView2.DataSource = issueDetails.Select(od => new
+                    var visibleSyukkoDetails = SyukkoDetails.Where(od =>
+                    {
+                        var syukko = context.TSyukkos.FirstOrDefault(o => o.SyId == od.SyId);
+
+                        return syukko == null || (syukko.SyFlag != 1 && syukko.SyStateFlag != 2);
+                    }).ToList();
+
+                    dataGridView2.DataSource = visibleSyukkoDetails.Select(od => new
                     {
                         出庫詳細ID = od.SyDetailId,
                         出庫ID = od.SyId,
