@@ -48,6 +48,17 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayShipping();
             DisplayShippingDetails();
+
+            if (Global.PositionName == "管理者")
+            {
+                b_reg.Enabled = true;
+                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
+            }
+            else
+            {
+                b_reg.Enabled = false;
+                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
+            }
         }
         private void close_Click(object sender, EventArgs e)
         {
@@ -108,6 +119,8 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplayShipping();
+            DisplayShippingDetails();
         }
 
         private void clear_Click(object sender, EventArgs e)

@@ -27,12 +27,6 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void button14_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             /*DateTime dateTime = DateTime.Now;
@@ -71,16 +65,17 @@ namespace SalesManagement_SysDev
                 b_cus,
             });
             DisplayStock();
-        }
 
-        private void b_sto_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
+            if (Global.PositionName == "管理者")
+            {
+                b_reg.Enabled = true;
+                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
+            }
+            else
+            {
+                b_reg.Enabled = false;
+                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
+            }
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -364,5 +359,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

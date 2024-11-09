@@ -130,7 +130,6 @@
             label4.Size = new Size(70, 25);
             label4.TabIndex = 231;
             label4.Text = "社員名:";
-            label4.Click += label4_Click;
             // 
             // b_upd
             // 

@@ -33,11 +33,7 @@ namespace SalesManagement_SysDev
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
-            labelStatus.labelstatus(label2, b_kakutei);
-            b_FormSelector.Text = "←通常";
-            CurrentStatus.SetMode(Mode.通常);
-            DisplayReceivingStocks();
-            DisplayReceivingStockDetails();
+            
         }
 
 
@@ -59,6 +55,23 @@ namespace SalesManagement_SysDev
             accessManager.SetButtonAccess(new Control[] {
                 b_hor
             });
+
+            labelStatus.labelstatus(label2, b_kakutei);
+            b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
+            DisplayReceivingStocks();
+            DisplayReceivingStockDetails();
+
+            if (Global.PositionName == "管理者")
+            {
+                b_reg.Enabled = true;
+                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
+            }
+            else
+            {
+                b_reg.Enabled = false;
+                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
+            }
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -114,6 +127,8 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplayReceivingStocks();
+            DisplayReceivingStockDetails();
         }
 
         // 状態リセットメソッド（必要ならボタンにバインド）

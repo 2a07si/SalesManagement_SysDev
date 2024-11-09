@@ -115,6 +115,8 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplayOrders();
+            DisplayOrderDetails();
         }
 
         // 状態リセットメソッド（必要ならボタンにバインド）
@@ -160,6 +162,7 @@ namespace SalesManagement_SysDev
                         break;
                     case CurrentStatus.Status.一覧:
                         DisplayOrders();
+                        DisplayOrderDetails();
                         break;
                     case CurrentStatus.Status.検索:
                         SearchOrders();
@@ -189,6 +192,7 @@ namespace SalesManagement_SysDev
                         break;
                     case CurrentStatus.Status.一覧:
                         DisplayOrderDetails();
+                        DisplayOrders();
                         break;
                     case CurrentStatus.Status.検索:
                         SearchOrderDetails();
@@ -267,6 +271,7 @@ namespace SalesManagement_SysDev
                         if (TyumonFlag.Checked)
                         {
                             AcceptionConfirm(int.Parse(jyutyuID));
+                            
                         }
                         MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayOrders();
@@ -812,7 +817,7 @@ namespace SalesManagement_SysDev
                 var newChumon = new TChumon
                 {
                     SoId = order.SoId,  // 営業所ID    
-                    EmId = order.EmId,  // 社員ID    
+                    //社員Idはnull
                     ClId = order.ClId,  // 顧客ID    
                     OrId = order.OrId,  // 受注ID 
                     ChDate = order.OrDate, // 注文日    

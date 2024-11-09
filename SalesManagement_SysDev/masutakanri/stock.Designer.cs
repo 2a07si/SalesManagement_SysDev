@@ -111,7 +111,6 @@
             b_sto.TabIndex = 9;
             b_sto.Text = "在庫";
             b_sto.UseVisualStyleBackColor = false;
-            b_sto.Click += b_sto_Click;
             // 
             // label_ename
             // 

@@ -79,6 +79,17 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+
+            if (Global.PositionName == "管理者")
+            {
+                b_reg.Enabled = true;
+                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
+            }
+            else
+            {
+                b_reg.Enabled = false;
+                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
+            }
         }
         private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
         private void PerformSearch()
