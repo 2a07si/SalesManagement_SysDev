@@ -870,7 +870,7 @@ namespace SalesManagement_SysDev
 
         private void F_login_Load(object sender, EventArgs e)
         {
-            //    btn_InsertSampleData.Visible = false;
+            // Å@btn_InsertSampleData.Visible = false;
             //  btn_CleateDabase.Visible = false;
             dateNameLabel.UpdateDateTime();
         }

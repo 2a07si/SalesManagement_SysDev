@@ -666,5 +666,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
