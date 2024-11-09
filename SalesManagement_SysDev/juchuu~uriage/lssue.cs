@@ -123,6 +123,8 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplayIssues();
+            DisplayIssueDetails();
         }
 
         // 状態リセットメソッド（必要ならボタンにバインド）

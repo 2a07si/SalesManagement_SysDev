@@ -98,21 +98,6 @@ namespace SalesManagement_SysDev
             formChanger.NavigateToShippingForm(); // 出荷管理画面に遷移 
         }
 
-        private void b_flg_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void b_reg_Click(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
@@ -135,6 +120,8 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplaySales();
+            DisplaySaleDetails();
         }
 
         private void clear_Click(object sender, EventArgs e)
