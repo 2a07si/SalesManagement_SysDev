@@ -444,7 +444,7 @@ namespace SalesManagement_SysDev
                         {
                             var Hattyu = context.THattyus.FirstOrDefault(o => o.HaId == od.HaId);
 
-                            return Hattyu == null || (Hattyu.HaFlag != 1 && Hattyu.HaStateFlag != 2);
+                            return Hattyu == null || (Hattyu.HaFlag != 1 && Hattyu.WaWarehouseFlag != 2);
                         }).ToList();
 
                     dataGridView2.DataSource = visibleHattyuDetails.Select(od => new
