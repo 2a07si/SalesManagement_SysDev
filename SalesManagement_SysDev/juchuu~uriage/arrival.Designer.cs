@@ -485,7 +485,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 690);
             panel3.TabIndex = 5;
-            panel3.Paint += panel3_Paint;
             // 
             // TBNyuukaIDS
             // 

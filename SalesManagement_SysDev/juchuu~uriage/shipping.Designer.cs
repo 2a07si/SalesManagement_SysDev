@@ -479,7 +479,6 @@
             label2.Size = new Size(86, 32);
             label2.TabIndex = 289;
             label2.Text = "未設定";
-            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -490,7 +489,6 @@
             label1.Size = new Size(108, 28);
             label1.TabIndex = 288;
             label1.Text = "現在の状態";
-            label1.Click += label1_Click;
             // 
             // panel3
             // 
@@ -570,7 +568,6 @@
             label9.Size = new Size(48, 25);
             label9.TabIndex = 6;
             label9.Text = "数量";
-            label9.Click += label9_Click;
             // 
             // label13
             // 
@@ -582,7 +579,6 @@
             label13.Size = new Size(102, 25);
             label13.TabIndex = 0;
             label13.Text = "出荷詳細ID";
-            label13.Click += label13_Click;
             // 
             // TBSyohinID
             // 

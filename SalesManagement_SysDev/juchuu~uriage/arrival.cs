@@ -9,6 +9,7 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace SalesManagement_SysDev
 {
@@ -195,25 +196,62 @@ namespace SalesManagement_SysDev
             string Riyuu = TBRiyuu.Text;
             DateTime Nyuukodate = date.Value;
 
-
-
             using (var context = new SalesManagementContext())
             {
                 var arrival = context.TArrivals.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
                 if (arrival != null)
                 {
                     arrival.SoId = int.Parse(ShopId);                    // 店舗ID
-                    arrival.EmId = int.Parse(ShainId);// 社員ID（null許容）
+                    arrival.EmId = int.Parse(ShainId);                   // 社員ID（null許容）
                     arrival.ClId = int.Parse(KokyakuId);                 // クライアントID
-                    arrival.OrId = int.Parse(JyutyuId);                       // 受注ID
+                    arrival.OrId = int.Parse(JyutyuId);                  // 受注ID
                     arrival.ArDate = Nyuukodate;                         // 入荷日
-                    arrival.ArStateFlag = NyuukaFlg ?2 : 0;             // 入荷状態フラグ
+                    arrival.ArStateFlag = NyuukaFlg ? 2 : 0;             // 入荷状態フラグ
                     arrival.ArFlag = DelFlg ? 1 : 0;                     // 削除フラグ
                     arrival.ArHidden = Riyuu;
 
-                    context.SaveChanges();
-                    MessageBox.Show("更新が成功しました。");
-                    DisplayArrivals();
+                    // NyuukaFlagがチェックされている場合、入荷詳細の確認を行う
+                    if (NyuukaFlg)
+                    {
+                        // 入荷詳細が存在するか確認
+                        var arrivalDetailsExist = context.TArrivalDetails
+                            .Any(ad => ad.ArId == arrival.ArId); // ArId が一致する入荷詳細が存在するか確認
+
+                        if (!arrivalDetailsExist)
+                        {
+                            // 入荷詳細が存在しない場合はエラーメッセージを表示
+                            MessageBox.Show("入荷詳細が登録されていません。");
+                            return; // 処理を中断
+                        }
+
+                        // 入荷詳細が存在する場合、入荷確認処理を実行
+                        ArrivalConfirm(arrival.ArId);
+                    }
+
+                    // 更新を保存
+                    try
+                    {
+                        context.SaveChanges();
+                        MessageBox.Show("更新が成功しました。");
+                        DisplayArrivals(); // 更新後に入荷情報を再表示
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        // inner exception の詳細を表示
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // その他のエラーに対処する
+                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                    }
                 }
                 else
                 {
@@ -221,8 +259,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
 
         private void RegisterArrival()
         {
@@ -238,6 +274,7 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                // 営業所IDの存在確認
                 int shop;
                 if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
                 {
@@ -245,13 +282,15 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // 社員IDの存在確認
                 int employeeId;
                 if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
                     MessageBox.Show("社員IDが存在しません。");
                     return;
                 }
+
+                // 顧客IDの存在確認
                 int kokyaku;
                 if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
@@ -259,23 +298,25 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // 受注IDの存在確認
                 int juchu;
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
                     MessageBox.Show("受注IDが存在しません。");
                     return;
                 }
+
                 // 入荷が既に存在するか確認
                 var arrival = context.TArrivals.SingleOrDefault(o => o.OrId.ToString() == NyuukaId);
                 if (arrival == null)
                 {
                     try
-                    { // 新しい入荷情報を作成
+                    {
+                        // 新しい入荷情報を作成
                         var newArrival = new TArrival
                         {
                             SoId = int.Parse(ShopId),                           // 店舗ID
-                            EmId = int.Parse(ShainId), // 社員ID（null許容）
+                            EmId = int.Parse(ShainId),                           // 社員ID（null許容）
                             ClId = int.Parse(KokyakuId),                        // クライアントID
                             OrId = int.Parse(JyutyuId),                         // 受注ID
                             ArDate = Nyuukodate,                                // 入荷日
@@ -287,14 +328,32 @@ namespace SalesManagement_SysDev
                         // 入荷情報をコンテキストに追加
                         context.TArrivals.Add(newArrival);
 
+                        // NyuukaFlagがチェックされている場合、入荷詳細の確認を行う
+                        if (NyuukaFlg)
+                        {
+                            // 入荷詳細が存在するか確認
+                            var arrivalDetailsExist = context.TArrivalDetails
+                                .Any(ad => ad.ArId == newArrival.ArId); // ArId が一致する入荷詳細が存在するか確認
 
+                            if (!arrivalDetailsExist)
+                            {
+                                // 入荷詳細が存在しない場合はエラーメッセージを表示
+                                MessageBox.Show("入荷詳細が登録されていません。");
+                                return; // 処理を中断
+                            }
+
+                            // 入荷詳細が存在する場合、入荷確認処理を実行
+                            ArrivalConfirm(newArrival.ArId);
+                        }
+
+                        // 新規入荷情報を保存
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
-                        DisplayArrivals();
+                        DisplayArrivals(); // 入荷情報を再表示
                     }
                     catch (DbUpdateException ex)
                     {
-                        // inner exception の詳細を表示する
+                        // inner exception の詳細を表示
                         if (ex.InnerException != null)
                         {
                             MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
@@ -304,7 +363,6 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
                         }
                     }
-
                     catch (Exception ex)
                     {
                         // その他のエラーに対処する
@@ -317,8 +375,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
 
 
         private void DisplayArrivals()
@@ -357,7 +413,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
-
 
         private void SearchArrivals()
         {
@@ -442,9 +497,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
-
         private void UpdateArrivalDetails()
         {
             string jyutyuSyosaiID = TBNyukaSyosaiID.Text;
@@ -471,8 +523,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
 
         private void RegisterArrivalDetails()
         {
@@ -510,7 +560,6 @@ namespace SalesManagement_SysDev
                 DisplayArrivalDetails();
             }
         }
-
 
         private void DisplayArrivalDetails()
         {
@@ -584,8 +633,6 @@ namespace SalesManagement_SysDev
                     query = query.Where(od => od.ArQuantity == quantity);
                 }
 
-
-
                 // 結果を取得
                 var arrivalDetails = query.ToList();
 
@@ -606,9 +653,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
-
         private void ToggleArrivalSelection()
         {
             isArrivalSelected = !isArrivalSelected;
@@ -618,7 +662,6 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isArrivalSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
 
-
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
@@ -627,7 +670,6 @@ namespace SalesManagement_SysDev
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
         }
-
 
         private void UpdateFlagButtonText()
         {
@@ -700,9 +742,68 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void ArrivalConfirm(int orderId)
         {
+            MessageBox.Show("登録開始します");
+            using (var context = new SalesManagementContext())
+            {
+                // 引き継ぐ情報を宣言 
+                var arrival = context.TArrivals.SingleOrDefault(o => o.OrId == orderId);
 
+                if (arrival == null)
+                {
+                    throw new Exception("入荷IDが見つかりません。");
+                }
+
+                // 情報追加
+                var newShipment = new TShipment
+                {
+
+                    EmId = arrival.EmId,  // 社員ID
+                    SoId = arrival.SoId,  // 営業所ID    
+                    ClId = arrival.ClId,  // 顧客ID    
+                    OrId = arrival.OrId,  // 受注ID 
+                    ShFinishDate = arrival.ArDate, // 注文日    
+                    ShStateFlag = 0,
+                    ShFlag = 0
+                };
+
+                try
+                {
+                    context.TShipments.Add(newShipment);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TShipmentへの登録に失敗しました: " + ex.Message);
+                }
+
+                var arrivalDetail = context.TArrivalDetails.SingleOrDefault(o => o.ArId == arrival.ArId);
+                var newShipmentDetail = new TShipmentDetail
+                {
+                    // `PrId` が nullable 型のため、`Value` プロパティを使って値を取得
+                    // `PrId` が null の場合、0 を代入
+                    ShId = newShipment.ShId,
+                    PrId = arrivalDetail.PrId ?? 0,  // null の場合、0 を代入
+                    ShQuantity = arrivalDetail.ArQuantity ?? 0  // null の場合、0 を代入
+                
+                    
+                };
+                if(newShipmentDetail.PrId == 0 || newShipmentDetail.ShQuantity == 0)
+                {
+                    MessageBox.Show("PrIdかShquantityが0で入力されています");
+                }
+                
+                try
+                {
+                    context.TShipmentDetails.Add(newShipmentDetail);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TShipmentDetailへの登録に失敗しました:" + ex.Message);
+                }
+            }
         }
     }
 

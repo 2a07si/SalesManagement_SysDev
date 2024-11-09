@@ -254,13 +254,13 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
                 int employeeId;
                 if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
                     MessageBox.Show("社員IDが存在しません。");
                     return;
                 }
+
                 int kokyaku;
                 if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
@@ -268,48 +268,61 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
                 int juchu;
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
                     MessageBox.Show("受注IDが存在しません。");
                     return;
                 }
-                // 出庫が既に存在するか確認
+
+                // 出庫が既に存在するか確認 
                 var issue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == SyukkoId);
                 if (issue == null)
                 {
                     try
-                    { // 新しい出庫情報を作成
+                    {
+                        // 新しい出庫情報を作成 
                         var newIssue = new TSyukko
                         {
-                            SoId = int.Parse(ShopId),                           // 店舗ID
-                            EmId = int.Parse(ShainId), // 社員ID（null許容）
-                            ClId = int.Parse(KokyakuId),                        // クライアントID
-                            OrId = int.Parse(JyutyuId),                         // 受注ID
-                            SyDate = Syukkodate,                                // 出庫日
-                            SyStateFlag = SyukkoFlg ? 2 : 0,                    // 出庫状態フラグ
-                            SyFlag = DelFlg ? 1 : 0,                            // 削除フラグ
-                            SyHidden = Riyuu
+                            SoId = int.Parse(ShopId),           // 店舗ID 
+                            EmId = int.Parse(ShainId),          // 社員ID 
+                            ClId = int.Parse(KokyakuId),        // クライアントID 
+                            OrId = int.Parse(JyutyuId),         // 受注ID 
+                            SyDate = Syukkodate,                // 出庫日 
+                            SyStateFlag = SyukkoFlg ? 2 : 0,    // 出庫状態フラグ 
+                            SyFlag = DelFlg ? 1 : 0,            // 削除フラグ 
+                            SyHidden = Riyuu                   // 出庫理由 
                         };
 
-                        // 出庫情報をコンテキストに追加
+                        // 出庫情報をコンテキストに追加 
                         context.TSyukkos.Add(newIssue);
+                        context.SaveChanges(); // 保存して新しい出庫IDが自動で生成される 
 
-
-                        context.SaveChanges();
-                        MessageBox.Show("登録が成功しました。");
-
+                        // SyukkoFlagがチェックされている場合、出庫詳細の確認を行う 
                         if (SyukkoFlag.Checked)
                         {
-                            IssueConfirm(int.Parse(JyutyuId));
+                            var syukkoDetailsExist = context.TSyukkoDetails
+                                .Any(sd => sd.SyId == newIssue.SyId); // SyId が一致する出庫詳細が存在するか確認
+
+                            if (!syukkoDetailsExist)
+                            {
+                                // 出庫詳細が存在しない場合はエラーメッセージを表示
+                                MessageBox.Show("出庫詳細が登録されていません。");
+                                return; // 処理を中断 
+                            }
+
+                            // 出庫詳細が存在する場合、出庫確認処理を実行
+                            IssueConfirm(newIssue.SyId);
                         }
+
+                        // 出庫登録成功メッセージ
+                        MessageBox.Show("登録が成功しました。");
                         DisplayIssues();
                         DisplayIssueDetails();
                     }
                     catch (DbUpdateException ex)
                     {
-                        // inner exception の詳細を表示する
+                        // inner exception の詳細を表示する 
                         if (ex.InnerException != null)
                         {
                             MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
@@ -319,10 +332,9 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
                         }
                     }
-
                     catch (Exception ex)
                     {
-                        // その他のエラーに対処する
+                        // その他のエラーに対処する 
                         MessageBox.Show($"エラーが発生しました: {ex.Message}");
                     }
                 }

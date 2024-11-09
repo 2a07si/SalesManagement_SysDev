@@ -86,58 +86,6 @@ namespace SalesManagement_SysDev
             formChanger.NavigateToSalesForm(); // 売上管理画面に遷移 
         }
 
-        private void b_reg_Click(object sender, EventArgs e)
-        {
-            // 登録ボタンの処理を追加 
-        }
-
-        private void b_upd_Click(object sender, EventArgs e)
-        {
-            // 更新ボタンの処理を追加 
-        }
-
-        private void b_ser_Click(object sender, EventArgs e)
-        {
-            // 検索ボタンの処理を追加 
-        }
-
-        private void b_flg_Click(object sender, EventArgs e)
-        {
-            // フラグボタンの処理を追加 
-        }
-
-        private void b_next_Click(object sender, EventArgs e)
-        {
-            // 次へボタンの処理を追加 
-        }
-
-        private void b_logout_Click(object sender, EventArgs e)
-        {
-            // ログアウト処理を追加 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-        }
-
         private void b_reg_Click_1(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
@@ -258,7 +206,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
         private void UpdateShipping()
         {
             string jyutyuID = TBJyutyuID.Text;
@@ -286,9 +233,48 @@ namespace SalesManagement_SysDev
                     shipping.ShStateFlag = shipFlag ? 2 : 0;
                     shipping.ShHidden = riyuu;
 
-                    context.SaveChanges();
-                    MessageBox.Show("更新が成功しました。");
-                    DisplayShipping();
+                    // 出荷フラグがチェックされている場合、出荷詳細の確認を行う
+                    if (shipFlag)
+                    {
+                        // 出荷詳細が存在するか確認
+                        var shippingDetailsExist = context.TShipmentDetails
+                            .Any(sd => sd.ShId == shipping.ShId); // ShId が一致する出荷詳細が存在するか確認
+
+                        if (!shippingDetailsExist)
+                        {
+                            // 出荷詳細が存在しない場合はエラーメッセージを表示
+                            MessageBox.Show("出荷詳細が登録されていません。");
+                            return; // 処理を中断
+                        }
+
+                        // 出荷詳細が存在する場合、出荷確認処理を実行
+                        ShippingConfirm(shipping.ShId);
+                    }
+
+                    // 更新を保存
+                    try
+                    {
+                        context.SaveChanges();
+                        MessageBox.Show("更新が成功しました。");
+                        DisplayShipping(); // 更新後に出荷情報を再表示
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        // inner exception の詳細を表示
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // その他のエラーに対処する
+                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                    }
                 }
                 else
                 {
@@ -303,11 +289,11 @@ namespace SalesManagement_SysDev
             string shopID = TBShopID.Text;
             string shainID = TBShainID.Text;
             string kokyakuID = TBKokyakuID.Text;
-            string syukkaID = TBSyukkaID.Text;
+            string shukkaID = TBSyukkaID.Text;
+            bool delFlag = SyukkaFlag.Checked;
             DateTime shukkaDate = date.Value;
+            bool shipFlag = KanriFlag.Checked;
             string riyuu = TBRiyuu.Text;
-            bool syukkaf = SyukkaFlag.Checked;
-            bool kanriFlag = KanriFlag.Checked;
 
             using (var context = new SalesManagementContext())
             {
@@ -318,13 +304,14 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // 社員IDが存在するか確認
                 int employeeId;
                 if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
                     MessageBox.Show("社員IDが存在しません。");
                     return;
                 }
+
                 int kokyaku;
                 if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
@@ -332,49 +319,84 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // 受注IDが存在するか確認
                 int juchu;
                 if (!int.TryParse(jyutyuID, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
                     MessageBox.Show("受注IDが存在しません。");
                     return;
                 }
-                var newShipping = new TShipment
-                {
-                    SoId = int.Parse(shopID),
-                    EmId = int.Parse(shainID),
-                    ClId = int.Parse(kokyakuID),
-                    OrId = int.Parse(jyutyuID),
-                    ShFinishDate = shukkaDate,
-                    ShStateFlag = syukkaf ? 2 : 0,
-                    ShFlag = kanriFlag ? 1 : 0,
-                };
 
-                context.TShipments.Add(newShipping);
-                try
+                // 出荷情報が既に存在するか確認
+                var shipping = context.TShipments.SingleOrDefault(o => o.ShId.ToString() == shukkaID);
+                if (shipping == null)
                 {
-                    context.SaveChanges(); MessageBox.Show("登録が成功しました。");
-                    DisplayShipping();
-                }
-                catch (DbUpdateException ex)
-                {
-                    // inner exception の詳細を表示する
-                    if (ex.InnerException != null)
+                    try
                     {
-                        MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        // 新しい出荷情報を作成
+                        var newShipping = new TShipment
+                        {
+                            SoId = int.Parse(shopID),                  // 店舗ID
+                            EmId = int.Parse(shainID),                 // 社員ID
+                            ClId = int.Parse(kokyakuID),               // 顧客ID
+                            OrId = int.Parse(jyutyuID),                // 受注ID
+                            ShFinishDate = shukkaDate,                 // 出荷日
+                            ShFlag = shipFlag ? 1 : 0,                 // 管理フラグ
+                            ShStateFlag = shipFlag ? 2 : 0,            // 出荷状態フラグ
+                            ShHidden = riyuu                          // 備考
+                        };
+
+                        // 出荷情報をコンテキストに追加
+                        context.TShipments.Add(newShipping);
+
+                        // 出荷詳細が存在するか確認
+                        var shipmentDetails = context.TShipmentDetails
+                                                     .Where(sd => sd.ShId == newShipping.ShId)
+                                                     .ToList();
+
+                        if (shipmentDetails.Count == 0)
+                        {
+                            MessageBox.Show("出荷詳細が登録されていません。");
+                            return; // 出荷詳細がない場合は処理を中止
+                        }
+
+                        // データを保存
+                        context.SaveChanges();
+                        MessageBox.Show("登録が成功しました。");
+
+                        // 出荷情報が登録されたら、出荷確認を行う
+                        if (shipFlag)
+                        {
+                            ShippingConfirm(int.Parse(shukkaID)); // 出荷確認処理
+                        }
+
+                        DisplayShipping(); // 出荷リストを更新
                     }
-                    else
+                    catch (DbUpdateException ex)
                     {
-                        MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                        // inner exception の詳細を表示する
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // その他のエラーに対処する
+                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    // その他のエラーに対処する
-                    MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                    MessageBox.Show("既に出荷情報が存在しています。");
                 }
             }
         }
+
 
         private void DisplayShipping()
         {
@@ -805,6 +827,69 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ShippingConfirm(int orderId)
+        {
+            MessageBox.Show("登録開始します");
+            using (var context = new SalesManagementContext())
+            {
+                // 引き継ぐ情報を宣言 
+                var shipment = context.TShipments.SingleOrDefault(o => o.OrId == orderId);
+
+                if (shipment == null)
+                {
+                    throw new Exception("出荷IDが見つかりません。");
+                }
+
+                // 情報追加
+                var newSales = new TSale
+                {
+                    EmId = shipment.EmId ?? 0,  // 社員ID
+                    SoId = shipment.SoId,  // 営業所ID    
+                    ClId = shipment.ClId,  // 顧客ID    
+                    OrId = shipment.OrId,  // 受注ID
+                    SaDate = shipment.ShFinishDate ?? DateTime.MinValue,
+                    SaFlag = 0
+                };
+
+                try
+                {
+                    context.TSales.Add(newSales);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TSalesへの登録に失敗しました: " + ex.Message);
+                }
+
+                var shipmentDetail = context.TShipmentDetails.SingleOrDefault(o => o.ShId == shipment.ShId);
+                var newSaleDetail = new TSaleDetail
+                {
+                    // `PrId` が nullable 型のため、`Value` プロパティを使って値を取得
+                    // `PrId` が null の場合、0 を代入
+                    SaId = newSales.SaId,
+                    PrId = shipmentDetail.PrId,  // null の場合、0 を代入
+                    SaQuantity = shipmentDetail.ShQuantity  // null の場合、0 を代入
+
+
+                };
+                if (newSaleDetail.PrId == 0 || newSaleDetail.SaQuantity == 0)
+                {
+                    MessageBox.Show("PrIdかShquantityが0で入力されています");
+                }
+
+                try
+                {
+                    context.TSaleDetails.Add(newSaleDetail);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TSaleDetailへの登録に失敗しました:" + ex.Message);
+                }
+            }
+        }
+
     }
 
 

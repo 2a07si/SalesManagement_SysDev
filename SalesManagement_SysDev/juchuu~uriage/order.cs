@@ -250,6 +250,7 @@ namespace SalesManagement_SysDev
                                 // 在庫が足りている場合、出庫処理
                                 stock.StQuantity -= detail.ChQuantity;
                                 MessageBox.Show($"商品ID: {detail.PrId}、残り在庫: {stock.StQuantity}");
+                                OrdersConfirm(int.Parse(OrderId), int.Parse(ChumonId));
 
                             }
                         }
@@ -452,9 +453,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
-
-
-
 
         private void SearchOrders()
         {
@@ -884,7 +882,7 @@ namespace SalesManagement_SysDev
                     throw new Exception("TSyukkoへの登録に失敗しました: " + ex.Message);
                 }
 
-                var orderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrId == JyutyuId);
+                var orderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrId == order.OrId);
                 if (orderDetail == null)
                 {
                     throw new Exception("注文詳細が見つかりません。");
