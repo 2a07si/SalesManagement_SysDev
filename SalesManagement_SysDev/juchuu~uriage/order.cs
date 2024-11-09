@@ -188,7 +188,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
         private void UpdateOrder()
         {
             string OrderId = TBTyumonId.Text;
@@ -202,25 +201,52 @@ namespace SalesManagement_SysDev
             string Riyuu = TBRiyuu.Text;
             DateTime Orderdate = date.Value;
 
-
-
             using (var context = new SalesManagementContext())
             {
                 var order = context.TChumons.SingleOrDefault(o => o.ChId.ToString() == ChumonId);
                 if (order != null)
                 {
-                    order.SoId = int.Parse(ShopId);                    // 店舗ID
-                    order.EmId = int.Parse(ShainId);                   // 社員ID（null許容）
-                    order.ClId = int.Parse(KokyakuId);                 // クライアントID
+                    order.SoId = int.Parse(ShopId);
+                    order.EmId = int.Parse(ShainId);
+                    order.ClId = int.Parse(KokyakuId);
                     order.ChId = int.Parse(ChumonId);
-                    order.OrId = int.Parse(JyutyuId);                       // 受注ID
-                    order.ChDate = Orderdate;               // 注文日
-                    order.ChStateFlag = OrderFlg ? 2 : 0;             // 注文状態フラグ
-                    order.ChFlag = DelFlg ? 1 : 0;                     // 削除フラグ
+                    order.OrId = int.Parse(JyutyuId);
+                    order.ChDate = Orderdate;
+                    order.ChStateFlag = OrderFlg ? 2 : 0;
+                    order.ChFlag = DelFlg ? 1 : 0;
                     order.ChHidden = Riyuu;
 
-                    context.SaveChanges();
-                    MessageBox.Show("更新が成功しました。");
+                    // checkBox_2のチェックがある場合、出庫処理へ
+                    if (checkBox_2.Checked)
+                    {
+                        var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == int.Parse(ChumonId));
+                        if (!orderDetailExists)
+                        {
+                            MessageBox.Show("注文詳細が登録されていません。");
+                            return;
+                        }
+
+                        var details = context.TChumonDetails.Where(d => d.ChId == int.Parse(ChumonId)).ToList();
+                        foreach (var detail in details)
+                        {
+                            var stock = context.TStocks.SingleOrDefault(s => s.PrId == detail.PrId);
+                            if (stock == null || stock.StQuantity < detail.ChQuantity)
+                            {
+                                MessageBox.Show("在庫が不足しています。");
+                                return;
+                            }
+                            stock.StQuantity -= detail.ChQuantity;
+                        }
+
+                        OrdersConfirm(int.Parse(JyutyuId));
+                        MessageBox.Show("出庫処理が完了しました。");
+                    }
+                    else
+                    {
+                        context.SaveChanges();
+                        MessageBox.Show("更新が成功しました。");
+                    }
+
                     DisplayOrders();
                 }
                 else
@@ -232,7 +258,6 @@ namespace SalesManagement_SysDev
         private void RegisterOrder()
         {
             string ChumonId = TBTyumonId.Text;
-
             string ShopId = TBShopId.Text;
             string ShainId = TBShainId.Text;
             string KokyakuId = TBKokyakuId.Text;
@@ -251,7 +276,6 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // 社員IDがMEmployeeテーブルに存在するか確認
                 int employeeId;
                 if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
@@ -266,7 +290,6 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // 受注IDが存在するか確認
                 int juchu;
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
@@ -274,7 +297,6 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // 注文が既に存在するか確認  
                 var order = context.TChumons.SingleOrDefault(o => o.ChId.ToString() == ChumonId);
                 if (order == null)
                 {
@@ -282,41 +304,53 @@ namespace SalesManagement_SysDev
                     {
                         var newOrder = new TChumon
                         {
-                            SoId = int.Parse(ShopId),  // 営業所ID   
-                            EmId = int.Parse(ShainId),  // 社員ID   
-                            ClId = int.Parse(KokyakuId), // 顧客ID   
-                            OrId = int.Parse(JyutyuId), //受注ID
-                                                        // OrId は自動採番されるため、設定しない
-                            ChDate = Orderdate,  // 注文日   
-                            ChStateFlag = OrderFlg ? 2 : 0, // 注文状態フラグ   
-                            ChFlag = DelFlg ? 1 : 0,  // 削除フラグ   
-                            ChHidden = Riyuu // 理由  
+                            SoId = int.Parse(ShopId),
+                            EmId = int.Parse(ShainId),
+                            ClId = int.Parse(KokyakuId),
+                            OrId = int.Parse(JyutyuId),
+                            ChDate = Orderdate,
+                            ChStateFlag = OrderFlg ? 2 : 0,
+                            ChFlag = DelFlg ? 1 : 0,
+                            ChHidden = Riyuu
                         };
 
-                        // 注文情報をコンテキストに追加  
                         context.TChumons.Add(newOrder);
-
-                        // 保存
                         context.SaveChanges();
-                        MessageBox.Show("登録が成功しました。");
-                        DisplayOrders();
-                    }
-                    catch (DbUpdateException ex)
-                    {
-                        // inner exception の詳細を表示する  
-                        if (ex.InnerException != null)
+
+                        // checkBox_2のチェックがある場合、出庫処理へ
+                        if (checkBox_2.Checked)
                         {
-                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                            var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == int.Parse(ChumonId));
+                            if (!orderDetailExists)
+                            {
+                                MessageBox.Show("注文詳細が登録されていません。");
+                                return;
+                            }
+
+                            var details = context.TChumonDetails.Where(d => d.ChId == int.Parse(ChumonId)).ToList();
+                            foreach (var detail in details)
+                            {
+                                var stock = context.TStocks.SingleOrDefault(s => s.PrId == detail.PrId);
+                                if (stock == null || stock.StQuantity < detail.ChQuantity)
+                                {
+                                    MessageBox.Show("在庫が不足しています。");
+                                    return;
+                                }
+                                stock.StQuantity -= detail.ChQuantity;
+                            }
+
+                            OrdersConfirm(int.Parse(JyutyuId));
+                            MessageBox.Show("出庫登録が完了しました。");
                         }
                         else
                         {
-                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                            MessageBox.Show("登録が成功しました。");
                         }
-                    }
 
+                        DisplayOrders();
+                    }
                     catch (Exception ex)
                     {
-                        // その他のエラーに対処する  
                         MessageBox.Show($"エラーが発生しました: {ex.Message}");
                     }
                 }
@@ -747,8 +781,40 @@ namespace SalesManagement_SysDev
                 TBSuryou.Text = row.Cells["数量"].Value.ToString();
             }
         }
+
+        private void OrdersConfirm(int orderId)
+        {
+            MessageBox.Show("登録開始します");
+            using (var context = new SalesManagementContext())
+            {
+                var order = context.TChumons.SingleOrDefault(o => o.OrId == orderId);
+
+                if (order == null)
+                {
+                    throw new Exception("受注IDが見つかりません。");
+                }
+
+                var newSyukko = new TSyukko
+                {
+                    SoId = order.SoId,
+                    EmId = order.EmId,
+                    ClId = order.ClId,
+                    OrId = order.OrId,
+                    SyDate = order.ChDate
+                };
+
+                try
+                {
+                    context.TSyukkos.Add(newSyukko);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TSyukkoへの登録に失敗しました: " + ex.Message);
+                }
+            }
+        }
+
     }
-
-
 }
 

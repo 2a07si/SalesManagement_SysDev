@@ -820,11 +820,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-        //通常が非表示であれば詳細も非表示にするやつ
-        private void DetailHide()
-        {
-
-        }
+        
 
 
     }
