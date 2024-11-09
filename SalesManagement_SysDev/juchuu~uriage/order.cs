@@ -945,6 +945,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。");
                         return;
                     }
+                    
 
                     // 新しい発注情報の登録
                     var newHattyu = new THattyu
@@ -972,7 +973,10 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
 
                     MessageBox.Show("登録が完了しました");
+
+                
                 }
+                
             }
             catch (InvalidOperationException ex)
             {

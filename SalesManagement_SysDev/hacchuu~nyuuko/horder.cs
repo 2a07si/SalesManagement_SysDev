@@ -211,13 +211,52 @@ namespace SalesManagement_SysDev
                     hattyu.MaId = int.Parse(makerID);
                     hattyu.EmId = int.Parse(shainID);
                     hattyu.HaDate = hattyuuDate;
-                    hattyu.WaWarehouseFlag = nyuukoFlag ? 2 : 0;
-                    hattyu.HaFlag = delFlag ? 1 : 0;
+                    hattyu.WaWarehouseFlag = nyuukoFlag ? 2 : 0; // 入庫フラグ
+                    hattyu.HaFlag = delFlag ? 1 : 0;              // 削除フラグ
                     hattyu.HaHidden = riyuu;
 
-                    context.SaveChanges();
-                    MessageBox.Show("更新が成功しました。");
-                    DisplayHattyus();
+                    // 入庫フラグがチェックされている場合、発注詳細の確認を行う
+                    if (nyuukoFlag)
+                    {
+                        // 発注詳細が存在するか確認
+                        var hattyuDetailsExist = context.THattyuDetails
+                            .Any(hd => hd.HaId == hattyu.HaId); // HaId が一致する発注詳細が存在するか確認
+
+                        if (!hattyuDetailsExist)
+                        {
+                            // 発注詳細が存在しない場合はエラーメッセージを表示
+                            MessageBox.Show("発注詳細が登録されていません。");
+                            return; // 処理を中断
+                        }
+
+                        // 発注詳細が存在する場合、発注確認処理を実行
+                        HorderConfirm(hattyu.HaId);
+                    }
+
+                    // 更新を保存
+                    try
+                    {
+                        context.SaveChanges();
+                        MessageBox.Show("更新が成功しました。");
+                        DisplayHattyus(); // 更新後に発注情報を再表示
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        // inner exception の詳細を表示
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // その他のエラーに対処する
+                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                    }
                 }
                 else
                 {
@@ -237,7 +276,7 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                // HaIDがTHattyuテーブルに存在するか確認
+                // メーカーIDがMMakerテーブルに存在するか確認
                 int maker;
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaId == maker))
                 {
@@ -253,20 +292,42 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
+                // 新しい発注情報を作成
                 var newHattyu = new THattyu
                 {
                     MaId = int.Parse(makerID),
-                    EmId = employeeId, // ここで存在を確認したEmIdを使用
-                    HaDate = hattyuuDate,
-                    WaWarehouseFlag = nyuukoFlag ? 2 : 0,
-                    HaFlag = delFlag ? 1 : 0, // 非表示フラグをHaFlagで示す
-                    HaHidden = riyuu // 非表示理由を設定
+                    EmId = employeeId,               // 確認済みの社員ID
+                    HaDate = hattyuuDate,            // 発注日
+                    WaWarehouseFlag = nyuukoFlag ? 2 : 0, // 入庫状態フラグ
+                    HaFlag = delFlag ? 1 : 0,        // 削除フラグ
+                    HaHidden = riyuu                 // 非表示理由
                 };
 
+                // 発注情報をコンテキストに追加
                 context.THattyus.Add(newHattyu);
                 context.SaveChanges();
+
+                // 登録成功メッセージ
                 MessageBox.Show("登録が成功しました。");
-                DisplayHattyus();
+                DisplayHattyus(); // 新規登録後の発注情報を再表示
+
+                // 入庫フラグがチェックされている場合、発注詳細の確認を行う
+                if (nyuukoFlag)
+                {
+                    // 発注詳細が存在するか確認
+                    var hattyuDetailsExist = context.THattyuDetails
+                        .Any(hd => hd.HaId == newHattyu.HaId); // HaId が一致する発注詳細が存在するか確認
+
+                    if (!hattyuDetailsExist)
+                    {
+                        // 発注詳細が存在しない場合はエラーメッセージを表示
+                        MessageBox.Show("発注詳細が登録されていません。");
+                        return; // 処理を中断
+                    }
+
+                    // 発注詳細が存在する場合、発注確認処理を実行
+                    HorderConfirm(newHattyu.HaId);
+                }
             }
         }
 
@@ -343,8 +404,8 @@ namespace SalesManagement_SysDev
                         メーカID = h.MaId,
                         社員ID = h.EmId,
                         発注年月日 = h.HaDate,
-                        発注状態 = NyuukoFlag.Checked ? "〇" : "×",
-                        非表示フラグ = DelFlag.Checked ? "〇" : "×"
+                        発注状態 = NyuukoFlag.Checked ? 2 : 1,
+                        非表示フラグ = DelFlag.Checked ? 1:0
                     }).ToList();
                 }
                 else
@@ -666,6 +727,58 @@ namespace SalesManagement_SysDev
             catch (Exception ex)
             {
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void HorderConfirm(int HaId)
+        {
+            MessageBox.Show("登録開始します");
+            using (var context = new SalesManagementContext())
+            {
+                // 引き継ぐ情報を宣言 
+                var horder = context.THattyus.SingleOrDefault(o => o.HaId == HaId);
+
+                if (horder == null)
+                {
+                    throw new Exception("入荷IDが見つかりません。");
+                }
+
+                // 情報追加
+                var newWarehousing = new TWarehousing
+                {
+                    HaId = horder.HaId,
+                    EmId = null,
+                    WaShelfFlag = null,
+                    WaFlag = 0,
+                };
+
+                try
+                {
+                    context.TWarehousings.Add(newWarehousing);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("THattyuへの登録に失敗しました: " + ex.Message);
+                }
+
+                var hattyuDetail = context.THattyuDetails.SingleOrDefault(o => o.HaId == HaId);
+                var newWarehousingDetail = new TWarehousingDetail
+                {
+                    WaId = newWarehousing.WaId,
+                    PrId = hattyuDetail.PrId,
+                    WaQuantity = hattyuDetail.HaQuantity
+
+                };
+                
+                try
+                {
+                    context.TWarehousingDetails.Add(newWarehousingDetail);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TShipmentDetailへの登録に失敗しました:" + ex.Message);
+                }
             }
         }
     }
