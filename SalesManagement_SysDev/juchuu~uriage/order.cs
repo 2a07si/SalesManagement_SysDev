@@ -114,6 +114,9 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+
+            DisplayOrderDetails();
+            DisplayOrders();
         }
 
         // 状態リセットメソッド（必要ならボタンにバインド）
@@ -216,8 +219,9 @@ namespace SalesManagement_SysDev
                     order.ChFlag = DelFlg ? 1 : 0;
                     order.ChHidden = Riyuu;
 
+                    context.SaveChanges();
                     // checkBox_2のチェックがある場合、出庫処理へ
-                    if (checkBox_2.Checked)
+                    if (TyumonFlag.Checked)
                     {
                         var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == int.Parse(ChumonId));
                         if (!orderDetailExists)
@@ -238,14 +242,17 @@ namespace SalesManagement_SysDev
                             stock.StQuantity -= detail.ChQuantity;
                             // デバッグ用: 残りの在庫数を表示
                             MessageBox.Show($"商品ID: {detail.PrId} の残り在庫数: {stock.StQuantity}", "在庫確認");
-
                         }
+                        
+                        // 出庫処理を行う
+                        OrdersConfirm(int.Parse(JyutyuId), int.Parse(ChumonId));
 
-                        OrdersConfirm(int.Parse(JyutyuId));
+
                         MessageBox.Show("出庫処理が完了しました。");
                     }
                     else
                     {
+                        // 出庫処理が行われない場合も、変更を保存する
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                     }
@@ -347,7 +354,7 @@ namespace SalesManagement_SysDev
                                 MessageBox.Show($"商品ID: {detail.PrId}, 残り在庫: {stock.StQuantity}"); // 残り在庫を表示
                             }
 
-                            OrdersConfirm(newOrder.ChId);
+                            OrdersConfirm(int.Parse(JyutyuId), newOrder.ChId);
                             MessageBox.Show("出庫登録が完了しました。");
                         }
                         else
@@ -370,32 +377,33 @@ namespace SalesManagement_SysDev
         }
 
 
-
         private void DisplayOrders()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示 
                     var chumons = checkBox_2.Checked
-                      ? context.TChumons.ToList()  // チェックされていれば全ての注文を表示
-                      : context.TChumons
-                         .Where(o => o.ChFlag != 1 && o.ChStateFlag != 2)
-                         .ToList();
-                    // データを選択してDataGridViewに表示
+                        ? context.TChumons.ToList()  // チェックされていれば全ての注文を表示 
+                        : context.TChumons
+                            .Where(o => o.ChFlag != 1 && o.ChStateFlag != 2)
+                            .ToList();
+
+                    
+
+                    // データを選択してDataGridViewに表示 
                     dataGridView1.DataSource = chumons.Select(o => new
                     {
-                        注文ID = o.ChId,           // 注文ID
-                        営業所ID = o.SoId,         // 営業所ID
-                        社員ID = o.EmId,           // 社員ID
-                        顧客ID = o.ClId,           // 顧客ID
-                        受注ID = o.OrId,           // 受注ID
-                        注文日 = o.ChDate,         // 注文日
-                        状態フラグ = o.ChStateFlag,// 注文状態フラグ
-                        非表示フラグ = o.ChFlag,  // 削除フラグ
-                        非表示理由 = o.ChHidden  // 非表示理由
+                        注文ID = o.ChId,           // 注文ID 
+                        営業所ID = o.SoId,         // 営業所ID 
+                        社員ID = o.EmId,           // 社員ID 
+                        顧客ID = o.ClId,           // 顧客ID 
+                        受注ID = o.OrId,           // 受注ID 
+                        注文日 = o.ChDate,         // 注文日 
+                        状態フラグ = o.ChStateFlag,// 注文状態フラグ 
+                        非表示フラグ = o.ChFlag,  // 削除フラグ 
+                        非表示理由 = o.ChHidden  // 非表示理由 
                     }).ToList();
                 }
             }
@@ -404,6 +412,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
+
 
 
 
@@ -795,18 +804,20 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void OrdersConfirm(int ChumonId)
+        private void OrdersConfirm(int JyutyuId, int ChId)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
-                var order = context.TChumons.SingleOrDefault(o => o.ChId == ChumonId);
+                var order = context.TChumons.SingleOrDefault(o => o.ChId == ChId);
 
                 if (order == null)
                 {
                     throw new Exception("注文IDが見つかりません。");
                 }
 
+                MessageBox.Show("TSyukkoとうろく");
+                // 出庫情報をTSyukkoに追加
                 var newSyukko = new TSyukko
                 {
                     SoId = order.SoId,
@@ -819,21 +830,41 @@ namespace SalesManagement_SysDev
 
                 try
                 {
+                    // データが正しいか事前にチェック
+                    if (newSyukko.SoId == 0 || newSyukko.EmId == 0 || newSyukko.ClId == 0 || newSyukko.OrId == 0 || newSyukko.SyDate == default(DateTime))
+                    {
+                        throw new Exception("出庫情報に必要なデータが不足しています。");
+                    }
+
+
+                    MessageBox.Show("TSyukkoとうろくする");
                     context.TSyukkos.Add(newSyukko);
                     context.SaveChanges();
+                    MessageBox.Show("出庫登録が完了しました。"); // ここでメッセージが表示されることを確認
                 }
                 catch (Exception ex)
                 {
                     throw new Exception("TSyukkoへの登録に失敗しました: " + ex.Message);
                 }
 
+                var orderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrId == JyutyuId);
+                if (orderDetail == null)
+                {
+                    throw new Exception("注文詳細が見つかりません。");
+                }
 
-                var orderDetail = context.TChumonDetails.SingleOrDefault(o => o.ChId == ChumonId);
+                var chumonDetail = context.TChumonDetails.SingleOrDefault(o => o.ChId == ChId);
+                if (chumonDetail == null)
+                {
+                    throw new Exception("注文詳細（ChId）が見つかりません。");
+                }
+
+                MessageBox.Show("TSyukkoDetailとうろく");
                 var newSyukkoDetail = new TSyukkoDetail
                 {
                     SyId = newSyukko.SyId,
                     PrId = orderDetail.PrId,
-                    SyQuantity = orderDetail.ChQuantity
+                    SyQuantity = chumonDetail.ChQuantity
                 };
 
                 try
@@ -841,13 +872,13 @@ namespace SalesManagement_SysDev
                     context.TSyukkoDetails.Add(newSyukkoDetail);
                     context.SaveChanges();
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
-                    throw new Exception("TSyukkoDetailへの登録に失敗しました" + ex.Message);
+                    throw new Exception("TSyukkoDetailへの登録に失敗しました: " + ex.Message);
                 }
-
             }
         }
+
 
     }
 }
