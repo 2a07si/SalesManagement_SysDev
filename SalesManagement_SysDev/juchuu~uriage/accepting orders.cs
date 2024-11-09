@@ -806,7 +806,9 @@ namespace SalesManagement_SysDev
                     EmId = order.EmId,  // 社員ID    
                     ClId = order.ClId,  // 顧客ID    
                     OrId = order.OrId,  // 受注ID 
-                    ChDate = order.OrDate // 注文日    
+                    ChDate = order.OrDate, // 注文日    
+                    ChStateFlag = 0,
+                    ChFlag = 0
                 };
 
                 try

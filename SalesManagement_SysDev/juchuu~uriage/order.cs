@@ -203,13 +203,13 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var order = context.TChumons.SingleOrDefault(o => o.ChId.ToString() == ChumonId);
+                var order = context.TChumons.FirstOrDefault(o => o.ChId.ToString() == ChumonId);
+
                 if (order != null)
                 {
                     order.SoId = int.Parse(ShopId);
                     order.EmId = int.Parse(ShainId);
                     order.ClId = int.Parse(KokyakuId);
-                    order.ChId = int.Parse(ChumonId);
                     order.OrId = int.Parse(JyutyuId);
                     order.ChDate = Orderdate;
                     order.ChStateFlag = OrderFlg ? 2 : 0;
@@ -222,7 +222,7 @@ namespace SalesManagement_SysDev
                         var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == int.Parse(ChumonId));
                         if (!orderDetailExists)
                         {
-                            MessageBox.Show("注文詳細が登録されていません。");
+                            MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。");
                             return;
                         }
 
@@ -236,6 +236,9 @@ namespace SalesManagement_SysDev
                                 return;
                             }
                             stock.StQuantity -= detail.ChQuantity;
+                            // デバッグ用: 残りの在庫数を表示
+                            MessageBox.Show($"商品ID: {detail.PrId} の残り在庫数: {stock.StQuantity}", "在庫確認");
+
                         }
 
                         OrdersConfirm(int.Parse(JyutyuId));
@@ -255,9 +258,9 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
         private void RegisterOrder()
         {
-            string ChumonId = TBTyumonId.Text;
             string ShopId = TBShopId.Text;
             string ShainId = TBShainId.Text;
             string KokyakuId = TBKokyakuId.Text;
@@ -297,7 +300,8 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                var order = context.TChumons.SingleOrDefault(o => o.ChId.ToString() == ChumonId);
+                // 注文が存在しない場合、新規作成
+                var order = context.TChumons.SingleOrDefault(o => o.OrId == int.Parse(JyutyuId));
                 if (order == null)
                 {
                     try
@@ -315,19 +319,22 @@ namespace SalesManagement_SysDev
                         };
 
                         context.TChumons.Add(newOrder);
-                        context.SaveChanges();
+                        context.SaveChanges(); // 保存後に自動で ChId が設定される 
 
-                        // checkBox_2のチェックがある場合、出庫処理へ
-                        if (checkBox_2.Checked)
+                        // 新規登録した注文の ChId を取得
+                        int newChId = newOrder.ChId;
+
+                        // 注文詳細が登録されていなければ出庫処理は行わない
+                        if (TyumonFlag.Checked)
                         {
-                            var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == int.Parse(ChumonId));
+                            var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == newChId);
                             if (!orderDetailExists)
                             {
                                 MessageBox.Show("注文詳細が登録されていません。");
                                 return;
                             }
 
-                            var details = context.TChumonDetails.Where(d => d.ChId == int.Parse(ChumonId)).ToList();
+                            var details = context.TChumonDetails.Where(d => d.ChId == newChId).ToList();
                             foreach (var detail in details)
                             {
                                 var stock = context.TStocks.SingleOrDefault(s => s.PrId == detail.PrId);
@@ -337,6 +344,7 @@ namespace SalesManagement_SysDev
                                     return;
                                 }
                                 stock.StQuantity -= detail.ChQuantity;
+                                MessageBox.Show($"商品ID: {detail.PrId}, 残り在庫: {stock.StQuantity}"); // 残り在庫を表示
                             }
 
                             OrdersConfirm(int.Parse(JyutyuId));
@@ -360,6 +368,8 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
+
 
         private void DisplayOrders()
         {
@@ -803,7 +813,9 @@ namespace SalesManagement_SysDev
                     EmId = order.EmId,
                     ClId = order.ClId,
                     OrId = order.OrId,
-                    SyDate = order.ChDate
+                    SyDate = order.ChDate,
+                    SyStateFlag = 0
+                    
                 };
 
                 try
