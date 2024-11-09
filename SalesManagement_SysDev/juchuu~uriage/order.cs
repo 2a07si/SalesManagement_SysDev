@@ -553,12 +553,15 @@ namespace SalesManagement_SysDev
                 {
                     var ChumonDetails = context.TChumonDetails.ToList();
 
-                    var visibleChumonDetails = ChumonDetails.Where(od =>
-                    {
-                        var Chumon = context.TChumons.FirstOrDefault(o => o.ChId == od.ChId);
+                    // checkBox_2がチェックされている場合、フィルタリングを無視してすべての詳細を表示
+                    var visibleChumonDetails = checkBox_2.Checked
+                        ? ChumonDetails
+                        : ChumonDetails.Where(od =>
+                        {
+                            var Chumon = context.TChumons.FirstOrDefault(o => o.ChId == od.ChId);
 
-                        return Chumon == null || (Chumon.ChFlag != 1 && Chumon.ChStateFlag != 2);
-                    }).ToList();
+                            return Chumon == null || (Chumon.ChFlag != 1 && Chumon.ChStateFlag != 2);
+                        }).ToList();
 
                     dataGridView2.DataSource = visibleChumonDetails.Select(od => new
                     {

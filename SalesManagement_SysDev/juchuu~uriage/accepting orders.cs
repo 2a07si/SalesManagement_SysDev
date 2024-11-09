@@ -580,17 +580,17 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // 受注詳細のリストを取得
-                    var orderDetails = context.TOrderDetails.ToList();
+                    var OrderDetails = context.TOrderDetails.ToList();
 
                     // 受注詳細の表示条件を設定（OrFlagが1またはOrStateFlagが2の受注IDを持つ受注詳細は非表示）
-                    var visibleOrderDetails = orderDetails.Where(od =>
-                    {
-                        // 受注IDに基づいて関連する受注を取得
-                        var order = context.TOrders.FirstOrDefault(o => o.OrId == od.OrId);
+                    var visibleOrderDetails = checkBox_2.Checked
+                        ? OrderDetails
+                        : OrderDetails.Where(od =>
+                        {
+                            var Order = context.TOrders.FirstOrDefault(o => o.OrId == od.OrId);
 
-                        // 受注が存在し、OrFlagが1またはOrStateFlagが2の条件を満たす場合、その受注詳細は非表示
-                        return order == null || (order.OrFlag != 1 && order.OrStateFlag != 2);
-                    }).ToList();
+                            return Order == null || (Order.OrFlag != 1 && Order.OrStateFlag != 2);
+                        }).ToList();
 
                     // データグリッドに表示
                     dataGridView2.DataSource = visibleOrderDetails.Select(od => new
