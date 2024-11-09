@@ -742,13 +742,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void ArrivalConfirm(int orderId)
+        private void ArrivalConfirm(int ArId)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
-                var arrival = context.TArrivals.SingleOrDefault(o => o.OrId == orderId);
+                var arrival = context.TArrivals.SingleOrDefault(o => o.ArId == ArId);
 
                 if (arrival == null)
                 {

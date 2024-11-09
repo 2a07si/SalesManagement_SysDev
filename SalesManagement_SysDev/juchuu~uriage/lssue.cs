@@ -219,7 +219,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("更新が成功しました。");
                     if(SyukkoFlag.Checked)
                     {
-                        IssueConfirm(int.Parse(JyutyuId));
+                        IssueConfirm(int.Parse(JyutyuId), issue.SyId);
                     }
                     MessageBox.Show("更新が完了しました。");
                     DisplayIssues();
@@ -312,7 +312,7 @@ namespace SalesManagement_SysDev
                             }
 
                             // 出庫詳細が存在する場合、出庫確認処理を実行
-                            IssueConfirm(newIssue.SyId);
+                            IssueConfirm(issue.OrId, newIssue.SyId);
                         }
 
                         // 出庫登録成功メッセージ
@@ -728,19 +728,18 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void IssueConfirm(int orderId)
+        private void IssueConfirm(int orderId, int SyId)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
-                var syukko = context.TSyukkos.SingleOrDefault(o => o.OrId == orderId);
+                var syukko = context.TSyukkos.SingleOrDefault(o => o.SyId == SyId);
 
                 if (syukko == null)
                 {
                     throw new Exception("出庫IDが見つかりません。");
                 }
-
                 // 注文情報をTChumonに追加
                 var newArrival = new TArrival
                 {
@@ -763,7 +762,6 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("TArrivalへの登録に失敗しました: " + ex.Message);
                 }
-
                 var syukkoDetail = context.TSyukkoDetails.SingleOrDefault(o => o.SyId == syukko.SyId);
                 var newArrivalDetail = new TArrivalDetail
                 {

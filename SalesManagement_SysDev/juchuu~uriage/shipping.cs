@@ -213,9 +213,9 @@ namespace SalesManagement_SysDev
             string shainID = TBShainID.Text;
             string kokyakuID = TBKokyakuID.Text;
             string shukkaID = TBSyukkaID.Text;
-            bool delFlag = SyukkaFlag.Checked;
+            bool delFlag = KanriFlag.Checked;
             DateTime shukkaDate = date.Value;
-            bool shipFlag = KanriFlag.Checked;
+            bool shipFlag = SyukkaFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
@@ -229,17 +229,17 @@ namespace SalesManagement_SysDev
                     shipping.ShId = int.Parse(shukkaID);
                     shipping.OrId = int.Parse(jyutyuID);
                     shipping.ShFinishDate = shukkaDate;
-                    shipping.ShFlag = shipFlag ? 1 : 0;
+                    shipping.ShFlag = delFlag ? 1 : 0;
                     shipping.ShStateFlag = shipFlag ? 2 : 0;
                     shipping.ShHidden = riyuu;
 
+                    MessageBox.Show("ここ");
                     // 出荷フラグがチェックされている場合、出荷詳細の確認を行う
                     if (shipFlag)
                     {
                         // 出荷詳細が存在するか確認
                         var shippingDetailsExist = context.TShipmentDetails
                             .Any(sd => sd.ShId == shipping.ShId); // ShId が一致する出荷詳細が存在するか確認
-
                         if (!shippingDetailsExist)
                         {
                             // 出荷詳細が存在しない場合はエラーメッセージを表示
@@ -249,6 +249,7 @@ namespace SalesManagement_SysDev
 
                         // 出荷詳細が存在する場合、出荷確認処理を実行
                         ShippingConfirm(shipping.ShId);
+                        MessageBox.Show("出荷詳細");
                     }
 
                     // 更新を保存
@@ -257,6 +258,7 @@ namespace SalesManagement_SysDev
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayShipping(); // 更新後に出荷情報を再表示
+                        DisplayShippingDetails();
                     }
                     catch (DbUpdateException ex)
                     {
@@ -828,13 +830,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void ShippingConfirm(int orderId)
+        private void ShippingConfirm(int ShId)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
-                var shipment = context.TShipments.SingleOrDefault(o => o.OrId == orderId);
+                var shipment = context.TShipments.SingleOrDefault(o => o.ShId == ShId);
 
                 if (shipment == null)
                 {
