@@ -517,12 +517,14 @@ namespace SalesManagement_SysDev
                 {
                     var SyukkoDetails = context.TSyukkoDetails.ToList();
 
-                    var visibleSyukkoDetails = SyukkoDetails.Where(od =>
-                    {
-                        var syukko = context.TSyukkos.FirstOrDefault(o => o.SyId == od.SyId);
+                    var visibleSyukkoDetails = checkBox_2.Checked
+                        ? SyukkoDetails
+                        : SyukkoDetails.Where(od =>
+                        {
+                            var Syukko = context.TSyukkos.FirstOrDefault(o => o.SyId == od.SyId);
 
-                        return syukko == null || (syukko.SyFlag != 1 && syukko.SyStateFlag != 2);
-                    }).ToList();
+                            return Syukko == null || (Syukko.SyFlag != 1 && Syukko.SyStateFlag != 2);
+                        }).ToList();
 
                     dataGridView2.DataSource = visibleSyukkoDetails.Select(od => new
                     {

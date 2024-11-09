@@ -518,16 +518,19 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var arrivalDetails = context.TArrivalDetails.ToList();
+                    var ArrivalDetails = context.TArrivalDetails.ToList();
 
-                    var visibleArrivalDetails = arrivalDetails.Where(od =>
-                    {
-                        var Arrival = context.TArrivals.FirstOrDefault(o => o.ArId == od.ArId);
+                    var visibleArrivalDetails = checkBox_2.Checked
+                        ? ArrivalDetails
+                        : ArrivalDetails.Where(od =>
+                        {
+                            var Arrival
+                            = context.TArrivals.FirstOrDefault(o => o.ArId == od.ArId);
 
-                        return Arrival == null || (Arrival.ArFlag != 1 && Arrival.ArStateFlag != 2);
-                    }).ToList();
+                            return Arrival == null || (Arrival.ArFlag != 1 && Arrival.ArStateFlag != 2);
+                        }).ToList();
 
-                    
+
                     dataGridView2.DataSource = visibleArrivalDetails.Select(od => new
                     {
                         入荷詳細ID = od.ArDetailId,

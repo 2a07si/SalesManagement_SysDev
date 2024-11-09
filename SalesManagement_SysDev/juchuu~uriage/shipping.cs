@@ -559,12 +559,14 @@ namespace SalesManagement_SysDev
                 {
                     var ShipmentDetails = context.TShipmentDetails.ToList();
 
-                    var visibleShipmentDetails = ShipmentDetails.Where(od =>
-                    {
-                        var Shipment = context.TShipments.FirstOrDefault(o => o.ShId == od.ShId);
+                    var visibleShipmentDetails = checkBox_2.Checked
+                        ? ShipmentDetails
+                        : ShipmentDetails.Where(od =>
+                        {
+                            var Shipment = context.TShipments.FirstOrDefault(o => o.ShId == od.ShId);
 
-                        return Shipment == null || (Shipment.ShFlag != 1 && Shipment.ShStateFlag != 2);
-                    }).ToList();
+                            return Shipment == null || (Shipment.ShFlag != 1 && Shipment.ShStateFlag != 2);
+                        }).ToList();
 
                     dataGridView2.DataSource = visibleShipmentDetails.Select(sh => new
                     {
