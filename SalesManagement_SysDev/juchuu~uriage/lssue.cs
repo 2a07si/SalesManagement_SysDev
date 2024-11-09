@@ -217,6 +217,11 @@ namespace SalesManagement_SysDev
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
+                    if(SyukkoFlag.Checked)
+                    {
+                        IssueConfirm(int.Parse(JyutyuId));
+                    }
+                    MessageBox.Show("更新が完了しました。");
                     DisplayIssues();
                 }
                 else
@@ -294,7 +299,13 @@ namespace SalesManagement_SysDev
 
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
+
+                        if (SyukkoFlag.Checked)
+                        {
+                            IssueConfirm(int.Parse(JyutyuId));
+                        }
                         DisplayIssues();
+                        DisplayIssueDetails();
                     }
                     catch (DbUpdateException ex)
                     {
@@ -705,8 +716,63 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void IssueConfirm(int orderId)
+        {
+            MessageBox.Show("登録開始します");
+            using (var context = new SalesManagementContext())
+            {
+                // 引き継ぐ情報を宣言 
+                var syukko = context.TSyukkos.SingleOrDefault(o => o.OrId == orderId);
+
+                if (syukko == null)
+                {
+                    throw new Exception("出庫IDが見つかりません。");
+                }
+
+                // 注文情報をTChumonに追加
+                var newArrival = new TArrival
+                {
+
+                    EmId = syukko.EmId,  // 社員ID
+                    SoId = syukko.SoId,  // 営業所ID    
+                    ClId = syukko.ClId,  // 顧客ID    
+                    OrId = syukko.OrId,  // 受注ID 
+                    ArDate = syukko.SyDate, // 注文日    
+                    ArStateFlag = 0,
+                    ArFlag = 0
+                };
+
+                try
+                {
+                    context.TArrivals.Add(newArrival);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TArrivalへの登録に失敗しました: " + ex.Message);
+                }
+
+                var syukkoDetail = context.TSyukkoDetails.SingleOrDefault(o => o.SyId == syukko.SyId);
+                var newArrivalDetail = new TArrivalDetail
+                {
+                    ArId = newArrival.ArId,
+                    PrId = syukkoDetail.PrId,
+                    ArQuantity = syukkoDetail.SyQuantity
+                };
+                try
+                {
+                    context.TArrivalDetails.Add(newArrivalDetail);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TArrivalDetailへの登録に失敗しました:" + ex.Message);
+                }
+            }
+        }
+
     }
-    
+
 
 
 }
