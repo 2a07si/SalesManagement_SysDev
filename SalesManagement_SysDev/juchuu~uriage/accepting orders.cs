@@ -326,7 +326,9 @@ namespace SalesManagement_SysDev
                 }
 
                 using (var context = new SalesManagementContext())
+
                 {
+                    
                     var newOrder = new TOrder
                     {
                         SoId = parsedShopID,
@@ -345,6 +347,12 @@ namespace SalesManagement_SysDev
 
                     if (TyumonFlag.Checked)
                     {
+                        var orderDetailExists = context.TOrderDetails.Any(d => d.OrId == newOrder.OrId);
+                        if (!orderDetailExists)
+                        {
+                            MessageBox.Show("受注詳細が登録されていません。");
+                            return;
+                        }
                         AcceptionConfirm(newOrder.OrId);
                     }
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -819,6 +827,23 @@ namespace SalesManagement_SysDev
                 catch (Exception ex)
                 {
                     throw new Exception("TChumonへの登録に失敗しました: " + ex.Message);
+                }
+
+                var orderDetail = context.TOrderDetails.SingleOrDefault(o => o.OrId == orderId);
+                var newChumonDetail = new TChumonDetail
+                {
+                    ChId = newChumon.ChId,
+                    PrId = orderDetail.PrId,
+                    ChQuantity = orderDetail.OrQuantity
+                };
+                try
+                {
+                    context.TChumonDetails.Add(newChumonDetail);
+                    context.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception("TChumonDetailへの登録に失敗しました:" + ex.Message);
                 }
             }
         }
