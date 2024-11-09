@@ -466,12 +466,14 @@ namespace SalesManagement_SysDev
                 {
                     var WarehousingDetails = context.TWarehousingDetails.ToList();
 
-                    var visibleWarehousingDetails = WarehousingDetails.Where(od =>
-                    {
-                        var Warehousing = context.TWarehousings.FirstOrDefault(o => o.WaId == od.WaId);
+                    var visibleWarehousingDetails = checkBox_2.Checked
+                        ? WarehousingDetails
+                        : WarehousingDetails.Where(od =>
+                        {
+                            var Warehousing = context.TWarehousings.FirstOrDefault(o => o.WaId == od.WaId);
 
-                        return Warehousing == null || (Warehousing.WaFlag != 1 && Warehousing.WaShelfFlag != 2);
-                    }).ToList();
+                            return Warehousing == null || (Warehousing.WaFlag != 1 && Warehousing.WaShelfFlag != 2);
+                        }).ToList();
 
                     dataGridView2.DataSource = visibleWarehousingDetails.Select(ws => new
                     {

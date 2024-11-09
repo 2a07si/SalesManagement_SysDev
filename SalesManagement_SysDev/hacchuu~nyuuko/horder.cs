@@ -438,12 +438,14 @@ namespace SalesManagement_SysDev
                 {
                     var HattyuDetails = context.THattyuDetails.ToList();
 
-                    var visibleHattyuDetails = HattyuDetails.Where(od =>
-                    {
-                        var Hattyu = context.THattyus.FirstOrDefault(o => o.HaId == od.HaId);
+                    var visibleHattyuDetails = checkBox_2.Checked
+                        ? HattyuDetails
+                        : HattyuDetails.Where(od =>
+                        {
+                            var Hattyu = context.THattyus.FirstOrDefault(o => o.HaId == od.HaId);
 
-                        return Hattyu == null || (Hattyu.HaFlag != 1 && Hattyu.WaWarehouseFlag != 2);
-                    }).ToList();
+                            return Hattyu == null || (Hattyu.HaFlag != 1 && Hattyu.HaStateFlag != 2);
+                        }).ToList();
 
                     dataGridView2.DataSource = visibleHattyuDetails.Select(od => new
                     {
