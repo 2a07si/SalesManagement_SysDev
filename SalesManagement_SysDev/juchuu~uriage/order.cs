@@ -347,7 +347,7 @@ namespace SalesManagement_SysDev
                                 MessageBox.Show($"商品ID: {detail.PrId}, 残り在庫: {stock.StQuantity}"); // 残り在庫を表示
                             }
 
-                            OrdersConfirm(int.Parse(JyutyuId));
+                            OrdersConfirm(newOrder.ChId);
                             MessageBox.Show("出庫登録が完了しました。");
                         }
                         else
@@ -795,16 +795,16 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void OrdersConfirm(int orderId)
+        private void OrdersConfirm(int ChumonId)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
-                var order = context.TChumons.SingleOrDefault(o => o.OrId == orderId);
+                var order = context.TChumons.SingleOrDefault(o => o.ChId == ChumonId);
 
                 if (order == null)
                 {
-                    throw new Exception("受注IDが見つかりません。");
+                    throw new Exception("注文IDが見つかりません。");
                 }
 
                 var newSyukko = new TSyukko
@@ -815,7 +815,6 @@ namespace SalesManagement_SysDev
                     OrId = order.OrId,
                     SyDate = order.ChDate,
                     SyStateFlag = 0
-                    
                 };
 
                 try
@@ -827,6 +826,26 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("TSyukkoへの登録に失敗しました: " + ex.Message);
                 }
+
+
+                var orderDetail = context.TChumonDetails.SingleOrDefault(o => o.ChId == ChumonId);
+                var newSyukkoDetail = new TSyukkoDetail
+                {
+                    SyId = newSyukko.SyId,
+                    PrId = orderDetail.PrId,
+                    SyQuantity = orderDetail.ChQuantity
+                };
+
+                try
+                {
+                    context.TSyukkoDetails.Add(newSyukkoDetail);
+                    context.SaveChanges();
+                }
+                catch (Exception ex) 
+                {
+                    throw new Exception("TSyukkoDetailへの登録に失敗しました" + ex.Message);
+                }
+
             }
         }
 
