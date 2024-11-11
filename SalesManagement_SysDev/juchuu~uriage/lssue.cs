@@ -58,6 +58,31 @@ namespace SalesManagement_SysDev
                 b_reg.Enabled = false;
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
+
+            // 在庫不足で非表示となった出庫情報に関するメッセージを取得
+            string stockUpdateMessages = Global.GetStockUpdateMessagesForOutbound(new SalesManagementContext());
+
+            // メッセージが存在する場合、MessageBoxで表示
+            if (!string.IsNullOrEmpty(stockUpdateMessages))
+            {
+                MessageBox.Show(stockUpdateMessages, "在庫不足のため、非表示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("特に在庫不足による非表示情報はありません。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            // 在庫更新メッセージを取得
+            string stockUpdateMessages2 = Global.GetStockUpdateMessages();
+
+            // メッセージが存在する場合、MessageBoxで表示
+            if (!string.IsNullOrEmpty(stockUpdateMessages2))
+            {
+                MessageBox.Show(stockUpdateMessages2, "在庫更新通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("特に在庫更新はありません。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         // メインメニューに戻る 
         private void close_Click(object sender, EventArgs e)

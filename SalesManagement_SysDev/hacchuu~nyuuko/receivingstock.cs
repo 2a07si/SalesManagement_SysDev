@@ -230,9 +230,14 @@ namespace SalesManagement_SysDev
                         // 入庫詳細が存在する場合、入庫確認処理を実行 
                         ReceiveConfirm(receivingStock.WaId);
 
-                        MessageBox.Show("出庫フラグ変更処理開始");
-                        // 入庫が完了した後、出庫フラグと非表示理由を更新する処理を追加
-                        UpdateOutboundFlagAfterReceiving(int.Parse(haID));
+                        // 在庫更新メッセージを保存
+                        var receivingDetails = context.TWarehousingDetails
+                            .Where(wd => wd.WaId == receivingStock.WaId);
+
+                        foreach (var detail in receivingDetails)
+                        {
+                            Global.AddStockUpdateMessage(detail.PrId, detail.WaQuantity); // メッセージ追加
+                        }
                     }
 
                     // 更新を保存 
@@ -743,110 +748,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void UpdateOutboundFlagAfterReceiving(int haId)
-        {
-            try
-            {
-                using (var context = new SalesManagementContext())
-                {
-                    // 発注詳細を基に発注IDに関連する商品を取得
-                    var orderDetails = context.THattyuDetails
-                                              .Where(od => od.HaId == haId)
-                                              .ToList();
-
-                    if (!orderDetails.Any())
-                    {
-                        throw new InvalidOperationException("発注詳細が見つかりません。");
-                    }
-
-                    foreach (var orderDetail in orderDetails)
-                    {
-                        int productId = orderDetail.PrId;
-
-                        // 商品IDを基に注文詳細を検索（最後に登録されたものを参照）
-                        var orderDetailRecord = context.TChumonDetails
-                               .Where(od => od.PrId == productId)
-                               .OrderByDescending(od => od.ChDetailId)  // 登録順などで順序を指定
-                               .LastOrDefault();
-
-                        if (orderDetailRecord == null)
-                        {
-                            throw new InvalidOperationException($"注文詳細が見つかりません。商品ID: {productId}");
-                        }
-
-                        // 検索された注文詳細情報を表示
-                        MessageBox.Show($"検索された注文詳細情報: 注文詳細ID: {orderDetailRecord.ChDetailId}, 注文ID: {orderDetailRecord.ChId}, 商品ID: {orderDetailRecord.PrId}, 数量: {orderDetailRecord.ChQuantity}");
-
-                        int orderId = orderDetailRecord.ChId;
-
-                        // 注文IDを基に注文情報を取得
-                        var order = context.TChumons
-                                           .FirstOrDefault(o => o.ChId == orderId);
-
-                        if (order == null)
-                        {
-                            throw new InvalidOperationException($"注文情報が見つかりません。注文ID: {orderId}");
-                        }
-
-                        // 注文IDに関連する受注ID（OrID）を取得
-                        var orderID = order.OrId;
-
-                        // 受注IDを基に出庫テーブル（TSyukko）のデータを更新
-                        var outboundRecords = context.TSyukkos
-                                                    .Where(sy => sy.OrId == orderID)
-                                                    .ToList();
-
-                        if (!outboundRecords.Any())
-                        {
-                            throw new InvalidOperationException($"出庫レコードが見つかりません。受注ID: {orderID}");
-                        }
-
-                        foreach (var outboundRecord in outboundRecords)
-                        {
-                            // フラグが1か、非表示理由が「在庫不足のため、非表示」の場合にのみ更新
-                            if (outboundRecord.SyFlag == 1 && outboundRecord.SyHidden == "在庫不足のため、非表示")
-                            {
-                                try
-                                {
-                                    outboundRecord.SyFlag = 0;  // フラグを更新
-                                    outboundRecord.SyHidden = null;  // 非表示理由をnullに設定
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show($"出庫レコードの更新中にエラーが発生しました: {ex.Message}");
-                                    continue;  // エラーが発生しても次のレコードを処理
-                                }
-                            }
-                        }
-
-                        // 更新を保存
-                        try
-                        {
-                            context.SaveChanges();
-                        }
-                        catch (DbUpdateException dbEx)
-                        {
-                            if (dbEx.InnerException != null)
-                            {
-                                MessageBox.Show($"データベースの更新中にエラーが発生しました: {dbEx.InnerException.Message}");
-                            }
-                            else
-                            {
-                                MessageBox.Show($"データベースの更新中にエラーが発生しました: {dbEx.Message}");
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"出庫処理の更新中にエラーが発生しました: {ex.Message}");
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"処理中にエラーが発生しました: {ex.Message}");
-            }
-        }
 
 
     }
