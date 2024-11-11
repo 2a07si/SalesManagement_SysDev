@@ -661,9 +661,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
-
         private void ToggleIssueSelection()
         {
             isIssueSelected = !isIssueSelected;
@@ -672,7 +669,6 @@ namespace SalesManagement_SysDev
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isIssueSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
-
 
         private void b_FormSelector_Click(object sender, EventArgs e)
         {

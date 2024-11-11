@@ -31,12 +31,8 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             this.mainForm = new Form();
             this.formChanger = new ClassChangeForms(this);
-            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
-
-            
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット   
         }
-
-
 
         private void close_Click(object sender, EventArgs e)
         {
@@ -47,7 +43,6 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateToHorderForm();
         }
-
 
         private void receivingstock_Load(object sender, EventArgs e)
         {
@@ -60,9 +55,7 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             DisplayReceivingStocks();
-            DisplayReceivingStockDetails();
-
-            }
+            DisplayReceivingStockDetails();    
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -110,6 +103,8 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplayReceivingStocks();
+            DisplayReceivingStockDetails();
         }
 
         private void B_iti_Click(object sender, EventArgs e) => ListStatus();
@@ -341,7 +336,7 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var receivingStocks = checkBox_2.Checked
                         ? context.TWarehousings.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TWarehousings.Where(o => o.WaFlag != 1 || o.WaShelfFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TWarehousings.Where(o => o.WaFlag != 1 && o.WaShelfFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = receivingStocks.Select(ws => new
                     {
                         入庫ID = ws.WaId,
@@ -675,7 +670,7 @@ namespace SalesManagement_SysDev
                     TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString();
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                     date.Value = Convert.ToDateTime(row.Cells["入庫年月日"].Value);
-                    NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫フラグ"].Value);
+                    NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫済フラグ"].Value);
                     DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
                 }
             }

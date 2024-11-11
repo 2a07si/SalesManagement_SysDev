@@ -229,7 +229,7 @@ namespace SalesManagement_SysDev
                     order.ChHidden = Riyuu;
 
                     context.SaveChanges();
-                    // checkBox_2のチェックがある場合、出庫処理へ
+                    // checkBox_2のチェックがある場合、出庫処理へ 
                     if (TyumonFlag.Checked)
                     {
                         var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == int.Parse(ChumonId));
@@ -245,26 +245,26 @@ namespace SalesManagement_SysDev
                             var stock = context.TStocks.SingleOrDefault(s => s.PrId == detail.PrId);
                             if (stock == null || stock.StQuantity < detail.ChQuantity)
                             {
-                                // 在庫が不足している場合
+                                // 在庫が不足している場合 
                                 var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
 
-                                // 発注処理を行う
+                                // 発注処理を行う 
                                 ProductOrder(int.Parse(OrderId), int.Parse(ChumonId), shortageQuantity);
-                                // メッセージを表示
                                 MessageBox.Show($"商品ID: {detail.PrId}の在庫が不足しているため発注処理を行いました。");
-                                return; // 発注処理後、更新処理を終了
+
+                                // 非表示フラグと理由を設定して出庫登録 
+                                OrdersConfirm(int.Parse(OrderId), int.Parse(ChumonId), 1, "在庫不足のため非表示中");
                             }
                             else
                             {
-                                // 在庫が足りている場合、出庫処理
+                                // 在庫が足りている場合、出庫処理 
                                 stock.StQuantity -= detail.ChQuantity;
                                 MessageBox.Show($"商品ID: {detail.PrId}、残り在庫: {stock.StQuantity}");
-                                OrdersConfirm(int.Parse(OrderId), int.Parse(ChumonId));
-
+                                OrdersConfirm(int.Parse(OrderId), int.Parse(ChumonId), 0, null);
                             }
                         }
 
-                        // 出庫処理が完了した場合、注文情報を保存
+                        // 出庫処理が完了した場合、注文情報を保存 
                         try
                         {
                             context.SaveChanges();
@@ -274,7 +274,6 @@ namespace SalesManagement_SysDev
                         {
                             MessageBox.Show("出庫処理の保存に失敗しました: " + ex.Message);
                         }
-
                     }
                     else
                     {
@@ -289,7 +288,7 @@ namespace SalesManagement_SysDev
                         }
                     }
 
-                    DisplayOrders(); // 注文情報を表示
+                    DisplayOrders(); // 注文情報を表示 
                 }
                 else
                 {
@@ -297,7 +296,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
 
         private void RegisterOrder()
         {
@@ -340,7 +338,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // 注文が存在しない場合、新規作成
+                // 注文が存在しない場合、新規作成 
                 var order = context.TChumons.SingleOrDefault(o => o.OrId == int.Parse(JyutyuId));
                 if (order == null)
                 {
@@ -359,12 +357,12 @@ namespace SalesManagement_SysDev
                         };
 
                         context.TChumons.Add(newOrder);
-                        context.SaveChanges(); // 保存後に自動で ChId が設定される
+                        context.SaveChanges(); // 保存後に自動で ChId が設定される 
 
-                        // 新規登録した注文の ChId を取得
+                        // 新規登録した注文の ChId を取得 
                         int newChId = newOrder.ChId;
 
-                        // 注文詳細が登録されていなければ出庫処理は行わない
+                        // 注文詳細が登録されていなければ出庫処理は行わない 
                         if (TyumonFlag.Checked)
                         {
                             var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == newChId);
@@ -375,6 +373,8 @@ namespace SalesManagement_SysDev
                             }
 
                             var details = context.TChumonDetails.Where(d => d.ChId == newChId).ToList();
+                            bool isStockSufficient = true; // 初期状態で在庫が足りていると仮定
+
                             foreach (var detail in details)
                             {
                                 var stock = context.TStocks.SingleOrDefault(s => s.PrId == detail.PrId);
@@ -384,25 +384,36 @@ namespace SalesManagement_SysDev
                                     return;
                                 }
 
-                                // 在庫確認、足りない場合は発注処理を行う
+                                // 在庫確認、足りない場合は発注処理を行う 
                                 int remainingStock = stock.StQuantity - detail.ChQuantity;
                                 if (remainingStock < 0)
                                 {
-                                    // 在庫が足りない場合、発注処理を行う
-                                    int shortageQuantity = Math.Abs(remainingStock); // 足りない数量
+                                    // 在庫が足りない場合、発注処理を行う 
+                                    int shortageQuantity = Math.Abs(remainingStock); // 足りない数量 
                                     ProductOrder(newOrder.OrId, newOrder.ChId, shortageQuantity);
                                     MessageBox.Show($"商品ID: {detail.PrId} の在庫が{shortageQuantity}個の不足しています。発注処理を行いました。");
-                                    return; // 発注後に処理を終了
+
+                                    // 在庫不足が発生したので非表示設定で出庫登録
+                                    isStockSufficient = false;
                                 }
                                 else
                                 {
-                                    // 在庫が足りている場合は出庫処理
+                                    // 在庫が足りている場合は出庫処理 
                                     stock.StQuantity -= detail.ChQuantity;
-                                    MessageBox.Show($"商品ID: {detail.PrId}, 残り在庫: {stock.StQuantity}"); // 残り在庫を表示
+                                    MessageBox.Show($"商品ID: {detail.PrId}, 残り在庫: {stock.StQuantity}"); // 残り在庫を表示 
                                 }
                             }
 
-                            OrdersConfirm(int.Parse(JyutyuId), newOrder.ChId);
+                            // 在庫の状況に応じて出庫処理を実行
+                            if (isStockSufficient)
+                            {
+                                OrdersConfirm(int.Parse(JyutyuId), newOrder.ChId, 0, null); // 在庫が足りている場合
+                            }
+                            else
+                            {
+                                OrdersConfirm(int.Parse(JyutyuId), newOrder.ChId, 1, "在庫不足のため非表示中"); // 在庫不足の場合
+                            }
+
                             MessageBox.Show("出庫登録が完了しました。");
                         }
                         else
@@ -424,9 +435,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-        
-
-
         private void DisplayOrders()
         {
             try
@@ -439,8 +447,6 @@ namespace SalesManagement_SysDev
                         : context.TChumons
                             .Where(o => o.ChFlag != 1 && o.ChStateFlag != 2)
                             .ToList();
-
-                    
 
                     // データを選択してDataGridViewに表示 
                     dataGridView1.DataSource = chumons.Select(o => new
@@ -831,7 +837,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void OrdersConfirm(int JyutyuId, int ChId)
+        private void OrdersConfirm(int JyutyuId, int ChId, int SyFlag, string SyHidden)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
@@ -843,28 +849,29 @@ namespace SalesManagement_SysDev
                     throw new Exception("注文IDが見つかりません。");
                 }
 
-                
-                // 出庫情報をTSyukkoに追加
+                // 出庫情報をTSyukkoに追加 
                 var newSyukko = new TSyukko
                 {
                     SoId = order.SoId,
                     EmId = order.EmId,
                     ClId = order.ClId,
                     OrId = order.OrId,
+                    SyFlag = SyFlag,                  // ここでフラグを設定
+                    SyHidden = SyHidden,              // 非表示理由も設定
                     SyDate = order.ChDate,
                     SyStateFlag = 0
                 };
 
                 try
                 {
-                    // データが正しいか事前にチェック
+                    // データが正しいか事前にチェック 
                     if (newSyukko.SoId == 0 || newSyukko.EmId == 0 || newSyukko.ClId == 0 || newSyukko.OrId == 0 || newSyukko.SyDate == default(DateTime))
                     {
                         throw new Exception("出庫情報に必要なデータが不足しています。");
                     }
                     context.TSyukkos.Add(newSyukko);
                     context.SaveChanges();
-                    MessageBox.Show("出庫登録が完了しました。"); // ここでメッセージが表示されることを確認
+                    MessageBox.Show("出庫登録が完了しました。"); // ここでメッセージが表示されることを確認 
                 }
                 catch (Exception ex)
                 {
@@ -901,7 +908,8 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-        // 発注処理のやつ 
+
+        // 発注処理
         private void ProductOrder(int OrId, int ChId, int shortageQuantity)
         {
             MessageBox.Show("発注登録を開始します");
@@ -909,7 +917,7 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // 注文データの取得
+                    // 注文データの取得 
                     var order = context.TChumons.SingleOrDefault(o => o.ChId == ChId);
                     if (order == null)
                     {
@@ -917,7 +925,7 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    // 注文詳細データの取得
+                    // 注文詳細データの取得 
                     var orderDetail = context.TChumonDetails.SingleOrDefault(o => o.ChId == ChId);
                     if (orderDetail == null)
                     {
@@ -927,30 +935,29 @@ namespace SalesManagement_SysDev
 
                     int prId = orderDetail.PrId;
 
-                    // 商品データの取得
+                    // 商品データの取得 
                     var product = context.MProducts.SingleOrDefault(p => p.PrId == prId);
                     if (product == null)
                     {
                         MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。");
                         return;
                     }
-                    
 
-                    // 新しい発注情報の登録
+                    // 新しい発注情報の登録 
                     var newHattyu = new THattyu
                     {
                         MaId = product.MaId,
                         EmId = int.Parse(order.EmId.ToString()),
-                        HaDate = order.ChDate.Value,
+                        HaDate = order.ChDate ?? DateTime.Now, // 日付が空なら現在日時 
                         WaWarehouseFlag = 0,
-                        HaFlag = 0,
-                        HaHidden = null,
+                        HaFlag = 0, 
+                        HaHidden = null 
                     };
 
                     context.THattyus.Add(newHattyu);
                     context.SaveChanges();
 
-                    // 新しい発注詳細情報の登録
+                    // 新しい発注詳細情報の登録 
                     var newHattyuDetail = new THattyuDetail
                     {
                         HaId = newHattyu.HaId,
@@ -961,9 +968,8 @@ namespace SalesManagement_SysDev
                     context.THattyuDetails.Add(newHattyuDetail);
                     context.SaveChanges();
 
-                    MessageBox.Show("登録が完了しました");
-
-                }   
+                    MessageBox.Show("発注登録が完了しました");
+                }
             }
             catch (InvalidOperationException ex)
             {

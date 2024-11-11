@@ -26,7 +26,6 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             formChanger = new ClassChangeForms(this);
             accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
-
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
@@ -46,7 +45,6 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
             DisplayOrderDetails();
-        
         }
 
         // メインメニューに戻る
@@ -275,6 +273,7 @@ namespace SalesManagement_SysDev
                         }
                         MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayOrders();
+                        DisplayOrderDetails();
                     }
                     else
                     {
@@ -345,8 +344,6 @@ namespace SalesManagement_SysDev
                         OrFlag = delFlag ? 1 : 0,
                         OrHidden = riyuu
                     };
-
-
                     context.TOrders.Add(newOrder);
                     context.SaveChanges();
 
@@ -406,7 +403,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message);
             }
         }
-
 
         private void SearchOrders()
         {
@@ -763,7 +759,12 @@ namespace SalesManagement_SysDev
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
                     TBTantoName.Text = row.Cells["担当社員名"].Value.ToString();
                     date.Value = Convert.ToDateTime(row.Cells["受注日"].Value);
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定 
+
+                    // 状態フラグと非表示フラグを取得
+                    int orderFlag = Convert.ToInt32(row.Cells["状態フラグ"].Value);
+                    int delFlag = Convert.ToInt32(row.Cells["非表示フラグ"].Value);
+
+                    // チェックボックスの状態を設定
                 }
             }
             catch (Exception ex)
@@ -771,6 +772,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -817,7 +819,7 @@ namespace SalesManagement_SysDev
                 var newChumon = new TChumon
                 {
                     SoId = order.SoId,  // 営業所ID    
-                    //社員Idはnull
+                    EmId = order.EmId,
                     ClId = order.ClId,  // 顧客ID    
                     OrId = order.OrId,  // 受注ID 
                     ChDate = order.OrDate, // 注文日    
