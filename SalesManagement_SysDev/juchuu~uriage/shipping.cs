@@ -49,10 +49,9 @@ namespace SalesManagement_SysDev
             DisplayShipping();
             DisplayShippingDetails();
 
-            if (Global.PositionName == "管理者")
+            if (Global.EmployeePermission == 1)
             {
                 b_reg.Enabled = true;
-                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
             }
             else
             {

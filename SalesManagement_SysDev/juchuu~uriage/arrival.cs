@@ -10,6 +10,7 @@ using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace SalesManagement_SysDev
 {
@@ -46,10 +47,9 @@ namespace SalesManagement_SysDev
             DisplayArrivals();
             DisplayArrivalDetails();
 
-            if (Global.PositionName == "管理者")
+            if (Global.EmployeePermission == 1)
             {
                 b_reg.Enabled = true;
-                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
             }
             else
             {
@@ -804,6 +804,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+        
     }
 
 

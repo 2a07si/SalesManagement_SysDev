@@ -59,6 +59,8 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayHattyus();
             DisplayHattyuDetails();
+
+
         }
 
         private void clear_Click(object sender, EventArgs e)

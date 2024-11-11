@@ -62,15 +62,6 @@ namespace SalesManagement_SysDev
             DisplayReceivingStocks();
             DisplayReceivingStockDetails();
 
-            if (Global.PositionName == "管理者")
-            {
-                b_reg.Enabled = true;
-                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
-            }
-            else
-            {
-                b_reg.Enabled = false;
-                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
         }
 

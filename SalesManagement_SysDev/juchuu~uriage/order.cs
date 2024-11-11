@@ -51,10 +51,9 @@ namespace SalesManagement_SysDev
             DisplayOrders();
             DisplayOrderDetails();
 
-            if (Global.PositionName == "管理者")
+            if (Global.EmployeePermission == 1)
             {
                 b_reg.Enabled = true;
-                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
             }
             else
             {
@@ -62,7 +61,6 @@ namespace SalesManagement_SysDev
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
         }
-
         // メインメニューに戻る 
         private void close_Click(object sender, EventArgs e)
         {
