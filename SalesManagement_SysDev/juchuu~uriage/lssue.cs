@@ -60,17 +60,7 @@ namespace SalesManagement_SysDev
             }
 
             // 在庫不足で非表示となった出庫情報に関するメッセージを取得
-            string stockUpdateMessages = Global.GetStockUpdateMessagesForOutbound(new SalesManagementContext());
-
-            // メッセージが存在する場合、MessageBoxで表示
-            if (!string.IsNullOrEmpty(stockUpdateMessages))
-            {
-                MessageBox.Show(stockUpdateMessages, "在庫不足のため、非表示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("特に在庫不足による非表示情報はありません。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
             // 在庫更新メッセージを取得
             string stockUpdateMessages2 = Global.GetStockUpdateMessages();
 

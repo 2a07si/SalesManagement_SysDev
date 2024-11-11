@@ -61,22 +61,32 @@ namespace SalesManagement_SysDev.Classまとめ
             return combinedMessages;
         }
 
-        // 在庫不足のため非表示の出庫情報がある場合にのみメッセージを取得する  
+        // 在庫不足のため非表示の出庫情報がある場合にのみメッセージを取得する
         public static string GetStockUpdateMessagesForOutbound(SalesManagementContext context)
         {
             var messages = new List<string>();
 
-            // Syukkoテーブルから"在庫不足のため、非表示"という理由で非表示のデータを検索  
+            // Syukkoテーブルから"在庫不足のため、非表示"という理由で非表示のデータを検索
             var hiddenStockUpdates = context.TSyukkos
-                .Where(s => s.SyHidden == "在庫不足のため、非表示")
+                .Where(s => s.SyHidden == "在庫不足のため非表示中")
                 .ToList();
 
-            foreach (var detail in syukkoDetails)
+            // 非表示のSyukko情報に関連するTSyukkoDetailsを取得してメッセージを作成
+            foreach (var syukko in hiddenStockUpdates)
             {
-                // PrIdとSyQuantityを取得
-                messages.Add($"在庫不足のため非表示となった出庫情報があります。商品ID：{detail.PrId} 出庫数量：{detail.SyQuantity}");
+                // Syukkoに関連するTSyukkoDetailsを検索
+                var syukkoDetails = context.TSyukkoDetails
+                    .Where(d => d.SyId == syukko.SyId)
+                    .ToList();
+
+                foreach (var detail in syukkoDetails)
+                {
+                    // PrIdとSyQuantityをTSyukkoDetailsから取得し、メッセージを作成
+                    messages.Add($"在庫不足のため非表示となった出庫情報があります。商品ID：{detail.PrId} 出庫数量：{detail.SyQuantity}");
+                }
             }
-            // メッセージを改行でつなげる  
+
+            // メッセージを改行でつなげる
             string combinedMessages = string.Join(Environment.NewLine, messages);
             return combinedMessages;
         }
