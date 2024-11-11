@@ -55,7 +55,7 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             DisplayReceivingStocks();
-            DisplayReceivingStockDetails();    
+            DisplayReceivingStockDetails();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click_1(object sender, EventArgs e) => UpdateStatus();
+        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
 
         private void UpdateStatus()
         {
@@ -189,6 +189,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+
         private void UpdateReceivingStock()
         {
             string nyuukoID = TBNyukoID.Text;
@@ -204,41 +205,46 @@ namespace SalesManagement_SysDev
                 var receivingStock = context.TWarehousings.SingleOrDefault(ws => ws.WaId.ToString() == nyuukoID);
                 if (receivingStock != null)
                 {
-                    receivingStock.HaId = int.Parse(haID);                 // 発注ID
-                    receivingStock.EmId = int.Parse(shainID);              // 社員ID
-                    receivingStock.WaDate = nyuukoDate;                    // 入庫日
-                    receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;       // 入庫棚フラグ
-                    receivingStock.WaFlag = delFlag ? 1 : 0;               // 削除フラグ
-                    receivingStock.WaHidden = riyuu;                       // 理由
+                    receivingStock.HaId = int.Parse(haID);                 // 発注ID 
+                    receivingStock.EmId = int.Parse(shainID);              // 社員ID 
+                    receivingStock.WaDate = nyuukoDate;                    // 入庫日 
+                    receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;       // 入庫棚フラグ 
+                    receivingStock.WaFlag = delFlag ? 1 : 0;               // 削除フラグ 
+                    receivingStock.WaHidden = riyuu;                       // 理由 
 
-                    // NyuukoFlagがチェックされている場合、入庫詳細の確認を行う
+                    // NyuukoFlagがチェックされている場合、入庫詳細の確認を行う 
                     if (nyuukoFlag)
                     {
-                        // 入庫詳細が存在するか確認
+                        // 入庫詳細が存在するか確認 
                         var receivingDetailsExist = context.TWarehousingDetails
-                            .Any(wd => wd.WaId == receivingStock.WaId); // WaId が一致する入庫詳細が存在するか確認
+                            .Any(wd => wd.WaId == receivingStock.WaId); // WaId が一致する入庫詳細が存在するか確認 
 
                         if (!receivingDetailsExist)
                         {
-                            // 入庫詳細が存在しない場合はエラーメッセージを表示
+                            // 入庫詳細が存在しない場合はエラーメッセージを表示 
                             MessageBox.Show("入庫詳細が登録されていません。");
-                            return; // 処理を中断
+                            return; // 処理を中断 
                         }
 
-                        // 入庫詳細が存在する場合、入庫確認処理を実行
+                        MessageBox.Show("入庫確定処理");
+                        // 入庫詳細が存在する場合、入庫確認処理を実行 
                         ReceiveConfirm(receivingStock.WaId);
+
+                        MessageBox.Show("出庫フラグ変更処理開始");
+                        // 入庫が完了した後、出庫フラグと非表示理由を更新する処理を追加
+                        UpdateOutboundFlagAfterReceiving(int.Parse(haID));
                     }
 
-                    // 更新を保存
+                    // 更新を保存 
                     try
                     {
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
-                        DisplayReceivingStocks(); // 更新後に入庫情報を再表示
+                        DisplayReceivingStocks(); // 更新後に入庫情報を再表示 
                     }
                     catch (DbUpdateException ex)
                     {
-                        // inner exception の詳細を表示
+                        // inner exception の詳細を表示 
                         if (ex.InnerException != null)
                         {
                             MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
@@ -250,7 +256,7 @@ namespace SalesManagement_SysDev
                     }
                     catch (Exception ex)
                     {
-                        // その他のエラーに対処する
+                        // その他のエラーに対処する 
                         MessageBox.Show($"エラーが発生しました: {ex.Message}");
                     }
                 }
@@ -343,8 +349,8 @@ namespace SalesManagement_SysDev
                         発注ID = ws.HaId,
                         社員ID = ws.EmId,
                         入庫年月日 = ws.WaDate,
-                        入庫済フラグ = ws.WaFlag,
-                        非表示フラグ = ws.WaShelfFlag,
+                        入庫済フラグ = ws.WaShelfFlag,
+                        非表示フラグ = ws.WaFlag,
                         非表示理由 = ws.WaHidden
 
                     }).ToList();
@@ -718,11 +724,11 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("入庫IDが見つかりません。");
                 }
-                // 注文情報をTChumonに追加
+                // 情報を追加
                 var newStock = new TStock
                 {
-                   PrId = receive.PrId,
-                   StQuantity = receive.WaQuantity,
+                    PrId = receive.PrId,
+                    StQuantity = receive.WaQuantity,
                 };
 
                 try
@@ -736,6 +742,112 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
+        private void UpdateOutboundFlagAfterReceiving(int haId)
+        {
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // 発注詳細を基に発注IDに関連する商品を取得
+                    var orderDetails = context.THattyuDetails
+                                              .Where(od => od.HaId == haId)
+                                              .ToList();
+
+                    if (!orderDetails.Any())
+                    {
+                        throw new InvalidOperationException("発注詳細が見つかりません。");
+                    }
+
+                    foreach (var orderDetail in orderDetails)
+                    {
+                        int productId = orderDetail.PrId;
+
+                        // 商品IDを基に注文詳細を検索（最後に登録されたものを参照）
+                        var orderDetailRecord = context.TChumonDetails
+                               .Where(od => od.PrId == productId)
+                               .OrderByDescending(od => od.ChDetailId)  // 登録順などで順序を指定
+                               .LastOrDefault();
+
+                        if (orderDetailRecord == null)
+                        {
+                            throw new InvalidOperationException($"注文詳細が見つかりません。商品ID: {productId}");
+                        }
+
+                        // 検索された注文詳細情報を表示
+                        MessageBox.Show($"検索された注文詳細情報: 注文詳細ID: {orderDetailRecord.ChDetailId}, 注文ID: {orderDetailRecord.ChId}, 商品ID: {orderDetailRecord.PrId}, 数量: {orderDetailRecord.ChQuantity}");
+
+                        int orderId = orderDetailRecord.ChId;
+
+                        // 注文IDを基に注文情報を取得
+                        var order = context.TChumons
+                                           .FirstOrDefault(o => o.ChId == orderId);
+
+                        if (order == null)
+                        {
+                            throw new InvalidOperationException($"注文情報が見つかりません。注文ID: {orderId}");
+                        }
+
+                        // 注文IDに関連する受注ID（OrID）を取得
+                        var orderID = order.OrId;
+
+                        // 受注IDを基に出庫テーブル（TSyukko）のデータを更新
+                        var outboundRecords = context.TSyukkos
+                                                    .Where(sy => sy.OrId == orderID)
+                                                    .ToList();
+
+                        if (!outboundRecords.Any())
+                        {
+                            throw new InvalidOperationException($"出庫レコードが見つかりません。受注ID: {orderID}");
+                        }
+
+                        foreach (var outboundRecord in outboundRecords)
+                        {
+                            // フラグが1か、非表示理由が「在庫不足のため、非表示」の場合にのみ更新
+                            if (outboundRecord.SyFlag == 1 && outboundRecord.SyHidden == "在庫不足のため、非表示")
+                            {
+                                try
+                                {
+                                    outboundRecord.SyFlag = 0;  // フラグを更新
+                                    outboundRecord.SyHidden = null;  // 非表示理由をnullに設定
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"出庫レコードの更新中にエラーが発生しました: {ex.Message}");
+                                    continue;  // エラーが発生しても次のレコードを処理
+                                }
+                            }
+                        }
+
+                        // 更新を保存
+                        try
+                        {
+                            context.SaveChanges();
+                        }
+                        catch (DbUpdateException dbEx)
+                        {
+                            if (dbEx.InnerException != null)
+                            {
+                                MessageBox.Show($"データベースの更新中にエラーが発生しました: {dbEx.InnerException.Message}");
+                            }
+                            else
+                            {
+                                MessageBox.Show($"データベースの更新中にエラーが発生しました: {dbEx.Message}");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"出庫処理の更新中にエラーが発生しました: {ex.Message}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"処理中にエラーが発生しました: {ex.Message}");
+            }
+        }
+
 
     }
 }
