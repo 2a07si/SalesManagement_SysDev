@@ -201,7 +201,6 @@
             NyuukaFlag.TabIndex = 12;
             NyuukaFlag.Text = "入荷状態";
             NyuukaFlag.UseVisualStyleBackColor = true;
-            NyuukaFlag.CheckedChanged += Nyuukaflag_CheckedChanged;
             // 
             // label7
             // 

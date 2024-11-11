@@ -230,6 +230,7 @@ namespace SalesManagement_SysDev
                         }
 
                         // 発注詳細が存在する場合、発注確認処理を実行
+                        
                         HorderConfirm(hattyu.HaId);
                     }
 
@@ -580,11 +581,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
-
-
-
+        
         private void ToggleHattyuSelection()
         {
             isOrderSelected = !isOrderSelected;
@@ -745,10 +742,11 @@ namespace SalesManagement_SysDev
                 // 情報追加
                 var newWarehousing = new TWarehousing
                 {
-                    HaId = horder.HaId,
-                    EmId = null,
-                    WaShelfFlag = null,
-                    WaFlag = 0,
+                    HaId = HaId,
+                    EmId = horder.EmId,
+                    WaDate = horder.HaDate,
+                    WaShelfFlag = 0,
+                    WaFlag = 0
                 };
 
                 try
@@ -758,8 +756,10 @@ namespace SalesManagement_SysDev
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("THattyuへの登録に失敗しました: " + ex.Message);
+                    MessageBox.Show("THattyuへの登録に失敗しました: " + ex.Message + "\n" + ex.InnerException?.Message);
+                    throw;
                 }
+
 
                 var hattyuDetail = context.THattyuDetails.SingleOrDefault(o => o.HaId == HaId);
                 var newWarehousingDetail = new TWarehousingDetail

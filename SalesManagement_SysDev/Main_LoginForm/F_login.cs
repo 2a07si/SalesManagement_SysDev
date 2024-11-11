@@ -845,6 +845,7 @@ namespace SalesManagement_SysDev
                 case 3: return 3; // Œ ŒÀ3  
                 default: return 0; // –¢’è‹`‚ÌŒ ŒÀ  
             }
+            Global.EmployeePermission = poId;
         }
 
 

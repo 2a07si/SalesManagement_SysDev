@@ -226,6 +226,7 @@ namespace SalesManagement_SysDev
             string salesID = TBSalesID.Text;
             DateTime salesDate = date.Value;
             bool delFlag = DelFlag.Checked;
+            string Riyuu = TBRiyuu.Text;
 
             using (var context = new SalesManagementContext())
             {
@@ -238,7 +239,8 @@ namespace SalesManagement_SysDev
                     sales.SaId = int.Parse(salesID);
                     sales.OrId = int.Parse(jyutyuID);
                     sales.SaDate = salesDate;
-                    sales.SaHidden = delFlag ? "1" : "0";
+                    sales.SaFlag = delFlag ? 1 : 0;
+                    sales.SaHidden = Riyuu;
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
@@ -324,10 +326,9 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var sales = checkBox_2.Checked
                         ? context.TSales.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TSales.Where(o => o.SaFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TSales.Where(s => s.SaFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
 
                     dataGridView1.DataSource = sales.Select(s => new
                     {
@@ -338,7 +339,7 @@ namespace SalesManagement_SysDev
                         受注ID = s.OrId,
                         売上日 = s.SaDate,
                         売上フラグ = s.SaFlag,
-                        非表示フラグ = s.SaHidden
+                        非表示理由 = s.SaHidden
                     }).ToList();
                 }
             }
@@ -559,6 +560,16 @@ namespace SalesManagement_SysDev
                 {
                     var saleDetails = context.TSaleDetails.ToList();
 
+                    var visibleUriageDetails = checkBox_2.Checked
+                        ? saleDetails
+                        : saleDetails.Where(od =>
+                        {
+                            var Sale = context.TSales.FirstOrDefault(o => o.SaId == od.SaId);
+
+                            return Sale == null || (Sale.SaFlag != 1);
+                        }).ToList();
+
+
                     dataGridView3.DataSource = saleDetails.Select(sa => new
                     {
                         売上詳細ID = sa.SaDetailId,
@@ -690,7 +701,7 @@ namespace SalesManagement_SysDev
                     TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                     TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["売上日時"].Value);
+                    date.Value = Convert.ToDateTime(row.Cells["売上日"].Value);
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                     // 非表示ボタンや非表示理由もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
@@ -763,7 +774,7 @@ namespace SalesManagement_SysDev
                     TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                     TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["売上日時"].Value);
+                    date.Value = Convert.ToDateTime(row.Cells["売上日"].Value);
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                     // 非表示ボタンや非表示理由もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();

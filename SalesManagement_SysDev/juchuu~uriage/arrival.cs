@@ -198,10 +198,9 @@ namespace SalesManagement_SysDev
             }
         }
 
-
         private void UpdateArrival()
         {
-            string NyuukaId = TBNyuukaId.Text;
+            string ArId = TBNyuukaId.Text;
             string ShopId = TBShopId.Text;
             string ShainId = TBShainId.Text;
             string KokyakuId = TBKokyakuId.Text;
@@ -209,50 +208,43 @@ namespace SalesManagement_SysDev
             bool NyuukaFlg = NyuukaFlag.Checked;
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
-            DateTime Nyuukodate = date.Value;
+            DateTime Nyuukadate = date.Value;
 
             using (var context = new SalesManagementContext())
             {
-                var arrival = context.TArrivals.SingleOrDefault(o => o.OrId.ToString() == JyutyuId);
+                var arrival = context.TArrivals.SingleOrDefault(o => o.ArId.ToString() == ArId);
                 if (arrival != null)
                 {
-                    arrival.SoId = int.Parse(ShopId);                    // 店舗ID
-                    arrival.EmId = int.Parse(ShainId);                   // 社員ID（null許容）
-                    arrival.ClId = int.Parse(KokyakuId);                 // クライアントID
-                    arrival.OrId = int.Parse(JyutyuId);                  // 受注ID
-                    arrival.ArDate = Nyuukodate;                         // 入荷日
-                    arrival.ArStateFlag = NyuukaFlg ? 2 : 0;             // 入荷状態フラグ
-                    arrival.ArFlag = DelFlg ? 1 : 0;                     // 削除フラグ
+                    arrival.SoId = int.Parse(ShopId);
+                    arrival.EmId = int.Parse(ShainId);
+                    arrival.ClId = int.Parse(KokyakuId);
+                    arrival.OrId = int.Parse(JyutyuId);
+                    arrival.ArDate = Nyuukadate;
+                    arrival.ArStateFlag = NyuukaFlg ? 2 : 0;
+                    arrival.ArFlag = DelFlg ? 1 : 0;
                     arrival.ArHidden = Riyuu;
 
-                    // NyuukaFlagがチェックされている場合、入荷詳細の確認を行う
                     if (NyuukaFlg)
                     {
-                        // 入荷詳細が存在するか確認
                         var arrivalDetailsExist = context.TArrivalDetails
-                            .Any(ad => ad.ArId == arrival.ArId); // ArId が一致する入荷詳細が存在するか確認
-
+                            .Any(ad => ad.ArId == arrival.ArId);
                         if (!arrivalDetailsExist)
                         {
-                            // 入荷詳細が存在しない場合はエラーメッセージを表示
                             MessageBox.Show("入荷詳細が登録されていません。");
-                            return; // 処理を中断
+                            return;
                         }
 
-                        // 入荷詳細が存在する場合、入荷確認処理を実行
                         ArrivalConfirm(arrival.ArId);
                     }
 
-                    // 更新を保存
                     try
                     {
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
-                        DisplayArrivals(); // 更新後に入荷情報を再表示
+                        DisplayArrivals();
                     }
                     catch (DbUpdateException ex)
                     {
-                        // inner exception の詳細を表示
                         if (ex.InnerException != null)
                         {
                             MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
@@ -264,7 +256,6 @@ namespace SalesManagement_SysDev
                     }
                     catch (Exception ex)
                     {
-                        // その他のエラーに対処する
                         MessageBox.Show($"エラーが発生しました: {ex.Message}");
                     }
                 }
@@ -690,13 +681,6 @@ namespace SalesManagement_SysDev
         {
             // b_FlagSelectorのテキストを現在の状態に合わせる
             b_FormSelector.Text = arrivalFlag;
-        }
-
-
-
-        private void Nyuukaflag_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)

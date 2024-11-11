@@ -239,14 +239,12 @@ namespace SalesManagement_SysDev
                     shipping.SoId = int.Parse(shopID);
                     shipping.EmId = int.Parse(shainID);
                     shipping.ClId = int.Parse(kokyakuID);
-                    shipping.ShId = int.Parse(shukkaID);
                     shipping.OrId = int.Parse(jyutyuID);
                     shipping.ShFinishDate = shukkaDate;
                     shipping.ShFlag = delFlag ? 1 : 0;
                     shipping.ShStateFlag = shipFlag ? 2 : 0;
                     shipping.ShHidden = riyuu;
 
-                    MessageBox.Show("ここ");
                     // 出荷フラグがチェックされている場合、出荷詳細の確認を行う
                     if (shipFlag)
                     {
@@ -262,7 +260,6 @@ namespace SalesManagement_SysDev
 
                         // 出荷詳細が存在する場合、出荷確認処理を実行
                         ShippingConfirm(shipping.ShId);
-                        MessageBox.Show("出荷詳細");
                     }
 
                     // 更新を保存

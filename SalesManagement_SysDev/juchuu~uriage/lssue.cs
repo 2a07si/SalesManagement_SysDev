@@ -199,7 +199,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
         private void UpdateIssue()
         {
             string SyukkoId = TBSyukkoId.Text;
@@ -212,30 +211,62 @@ namespace SalesManagement_SysDev
             string Riyuu = TBRiyuu.Text;
             DateTime Syukkodate = date.Value;
 
-
-
             using (var context = new SalesManagementContext())
             {
                 var issue = context.TSyukkos.SingleOrDefault(o => o.SyId.ToString() == SyukkoId);
                 if (issue != null)
                 {
-                    issue.SoId = int.Parse(ShopId);                    // 店舗ID
-                    issue.EmId = int.Parse(ShainId);// 社員ID（null許容）
-                    issue.ClId = int.Parse(KokyakuId);                 // クライアントID
-                    issue.OrId = int.Parse(JyutyuId);                       // 受注ID
-                    issue.SyDate = Syukkodate;                         // 出庫日
-                    issue.SyStateFlag = SyukkoFlg ? 2 : 0;             // 出庫状態フラグ
-                    issue.SyFlag = DelFlg ? 1 : 0;                     // 削除フラグ
-                    issue.SyHidden = Riyuu;
+                    issue.SoId = int.Parse(ShopId);                   // 店舗ID
+                    issue.EmId = int.Parse(ShainId);                  // 社員ID
+                    issue.ClId = int.Parse(KokyakuId);                // クライアントID
+                    issue.OrId = int.Parse(JyutyuId);                 // 受注ID
+                    issue.SyDate = Syukkodate;                        // 出庫日
+                    issue.SyStateFlag = SyukkoFlg ? 2 : 0;            // 出庫状態フラグ
+                    issue.SyFlag = DelFlg ? 1 : 0;                    // 削除フラグ
+                    issue.SyHidden = Riyuu;                           // 理由
 
-                    context.SaveChanges();
-                    MessageBox.Show("更新が成功しました。");
-                    if(SyukkoFlag.Checked)
+                    // SyukkoFlgがチェックされている場合、出庫詳細の確認を行う
+                    if (SyukkoFlg)
                     {
+                        // 出庫詳細が存在するか確認
+                        var issueDetailsExist = context.TSyukkoDetails
+                            .Any(sd => sd.SyId == issue.SyId); // SyId が一致する出庫詳細が存在するか確認
+
+                        if (!issueDetailsExist)
+                        {
+                            // 出庫詳細が存在しない場合はエラーメッセージを表示
+                            MessageBox.Show("出庫詳細が登録されていません。");
+                            return; // 処理を中断
+                        }
+
+                        // 出庫詳細が存在する場合、出庫確認処理を実行
                         IssueConfirm(int.Parse(JyutyuId), issue.SyId);
                     }
-                    MessageBox.Show("更新が完了しました。");
-                    DisplayIssues();
+
+                    // 更新を保存
+                    try
+                    {
+                        context.SaveChanges();
+                        MessageBox.Show("更新が成功しました。");
+                        DisplayIssues(); // 更新後に出庫情報を再表示
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        // inner exception の詳細を表示
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // その他のエラーに対処する
+                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                    }
                 }
                 else
                 {
@@ -243,8 +274,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
 
         private void RegisterIssue()
         {
@@ -357,9 +386,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
-
 
         private void DisplayIssues()
         {
@@ -664,24 +690,6 @@ namespace SalesManagement_SysDev
         {
             // b_FlagSelectorのテキストを現在の状態に合わせる
             b_FormSelector.Text = issueFlag;
-        }
-
-        // CellClickイベントハンドラ
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-
-
-        private void Syukkoflag_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)

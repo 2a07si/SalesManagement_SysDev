@@ -203,7 +203,6 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
-
         private void UpdateReceivingStock()
         {
             string nyuukoID = TBNyukoID.Text;
@@ -219,16 +218,55 @@ namespace SalesManagement_SysDev
                 var receivingStock = context.TWarehousings.SingleOrDefault(ws => ws.WaId.ToString() == nyuukoID);
                 if (receivingStock != null)
                 {
-                    receivingStock.HaId = int.Parse(haID);
-                    receivingStock.EmId = int.Parse(shainID);
-                    receivingStock.WaDate = nyuukoDate;
-                    receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;
-                    receivingStock.WaDate = nyuukoDate;
-                    receivingStock.WaFlag = delFlag ? 1 : 0;
-                    receivingStock.WaHidden = riyuu;
-                    context.SaveChanges();
-                    MessageBox.Show("更新が成功しました。");
-                    DisplayReceivingStocks();
+                    receivingStock.HaId = int.Parse(haID);                 // 発注ID
+                    receivingStock.EmId = int.Parse(shainID);              // 社員ID
+                    receivingStock.WaDate = nyuukoDate;                    // 入庫日
+                    receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;       // 入庫棚フラグ
+                    receivingStock.WaFlag = delFlag ? 1 : 0;               // 削除フラグ
+                    receivingStock.WaHidden = riyuu;                       // 理由
+
+                    // NyuukoFlagがチェックされている場合、入庫詳細の確認を行う
+                    if (nyuukoFlag)
+                    {
+                        // 入庫詳細が存在するか確認
+                        var receivingDetailsExist = context.TWarehousingDetails
+                            .Any(wd => wd.WaId == receivingStock.WaId); // WaId が一致する入庫詳細が存在するか確認
+
+                        if (!receivingDetailsExist)
+                        {
+                            // 入庫詳細が存在しない場合はエラーメッセージを表示
+                            MessageBox.Show("入庫詳細が登録されていません。");
+                            return; // 処理を中断
+                        }
+
+                        // 入庫詳細が存在する場合、入庫確認処理を実行
+                        ReceiveConfirm(receivingStock.WaId);
+                    }
+
+                    // 更新を保存
+                    try
+                    {
+                        context.SaveChanges();
+                        MessageBox.Show("更新が成功しました。");
+                        DisplayReceivingStocks(); // 更新後に入庫情報を再表示
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        // inner exception の詳細を表示
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // その他のエラーに対処する
+                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                    }
                 }
                 else
                 {
@@ -679,6 +717,37 @@ namespace SalesManagement_SysDev
             catch (Exception ex)
             {
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ReceiveConfirm(int WaId)
+        {
+            MessageBox.Show("登録開始します");
+            using (var context = new SalesManagementContext())
+            {
+                // 引き継ぐ情報を宣言 
+                var receive = context.TWarehousingDetails.SingleOrDefault(o => o.WaId == WaId);
+
+                if (receive == null)
+                {
+                    throw new Exception("入庫IDが見つかりません。");
+                }
+                // 注文情報をTChumonに追加
+                var newStock = new TStock
+                {
+                   PrId = receive.PrId,
+                   StQuantity = receive.WaQuantity,
+                };
+
+                try
+                {
+                    context.TStocks.Add(newStock);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("TStockへの登録に失敗しました: " + ex.Message);
+                }
             }
         }
 

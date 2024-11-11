@@ -139,7 +139,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 Global.EmployeeID = 0; // または適切な初期値にリセット  
                 Global.EmployeeName = string.Empty;
                 Global.PositionName = string.Empty;
-
+                Global.EmployeePermission = 0;
                 this.Close(); // 現在のフォームを閉じる 
                 F_login loginForm = new F_login(); // ログインフォームを作成 
                 loginForm.Show(); // ログインフォームを表示 

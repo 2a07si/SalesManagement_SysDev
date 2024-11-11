@@ -706,9 +706,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
-
         private void ToggleOrderSelection()
         {
             isOrderSelected = !isOrderSelected;
@@ -718,7 +715,6 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
 
-
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
@@ -727,7 +723,6 @@ namespace SalesManagement_SysDev
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
         }
-
 
         private void UpdateFlagButtonText()
         {
@@ -785,21 +780,6 @@ namespace SalesManagement_SysDev
                 TBSyohinId.Text = row.Cells["商品ID"].Value.ToString();
                 TBSuryou.Text = row.Cells["数量"].Value.ToString();
             }
-        }
-
-        private void Orderflag_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -985,9 +965,7 @@ namespace SalesManagement_SysDev
 
                     MessageBox.Show("登録が完了しました");
 
-                
-                }
-                
+                }   
             }
             catch (InvalidOperationException ex)
             {
