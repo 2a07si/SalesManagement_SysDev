@@ -746,7 +746,4 @@ namespace SalesManagement_SysDev
             }
         }
     }
-
-
-
 }

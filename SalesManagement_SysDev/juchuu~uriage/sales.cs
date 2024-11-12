@@ -641,7 +641,7 @@ namespace SalesManagement_SysDev
                         売上ID = sa.SaId,
                         商品ID = sa.PrId,
                         数量 = sa.SaQuantity,
-                        合計金額 = sa.SaPrTotalPrice
+                        合計金額 = sa.SaPrTotalPrice.ToString("N0")
                     }).ToList();
                 }
                 else

@@ -251,7 +251,7 @@ namespace SalesManagement_SysDev
                             {
                                 // 在庫が不足している場合 
                                 var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
-
+                                stock.StQuantity -= detail.ChQuantity;
                                 // 発注処理を行う 
                                 ProductOrder(int.Parse(OrderId), int.Parse(ChumonId), shortageQuantity);
                                 MessageBox.Show($"商品ID: {detail.PrId}の在庫が不足しているため発注処理を行いました。");

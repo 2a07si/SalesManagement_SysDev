@@ -35,30 +35,18 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void b_PassChange_Click(object sender, EventArgs e)
         {
-            p_PC.Visible = true;
-            p_NA.Visible = false;
         }
 
         private void b_NewAccount_Click(object sender, EventArgs e)
         {
-            p_NA.Visible = true;
-            p_PC.Visible = false;
         }
 
         private void LoginKanriGamen_Load(object sender, EventArgs e)
         {
-            p_PC.Visible = true;
-            p_NA.Visible = false;
         }
 
         private void clear_Click(object sender, EventArgs e)
         {
-            tb_NAJ.Text = "";
-            tb_NAP.Text = "";
-            tb_NAUI.Text = "";
-            tb_PCNP.Text = "";
-            tb_PCOP.Text = "";
-            tb_PCUI.Text = "";
         }
 
         private void b_PCOK_Click(object sender, EventArgs e)
@@ -68,28 +56,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
         }
         private void UpdatePassword()
         {
-            int userID = int.Parse(tb_PCUI.Text);
-            string oldPassword = tb_PCOP.Text;
-            string newPassword = tb_PCNP.Text;
-
-            using (var context = new SalesManagementContext())
-            {
-                // userIDとoldPasswordでユーザーを検索
-                var employee = context.MEmployees.SingleOrDefault(e => e.EmId == userID && e.EmPassword == oldPassword);
-
-                if (employee != null)
-                {
-                    // パスワードを新しいものに変更
-                    employee.EmPassword = newPassword;
-
-                    context.SaveChanges();
-                    MessageBox.Show("パスワードの更新が成功しました。");
-                }
-                else
-                {
-                    MessageBox.Show("ユーザーIDまたは旧パスワードが正しくありません。");
-                }
-            }
         }
     }
 }
