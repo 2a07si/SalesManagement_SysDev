@@ -167,13 +167,14 @@ namespace SalesManagement_SysDev
                         HandleShippingDetailOperation();
                         break;
                     default:
-                        MessageBox.Show("現在のモードは無効です。");
+
+                        MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void HandleShippingOperation()
@@ -193,7 +194,7 @@ namespace SalesManagement_SysDev
                     SearchShipping();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -214,7 +215,7 @@ namespace SalesManagement_SysDev
                     SearchShippingDetails();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -254,7 +255,7 @@ namespace SalesManagement_SysDev
                         if (!shippingDetailsExist)
                         {
                             // 出荷詳細が存在しない場合はエラーメッセージを表示
-                            MessageBox.Show("出荷詳細が登録されていません。");
+                            MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
 
@@ -279,7 +280,7 @@ namespace SalesManagement_SysDev
                         }
                         else
                         {
-                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
@@ -290,7 +291,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出荷情報が見つかりません。");
+                    MessageBox.Show("該当する出荷情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -312,7 +313,7 @@ namespace SalesManagement_SysDev
                 int shop;
                 if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
                 {
-                    MessageBox.Show("営業所IDが存在しません。");
+                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -320,14 +321,14 @@ namespace SalesManagement_SysDev
                 int employeeId;
                 if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
-                    MessageBox.Show("社員IDが存在しません。");
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int kokyaku;
                 if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
-                    MessageBox.Show("顧客IDが存在しません。");
+                    MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -335,7 +336,7 @@ namespace SalesManagement_SysDev
                 int juchu;
                 if (!int.TryParse(jyutyuID, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
-                    MessageBox.Show("受注IDが存在しません。");
+                    MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -368,7 +369,7 @@ namespace SalesManagement_SysDev
 
                         if (shipmentDetails.Count == 0)
                         {
-                            MessageBox.Show("出荷詳細が登録されていません。");
+                            MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 出荷詳細がない場合は処理を中止
                         }
 
@@ -393,18 +394,18 @@ namespace SalesManagement_SysDev
                         }
                         else
                         {
-                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
                     {
                         // その他のエラーに対処する
-                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                        MessageBox.Show("エラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("既に出荷情報が存在しています。");
+                    MessageBox.Show("既に出荷情報が存在しています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -436,7 +437,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void SearchShipping()
@@ -514,7 +515,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出荷情報が見つかりません。");
+                    MessageBox.Show("該当する出荷情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア  
                 }
             }
@@ -544,7 +545,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出荷詳細が見つかりません。");
+                    MessageBox.Show("該当する出荷詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -560,7 +561,7 @@ namespace SalesManagement_SysDev
                 int shukka;
                 if (!int.TryParse(shukkaID, out shukka) || !context.TShipments.Any(s => s.ShId == shukka))
                 {
-                    MessageBox.Show("出荷IDが存在しません。");
+                    MessageBox.Show("出荷IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -568,7 +569,7 @@ namespace SalesManagement_SysDev
                 int shouhin;
                 if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(e => e.PrId == shouhin))
                 {
-                    MessageBox.Show("商品IDが存在しません。");
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var newShippingDetail = new TShipmentDetail
@@ -613,7 +614,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -669,7 +670,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出荷詳細が見つかりません。");
+                    MessageBox.Show("該当する出荷詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -850,6 +851,8 @@ namespace SalesManagement_SysDev
 
                 if (shipment == null)
                 {
+                    MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     throw new Exception("出荷IDが見つかりません。");
                 }
 
