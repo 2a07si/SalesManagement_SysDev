@@ -64,7 +64,7 @@
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
-            B_iti = new Button();
+            b_iti = new Button();
             label2 = new Label();
             label10 = new Label();
             checkBox_2 = new CheckBox();
@@ -437,17 +437,17 @@
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
             // 
-            // B_iti
+            // b_iti
             // 
-            B_iti.BackColor = Color.FromArgb(190, 255, 200);
-            B_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            B_iti.Location = new Point(510, 70);
-            B_iti.Name = "B_iti";
-            B_iti.Size = new Size(150, 70);
-            B_iti.TabIndex = 2;
-            B_iti.Text = "一覧";
-            B_iti.UseVisualStyleBackColor = false;
-            B_iti.Click += B_iti_Click;
+            b_iti.BackColor = Color.FromArgb(190, 255, 200);
+            b_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            b_iti.Location = new Point(490, 70);
+            b_iti.Name = "b_iti";
+            b_iti.Size = new Size(150, 70);
+            b_iti.TabIndex = 2;
+            b_iti.Text = "一覧";
+            b_iti.UseVisualStyleBackColor = false;
+            b_iti.Click += b_iti_Click;
             // 
             // label2
             // 
@@ -488,7 +488,7 @@
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBox_2);
             Controls.Add(label2);
-            Controls.Add(B_iti);
+            Controls.Add(b_iti);
             Controls.Add(b_kakutei);
             Controls.Add(label10);
             Controls.Add(clear);
@@ -555,7 +555,7 @@
         private MaskedTextBox TBRiyuu;
         private Label label14;
         private Label label12;
-        private Button B_iti;
+        private Button b_iti;
         private Button Next;
         private Button Prev;
         private Label label1;

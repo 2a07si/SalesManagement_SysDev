@@ -41,7 +41,8 @@ namespace SalesManagement_SysDev
                 b_acc,
                 b_shi,
                 b_sal,
-                b_lss
+                b_lss,
+                b_arr
             });
 
             b_FormSelector.Text = "←通常";

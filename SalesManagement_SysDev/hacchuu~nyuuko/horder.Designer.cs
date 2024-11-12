@@ -507,7 +507,7 @@
             // checkBoxDateFilter
             // 
             checkBoxDateFilter.AutoSize = true;
-            checkBoxDateFilter.Location = new Point(961, 8);
+            checkBoxDateFilter.Location = new Point(967, 17);
             checkBoxDateFilter.Name = "checkBoxDateFilter";
             checkBoxDateFilter.Size = new Size(225, 29);
             checkBoxDateFilter.TabIndex = 275;
@@ -517,7 +517,7 @@
             // checkBox_2
             // 
             checkBox_2.AutoSize = true;
-            checkBox_2.Location = new Point(687, 8);
+            checkBox_2.Location = new Point(680, 17);
             checkBox_2.Name = "checkBox_2";
             checkBox_2.Size = new Size(225, 29);
             checkBox_2.TabIndex = 276;

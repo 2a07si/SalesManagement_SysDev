@@ -233,7 +233,7 @@ namespace SalesManagement_SysDev
                         }
 
                         // 発注詳細が存在する場合、発注確認処理を実行
-                        
+
                         HorderConfirm(hattyu.HaId);
                     }
 
@@ -406,7 +406,7 @@ namespace SalesManagement_SysDev
                         社員ID = h.EmId,
                         発注年月日 = h.HaDate,
                         発注状態 = NyuukoFlag.Checked ? 2 : 1,
-                        非表示フラグ = DelFlag.Checked ? 1:0
+                        非表示フラグ = DelFlag.Checked ? 1 : 0
                     }).ToList();
                 }
                 else
@@ -579,7 +579,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-        
+
         private void ToggleHattyuSelection()
         {
             isOrderSelected = !isOrderSelected;
@@ -767,7 +767,7 @@ namespace SalesManagement_SysDev
                     WaQuantity = hattyuDetail.HaQuantity
 
                 };
-                
+
                 try
                 {
                     context.TWarehousingDetails.Add(newWarehousingDetail);
