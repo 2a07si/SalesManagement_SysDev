@@ -790,7 +790,6 @@ namespace SalesManagement_SysDev
         {
             try
             {
-
                 // クリックした行のインデックスを取得
                 int rowIndex = e.RowIndex;
 
@@ -810,7 +809,7 @@ namespace SalesManagement_SysDev
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                     // 非表示ボタンや非表示理由もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    TBRiyuu.Text = row.Cells["非表示理由"].ToString();
                 }
             }
             catch (Exception ex)

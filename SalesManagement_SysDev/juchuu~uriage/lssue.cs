@@ -815,8 +815,6 @@ namespace SalesManagement_SysDev
                     throw new Exception("TArrivalDetailへの登録に失敗しました:" + ex.Message);
                 }
             }
-
-        
         
         }
 
