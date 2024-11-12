@@ -797,21 +797,17 @@ namespace SalesManagement_SysDev
         {
             if (panelId == 1)
             {
-                // パネル1内のコントロールがフォーカスされた場合の動作
-                if (b_FormSelector.Text == "詳細→")
-                {
+                
                     ToggleOrderSelection();
                     UpdateFlagButtonText();
-                }
+                
             }
             else if (panelId == 2)
             {
-                // パネル2内のコントロールがフォーカスされた場合の動作
-                if (b_FormSelector.Text == "←通常")
-                {
+                
                     ToggleOrderSelection();
                     UpdateFlagButtonText();
-                }
+                
             }
         }
     }
