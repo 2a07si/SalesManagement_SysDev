@@ -40,7 +40,6 @@
             DelFlag = new CheckBox();
             TBRiyuu = new MaskedTextBox();
             label17 = new Label();
-            date = new DateTimePicker();
             TBSafeNum = new MaskedTextBox();
             label18 = new Label();
             label7 = new Label();
@@ -71,6 +70,7 @@
             label2 = new Label();
             label1 = new Label();
             checkBox_2 = new CheckBox();
+            date = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -87,11 +87,12 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1400, 490);
             dataGridView1.TabIndex = 23;
-            dataGridView1.CellClick += dataGridView1_CellClick_1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(160, 220, 190);
+            panel1.Controls.Add(date);
             panel1.Controls.Add(TBColor);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(TBModel);
@@ -101,7 +102,6 @@
             panel1.Controls.Add(DelFlag);
             panel1.Controls.Add(TBRiyuu);
             panel1.Controls.Add(label17);
-            panel1.Controls.Add(date);
             panel1.Controls.Add(TBSafeNum);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(label7);
@@ -202,15 +202,6 @@
             label17.Size = new Size(102, 25);
             label17.TabIndex = 19;
             label17.Text = "非表示理由";
-            // 
-            // date
-            // 
-            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(550, 70);
-            date.Name = "date";
-            date.Size = new Size(160, 31);
-            date.TabIndex = 17;
-            date.ValueChanged += date_ValueChanged;
             // 
             // TBSafeNum
             // 
@@ -515,6 +506,14 @@
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
+            // date
+            // 
+            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            date.Location = new Point(552, 70);
+            date.Name = "date";
+            date.Size = new Size(165, 31);
+            date.TabIndex = 24;
+            // 
             // merchandise
             // 
             AcceptButton = b_kakutei;
@@ -600,7 +599,7 @@
         private Button Prev;
         private Label label16;
         private MaskedTextBox TBColor;
-        private DateTimePicker date;
         private CheckBox checkBox_2;
+        private DateTimePicker date;
     }
 }

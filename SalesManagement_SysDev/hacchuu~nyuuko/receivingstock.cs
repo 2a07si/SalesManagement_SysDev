@@ -9,6 +9,7 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using SalesManagement_SysDev;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 namespace SalesManagement_SysDev
@@ -594,7 +595,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
 
-        private void b_FormSelector_Click_1(object sender, EventArgs e)
+        private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理 
             ToggleOrderSelection();
@@ -623,9 +624,9 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
 
                     // 各テキストボックスにデータを入力  
-                    TBNyukoID.Text = row.Cells["入庫ID"].Value.ToString();
-                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                    TBNyukoID.Text = row.Cells["入庫ID"].Value.ToString() ?? string.Empty;
+                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
+                    TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
                     date.Value = Convert.ToDateTime(row.Cells["入庫日"].Value);
                     NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫フラグ"].Value);
                     DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
@@ -663,92 +664,69 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得  
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック  
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得  
-                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力  
-                    TBNyukoID.Text = row.Cells["入庫ID"].Value.ToString() ?? string.Empty;
-                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
-                    date.Value = Convert.ToDateTime(row.Cells["入庫年月日"].Value);
-                    NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫済フラグ"].Value);
-                    DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得   
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック   
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得   
-                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力  
-                    TBNyuukoSyosaiID.Text = row.Cells["入庫詳細ID"].Value.ToString() ?? string.Empty;
-                    TBNyuukoIDS.Text = row.Cells["入庫ID"].Value.ToString() ?? string.Empty;
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
-                    TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void ReceiveConfirm(int WaId)
         {
             MessageBox.Show("登録開始します");
+            MessageBox.Show("ジャムおじさん");
             using (var context = new SalesManagementContext())
             {
-                // 引き継ぐ情報を宣言 
+                MessageBox.Show("バタコさん");
+                // 入庫情報を取得
                 var receive = context.TWarehousingDetails.SingleOrDefault(o => o.WaId == WaId);
-
+                MessageBox.Show("コキンちゃん");
                 if (receive == null)
                 {
                     throw new Exception("入庫IDが見つかりません。");
                 }
-                // 情報を追加
-                var newStock = new TStock
+                MessageBox.Show("赤ちゃんマン");
+                // 在庫テーブルで商品IDが存在するか検索
+                var existingStock = context.TStocks.FirstOrDefault(s => s.PrId == receive.PrId);
+                MessageBox.Show("カバオ");
+                if (existingStock == null)
                 {
-                    PrId = receive.PrId,
-                    StQuantity = receive.WaQuantity,
-                };
+                    MessageBox.Show("食パンマン");
+                    // 存在しない場合、新しい在庫行を追加
+                    var newStock = new TStock
+                    {
 
-                try
-                {
-                    context.TStocks.Add(newStock);
-                    context.SaveChanges();
+                        PrId = receive.PrId,
+                        StQuantity = receive.WaQuantity,
+                    };
+                    MessageBox.Show("カレーパンマン");
+                    try
+                    {
+                        MessageBox.Show("ドキンちゃん");
+                        context.TStocks.Add(newStock);
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("カレーパンマン");
+                        throw new Exception("TStockへの登録に失敗しました: " + ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    throw new Exception("TStockへの登録に失敗しました: " + ex.Message);
+                    // 存在する場合、数量を更新
+                    existingStock.StQuantity += receive.WaQuantity;
+                    MessageBox.Show("バイキンマン");
+                    try
+                    {
+                        MessageBox.Show("カビルンルン");
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("あんぱんまん");
+                        throw new Exception("在庫の数量更新に失敗しました: " + ex.Message);
+                    }
                 }
             }
         }
 
-
-
     }
+
+
+
 }

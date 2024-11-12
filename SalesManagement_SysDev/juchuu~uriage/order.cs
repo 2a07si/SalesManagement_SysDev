@@ -819,12 +819,12 @@ namespace SalesManagement_SysDev
                 var newSyukko = new TSyukko
                 {
                     SoId = order.SoId,
-                    EmId = order.EmId,
+                    EmId = null,
                     ClId = order.ClId,
                     OrId = order.OrId,
                     SyFlag = SyFlag,                  // ここでフラグを設定
                     SyHidden = SyHidden,              // 非表示理由も設定
-                    SyDate = order.ChDate,
+                    SyDate = null,
                     SyStateFlag = 0
                 };
 

@@ -32,11 +32,6 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             /* DateTime dateTime = DateTime.Now;
@@ -66,10 +61,7 @@ namespace SalesManagement_SysDev
             formChanger.NavigateToCustomerForm();
         }
 
-        private void date_ValueChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void merchandise_Load(object sender, EventArgs e)
         {
@@ -409,41 +401,5 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得
-                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                    TBMakerId.Text = row.Cells["メーカーID"].Value.ToString();
-                    TBSyohinName.Text = row.Cells["商品名"].Value.ToString();
-                    TBSell.Text = row.Cells["値段"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["発売日"].Value);
-                    TBSafeNum.Text = row.Cells["安全在庫数"].Value.ToString();
-                    TBSyoubunrui.Text = row.Cells["小分類ID"].Value.ToString();
-                    TBModel.Text = row.Cells["型番"].Value.ToString();
-                    TBColor.Text = row.Cells["色"].Value.ToString();
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
-                    // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        
     }
 }
