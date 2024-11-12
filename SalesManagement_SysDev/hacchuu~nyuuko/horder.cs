@@ -741,8 +741,8 @@ namespace SalesManagement_SysDev
                 var newWarehousing = new TWarehousing
                 {
                     HaId = HaId,
-                    EmId = horder.EmId,
-                    WaDate = horder.HaDate,
+                    EmId = null,
+                    //datetime
                     WaShelfFlag = 0,
                     WaFlag = 0
                 };

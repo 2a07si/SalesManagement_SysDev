@@ -856,11 +856,11 @@ namespace SalesManagement_SysDev
                 // 情報追加
                 var newSales = new TSale
                 {
-                    
+                    EmId = shipment.EmId ?? 0,  // 社員ID
                     SoId = shipment.SoId,  // 営業所ID    
                     ClId = shipment.ClId,  // 顧客ID    
                     OrId = shipment.OrId,  // 受注ID
-                    
+                    SaDate = shipment.ShFinishDate ?? DateTime.MinValue,
                     SaFlag = 0
                 };
 
