@@ -661,14 +661,6 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isSaleSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
 
-        private void b_FormSelector_Click(object sender, EventArgs e)
-        {
-            // 状態を切り替える処理
-            ToggleSaleSelection();
-
-            // b_FormSelectorのテキストを現在の状態に更新
-            UpdateFlagButtonText();
-        }
 
         private void UpdateFlagButtonText()
         {
@@ -736,7 +728,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void b_FormSelector_Click_1(object sender, EventArgs e)
+        private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
             ToggleSaleSelection();
