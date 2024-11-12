@@ -31,12 +31,8 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             this.mainForm = new Form();
             this.formChanger = new ClassChangeForms(this);
-            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
-
-
+            this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット   
         }
-
-
 
         private void close_Click(object sender, EventArgs e)
         {
@@ -47,7 +43,6 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateToHorderForm();
         }
-
 
         private void receivingstock_Load(object sender, EventArgs e)
         {
@@ -61,17 +56,6 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayReceivingStocks();
             DisplayReceivingStockDetails();
-
-            if (Global.PositionName == "管理者")
-            {
-                b_reg.Enabled = true;
-                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
-            }
-            else
-            {
-                b_reg.Enabled = false;
-                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
-            }
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -105,7 +89,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click_1(object sender, EventArgs e) => UpdateStatus();
+        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
 
         private void UpdateStatus()
         {
@@ -119,6 +103,8 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplayReceivingStocks();
+            DisplayReceivingStockDetails();
         }
 
         private void B_iti_Click(object sender, EventArgs e) => ListStatus();
@@ -203,6 +189,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+
         private void UpdateReceivingStock()
         {
             string nyuukoID = TBNyukoID.Text;
@@ -218,41 +205,51 @@ namespace SalesManagement_SysDev
                 var receivingStock = context.TWarehousings.SingleOrDefault(ws => ws.WaId.ToString() == nyuukoID);
                 if (receivingStock != null)
                 {
-                    receivingStock.HaId = int.Parse(haID);                 // 発注ID
-                    receivingStock.EmId = int.Parse(shainID);              // 社員ID
-                    receivingStock.WaDate = nyuukoDate;                    // 入庫日
-                    receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;       // 入庫棚フラグ
-                    receivingStock.WaFlag = delFlag ? 1 : 0;               // 削除フラグ
-                    receivingStock.WaHidden = riyuu;                       // 理由
+                    receivingStock.HaId = int.Parse(haID);                 // 発注ID 
+                    receivingStock.EmId = int.Parse(shainID);              // 社員ID 
+                    receivingStock.WaDate = nyuukoDate;                    // 入庫日 
+                    receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;       // 入庫棚フラグ 
+                    receivingStock.WaFlag = delFlag ? 1 : 0;               // 削除フラグ 
+                    receivingStock.WaHidden = riyuu;                       // 理由 
 
-                    // NyuukoFlagがチェックされている場合、入庫詳細の確認を行う
+                    // NyuukoFlagがチェックされている場合、入庫詳細の確認を行う 
                     if (nyuukoFlag)
                     {
-                        // 入庫詳細が存在するか確認
+                        // 入庫詳細が存在するか確認 
                         var receivingDetailsExist = context.TWarehousingDetails
-                            .Any(wd => wd.WaId == receivingStock.WaId); // WaId が一致する入庫詳細が存在するか確認
+                            .Any(wd => wd.WaId == receivingStock.WaId); // WaId が一致する入庫詳細が存在するか確認 
 
                         if (!receivingDetailsExist)
                         {
-                            // 入庫詳細が存在しない場合はエラーメッセージを表示
+                            // 入庫詳細が存在しない場合はエラーメッセージを表示 
                             MessageBox.Show("入庫詳細が登録されていません。");
-                            return; // 処理を中断
+                            return; // 処理を中断 
                         }
 
-                        // 入庫詳細が存在する場合、入庫確認処理を実行
+                        MessageBox.Show("入庫確定処理");
+                        // 入庫詳細が存在する場合、入庫確認処理を実行 
                         ReceiveConfirm(receivingStock.WaId);
+
+                        // 在庫更新メッセージを保存
+                        var receivingDetails = context.TWarehousingDetails
+                            .Where(wd => wd.WaId == receivingStock.WaId);
+
+                        foreach (var detail in receivingDetails)
+                        {
+                            Global.AddStockUpdateMessage(detail.PrId, detail.WaQuantity); // メッセージ追加
+                        }
                     }
 
-                    // 更新を保存
+                    // 更新を保存 
                     try
                     {
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
-                        DisplayReceivingStocks(); // 更新後に入庫情報を再表示
+                        DisplayReceivingStocks(); // 更新後に入庫情報を再表示 
                     }
                     catch (DbUpdateException ex)
                     {
-                        // inner exception の詳細を表示
+                        // inner exception の詳細を表示 
                         if (ex.InnerException != null)
                         {
                             MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
@@ -264,7 +261,7 @@ namespace SalesManagement_SysDev
                     }
                     catch (Exception ex)
                     {
-                        // その他のエラーに対処する
+                        // その他のエラーに対処する 
                         MessageBox.Show($"エラーが発生しました: {ex.Message}");
                     }
                 }
@@ -350,15 +347,15 @@ namespace SalesManagement_SysDev
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var receivingStocks = checkBox_2.Checked
                         ? context.TWarehousings.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TWarehousings.Where(o => o.WaFlag != 1 || o.WaShelfFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.TWarehousings.Where(o => o.WaFlag != 1 && o.WaShelfFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = receivingStocks.Select(ws => new
                     {
                         入庫ID = ws.WaId,
                         発注ID = ws.HaId,
                         社員ID = ws.EmId,
                         入庫年月日 = ws.WaDate,
-                        入庫済フラグ = ws.WaFlag,
-                        非表示フラグ = ws.WaShelfFlag,
+                        入庫済フラグ = ws.WaShelfFlag,
+                        非表示フラグ = ws.WaFlag,
                         非表示理由 = ws.WaHidden
 
                     }).ToList();
@@ -684,7 +681,7 @@ namespace SalesManagement_SysDev
                     TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString();
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                     date.Value = Convert.ToDateTime(row.Cells["入庫年月日"].Value);
-                    NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫フラグ"].Value);
+                    NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫済フラグ"].Value);
                     DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
                 }
             }
@@ -732,7 +729,7 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("入庫IDが見つかりません。");
                 }
-                // 注文情報をTChumonに追加
+                // 情報を追加
                 var newStock = new TStock
                 {
                     PrId = receive.PrId,
@@ -750,6 +747,8 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
+
 
     }
 }

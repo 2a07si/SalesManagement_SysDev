@@ -49,7 +49,7 @@ namespace SalesManagement_SysDev
             DisplayShipping();
             DisplayShippingDetails();
 
-            if (Global.PositionName == "管理者")
+            if (Global.EmployeePermission == 1)
             {
                 b_reg.Enabled = true;
             }
@@ -112,14 +112,15 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplayShipping();
+            DisplayShippingDetails();
+
         }
 
         private void b_ser_Click_1(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            DisplayShipping();
-            DisplayShippingDetails();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -672,9 +673,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
-
 
         private void ToggleShippingSelection()
         {

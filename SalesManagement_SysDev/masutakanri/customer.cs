@@ -93,7 +93,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void B_iti_Click(object sender, EventArgs e)
+        private void b_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);

@@ -50,7 +50,7 @@ namespace SalesManagement_SysDev
             DisplaySales();
             DisplaySaleDetails();
 
-            if (Global.PositionName == "管理者")
+            if (Global.EmployeePermission == 1)
             {
                 b_reg.Enabled = true;
             }
@@ -113,14 +113,16 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplaySales();
+            DisplaySaleDetails();
+
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            DisplaySales();
-            DisplaySaleDetails();
+            
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -215,7 +217,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
         private void UpdateSale()
         {
             string jyutyuID = TBJyutyuID.Text;
@@ -251,6 +252,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
         private void RegisterSales()
         {
             try
@@ -317,7 +319,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("登録中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void DisplaySales()
         {
@@ -549,8 +550,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
         private void DisplaySaleDetails()
         {
             try
@@ -564,12 +563,10 @@ namespace SalesManagement_SysDev
                         : saleDetails.Where(od =>
                         {
                             var Sale = context.TSales.FirstOrDefault(o => o.SaId == od.SaId);
-
                             return Sale == null || (Sale.SaFlag != 1);
                         }).ToList();
 
-
-                    dataGridView3.DataSource = saleDetails.Select(sa => new
+                    dataGridView3.DataSource = visibleUriageDetails.Select(sa => new
                     {
                         売上詳細ID = sa.SaDetailId,
                         売上ID = sa.SaId,
@@ -651,9 +648,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
-
         private void ToggleSaleSelection()
         {
             isSaleSelected = !isSaleSelected;
@@ -663,7 +657,6 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isSaleSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
 
-
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
@@ -672,7 +665,6 @@ namespace SalesManagement_SysDev
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
         }
-
 
         private void UpdateFlagButtonText()
         {
@@ -747,11 +739,6 @@ namespace SalesManagement_SysDev
 
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
-        }
-
-        private void label_ename_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)

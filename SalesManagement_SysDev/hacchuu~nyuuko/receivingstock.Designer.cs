@@ -127,6 +127,7 @@
             b_upd.TabIndex = 1;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
+            b_upd.Click += b_upd_Click;
             // 
             // label3
             // 

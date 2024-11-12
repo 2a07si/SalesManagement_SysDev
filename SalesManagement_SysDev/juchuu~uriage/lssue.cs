@@ -50,18 +50,31 @@ namespace SalesManagement_SysDev
             DisplayIssues();
             DisplayIssueDetails();
 
-            if (Global.PositionName == "管理者")
+            if (Global.EmployeePermission == 1)
             {
                 b_reg.Enabled = true;
-                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
             }
             else
             {
                 b_reg.Enabled = false;
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
-        }
 
+            // 在庫不足で非表示となった出庫情報に関するメッセージを取得
+            
+            // 在庫更新メッセージを取得
+            string stockUpdateMessages2 = Global.GetStockUpdateMessages();
+
+            // メッセージが存在する場合、MessageBoxで表示
+            if (!string.IsNullOrEmpty(stockUpdateMessages2))
+            {
+                MessageBox.Show(stockUpdateMessages2, "在庫更新通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("特に在庫更新はありません。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         // メインメニューに戻る 
         private void close_Click(object sender, EventArgs e)
         {
@@ -664,9 +677,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
-
         private void ToggleIssueSelection()
         {
             isIssueSelected = !isIssueSelected;
@@ -675,7 +685,6 @@ namespace SalesManagement_SysDev
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isIssueSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
-
 
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
