@@ -284,7 +284,7 @@ namespace SalesManagement_SysDev
                     catch (Exception ex)
                     {
                         // その他のエラーに対処する
-                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                        MessageBox.Show("エラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -386,7 +386,7 @@ namespace SalesManagement_SysDev
                         // inner exception の詳細を表示する 
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                            MessageBox.Show("エラーの詳細: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
@@ -396,7 +396,7 @@ namespace SalesManagement_SysDev
                     catch (Exception ex)
                     {
                         // その他のエラーに対処する 
-                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                        MessageBox.Show("エラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -815,8 +815,6 @@ namespace SalesManagement_SysDev
                     throw new Exception("TArrivalDetailへの登録に失敗しました:" + ex.Message);
                 }
             }
-
-        
         
         }
 

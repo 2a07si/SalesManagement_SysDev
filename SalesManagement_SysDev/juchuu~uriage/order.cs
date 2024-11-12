@@ -383,7 +383,7 @@ namespace SalesManagement_SysDev
                                 var stock = context.TStocks.SingleOrDefault(s => s.PrId == detail.PrId);
                                 if (stock == null)
                                 {
-                                    MessageBox.Show($"商品ID: {detail.PrId} が存在しません。");
+                                    MessageBox.Show($"商品ID: {detail.PrId} が存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     return;
                                 }
 
