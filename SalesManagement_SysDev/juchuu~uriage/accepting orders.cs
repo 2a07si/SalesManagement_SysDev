@@ -356,7 +356,8 @@ namespace SalesManagement_SysDev
                         var orderDetailExists = context.TOrderDetails.Any(d => d.OrId == newOrder.OrId);
                         if (!orderDetailExists)
                         {
-                            MessageBox.Show("受注詳細が登録されていません。");
+                           
+                            MessageBox.Show("受注詳細が登録されていません。。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                         AcceptionConfirm(newOrder.OrId);
@@ -404,7 +405,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

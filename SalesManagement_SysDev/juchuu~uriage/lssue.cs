@@ -165,13 +165,13 @@ namespace SalesManagement_SysDev
                         HandleIssueDetailOperation();
                         break;
                     default:
-                        MessageBox.Show("現在のモードは無効です。");
+                        MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void HandleIssueOperation()
@@ -191,7 +191,7 @@ namespace SalesManagement_SysDev
                     SearchIssues();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -213,7 +213,7 @@ namespace SalesManagement_SysDev
                     SearchIssueDetails();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -254,7 +254,7 @@ namespace SalesManagement_SysDev
                         if (!issueDetailsExist)
                         {
                             // 出庫詳細が存在しない場合はエラーメッセージを表示
-                            MessageBox.Show("出庫詳細が登録されていません。");
+                            MessageBox.Show("出庫詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
 
@@ -278,7 +278,7 @@ namespace SalesManagement_SysDev
                         }
                         else
                         {
-                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
@@ -289,7 +289,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出庫情報が見つかりません。");
+                    MessageBox.Show("該当する出庫情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -311,28 +311,28 @@ namespace SalesManagement_SysDev
                 int shop;
                 if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
                 {
-                    MessageBox.Show("営業所IDが存在しません。");
+                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int employeeId;
                 if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
-                    MessageBox.Show("社員IDが存在しません。");
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int kokyaku;
                 if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
-                    MessageBox.Show("顧客IDが存在しません。");
+                    MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int juchu;
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
-                    MessageBox.Show("受注IDが存在しません。");
+                    MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -368,7 +368,7 @@ namespace SalesManagement_SysDev
                             if (!syukkoDetailsExist)
                             {
                                 // 出庫詳細が存在しない場合はエラーメッセージを表示
-                                MessageBox.Show("出庫詳細が登録されていません。");
+                                MessageBox.Show("出庫詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return; // 処理を中断 
                             }
 
@@ -390,7 +390,7 @@ namespace SalesManagement_SysDev
                         }
                         else
                         {
-                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                    MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
@@ -401,7 +401,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("既に出庫情報が存在しています。");
+                    MessageBox.Show("既に出庫情報が存在しています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -435,7 +435,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -517,7 +517,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出庫情報が見つかりません。");
+                    MessageBox.Show("該当する出庫情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
                 }
             }
@@ -548,7 +548,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出庫詳細が見つかりません。");
+                    MessageBox.Show("該当する出庫詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -565,7 +565,7 @@ namespace SalesManagement_SysDev
                 int shukko;
                 if (!int.TryParse(SyukkoID, out shukko) || !context.TSyukkos.Any(s => s.SyId == shukko))
                 {
-                    MessageBox.Show("出庫IDが存在しません。");
+                    MessageBox.Show("出庫IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -573,7 +573,7 @@ namespace SalesManagement_SysDev
                 int shouhin;
                 if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
                 {
-                    MessageBox.Show("商品IDが存在しません。");
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var newIssueDetail = new TSyukkoDetail
@@ -618,7 +618,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -677,7 +677,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する出庫詳細が見つかりません。");
+                    MessageBox.Show("該当する出庫詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

@@ -146,13 +146,13 @@ namespace SalesManagement_SysDev
                         HandleHattyuDetailOperation();
                         break;
                     default:
-                        MessageBox.Show("現在のモードは無効です。");
+                        MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -173,7 +173,7 @@ namespace SalesManagement_SysDev
                     SearchHattyus();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -195,7 +195,7 @@ namespace SalesManagement_SysDev
                     SearchHattyuDetails();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -232,7 +232,8 @@ namespace SalesManagement_SysDev
                         if (!hattyuDetailsExist)
                         {
                             // 発注詳細が存在しない場合はエラーメッセージを表示
-                            MessageBox.Show("発注詳細が登録されていません。");
+                        
+                            MessageBox.Show("発注詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
 
@@ -263,13 +264,14 @@ namespace SalesManagement_SysDev
                     catch (Exception ex)
                     {
                         // その他のエラーに対処する
-                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                        MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注情報が見つかりません。");
+                    MessageBox.Show("該当する発注情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
         }
 
@@ -288,7 +290,7 @@ namespace SalesManagement_SysDev
                 int maker;
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaId == maker))
                 {
-                    MessageBox.Show("メーカーIDが存在しません。");
+                    MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -296,7 +298,7 @@ namespace SalesManagement_SysDev
                 int employeeId;
                 if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
-                    MessageBox.Show("社員IDが存在しません。");
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -329,7 +331,7 @@ namespace SalesManagement_SysDev
                     if (!hattyuDetailsExist)
                     {
                         // 発注詳細が存在しない場合はエラーメッセージを表示
-                        MessageBox.Show("発注詳細が登録されていません。");
+                        MessageBox.Show("発注詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return; // 処理を中断
                     }
 
@@ -364,7 +366,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -415,7 +417,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注情報が見つかりません。");
+                    MessageBox.Show("該当する発注情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dataGridView1.DataSource = null;
                 }
             }
@@ -443,7 +445,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注詳細が見つかりません。");
+                    MessageBox.Show("該当する発注詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -460,7 +462,7 @@ namespace SalesManagement_SysDev
                 int hattyuId;
                 if (!int.TryParse(hattyuuID, out hattyuId) || !context.THattyus.Any(h => h.HaId == hattyuId))
                 {
-                    MessageBox.Show("発注IDが存在しません。");
+                    MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -468,7 +470,7 @@ namespace SalesManagement_SysDev
                 int productId;
                 if (!int.TryParse(syohinID, out productId) || !context.MProducts.Any(p => p.PrId == productId))
                 {
-                    MessageBox.Show("商品IDが存在しません。");
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -476,7 +478,7 @@ namespace SalesManagement_SysDev
                 int quantity;
                 if (!int.TryParse(suryou, out quantity) || quantity <= 0)
                 {
-                    MessageBox.Show("数量が無効です。");
+                    MessageBox.Show("数量が無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -522,7 +524,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -579,7 +581,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注詳細が見つかりません。");
+                    MessageBox.Show("該当する発注詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

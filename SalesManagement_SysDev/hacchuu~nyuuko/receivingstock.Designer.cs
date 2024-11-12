@@ -220,7 +220,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 14;
-            dataGridView1.CellClick += dataGridView1_CellClick_1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // date
             // 
@@ -426,7 +426,7 @@
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 8;
-            dataGridView2.CellClick += dataGridView2_CellClick_1;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // TBSuryou
             // 
@@ -502,7 +502,7 @@
             b_FormSelector.TabIndex = 12;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
-            b_FormSelector.Click += b_FormSelector_Click_1;
+            b_FormSelector.Click += b_FormSelector_Click;
             // 
             // checkBox_2
             // 
