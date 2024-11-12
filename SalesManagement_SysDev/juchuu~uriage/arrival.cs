@@ -668,14 +668,22 @@ namespace SalesManagement_SysDev
 
         private void ToggleArrivalSelection()
         {
-            isArrivalSelected = !isArrivalSelected;
-            arrivalFlag = isArrivalSelected ? "←通常" : "詳細→";
+            try
+            {
+                isArrivalSelected = !isArrivalSelected;
+                arrivalFlag = isArrivalSelected ? "←通常" : "詳細→";
 
-            // CurrentStatusのモードを切り替える
-            CurrentStatus.SetMode(isArrivalSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+                // CurrentStatusのモードを切り替える
+                CurrentStatus.SetMode(isArrivalSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("選択状態の切り替え中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void b_FormSelector_Click(object sender, EventArgs e)
+            private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
             ToggleArrivalSelection();

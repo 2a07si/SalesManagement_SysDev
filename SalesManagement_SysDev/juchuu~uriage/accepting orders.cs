@@ -700,18 +700,11 @@ namespace SalesManagement_SysDev
 
         private void ToggleOrderSelection()
         {
-            try
-            {
                 isOrderSelected = !isOrderSelected;
                 orderFlag = isOrderSelected ? "←通常" : "詳細→";
 
                 // CurrentStatusのモードを切り替える 
                 CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("選択状態の切り替え中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void b_FormSelector_Click(object sender, EventArgs e)
