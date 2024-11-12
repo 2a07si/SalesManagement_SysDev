@@ -32,6 +32,10 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+
+            // パネル1とパネル2のコントロールにイベントを設定
+            AddControlEventHandlers(panel1, 1);  // パネル1の場合
+            AddControlEventHandlers(panel3, 2) ;  // パネル2の場合
         }
 
 
@@ -147,13 +151,13 @@ namespace SalesManagement_SysDev
                         HandleOrderDetailOperation();
                         break;
                     default:
-                        MessageBox.Show("現在のモードは無効です。");
+                        MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void HandleOrderOperation()
@@ -173,7 +177,7 @@ namespace SalesManagement_SysDev
                     SearchOrders();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -195,7 +199,7 @@ namespace SalesManagement_SysDev
                     SearchOrderDetails();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -235,7 +239,7 @@ namespace SalesManagement_SysDev
                         var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == int.Parse(ChumonId));
                         if (!orderDetailExists)
                         {
-                            MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。");
+                            MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
@@ -271,7 +275,7 @@ namespace SalesManagement_SysDev
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("出庫処理の保存に失敗しました: " + ex.Message);
+                            MessageBox.Show("出庫処理の保存に失敗しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
@@ -283,7 +287,7 @@ namespace SalesManagement_SysDev
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("更新処理に失敗しました: " + ex.Message);
+                            MessageBox.Show("更新処理に失敗しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -291,7 +295,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する注文情報が見つかりません。");
+                    MessageBox.Show("該当する注文情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -312,28 +316,28 @@ namespace SalesManagement_SysDev
                 int shop;
                 if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
                 {
-                    MessageBox.Show("営業所IDが存在しません。");
+                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int employeeId;
                 if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
-                    MessageBox.Show("社員IDが存在しません。");
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int kokyaku;
                 if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
-                    MessageBox.Show("顧客IDが存在しません。");
+                    MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int juchu;
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
-                    MessageBox.Show("受注IDが存在しません。");
+                    MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -367,7 +371,7 @@ namespace SalesManagement_SysDev
                             var orderDetailExists = context.TChumonDetails.Any(d => d.ChId == newChId);
                             if (!orderDetailExists)
                             {
-                                MessageBox.Show("注文詳細が登録されていません。");
+                                MessageBox.Show("注文詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
 
@@ -424,12 +428,12 @@ namespace SalesManagement_SysDev
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("既に注文情報が存在しています。");
+                    MessageBox.Show("既に注文情報が存在しています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -464,7 +468,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -545,7 +549,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する注文情報が見つかりません。");
+                    MessageBox.Show("該当する注文情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
                 }
             }
@@ -576,7 +580,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する注文詳細が見つかりません。");
+                    MessageBox.Show("該当する注文詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -593,13 +597,13 @@ namespace SalesManagement_SysDev
                 int tyuumon;
                 if (!int.TryParse(chuumon, out tyuumon) || !context.TChumons.Any(s => s.ChId == tyuumon))
                 {
-                    MessageBox.Show("注文IDが存在しません。");
+                    MessageBox.Show("注文IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 int shouhin;
                 if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
                 {
-                    MessageBox.Show("商品IDが存在しません。");
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var newOrderDetail = new TChumonDetail
@@ -645,7 +649,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -704,7 +708,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する注文詳細が見つかりません。");
+                    MessageBox.Show("該当する注文詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -870,6 +874,7 @@ namespace SalesManagement_SysDev
                 }
                 catch (Exception ex)
                 {
+
                     throw new Exception("TSyukkoDetailへの登録に失敗しました: " + ex.Message);
                 }
             }
@@ -887,7 +892,7 @@ namespace SalesManagement_SysDev
                     var order = context.TChumons.SingleOrDefault(o => o.ChId == ChId);
                     if (order == null)
                     {
-                        MessageBox.Show("注文情報が見つかりません。発注処理を中止します。");
+                        MessageBox.Show("注文情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -895,7 +900,7 @@ namespace SalesManagement_SysDev
                     var orderDetail = context.TChumonDetails.SingleOrDefault(o => o.ChId == ChId);
                     if (orderDetail == null)
                     {
-                        MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。");
+                        MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -905,7 +910,7 @@ namespace SalesManagement_SysDev
                     var product = context.MProducts.SingleOrDefault(p => p.PrId == prId);
                     if (product == null)
                     {
-                        MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。");
+                        MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -939,18 +944,46 @@ namespace SalesManagement_SysDev
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show("データの取得に失敗しました: " + ex.Message);
+                MessageBox.Show("データの取得に失敗しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (FormatException ex)
             {
-                MessageBox.Show("データの形式が正しくありません: " + ex.Message);
+                MessageBox.Show("データの形式が正しくありません: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message);
+                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // パネル内のすべてのコントロールにEnterイベントを追加
+        private void AddControlEventHandlers(Control panel, int panelId)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                // コントロールにEnterイベントを追加
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+            }
+        }
+
+        // コントロールが選択（フォーカス）された時
+        private void Control_Enter(object sender, EventArgs e, int panelId)
+        {
+            if (panelId == 1)
+            {
+
+                ToggleOrderSelection();
+                UpdateFlagButtonText();
+
+            }
+            else if (panelId == 2)
+            {
+
+                ToggleOrderSelection();
+                UpdateFlagButtonText();
+
+            }
+        }
     }
 }
 

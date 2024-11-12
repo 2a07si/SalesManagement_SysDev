@@ -28,6 +28,9 @@ namespace SalesManagement_SysDev
             this.Load += new EventHandler(sales_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
+            // パネル1とパネル2のコントロールにイベントを設定
+            AddControlEventHandlers(panel1, 1);  // パネル1の場合
+            AddControlEventHandlers(panel3, 2);  // パネル2の場合
         }
 
         private void sales_Load(object sender, EventArgs e)
@@ -163,13 +166,13 @@ namespace SalesManagement_SysDev
                         HandleSaleDetailOperation();
                         break;
                     default:
-                        MessageBox.Show("現在のモードは無効です。");
+                        MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -190,7 +193,7 @@ namespace SalesManagement_SysDev
                     SearchSales();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -212,7 +215,7 @@ namespace SalesManagement_SysDev
                     SearchSaleDetails();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -248,7 +251,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する売上情報が見つかりません。");
+                    MessageBox.Show("該当する売上情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -345,7 +348,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -419,7 +422,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する売上情報が見つかりません。");
+                    MessageBox.Show("該当する売上情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
                 }
             }
@@ -452,7 +455,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する売上詳細が見つかりません。");
+                    MessageBox.Show("該当する売上詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -579,7 +582,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -642,8 +645,9 @@ namespace SalesManagement_SysDev
                     }).ToList();
                 }
                 else
+
                 {
-                    MessageBox.Show("該当する売上詳細が見つかりません。");
+                        MessageBox.Show("該当する売上詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -657,14 +661,6 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isSaleSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
 
-        private void b_FormSelector_Click(object sender, EventArgs e)
-        {
-            // 状態を切り替える処理
-            ToggleSaleSelection();
-
-            // b_FormSelectorのテキストを現在の状態に更新
-            UpdateFlagButtonText();
-        }
 
         private void UpdateFlagButtonText()
         {
@@ -732,7 +728,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void b_FormSelector_Click_1(object sender, EventArgs e)
+        private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
             ToggleSaleSelection();
@@ -797,6 +793,36 @@ namespace SalesManagement_SysDev
             catch (Exception ex)
             {
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        // パネル内のすべてのコントロールにEnterイベントを追加
+        private void AddControlEventHandlers(Control panel, int panelId)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                // コントロールにEnterイベントを追加
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+            }
+        }
+
+        // コントロールが選択（フォーカス）された時
+        private void Control_Enter(object sender, EventArgs e, int panelId)
+        {
+            if (panelId == 1)
+            {
+
+                ToggleSaleSelection();
+                UpdateFlagButtonText();
+
+            }
+            else if (panelId == 2)
+            {
+
+                ToggleSaleSelection();
+                UpdateFlagButtonText();
+
             }
         }
     }

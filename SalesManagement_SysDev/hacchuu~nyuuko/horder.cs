@@ -32,6 +32,10 @@ namespace SalesManagement_SysDev
             this.Load += new EventHandler(horder_Load);
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+
+            // パネル1とパネル2のコントロールにイベントを設定
+            AddControlEventHandlers(panel1, 1);  // パネル1の場合
+            AddControlEventHandlers(panel3, 2);  // パネル2の場合
         }
 
 
@@ -142,13 +146,13 @@ namespace SalesManagement_SysDev
                         HandleHattyuDetailOperation();
                         break;
                     default:
-                        MessageBox.Show("現在のモードは無効です。");
+                        MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -169,7 +173,7 @@ namespace SalesManagement_SysDev
                     SearchHattyus();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -191,7 +195,7 @@ namespace SalesManagement_SysDev
                     SearchHattyuDetails();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -228,7 +232,8 @@ namespace SalesManagement_SysDev
                         if (!hattyuDetailsExist)
                         {
                             // 発注詳細が存在しない場合はエラーメッセージを表示
-                            MessageBox.Show("発注詳細が登録されていません。");
+                        
+                            MessageBox.Show("発注詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
 
@@ -259,13 +264,14 @@ namespace SalesManagement_SysDev
                     catch (Exception ex)
                     {
                         // その他のエラーに対処する
-                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                        MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注情報が見つかりません。");
+                    MessageBox.Show("該当する発注情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
         }
 
@@ -284,7 +290,7 @@ namespace SalesManagement_SysDev
                 int maker;
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaId == maker))
                 {
-                    MessageBox.Show("メーカーIDが存在しません。");
+                    MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -292,7 +298,7 @@ namespace SalesManagement_SysDev
                 int employeeId;
                 if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
-                    MessageBox.Show("社員IDが存在しません。");
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -325,7 +331,7 @@ namespace SalesManagement_SysDev
                     if (!hattyuDetailsExist)
                     {
                         // 発注詳細が存在しない場合はエラーメッセージを表示
-                        MessageBox.Show("発注詳細が登録されていません。");
+                        MessageBox.Show("発注詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return; // 処理を中断
                     }
 
@@ -360,7 +366,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -411,7 +417,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注情報が見つかりません。");
+                    MessageBox.Show("該当する発注情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dataGridView1.DataSource = null;
                 }
             }
@@ -439,7 +445,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注詳細が見つかりません。");
+                    MessageBox.Show("該当する発注詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -456,7 +462,7 @@ namespace SalesManagement_SysDev
                 int hattyuId;
                 if (!int.TryParse(hattyuuID, out hattyuId) || !context.THattyus.Any(h => h.HaId == hattyuId))
                 {
-                    MessageBox.Show("発注IDが存在しません。");
+                    MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -464,7 +470,7 @@ namespace SalesManagement_SysDev
                 int productId;
                 if (!int.TryParse(syohinID, out productId) || !context.MProducts.Any(p => p.PrId == productId))
                 {
-                    MessageBox.Show("商品IDが存在しません。");
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -472,7 +478,7 @@ namespace SalesManagement_SysDev
                 int quantity;
                 if (!int.TryParse(suryou, out quantity) || quantity <= 0)
                 {
-                    MessageBox.Show("数量が無効です。");
+                    MessageBox.Show("数量が無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -518,7 +524,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message);
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -575,7 +581,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する発注詳細が見つかりません。");
+                    MessageBox.Show("該当する発注詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -741,8 +747,8 @@ namespace SalesManagement_SysDev
                 var newWarehousing = new TWarehousing
                 {
                     HaId = HaId,
-                    EmId = horder.EmId,
-                    WaDate = horder.HaDate,
+                    EmId = null,
+                    //datetime
                     WaShelfFlag = 0,
                     WaFlag = 0
                 };
@@ -777,6 +783,37 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("TShipmentDetailへの登録に失敗しました:" + ex.Message);
                 }
+            }
+    
+        
+        }
+
+        // パネル内のすべてのコントロールにEnterイベントを追加
+        private void AddControlEventHandlers(Control panel, int panelId)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                // コントロールにEnterイベントを追加
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+            }
+        }
+
+        // コントロールが選択（フォーカス）された時
+        private void Control_Enter(object sender, EventArgs e, int panelId)
+        {
+            if (panelId == 1)
+            {
+
+                ToggleHattyuSelection();
+                UpdateFlagButtonText();
+
+            }
+            else if (panelId == 2)
+            {
+
+                ToggleHattyuSelection();
+                UpdateFlagButtonText();
+
             }
         }
     }

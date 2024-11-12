@@ -508,9 +508,10 @@
             // 
             // date
             // 
+            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             date.Location = new Point(552, 70);
             date.Name = "date";
-            date.Size = new Size(300, 31);
+            date.Size = new Size(165, 31);
             date.TabIndex = 24;
             // 
             // merchandise
