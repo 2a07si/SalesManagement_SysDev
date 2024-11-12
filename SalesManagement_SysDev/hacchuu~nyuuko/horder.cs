@@ -680,9 +680,9 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
 
                     // 各テキストボックスにデータを入力 
-                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString();
-                    TBMakerID.Text = row.Cells["メーカID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
+                    TBMakerID.Text = row.Cells["メーカID"].Value.ToString() ?? string.Empty;
+                    TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
 
                     date.Value = Convert.ToDateTime(row.Cells["発注年月日"].Value);
                     // 入庫状態や非表示フラグも必要に応じて設定 
@@ -711,10 +711,10 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
                     // 各テキストボックスにデータを入力 
-                    TBHattyuuSyosaiID.Text = row.Cells["発注詳細ID"].Value.ToString();
-                    TBHattyuIDS.Text = row.Cells["発注ID"].Value.ToString();
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                    TBHattyuuSyosaiID.Text = row.Cells["発注詳細ID"].Value.ToString() ?? string.Empty;
+                    TBHattyuIDS.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
+                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
+                    TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;
                     // 合計金額も設定 
                     // 例: TBGoukeiKingaku.Text = row.Cells["合計金額"].Value.ToString(); 
                 }

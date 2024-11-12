@@ -716,12 +716,15 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
 
                     // 各テキストボックスにデータを入力
-                    TBSyukkaID.Text = row.Cells["出荷ID"].Value.ToString();
-                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["出荷完了年月日"].Value);
+                    TBSyukkaID.Text = row.Cells["出荷ID"].Value.ToString() ?? string.Empty;
+                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString() ?? string.Empty; 
+                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString() ?? string.Empty; 
+                    TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
+                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString() ?? string.Empty;
+                    date.Value = row.Cells["出庫完了年月日"].Value != null
+                                 ? Convert.ToDateTime(row.Cells["出庫完了年月日"].Value)
+                                 : DateTime.Now; // nullの場合は現在の日付を設定
+                    ;
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
                     // 非表示ボタンや非表示理由もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();

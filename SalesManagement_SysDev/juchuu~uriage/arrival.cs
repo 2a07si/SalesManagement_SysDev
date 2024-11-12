@@ -713,31 +713,31 @@ namespace SalesManagement_SysDev
             }
         }
 
-        // CellClickイベントハンドラ  
         private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                // クリックした行のインデックスを取得  
+                // クリックした行のインデックスを取得 
                 int rowIndex = e.RowIndex;
 
-                // 行インデックスが有効かどうかをチェック  
+                // 行インデックスが有効かどうかをチェック 
                 if (rowIndex >= 0)
                 {
-                    // 行データを取得  
+                    // 行データを取得 
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
-                    // 各テキストボックスにデータを入力 (null許可)
-                    TBNyukaSyosaiID.Text = row.Cells["入荷詳細ID"].Value?.ToString() ?? string.Empty;
-                    TBNyuukaIDS.Text = row.Cells["入荷ID"].Value?.ToString() ?? string.Empty;
-                    TBSyohinID.Text = row.Cells["商品ID"].Value?.ToString() ?? string.Empty;
-                    TBSuryou.Text = row.Cells["数量"].Value?.ToString() ?? string.Empty;
+                    // 各テキストボックスにデータを入力
+                    TBNyukaSyosaiID.Text = row.Cells["入荷詳細ID"].Value.ToString();
+                    TBNyuukaIDS.Text = row.Cells["入荷ID"].Value.ToString();
+                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
+                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", Message
-        
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void ArrivalConfirm(int ArId)
         {

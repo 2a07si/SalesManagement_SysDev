@@ -302,7 +302,8 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 18;
-            dataGridView1.CellClick += dataGridView1_CellClick;
+
+            dataGridView1.CellClick += dataGridView1_CellClick_1;
             // 
             // DelFlag
             // 
