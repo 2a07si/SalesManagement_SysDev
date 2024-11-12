@@ -70,6 +70,7 @@
             label2 = new Label();
             label1 = new Label();
             checkBox_2 = new CheckBox();
+            date = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -91,6 +92,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(160, 220, 190);
+            panel1.Controls.Add(date);
             panel1.Controls.Add(TBColor);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(TBModel);
@@ -504,6 +506,14 @@
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
+            // date
+            // 
+            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            date.Location = new Point(552, 70);
+            date.Name = "date";
+            date.Size = new Size(165, 31);
+            date.TabIndex = 24;
+            // 
             // merchandise
             // 
             AcceptButton = b_kakutei;
@@ -590,5 +600,6 @@
         private Label label16;
         private MaskedTextBox TBColor;
         private CheckBox checkBox_2;
+        private DateTimePicker date;
     }
 }
