@@ -775,11 +775,11 @@ namespace SalesManagement_SysDev
                 var newArrival = new TArrival
                 {
 
-                    EmId = syukko.EmId,  // 社員ID
+                    EmId = null,  // 社員ID
                     SoId = syukko.SoId,  // 営業所ID    
                     ClId = syukko.ClId,  // 顧客ID    
                     OrId = syukko.OrId,  // 受注ID 
-                    ArDate = syukko.SyDate, // 注文日    
+                    ArDate = null, // 注文日    
                     ArStateFlag = 0,
                     ArFlag = 0
                 };

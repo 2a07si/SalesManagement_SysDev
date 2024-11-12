@@ -756,11 +756,11 @@ namespace SalesManagement_SysDev
                 var newShipment = new TShipment
                 {
 
-                    EmId = arrival.EmId,  // 社員ID
+                    EmId = null,  // 社員ID
                     SoId = arrival.SoId,  // 営業所ID    
                     ClId = arrival.ClId,  // 顧客ID    
                     OrId = arrival.OrId,  // 受注ID 
-                    ShFinishDate = arrival.ArDate, // 注文日    
+                    ShFinishDate = null, // 注文日    
                     ShStateFlag = 0,
                     ShFlag = 0
                 };
