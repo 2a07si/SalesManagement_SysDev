@@ -826,10 +826,10 @@ namespace SalesManagement_SysDev
                 var newChumon = new TChumon
                 {
                     SoId = order.SoId,  // 営業所ID    
-                    EmId = order.EmId,
+                    EmId = null,
                     ClId = order.ClId,  // 顧客ID    
                     OrId = order.OrId,  // 受注ID 
-                    ChDate = order.OrDate, // 注文日    
+                    ChDate = null, // 注文日    
                     ChStateFlag = 0,
                     ChFlag = 0
                 };

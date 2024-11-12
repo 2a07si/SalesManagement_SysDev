@@ -624,9 +624,9 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
 
                     // 各テキストボックスにデータを入力  
-                    TBNyukoID.Text = row.Cells["入庫ID"].Value.ToString();
-                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
+                    TBNyukoID.Text = row.Cells["入庫ID"].Value.ToString() ?? string.Empty;
+                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
+                    TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
                     date.Value = Convert.ToDateTime(row.Cells["入庫日"].Value);
                     NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫フラグ"].Value);
                     DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
@@ -652,10 +652,10 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
                     // 各テキストボックスにデータを入力  
-                    TBNyuukoSyosaiID.Text = row.Cells["入庫詳細ID"].Value.ToString();
-                    TBNyuukoIDS.Text = row.Cells["入庫ID"].Value.ToString();
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                    TBNyuukoSyosaiID.Text = row.Cells["入庫詳細ID"].Value.ToString() ?? string.Empty;
+                    TBNyuukoIDS.Text = row.Cells["入庫ID"].Value.ToString() ?? string.Empty;
+                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
+                    TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;
                 }
             }
             catch (Exception ex)
