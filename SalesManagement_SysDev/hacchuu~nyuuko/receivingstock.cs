@@ -595,7 +595,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
 
-        private void b_FormSelector_Click_1(object sender, EventArgs e)
+        private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理 
             ToggleOrderSelection();
@@ -652,60 +652,6 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
                     // 各テキストボックスにデータを入力  
-                    TBNyuukoSyosaiID.Text = row.Cells["入庫詳細ID"].Value.ToString() ?? string.Empty;
-                    TBNyuukoIDS.Text = row.Cells["入庫ID"].Value.ToString() ?? string.Empty;
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
-                    TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得  
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック  
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得  
-                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力  
-                    TBNyukoID.Text = row.Cells["入庫ID"].Value.ToString();
-                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["入庫年月日"].Value);
-                    NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫済フラグ"].Value);
-                    DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得   
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック   
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得   
-                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力  
                     TBNyuukoSyosaiID.Text = row.Cells["入庫詳細ID"].Value.ToString();
                     TBNyuukoIDS.Text = row.Cells["入庫ID"].Value.ToString();
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
@@ -717,6 +663,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void ReceiveConfirm(int WaId)
         {
