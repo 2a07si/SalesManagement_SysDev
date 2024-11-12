@@ -52,7 +52,6 @@ namespace SalesManagement_SysDev
             if (Global.PositionName == "管理者")
             {
                 b_reg.Enabled = true;
-                b_reg.BackColor = SystemColors.Control; // 通常のボタン色に設定
             }
             else
             {

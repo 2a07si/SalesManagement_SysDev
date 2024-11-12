@@ -32,7 +32,7 @@ namespace SalesManagement_SysDev.Classまとめ
                         if (button.Name == "b_mer" || button.Name == "b_sto" ||
                             button.Name == "b_emp" || button.Name == "b_lss" ||
                             button.Name == "b_hor" || button.Name == "b_rec" ||
-                            button.Name == "b_hacchuu")
+                            button.Name == "b_hacchuu" || button.Name == "b_reg")
                         {
                             button.Enabled = false; // アクセス不可のボタン
                             button.BackColor = Color.Gray;
@@ -53,7 +53,7 @@ namespace SalesManagement_SysDev.Classまとめ
                         if (button.Name == "b_acc" || button.Name == "b_ord" ||
                             button.Name == "b_cus" || button.Name == "b_emp" ||
                             button.Name == "b_arr" || button.Name == "b_shi" ||
-                            button.Name == "b_sal" )
+                            button.Name == "b_sal" || button.Name == "b_reg")
                         {
                             button.Enabled = false;
                             button.BackColor = Color.Gray;
