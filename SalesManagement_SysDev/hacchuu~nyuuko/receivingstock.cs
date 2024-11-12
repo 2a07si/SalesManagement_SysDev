@@ -33,7 +33,7 @@ namespace SalesManagement_SysDev
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
-            
+
         }
 
 
@@ -735,8 +735,8 @@ namespace SalesManagement_SysDev
                 // 注文情報をTChumonに追加
                 var newStock = new TStock
                 {
-                   PrId = receive.PrId,
-                   StQuantity = receive.WaQuantity,
+                    PrId = receive.PrId,
+                    StQuantity = receive.WaQuantity,
                 };
 
                 try

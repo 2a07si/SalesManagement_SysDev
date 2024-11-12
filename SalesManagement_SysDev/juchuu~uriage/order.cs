@@ -426,7 +426,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        
+
 
 
         private void DisplayOrders()
@@ -442,7 +442,7 @@ namespace SalesManagement_SysDev
                             .Where(o => o.ChFlag != 1 && o.ChStateFlag != 2)
                             .ToList();
 
-                    
+
 
                     // データを選択してDataGridViewに表示 
                     dataGridView1.DataSource = chumons.Select(o => new
@@ -845,7 +845,7 @@ namespace SalesManagement_SysDev
                     throw new Exception("注文IDが見つかりません。");
                 }
 
-                
+
                 // 出庫情報をTSyukkoに追加
                 var newSyukko = new TSyukko
                 {
@@ -936,7 +936,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。");
                         return;
                     }
-                    
+
 
                     // 新しい発注情報の登録
                     var newHattyu = new THattyu
@@ -965,7 +965,7 @@ namespace SalesManagement_SysDev
 
                     MessageBox.Show("登録が完了しました");
 
-                }   
+                }
             }
             catch (InvalidOperationException ex)
             {

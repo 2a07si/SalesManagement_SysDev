@@ -46,7 +46,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
             DisplayOrderDetails();
-        
+
         }
 
         // メインメニューに戻る
@@ -271,7 +271,7 @@ namespace SalesManagement_SysDev
                         if (TyumonFlag.Checked)
                         {
                             AcceptionConfirm(int.Parse(jyutyuID));
-                            
+
                         }
                         MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayOrders();
@@ -333,7 +333,7 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
 
                 {
-                    
+
                     var newOrder = new TOrder
                     {
                         SoId = parsedShopID,
@@ -847,13 +847,13 @@ namespace SalesManagement_SysDev
                     context.TChumonDetails.Add(newChumonDetail);
                     context.SaveChanges();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw new Exception("TChumonDetailへの登録に失敗しました:" + ex.Message);
                 }
             }
         }
-        
+
 
 
     }

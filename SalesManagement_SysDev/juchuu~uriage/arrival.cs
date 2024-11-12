@@ -785,14 +785,14 @@ namespace SalesManagement_SysDev
                     ShId = newShipment.ShId,
                     PrId = arrivalDetail.PrId ?? 0,  // null の場合、0 を代入
                     ShQuantity = arrivalDetail.ArQuantity ?? 0  // null の場合、0 を代入
-                
-                    
+
+
                 };
-                if(newShipmentDetail.PrId == 0 || newShipmentDetail.ShQuantity == 0)
+                if (newShipmentDetail.PrId == 0 || newShipmentDetail.ShQuantity == 0)
                 {
                     MessageBox.Show("PrIdかShquantityが0で入力されています");
                 }
-                
+
                 try
                 {
                     context.TShipmentDetails.Add(newShipmentDetail);
