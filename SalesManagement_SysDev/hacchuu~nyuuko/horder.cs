@@ -32,6 +32,10 @@ namespace SalesManagement_SysDev
             this.Load += new EventHandler(horder_Load);
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+
+            // パネル1とパネル2のコントロールにイベントを設定
+            AddControlEventHandlers(panel1, 1);  // パネル1の場合
+            AddControlEventHandlers(panel3, 2);  // パネル2の場合
         }
 
 
@@ -743,8 +747,8 @@ namespace SalesManagement_SysDev
                 var newWarehousing = new TWarehousing
                 {
                     HaId = HaId,
-                    EmId = horder.EmId,
-                    WaDate = horder.HaDate,
+                    EmId = null,
+                    //datetime
                     WaShelfFlag = 0,
                     WaFlag = 0
                 };
@@ -779,6 +783,37 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("TShipmentDetailへの登録に失敗しました:" + ex.Message);
                 }
+            }
+    
+        
+        }
+
+        // パネル内のすべてのコントロールにEnterイベントを追加
+        private void AddControlEventHandlers(Control panel, int panelId)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                // コントロールにEnterイベントを追加
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+            }
+        }
+
+        // コントロールが選択（フォーカス）された時
+        private void Control_Enter(object sender, EventArgs e, int panelId)
+        {
+            if (panelId == 1)
+            {
+
+                ToggleHattyuSelection();
+                UpdateFlagButtonText();
+
+            }
+            else if (panelId == 2)
+            {
+
+                ToggleHattyuSelection();
+                UpdateFlagButtonText();
+
             }
         }
     }

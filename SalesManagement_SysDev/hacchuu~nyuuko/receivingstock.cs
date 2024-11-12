@@ -33,6 +33,9 @@ namespace SalesManagement_SysDev
             this.mainForm = new Form();
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット   
+
+            AddControlEventHandlers(panel1, 1);  // パネル1の場合
+            AddControlEventHandlers(panel3, 2);  // パネル2の場合
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -537,7 +540,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error));
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -723,8 +726,37 @@ namespace SalesManagement_SysDev
                     }
                 }
             }
+
         }
 
+        // パネル内のすべてのコントロールにEnterイベントを追加
+        private void AddControlEventHandlers(Control panel, int panelId)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                // コントロールにEnterイベントを追加
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+            }
+        }
+
+        // コントロールが選択（フォーカス）された時
+        private void Control_Enter(object sender, EventArgs e, int panelId)
+        {
+            if (panelId == 1)
+            {
+                
+                    ToggleOrderSelection();
+                    UpdateFlagButtonText();
+                
+            }
+            else if (panelId == 2)
+            {
+                
+                    ToggleOrderSelection();
+                    UpdateFlagButtonText();
+                
+            }
+        }
     }
 
 
