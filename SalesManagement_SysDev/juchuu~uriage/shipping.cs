@@ -882,13 +882,15 @@ namespace SalesManagement_SysDev
                 }
 
                 var shipmentDetail = context.TShipmentDetails.SingleOrDefault(o => o.ShId == shipment.ShId);
+                var product = context.MProducts.SingleOrDefault(o => o.PrId == shipmentDetail.PrId);
                 var newSaleDetail = new TSaleDetail
                 {
                     // `PrId` が nullable 型のため、`Value` プロパティを使って値を取得
                     // `PrId` が null の場合、0 を代入
                     SaId = newSales.SaId,
                     PrId = shipmentDetail.PrId,  // null の場合、0 を代入
-                    SaQuantity = shipmentDetail.ShQuantity  // null の場合、0 を代入
+                    SaQuantity = shipmentDetail.ShQuantity,  // null の場合、0 を代入
+                    SaPrTotalPrice = shipmentDetail.ShQuantity + product.Price
 
 
                 };
