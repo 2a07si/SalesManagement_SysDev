@@ -727,10 +727,10 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
                     // 各テキストボックスにデータを入力
-                    TBNyukaSyosaiID.Text = row.Cells["入荷詳細ID"].Value.ToString();
-                    TBNyuukaIDS.Text = row.Cells["入荷ID"].Value.ToString();
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                    TBNyukaSyosaiID.Text = row.Cells["入荷詳細ID"].Value.ToString() ?? string.Empty;
+                    TBNyuukaIDS.Text = row.Cells["入荷ID"].Value.ToString() ?? string.Empty;
+                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
+                    TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;
                 }
             }
             catch (Exception ex)
