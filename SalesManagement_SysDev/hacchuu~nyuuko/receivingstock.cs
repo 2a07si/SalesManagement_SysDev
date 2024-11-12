@@ -167,7 +167,7 @@ namespace SalesManagement_SysDev
                     SearchReceivingStocks();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -189,7 +189,7 @@ namespace SalesManagement_SysDev
                     SearchReceivingStockDetails();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。");
+                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -329,7 +329,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。");
+                        MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -671,24 +671,18 @@ namespace SalesManagement_SysDev
         private void ReceiveConfirm(int WaId)
         {
             MessageBox.Show("登録開始します");
-            MessageBox.Show("ジャムおじさん");
             using (var context = new SalesManagementContext())
             {
-                MessageBox.Show("バタコさん");
                 // 入庫情報を取得
                 var receive = context.TWarehousingDetails.SingleOrDefault(o => o.WaId == WaId);
-                MessageBox.Show("コキンちゃん");
                 if (receive == null)
                 {
                     throw new Exception("入庫IDが見つかりません。");
                 }
-                MessageBox.Show("赤ちゃんマン");
                 // 在庫テーブルで商品IDが存在するか検索
                 var existingStock = context.TStocks.FirstOrDefault(s => s.PrId == receive.PrId);
-                MessageBox.Show("カバオ");
                 if (existingStock == null)
                 {
-                    MessageBox.Show("食パンマン");
                     // 存在しない場合、新しい在庫行を追加
                     var newStock = new TStock
                     {
@@ -696,16 +690,13 @@ namespace SalesManagement_SysDev
                         PrId = receive.PrId,
                         StQuantity = receive.WaQuantity,
                     };
-                    MessageBox.Show("カレーパンマン");
                     try
                     {
-                        MessageBox.Show("ドキンちゃん");
                         context.TStocks.Add(newStock);
                         context.SaveChanges();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("カレーパンマン");
                         throw new Exception("TStockへの登録に失敗しました: " + ex.Message);
                     }
                 }
@@ -713,15 +704,12 @@ namespace SalesManagement_SysDev
                 {
                     // 存在する場合、数量を更新
                     existingStock.StQuantity += receive.WaQuantity;
-                    MessageBox.Show("バイキンマン");
                     try
                     {
-                        MessageBox.Show("カビルンルン");
                         context.SaveChanges();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("あんぱんまん");
                         throw new Exception("在庫の数量更新に失敗しました: " + ex.Message);
                     }
                 }
