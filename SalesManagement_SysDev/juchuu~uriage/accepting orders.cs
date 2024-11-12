@@ -737,44 +737,8 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("フラグボタンのテキスト更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        // CellClickイベントハンドラ 
+        // CellClickイベントハンドラ  
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得 
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック 
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得 
-                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力 
-                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                    TBTantoName.Text = row.Cells["担当社員名"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["受注日"].Value);
-
-                    // 状態フラグと非表示フラグを取得
-                    int orderFlag = Convert.ToInt32(row.Cells["状態フラグ"].Value);
-                    int delFlag = Convert.ToInt32(row.Cells["非表示フラグ"].Value);
-
-                    // チェックボックスの状態を設定
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -785,14 +749,27 @@ namespace SalesManagement_SysDev
                 if (rowIndex >= 0)
                 {
                     // 行データを取得  
-                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
 
-                    // 各テキストボックスにデータを入力 
-                    TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value.ToString();
-                    TBJyutyuIDS.Text = row.Cells["受注ID"].Value.ToString();
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
-                    TBGoukeiKingaku.Text = row.Cells["合計金額"].Value.ToString();
+                    // 各テキストボックスにデータを入力 (null許可)
+                    TBJyutyuID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    TBShopID.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
+                    TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
+                    TBKokyakuID.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
+                    TBTantoName.Text = row.Cells["担当社員名"].Value?.ToString() ?? string.Empty;
+                    date.Value = row.Cells["受注日"].Value != null ?
+                                 Convert.ToDateTime(row.Cells["受注日"].Value) :
+                                 DateTime.Today;  // nullなら現在日付を設定 
+
+                    // 状態フラグと非表示フラグを取得 (null許可)
+                    int orderFlag = row.Cells["状態フラグ"].Value != null ?
+                                    Convert.ToInt32(row.Cells["状態フラグ"].Value) :
+                                    0; // nullなら0を設定
+                    int delFlag = row.Cells["非表示フラグ"].Value != null ?
+                                  Convert.ToInt32(row.Cells["非表示フラグ"].Value) :
+                                  0; // nullなら0を設定
+
+                    // チェックボックスの状態を設定 
                 }
             }
             catch (Exception ex)
@@ -800,6 +777,36 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // CellClickイベントハンドラ  
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // クリックした行のインデックスを取得   
+                int rowIndex = e.RowIndex;
+
+                // 行インデックスが有効かどうかをチェック   
+                if (rowIndex >= 0)
+                {
+                    // 行データを取得   
+                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
+
+                    // 各テキストボックスにデータを入力 (null許可)
+                    TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value?.ToString() ?? string.Empty;
+                    TBJyutyuIDS.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    TBSyohinID.Text = row.Cells["商品ID"].Value?.ToString() ?? string.Empty;
+                    TBSuryou.Text = row.Cells["数量"].Value?.ToString() ?? string.Empty;
+                    TBGoukeiKingaku.Text = row.Cells["合計金額"].Value?.ToString() ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         //注文に登録する部分
         private void AcceptionConfirm(int orderId)

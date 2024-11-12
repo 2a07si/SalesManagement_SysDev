@@ -682,32 +682,30 @@ namespace SalesManagement_SysDev
             // b_FlagSelectorのテキストを現在の状態に合わせる
             b_FormSelector.Text = arrivalFlag;
         }
-
+        // CellClickイベントハンドラ  
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                // クリックした行のインデックスを取得
+                // クリックした行のインデックスを取得  
                 int rowIndex = e.RowIndex;
 
-                // 行インデックスが有効かどうかをチェック
+                // 行インデックスが有効かどうかをチェック  
                 if (rowIndex >= 0)
                 {
-                    // 行データを取得
+                    // 行データを取得  
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
 
-                    // 各テキストボックスにデータを入力
-                    TBNyuukaId.Text = row.Cells["入荷ID"].Value.ToString();
-                    TBShopId.Text = row.Cells["営業所ID"].Value.ToString();
-                    TBShainId.Text = row.Cells["社員ID"].Value.ToString();
-                    TBKokyakuId.Text = row.Cells["顧客ID"].Value.ToString();
-                    TBJyutyuId.Text = row.Cells["受注ID"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["入荷日"].Value);
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
-                    // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
-                }
+                    // 各テキストボックスにデータを入力 (null許可)
+                    TBNyuukaId.Text = row.Cells["入荷ID"].Value?.ToString() ?? string.Empty;
+                    TBShopId.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
+                    TBShainId.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
+                    TBKokyakuId.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
+                    TBJyutyuId.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    date.Value = row.Cells["入荷日"].Value != null ?
+                                 Convert.ToDateTime(row.Cells["入荷日"].Value) :
+                                 DateTime.Today;  // nullなら現在日付を設定
+}
             }
             catch (Exception ex)
             {
@@ -715,31 +713,31 @@ namespace SalesManagement_SysDev
             }
         }
 
+        // CellClickイベントハンドラ  
         private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                // クリックした行のインデックスを取得 
+                // クリックした行のインデックスを取得  
                 int rowIndex = e.RowIndex;
 
-                // 行インデックスが有効かどうかをチェック 
+                // 行インデックスが有効かどうかをチェック  
                 if (rowIndex >= 0)
                 {
-                    // 行データを取得 
+                    // 行データを取得  
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
-                    // 各テキストボックスにデータを入力
-                    TBNyukaSyosaiID.Text = row.Cells["入荷詳細ID"].Value.ToString();
-                    TBNyuukaIDS.Text = row.Cells["入荷ID"].Value.ToString();
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                    // 各テキストボックスにデータを入力 (null許可)
+                    TBNyukaSyosaiID.Text = row.Cells["入荷詳細ID"].Value?.ToString() ?? string.Empty;
+                    TBNyuukaIDS.Text = row.Cells["入荷ID"].Value?.ToString() ?? string.Empty;
+                    TBSyohinID.Text = row.Cells["商品ID"].Value?.ToString() ?? string.Empty;
+                    TBSuryou.Text = row.Cells["数量"].Value?.ToString() ?? string.Empty;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", Message
+        
 
         private void ArrivalConfirm(int ArId)
         {

@@ -734,31 +734,29 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = orderFlag;
         }
 
-        // CellClickイベントハンドラ
+        // CellClickイベントハンドラ 
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                // クリックした行のインデックスを取得
+                // クリックした行のインデックスを取得 
                 int rowIndex = e.RowIndex;
 
-                // 行インデックスが有効かどうかをチェック
+                // 行インデックスが有効かどうかをチェック 
                 if (rowIndex >= 0)
                 {
-                    // 行データを取得
+                    // 行データを取得 
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
 
-                    // 各テキストボックスにデータを入力
-                    TBTyumonId.Text = row.Cells["注文ID"].Value.ToString();
-                    TBShopId.Text = row.Cells["営業所ID"].Value.ToString();
-                    TBShainId.Text = row.Cells["社員ID"].Value.ToString();
-                    TBKokyakuId.Text = row.Cells["顧客ID"].Value.ToString();
-                    TBJyutyuId.Text = row.Cells["受注ID"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["注文日"].Value);
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
-                    // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 各テキストボックスにデータを入力 (null許可)
+                    TBTyumonId.Text = row.Cells["注文ID"].Value?.ToString() ?? string.Empty;
+                    TBShopId.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
+                    TBShainId.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
+                    TBKokyakuId.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
+                    TBJyutyuId.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    date.Value = row.Cells["注文日"].Value != null
+                                 ? Convert.ToDateTime(row.Cells["注文日"].Value)
+                                 : DateTime.Now; // nullの場合は現在の日付を設定
                 }
             }
             catch (Exception ex)
@@ -779,10 +777,10 @@ namespace SalesManagement_SysDev
                 DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
                 // 各テキストボックスにデータを入力
-                TBTyumonSyosaiId.Text = row.Cells["注文詳細ID"].Value.ToString();
-                TBTyumonIDS.Text = row.Cells["注文ID"].Value.ToString();
-                TBSyohinId.Text = row.Cells["商品ID"].Value.ToString();
-                TBSuryou.Text = row.Cells["数量"].Value.ToString();
+                TBTyumonSyosaiId.Text = row.Cells["注文詳細ID"].Value.ToString();?? string.Empty;
+                TBTyumonIDS.Text = row.Cells["注文ID"].Value.ToString();?? string.Empty;
+                TBSyohinId.Text = row.Cells["商品ID"].Value.ToString()?? string.Empty;
+                TBSuryou.Text = row.Cells["数量"].Value.ToString()?? string.Empty;
             }
         }
 
