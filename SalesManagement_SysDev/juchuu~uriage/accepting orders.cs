@@ -226,27 +226,27 @@ namespace SalesManagement_SysDev
                 string riyuu = TBRiyuu.Text;
 
                 // 条件精査
-                if (!int.TryParse(jyutyuID, out int parsedJyutyuID) || jyutyuID.Length > 6)
+                if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
                 {
-                    MessageBox.Show("受注IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length > 2)
+                if (!int.TryParse(shopID, out int parsedShopID))
                 {
-                    MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length > 6)
+                if (!int.TryParse(shainID, out int parsedShainID))
                 {
-                    MessageBox.Show("社員IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length > 6)
+                if (!int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
-                    MessageBox.Show("顧客IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
