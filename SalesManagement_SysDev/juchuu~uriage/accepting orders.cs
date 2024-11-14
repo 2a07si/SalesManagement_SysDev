@@ -226,27 +226,27 @@ namespace SalesManagement_SysDev
                 string riyuu = TBRiyuu.Text;
 
                 // 条件精査
-                if (!int.TryParse(jyutyuID, out int parsedJyutyuID) || jyutyuID.Length > 6)
+                if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
                 {
-                    MessageBox.Show("受注IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length > 2)
+                if (!int.TryParse(shopID, out int parsedShopID))
                 {
-                    MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length > 6)
+                if (!int.TryParse(shainID, out int parsedShainID))
                 {
-                    MessageBox.Show("社員IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length > 6)
+                if (!int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
-                    MessageBox.Show("顧客IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -891,6 +891,67 @@ namespace SalesManagement_SysDev
                 lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
         }
+        //↓以下北島匙投げゾーン
+        private void LimitTextLength(TextBox textBox, int maxLength)
+        {
+            if (textBox.Text.Length > maxLength)
+            {
+                // 文字数制限を超えたら、超過部分を切り捨てる
+                textBox.Text = textBox.Text.Substring(0, maxLength);
+                textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
+            }
+        }
+        private void TBJyutyuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
 
+        private void TBShopID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 2);
+        }
+
+        private void TBShainID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);  // textBox1の制限を50文字に設定
+
+        }
+
+        private void TBKokyakuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);  // textBox1の制限を50文字に設定
+
+        }
+
+        private void TBTantoName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 50);  // textBox1の制限を50文字に設定
+
+        }
+
+        private void TBJyutyuSyosaiID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBJyutyuIDS_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBSyohinID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBSuryou_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 4);
+        }
+
+        private void TBGoukeiKingaku_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 10);
+        }
     }
 }

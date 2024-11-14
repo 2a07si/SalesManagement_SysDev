@@ -795,6 +795,65 @@ namespace SalesManagement_SysDev
                 lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
         }
+        //↓以下北島匙投げゾーン
+        private void LimitTextLength(TextBox textBox, int maxLength)
+        {
+            if (textBox.Text.Length > maxLength)
+            {
+                // 文字数制限を超えたら、超過部分を切り捨てる
+                textBox.Text = textBox.Text.Substring(0, maxLength);
+                textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
+            }
+        }
+        private void TBSalesID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBKokyakuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBShopID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 2);
+        }
+
+        private void TBShainID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBJyutyuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+        //
+        private void TBUriageSyosaiID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBUriageIDS_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBSyohinID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBSuryou_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 4);
+        }
+
+        private void TBTotal_TextChanged(object sender, EventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 10);
+        }
     }
 
 

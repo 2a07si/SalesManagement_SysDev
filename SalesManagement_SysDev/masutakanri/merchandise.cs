@@ -400,6 +400,53 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void LimitTextLength(TextBox textBox, int maxLength)
+        {
+            if (textBox.Text.Length > maxLength)
+            {
+                // 文字数制限を超えたら、超過部分を切り捨てる
+                textBox.Text = textBox.Text.Substring(0, maxLength);
+                textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
+            }
+        }
+        private void TBSyohinID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
 
+        private void TBMakerId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 4);
+        }
+
+        private void TBSyohinName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 50);
+        }
+
+        private void TBSell_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 9);
+        }
+
+        private void TBSafeNum_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 4);
+        }
+
+        private void TBSyoubunrui_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 2);
+        }
+
+        private void TBModel_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 20);
+        }
+
+        private void TBColor_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 20);
+        }
     }
 }

@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
+            date = new DateTimePicker();
             TBColor = new MaskedTextBox();
             label10 = new Label();
             TBModel = new MaskedTextBox();
@@ -70,7 +71,6 @@
             label2 = new Label();
             label1 = new Label();
             checkBox_2 = new CheckBox();
-            date = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -119,12 +119,21 @@
             panel1.Size = new Size(1420, 690);
             panel1.TabIndex = 5;
             // 
+            // date
+            // 
+            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            date.Location = new Point(552, 70);
+            date.Name = "date";
+            date.Size = new Size(165, 31);
+            date.TabIndex = 24;
+            // 
             // TBColor
             // 
             TBColor.Location = new Point(290, 70);
             TBColor.Name = "TBColor";
             TBColor.Size = new Size(180, 31);
             TBColor.TabIndex = 15;
+            TBColor.MaskInputRejected += TBColor_MaskInputRejected;
             // 
             // label10
             // 
@@ -143,6 +152,7 @@
             TBModel.Name = "TBModel";
             TBModel.Size = new Size(180, 31);
             TBModel.TabIndex = 13;
+            TBModel.MaskInputRejected += TBModel_MaskInputRejected;
             // 
             // label9
             // 
@@ -161,6 +171,7 @@
             TBSyoubunrui.Name = "TBSyoubunrui";
             TBSyoubunrui.Size = new Size(40, 31);
             TBSyoubunrui.TabIndex = 11;
+            TBSyoubunrui.MaskInputRejected += TBSyoubunrui_MaskInputRejected;
             // 
             // label8
             // 
@@ -209,6 +220,7 @@
             TBSafeNum.Name = "TBSafeNum";
             TBSafeNum.Size = new Size(80, 31);
             TBSafeNum.TabIndex = 9;
+            TBSafeNum.MaskInputRejected += TBSafeNum_MaskInputRejected;
             // 
             // label18
             // 
@@ -238,6 +250,7 @@
             TBSell.Name = "TBSell";
             TBSell.Size = new Size(100, 31);
             TBSell.TabIndex = 7;
+            TBSell.MaskInputRejected += TBSell_MaskInputRejected;
             // 
             // label12
             // 
@@ -256,6 +269,7 @@
             TBSyohinName.Name = "TBSyohinName";
             TBSyohinName.Size = new Size(180, 31);
             TBSyohinName.TabIndex = 5;
+            TBSyohinName.MaskInputRejected += TBSyohinName_MaskInputRejected;
             // 
             // label5
             // 
@@ -274,6 +288,7 @@
             TBMakerId.Name = "TBMakerId";
             TBMakerId.Size = new Size(80, 31);
             TBMakerId.TabIndex = 3;
+            TBMakerId.MaskInputRejected += TBMakerId_MaskInputRejected;
             // 
             // label14
             // 
@@ -292,6 +307,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 1;
+            TBSyohinID.MaskInputRejected += TBSyohinID_MaskInputRejected;
             // 
             // label6
             // 
@@ -505,14 +521,6 @@
             checkBox_2.TabIndex = 273;
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
-            // 
-            // date
-            // 
-            date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(552, 70);
-            date.Name = "date";
-            date.Size = new Size(165, 31);
-            date.TabIndex = 24;
             // 
             // merchandise
             // 
