@@ -24,8 +24,9 @@ namespace SalesManagement_SysDev
         private Form mainForm;
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassDateNamelabel dateNamelabel;
-        private ClassTimerManager timerManager;
         private ClassAccessManager accessManager;
+
+        private int lastFocusedPanelId = 1;
 
         public receivingstock()
         {
@@ -730,19 +731,12 @@ namespace SalesManagement_SysDev
         // コントロールが選択（フォーカス）された時
         private void Control_Enter(object sender, EventArgs e, int panelId)
         {
-            if (panelId == 1)
+            // 異なるパネルに移動したときのみイベントを発生させる
+            if (panelId != lastFocusedPanelId)
             {
-                
-                    ToggleOrderSelection();
-                    UpdateFlagButtonText();
-                
-            }
-            else if (panelId == 2)
-            {
-                
-                    ToggleOrderSelection();
-                    UpdateFlagButtonText();
-                
+                ToggleOrderSelection();
+                UpdateFlagButtonText();
+                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
         }
     }
