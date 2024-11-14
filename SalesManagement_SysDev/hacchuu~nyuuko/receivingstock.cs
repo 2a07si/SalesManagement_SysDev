@@ -755,32 +755,32 @@ namespace SalesManagement_SysDev
                 textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
             }
         }
-        private void TBNyukoID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBNyukoID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBHattyuuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBHattyuuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBShainID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBShainID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
         //
-        private void TBNyuukoSyosaiID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBNyuukoSyosaiID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSyohinID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyohinID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSuryou_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSuryou_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
         }

@@ -901,55 +901,55 @@ namespace SalesManagement_SysDev
                 textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
             }
         }
-        private void TBJyutyuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBJyutyuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBShopID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBShopID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
 
-        private void TBShainID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBShainID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);  // textBox1の制限を50文字に設定
 
         }
 
-        private void TBKokyakuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBKokyakuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);  // textBox1の制限を50文字に設定
 
         }
 
-        private void TBTantoName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBTantoName_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 50);  // textBox1の制限を50文字に設定
 
         }
 
-        private void TBJyutyuSyosaiID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBJyutyuSyosaiID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBJyutyuIDS_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBJyutyuIDS_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSyohinID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyohinID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSuryou_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSuryou_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
         }
 
-        private void TBGoukeiKingaku_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBGoukeiKingaku_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 10);
         }

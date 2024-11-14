@@ -409,42 +409,42 @@ namespace SalesManagement_SysDev
                 textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
             }
         }
-        private void TBSyohinID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyohinID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBMakerId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBMakerId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
         }
 
-        private void TBSyohinName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyohinName_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 50);
         }
 
-        private void TBSell_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSell_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 9);
         }
 
-        private void TBSafeNum_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSafeNum_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
         }
 
-        private void TBSyoubunrui_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyoubunrui_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
 
-        private void TBModel_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBModel_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 20);
         }
 
-        private void TBColor_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBColor_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 20);
         }

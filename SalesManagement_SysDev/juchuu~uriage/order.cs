@@ -977,48 +977,48 @@ namespace SalesManagement_SysDev
                 textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
             }
         }
-        private void TBTyumonId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBTyumonId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBShopId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBShopId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
 
-        private void TBShainId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBShainId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBKokyakuId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBKokyakuId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBJyutyuId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBJyutyuId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
 
-        private void TBTyumonSyosaiId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBTyumonSyosaiId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBTyumonIDS_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBTyumonIDS_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSyohinId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyohinId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSuryou_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSuryou_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
         }

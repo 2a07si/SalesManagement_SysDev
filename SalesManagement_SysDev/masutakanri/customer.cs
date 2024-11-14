@@ -390,36 +390,36 @@ namespace SalesManagement_SysDev
                 textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
             }
         }
-        private void TBKokyakuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBKokyakuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBShopID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBShopID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
 
-        private void TBKokyakuName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBKokyakuName_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 50);
         }
 
-        private void TBYuubinNo_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBYuubinNo_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 7);
         }
-        private void TBJyusyo_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBJyusyo_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 50);
         }
 
-        private void TBTellNo_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBTellNo_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 13);
         }
 
-        private void TBFax_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBFax_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 13);
         }

@@ -382,31 +382,31 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void TBSyainID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyainID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSyainName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyainName_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 50);
         }
 
-        private void TBShopId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBShopId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
 
-        private void TBJobID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBJobID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
 
-        private void TBPass_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBPass_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
-        private void TBTellNo_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBTellNo_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 13);
         }
