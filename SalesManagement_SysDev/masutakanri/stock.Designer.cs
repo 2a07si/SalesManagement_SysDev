@@ -232,7 +232,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 3;
-            TBSyohinID.MaskInputRejected += TBSyohinID_MaskInputRejected;
+            TBSyohinID.MaskInputRejected += TBSyohinID_TextChanged;
             // 
             // TBZaikoID
             // 
@@ -240,7 +240,7 @@
             TBZaikoID.Name = "TBZaikoID";
             TBZaikoID.Size = new Size(100, 31);
             TBZaikoID.TabIndex = 1;
-            TBZaikoID.MaskInputRejected += TBZaikoID_MaskInputRejected;
+            TBZaikoID.MaskInputRejected += TBZaikoID_TextChanged;
             // 
             // TBZaiko
             // 
@@ -248,7 +248,7 @@
             TBZaiko.Name = "TBZaiko";
             TBZaiko.Size = new Size(90, 31);
             TBZaiko.TabIndex = 5;
-            TBZaiko.MaskInputRejected += TBZaiko_MaskInputRejected;
+            TBZaiko.MaskInputRejected += TBZaiko_TextChanged;
             // 
             // label6
             // 

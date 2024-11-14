@@ -310,7 +310,7 @@
             TBShainID.Name = "TBShainID";
             TBShainID.Size = new Size(100, 31);
             TBShainID.TabIndex = 5;
-            TBShainID.MaskInputRejected += TBShainID_MaskInputRejected;
+            TBShainID.MaskInputRejected += TBShainID_TextChanged;
             // 
             // TBHattyuuID
             // 
@@ -318,7 +318,7 @@
             TBHattyuuID.Name = "TBHattyuuID";
             TBHattyuuID.Size = new Size(100, 31);
             TBHattyuuID.TabIndex = 3;
-            TBHattyuuID.MaskInputRejected += TBHattyuuID_MaskInputRejected;
+            TBHattyuuID.MaskInputRejected += TBHattyuuID_TextChanged;
             // 
             // TBNyukoID
             // 
@@ -326,7 +326,7 @@
             TBNyukoID.Name = "TBNyukoID";
             TBNyukoID.Size = new Size(100, 31);
             TBNyukoID.TabIndex = 1;
-            TBNyukoID.MaskInputRejected += TBNyukoID_MaskInputRejected;
+            TBNyukoID.MaskInputRejected += TBNyukoID_TextChanged;
             // 
             // b_kakutei
             // 
@@ -416,7 +416,7 @@
             TBNyuukoSyosaiID.Name = "TBNyuukoSyosaiID";
             TBNyuukoSyosaiID.Size = new Size(100, 31);
             TBNyuukoSyosaiID.TabIndex = 1;
-            TBNyuukoSyosaiID.MaskInputRejected += TBNyuukoSyosaiID_MaskInputRejected;
+            TBNyuukoSyosaiID.MaskInputRejected += TBNyuukoSyosaiID_TextChanged;
             // 
             // dataGridView2
             // 
@@ -438,7 +438,7 @@
             TBSuryou.Name = "TBSuryou";
             TBSuryou.Size = new Size(100, 31);
             TBSuryou.TabIndex = 7;
-            TBSuryou.MaskInputRejected += TBSuryou_MaskInputRejected;
+            TBSuryou.MaskInputRejected += TBSuryou_TextChanged;
             // 
             // label15
             // 
@@ -479,7 +479,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 5;
-            TBSyohinID.MaskInputRejected += TBSyohinID_MaskInputRejected;
+            TBSyohinID.MaskInputRejected += TBSyohinID_TextChanged;
             // 
             // label10
             // 

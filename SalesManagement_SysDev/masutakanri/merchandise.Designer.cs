@@ -133,7 +133,7 @@
             TBColor.Name = "TBColor";
             TBColor.Size = new Size(180, 31);
             TBColor.TabIndex = 15;
-            TBColor.MaskInputRejected += TBColor_MaskInputRejected;
+            TBColor.MaskInputRejected += TBColor_TextChanged;
             // 
             // label10
             // 
@@ -152,7 +152,7 @@
             TBModel.Name = "TBModel";
             TBModel.Size = new Size(180, 31);
             TBModel.TabIndex = 13;
-            TBModel.MaskInputRejected += TBModel_MaskInputRejected;
+            TBModel.MaskInputRejected += TBModel_TextChanged;
             // 
             // label9
             // 
@@ -171,7 +171,7 @@
             TBSyoubunrui.Name = "TBSyoubunrui";
             TBSyoubunrui.Size = new Size(40, 31);
             TBSyoubunrui.TabIndex = 11;
-            TBSyoubunrui.MaskInputRejected += TBSyoubunrui_MaskInputRejected;
+            TBSyoubunrui.MaskInputRejected += TBSyoubunrui_TextChanged;
             // 
             // label8
             // 
@@ -220,7 +220,7 @@
             TBSafeNum.Name = "TBSafeNum";
             TBSafeNum.Size = new Size(80, 31);
             TBSafeNum.TabIndex = 9;
-            TBSafeNum.MaskInputRejected += TBSafeNum_MaskInputRejected;
+            TBSafeNum.MaskInputRejected += TBSafeNum_TextChanged;
             // 
             // label18
             // 
@@ -250,7 +250,7 @@
             TBSell.Name = "TBSell";
             TBSell.Size = new Size(100, 31);
             TBSell.TabIndex = 7;
-            TBSell.MaskInputRejected += TBSell_MaskInputRejected;
+            TBSell.MaskInputRejected += TBSell_TextChanged;
             // 
             // label12
             // 
@@ -269,7 +269,7 @@
             TBSyohinName.Name = "TBSyohinName";
             TBSyohinName.Size = new Size(180, 31);
             TBSyohinName.TabIndex = 5;
-            TBSyohinName.MaskInputRejected += TBSyohinName_MaskInputRejected;
+            TBSyohinName.MaskInputRejected += TBSyohinName_TextChanged;
             // 
             // label5
             // 
@@ -288,7 +288,7 @@
             TBMakerId.Name = "TBMakerId";
             TBMakerId.Size = new Size(80, 31);
             TBMakerId.TabIndex = 3;
-            TBMakerId.MaskInputRejected += TBMakerId_MaskInputRejected;
+            TBMakerId.MaskInputRejected += TBMakerId_TextChanged;
             // 
             // label14
             // 
@@ -307,7 +307,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 1;
-            TBSyohinID.MaskInputRejected += TBSyohinID_MaskInputRejected;
+            TBSyohinID.MaskInputRejected += TBSyohinID_TextChanged;
             // 
             // label6
             // 

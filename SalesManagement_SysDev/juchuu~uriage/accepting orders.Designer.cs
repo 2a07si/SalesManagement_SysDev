@@ -138,7 +138,7 @@ namespace SalesManagement_SysDev
             TBJyutyuID.Name = "TBJyutyuID";
             TBJyutyuID.Size = new Size(100, 31);
             TBJyutyuID.TabIndex = 1;
-            TBJyutyuID.MaskInputRejected += TBJyutyuID_MaskInputRejected;
+            TBJyutyuID.MaskInputRejected += TBJyutyuID_TextChanged;
             // 
             // TBShopID
             // 
@@ -146,7 +146,7 @@ namespace SalesManagement_SysDev
             TBShopID.Name = "TBShopID";
             TBShopID.Size = new Size(40, 31);
             TBShopID.TabIndex = 3;
-            TBShopID.MaskInputRejected += TBShopID_MaskInputRejected;
+            TBShopID.MaskInputRejected += TBShopID_TextChanged;
             // 
             // TBShainID
             // 
@@ -154,7 +154,7 @@ namespace SalesManagement_SysDev
             TBShainID.Name = "TBShainID";
             TBShainID.Size = new Size(100, 31);
             TBShainID.TabIndex = 5;
-            TBShainID.MaskInputRejected += TBShainID_MaskInputRejected;
+            TBShainID.MaskInputRejected += TBShainID_TextChanged;
             // 
             // label17
             // 
@@ -210,7 +210,7 @@ namespace SalesManagement_SysDev
             TBKokyakuID.Name = "TBKokyakuID";
             TBKokyakuID.Size = new Size(100, 31);
             TBKokyakuID.TabIndex = 7;
-            TBKokyakuID.MaskInputRejected += TBKokyakuID_MaskInputRejected;
+            TBKokyakuID.MaskInputRejected += TBKokyakuID_TextChanged;
             // 
             // DelFlag
             // 
@@ -242,7 +242,7 @@ namespace SalesManagement_SysDev
             TBTantoName.Name = "TBTantoName";
             TBTantoName.Size = new Size(140, 31);
             TBTantoName.TabIndex = 9;
-            TBTantoName.MaskInputRejected += TBTantoName_MaskInputRejected;
+            TBTantoName.MaskInputRejected += TBTantoName_TextChanged;
             // 
             // dataGridView1
             // 
@@ -483,7 +483,7 @@ namespace SalesManagement_SysDev
             TBJyutyuIDS.Name = "TBJyutyuIDS";
             TBJyutyuIDS.Size = new Size(100, 31);
             TBJyutyuIDS.TabIndex = 2;
-            TBJyutyuIDS.MaskInputRejected += TBJyutyuIDS_MaskInputRejected;
+            TBJyutyuIDS.MaskInputRejected += TBJyutyuIDS_TextChanged;
             // 
             // label10
             // 
@@ -502,7 +502,7 @@ namespace SalesManagement_SysDev
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 4;
-            TBSyohinID.MaskInputRejected += TBSyohinID_MaskInputRejected;
+            TBSyohinID.MaskInputRejected += TBSyohinID_TextChanged;
             // 
             // label13
             // 
@@ -543,7 +543,7 @@ namespace SalesManagement_SysDev
             TBSuryou.Name = "TBSuryou";
             TBSuryou.Size = new Size(100, 31);
             TBSuryou.TabIndex = 6;
-            TBSuryou.MaskInputRejected += TBSuryou_MaskInputRejected;
+            TBSuryou.MaskInputRejected += TBSuryou_TextChanged;
             // 
             // dataGridView2
             // 
@@ -563,7 +563,7 @@ namespace SalesManagement_SysDev
             TBJyutyuSyosaiID.Name = "TBJyutyuSyosaiID";
             TBJyutyuSyosaiID.Size = new Size(100, 31);
             TBJyutyuSyosaiID.TabIndex = 0;
-            TBJyutyuSyosaiID.MaskInputRejected += TBJyutyuSyosaiID_MaskInputRejected;
+            TBJyutyuSyosaiID.MaskInputRejected += TBJyutyuSyosaiID_TextChanged;
             // 
             // label11
             // 
@@ -582,7 +582,7 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.Name = "TBGoukeiKingaku";
             TBGoukeiKingaku.Size = new Size(100, 31);
             TBGoukeiKingaku.TabIndex = 8;
-            TBGoukeiKingaku.MaskInputRejected += TBGoukeiKingaku_MaskInputRejected;
+            TBGoukeiKingaku.MaskInputRejected += TBGoukeiKingaku_TextChanged;
             // 
             // panel3
             // 

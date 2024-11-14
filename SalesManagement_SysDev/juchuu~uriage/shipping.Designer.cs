@@ -277,7 +277,7 @@
             TBSyukkaID.Name = "TBSyukkaID";
             TBSyukkaID.Size = new Size(100, 31);
             TBSyukkaID.TabIndex = 1;
-            TBSyukkaID.MaskInputRejected += TBSyukkaID_MaskInputRejected;
+            TBSyukkaID.MaskInputRejected += TBSyukkaID_TextChanged;
             // 
             // dataGridView1
             // 
@@ -334,7 +334,7 @@
             TBKokyakuID.Name = "TBKokyakuID";
             TBKokyakuID.Size = new Size(100, 31);
             TBKokyakuID.TabIndex = 3;
-            TBKokyakuID.MaskInputRejected += TBKokyakuID_MaskInputRejected;
+            TBKokyakuID.MaskInputRejected += TBKokyakuID_TextChanged;
             // 
             // label12
             // 
@@ -383,7 +383,7 @@
             TBJyutyuID.Name = "TBJyutyuID";
             TBJyutyuID.Size = new Size(100, 31);
             TBJyutyuID.TabIndex = 9;
-            TBJyutyuID.MaskInputRejected += TBJyutyuID_MaskInputRejected;
+            TBJyutyuID.MaskInputRejected += TBJyutyuID_TextChanged;
             // 
             // label18
             // 
@@ -402,7 +402,7 @@
             TBShopID.Name = "TBShopID";
             TBShopID.Size = new Size(50, 31);
             TBShopID.TabIndex = 7;
-            TBShopID.MaskInputRejected += TBShopID_MaskInputRejected;
+            TBShopID.MaskInputRejected += TBShopID_TextChanged;
             // 
             // TBRiyuu
             // 
@@ -417,7 +417,7 @@
             TBShainID.Name = "TBShainID";
             TBShainID.Size = new Size(100, 31);
             TBShainID.TabIndex = 5;
-            TBShainID.MaskInputRejected += TBShainID_MaskInputRejected;
+            TBShainID.MaskInputRejected += TBShainID_TextChanged;
             // 
             // label17
             // 
@@ -530,7 +530,7 @@
             TBSyukkaSyosaiID.Name = "TBSyukkaSyosaiID";
             TBSyukkaSyosaiID.Size = new Size(100, 31);
             TBSyukkaSyosaiID.TabIndex = 1;
-            TBSyukkaSyosaiID.MaskInputRejected += TBSyukkaSyosaiID_MaskInputRejected;
+            TBSyukkaSyosaiID.MaskInputRejected += TBSyukkaSyosaiID_TextChanged;
             // 
             // dataGridView2
             // 
@@ -552,7 +552,7 @@
             TBSuryou.Name = "TBSuryou";
             TBSuryou.Size = new Size(100, 31);
             TBSuryou.TabIndex = 7;
-            TBSuryou.MaskInputRejected += TBSuryou_MaskInputRejected;
+            TBSuryou.MaskInputRejected += TBSuryou_TextChanged;
             // 
             // label15
             // 
@@ -593,7 +593,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 5;
-            TBSyohinID.MaskInputRejected += TBSyohinID_MaskInputRejected;
+            TBSyohinID.MaskInputRejected += TBSyohinID_TextChanged;
             // 
             // label10
             // 
@@ -608,7 +608,7 @@
             TBSyukkaIDS.Name = "TBSyukkaIDS";
             TBSyukkaIDS.Size = new Size(100, 31);
             TBSyukkaIDS.TabIndex = 3;
-            TBSyukkaIDS.MaskInputRejected += TBSyukkaIDS_MaskInputRejected;
+            TBSyukkaIDS.MaskInputRejected += TBSyukkaIDS_TextChanged;
             // 
             // b_FormSelector
             // 
