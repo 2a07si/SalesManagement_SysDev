@@ -29,7 +29,6 @@ namespace SalesManagement_SysDev
             this.formChanger = new ClassChangeForms(this);
             this.Load += new EventHandler(arrival_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
-            InitializeComponent();
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel3, 2);  // パネル2の場合
@@ -683,7 +682,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-            private void b_FormSelector_Click(object sender, EventArgs e)
+        private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
             ToggleArrivalSelection();

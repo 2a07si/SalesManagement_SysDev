@@ -26,7 +26,7 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             formChanger = new ClassChangeForms(this);
             accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
-            
+
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel3, 2);  // パネル2の場合
@@ -356,7 +356,7 @@ namespace SalesManagement_SysDev
                         var orderDetailExists = context.TOrderDetails.Any(d => d.OrId == newOrder.OrId);
                         if (!orderDetailExists)
                         {
-                           
+
                             MessageBox.Show("受注詳細が登録されていません。。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
@@ -700,11 +700,11 @@ namespace SalesManagement_SysDev
 
         private void ToggleOrderSelection()
         {
-                isOrderSelected = !isOrderSelected;
-                orderFlag = isOrderSelected ? "←通常" : "詳細→";
+            isOrderSelected = !isOrderSelected;
+            orderFlag = isOrderSelected ? "←通常" : "詳細→";
 
-                // CurrentStatusのモードを切り替える 
-                CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+            // CurrentStatusのモードを切り替える 
+            CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
         }
 
         private void b_FormSelector_Click(object sender, EventArgs e)
