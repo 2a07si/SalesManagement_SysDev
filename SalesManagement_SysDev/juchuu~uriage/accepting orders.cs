@@ -20,6 +20,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
+         private int lastFocusedPanelId = -1;
 
         public acceptingorders(Form mainForm)
         {
@@ -700,18 +701,11 @@ namespace SalesManagement_SysDev
 
         private void ToggleOrderSelection()
         {
-            try
-            {
                 isOrderSelected = !isOrderSelected;
                 orderFlag = isOrderSelected ? "←通常" : "詳細→";
 
                 // CurrentStatusのモードを切り替える 
                 CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("選択状態の切り替え中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void b_FormSelector_Click(object sender, EventArgs e)
@@ -723,6 +717,8 @@ namespace SalesManagement_SysDev
 
                 // b_FormSelectorのテキストを現在の状態に更新 
                 UpdateFlagButtonText();
+
+                lastFocusedPanelId = -1;
             }
             catch (Exception ex)
             {
@@ -881,21 +877,13 @@ namespace SalesManagement_SysDev
         // コントロールが選択（フォーカス）された時
         private void Control_Enter(object sender, EventArgs e, int panelId)
         {
-            if (panelId == 1)
+            // 異なるパネルに移動したときのみイベントを発生させる
+            if (panelId != lastFocusedPanelId)
             {
-
                 ToggleOrderSelection();
                 UpdateFlagButtonText();
-
+                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
-            else if (panelId == 2)
-            {
-
-                ToggleOrderSelection();
-                UpdateFlagButtonText();
-
-            }
-
         }
 
     }

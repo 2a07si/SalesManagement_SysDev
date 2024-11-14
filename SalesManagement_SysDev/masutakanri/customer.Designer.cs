@@ -441,7 +441,7 @@
             // 
             b_iti.BackColor = Color.FromArgb(190, 255, 200);
             b_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_iti.Location = new Point(490, 70);
+            b_iti.Location = new Point(510, 70);
             b_iti.Name = "b_iti";
             b_iti.Size = new Size(150, 70);
             b_iti.TabIndex = 2;
