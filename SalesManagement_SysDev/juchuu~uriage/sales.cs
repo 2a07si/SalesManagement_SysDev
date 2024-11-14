@@ -20,6 +20,8 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager;
+
+        private int lastFocusedPanelId = 1;
         public sales()
         {
             InitializeComponent();
@@ -659,8 +661,21 @@ namespace SalesManagement_SysDev
 
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isSaleSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+
+            if (saleFlag == "←通常")
+                lastFocusedPanelId = 1;
+            else if (saleFlag == "詳細→")
+                lastFocusedPanelId = 2;
         }
 
+        private void b_FormSelector_Click(object sender, EventArgs e)
+        {
+            // 状態を切り替える処理
+            ToggleSaleSelection();
+
+            // b_FormSelectorのテキストを現在の状態に更新
+            UpdateFlagButtonText();
+        }
 
         private void UpdateFlagButtonText()
         {
@@ -728,46 +743,8 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void b_FormSelector_Click(object sender, EventArgs e)
-        {
-            // 状態を切り替える処理
-            ToggleSaleSelection();
 
-            // b_FormSelectorのテキストを現在の状態に更新
-            UpdateFlagButtonText();
-        }
 
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得
-                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力
-                    TBSalesID.Text = row.Cells["売上ID"].Value.ToString();
-                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["売上日"].Value);
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
-                    // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -810,19 +787,12 @@ namespace SalesManagement_SysDev
         // コントロールが選択（フォーカス）された時
         private void Control_Enter(object sender, EventArgs e, int panelId)
         {
-            if (panelId == 1)
+            // 異なるパネルに移動したときのみイベントを発生させる
+            if (panelId != lastFocusedPanelId)
             {
-
                 ToggleSaleSelection();
                 UpdateFlagButtonText();
-
-            }
-            else if (panelId == 2)
-            {
-
-                ToggleSaleSelection();
-                UpdateFlagButtonText();
-
+                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
         }
     }
