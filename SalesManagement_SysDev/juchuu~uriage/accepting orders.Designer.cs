@@ -36,7 +36,6 @@ namespace SalesManagement_SysDev
             label6 = new Label();
             label7 = new Label();
             label12 = new Label();
-            label14 = new UpdateLabel2();
             TBJyutyuID = new MaskedTextBox();
             TBShopID = new MaskedTextBox();
             TBShainID = new MaskedTextBox();
@@ -85,6 +84,7 @@ namespace SalesManagement_SysDev
             b_FormSelector = new Button();
             checkBoxDateFilter = new CheckBox();
             checkBox_2 = new CheckBox();
+            label14 = new UpdateLabel2();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -130,17 +130,6 @@ namespace SalesManagement_SysDev
             label12.Size = new Size(84, 25);
             label12.TabIndex = 2;
             label12.Text = "営業所ID";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.ForeColor = Color.Black;
-            label14.Location = new Point(340, 20);
-            label14.Name = "label14";
-            label14.Size = new Size(66, 25);
-            label14.TabIndex = 4;
-            label14.Text = "社員ID";
             // 
             // TBJyutyuID
             // 
@@ -655,6 +644,17 @@ namespace SalesManagement_SysDev
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.ForeColor = Color.Black;
+            label14.Location = new Point(340, 20);
+            label14.Name = "label14";
+            label14.Size = new Size(66, 25);
+            label14.TabIndex = 4;
+            label14.Text = "社員ID";
+            // 
             // acceptingorders
             // 
             AcceptButton = b_kakutei;
@@ -734,7 +734,6 @@ namespace SalesManagement_SysDev
         private MaskedTextBox TBShainID;
         private MaskedTextBox TBShopID;
         private MaskedTextBox TBJyutyuID;
-        private UpdateLabel2 label14;
         private Label label12;
         private Label label7;
         private Label label6;
@@ -762,5 +761,6 @@ namespace SalesManagement_SysDev
         private Button b_FormSelector;
         private CheckBox checkBoxDateFilter;
         private CheckBox checkBox_2;
+        private UpdateLabel2 label14;
     }
 }

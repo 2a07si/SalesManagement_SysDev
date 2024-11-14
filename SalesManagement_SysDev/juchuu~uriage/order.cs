@@ -36,7 +36,7 @@ namespace SalesManagement_SysDev
 
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
-            AddControlEventHandlers(panel3, 2) ;  // パネル2の場合
+            AddControlEventHandlers(panel3, 2);  // パネル2の場合
         }
 
 
@@ -429,7 +429,7 @@ namespace SalesManagement_SysDev
                     }
                     catch (Exception ex)
                     {
-                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -736,7 +736,7 @@ namespace SalesManagement_SysDev
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
 
-          
+
         }
 
         private void UpdateFlagButtonText()
@@ -788,10 +788,10 @@ namespace SalesManagement_SysDev
                 DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
                 // 各テキストボックスにデータを入力
-                TBTyumonSyosaiId.Text = row.Cells["注文詳細ID"].Value.ToString()?? string.Empty;
-                TBTyumonIDS.Text = row.Cells["注文ID"].Value.ToString()?? string.Empty;
-                TBSyohinId.Text = row.Cells["商品ID"].Value.ToString()?? string.Empty;
-                TBSuryou.Text = row.Cells["数量"].Value.ToString()?? string.Empty;
+                TBTyumonSyosaiId.Text = row.Cells["注文詳細ID"].Value.ToString() ?? string.Empty;
+                TBTyumonIDS.Text = row.Cells["注文ID"].Value.ToString() ?? string.Empty;
+                TBSyohinId.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
+                TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;
             }
         }
 
@@ -911,8 +911,8 @@ namespace SalesManagement_SysDev
                         EmId = int.Parse(order.EmId.ToString()),
                         HaDate = order.ChDate ?? DateTime.Now, // 日付が空なら現在日時 
                         WaWarehouseFlag = 0,
-                        HaFlag = 0, 
-                        HaHidden = null 
+                        HaFlag = 0,
+                        HaHidden = null
                     };
 
                     context.THattyus.Add(newHattyu);

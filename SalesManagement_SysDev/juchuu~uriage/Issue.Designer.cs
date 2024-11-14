@@ -609,7 +609,7 @@
             dateCheckBox.Name = "dateCheckBox";
             dateCheckBox.Size = new Size(225, 29);
             dateCheckBox.TabIndex = 269;
-            dateCheckBox.Text = "受注年月日を検索に含む";
+            dateCheckBox.Text = "出庫年月日を検索に含む";
             dateCheckBox.UseVisualStyleBackColor = true;
             // 
             // checkBox_2

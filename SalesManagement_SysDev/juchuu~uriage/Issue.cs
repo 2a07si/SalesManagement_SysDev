@@ -67,7 +67,7 @@ namespace SalesManagement_SysDev
             }
 
             // 在庫不足で非表示となった出庫情報に関するメッセージを取得
-            
+
             // 在庫更新メッセージを取得
             string stockUpdateMessages2 = Global.GetStockUpdateMessages();
 
@@ -391,7 +391,7 @@ namespace SalesManagement_SysDev
                         }
                         else
                         {
-                    MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
@@ -821,7 +821,7 @@ namespace SalesManagement_SysDev
                     throw new Exception("TArrivalDetailへの登録に失敗しました:" + ex.Message);
                 }
             }
-        
+
         }
 
 

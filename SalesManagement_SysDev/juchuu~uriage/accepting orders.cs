@@ -704,13 +704,13 @@ namespace SalesManagement_SysDev
             isOrderSelected = !isOrderSelected;
             orderFlag = isOrderSelected ? "←通常" : "詳細→";
 
-                // CurrentStatusのモードを切り替える 
-                CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
-                
-                if(orderFlag == "←通常")
+            // CurrentStatusのモードを切り替える 
+            CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+
+            if (orderFlag == "←通常")
                 lastFocusedPanelId = 1;
-                else
-                if (orderFlag == "詳細→")
+            else
+            if (orderFlag == "詳細→")
                 lastFocusedPanelId = 2;
         }
 
@@ -724,7 +724,7 @@ namespace SalesManagement_SysDev
                 // b_FormSelectorのテキストを現在の状態に更新 
                 UpdateFlagButtonText();
 
-                
+
             }
             catch (Exception ex)
             {

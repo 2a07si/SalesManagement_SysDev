@@ -302,7 +302,6 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 18;
-
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // DelFlag
@@ -610,9 +609,9 @@
             dateCheckBox.AutoSize = true;
             dateCheckBox.Location = new Point(967, 17);
             dateCheckBox.Name = "dateCheckBox";
-            dateCheckBox.Size = new Size(225, 29);
+            dateCheckBox.Size = new Size(189, 29);
             dateCheckBox.TabIndex = 270;
-            dateCheckBox.Text = "受注年月日を検索に含む";
+            dateCheckBox.Text = "注文日を検索に含む";
             dateCheckBox.UseVisualStyleBackColor = true;
             // 
             // checkBox_2
