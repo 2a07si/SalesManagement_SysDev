@@ -721,6 +721,11 @@ namespace SalesManagement_SysDev
 
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+            if (orderFlag == "←通常")
+                lastFocusedPanelId = 1;
+            else if (orderFlag == "詳細→")
+                lastFocusedPanelId = 2;
+
         }
 
         private void b_FormSelector_Click(object sender, EventArgs e)
@@ -730,6 +735,8 @@ namespace SalesManagement_SysDev
 
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
+
+          
         }
 
         private void UpdateFlagButtonText()
@@ -739,7 +746,7 @@ namespace SalesManagement_SysDev
         }
 
         // CellClickイベントハンドラ 
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -789,24 +796,6 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            // クリックした行のインデックスを取得 
-            int rowIndex = e.RowIndex;
-
-            // 行インデックスが有効かどうかをチェック 
-            if (rowIndex >= 0)
-            {
-                // 行データを取得 
-                DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
-                // 各テキストボックスにデータを入力
-                TBTyumonSyosaiId.Text = row.Cells["注文詳細ID"].Value.ToString();
-                TBTyumonIDS.Text = row.Cells["注文ID"].Value.ToString();
-                TBSyohinId.Text = row.Cells["商品ID"].Value.ToString();
-                TBSuryou.Text = row.Cells["数量"].Value.ToString();
-            }
-        }
 
         private void OrdersConfirm(int JyutyuId, int ChId, int SyFlag, string SyHidden)
         {

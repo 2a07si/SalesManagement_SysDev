@@ -682,6 +682,11 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("選択状態の切り替え中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            if (arrivalFlag == "←通常")
+                lastFocusedPanelId = 1;
+            else if (arrivalFlag == "詳細→")
+                lastFocusedPanelId = 2;
         }
 
             private void b_FormSelector_Click(object sender, EventArgs e)
@@ -699,7 +704,7 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = arrivalFlag;
         }
         // CellClickイベントハンドラ  
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -729,7 +734,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {

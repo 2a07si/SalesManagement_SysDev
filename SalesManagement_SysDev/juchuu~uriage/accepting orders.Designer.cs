@@ -300,7 +300,7 @@ namespace SalesManagement_SysDev
             b_lss.TabIndex = 11;
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
-            b_lss.Click += b_lss_Click_1;
+            b_lss.Click += b_lss_Click;
             // 
             // b_arr
             // 
@@ -313,7 +313,7 @@ namespace SalesManagement_SysDev
             b_arr.TabIndex = 12;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
-            b_arr.Click += b_arr_Click_1;
+            b_arr.Click += b_arr_Click;
             // 
             // b_shi
             // 
@@ -446,7 +446,7 @@ namespace SalesManagement_SysDev
             close.TabIndex = 15;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
-            close.Click += close_Click_1;
+            close.Click += close_Click;
             // 
             // clear
             // 
@@ -469,7 +469,7 @@ namespace SalesManagement_SysDev
             b_kakutei.TabIndex = 0;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
-            b_kakutei.Click += b_kakutei_Click_1;
+            b_kakutei.Click += b_kakutei_Click;
             // 
             // B_iti
             // 

@@ -119,7 +119,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
-        private void b_kakutei_Click_1(object sender, EventArgs e)
+        private void b_kakutei_Click(object sender, EventArgs e)
         {
             HandleOrderOperation();
         }

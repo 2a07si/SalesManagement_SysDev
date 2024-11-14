@@ -93,7 +93,7 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void b_ser_Click_1(object sender, EventArgs e) => PerformSearch();
+        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
 
         private void PerformSearch()
         {
@@ -109,7 +109,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click_1(object sender, EventArgs e) => RegisterStatus();
+        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
 
         private void RegisterStatus()
         {
@@ -119,7 +119,7 @@ namespace SalesManagement_SysDev
             DisplayHattyuDetails();
         }
 
-        private void B_iti_Click_1(object sender, EventArgs e) => ListStatus();
+        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
 
         private void ListStatus()
         {
@@ -595,16 +595,25 @@ namespace SalesManagement_SysDev
 
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+            if (orderFlag == "←通常")
+                lastFocusedPanelId = 1;
+            else if (orderFlag == "詳細→")
+                lastFocusedPanelId = 2;
         }
 
 
-        private void b_FormSelector_Click_1(object sender, EventArgs e)
+        private void b_FormSelector_Click(object sender, EventArgs e)
         {
             // 状態を切り替える処理
             ToggleHattyuSelection();
 
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
+
+            if (orderFlag == "←通常")
+                lastFocusedPanelId = 1;
+            else if (orderFlag == "詳細→")
+                lastFocusedPanelId = 2;
         }
 
 
@@ -616,65 +625,6 @@ namespace SalesManagement_SysDev
 
         // CellClickイベントハンドラ 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得 
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック 
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得 
-                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力 
-                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString();
-                    TBMakerID.Text = row.Cells["メーカID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-
-                    date.Value = Convert.ToDateTime(row.Cells["発注年月日"].Value);
-                    // 入庫状態や非表示フラグも必要に応じて設定 
-                    // 例: NyuukoFlag.Checked = (row.Cells["入庫状態"].Value.ToString() == "1"); 
-                    // 例: DelFlag.Checked = (row.Cells["非表示フラグ"].Value.ToString() == "1"); 
-                    // 例: TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString(); 
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得  
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック  
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得  
-                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力 
-                    TBHattyuuSyosaiID.Text = row.Cells["発注詳細ID"].Value.ToString();
-                    TBHattyuIDS.Text = row.Cells["発注ID"].Value.ToString();
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
-                    // 合計金額も設定 
-                    // 例: TBGoukeiKingaku.Text = row.Cells["合計金額"].Value.ToString(); 
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -705,7 +655,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {

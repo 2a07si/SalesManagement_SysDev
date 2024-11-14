@@ -118,12 +118,9 @@ namespace SalesManagement_SysDev
             // labeldate.Text = DateTime.Now.ToString("yyyy年MM月dd日");
         }
 
-        private void b_masuta_Click(object sender, EventArgs e)
-        {
-            changeForm.NavigateToEmployeeForm();
-        }
 
-        private void b_masuta_Click_1(object sender, EventArgs e)
+
+        private void b_masuta_Click(object sender, EventArgs e)
         {
             switch (Global.EmployeePermission)
             {

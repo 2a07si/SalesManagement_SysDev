@@ -53,17 +53,17 @@ namespace SalesManagement_SysDev
         }
 
         // メインメニューに戻る
-        private void close_Click_1(object sender, EventArgs e)
+        private void close_Click(object sender, EventArgs e)
         {
             formChanger.NavigateTo3();
         }
 
         // 各ボタンでの画面遷移
         private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToOrderForm();
-        private void b_arr_Click_1(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
+        private void b_arr_Click(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
         private void b_shi_Click(object sender, EventArgs e) => formChanger.NavigateToShippingForm();
         private void b_sal_Click(object sender, EventArgs e) => formChanger.NavigateToSalesForm();
-        private void b_lss_Click_1(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
+        private void b_lss_Click(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
 
         private void clear_Click(object sender, EventArgs e) => ClearText();
 
@@ -127,7 +127,7 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ResetStatus(label2);
         }
-        private void b_kakutei_Click_1(object sender, EventArgs e)
+        private void b_kakutei_Click(object sender, EventArgs e)
         {
             try
             {
