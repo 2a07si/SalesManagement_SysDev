@@ -616,9 +616,9 @@
             dateCheckBox.AutoSize = true;
             dateCheckBox.Location = new Point(967, 17);
             dateCheckBox.Name = "dateCheckBox";
-            dateCheckBox.Size = new Size(225, 29);
+            dateCheckBox.Size = new Size(189, 29);
             dateCheckBox.TabIndex = 267;
-            dateCheckBox.Text = "受注年月日を検索に含む";
+            dateCheckBox.Text = "入荷日を検索に含む";
             dateCheckBox.UseVisualStyleBackColor = true;
             // 
             // checkBox_2

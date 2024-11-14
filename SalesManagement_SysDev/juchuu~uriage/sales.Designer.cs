@@ -666,9 +666,9 @@
             checkBoxDateFilter.AutoSize = true;
             checkBoxDateFilter.Location = new Point(967, 17);
             checkBoxDateFilter.Name = "checkBoxDateFilter";
-            checkBoxDateFilter.Size = new Size(225, 29);
+            checkBoxDateFilter.Size = new Size(189, 29);
             checkBoxDateFilter.TabIndex = 287;
-            checkBoxDateFilter.Text = "受注年月日を検索に含む";
+            checkBoxDateFilter.Text = "売上日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             // 
             // checkBox_2

@@ -527,7 +527,7 @@
             checkBoxDateFilter.Name = "checkBoxDateFilter";
             checkBoxDateFilter.Size = new Size(225, 29);
             checkBoxDateFilter.TabIndex = 276;
-            checkBoxDateFilter.Text = "受注年月日を検索に含む";
+            checkBoxDateFilter.Text = "入庫年月日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             // 
             // receivingstock
