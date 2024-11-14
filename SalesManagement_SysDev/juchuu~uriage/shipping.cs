@@ -723,8 +723,8 @@ namespace SalesManagement_SysDev
 
                     // 各テキストボックスにデータを入力
                     TBSyukkaID.Text = row.Cells["出荷ID"].Value.ToString() ?? string.Empty;
-                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString() ?? string.Empty; 
-                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString() ?? string.Empty; 
+                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString() ?? string.Empty;
+                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString() ?? string.Empty;
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
                     TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString() ?? string.Empty;
                     date.Value = row.Cells["出庫完了年月日"].Value != null
@@ -857,6 +857,61 @@ namespace SalesManagement_SysDev
                 UpdateFlagButtonText();
                 lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
+        }
+
+        //↓以下北島匙投げゾーン
+        private void LimitTextLength(TextBox textBox, int maxLength)
+        {
+            if (textBox.Text.Length > maxLength)
+            {
+                // 文字数制限を超えたら、超過部分を切り捨てる
+                textBox.Text = textBox.Text.Substring(0, maxLength);
+                textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
+            }
+        }
+        private void TBSyukkaID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBKokyakuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBShainID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBShopID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 2);
+        }
+
+        private void TBJyutyuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+        //
+        private void TBSyukkaSyosaiID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBSyukkaIDS_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBSyohinID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBSuryou_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 4);
         }
     }
 

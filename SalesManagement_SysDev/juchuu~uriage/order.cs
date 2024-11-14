@@ -36,7 +36,7 @@ namespace SalesManagement_SysDev
 
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
-            AddControlEventHandlers(panel3, 2) ;  // パネル2の場合
+            AddControlEventHandlers(panel3, 2);  // パネル2の場合
         }
 
 
@@ -429,7 +429,7 @@ namespace SalesManagement_SysDev
                     }
                     catch (Exception ex)
                     {
-                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -736,7 +736,7 @@ namespace SalesManagement_SysDev
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
 
-          
+
         }
 
         private void UpdateFlagButtonText()
@@ -788,10 +788,10 @@ namespace SalesManagement_SysDev
                 DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
                 // 各テキストボックスにデータを入力
-                TBTyumonSyosaiId.Text = row.Cells["注文詳細ID"].Value.ToString()?? string.Empty;
-                TBTyumonIDS.Text = row.Cells["注文ID"].Value.ToString()?? string.Empty;
-                TBSyohinId.Text = row.Cells["商品ID"].Value.ToString()?? string.Empty;
-                TBSuryou.Text = row.Cells["数量"].Value.ToString()?? string.Empty;
+                TBTyumonSyosaiId.Text = row.Cells["注文詳細ID"].Value.ToString() ?? string.Empty;
+                TBTyumonIDS.Text = row.Cells["注文ID"].Value.ToString() ?? string.Empty;
+                TBSyohinId.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
+                TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;
             }
         }
 
@@ -911,8 +911,8 @@ namespace SalesManagement_SysDev
                         EmId = int.Parse(order.EmId.ToString()),
                         HaDate = order.ChDate ?? DateTime.Now, // 日付が空なら現在日時 
                         WaWarehouseFlag = 0,
-                        HaFlag = 0, 
-                        HaHidden = null 
+                        HaFlag = 0,
+                        HaHidden = null
                     };
 
                     context.THattyus.Add(newHattyu);
@@ -966,6 +966,61 @@ namespace SalesManagement_SysDev
                 UpdateFlagButtonText();
                 lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
+        }
+        //↓以下北島匙投げゾーン
+        private void LimitTextLength(TextBox textBox, int maxLength)
+        {
+            if (textBox.Text.Length > maxLength)
+            {
+                // 文字数制限を超えたら、超過部分を切り捨てる
+                textBox.Text = textBox.Text.Substring(0, maxLength);
+                textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
+            }
+        }
+        private void TBTyumonId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBShopId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 2);
+        }
+
+        private void TBShainId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBKokyakuId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBJyutyuId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+
+        private void TBTyumonSyosaiId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBTyumonIDS_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBSyohinId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 6);
+        }
+
+        private void TBSuryou_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            LimitTextLength(sender as TextBox, 4);
         }
     }
 }
