@@ -21,9 +21,11 @@ namespace SalesManagement_SysDev
 
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private Form mainForm;
-        private ClassDateNamelabel dateNameLabel; // 日付と時間ラベル管理用クラス 
-        private ClassTimerManager timerManager; // タイマー管理クラス 
+        private ClassDateNamelabel dateNameLabel; // 日付と時間ラベル管理用クラス
         private ClassAccessManager accessManager; // アクセスマネージャのインスタンス
+
+        private int lastFocusedPanelId = 1;
+
 
         public horder()
         {
@@ -801,19 +803,12 @@ namespace SalesManagement_SysDev
         // コントロールが選択（フォーカス）された時
         private void Control_Enter(object sender, EventArgs e, int panelId)
         {
-            if (panelId == 1)
+            // 異なるパネルに移動したときのみイベントを発生させる
+            if (panelId != lastFocusedPanelId)
             {
-
                 ToggleHattyuSelection();
                 UpdateFlagButtonText();
-
-            }
-            else if (panelId == 2)
-            {
-
-                ToggleHattyuSelection();
-                UpdateFlagButtonText();
-
+                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
         }
     }

@@ -20,7 +20,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
-         private int lastFocusedPanelId = 1;
+        private int lastFocusedPanelId = 1;
 
         public acceptingorders(Form mainForm)
         {

@@ -22,6 +22,8 @@ namespace SalesManagement_SysDev
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager;
 
+        private int lastFocusedPanelId = 1;
+
         // コンストラクターでmainFormを引数として受け取る 
         public shipping(Form mainForm)
         {
@@ -911,6 +913,7 @@ namespace SalesManagement_SysDev
         }
 
         // パネル内のすべてのコントロールにEnterイベントを追加
+        // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelId)
         {
             foreach (Control control in panel.Controls)
@@ -923,19 +926,12 @@ namespace SalesManagement_SysDev
         // コントロールが選択（フォーカス）された時
         private void Control_Enter(object sender, EventArgs e, int panelId)
         {
-            if (panelId == 1)
+            // 異なるパネルに移動したときのみイベントを発生させる
+            if (panelId != lastFocusedPanelId)
             {
-
                 ToggleShippingSelection();
                 UpdateFlagButtonText();
-
-            }
-            else if (panelId == 2)
-            {
-
-                ToggleShippingSelection();
-                UpdateFlagButtonText();
-
+                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
         }
     }

@@ -20,6 +20,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
+        private int lastFocusedPanelId = 1;
         public issue()
         {
             InitializeComponent();
@@ -832,19 +833,12 @@ namespace SalesManagement_SysDev
         // コントロールが選択（フォーカス）された時
         private void Control_Enter(object sender, EventArgs e, int panelId)
         {
-            if (panelId == 1)
+            // 異なるパネルに移動したときのみイベントを発生させる
+            if (panelId != lastFocusedPanelId)
             {
-
                 ToggleIssueSelection();
                 UpdateFlagButtonText();
-
-            }
-            else if (panelId == 2)
-            {
-
-                ToggleIssueSelection();
-                UpdateFlagButtonText();
-
+                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
         }
     }
