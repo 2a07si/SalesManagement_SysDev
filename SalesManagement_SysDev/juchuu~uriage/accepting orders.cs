@@ -316,19 +316,19 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length > 6)
+                if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length >= 6)
                 {
                     MessageBox.Show("社員IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length > 6)
+                if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length >= 6)
                 {
                     MessageBox.Show("顧客IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (tantoName.Length > 50)
+                if (tantoName.Length >= 50)
                 {
                     MessageBox.Show("担当者名は最大50文字でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
