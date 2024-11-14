@@ -277,6 +277,7 @@
             TBSyukkaID.Name = "TBSyukkaID";
             TBSyukkaID.Size = new Size(100, 31);
             TBSyukkaID.TabIndex = 1;
+            TBSyukkaID.MaskInputRejected += TBSyukkaID_MaskInputRejected;
             // 
             // dataGridView1
             // 
@@ -333,6 +334,7 @@
             TBKokyakuID.Name = "TBKokyakuID";
             TBKokyakuID.Size = new Size(100, 31);
             TBKokyakuID.TabIndex = 3;
+            TBKokyakuID.MaskInputRejected += TBKokyakuID_MaskInputRejected;
             // 
             // label12
             // 
@@ -381,6 +383,7 @@
             TBJyutyuID.Name = "TBJyutyuID";
             TBJyutyuID.Size = new Size(100, 31);
             TBJyutyuID.TabIndex = 9;
+            TBJyutyuID.MaskInputRejected += TBJyutyuID_MaskInputRejected;
             // 
             // label18
             // 
@@ -399,6 +402,7 @@
             TBShopID.Name = "TBShopID";
             TBShopID.Size = new Size(50, 31);
             TBShopID.TabIndex = 7;
+            TBShopID.MaskInputRejected += TBShopID_MaskInputRejected;
             // 
             // TBRiyuu
             // 
@@ -413,6 +417,7 @@
             TBShainID.Name = "TBShainID";
             TBShainID.Size = new Size(100, 31);
             TBShainID.TabIndex = 5;
+            TBShainID.MaskInputRejected += TBShainID_MaskInputRejected;
             // 
             // label17
             // 
@@ -525,6 +530,7 @@
             TBSyukkaSyosaiID.Name = "TBSyukkaSyosaiID";
             TBSyukkaSyosaiID.Size = new Size(100, 31);
             TBSyukkaSyosaiID.TabIndex = 1;
+            TBSyukkaSyosaiID.MaskInputRejected += TBSyukkaSyosaiID_MaskInputRejected;
             // 
             // dataGridView2
             // 
@@ -546,6 +552,7 @@
             TBSuryou.Name = "TBSuryou";
             TBSuryou.Size = new Size(100, 31);
             TBSuryou.TabIndex = 7;
+            TBSuryou.MaskInputRejected += TBSuryou_MaskInputRejected;
             // 
             // label15
             // 
@@ -586,6 +593,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 5;
+            TBSyohinID.MaskInputRejected += TBSyohinID_MaskInputRejected;
             // 
             // label10
             // 
@@ -600,6 +608,7 @@
             TBSyukkaIDS.Name = "TBSyukkaIDS";
             TBSyukkaIDS.Size = new Size(100, 31);
             TBSyukkaIDS.TabIndex = 3;
+            TBSyukkaIDS.MaskInputRejected += TBSyukkaIDS_MaskInputRejected;
             // 
             // b_FormSelector
             // 

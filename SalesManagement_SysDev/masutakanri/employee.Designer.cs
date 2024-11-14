@@ -225,6 +225,7 @@
             TBPass.Name = "TBPass";
             TBPass.Size = new Size(200, 31);
             TBPass.TabIndex = 11;
+            TBPass.MaskInputRejected += TBPass_MaskInputRejected;
             // 
             // label9
             // 
@@ -336,6 +337,7 @@
             TBSyainID.Name = "TBSyainID";
             TBSyainID.Size = new Size(100, 31);
             TBSyainID.TabIndex = 1;
+            TBSyainID.MaskInputRejected += TBSyainID_MaskInputRejected;
             // 
             // TBJobID
             // 
@@ -343,6 +345,7 @@
             TBJobID.Name = "TBJobID";
             TBJobID.Size = new Size(50, 31);
             TBJobID.TabIndex = 7;
+            TBJobID.MaskInputRejected += TBJobID_MaskInputRejected;
             // 
             // label17
             // 
@@ -372,6 +375,7 @@
             TBShopId.Name = "TBShopId";
             TBShopId.Size = new Size(50, 31);
             TBShopId.TabIndex = 5;
+            TBShopId.MaskInputRejected += TBShopId_MaskInputRejected;
             // 
             // TBSyainName
             // 
@@ -379,6 +383,7 @@
             TBSyainName.Name = "TBSyainName";
             TBSyainName.Size = new Size(200, 31);
             TBSyainName.TabIndex = 3;
+            TBSyainName.MaskInputRejected += TBSyainName_MaskInputRejected;
             // 
             // DelFlag
             // 

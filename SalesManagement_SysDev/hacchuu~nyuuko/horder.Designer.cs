@@ -263,6 +263,7 @@
             TBShainID.Name = "TBShainID";
             TBShainID.Size = new Size(100, 31);
             TBShainID.TabIndex = 5;
+            TBShainID.MaskInputRejected += TBShainID_MaskInputRejected;
             // 
             // TBMakerID
             // 
@@ -270,6 +271,7 @@
             TBMakerID.Name = "TBMakerID";
             TBMakerID.Size = new Size(100, 31);
             TBMakerID.TabIndex = 3;
+            TBMakerID.MaskInputRejected += TBMakerID_MaskInputRejected;
             // 
             // TBHattyuuID
             // 
@@ -277,6 +279,7 @@
             TBHattyuuID.Name = "TBHattyuuID";
             TBHattyuuID.Size = new Size(100, 31);
             TBHattyuuID.TabIndex = 1;
+            TBHattyuuID.MaskInputRejected += TBHattyuuID_MaskInputRejected;
             // 
             // label14
             // 
@@ -393,6 +396,7 @@
             TBHattyuuSyosaiID.Name = "TBHattyuuSyosaiID";
             TBHattyuuSyosaiID.Size = new Size(100, 31);
             TBHattyuuSyosaiID.TabIndex = 1;
+            TBHattyuuSyosaiID.MaskInputRejected += TBHattyuuSyosaiID_MaskInputRejected;
             // 
             // dataGridView2
             // 
@@ -414,6 +418,7 @@
             TBSuryou.Name = "TBSuryou";
             TBSuryou.Size = new Size(100, 31);
             TBSuryou.TabIndex = 7;
+            TBSuryou.MaskInputRejected += TBSuryou_MaskInputRejected;
             // 
             // label15
             // 
@@ -454,6 +459,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 5;
+            TBSyohinID.MaskInputRejected += TBSyohinID_MaskInputRejected;
             // 
             // label10
             // 
@@ -472,6 +478,7 @@
             TBHattyuIDS.Name = "TBHattyuIDS";
             TBHattyuIDS.Size = new Size(100, 31);
             TBHattyuIDS.TabIndex = 3;
+            TBHattyuIDS.MaskInputRejected += TBHattyuIDS_MaskInputRejected;
             // 
             // label2
             // 
