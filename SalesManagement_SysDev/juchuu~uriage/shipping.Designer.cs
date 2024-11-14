@@ -115,7 +115,7 @@
             b_ser.TabIndex = 3;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
-            b_ser.Click += b_ser_Click_1;
+            b_ser.Click += b_ser_Click;
             // 
             // label4
             // 
@@ -136,7 +136,7 @@
             b_upd.TabIndex = 1;
             b_upd.Text = "更新";
             b_upd.UseVisualStyleBackColor = false;
-            b_upd.Click += b_upd_Click_1;
+            b_upd.Click += b_upd_Click;
             // 
             // label3
             // 
@@ -157,7 +157,7 @@
             b_reg.TabIndex = 0;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
-            b_reg.Click += b_reg_Click_1;
+            b_reg.Click += b_reg_Click;
             // 
             // b_acc
             // 
@@ -170,7 +170,7 @@
             b_acc.TabIndex = 8;
             b_acc.Text = "受注";
             b_acc.UseVisualStyleBackColor = false;
-            b_acc.Click += b_acc_Click_1;
+            b_acc.Click += b_acc_Click;
             // 
             // b_sal
             // 
@@ -183,7 +183,7 @@
             b_sal.TabIndex = 13;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
-            b_sal.Click += b_sal_Click_1;
+            b_sal.Click += b_sal_Click;
             // 
             // b_ord
             // 
@@ -290,7 +290,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 18;
-            dataGridView1.CellClick += dataGridView1_CellClick_1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // SyukkaFlag
             // 
@@ -456,7 +456,7 @@
             close.TabIndex = 14;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
-            close.Click += close_Click_1;
+            close.Click += close_Click;
             // 
             // B_iti
             // 
@@ -538,7 +538,7 @@
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 8;
-            dataGridView2.CellClick += dataGridView2_CellClick_1;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // TBSuryou
             // 
@@ -610,7 +610,7 @@
             b_FormSelector.TabIndex = 16;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
-            b_FormSelector.Click += b_FormSelector_Click_2;
+            b_FormSelector.Click += b_FormSelector_Click;
             // 
             // checkBoxDateFilter
             // 

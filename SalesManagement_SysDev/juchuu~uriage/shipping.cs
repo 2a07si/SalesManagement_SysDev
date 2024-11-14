@@ -22,6 +22,8 @@ namespace SalesManagement_SysDev
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager;
 
+        private int lastFocusedPanelId = 1;
+
         // コンストラクターでmainFormを引数として受け取る 
         public shipping(Form mainForm)
         {
@@ -90,23 +92,18 @@ namespace SalesManagement_SysDev
             formChanger.NavigateToIssueForm();//出庫管理画面に遷移
         }
 
-        private void b_acc_Click_1(object sender, EventArgs e)
-        {
-            formChanger.NavigateToAcceptingOrderForm(); // acceptingorders フォームに遷移
-        }
-
-        private void b_sal_Click_1(object sender, EventArgs e)
+        private void b_sal_Click(object sender, EventArgs e)
         {
             formChanger.NavigateToSalesForm(); // 売上管理画面に遷移 
         }
 
-        private void b_reg_Click_1(object sender, EventArgs e)
+        private void b_reg_Click(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click_1(object sender, EventArgs e)
+        private void b_upd_Click(object sender, EventArgs e)
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
@@ -121,7 +118,7 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void b_ser_Click_1(object sender, EventArgs e)
+        private void b_ser_Click(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
@@ -152,10 +149,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
         }
 
-        private void close_Click_1(object sender, EventArgs e)
-        {
-            formChanger.NavigateToMainMenu(); // メインメニューに遷移 
-        }
+
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
@@ -686,6 +680,11 @@ namespace SalesManagement_SysDev
 
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isShippingSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+
+            if (shippingFlag == "←通常")
+                lastFocusedPanelId = 1;
+            else if (shippingFlag == "詳細→")
+                lastFocusedPanelId = 2;
         }
 
 
@@ -696,6 +695,8 @@ namespace SalesManagement_SysDev
 
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
+
+
         }
 
 
@@ -768,81 +769,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void b_FormSelector_Click_1(object sender, EventArgs e)
-        {
-            // 状態を切り替える処理
-            ToggleShippingSelection();
-
-            // b_FormSelectorのテキストを現在の状態に更新
-            UpdateFlagButtonText();
-        }
-
-        private void b_FormSelector_Click_2(object sender, EventArgs e)
-        {
-            // 状態を切り替える処理
-            ToggleShippingSelection();
-
-            // b_FormSelectorのテキストを現在の状態に更新
-            UpdateFlagButtonText();
-        }
-
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得
-                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力
-                    TBSyukkaID.Text = row.Cells["出荷ID"].Value.ToString();
-                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
-                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString();
-                    TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
-                    date.Value = Convert.ToDateTime(row.Cells["出荷終了日"].Value);
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
-                    // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    TBRiyuu.Text = row.Cells["非表示理由"].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // クリックした行のインデックスを取得 
-                int rowIndex = e.RowIndex;
-
-                // 行インデックスが有効かどうかをチェック 
-                if (rowIndex >= 0)
-                {
-                    // 行データを取得 
-                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力
-                    TBSyukkaSyosaiID.Text = row.Cells["出荷詳細ID"].Value.ToString();
-                    TBSyukkaIDS.Text = row.Cells["出荷ID"].Value.ToString();
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
-                    TBSuryou.Text = row.Cells["数量"].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void ShippingConfirm(int ShId)
         {
@@ -911,6 +837,7 @@ namespace SalesManagement_SysDev
         }
 
         // パネル内のすべてのコントロールにEnterイベントを追加
+        // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelId)
         {
             foreach (Control control in panel.Controls)
@@ -923,19 +850,12 @@ namespace SalesManagement_SysDev
         // コントロールが選択（フォーカス）された時
         private void Control_Enter(object sender, EventArgs e, int panelId)
         {
-            if (panelId == 1)
+            // 異なるパネルに移動したときのみイベントを発生させる
+            if (panelId != lastFocusedPanelId)
             {
-
                 ToggleShippingSelection();
                 UpdateFlagButtonText();
-
-            }
-            else if (panelId == 2)
-            {
-
-                ToggleShippingSelection();
-                UpdateFlagButtonText();
-
+                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
         }
     }

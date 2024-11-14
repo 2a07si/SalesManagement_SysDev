@@ -106,7 +106,7 @@
             b_ser.TabIndex = 3;
             b_ser.Text = "検索";
             b_ser.UseVisualStyleBackColor = false;
-            b_ser.Click += b_ser_Click_1;
+            b_ser.Click += b_ser_Click;
             // 
             // label4
             // 
@@ -148,7 +148,7 @@
             b_reg.TabIndex = 0;
             b_reg.Text = "登録";
             b_reg.UseVisualStyleBackColor = false;
-            b_reg.Click += b_reg_Click_1;
+            b_reg.Click += b_reg_Click;
             // 
             // b_hor
             // 
@@ -323,7 +323,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 14;
-            dataGridView1.CellClick += dataGridView1_CellClick_1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // b_kakutei
             // 
@@ -368,7 +368,7 @@
             B_iti.TabIndex = 2;
             B_iti.Text = "一覧";
             B_iti.UseVisualStyleBackColor = false;
-            B_iti.Click += B_iti_Click_1;
+            B_iti.Click += B_iti_Click;
             // 
             // panel3
             // 
@@ -406,7 +406,7 @@
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 8;
-            dataGridView2.CellClick += dataGridView2_CellClick_1;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // TBSuryou
             // 
@@ -502,7 +502,7 @@
             b_FormSelector.TabIndex = 12;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
-            b_FormSelector.Click += b_FormSelector_Click_1;
+            b_FormSelector.Click += b_FormSelector_Click;
             // 
             // checkBoxDateFilter
             // 

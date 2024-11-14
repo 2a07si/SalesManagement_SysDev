@@ -108,7 +108,7 @@
             b_masuta.TabIndex = 25;
             b_masuta.Text = "マスタ管理";
             b_masuta.UseVisualStyleBackColor = false;
-            b_masuta.Click += b_masuta_Click_1;
+            b_masuta.Click += b_masuta_Click;
             // 
             // label_ename
             // 

@@ -224,7 +224,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1400, 490);
             dataGridView1.TabIndex = 12;
-            dataGridView1.CellClick += dataGridView1_CellClick_1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // TBSyohinID
             // 
@@ -290,7 +290,7 @@
             b_kakutei.TabIndex = 5;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
-            b_kakutei.Click += b_kakutei_Click_1;
+            b_kakutei.Click += b_kakutei_Click;
             // 
             // clear
             // 

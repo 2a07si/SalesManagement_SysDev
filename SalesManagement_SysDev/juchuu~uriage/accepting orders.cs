@@ -20,6 +20,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
+        private int lastFocusedPanelId = 1;
 
         public acceptingorders(Form mainForm)
         {
@@ -52,17 +53,17 @@ namespace SalesManagement_SysDev
         }
 
         // メインメニューに戻る
-        private void close_Click_1(object sender, EventArgs e)
+        private void close_Click(object sender, EventArgs e)
         {
             formChanger.NavigateTo3();
         }
 
         // 各ボタンでの画面遷移
         private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToOrderForm();
-        private void b_arr_Click_1(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
+        private void b_arr_Click(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
         private void b_shi_Click(object sender, EventArgs e) => formChanger.NavigateToShippingForm();
         private void b_sal_Click(object sender, EventArgs e) => formChanger.NavigateToSalesForm();
-        private void b_lss_Click_1(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
+        private void b_lss_Click(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
 
         private void clear_Click(object sender, EventArgs e) => ClearText();
 
@@ -126,7 +127,7 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ResetStatus(label2);
         }
-        private void b_kakutei_Click_1(object sender, EventArgs e)
+        private void b_kakutei_Click(object sender, EventArgs e)
         {
             try
             {
@@ -309,25 +310,25 @@ namespace SalesManagement_SysDev
                 bool delFlag = DelFlag.Checked;
 
                 // 条件精査
-                if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length > 2)
+                if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length >= 2)
                 {
                     MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length > 6)
+                if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length >= 6)
                 {
                     MessageBox.Show("社員IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length > 6)
+                if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length >= 6)
                 {
                     MessageBox.Show("顧客IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (tantoName.Length > 50)
+                if (tantoName.Length >= 50)
                 {
                     MessageBox.Show("担当者名は最大50文字でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -703,8 +704,14 @@ namespace SalesManagement_SysDev
             isOrderSelected = !isOrderSelected;
             orderFlag = isOrderSelected ? "←通常" : "詳細→";
 
-            // CurrentStatusのモードを切り替える 
-            CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+                // CurrentStatusのモードを切り替える 
+                CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+                
+                if(orderFlag == "←通常")
+                lastFocusedPanelId = 1;
+                else
+                if (orderFlag == "詳細→")
+                lastFocusedPanelId = 2;
         }
 
         private void b_FormSelector_Click(object sender, EventArgs e)
@@ -716,6 +723,8 @@ namespace SalesManagement_SysDev
 
                 // b_FormSelectorのテキストを現在の状態に更新 
                 UpdateFlagButtonText();
+
+                
             }
             catch (Exception ex)
             {
@@ -874,21 +883,13 @@ namespace SalesManagement_SysDev
         // コントロールが選択（フォーカス）された時
         private void Control_Enter(object sender, EventArgs e, int panelId)
         {
-            if (panelId == 1)
+            // 異なるパネルに移動したときのみイベントを発生させる
+            if (panelId != lastFocusedPanelId)
             {
-
                 ToggleOrderSelection();
                 UpdateFlagButtonText();
-
+                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
             }
-            else if (panelId == 2)
-            {
-
-                ToggleOrderSelection();
-                UpdateFlagButtonText();
-
-            }
-
         }
 
     }
