@@ -218,6 +218,36 @@ namespace SalesManagement_SysDev
             string Riyuu = TBRiyuu.Text;
             DateTime Orderdate = date.Value;
 
+            if (!int.TryParse(OrderId, out int parsedSyukkoID))
+            {
+                MessageBox.Show("注文IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(JyutyuId, out int parsedJyutyuID))
+            {
+                MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(ShopId, out int parsedShopID))
+            {
+                MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(ShainId, out int parsedShainID))
+            {
+                MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(KokyakuId, out int parsedKokyakuID))
+            {
+                MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var context = new SalesManagementContext())
             {
                 var order = context.TChumons.FirstOrDefault(o => o.ChId.ToString() == ChumonId);
@@ -561,17 +591,42 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrderDetails()
         {
-            string NyutyuSyosaiID = TBTyumonSyosaiId.Text;
-            string jyutyuID = TBTyumonIDS.Text;
+            string TyumonSyosaiID = TBTyumonSyosaiId.Text;
+            string TyumonID = TBTyumonIDS.Text;
             string syohinID = TBSyohinId.Text;
             string suryou = TBSuryou.Text;
 
+            if (!int.TryParse(TyumonSyosaiID, out int parsedSyosaiID))
+            {
+                MessageBox.Show("注文詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(TyumonID, out int parsedJyutyuID))
+            {
+                MessageBox.Show("注文IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            if (!int.TryParse(syohinID, out int parsedSyohinID))
+            {
+                MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(suryou, out int parsedsuryou))
+            {
+                MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var context = new SalesManagementContext())
             {
-                var orderDetail = context.TChumonDetails.SingleOrDefault(od => od.ChDetailId.ToString() == NyutyuSyosaiID);
+                var orderDetail = context.TChumonDetails.SingleOrDefault(od => od.ChDetailId.ToString() == TyumonSyosaiID);
                 if (orderDetail != null)
                 {
-                    orderDetail.ChId = int.Parse(jyutyuID);
+                    orderDetail.ChId = int.Parse(TyumonID);
                     orderDetail.PrId = int.Parse(syohinID);
                     orderDetail.ChQuantity = int.Parse(suryou);
 

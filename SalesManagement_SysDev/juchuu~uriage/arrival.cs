@@ -216,6 +216,31 @@ namespace SalesManagement_SysDev
             string Riyuu = TBRiyuu.Text;
             DateTime Nyuukadate = date.Value;
 
+            if (!int.TryParse(JyutyuId, out int parsedJyutyuID))
+            {
+                MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(ShopId, out int parsedShopID))
+            {
+                MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(ShainId, out int parsedShainID))
+            {
+                MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(KokyakuId, out int parsedKokyakuID))
+            {
+                MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
             using (var context = new SalesManagementContext())
             {
                 var arrival = context.TArrivals.SingleOrDefault(o => o.ArId.ToString() == ArId);
@@ -512,17 +537,42 @@ namespace SalesManagement_SysDev
 
         private void UpdateArrivalDetails()
         {
-            string jyutyuSyosaiID = TBNyukaSyosaiID.Text;
-            string jyutyuID = TBNyuukaIDS.Text;
+            string nyuukaSyosaiID = TBNyukaSyosaiID.Text;
+            string nyuukaID = TBNyuukaIDS.Text;
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
+            if (!int.TryParse(nyuukaSyosaiID, out int parsedSyosaiID))
+            {
+                MessageBox.Show("入荷詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(nyuukaID, out int parsedJyutyuID))
+            {
+                MessageBox.Show("入荷IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            if (!int.TryParse(syohinID, out int parsedSyohinID))
+            {
+                MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(suryou, out int parsedsuryou))
+            {
+                MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var context = new SalesManagementContext())
             {
-                var arrivalDetail = context.TArrivalDetails.SingleOrDefault(od => od.ArDetailId.ToString() == jyutyuSyosaiID);
+                var arrivalDetail = context.TArrivalDetails.SingleOrDefault(od => od.ArDetailId.ToString() == nyuukaSyosaiID);
                 if (arrivalDetail != null)
                 {
-                    arrivalDetail.ArId = int.Parse(jyutyuID);
+                    arrivalDetail.ArId = int.Parse(nyuukaID);
                     arrivalDetail.PrId = int.Parse(syohinID);
                     arrivalDetail.ArQuantity = int.Parse(suryou);
 

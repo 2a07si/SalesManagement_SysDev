@@ -231,8 +231,39 @@ namespace SalesManagement_SysDev
             string Riyuu = TBRiyuu.Text;
             DateTime Syukkodate = date.Value;
 
+            if (!int.TryParse(SyukkoId, out int parsedSyukkoID))
+            {
+                MessageBox.Show("出庫IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(JyutyuId, out int parsedJyutyuID))
+            {
+                MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(ShopId, out int parsedShopID))
+            {
+                MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(ShainId, out int parsedShainID))
+            {
+                MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(KokyakuId, out int parsedKokyakuID))
+            {
+                MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var context = new SalesManagementContext())
             {
+
                 var issue = context.TSyukkos.SingleOrDefault(o => o.SyId.ToString() == SyukkoId);
                 if (issue != null)
                 {
@@ -510,7 +541,7 @@ namespace SalesManagement_SysDev
                         社員ID = issue.EmId,        // 社員ID
                         顧客ID = issue.ClId,          // クライアントID
                         受注ID = issue.OrId,           // 受注ID
-                        出庫日 = issue.SyDate,     // 出庫日
+                        出庫年月日 = issue.SyDate,     // 出庫日
                         状態フラグ = issue.SyStateFlag,  // 出庫状態フラグ
                         非表示フラグ = issue.SyFlag,      // 削除フラグ
                         非表示理由 = issue.SyHidden         // 理由
@@ -529,17 +560,42 @@ namespace SalesManagement_SysDev
 
         private void UpdateIssueDetails()
         {
-            string NyutyuSyosaiID = TBSyukkoSyosaiId.Text;
-            string jyutyuID = TBSyukkoIDS.Text;
+            string SyukkoSyosaiID = TBSyukkoSyosaiId.Text;
+            string SyukkoID = TBSyukkoIDS.Text;
             string syohinID = TBSyohinId.Text;
             string suryou = TBSuryou.Text;
 
+            if (!int.TryParse(SyukkoSyosaiID, out int parsedSyosaiID))
+            {
+                MessageBox.Show("入荷詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(SyukkoID, out int parsedJyutyuID))
+            {
+                MessageBox.Show("入荷IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            if (!int.TryParse(syohinID, out int parsedSyohinID))
+            {
+                MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(suryou, out int parsedsuryou))
+            {
+                MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var context = new SalesManagementContext())
             {
-                var issueDetail = context.TSyukkoDetails.SingleOrDefault(od => od.SyDetailId.ToString() == NyutyuSyosaiID);
+                var issueDetail = context.TSyukkoDetails.SingleOrDefault(od => od.SyDetailId.ToString() == SyukkoSyosaiID);
                 if (issueDetail != null)
                 {
-                    issueDetail.SyId = int.Parse(jyutyuID);
+                    issueDetail.SyId = int.Parse(SyukkoID);
                     issueDetail.PrId = int.Parse(syohinID);
                     issueDetail.SyQuantity = int.Parse(suryou);
 
