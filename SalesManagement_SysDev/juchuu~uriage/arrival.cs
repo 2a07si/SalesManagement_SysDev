@@ -219,7 +219,7 @@ namespace SalesManagement_SysDev
             if (!int.TryParse(JyutyuId, out int parsedJyutyuID))
             {
                 MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TBJyutyuId.BackColor = Color.LightCoral;
+                TBJyutyuId.BackColor = Color.Yellow;
                 TBJyutyuId.Focus();
                 return;
             }
@@ -227,7 +227,7 @@ namespace SalesManagement_SysDev
             if (!int.TryParse(ShopId, out int parsedShopID))
             {
                 MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TBShopId.BackColor = Color.LightCoral;
+                TBShopId.BackColor = Color.Yellow;
                 TBShopId.Focus();
                 return;
             }
@@ -235,7 +235,7 @@ namespace SalesManagement_SysDev
             if (!int.TryParse(ShainId, out int parsedShainID))
             {
                 MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TBShainId.BackColor = Color.LightCoral;
+                TBShainId.BackColor = Color.Yellow;
                 TBShainId.Focus();
                 return;
             }
@@ -243,7 +243,7 @@ namespace SalesManagement_SysDev
             if (!int.TryParse(KokyakuId, out int parsedKokyakuID))
             {
                 MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TBKokyakuId.BackColor = Color.LightCoral;
+                TBKokyakuId.BackColor = Color.Yellow;
                 TBKokyakuId.Focus();
                 return;
             }
@@ -325,7 +325,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
                 {
                     MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShopId.BackColor = Color.LightCoral;
+                    TBShopId.BackColor = Color.Yellow;
                     TBShopId.Focus();
                     return;
                 }
@@ -335,7 +335,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShainId.BackColor = Color.LightCoral;
+                    TBShainId.BackColor = Color.Yellow;
                     TBShainId.Focus();
                     return;
                 }
@@ -345,7 +345,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
                     MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBKokyakuId.BackColor = Color.LightCoral;
+                    TBKokyakuId.BackColor = Color.Yellow;
                     TBKokyakuId.Focus();
                     return;
                 }
@@ -355,7 +355,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
                     MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBJyutyuId.BackColor= Color.LightCoral;
+                    TBJyutyuId.BackColor= Color.Yellow;
                     TBJyutyuId.Focus();
                     return;
                 }
@@ -561,7 +561,7 @@ namespace SalesManagement_SysDev
             if (!int.TryParse(nyuukaSyosaiID, out int parsedSyosaiID))
             {
                 MessageBox.Show("入荷詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TBNyukaSyosaiID.BackColor = Color.LightCoral;
+                TBNyukaSyosaiID.BackColor = Color.Yellow;
                 TBNyukaSyosaiID.Focus();
                 return;
             }
@@ -569,7 +569,7 @@ namespace SalesManagement_SysDev
             if (!int.TryParse(nyuukaID, out int parsedJyutyuID))
             {
                 MessageBox.Show("入荷IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TBNyuukaIDS.BackColor = Color.LightCoral;
+                TBNyuukaIDS.BackColor = Color.Yellow;
                 TBNyuukaIDS.Focus();
                 return;
             }
@@ -578,7 +578,7 @@ namespace SalesManagement_SysDev
             if (!int.TryParse(syohinID, out int parsedSyohinID))
             {
                 MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TBSyohinID.BackColor = Color.LightCoral;
+                TBSyohinID.BackColor = Color.Yellow;
                 TBSyohinID.Focus();
                 return;
             }
@@ -586,7 +586,7 @@ namespace SalesManagement_SysDev
             if (!int.TryParse(suryou, out int parsedsuryou))
             {
                 MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TBSuryou.BackColor = Color.LightCoral;
+                TBSuryou.BackColor = Color.Yellow;
                 TBSuryou.Focus();
                 return;
             }
@@ -625,7 +625,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(NyuukaID, out nyuuka) || !context.TArrivals.Any(n => n.ArId == nyuuka))
                 {
                     MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBNyuukaId.BackColor = Color.LightCoral;
+                    TBNyuukaId.BackColor = Color.Yellow;
                     TBNyuukaId.Focus();
                     return;
                 }
@@ -974,6 +974,10 @@ namespace SalesManagement_SysDev
         private void TBSuryou_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
+        }
+        private void colorReset()
+        {
+            TBNyuukaId.BackColor 
         }
     }
 

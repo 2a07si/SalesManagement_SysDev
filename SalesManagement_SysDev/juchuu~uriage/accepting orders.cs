@@ -136,9 +136,11 @@ namespace SalesManagement_SysDev
                 switch (CurrentStatus.CurrentMode)
                 {
                     case CurrentStatus.Mode.通常:
+                        colorReset();
                         HandleOrderOperation();
                         break;
                     case CurrentStatus.Mode.詳細:
+                        colorReset();
                         HandleOrderDetailOperation();
                         break;
                     default:
@@ -1047,6 +1049,22 @@ namespace SalesManagement_SysDev
         private void TBGoukeiKingaku_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 10);
+        }
+
+        private void colorReset()
+        {
+            TBShopID.BackColor = SystemColors.Window;
+            TBShainID.BackColor = SystemColors.Window;
+            TBKokyakuID.BackColor = SystemColors.Window;
+            TBJyutyuID.BackColor = SystemColors.Window;
+            TBJyutyuIDS.BackColor = SystemColors.Window;
+            TBGoukeiKingaku.BackColor = SystemColors.Window;
+            TBTantoName.BackColor = SystemColors.Window;
+            TBSuryou.BackColor = SystemColors.Window;
+            TBJyutyuSyosaiID.BackColor = SystemColors.Window;
+            TBSyohinID.BackColor = SystemColors.Window;
+
+
         }
     }
 }

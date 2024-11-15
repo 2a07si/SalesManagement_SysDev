@@ -233,6 +233,8 @@ namespace SalesManagement_SysDev
             if (!int.TryParse(shukkaID, out int parsedshukkaID))
             {
                 MessageBox.Show("出荷IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TBSyukkaID.BackColor = SystemColors.Window;
+                TBSyukkaID.Focus();
                 return;
             }
 
