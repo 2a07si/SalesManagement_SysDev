@@ -214,6 +214,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrder()
         {
+
             try
             {
                 string jyutyuID = TBJyutyuID.Text;
