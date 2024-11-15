@@ -322,6 +322,11 @@ namespace SalesManagement_SysDev
 
         private void RegisterOrder()
         {
+
+            TBShopID.BackColor = SystemColors.Window;
+            TBShainID.BackColor = SystemColors.Window;
+            TBKokyakuID.BackColor = SystemColors.Window;
+
             try
             {
                 string shopID = TBShopID.Text;
@@ -337,12 +342,16 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length >= 2)
                 {
                     MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBKokyakuID.BackColor = Color.Red;
+                    TBKokyakuID.Focus();
                     return;
                 }
 
                 if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length >= 6)
                 {
                     MessageBox.Show("社員IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShainID.BackColor = Color.Red;
+                    TBShainID.Focus();
                     return;
                 }
 
@@ -352,11 +361,6 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (tantoName.Length >= 50)
-                {
-                    MessageBox.Show("担当者名は最大50文字でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
 
                 using (var context = new SalesManagementContext())
 
