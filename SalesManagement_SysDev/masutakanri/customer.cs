@@ -107,6 +107,8 @@ namespace SalesManagement_SysDev
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+
+            colorReset();
             HandleCustomerOperation();
         }
         private void HandleCustomerOperation()
@@ -491,6 +493,16 @@ namespace SalesManagement_SysDev
         private void TBFax_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 13);
+        }
+        private void colorReset()
+        {
+            TBKokyakuID.BackColor = SystemColors.Window;
+            TBShopID.BackColor = SystemColors.Window;
+            TBKokyakuName.BackColor = SystemColors.Window;
+            TBYuubinNo.BackColor = SystemColors.Window;
+            TBJyusyo.BackColor = SystemColors.Window;
+            TBTellNo.BackColor = SystemColors.Window;
+            TBFax.BackColor = SystemColors.Window;
         }
     }
 

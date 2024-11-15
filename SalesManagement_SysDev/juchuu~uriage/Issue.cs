@@ -160,9 +160,11 @@ namespace SalesManagement_SysDev
                 switch (CurrentStatus.CurrentMode)
                 {
                     case CurrentStatus.Mode.通常:
+                        colorReset();
                         HandleIssueOperation();
                         break;
                     case CurrentStatus.Mode.詳細:
+                        colorReset();
                         HandleIssueDetailOperation();
                         break;
                     default:
@@ -998,6 +1000,9 @@ namespace SalesManagement_SysDev
         private void TBSuryou_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
+        }
+        private void colorReset()
+        {
         }
     }
 

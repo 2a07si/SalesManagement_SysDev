@@ -162,9 +162,11 @@ namespace SalesManagement_SysDev
                 switch (CurrentStatus.CurrentMode)
                 {
                     case CurrentStatus.Mode.通常:
+                        colorReset();
                         HandleSaleOperation();
                         break;
                     case CurrentStatus.Mode.詳細:
+                        colorReset();
                         HandleSaleDetailOperation();
                         break;
                     default:
@@ -953,6 +955,8 @@ namespace SalesManagement_SysDev
             LimitTextLength(sender as TextBox, 10);
         }
     }
-
+    private void colorReset()
+    {
+    }
 
 }

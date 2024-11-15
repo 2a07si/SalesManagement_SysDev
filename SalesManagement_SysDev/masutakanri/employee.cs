@@ -123,6 +123,7 @@ namespace SalesManagement_SysDev
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+            colorReset();
             HandleOrderOperation();
         }
 
@@ -464,6 +465,15 @@ namespace SalesManagement_SysDev
         private void TBTellNo_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 13);
+        }
+        private void colorReset()
+        {
+            TBSyainID.BackColor = SystemColors.Window;
+            TBSyainName.BackColor = SystemColors.Window;
+            TBJobID.BackColor = SystemColors.Window;
+            TBJobID.BackColor = SystemColors.Window;
+            TBPass.BackColor = SystemColors.Window;
+            TBTellNo.BackColor = SystemColors.Window;
         }
     }
 }
