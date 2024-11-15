@@ -159,6 +159,23 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
+            if (!int.TryParse(ShainID, out int parsedKokyakuID))
+            {
+                MessageBox.Show("社員IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(ShopID, out int parsedShopID))
+            {
+                MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(JobID, out int parsedJobID))
+            {
+                MessageBox.Show("役職IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             using (var context = new SalesManagementContext())
             {

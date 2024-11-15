@@ -250,12 +250,6 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (tantoName.Length > 50)
-                {
-                    MessageBox.Show("担当者名は最大50文字でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 using (var context = new SalesManagementContext())
                 {
                     var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == jyutyuID);
