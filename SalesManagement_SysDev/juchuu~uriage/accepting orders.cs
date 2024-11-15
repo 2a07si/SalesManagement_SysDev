@@ -252,11 +252,10 @@ namespace SalesManagement_SysDev
 
                 if (TBKokyakuID.Text == null)
                 {
-<<<<<<< HEAD
                     MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBKokyakuID.BackColor = Color.LightYellow;
                     TBKokyakuID.Focus();
-=======
+
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -264,7 +263,6 @@ namespace SalesManagement_SysDev
                 if (TBTantoName.Text == null)
                 {
                     MessageBox.Show("担当者名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
->>>>>>> d24ae0cd4596ef76efe0ed0c716ecc610c7000e1
                     return;
                 }
 
@@ -544,50 +542,38 @@ namespace SalesManagement_SysDev
 
                 if (TBJyutyuSyosaiID.Text == null)
                 {
-<<<<<<< HEAD
                     MessageBox.Show("受注詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBJyutyuSyosaiID.BackColor = Color.Yellow;
                     TBJyutyuSyosaiID.Focus();
-=======
                     MessageBox.Show("受注詳細IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
->>>>>>> d24ae0cd4596ef76efe0ed0c716ecc610c7000e1
                     return;
                 }
 
                 if (TBJyutyuIDS.Text == null)
                 {
-<<<<<<< HEAD
                     MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
-=======
                     MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
->>>>>>> d24ae0cd4596ef76efe0ed0c716ecc610c7000e1
                     return;
                 }
 
 
                 if (TBSyohinID.Text == null)
                 {
-<<<<<<< HEAD
                     MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
-=======
                     MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
->>>>>>> d24ae0cd4596ef76efe0ed0c716ecc610c7000e1
                     return;
                 }
 
                 if (TBSuryou.Text == null)
                 {
-<<<<<<< HEAD
                     MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBSuryou.BackColor = Color.Yellow;
                     TBSuryou.Focus();
-=======
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
->>>>>>> d24ae0cd4596ef76efe0ed0c716ecc610c7000e1
                     return;
                 }
 

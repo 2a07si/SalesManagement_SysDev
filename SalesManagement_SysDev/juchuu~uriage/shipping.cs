@@ -232,13 +232,9 @@ namespace SalesManagement_SysDev
 
             if (TBSyukkaID.Text == null)
             {
-<<<<<<< HEAD
-                MessageBox.Show("出荷IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TBSyukkaID.BackColor = SystemColors.Window;
                 TBSyukkaID.Focus();
-=======
                 MessageBox.Show("出荷IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
->>>>>>> d24ae0cd4596ef76efe0ed0c716ecc610c7000e1
                 return;
             }
 
