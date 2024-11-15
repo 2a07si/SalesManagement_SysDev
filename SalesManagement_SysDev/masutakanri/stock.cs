@@ -148,15 +148,20 @@ namespace SalesManagement_SysDev
             string zaiko = TBZaiko.Text;
             bool stflag = StFlag.Checked;
 
-            if (!int.TryParse(zaikoID, out int parsedShopID))
+
+            if(TBZaikoID.Text == null)
             {
-                MessageBox.Show("在庫IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("在庫IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            if (!int.TryParse(syohinID, out int parsedKokyakuID))
+            if (TBSyohinID.Text == null)
             {
-                MessageBox.Show("商品IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBZaiko.Text == null)
+            {
+                MessageBox.Show("在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -195,6 +200,16 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
                 {
                     MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBSyohinID.Text == null)
+                {
+                    MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBZaiko.Text == null)
+                {
+                    MessageBox.Show("在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var newstock = new TStock

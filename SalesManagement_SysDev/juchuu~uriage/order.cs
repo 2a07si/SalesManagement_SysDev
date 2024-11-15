@@ -277,7 +277,7 @@ namespace SalesManagement_SysDev
                         var details = context.TChumonDetails.Where(d => d.ChId == int.Parse(ChumonId)).ToList();
                         foreach (var detail in details)
                         {
-                            var stock = context.TStocks.SingleOrDefault(s => s.PrId == detail.PrId);
+                            var stock = context.TStocks.FirstOrDefault(s => s.PrId == detail.PrId);
                             if (stock == null || stock.StQuantity < detail.ChQuantity)
                             {
                                 // 在庫が不足している場合 
