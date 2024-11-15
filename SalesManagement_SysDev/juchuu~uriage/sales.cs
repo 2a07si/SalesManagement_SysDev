@@ -954,9 +954,10 @@ namespace SalesManagement_SysDev
         {
             LimitTextLength(sender as TextBox, 10);
         }
-    }
-    private void colorReset()
-    {
-    }
+        private void colorReset()
+        {
 
+        }
+    }
+    
 }
