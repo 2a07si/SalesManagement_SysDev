@@ -107,6 +107,8 @@ namespace SalesManagement_SysDev
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+
+            colorReset();
             HandleCustomerOperation();
         }
         private void HandleCustomerOperation()
@@ -491,6 +493,9 @@ namespace SalesManagement_SysDev
         private void TBFax_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 13);
+        }
+        private void colorReset()
+        {
         }
     }
 

@@ -114,8 +114,11 @@ namespace SalesManagement_SysDev
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
+
+
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+            colorReset();
             HandleStockOperation();
         }
         private void HandleStockOperation()
@@ -381,6 +384,9 @@ namespace SalesManagement_SysDev
         private void TBZaiko_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
+        }
+        private void colorReset()
+        {
         }
     }
 }

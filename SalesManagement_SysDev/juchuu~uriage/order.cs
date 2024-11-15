@@ -140,15 +140,18 @@ namespace SalesManagement_SysDev
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+
             try
             {
                 // モードに基づいて処理を分岐
                 switch (CurrentStatus.CurrentMode)
                 {
                     case CurrentStatus.Mode.通常:
+                        colorReset();
                         HandleOrderOperation();
                         break;
                     case CurrentStatus.Mode.詳細:
+                        colorReset();
                         HandleOrderDetailOperation();
                         break;
                     default:
@@ -1123,6 +1126,9 @@ namespace SalesManagement_SysDev
         private void TBSuryou_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
+        }
+        private void colorReset()
+        {
         }
     }
 }

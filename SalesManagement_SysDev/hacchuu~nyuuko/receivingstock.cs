@@ -127,6 +127,7 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ResetStatus(label2);
         }
+
         private void kakutei_Click(object sender, EventArgs e)
         {
             try
@@ -135,9 +136,11 @@ namespace SalesManagement_SysDev
                 switch (CurrentStatus.CurrentMode)
                 {
                     case CurrentStatus.Mode.通常:
+                        colorReset();
                         HandleReceivingStockOperation();
                         break;
                     case CurrentStatus.Mode.詳細:
+                        colorReset();
                         HandleReceivingStockDetailOperation();
                         break;
                     default:
@@ -856,6 +859,9 @@ namespace SalesManagement_SysDev
         private void TBSuryou_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
+        }
+        private void colorReset()
+        {
         }
     }
 }
