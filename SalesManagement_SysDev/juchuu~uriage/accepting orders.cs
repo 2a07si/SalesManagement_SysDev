@@ -229,18 +229,24 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
                 {
                     MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBJyutyuID.BackColor = Color.Yellow;
+                    TBJyutyuID.Focus();
                     return;
                 }
 
                 if (!int.TryParse(shopID, out int parsedShopID))
                 {
                     MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
                     return;
                 }
 
                 if (!int.TryParse(shainID, out int parsedShainID))
                 {
                     MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     return;
                 }
 
@@ -339,35 +345,33 @@ namespace SalesManagement_SysDev
                 bool delFlag = DelFlag.Checked;
 
                 // 条件精査
-                if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length >= 2)
+                if (!int.TryParse(shopID, out int parsedShopID))
                 {
-                    MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShopID.BackColor = Color.LightCoral;
+                    MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
                     return;
                 }
 
-                if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length >= 6)
+                if (!int.TryParse(shainID, out int parsedShainID))
                 {
-                    MessageBox.Show("社員IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShainID.BackColor = Color.Red;
+                    MessageBox.Show("社員IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
                     return;
                 }
 
-                if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length >= 6)
+                if (!int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
-                    MessageBox.Show("顧客IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBKokyakuID.BackColor = Color.Red;
+                    MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBKokyakuID.BackColor = Color.Yellow;
                     TBKokyakuID.Focus();
                     return;
                 }
 
 
                 using (var context = new SalesManagementContext())
-
                 {
-
                     var newOrder = new TOrder
                     {
                         SoId = parsedShopID,
@@ -526,8 +530,6 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrderDetails()
         {
-
-
             try
             {
                 string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
@@ -539,6 +541,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(jyutyuSyosaiID, out int parsedSyosaiID))
                 {
                     MessageBox.Show("受注詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBJyutyuSyosaiID.BackColor = Color.LightCoral;
+                    TBJyutyuSyosaiID.Focus();
                     return;
                 }
 
@@ -598,6 +602,27 @@ namespace SalesManagement_SysDev
                 string syohinID = TBSyohinID.Text;
                 string suryou = TBSuryou.Text;
                 string goukeiKingaku = TBGoukeiKingaku.Text;
+
+
+                if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
+                {
+                    MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                if (!int.TryParse(syohinID, out int parsedSyohinID))
+                {
+                    MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(suryou, out int parsedsuryou))
+                {
+                    MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
 
                 using (var context = new SalesManagementContext())
                 {
@@ -1013,7 +1038,5 @@ namespace SalesManagement_SysDev
         {
             LimitTextLength(sender as TextBox, 10);
         }
-
-
     }
 }
