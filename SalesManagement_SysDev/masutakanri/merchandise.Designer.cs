@@ -32,25 +32,25 @@
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
             date = new DateTimePicker();
-            TBColor = new MaskedTextBox();
+            TBColor = new TextBox();
             label10 = new Label();
-            TBModel = new MaskedTextBox();
+            TBModel = new TextBox();
             label9 = new Label();
-            TBSyoubunrui = new MaskedTextBox();
+            TBSyoubunrui = new TextBox();
             label8 = new Label();
             DelFlag = new CheckBox();
-            TBRiyuu = new MaskedTextBox();
+            TBRiyuu = new TextBox();
             label17 = new Label();
-            TBSafeNum = new MaskedTextBox();
+            TBSafeNum = new TextBox();
             label18 = new Label();
             label7 = new Label();
-            TBSell = new MaskedTextBox();
+            TBSell = new TextBox();
             label12 = new Label();
-            TBSyohinName = new MaskedTextBox();
+            TBSyohinName = new TextBox();
             label5 = new Label();
-            TBMakerId = new MaskedTextBox();
+            TBMakerId = new TextBox();
             label14 = new Label();
-            TBSyohinID = new MaskedTextBox();
+            TBSyohinID = new TextBox();
             label6 = new Label();
             b_reg = new Button();
             label3 = new Label();
@@ -133,7 +133,7 @@
             TBColor.Name = "TBColor";
             TBColor.Size = new Size(180, 31);
             TBColor.TabIndex = 15;
-            TBColor.MaskInputRejected += TBColor_TextChanged;
+            TBColor.TextChanged += TBColor_TextChanged;
             // 
             // label10
             // 
@@ -152,7 +152,7 @@
             TBModel.Name = "TBModel";
             TBModel.Size = new Size(180, 31);
             TBModel.TabIndex = 13;
-            TBModel.MaskInputRejected += TBModel_TextChanged;
+            TBModel.TextChanged += TBModel_TextChanged;
             // 
             // label9
             // 
@@ -171,7 +171,7 @@
             TBSyoubunrui.Name = "TBSyoubunrui";
             TBSyoubunrui.Size = new Size(40, 31);
             TBSyoubunrui.TabIndex = 11;
-            TBSyoubunrui.MaskInputRejected += TBSyoubunrui_TextChanged;
+            TBSyoubunrui.TextChanged += TBSyoubunrui_TextChanged;
             // 
             // label8
             // 
@@ -220,7 +220,7 @@
             TBSafeNum.Name = "TBSafeNum";
             TBSafeNum.Size = new Size(80, 31);
             TBSafeNum.TabIndex = 9;
-            TBSafeNum.MaskInputRejected += TBSafeNum_TextChanged;
+            TBSafeNum.TextChanged += TBSafeNum_TextChanged;
             // 
             // label18
             // 
@@ -250,7 +250,7 @@
             TBSell.Name = "TBSell";
             TBSell.Size = new Size(100, 31);
             TBSell.TabIndex = 7;
-            TBSell.MaskInputRejected += TBSell_TextChanged;
+            TBSell.TextChanged += TBSell_TextChanged;
             // 
             // label12
             // 
@@ -269,7 +269,7 @@
             TBSyohinName.Name = "TBSyohinName";
             TBSyohinName.Size = new Size(180, 31);
             TBSyohinName.TabIndex = 5;
-            TBSyohinName.MaskInputRejected += TBSyohinName_TextChanged;
+            TBSyohinName.TextChanged += TBSyohinName_TextChanged;
             // 
             // label5
             // 
@@ -288,7 +288,7 @@
             TBMakerId.Name = "TBMakerId";
             TBMakerId.Size = new Size(80, 31);
             TBMakerId.TabIndex = 3;
-            TBMakerId.MaskInputRejected += TBMakerId_TextChanged;
+            TBMakerId.TextChanged += TBMakerId_TextChanged;
             // 
             // label14
             // 
@@ -307,7 +307,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 1;
-            TBSyohinID.MaskInputRejected += TBSyohinID_TextChanged;
+            TBSyohinID.TextChanged += TBSyohinID_TextChanged;
             // 
             // label6
             // 
@@ -582,23 +582,23 @@
         private Button close;
         private System.Windows.Forms.Timer timer1;
         private CheckBox DelFlag;
-        private MaskedTextBox TBRiyuu;
+        private TextBox TBRiyuu;
         private Label label17;
-        private MaskedTextBox TBSafeNum;
+        private TextBox TBSafeNum;
         private Label label7;
-        private MaskedTextBox TBSell;
+        private TextBox TBSell;
         private Label label12;
-        private MaskedTextBox TBSyohinName;
+        private TextBox TBSyohinName;
         private Label label5;
-        private MaskedTextBox TBMakerId;
+        private TextBox TBMakerId;
         private Label label14;
-        private MaskedTextBox TBSyohinID;
+        private TextBox TBSyohinID;
         private Label label6;
         private Label label18;
-        private MaskedTextBox TBSyoubunrui;
+        private TextBox TBSyoubunrui;
         private Label label8;
         private Label label10;
-        private MaskedTextBox TBModel;
+        private TextBox TBModel;
         private Label label9;
         private Button B_iti;
         private Label label1;
@@ -606,7 +606,7 @@
         private Button Next;
         private Button Prev;
         private Label label16;
-        private MaskedTextBox TBColor;
+        private TextBox TBColor;
         private CheckBox checkBox_2;
         private DateTimePicker date;
     }
