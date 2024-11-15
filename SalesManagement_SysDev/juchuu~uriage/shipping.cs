@@ -289,6 +289,7 @@ namespace SalesManagement_SysDev
                             return; // 処理を中断
                         }
 
+                        context.SaveChanges();
                         // 出荷詳細が存在する場合、出荷確認処理を実行
                         ShippingConfirm(shipping.ShId);
                     }
@@ -845,12 +846,14 @@ namespace SalesManagement_SysDev
                 // 情報追加
                 var newSales = new TSale
                 {
-                    EmId = shipment.EmId ?? 0,  // 社員ID
+                    EmId = shipment.EmId ?? 0,
                     SoId = shipment.SoId,  // 営業所ID    
                     ClId = shipment.ClId,  // 顧客ID    
                     OrId = shipment.OrId,  // 受注ID
                     SaDate = shipment.ShFinishDate ?? DateTime.MinValue,
                     SaFlag = 0
+                    
+
                 };
 
                 try
@@ -860,7 +863,7 @@ namespace SalesManagement_SysDev
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("TSalesへの登録に失敗しました: " + ex.Message);
+                    throw new Exception("TSalesへの登録に失敗しました: " + ex.Message + "\n\nスタックトレース:\n" + ex.InnerException);
                 }
 
                 var shipmentDetail = context.TShipmentDetails.SingleOrDefault(o => o.ShId == shipment.ShId);

@@ -544,6 +544,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
                 {
                     MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBJyutyuID.BackColor = Color.LightCoral;
+                    TBJyutyuID.Focus();
                     return;
                 }
 
@@ -551,12 +553,16 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(syohinID, out int parsedSyohinID))
                 {
                     MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBSyohinID.BackColor = Color.LightCoral;
+                    TBSyohinID.Focus();
                     return;
                 }
 
                 if (!int.TryParse(suryou, out int parsedsuryou))
                 {
                     MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBSuryou.BackColor = Color.LightCoral;
+                    TBSuryou.Focus();
                     return;
                 }
 
@@ -602,6 +608,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
                 {
                     MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBJyutyuID.BackColor = Color.LightCoral;
+                    TBJyutyuID.Focus();
                     return;
                 }
 
@@ -609,12 +617,16 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(syohinID, out int parsedSyohinID))
                 {
                     MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBSyohinID.BackColor = Color.LightCoral;
+                    TBSyohinID.Focus();
                     return;
                 }
 
                 if (!int.TryParse(suryou, out int parsedsuryou))
                 {
                     MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBSuryou.BackColor = Color.LightCoral;
+                    TBSuryou.Focus();
                     return;
                 }
 
