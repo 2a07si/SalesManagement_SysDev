@@ -528,6 +528,14 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
+            TBSyohinID.BackColor = SystemColors.Window;
+            TBMakerId.BackColor = SystemColors.Window;
+            TBSyohinName.BackColor = SystemColors.Window;
+            TBSell.BackColor = SystemColors.Window;
+            TBSafeNum.BackColor = SystemColors.Window;
+            TBSyoubunrui.BackColor = SystemColors.Window;
+            TBModel.BackColor = SystemColors.Window;
+            TBColor.BackColor = SystemColors.Window;
         }
 
     }

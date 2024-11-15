@@ -387,6 +387,10 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
+            TBZaikoID.BackColor = SystemColors.Window;
+            TBSyohinID.BackColor = SystemColors.Window;
+            TBZaiko.BackColor = SystemColors.Window;
+
         }
     }
 }

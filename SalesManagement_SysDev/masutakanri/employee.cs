@@ -468,6 +468,12 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
+            TBSyainID.BackColor = SystemColors.Window;
+            TBSyainName.BackColor = SystemColors.Window;
+            TBJobID.BackColor = SystemColors.Window;
+            TBJobID.BackColor = SystemColors.Window;
+            TBPass.BackColor = SystemColors.Window;
+            TBTellNo.BackColor = SystemColors.Window;
         }
     }
 }
