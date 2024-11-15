@@ -1087,8 +1087,6 @@ namespace SalesManagement_SysDev
             TBSuryou.BackColor = SystemColors.Window;
             TBJyutyuSyosaiID.BackColor = SystemColors.Window;
             TBSyohinID.BackColor = SystemColors.Window;
-
-
         }
     }
 }
