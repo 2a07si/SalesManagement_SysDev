@@ -194,6 +194,7 @@ namespace SalesManagement_SysDev
             string zaiko = TBZaiko.Text;
             bool stflag = StFlag.Checked;
 
+
             using (var context = new SalesManagementContext())
             {
                 int shouhin;
