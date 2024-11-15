@@ -197,6 +197,7 @@ namespace SalesManagement_SysDev
             string zaiko = TBZaiko.Text;
             bool stflag = StFlag.Checked;
 
+
             using (var context = new SalesManagementContext())
             {
                 int shouhin;
@@ -387,6 +388,10 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
+            TBZaikoID.BackColor = SystemColors.Window;
+            TBSyohinID.BackColor = SystemColors.Window;
+            TBZaiko.BackColor = SystemColors.Window;
+
         }
     }
 }

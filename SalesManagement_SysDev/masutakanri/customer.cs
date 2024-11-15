@@ -496,6 +496,13 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
+            TBKokyakuID.BackColor = SystemColors.Window;
+            TBShopID.BackColor = SystemColors.Window;
+            TBKokyakuName.BackColor = SystemColors.Window;
+            TBYuubinNo.BackColor = SystemColors.Window;
+            TBJyusyo.BackColor = SystemColors.Window;
+            TBTellNo.BackColor = SystemColors.Window;
+            TBFax.BackColor = SystemColors.Window;
         }
     }
 
