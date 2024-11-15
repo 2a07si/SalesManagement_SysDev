@@ -412,7 +412,7 @@ namespace SalesManagement_SysDev
                 if (TBShopID.Text == null)
                 {
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.BackColor = Color.Yellow; 
                     TBShopID.Focus();
                     return;
                 }
