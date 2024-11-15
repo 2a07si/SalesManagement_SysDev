@@ -1033,9 +1033,5 @@ namespace SalesManagement_SysDev
         {
             LimitTextLength(sender as TextBox, 10);
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> a7385a7d9081f5964b4f0cc6087ef17fe62cceed
     }
 }

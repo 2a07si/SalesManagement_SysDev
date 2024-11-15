@@ -782,10 +782,10 @@ namespace SalesManagement_SysDev
                     TBSyukkaID.Text = row.Cells["出荷ID"].Value.ToString() ?? string.Empty;
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString() ?? string.Empty;
                     TBShopID.Text = row.Cells["営業所ID"].Value.ToString() ?? string.Empty;
-                    TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
+                    TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
                     TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString() ?? string.Empty;
-                    date.Value = row.Cells["出庫完了年月日"].Value != null
-                                 ? Convert.ToDateTime(row.Cells["出庫完了年月日"].Value)
+                    date.Value = row.Cells["出荷終了日"].Value != null
+                                 ? Convert.ToDateTime(row.Cells["出荷終了日"].Value)
                                  : DateTime.Now; // nullの場合は現在の日付を設定
                     ;
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
