@@ -336,7 +336,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length >= 2)
                 {
                     MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShopID.BackColor = Color.Red;
+                    TBShopID.BackColor = Color.LightCoral;
                     TBShopID.Focus();
                     return;
                 }
