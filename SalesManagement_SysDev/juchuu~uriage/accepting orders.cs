@@ -496,12 +496,40 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrderDetails()
         {
+
+
             try
             {
                 string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
                 string jyutyuID = TBJyutyuIDS.Text;
                 string syohinID = TBSyohinID.Text;
                 string suryou = TBSuryou.Text;
+
+
+                if (!int.TryParse(jyutyuSyosaiID, out int parsedSyosaiID))
+                {
+                    MessageBox.Show("受注詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
+                {
+                    MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                if (!int.TryParse(syohinID, out int parsedSyohinID))
+                {
+                    MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(suryou, out int parsedsuryou))
+                {
+                    MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 using (var context = new SalesManagementContext())
                 {
