@@ -88,6 +88,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
         }
 
+
         private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
 
         private void PerformSearch()
