@@ -342,8 +342,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length >= 2)
                 {
                     MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBKokyakuID.BackColor = Color.Red;
-                    TBKokyakuID.Focus();
+                    TBShopID.BackColor = Color.Red;
+                    TBShopID.Focus();
                     return;
                 }
 
@@ -358,6 +358,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length >= 6)
                 {
                     MessageBox.Show("顧客IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBKokyakuID.BackColor = Color.Red;
+                    TBKokyakuID.Focus();
                     return;
                 }
 
