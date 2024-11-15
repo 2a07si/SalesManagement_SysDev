@@ -1009,6 +1009,5 @@ namespace SalesManagement_SysDev
             LimitTextLength(sender as TextBox, 10);
         }
 
-
     }
 }
