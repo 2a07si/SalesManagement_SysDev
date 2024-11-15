@@ -144,19 +144,43 @@ namespace SalesManagement_SysDev
             string fax = TBFax.Text;
 
 
-            if (!int.TryParse(shopID, out int parsedShopID))
+            if (TBKokyakuID.Text == null)
             {
-                MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBShopID.Text == null)
+            {
+                MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBKokyakuName.Text == null)
+            {
+                MessageBox.Show("顧客名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBJyusyo.Text == null)
+            {
+                MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBYuubinNo.Text == null)
+            {
+                MessageBox.Show("郵便番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBTellNo.Text == null)
+            {
+                MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBFax.Text == null)
+            {
+                MessageBox.Show("FAXを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(kokyakuID, out int parsedKokyakuID))
-            {
-                MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
-           
 
             using (var context = new SalesManagementContext())
             {
@@ -200,6 +224,36 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
                 {
                     MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBShopID.Text == null)
+                {
+                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBKokyakuName.Text == null)
+                {
+                    MessageBox.Show("顧客名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBJyusyo.Text == null)
+                {
+                    MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBYuubinNo.Text == null)
+                {
+                    MessageBox.Show("郵便番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBTellNo.Text == null)
+                {
+                    MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBFax.Text == null)
+                {
+                    MessageBox.Show("FAXを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var newcustomer = new MClient

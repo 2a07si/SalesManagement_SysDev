@@ -233,33 +233,33 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
 
-            if (!int.TryParse(salesID, out int parsedSyukkoID))
+            if (TBSalesID.Text == null)
             {
-                MessageBox.Show("売上IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("売上IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
+            if (TBShopID.Text == null)
             {
-                MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(shopID, out int parsedShopID))
+            if (TBShainID.Text == null)
             {
-                MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(shainID, out int parsedShainID))
+            if (TBKokyakuID.Text == null)
             {
-                MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(kokyakuID, out int parsedKokyakuID))
+            if (TBJyutyuID.Text == null)
             {
-                MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -326,6 +326,30 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(jyutyuID, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                     {
                         MessageBox.Show("受注IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBShopID.Text == null)
+                    {
+                        MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBShainID.Text == null)
+                    {
+                        MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBKokyakuID.Text == null)
+                    {
+                        MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBJyutyuID.Text == null)
+                    {
+                        MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -470,28 +494,28 @@ namespace SalesManagement_SysDev
             string suryou = TBSuryou.Text;
             string total = TBTotal.Text;
 
-            if (!int.TryParse(UriageSyosaiID, out int parsedSyosaiID))
+            if (TBUriageSyosaiID.Text == null)
             {
-                MessageBox.Show("売上詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("売上詳細IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(uriageID, out int parsedJyutyuID))
+            if (TBUriageIDS.Text == null)
             {
-                MessageBox.Show("売上IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("売上IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
 
-            if (!int.TryParse(syohinID, out int parsedSyohinID))
+            if (TBSyohinID.Text == null)
             {
-                MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(suryou, out int parsedsuryou))
+            if (TBSuryou.Text == null)
             {
-                MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -548,6 +572,25 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(suryou, out int quantity) || quantity <= 0)
                     {
                         MessageBox.Show("数量が正しく入力されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBUriageIDS.Text == null)
+                    {
+                        MessageBox.Show("売上IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+
+                    if (TBSyohinID.Text == null)
+                    {
+                        MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBSuryou.Text == null)
+                    {
+                        MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 

@@ -158,15 +158,44 @@ namespace SalesManagement_SysDev
             DateTime SyohinDate = date.Value;
             bool delFlag = DelFlag.Checked;
 
-            if (!int.TryParse(SyohinID, out int parsedShopID))
+            if (TBSyohinID.Text == null)
             {
-                MessageBox.Show("商品IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            if (!int.TryParse(MakerID, out int parsedKokyakuID))
+            if (TBMakerId.Text == null)
             {
-                MessageBox.Show("メーカーIDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("メーカーIDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBSyohinName.Text == null)
+            {
+                MessageBox.Show("商品名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBSell.Text == null)
+            {
+                MessageBox.Show("値段を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBSafeNum.Text == null)
+            {
+                MessageBox.Show("安全在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBSyoubunrui.Text == null)
+            {
+                MessageBox.Show("小分類IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBModel.Text == null)
+            {
+                MessageBox.Show("型番を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBColor.Text == null)
+            {
+                MessageBox.Show("色を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -225,6 +254,42 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScId == shoubunrui))
                 {
                     MessageBox.Show("小分類IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (TBMakerId.Text == null)
+                {
+                    MessageBox.Show("メーカーIDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBSyohinName.Text == null)
+                {
+                    MessageBox.Show("商品名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBSell.Text == null)
+                {
+                    MessageBox.Show("値段を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBSafeNum.Text == null)
+                {
+                    MessageBox.Show("安全在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBSyoubunrui.Text == null)
+                {
+                    MessageBox.Show("小分類IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBModel.Text == null)
+                {
+                    MessageBox.Show("型番を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBColor.Text == null)
+                {
+                    MessageBox.Show("色を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var newProducts = new MProduct
