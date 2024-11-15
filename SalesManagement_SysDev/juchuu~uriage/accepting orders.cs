@@ -254,6 +254,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
                     MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBKokyakuID.BackColor = Color.LightCoral;
+                    TBKokyakuID.Focus();
                     return;
                 }
 

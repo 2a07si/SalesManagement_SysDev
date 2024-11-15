@@ -625,6 +625,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(NyuukaID, out nyuuka) || !context.TArrivals.Any(n => n.ArId == nyuuka))
                 {
                     MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBNyuukaId.BackColor = Color.LightCoral;
+                    TBNyuukaId.Focus();
                     return;
                 }
 
