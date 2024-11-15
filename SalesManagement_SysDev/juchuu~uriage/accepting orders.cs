@@ -270,15 +270,39 @@ namespace SalesManagement_SysDev
                         order.OrFlag = delFlag ? 1 : 0;
                         order.OrHidden = riyuu;
 
-                        context.SaveChanges();
-                        if (TyumonFlag.Checked)
-                        {
-                            AcceptionConfirm(int.Parse(jyutyuID));
 
+
+                        // OrFlagの元の値を保存
+                        var originalOrFlag = order.OrFlag;
+
+                        // checkBox_2がチェックされている場合にOrFlagを1に設定
+                        if (checkBox_2.Checked)
+                        {
+                            order.OrFlag = 1;
                         }
-                        MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        DisplayOrders();
-                        DisplayOrderDetails();
+
+                        try
+                        {
+                            context.SaveChanges();
+
+                            if (TyumonFlag.Checked)
+                            {
+                                // AcceptionConfirm実行
+                                AcceptionConfirm(int.Parse(jyutyuID));
+                            }
+
+                            MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            DisplayOrders();
+                            DisplayOrderDetails();
+                        }
+                        catch (Exception ex)
+                        {
+                            // エラーが発生した場合、OrFlagを元の状態に戻す
+                            order.OrFlag = originalOrFlag;
+                            context.SaveChanges(); // 元の状態に戻す変更を保存
+
+                            MessageBox.Show($"更新が失敗しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -298,6 +322,11 @@ namespace SalesManagement_SysDev
 
         private void RegisterOrder()
         {
+
+            TBShopID.BackColor = SystemColors.Window;
+            TBShainID.BackColor = SystemColors.Window;
+            TBKokyakuID.BackColor = SystemColors.Window;
+
             try
             {
                 string shopID = TBShopID.Text;
@@ -313,26 +342,27 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(shopID, out int parsedShopID) || shopID.Length >= 2)
                 {
                     MessageBox.Show("営業所IDは半角整数で、最大2桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShopID.BackColor = Color.Red;
+                    TBShopID.Focus();
                     return;
                 }
 
                 if (!int.TryParse(shainID, out int parsedShainID) || shainID.Length >= 6)
                 {
                     MessageBox.Show("社員IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShainID.BackColor = Color.Red;
+                    TBShainID.Focus();
                     return;
                 }
 
                 if (!int.TryParse(kokyakuID, out int parsedKokyakuID) || kokyakuID.Length >= 6)
                 {
                     MessageBox.Show("顧客IDは半角整数で、最大6桁でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBKokyakuID.BackColor = Color.Red;
+                    TBKokyakuID.Focus();
                     return;
                 }
 
-                if (tantoName.Length >= 50)
-                {
-                    MessageBox.Show("担当者名は最大50文字でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
 
                 using (var context = new SalesManagementContext())
 
@@ -920,6 +950,8 @@ namespace SalesManagement_SysDev
             }
         }
         //↓以下北島匙投げゾーン
+
+
         private void LimitTextLength(TextBox textBox, int maxLength)
         {
             if (textBox.Text.Length > maxLength)
@@ -929,57 +961,59 @@ namespace SalesManagement_SysDev
                 textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
             }
         }
-        private void TBJyutyuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBJyutyuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBShopID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBShopID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
 
-        private void TBShainID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBShainID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);  // textBox1の制限を50文字に設定
 
         }
 
-        private void TBKokyakuID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBKokyakuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);  // textBox1の制限を50文字に設定
 
         }
 
-        private void TBTantoName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBTantoName_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 50);  // textBox1の制限を50文字に設定
 
         }
 
-        private void TBJyutyuSyosaiID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBJyutyuSyosaiID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBJyutyuIDS_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBJyutyuIDS_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSyohinID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyohinID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSuryou_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSuryou_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
         }
 
-        private void TBGoukeiKingaku_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBGoukeiKingaku_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 10);
         }
+
+
     }
 }

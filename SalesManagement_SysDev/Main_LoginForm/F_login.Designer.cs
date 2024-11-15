@@ -219,8 +219,6 @@
             Controls.Add(btn_InsertSampleData);
             Controls.Add(btn_CleateDabase);
             Margin = new Padding(5, 6, 5, 6);
-            MaximumSize = new Size(1600, 900);
-            MinimumSize = new Size(1600, 900);
             Name = "F_login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "販売管理システムログイン画面";

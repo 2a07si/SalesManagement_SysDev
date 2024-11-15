@@ -42,22 +42,22 @@
             b_reg = new Button();
             panel1 = new Panel();
             CusFlag = new CheckBox();
-            TBFax = new MaskedTextBox();
+            TBFax = new TextBox();
             label9 = new Label();
-            TBYuubinNo = new MaskedTextBox();
+            TBYuubinNo = new TextBox();
             label6 = new Label();
-            TBTellNo = new MaskedTextBox();
+            TBTellNo = new TextBox();
             label8 = new Label();
-            TBJyusyo = new MaskedTextBox();
+            TBJyusyo = new TextBox();
             dataGridView1 = new DataGridView();
             label7 = new Label();
-            TBKokyakuName = new MaskedTextBox();
+            TBKokyakuName = new TextBox();
             DelFlag = new CheckBox();
-            TBShopID = new MaskedTextBox();
+            TBShopID = new TextBox();
             label17 = new Label();
-            TBKokyakuID = new MaskedTextBox();
+            TBKokyakuID = new TextBox();
             label5 = new Label();
-            TBRiyuu = new MaskedTextBox();
+            TBRiyuu = new TextBox();
             label14 = new Label();
             label12 = new Label();
             b_kakutei = new Button();
@@ -239,7 +239,7 @@
             TBFax.Name = "TBFax";
             TBFax.Size = new Size(125, 31);
             TBFax.TabIndex = 13;
-            TBFax.MaskInputRejected += TBFax_MaskInputRejected;
+            TBFax.TextChanged += TBFax_TextChanged;
             // 
             // label9
             // 
@@ -258,7 +258,7 @@
             TBYuubinNo.Name = "TBYuubinNo";
             TBYuubinNo.Size = new Size(84, 31);
             TBYuubinNo.TabIndex = 9;
-            TBYuubinNo.MaskInputRejected += TBYuubinNo_MaskInputRejected;
+            TBYuubinNo.TextChanged += TBYuubinNo_TextChanged;
             // 
             // label6
             // 
@@ -277,7 +277,7 @@
             TBTellNo.Name = "TBTellNo";
             TBTellNo.Size = new Size(133, 31);
             TBTellNo.TabIndex = 11;
-            TBTellNo.MaskInputRejected += TBTellNo_MaskInputRejected;
+            TBTellNo.TextChanged += TBTellNo_TextChanged;
             // 
             // label8
             // 
@@ -296,7 +296,7 @@
             TBJyusyo.Name = "TBJyusyo";
             TBJyusyo.Size = new Size(375, 31);
             TBJyusyo.TabIndex = 7;
-            TBJyusyo.MaskInputRejected += TBJyusyo_MaskInputRejected;
+            TBJyusyo.TextChanged += TBJyusyo_TextChanged;
             // 
             // dataGridView1
             // 
@@ -330,7 +330,7 @@
             TBKokyakuName.Name = "TBKokyakuName";
             TBKokyakuName.Size = new Size(200, 31);
             TBKokyakuName.TabIndex = 5;
-            TBKokyakuName.MaskInputRejected += TBKokyakuName_MaskInputRejected;
+            TBKokyakuName.TextChanged += TBKokyakuName_TextChanged;
             // 
             // DelFlag
             // 
@@ -350,7 +350,7 @@
             TBShopID.Name = "TBShopID";
             TBShopID.Size = new Size(50, 31);
             TBShopID.TabIndex = 3;
-            TBShopID.MaskInputRejected += TBShopID_MaskInputRejected;
+            TBShopID.TextChanged += TBShopID_TextChanged;
             // 
             // label17
             // 
@@ -369,7 +369,7 @@
             TBKokyakuID.Name = "TBKokyakuID";
             TBKokyakuID.Size = new Size(100, 31);
             TBKokyakuID.TabIndex = 1;
-            TBKokyakuID.MaskInputRejected += TBKokyakuID_MaskInputRejected;
+            TBKokyakuID.TextChanged += TBKokyakuID_TextChanged;
             // 
             // label5
             // 
@@ -545,21 +545,21 @@
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;
-        private MaskedTextBox TBFax;
+        private TextBox TBFax;
         private Label label9;
-        private MaskedTextBox TBYuubinNo;
+        private TextBox TBYuubinNo;
         private Label label6;
-        private MaskedTextBox TBTellNo;
+        private TextBox TBTellNo;
         private Label label8;
-        private MaskedTextBox TBJyusyo;
+        private TextBox TBJyusyo;
         private Label label7;
-        private MaskedTextBox TBKokyakuName;
+        private TextBox TBKokyakuName;
         private CheckBox DelFlag;
-        private MaskedTextBox TBShopID;
+        private TextBox TBShopID;
         private Label label17;
-        private MaskedTextBox TBKokyakuID;
+        private TextBox TBKokyakuID;
         private Label label5;
-        private MaskedTextBox TBRiyuu;
+        private TextBox TBRiyuu;
         private Label label14;
         private Label label12;
         private Button b_iti;

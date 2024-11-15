@@ -43,37 +43,37 @@
             b_arr = new Button();
             b_lss = new Button();
             panel1 = new Panel();
-            TBJyutyuId = new MaskedTextBox();
+            TBJyutyuId = new TextBox();
             label7 = new Label();
             TyumonFlag = new CheckBox();
             dataGridView1 = new DataGridView();
             DelFlag = new CheckBox();
             label6 = new Label();
-            TBKokyakuId = new MaskedTextBox();
+            TBKokyakuId = new TextBox();
             label5 = new Label();
             date = new DateTimePicker();
             label12 = new Label();
             label18 = new Label();
             label14 = new Label();
-            TBRiyuu = new MaskedTextBox();
-            TBTyumonId = new MaskedTextBox();
+            TBRiyuu = new TextBox();
+            TBTyumonId = new TextBox();
             label17 = new Label();
-            TBShopId = new MaskedTextBox();
-            TBShainId = new MaskedTextBox();
+            TBShopId = new TextBox();
+            TBShainId = new TextBox();
             b_kakutei = new Button();
             clear = new Button();
             close = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
-            TBTyumonIDS = new MaskedTextBox();
+            TBTyumonIDS = new TextBox();
             label10 = new Label();
-            TBSyohinId = new MaskedTextBox();
+            TBSyohinId = new TextBox();
             label13 = new Label();
             label9 = new Label();
             label15 = new Label();
-            TBSuryou = new MaskedTextBox();
+            TBSuryou = new TextBox();
             dataGridView2 = new DataGridView();
-            TBTyumonSyosaiId = new MaskedTextBox();
+            TBTyumonSyosaiId = new TextBox();
             panel3 = new Panel();
             label1 = new Label();
             label2 = new Label();
@@ -266,7 +266,7 @@
             TBJyutyuId.Name = "TBJyutyuId";
             TBJyutyuId.Size = new Size(100, 31);
             TBJyutyuId.TabIndex = 9;
-            TBJyutyuId.MaskInputRejected += TBJyutyuId_MaskInputRejected;
+            TBJyutyuId.TextChanged += TBJyutyuId_TextChanged;
             // 
             // label7
             // 
@@ -334,7 +334,7 @@
             TBKokyakuId.Name = "TBKokyakuId";
             TBKokyakuId.Size = new Size(100, 31);
             TBKokyakuId.TabIndex = 7;
-            TBKokyakuId.MaskInputRejected += TBKokyakuId_MaskInputRejected;
+            TBKokyakuId.TextChanged += TBKokyakuId_TextChanged;
             // 
             // label5
             // 
@@ -401,7 +401,7 @@
             TBTyumonId.Name = "TBTyumonId";
             TBTyumonId.Size = new Size(100, 31);
             TBTyumonId.TabIndex = 1;
-            TBTyumonId.MaskInputRejected += TBTyumonId_MaskInputRejected;
+            TBTyumonId.TextChanged += TBTyumonId_TextChanged;
             // 
             // label17
             // 
@@ -420,7 +420,7 @@
             TBShopId.Name = "TBShopId";
             TBShopId.Size = new Size(50, 31);
             TBShopId.TabIndex = 3;
-            TBShopId.MaskInputRejected += TBShopId_MaskInputRejected;
+            TBShopId.TextChanged += TBShopId_TextChanged;
             // 
             // TBShainId
             // 
@@ -428,7 +428,7 @@
             TBShainId.Name = "TBShainId";
             TBShainId.Size = new Size(100, 31);
             TBShainId.TabIndex = 5;
-            TBShainId.MaskInputRejected += TBShainId_MaskInputRejected;
+            TBShainId.TextChanged += TBShainId_TextChanged;
             // 
             // b_kakutei
             // 
@@ -481,7 +481,7 @@
             TBTyumonIDS.Name = "TBTyumonIDS";
             TBTyumonIDS.Size = new Size(100, 31);
             TBTyumonIDS.TabIndex = 3;
-            TBTyumonIDS.MaskInputRejected += TBTyumonIDS_MaskInputRejected;
+            TBTyumonIDS.TextChanged += TBTyumonIDS_TextChanged;
             // 
             // label10
             // 
@@ -500,7 +500,7 @@
             TBSyohinId.Name = "TBSyohinId";
             TBSyohinId.Size = new Size(100, 31);
             TBSyohinId.TabIndex = 5;
-            TBSyohinId.MaskInputRejected += TBSyohinId_MaskInputRejected;
+            TBSyohinId.TextChanged += TBSyohinId_TextChanged;
             // 
             // label13
             // 
@@ -541,7 +541,7 @@
             TBSuryou.Name = "TBSuryou";
             TBSuryou.Size = new Size(100, 31);
             TBSuryou.TabIndex = 7;
-            TBSuryou.MaskInputRejected += TBSuryou_MaskInputRejected;
+            TBSuryou.TextChanged += TBSuryou_TextChanged;
             // 
             // dataGridView2
             // 
@@ -563,7 +563,7 @@
             TBTyumonSyosaiId.Name = "TBTyumonSyosaiId";
             TBTyumonSyosaiId.Size = new Size(100, 31);
             TBTyumonSyosaiId.TabIndex = 1;
-            TBTyumonSyosaiId.MaskInputRejected += TBTyumonSyosaiId_MaskInputRejected;
+            TBTyumonSyosaiId.TextChanged += TBTyumonSyosaiId_TextChanged;
             // 
             // panel3
             // 
@@ -618,9 +618,9 @@
             dateCheckBox.AutoSize = true;
             dateCheckBox.Location = new Point(967, 17);
             dateCheckBox.Name = "dateCheckBox";
-            dateCheckBox.Size = new Size(225, 29);
+            dateCheckBox.Size = new Size(189, 29);
             dateCheckBox.TabIndex = 270;
-            dateCheckBox.Text = "受注年月日を検索に含む";
+            dateCheckBox.Text = "注文日を検索に含む";
             dateCheckBox.UseVisualStyleBackColor = true;
             // 
             // checkBox_2
@@ -701,32 +701,32 @@
         private CheckBox TyumonFlag;
         private CheckBox DelFlag;
         private Label label6;
-        private MaskedTextBox TBKokyakuId;
+        private TextBox TBKokyakuId;
         private Label label5;
         private DateTimePicker date;
         private Label label12;
         private Label label18;
         private Label label14;
-        private MaskedTextBox TBRiyuu;
-        private MaskedTextBox TBTyumonId;
+        private TextBox TBRiyuu;
+        private TextBox TBTyumonId;
         private Label label17;
-        private MaskedTextBox TBShopId;
-        private MaskedTextBox TBShainId;
-        private MaskedTextBox TBJyutyuId;
+        private TextBox TBShopId;
+        private TextBox TBShainId;
+        private TextBox TBJyutyuId;
         private Label label7;
         private Button B_iti;
         private Button Next;
         private Button Prev;
         private Label label8;
-        private MaskedTextBox TBTyumonIDS;
+        private TextBox TBTyumonIDS;
         private Label label10;
-        private MaskedTextBox TBSyohinId;
+        private TextBox TBSyohinId;
         private Label label13;
         private Label label9;
         private Label label15;
-        private MaskedTextBox TBSuryou;
+        private TextBox TBSuryou;
         private DataGridView dataGridView2;
-        private MaskedTextBox TBTyumonSyosaiId;
+        private TextBox TBTyumonSyosaiId;
         private Panel panel3;
         private Label label1;
         private Label label2;

@@ -41,7 +41,7 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
-            TBPass = new MaskedTextBox();
+            TBPass = new TextBox();
             label9 = new Label();
             date = new DateTimePicker();
             label18 = new Label();
@@ -49,15 +49,15 @@
             label5 = new Label();
             label12 = new Label();
             label14 = new Label();
-            TBTellNo = new MaskedTextBox();
-            TBRiyuu = new MaskedTextBox();
+            TBTellNo = new TextBox();
+            TBRiyuu = new TextBox();
             label8 = new Label();
-            TBSyainID = new MaskedTextBox();
-            TBJobID = new MaskedTextBox();
+            TBSyainID = new TextBox();
+            TBJobID = new TextBox();
             label17 = new Label();
             label7 = new Label();
-            TBShopId = new MaskedTextBox();
-            TBSyainName = new MaskedTextBox();
+            TBShopId = new TextBox();
+            TBSyainName = new TextBox();
             DelFlag = new CheckBox();
             b_kakutei = new Button();
             clear = new Button();
@@ -225,7 +225,7 @@
             TBPass.Name = "TBPass";
             TBPass.Size = new Size(200, 31);
             TBPass.TabIndex = 11;
-            TBPass.MaskInputRejected += TBPass_MaskInputRejected;
+            TBPass.TextChanged += TBPass_TextChanged;
             // 
             // label9
             // 
@@ -311,7 +311,7 @@
             TBTellNo.Name = "TBTellNo";
             TBTellNo.Size = new Size(133, 31);
             TBTellNo.TabIndex = 13;
-            TBTellNo.MaskInputRejected += TBTellNo_MaskInputRejected;
+            TBTellNo.TextChanged += TBTellNo_TextChanged;
             // 
             // TBRiyuu
             // 
@@ -337,7 +337,7 @@
             TBSyainID.Name = "TBSyainID";
             TBSyainID.Size = new Size(100, 31);
             TBSyainID.TabIndex = 1;
-            TBSyainID.MaskInputRejected += TBSyainID_MaskInputRejected;
+            TBSyainID.TextChanged += TBSyainID_TextChanged;
             // 
             // TBJobID
             // 
@@ -345,7 +345,7 @@
             TBJobID.Name = "TBJobID";
             TBJobID.Size = new Size(50, 31);
             TBJobID.TabIndex = 7;
-            TBJobID.MaskInputRejected += TBJobID_MaskInputRejected;
+            TBJobID.TextChanged += TBJobID_TextChanged;
             // 
             // label17
             // 
@@ -375,7 +375,7 @@
             TBShopId.Name = "TBShopId";
             TBShopId.Size = new Size(50, 31);
             TBShopId.TabIndex = 5;
-            TBShopId.MaskInputRejected += TBShopId_MaskInputRejected;
+            TBShopId.TextChanged += TBShopId_TextChanged;
             // 
             // TBSyainName
             // 
@@ -383,7 +383,7 @@
             TBSyainName.Name = "TBSyainName";
             TBSyainName.Size = new Size(200, 31);
             TBSyainName.TabIndex = 3;
-            TBSyainName.MaskInputRejected += TBSyainName_MaskInputRejected;
+            TBSyainName.TextChanged += TBSyainName_TextChanged;
             // 
             // DelFlag
             // 
@@ -538,15 +538,15 @@
         private Label label5;
         private Label label12;
         private Label label14;
-        private MaskedTextBox TBTellNo;
-        private MaskedTextBox TBRiyuu;
+        private TextBox TBTellNo;
+        private TextBox TBRiyuu;
         private Label label8;
-        private MaskedTextBox TBSyainID;
-        private MaskedTextBox TBJobID;
+        private TextBox TBSyainID;
+        private TextBox TBJobID;
         private Label label17;
         private Label label7;
-        private MaskedTextBox TBShopId;
-        private MaskedTextBox TBSyainName;
+        private TextBox TBShopId;
+        private TextBox TBSyainName;
         private CheckBox DelFlag;
         private DateTimePicker date;
         private Label label18;
@@ -556,7 +556,7 @@
         private Button Next;
         private Button Prev;
         private Label label6;
-        private MaskedTextBox TBPass;
+        private TextBox TBPass;
         private Label label9;
         private CheckBox checkBox_2;
     }

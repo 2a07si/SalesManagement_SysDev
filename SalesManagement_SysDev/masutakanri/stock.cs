@@ -341,17 +341,17 @@ namespace SalesManagement_SysDev
             }
         }
         
-        private void TBZaikoID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBZaikoID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSyohinID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBSyohinID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBZaiko_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void TBZaiko_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
         }
