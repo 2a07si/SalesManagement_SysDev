@@ -279,6 +279,7 @@ namespace SalesManagement_SysDev
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayArrivals();
+                        DisplayArrivalDetails();
                     }
                     catch (DbUpdateException ex)
                     {
@@ -322,7 +323,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
                 {
                     MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    TBShopId.BackColor = Color.LightCoral;
+                    TBShopId.Focus();
                     return;
                 }
 
@@ -331,6 +333,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
                 {
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShainId.BackColor = Color.LightCoral;
+                    TBShainId.Focus();
                     return;
                 }
 
@@ -339,6 +343,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
                 {
                     MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBKokyakuId.BackColor = Color.LightCoral;
+                    TBKokyakuId.Focus();
                     return;
                 }
 
@@ -347,6 +353,8 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
                     MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBJyutyuId.BackColor= Color.LightCoral;
+                    TBJyutyuId.Focus();
                     return;
                 }
 

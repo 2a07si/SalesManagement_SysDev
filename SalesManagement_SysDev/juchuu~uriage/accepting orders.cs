@@ -88,6 +88,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
         }
 
+
         private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
 
         private void PerformSearch()
@@ -365,9 +366,7 @@ namespace SalesManagement_SysDev
                 }
 
                 using (var context = new SalesManagementContext())
-
                 {
-
                     var newOrder = new TOrder
                     {
                         SoId = int.Parse(shopID),
@@ -526,8 +525,6 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrderDetails()
         {
-
-
             try
             {
                 string jyutyuSyosaiID = TBJyutyuSyosaiID.Text;
@@ -598,6 +595,33 @@ namespace SalesManagement_SysDev
                 string syohinID = TBSyohinID.Text;
                 string suryou = TBSuryou.Text;
                 string goukeiKingaku = TBGoukeiKingaku.Text;
+
+
+                if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
+                {
+                    MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBJyutyuID.BackColor = Color.LightCoral;
+                    TBJyutyuID.Focus();
+                    return;
+                }
+
+
+                if (!int.TryParse(syohinID, out int parsedSyohinID))
+                {
+                    MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBSyohinID.BackColor = Color.LightCoral;
+                    TBSyohinID.Focus();
+                    return;
+                }
+
+                if (!int.TryParse(suryou, out int parsedsuryou))
+                {
+                    MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBSuryou.BackColor = Color.LightCoral;
+                    TBSuryou.Focus();
+                    return;
+                }
+
 
                 using (var context = new SalesManagementContext())
                 {
@@ -1031,7 +1055,5 @@ namespace SalesManagement_SysDev
         {
             LimitTextLength(sender as TextBox, 10);
         }
-
-
     }
 }
