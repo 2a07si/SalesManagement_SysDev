@@ -270,15 +270,39 @@ namespace SalesManagement_SysDev
                         order.OrFlag = delFlag ? 1 : 0;
                         order.OrHidden = riyuu;
 
-                        context.SaveChanges();
-                        if (TyumonFlag.Checked)
-                        {
-                            AcceptionConfirm(int.Parse(jyutyuID));
 
+
+                        // OrFlagの元の値を保存
+                        var originalOrFlag = order.OrFlag;
+
+                        // checkBox_2がチェックされている場合にOrFlagを1に設定
+                        if (checkBox_2.Checked)
+                        {
+                            order.OrFlag = 1;
                         }
-                        MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        DisplayOrders();
-                        DisplayOrderDetails();
+
+                        try
+                        {
+                            context.SaveChanges();
+
+                            if (TyumonFlag.Checked)
+                            {
+                                // AcceptionConfirm実行
+                                AcceptionConfirm(int.Parse(jyutyuID));
+                            }
+
+                            MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            DisplayOrders();
+                            DisplayOrderDetails();
+                        }
+                        catch (Exception ex)
+                        {
+                            // エラーが発生した場合、OrFlagを元の状態に戻す
+                            order.OrFlag = originalOrFlag;
+                            context.SaveChanges(); // 元の状態に戻す変更を保存
+
+                            MessageBox.Show($"更新が失敗しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
