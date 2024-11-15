@@ -43,11 +43,11 @@
             date = new DateTimePicker();
             DelFlag = new CheckBox();
             label18 = new Label();
-            TBRiyuu = new MaskedTextBox();
+            TBRiyuu = new TextBox();
             label17 = new Label();
-            TBShainID = new MaskedTextBox();
-            TBMakerID = new MaskedTextBox();
-            TBHattyuuID = new MaskedTextBox();
+            TBShainID = new TextBox();
+            TBMakerID = new TextBox();
+            TBHattyuuID = new TextBox();
             label14 = new Label();
             label8 = new Label();
             label6 = new Label();
@@ -58,15 +58,15 @@
             timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
             panel3 = new Panel();
-            TBHattyuuSyosaiID = new MaskedTextBox();
+            TBHattyuuSyosaiID = new TextBox();
             dataGridView2 = new DataGridView();
-            TBSuryou = new MaskedTextBox();
+            TBSuryou = new TextBox();
             label15 = new Label();
             label9 = new Label();
             label13 = new Label();
-            TBSyohinID = new MaskedTextBox();
+            TBSyohinID = new TextBox();
             label10 = new Label();
-            TBHattyuIDS = new MaskedTextBox();
+            TBHattyuIDS = new TextBox();
             label2 = new Label();
             label1 = new Label();
             b_FormSelector = new Button();
@@ -263,7 +263,7 @@
             TBShainID.Name = "TBShainID";
             TBShainID.Size = new Size(100, 31);
             TBShainID.TabIndex = 5;
-            TBShainID.MaskInputRejected += TBShainID_TextChanged;
+            TBShainID.TextChanged += TBShainID_TextChanged;
             // 
             // TBMakerID
             // 
@@ -271,7 +271,7 @@
             TBMakerID.Name = "TBMakerID";
             TBMakerID.Size = new Size(100, 31);
             TBMakerID.TabIndex = 3;
-            TBMakerID.MaskInputRejected += TBMakerID_TextChanged;
+            TBMakerID.TextChanged += TBMakerID_TextChanged;
             // 
             // TBHattyuuID
             // 
@@ -279,7 +279,7 @@
             TBHattyuuID.Name = "TBHattyuuID";
             TBHattyuuID.Size = new Size(100, 31);
             TBHattyuuID.TabIndex = 1;
-            TBHattyuuID.MaskInputRejected += TBHattyuuID_TextChanged;
+            TBHattyuuID.TextChanged += TBHattyuuID_TextChanged;
             // 
             // label14
             // 
@@ -396,7 +396,7 @@
             TBHattyuuSyosaiID.Name = "TBHattyuuSyosaiID";
             TBHattyuuSyosaiID.Size = new Size(100, 31);
             TBHattyuuSyosaiID.TabIndex = 1;
-            TBHattyuuSyosaiID.MaskInputRejected += TBHattyuuSyosaiID_TextChanged;
+            TBHattyuuSyosaiID.TextChanged += TBHattyuuSyosaiID_TextChanged;
             // 
             // dataGridView2
             // 
@@ -418,7 +418,7 @@
             TBSuryou.Name = "TBSuryou";
             TBSuryou.Size = new Size(100, 31);
             TBSuryou.TabIndex = 7;
-            TBSuryou.MaskInputRejected += TBSuryou_TextChanged;
+            TBSuryou.TextChanged += TBSuryou_TextChanged;
             // 
             // label15
             // 
@@ -459,7 +459,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 5;
-            TBSyohinID.MaskInputRejected += TBSyohinID_TextChanged;
+            TBSyohinID.TextChanged += TBSyohinID_TextChanged;
             // 
             // label10
             // 
@@ -478,7 +478,7 @@
             TBHattyuIDS.Name = "TBHattyuIDS";
             TBHattyuIDS.Size = new Size(100, 31);
             TBHattyuIDS.TabIndex = 3;
-            TBHattyuIDS.MaskInputRejected += TBHattyuIDS_TextChanged;
+            TBHattyuIDS.TextChanged += TBHattyuIDS_TextChanged;
             // 
             // label2
             // 
@@ -585,9 +585,9 @@
         private Panel panel1;
         private DateTimePicker date;
         private Label label18;
-        private MaskedTextBox TBShainID;
-        private MaskedTextBox TBMakerID;
-        private MaskedTextBox TBHattyuuID;
+        private TextBox TBShainID;
+        private TextBox TBMakerID;
+        private TextBox TBHattyuuID;
         private Label label14;
         private Label label8;
         private Label label6;
@@ -598,22 +598,22 @@
         private System.Windows.Forms.Timer timer1;
         private CheckBox NyuukoFlag;
         private CheckBox DelFlag;
-        private MaskedTextBox TBRiyuu;
+        private TextBox TBRiyuu;
         private Label label17;
         private Button B_iti;
         private Button Next;
         private Button Prev;
         private Label label5;
         private Panel panel3;
-        private MaskedTextBox TBHattyuuSyosaiID;
+        private TextBox TBHattyuuSyosaiID;
         private DataGridView dataGridView2;
-        private MaskedTextBox TBSuryou;
+        private TextBox TBSuryou;
         private Label label15;
         private Label label9;
         private Label label13;
-        private MaskedTextBox TBSyohinID;
+        private TextBox TBSyohinID;
         private Label label10;
-        private MaskedTextBox TBHattyuIDS;
+        private TextBox TBHattyuIDS;
         private Label label2;
         private Label label1;
         private Button b_FormSelector;

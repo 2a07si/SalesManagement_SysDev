@@ -920,12 +920,7 @@ namespace SalesManagement_SysDev
             }
         }
         //↓以下北島匙投げゾーン
-        private void TB_Enter(object sender, EventArgs e)
-        {
-            // MaskedTextBoxのカーソルを先頭に移動
-            MaskedTextBox maskedTextBox = sender as MaskedTextBox;
-            maskedTextBox.SelectionStart = 0;
-        }
+
 
         private void LimitTextLength(TextBox textBox, int maxLength)
         {

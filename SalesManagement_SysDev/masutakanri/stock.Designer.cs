@@ -43,9 +43,9 @@
             panel1 = new Panel();
             StFlag = new CheckBox();
             dataGridView1 = new DataGridView();
-            TBSyohinID = new MaskedTextBox();
-            TBZaikoID = new MaskedTextBox();
-            TBZaiko = new MaskedTextBox();
+            TBSyohinID = new TextBox();
+            TBZaikoID = new TextBox();
+            TBZaiko = new TextBox();
             label6 = new Label();
             label12 = new Label();
             label14 = new Label();
@@ -232,7 +232,7 @@
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
             TBSyohinID.TabIndex = 3;
-            TBSyohinID.MaskInputRejected += TBSyohinID_TextChanged;
+            TBSyohinID.TextChanged += TBSyohinID_TextChanged;
             // 
             // TBZaikoID
             // 
@@ -240,7 +240,7 @@
             TBZaikoID.Name = "TBZaikoID";
             TBZaikoID.Size = new Size(100, 31);
             TBZaikoID.TabIndex = 1;
-            TBZaikoID.MaskInputRejected += TBZaikoID_TextChanged;
+            TBZaikoID.TextChanged += TBZaikoID_TextChanged;
             // 
             // TBZaiko
             // 
@@ -248,7 +248,7 @@
             TBZaiko.Name = "TBZaiko";
             TBZaiko.Size = new Size(90, 31);
             TBZaiko.TabIndex = 5;
-            TBZaiko.MaskInputRejected += TBZaiko_TextChanged;
+            TBZaiko.TextChanged += TBZaiko_TextChanged;
             // 
             // label6
             // 
@@ -421,9 +421,9 @@
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;
-        private MaskedTextBox TBSyohinID;
-        private MaskedTextBox TBZaikoID;
-        private MaskedTextBox TBZaiko;
+        private TextBox TBSyohinID;
+        private TextBox TBZaikoID;
+        private TextBox TBZaiko;
         private Label label6;
         private Label label12;
         private Label label14;
