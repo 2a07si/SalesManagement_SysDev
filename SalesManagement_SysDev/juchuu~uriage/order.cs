@@ -623,10 +623,10 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var orderDetail = context.TChumonDetails.SingleOrDefault(od => od.ChDetailId.ToString() == NyutyuSyosaiID);
+                var orderDetail = context.TChumonDetails.SingleOrDefault(od => od.ChDetailId.ToString() == TyumonSyosaiID);
                 if (orderDetail != null)
                 {
-                    orderDetail.ChId = int.Parse(jyutyuID);
+                    orderDetail.ChId = int.Parse(TyumonID);
                     orderDetail.PrId = int.Parse(syohinID);
                     orderDetail.ChQuantity = int.Parse(suryou);
 
