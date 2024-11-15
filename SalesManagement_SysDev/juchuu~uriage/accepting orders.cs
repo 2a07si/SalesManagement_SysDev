@@ -257,7 +257,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
                     MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBKokyakuID.BackColor = Color.LightCoral;
+                    TBKokyakuID.BackColor = Color.LightYellow;
                     TBKokyakuID.Focus();
                     return;
                 }
@@ -541,7 +541,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(jyutyuSyosaiID, out int parsedSyosaiID))
                 {
                     MessageBox.Show("受注詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBJyutyuSyosaiID.BackColor = Color.LightCoral;
+                    TBJyutyuSyosaiID.BackColor = Color.Yellow;
                     TBJyutyuSyosaiID.Focus();
                     return;
                 }
@@ -549,7 +549,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
                 {
                     MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBJyutyuID.BackColor = Color.LightCoral;
+                    TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
                     return;
                 }
@@ -558,7 +558,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(syohinID, out int parsedSyohinID))
                 {
                     MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBSyohinID.BackColor = Color.LightCoral;
+                    TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
                     return;
                 }
@@ -566,7 +566,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(suryou, out int parsedsuryou))
                 {
                     MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBSuryou.BackColor = Color.LightCoral;
+                    TBSuryou.BackColor = Color.Yellow;
                     TBSuryou.Focus();
                     return;
                 }
@@ -613,7 +613,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
                 {
                     MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBJyutyuID.BackColor = Color.LightCoral;
+                    TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
                     return;
                 }
@@ -622,7 +622,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(syohinID, out int parsedSyohinID))
                 {
                     MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBSyohinID.BackColor = Color.LightCoral;
+                    TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
                     return;
                 }
@@ -630,7 +630,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(suryou, out int parsedsuryou))
                 {
                     MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBSuryou.BackColor = Color.LightCoral;
+                    TBSuryou.BackColor = Color.Yellow;
                     TBSuryou.Focus();
                     return;
                 }
