@@ -144,10 +144,11 @@ namespace SalesManagement_SysDev
                 switch (CurrentStatus.CurrentMode)
                 {
                     case CurrentStatus.Mode.通常:
-                        
+                        colorReset();
                         HandleArrivalOperation();
                         break;
                     case CurrentStatus.Mode.詳細:
+                        colorReset();
                         HandleArrivalDetailOperation();
                         break;
                     default:
