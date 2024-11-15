@@ -232,8 +232,6 @@ namespace SalesManagement_SysDev
 
             if (TBSyukkaID.Text == null)
             {
-                TBSyukkaID.BackColor = SystemColors.Window;
-                TBSyukkaID.Focus();
                 MessageBox.Show("出荷IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
