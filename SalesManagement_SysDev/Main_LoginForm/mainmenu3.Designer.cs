@@ -92,7 +92,7 @@
             // 
             b_mas.BackColor = Color.FromArgb(178, 228, 210);
             b_mas.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_mas.Location = new Point(977, 132);
+            b_mas.Location = new Point(980, 130);
             b_mas.Name = "b_mas";
             b_mas.Size = new Size(400, 75);
             b_mas.TabIndex = 2;
@@ -109,7 +109,7 @@
             JU.Controls.Add(b_shi);
             JU.Controls.Add(b_ord);
             JU.Controls.Add(b_add);
-            JU.Location = new Point(177, 207);
+            JU.Location = new Point(180, 210);
             JU.Name = "JU";
             JU.Size = new Size(1200, 600);
             JU.TabIndex = 0;
@@ -118,9 +118,9 @@
             // 
             b_sal.BackColor = SystemColors.ControlLightLight;
             b_sal.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_sal.Location = new Point(850, 300);
+            b_sal.Location = new Point(800, 330);
             b_sal.Name = "b_sal";
-            b_sal.Size = new Size(259, 164);
+            b_sal.Size = new Size(250, 150);
             b_sal.TabIndex = 5;
             b_sal.Text = "売上管理";
             b_sal.UseVisualStyleBackColor = false;
@@ -130,9 +130,9 @@
             // 
             b_lss.BackColor = SystemColors.ControlLightLight;
             b_lss.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_lss.Location = new Point(850, 100);
+            b_lss.Location = new Point(800, 120);
             b_lss.Name = "b_lss";
-            b_lss.Size = new Size(259, 164);
+            b_lss.Size = new Size(250, 150);
             b_lss.TabIndex = 2;
             b_lss.Text = "出庫管理";
             b_lss.UseVisualStyleBackColor = false;
@@ -142,9 +142,9 @@
             // 
             b_arr.BackColor = SystemColors.ControlLightLight;
             b_arr.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_arr.Location = new Point(100, 300);
+            b_arr.Location = new Point(150, 330);
             b_arr.Name = "b_arr";
-            b_arr.Size = new Size(259, 164);
+            b_arr.Size = new Size(250, 150);
             b_arr.TabIndex = 3;
             b_arr.Text = "入荷管理";
             b_arr.UseVisualStyleBackColor = false;
@@ -154,9 +154,9 @@
             // 
             b_shi.BackColor = SystemColors.ControlLightLight;
             b_shi.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_shi.Location = new Point(475, 300);
+            b_shi.Location = new Point(475, 330);
             b_shi.Name = "b_shi";
-            b_shi.Size = new Size(259, 164);
+            b_shi.Size = new Size(250, 150);
             b_shi.TabIndex = 4;
             b_shi.Text = "出荷管理";
             b_shi.UseVisualStyleBackColor = false;
@@ -166,9 +166,9 @@
             // 
             b_ord.BackColor = SystemColors.ControlLightLight;
             b_ord.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ord.Location = new Point(475, 100);
+            b_ord.Location = new Point(475, 120);
             b_ord.Name = "b_ord";
-            b_ord.Size = new Size(259, 164);
+            b_ord.Size = new Size(250, 150);
             b_ord.TabIndex = 1;
             b_ord.Text = "注文管理";
             b_ord.UseVisualStyleBackColor = false;
@@ -178,9 +178,9 @@
             // 
             b_add.BackColor = SystemColors.ControlLightLight;
             b_add.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_add.Location = new Point(100, 100);
+            b_add.Location = new Point(150, 120);
             b_add.Name = "b_add";
-            b_add.Size = new Size(259, 164);
+            b_add.Size = new Size(250, 150);
             b_add.TabIndex = 0;
             b_add.Text = "受注管理";
             b_add.UseVisualStyleBackColor = false;
@@ -190,9 +190,9 @@
             // 
             b_HN.BackColor = Color.FromArgb(212, 222, 255);
             b_HN.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_HN.Location = new Point(576, 132);
+            b_HN.Location = new Point(580, 130);
             b_HN.Name = "b_HN";
-            b_HN.Size = new Size(405, 75);
+            b_HN.Size = new Size(400, 75);
             b_HN.TabIndex = 1;
             b_HN.Text = "発注～入庫";
             b_HN.UseVisualStyleBackColor = false;
@@ -202,7 +202,7 @@
             // 
             b_JU.BackColor = Color.FromArgb(244, 226, 207);
             b_JU.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_JU.Location = new Point(177, 132);
+            b_JU.Location = new Point(180, 130);
             b_JU.Name = "b_JU";
             b_JU.Size = new Size(400, 75);
             b_JU.TabIndex = 0;
@@ -249,7 +249,7 @@
             mas.Controls.Add(b_cus);
             mas.Controls.Add(b_mer);
             mas.Controls.Add(b_emp);
-            mas.Location = new Point(177, 207);
+            mas.Location = new Point(180, 210);
             mas.Name = "mas";
             mas.Size = new Size(1200, 600);
             mas.TabIndex = 135;
@@ -259,9 +259,9 @@
             // 
             b_sto.BackColor = SystemColors.ControlLightLight;
             b_sto.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_sto.Location = new Point(270, 300);
+            b_sto.Location = new Point(280, 330);
             b_sto.Name = "b_sto";
-            b_sto.Size = new Size(259, 164);
+            b_sto.Size = new Size(250, 150);
             b_sto.TabIndex = 2;
             b_sto.Text = "在庫管理";
             b_sto.UseVisualStyleBackColor = false;
@@ -271,9 +271,9 @@
             // 
             b_cus.BackColor = SystemColors.ControlLightLight;
             b_cus.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_cus.Location = new Point(680, 300);
+            b_cus.Location = new Point(675, 330);
             b_cus.Name = "b_cus";
-            b_cus.Size = new Size(259, 164);
+            b_cus.Size = new Size(250, 150);
             b_cus.TabIndex = 3;
             b_cus.Text = "顧客管理";
             b_cus.UseVisualStyleBackColor = false;
@@ -283,9 +283,9 @@
             // 
             b_mer.BackColor = SystemColors.ControlLightLight;
             b_mer.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_mer.Location = new Point(680, 100);
+            b_mer.Location = new Point(675, 120);
             b_mer.Name = "b_mer";
-            b_mer.Size = new Size(259, 164);
+            b_mer.Size = new Size(250, 150);
             b_mer.TabIndex = 1;
             b_mer.Text = "商品管理";
             b_mer.UseVisualStyleBackColor = false;
@@ -295,9 +295,9 @@
             // 
             b_emp.BackColor = SystemColors.ControlLightLight;
             b_emp.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_emp.Location = new Point(270, 100);
+            b_emp.Location = new Point(275, 120);
             b_emp.Name = "b_emp";
-            b_emp.Size = new Size(259, 164);
+            b_emp.Size = new Size(250, 150);
             b_emp.TabIndex = 0;
             b_emp.Text = "社員管理";
             b_emp.UseVisualStyleBackColor = false;
@@ -308,7 +308,7 @@
             HN.BackColor = Color.FromArgb(212, 222, 255);
             HN.Controls.Add(b_rec);
             HN.Controls.Add(b_hor);
-            HN.Location = new Point(177, 207);
+            HN.Location = new Point(180, 210);
             HN.Name = "HN";
             HN.Size = new Size(1200, 600);
             HN.TabIndex = 0;
@@ -318,9 +318,9 @@
             // 
             b_rec.BackColor = SystemColors.ControlLightLight;
             b_rec.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_rec.Location = new Point(680, 200);
+            b_rec.Location = new Point(675, 225);
             b_rec.Name = "b_rec";
-            b_rec.Size = new Size(259, 164);
+            b_rec.Size = new Size(260, 150);
             b_rec.TabIndex = 1;
             b_rec.Text = "入庫管理";
             b_rec.UseVisualStyleBackColor = false;
@@ -330,9 +330,9 @@
             // 
             b_hor.BackColor = SystemColors.ControlLightLight;
             b_hor.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_hor.Location = new Point(270, 200);
+            b_hor.Location = new Point(275, 225);
             b_hor.Name = "b_hor";
-            b_hor.Size = new Size(259, 164);
+            b_hor.Size = new Size(260, 150);
             b_hor.TabIndex = 0;
             b_hor.Text = "発注管理";
             b_hor.UseVisualStyleBackColor = false;
@@ -353,9 +353,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(mas);
             Controls.Add(HN);
             Controls.Add(JU);
+            Controls.Add(mas);
             Name = "mainmenu3";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "mainmenu";

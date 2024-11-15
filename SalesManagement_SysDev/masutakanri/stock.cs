@@ -148,6 +148,18 @@ namespace SalesManagement_SysDev
             string zaiko = TBZaiko.Text;
             bool stflag = StFlag.Checked;
 
+            if (!int.TryParse(zaikoID, out int parsedShopID))
+            {
+                MessageBox.Show("在庫IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(syohinID, out int parsedKokyakuID))
+            {
+                MessageBox.Show("商品IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var context = new SalesManagementContext())
             {
                 var stock = context.TStocks.SingleOrDefault(s => s.StId.ToString() == zaikoID);

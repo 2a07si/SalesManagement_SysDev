@@ -88,6 +88,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
         }
 
+
         private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
 
         private void PerformSearch()
@@ -253,12 +254,6 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
                     MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (tantoName.Length > 50)
-                {
-                    MessageBox.Show("担当者名は最大50文字でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -1038,5 +1033,9 @@ namespace SalesManagement_SysDev
         {
             LimitTextLength(sender as TextBox, 10);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a7385a7d9081f5964b4f0cc6087ef17fe62cceed
     }
 }

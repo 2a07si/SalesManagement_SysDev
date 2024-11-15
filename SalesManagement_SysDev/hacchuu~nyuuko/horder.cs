@@ -212,6 +212,24 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
+            if (!int.TryParse(hattyuuID, out int parsedJyutyuID))
+            {
+                MessageBox.Show("発注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(makerID, out int parsedShopID))
+            {
+                MessageBox.Show("メーカーIDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(shainID, out int parsedShainID))
+            {
+                MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var context = new SalesManagementContext())
             {
                 var hattyu = context.THattyus.SingleOrDefault(h => h.HaId.ToString() == hattyuuID);
@@ -431,6 +449,31 @@ namespace SalesManagement_SysDev
             string hattyuuID = TBHattyuIDS.Text;
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
+
+            if (!int.TryParse(hattyuuSyosaiID, out int parsedSyosaiID))
+            {
+                MessageBox.Show("発注詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(hattyuuID, out int parsedshukkaID))
+            {
+                MessageBox.Show("発注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            if (!int.TryParse(syohinID, out int parsedSyohinID))
+            {
+                MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(suryou, out int parsedsuryou))
+            {
+                MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             using (var context = new SalesManagementContext())
             {

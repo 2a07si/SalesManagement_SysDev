@@ -158,6 +158,18 @@ namespace SalesManagement_SysDev
             DateTime SyohinDate = date.Value;
             bool delFlag = DelFlag.Checked;
 
+            if (!int.TryParse(SyohinID, out int parsedShopID))
+            {
+                MessageBox.Show("商品IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(MakerID, out int parsedKokyakuID))
+            {
+                MessageBox.Show("メーカーIDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var context = new SalesManagementContext())
             {
                 var merchandise = context.MProducts.SingleOrDefault(e => e.PrId.ToString() == SyohinID);

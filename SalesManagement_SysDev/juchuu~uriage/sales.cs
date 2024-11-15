@@ -233,6 +233,36 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
 
+            if (!int.TryParse(salesID, out int parsedSyukkoID))
+            {
+                MessageBox.Show("売上IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(jyutyuID, out int parsedJyutyuID))
+            {
+                MessageBox.Show("受注IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(shopID, out int parsedShopID))
+            {
+                MessageBox.Show("営業所IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(shainID, out int parsedShainID))
+            {
+                MessageBox.Show("社員IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(kokyakuID, out int parsedKokyakuID))
+            {
+                MessageBox.Show("顧客IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var context = new SalesManagementContext())
             {
                 var sales = context.TSales.SingleOrDefault(s => s.SaId.ToString() == salesID);
@@ -439,6 +469,31 @@ namespace SalesManagement_SysDev
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
             string total = TBTotal.Text;
+
+            if (!int.TryParse(UriageSyosaiID, out int parsedSyosaiID))
+            {
+                MessageBox.Show("売上詳細IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(uriageID, out int parsedJyutyuID))
+            {
+                MessageBox.Show("売上IDは半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            if (!int.TryParse(syohinID, out int parsedSyohinID))
+            {
+                MessageBox.Show("商品IDは半角整数ででなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(suryou, out int parsedsuryou))
+            {
+                MessageBox.Show("数量は半角整数でなければなりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             using (var context = new SalesManagementContext())
             {
