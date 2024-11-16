@@ -451,18 +451,13 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    else
-                    {
-                        // 社員名を担当者名テキストボックスに自動入力
-                        TBTantoName.Text = employee.EmName;
-                    }
-
+                    
                     var newOrder = new TOrder
                     {
                         SoId = eigyou,
                         EmId = shain,
                         ClId = int.Parse(kokyakuID),
-                        ClCharge = TBTantoName.Text, // 自動取得した社員名を設定 
+                        ClCharge = TBTantoName.Text, 
                         OrDate = jyutyuDate,
                         OrStateFlag = tyumonFlag ? 2 : 0,
                         OrFlag = delFlag ? 1 : 0,

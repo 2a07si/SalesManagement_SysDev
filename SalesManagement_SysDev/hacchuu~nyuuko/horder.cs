@@ -818,7 +818,7 @@ namespace SalesManagement_SysDev
                 var newWarehousing = new TWarehousing
                 {
                     HaId = HaId,
-                    EmId = null,
+                    EmId = horder.EmId,
                     //datetime
                     WaShelfFlag = 0,
                     WaFlag = 0
