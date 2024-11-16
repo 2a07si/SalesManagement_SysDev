@@ -86,23 +86,38 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
         }
 
-        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
-
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+            TBNyukoID.Enabled = true;
+            TBNyuukoSyosaiID.Enabled = true;
+        }
         private void PerformSearch()
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
-
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+            UpdateStatus();
+            TBNyukoID.Enabled = true;
+            TBNyuukoSyosaiID.Enabled = true;
+        }
         private void UpdateStatus()
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+            RegisterStatus();
+            TBNyukoID.Enabled = false;
+            TBNyuukoSyosaiID.Enabled = false;
+            TBNyukoID.Text = "";
+            TBNyuukoSyosaiID.Text = "";
+        }
 
         private void RegisterStatus()
         {
@@ -112,8 +127,12 @@ namespace SalesManagement_SysDev
             DisplayReceivingStockDetails();
         }
 
-        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
-
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            ListStatus();
+            TBNyukoID.Enabled = true;
+            TBNyuukoSyosaiID.Enabled = true;
+        }
         private void ListStatus()
         {
             CurrentStatus.ListStatus(label2);

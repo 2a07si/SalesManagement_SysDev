@@ -93,23 +93,38 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
-
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+            TBHattyuuID.Enabled = true;
+            TBHattyuuSyosaiID.Enabled = true;
+        }
         private void PerformSearch()
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
-
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+            UpdateStatus();
+            TBHattyuuID.Enabled = true;
+            TBHattyuuSyosaiID.Enabled = true;
+        }
         private void UpdateStatus()
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+            RegisterStatus();
+            TBHattyuuID.Enabled = false;
+            TBHattyuuSyosaiID.Enabled = false;
+            TBHattyuuID.Text = "";
+            TBHattyuuSyosaiID.Text = "";
+        }
 
         private void RegisterStatus()
         {
@@ -119,8 +134,12 @@ namespace SalesManagement_SysDev
             DisplayHattyuDetails();
         }
 
-        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
-
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            ListStatus();
+            TBHattyuuID.Enabled = true;
+            TBHattyuuSyosaiID.Enabled = true;
+        }
         private void ListStatus()
         {
             CurrentStatus.ListStatus(label2);

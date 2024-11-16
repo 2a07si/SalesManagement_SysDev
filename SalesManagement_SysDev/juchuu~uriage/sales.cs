@@ -104,14 +104,30 @@ namespace SalesManagement_SysDev
 
         private void b_reg_Click(object sender, EventArgs e)
         {
+            RegisterStatus();
+            TBSalesID.Enabled = false;
+            TBUriageSyosaiID.Enabled = false;
+            TBTotal.Enabled  = false;
+            TBSalesID.Text = "";
+            TBUriageSyosaiID.Text = "";
+            TBTotal.Text = "";
+        }
+
+        private void RegisterStatus()
+        {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplaySales();
+            DisplaySaleDetails();
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSalesID.Enabled = true;
+            TBUriageSyosaiID.Enabled = true;
+            TBTotal.Enabled = false;
         }
 
         private void B_iti_Click(object sender, EventArgs e)
@@ -120,6 +136,9 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             DisplaySales();
             DisplaySaleDetails();
+            TBSalesID.Enabled = true;
+            TBUriageSyosaiID.Enabled = true;
+            TBTotal.Enabled = false;
 
         }
 
@@ -127,6 +146,9 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSalesID.Enabled = true;
+            TBUriageSyosaiID.Enabled = true;
+            TBTotal.Enabled = false;
 
         }
 

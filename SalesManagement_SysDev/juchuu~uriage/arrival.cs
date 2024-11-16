@@ -98,14 +98,24 @@ namespace SalesManagement_SysDev
 
 
         }
-        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+            TBNyuukaId.Enabled = true;
+            TBNyukaSyosaiID.Enabled = true;
+        }
         private void PerformSearch()
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+            UpdateStatus();
+            TBNyuukaId.Enabled = true;
+            TBNyukaSyosaiID.Enabled = true;
+        }
 
         private void UpdateStatus()
         {
@@ -113,7 +123,14 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+            RegisterStatus();
+            TBNyuukaId.Enabled = false;
+            TBNyukaSyosaiID.Enabled = false;
+            TBNyuukaId.Text = "";
+            TBNyukaSyosaiID.Text = "";
+        }
 
         private void RegisterStatus()
         {
@@ -121,8 +138,12 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
-
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            ListStatus();
+            TBNyuukaId.Enabled = true;
+            TBNyukaSyosaiID.Enabled = true;
+        }
         private void ListStatus()
         {
             CurrentStatus.ListStatus(label2);

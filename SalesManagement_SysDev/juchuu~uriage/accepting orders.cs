@@ -50,6 +50,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
             DisplayOrderDetails();
+            
         }
 
         // メインメニューに戻る
@@ -89,7 +90,13 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+            TBJyutyuID.Enabled = true;
+            TBJyutyuSyosaiID.Enabled = true;
+            TBGoukeiKingaku.Enabled = false;
+        }
 
         private void PerformSearch()
         {
@@ -97,7 +104,13 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+            UpdateStatus();
+            TBJyutyuID.Enabled = true;
+            TBJyutyuSyosaiID.Enabled = true;
+            TBGoukeiKingaku.Enabled = false;
+        }
 
         private void UpdateStatus()
         {
@@ -105,7 +118,16 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+            RegisterStatus();
+            TBJyutyuID.Enabled = false;
+            TBJyutyuSyosaiID.Enabled = false;
+            TBGoukeiKingaku.Enabled = false;
+            TBJyutyuID.Text = "";
+            TBJyutyuSyosaiID.Text = "";
+            TBGoukeiKingaku.Text = "";
+        }
 
         private void RegisterStatus()
         {
@@ -113,7 +135,13 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            ListStatus();
+            TBJyutyuID.Enabled = true;
+            TBJyutyuSyosaiID.Enabled = true;
+            TBGoukeiKingaku.Enabled = false;
+        }
 
         private void ListStatus()
         {

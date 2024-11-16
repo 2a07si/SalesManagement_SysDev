@@ -99,22 +99,38 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
         }
-        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+            TBTyumonId.Enabled = true;
+            TBTyumonSyosaiId.Enabled = true;
+        }
         private void PerformSearch()
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
-
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+            UpdateStatus();
+            TBTyumonId.Enabled = true;
+            TBTyumonSyosaiId.Enabled = true;
+        }
         private void UpdateStatus()
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+            RegisterStatus();
+            TBTyumonId.Enabled = false;
+            TBTyumonSyosaiId.Enabled = false;
+            TBTyumonId.Text = "";
+            TBTyumonSyosaiId.Text = "";
+        }
 
         private void RegisterStatus()
         {
@@ -122,8 +138,12 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
-
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            ListStatus();
+            TBTyumonId.Enabled = true;
+            TBTyumonSyosaiId.Enabled = true;
+        }
         private void ListStatus()
         {
             CurrentStatus.ListStatus(label2);

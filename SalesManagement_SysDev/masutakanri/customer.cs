@@ -85,24 +85,29 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBKokyakuID.Enabled = false;
+            TBKokyakuID.Text = "";
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBKokyakuID.Enabled = true;
         }
 
         private void b_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBKokyakuID.Enabled = true;
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBKokyakuID.Enabled = true;
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)

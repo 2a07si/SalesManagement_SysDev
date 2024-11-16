@@ -100,24 +100,29 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSyohinID.Enabled = false;
+            TBSyohinID.Text = "";
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSyohinID.Enabled = true;
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSyohinID.Enabled = true;
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSyohinID.Enabled = true;
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
