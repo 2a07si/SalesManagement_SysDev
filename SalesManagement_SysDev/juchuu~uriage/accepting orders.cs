@@ -215,7 +215,7 @@ namespace SalesManagement_SysDev
         }
 
         private void UpdateOrder()
-        { 
+        {
             try
             {
                 string jyutyuID = TBJyutyuID.Text;
@@ -261,7 +261,7 @@ namespace SalesManagement_SysDev
                     TBKokyakuID.Focus();
 
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
+
                     return;
                 }
 
@@ -366,7 +366,7 @@ namespace SalesManagement_SysDev
                 if (TBKokyakuID.Text == null)
                 {
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBKokyakuID.BackColor = SystemColors .Window;
+                    TBKokyakuID.BackColor = SystemColors.Window;
                     TBKokyakuID.Focus();
                     return;
                 }
@@ -651,7 +651,7 @@ namespace SalesManagement_SysDev
                     if (TBSyohinID.Text == null)
                     {
                         MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBSyohinID.BackColor= SystemColors.Window;
+                        TBSyohinID.BackColor = SystemColors.Window;
                         TBSyohinID.Focus();
                         return;
                     }
@@ -659,7 +659,7 @@ namespace SalesManagement_SysDev
                     if (TBSuryou.Text == null)
                     {
                         MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBSuryou.BackColor= SystemColors.Window;
+                        TBSuryou.BackColor = SystemColors.Window;
                         TBSuryou.Focus();
                         return;
                     }

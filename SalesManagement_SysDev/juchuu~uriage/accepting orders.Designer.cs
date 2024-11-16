@@ -675,6 +675,7 @@ namespace SalesManagement_SysDev
             AutoScroll = true;
             CancelButton = clear;
             ClientSize = new Size(1578, 844);
+            Controls.Add(panel1);
             Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(b_FormSelector);
@@ -698,7 +699,6 @@ namespace SalesManagement_SysDev
             Controls.Add(b_shi);
             Controls.Add(b_arr);
             Controls.Add(b_lss);
-            Controls.Add(panel1);
             Name = "acceptingorders";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "受注";
