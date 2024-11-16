@@ -241,9 +241,9 @@ namespace SalesManagement_SysDev
 
             if (TBNyuukaId.Text == null)
             {
-                TBJyutyuId.BackColor = Color.Yellow;
-                TBJyutyuId.Focus();
                 MessageBox.Show("入荷IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TBNyuukaId.BackColor = Color.Yellow;
+                TBNyuukaId.Focus();
                 return;
             }
 
@@ -273,6 +273,8 @@ namespace SalesManagement_SysDev
 
             if (TBJyutyuId.Text == null)
             {
+                TBJyutyuId.BackColor = Color.Yellow;
+                TBJyutyuId.Focus();
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -391,24 +393,32 @@ namespace SalesManagement_SysDev
 
                 if (TBShopId.Text == null)
                 {
+                    TBShopId.BackColor = Color.Yellow;
+                    TBShopId.Focus();
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBShainId.Text == null)
                 {
+                    TBShainId.BackColor = Color.Yellow;
+                    TBShainId.Focus();
                     MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBKokyakuId.Text == null)
                 {
+                    TBKokyakuId.BackColor = Color.Yellow;
+                    TBKokyakuId.Focus();
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBJyutyuId.Text == null)
                 {
+                    TBJyutyuId.BackColor = Color.Yellow;
+                    TBJyutyuId.Focus();
                     MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -684,6 +694,8 @@ namespace SalesManagement_SysDev
                 }
                 if (TBNyuukaIDS.Text == null)
                 {
+                    TBNyuukaIDS.BackColor = Color.Yellow;
+                    TBNyuukaIDS.Focus();
                     MessageBox.Show("入荷IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -691,12 +703,16 @@ namespace SalesManagement_SysDev
 
                 if (TBSyohinID.Text == null)
                 {
+                    TBSyohinID.BackColor = Color.Yellow;
+                    TBSyohinID.Focus();
                     MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBSuryou.Text == null)
                 {
+                    TBSuryou.BackColor = Color.Yellow;
+                    TBSuryou.Focus();
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -705,7 +721,9 @@ namespace SalesManagement_SysDev
                 int shouhin;
                 if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
                 {
-                    MessageBox.Show("該当する入荷社員IDが存在しません詳細が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBNyuukaId.BackColor = Color.Yellow;
+                    TBNyuukaId.Focus();
+                    MessageBox.Show("該当する入荷IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var newArrivalDetail = new TArrivalDetail
@@ -1048,6 +1066,16 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
+            TBNyuukaId.BackColor = SystemColors.Window;
+            TBShopId.BackColor = SystemColors.Window;
+            TBShainId.BackColor = SystemColors.Window;
+            TBKokyakuId.BackColor = SystemColors.Window;
+            TBJyutyuId.BackColor = SystemColors.Window;
+
+            TBNyukaSyosaiID.BackColor = SystemColors.Window;
+            TBNyuukaIDS.BackColor = SystemColors.Window;
+            TBSyohinID.BackColor = SystemColors.Window;
+            TBSuryou.BackColor = SystemColors.Window;
         }
     }
 
