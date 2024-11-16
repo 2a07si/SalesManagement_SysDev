@@ -79,6 +79,7 @@ namespace SalesManagement_SysDev
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
             CurrentStatus.ResetStatus(label2);
+            TBKokyakuID.BackColor = Color.White;
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -86,6 +87,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             TBKokyakuID.Enabled = false;
+            TBKokyakuID.BackColor = Color.Gray;
             TBKokyakuID.Text = "";
         }
 
@@ -94,6 +96,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             TBKokyakuID.Enabled = true;
+            TBKokyakuID.BackColor = Color.White;
         }
 
         private void b_iti_Click(object sender, EventArgs e)
@@ -101,6 +104,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             TBKokyakuID.Enabled = true;
+            TBKokyakuID.BackColor = Color.White;
         }
 
         private void b_ser_Click(object sender, EventArgs e)
@@ -108,6 +112,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             TBKokyakuID.Enabled = true;
+            TBKokyakuID.BackColor = Color.White;
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)
@@ -431,9 +436,15 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBKokyakuID.Text = "";
+                    }
+                    else
+                    {
+                        TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
+                    }
                     // 各テキストボックスにデータを入力
-                    TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
                     TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
                     TBKokyakuName.Text = row.Cells["顧客名"].Value.ToString();
                     TBJyusyo.Text = row.Cells["住所"].Value.ToString();

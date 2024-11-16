@@ -90,6 +90,8 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            TBHattyuuID.BackColor = Color.White;
+            TBHattyuuSyosaiID.BackColor = Color.White;
         }
 
 
@@ -98,6 +100,9 @@ namespace SalesManagement_SysDev
             PerformSearch();
             TBHattyuuID.Enabled = true;
             TBHattyuuSyosaiID.Enabled = true;
+            TBHattyuuID.BackColor = Color.White;
+            TBHattyuuSyosaiID.BackColor = Color.White;
+
         }
         private void PerformSearch()
         {
@@ -110,6 +115,8 @@ namespace SalesManagement_SysDev
             UpdateStatus();
             TBHattyuuID.Enabled = true;
             TBHattyuuSyosaiID.Enabled = true;
+            TBHattyuuID.BackColor = Color.White;
+            TBHattyuuSyosaiID.BackColor = Color.White;
         }
         private void UpdateStatus()
         {
@@ -122,6 +129,8 @@ namespace SalesManagement_SysDev
             RegisterStatus();
             TBHattyuuID.Enabled = false;
             TBHattyuuSyosaiID.Enabled = false;
+            TBHattyuuID.BackColor = Color.Gray;
+            TBHattyuuSyosaiID.BackColor = Color.Gray;
             TBHattyuuID.Text = "";
             TBHattyuuSyosaiID.Text = "";
         }
@@ -139,6 +148,8 @@ namespace SalesManagement_SysDev
             ListStatus();
             TBHattyuuID.Enabled = true;
             TBHattyuuSyosaiID.Enabled = true;
+            TBHattyuuID.BackColor = Color.White;
+            TBHattyuuSyosaiID.BackColor = Color.White;
         }
         private void ListStatus()
         {
@@ -732,9 +743,15 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得 
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBHattyuuID.Text = "";
+                    }
+                    else
+                    {
+                        TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
+                    }
                     // 各テキストボックスにデータを入力 
-                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
                     TBMakerID.Text = row.Cells["メーカID"].Value.ToString() ?? string.Empty;
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
 
@@ -763,9 +780,15 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得  
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBHattyuuSyosaiID.Text = "";
+                    }
+                    else
+                    {
+                        TBHattyuuSyosaiID.Text = row.Cells["発注詳細ID"].Value.ToString() ?? string.Empty;
+                    }
                     // 各テキストボックスにデータを入力 
-                    TBHattyuuSyosaiID.Text = row.Cells["発注詳細ID"].Value.ToString() ?? string.Empty;
                     TBHattyuIDS.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
                     TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;

@@ -50,7 +50,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
             DisplayOrderDetails();
-            
+            TBGoukeiKingaku.Enabled = false;
         }
 
         // メインメニューに戻る
@@ -87,6 +87,8 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            TBJyutyuID.BackColor = Color.White;
+            TBJyutyuSyosaiID.BackColor = Color.White;
         }
 
 
@@ -95,7 +97,9 @@ namespace SalesManagement_SysDev
             PerformSearch();
             TBJyutyuID.Enabled = true;
             TBJyutyuSyosaiID.Enabled = true;
-            TBGoukeiKingaku.Enabled = false;
+            TBJyutyuID.BackColor = Color.White;
+            TBJyutyuSyosaiID.BackColor = Color.White;
+
         }
 
         private void PerformSearch()
@@ -109,7 +113,9 @@ namespace SalesManagement_SysDev
             UpdateStatus();
             TBJyutyuID.Enabled = true;
             TBJyutyuSyosaiID.Enabled = true;
-            TBGoukeiKingaku.Enabled = false;
+            TBJyutyuID.BackColor = Color.White;
+            TBJyutyuSyosaiID.BackColor = Color.White;
+
         }
 
         private void UpdateStatus()
@@ -123,10 +129,12 @@ namespace SalesManagement_SysDev
             RegisterStatus();
             TBJyutyuID.Enabled = false;
             TBJyutyuSyosaiID.Enabled = false;
-            TBGoukeiKingaku.Enabled = false;
             TBJyutyuID.Text = "";
             TBJyutyuSyosaiID.Text = "";
             TBGoukeiKingaku.Text = "";
+            TBJyutyuID.BackColor = Color.Gray;
+            TBJyutyuSyosaiID.BackColor = Color.Gray;
+            TBGoukeiKingaku.BackColor = Color.Gray;
         }
 
         private void RegisterStatus()
@@ -140,7 +148,8 @@ namespace SalesManagement_SysDev
             ListStatus();
             TBJyutyuID.Enabled = true;
             TBJyutyuSyosaiID.Enabled = true;
-            TBGoukeiKingaku.Enabled = false;
+            TBJyutyuID.BackColor = Color.White;
+            TBJyutyuSyosaiID.BackColor = Color.White;
         }
 
         private void ListStatus()
@@ -243,7 +252,7 @@ namespace SalesManagement_SysDev
         }
 
         private void UpdateOrder()
-        { 
+        {
             try
             {
                 string jyutyuID = TBJyutyuID.Text;
@@ -266,7 +275,7 @@ namespace SalesManagement_SysDev
                     TBJyutyuID.Focus();
                     return;
                 }
-                
+
 
                 if (TBShopID.Text == null)
                 {
@@ -290,7 +299,7 @@ namespace SalesManagement_SysDev
                     TBKokyakuID.Focus();
 
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
+
                     return;
                 }
 
@@ -411,14 +420,14 @@ namespace SalesManagement_SysDev
                 if (TBKokyakuID.Text == null)
                 {
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBKokyakuID.BackColor = SystemColors .Window;
+                    TBKokyakuID.BackColor = SystemColors.Window;
                     TBKokyakuID.Focus();
                     return;
                 }
 
                 using (var context = new SalesManagementContext())
                 {
-                    
+
                     if (!int.TryParse(shopID, out int eigyou) || !context.TOrders.Any(s => s.SoId == eigyou))
                     {
                         TBShopID.BackColor = Color.Yellow;
@@ -648,7 +657,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    
+
                     var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
                     if (orderDetail != null)
                     {
@@ -943,9 +952,16 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得  
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    if(label2.Text == "登録")
+                    {
+                        TBJyutyuID.Text = "";
+                    }
+                    else
+                    {
+                        TBJyutyuID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    }
                     // 各テキストボックスにデータを入力 (null許可)
-                    TBJyutyuID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    
                     TBShopID.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
                     TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
@@ -984,13 +1000,20 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得   
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBJyutyuSyosaiID.Text = "";
+                        TBGoukeiKingaku.Text = "";
+                    }
+                    else
+                    {
+                        TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value?.ToString() ?? string.Empty;
+                        TBGoukeiKingaku.Text = row.Cells["合計金額"].Value?.ToString() ?? string.Empty;
+                    }
                     // 各テキストボックスにデータを入力 (null許可)
-                    TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value?.ToString() ?? string.Empty;
                     TBJyutyuIDS.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
                     TBSyohinID.Text = row.Cells["商品ID"].Value?.ToString() ?? string.Empty;
                     TBSuryou.Text = row.Cells["数量"].Value?.ToString() ?? string.Empty;
-                    TBGoukeiKingaku.Text = row.Cells["合計金額"].Value?.ToString() ?? string.Empty;
                 }
             }
             catch (Exception ex)

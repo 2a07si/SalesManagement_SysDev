@@ -90,6 +90,7 @@ namespace SalesManagement_SysDev
             TBRiyuu.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
+            TBSyainID.BackColor = Color.White;
         }
 
         private void date_ValueChanged(object sender, EventArgs e)
@@ -102,6 +103,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             TBSyainID.Enabled = false;
+            TBSyainID.BackColor = Color.Gray;
             TBSyainID.Text = "";
         }
 
@@ -110,6 +112,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             TBSyainID.Enabled = true;
+            TBSyainID.BackColor = Color.White;
         }
 
         private void B_iti_Click(object sender, EventArgs e)
@@ -117,6 +120,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             TBSyainID.Enabled = true;
+            TBSyainID.BackColor = Color.White;
         }
 
         private void b_ser_Click(object sender, EventArgs e)
@@ -124,6 +128,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
             TBSyainID.Enabled = true;
+            TBSyainID.BackColor = Color.White;
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)
@@ -411,9 +416,14 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
-                    // 各テキストボックスにデータを入力
-                    TBSyainID.Text = row.Cells["社員ID"].Value.ToString();
+                    if (label2.Text == "登録")
+                    {
+                        TBSyainID.Text = "";
+                    }
+                    else
+                    {
+                        TBSyainID.Text = row.Cells["社員ID"].Value.ToString();
+                    }
                     TBSyainName.Text = row.Cells["社員名"].Value.ToString();
                     TBShopId.Text = row.Cells["営業所ID"].Value.ToString();
                     TBJobID.Text = row.Cells["役職ID"].Value.ToString();
