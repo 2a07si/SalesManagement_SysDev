@@ -89,30 +89,40 @@ namespace SalesManagement_SysDev
             TBZaiko.Text = "";
             StFlag.Checked = false;
             CurrentStatus.ResetStatus(label2);
+            TBZaikoID.BackColor = Color.White;
         }
 
         private void b_reg_Click(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBZaikoID.Enabled = false;
+            TBZaikoID.BackColor = Color.Gray;
+            TBZaikoID.Text = "";
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBZaikoID.Enabled = true;
+            TBZaikoID.BackColor = Color.White;
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBZaikoID.Enabled = true;
+            TBZaikoID.BackColor = Color.White;
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBZaikoID.Enabled = true;
+            TBZaikoID.BackColor = Color.White;
         }
 
 
@@ -344,9 +354,15 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBZaikoID.Text = "";
+                    }
+                    else
+                    {
+                        TBZaikoID.Text = row.Cells["在庫ID"].Value.ToString();
+                    }
                     // 各テキストボックスにデータを入力
-                    TBZaikoID.Text = row.Cells["在庫ID"].Value.ToString();
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     TBZaiko.Text = row.Cells["在庫数"].Value.ToString();
                     // 注文状態や非表示ボタン、非表示理由も必要に応じて設定

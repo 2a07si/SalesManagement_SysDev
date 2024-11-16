@@ -50,6 +50,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
             DisplayOrderDetails();
+            TBGoukeiKingaku.Enabled = false;
         }
 
         // メインメニューに戻る
@@ -86,10 +87,20 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            TBJyutyuID.BackColor = Color.White;
+            TBJyutyuSyosaiID.BackColor = Color.White;
         }
 
 
-        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+            TBJyutyuID.Enabled = true;
+            TBJyutyuSyosaiID.Enabled = true;
+            TBJyutyuID.BackColor = Color.White;
+            TBJyutyuSyosaiID.BackColor = Color.White;
+
+        }
 
         private void PerformSearch()
         {
@@ -97,7 +108,15 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+            UpdateStatus();
+            TBJyutyuID.Enabled = true;
+            TBJyutyuSyosaiID.Enabled = true;
+            TBJyutyuID.BackColor = Color.White;
+            TBJyutyuSyosaiID.BackColor = Color.White;
+
+        }
 
         private void UpdateStatus()
         {
@@ -105,7 +124,18 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+            RegisterStatus();
+            TBJyutyuID.Enabled = false;
+            TBJyutyuSyosaiID.Enabled = false;
+            TBJyutyuID.Text = "";
+            TBJyutyuSyosaiID.Text = "";
+            TBGoukeiKingaku.Text = "";
+            TBJyutyuID.BackColor = Color.Gray;
+            TBJyutyuSyosaiID.BackColor = Color.Gray;
+            TBGoukeiKingaku.BackColor = Color.Gray;
+        }
 
         private void RegisterStatus()
         {
@@ -113,7 +143,14 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            ListStatus();
+            TBJyutyuID.Enabled = true;
+            TBJyutyuSyosaiID.Enabled = true;
+            TBJyutyuID.BackColor = Color.White;
+            TBJyutyuSyosaiID.BackColor = Color.White;
+        }
 
         private void ListStatus()
         {
@@ -234,15 +271,16 @@ namespace SalesManagement_SysDev
                 if (TBJyutyuID.Text == null)
                 {
                     MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBJyutyuID.BackColor = SystemColors.Window;
+                    TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
                     return;
                 }
 
+
                 if (TBShopID.Text == null)
                 {
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShopID.BackColor = SystemColors.Window;
+                    TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
                     return;
                 }
@@ -250,14 +288,14 @@ namespace SalesManagement_SysDev
                 if (TBShainID.Text == null)
                 {
                     MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShainID.BackColor = SystemColors.Window;
+                    TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
                     return;
                 }
 
                 if (TBKokyakuID.Text == null)
                 {
-                    TBKokyakuID.BackColor = Color.LightYellow;
+                    TBKokyakuID.BackColor = Color.Yellow;
                     TBKokyakuID.Focus();
 
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -268,6 +306,27 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == jyutyuID);
+                    if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrders.Any(s => s.OrId == jyutyu))
+                    {
+                        MessageBox.Show("受注IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBJyutyuID.BackColor = Color.Yellow;
+                        TBJyutyuID.Focus();
+                        return;
+                    }
+                    if (!int.TryParse(shopID, out int eigyou) || !context.TOrders.Any(s => s.SoId == eigyou))
+                    {
+                        TBShopID.BackColor = Color.Yellow;
+                        TBShopID.Focus();
+                        MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (!int.TryParse(shainID, out int shain) || !context.TOrders.Any(s => s.EmId == shain))
+                    {
+                        TBShainID.BackColor = Color.Yellow;
+                        TBShainID.Focus();
+                        MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     if (order != null)
                     {
                         order.SoId = int.Parse(shopID);
@@ -331,11 +390,6 @@ namespace SalesManagement_SysDev
 
         private void RegisterOrder()
         {
-
-            TBShopID.BackColor = SystemColors.Window;
-            TBShainID.BackColor = SystemColors.Window;
-            TBKokyakuID.BackColor = SystemColors.Window;
-
             try
             {
                 string shopID = TBShopID.Text;
@@ -350,7 +404,7 @@ namespace SalesManagement_SysDev
                 if (TBShopID.Text == null)
                 {
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShopID.BackColor = SystemColors.Window;
+                    TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
                     return;
                 }
@@ -358,7 +412,7 @@ namespace SalesManagement_SysDev
                 if (TBShainID.Text == null)
                 {
                     MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShainID.BackColor = SystemColors.Window;
+                    TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
                     return;
                 }
@@ -373,6 +427,21 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
+
+                    if (!int.TryParse(shopID, out int eigyou) || !context.TOrders.Any(s => s.SoId == eigyou))
+                    {
+                        TBShopID.BackColor = Color.Yellow;
+                        TBShopID.Focus();
+                        MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (!int.TryParse(shainID, out int shain) || !context.TOrders.Any(s => s.EmId == shain))
+                    {
+                        TBShainID.BackColor = Color.Yellow;
+                        TBShainID.Focus();
+                        MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     var newOrder = new TOrder
                     {
                         SoId = int.Parse(shopID),
@@ -574,6 +643,21 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
+                    if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrderDetails.Any(s => s.OrId == jyutyu))
+                    {
+                        MessageBox.Show("受注IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBJyutyuID.BackColor = Color.Yellow;
+                        TBJyutyuID.Focus();
+                        return;
+                    }
+                    if (!int.TryParse(syohinID, out int syohin) || !context.TOrderDetails.Any(s => s.PrId == syohin))
+                    {
+                        TBShopID.BackColor = Color.Yellow;
+                        TBShopID.Focus();
+                        MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailId.ToString() == jyutyuSyosaiID);
                     if (orderDetail != null)
                     {
@@ -636,33 +720,24 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-
                 using (var context = new SalesManagementContext())
                 {
-                    if (TBJyutyuIDS.Text == null)
+                    if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrderDetails.Any(s => s.OrId == jyutyu))
                     {
-                        MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBJyutyuIDS.BackColor = SystemColors.Window;
-                        TBJyutyuIDS.Focus();
+                        MessageBox.Show("受注IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBJyutyuID.BackColor = Color.Yellow;
+                        TBJyutyuID.Focus();
+                        return;
+                    }
+                    if (!int.TryParse(syohinID, out int syohin) || !context.TOrderDetails.Any(s => s.PrId == syohin))
+                    {
+                        TBShopID.BackColor = Color.Yellow;
+                        TBShopID.Focus();
+                        MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
 
-                    if (TBSyohinID.Text == null)
-                    {
-                        MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBSyohinID.BackColor = SystemColors.Window;
-                        TBSyohinID.Focus();
-                        return;
-                    }
-
-                    if (TBSuryou.Text == null)
-                    {
-                        MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBSuryou.BackColor = SystemColors.Window;
-                        TBSuryou.Focus();
-                        return;
-                    }
                     var newOrderDetail = new TOrderDetail
                     {
                         OrId = int.Parse(jyutyuID),
@@ -877,9 +952,16 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得  
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    if(label2.Text == "登録")
+                    {
+                        TBJyutyuID.Text = "";
+                    }
+                    else
+                    {
+                        TBJyutyuID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    }
                     // 各テキストボックスにデータを入力 (null許可)
-                    TBJyutyuID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    
                     TBShopID.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
                     TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
@@ -918,13 +1000,20 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得   
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBJyutyuSyosaiID.Text = "";
+                        TBGoukeiKingaku.Text = "";
+                    }
+                    else
+                    {
+                        TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value?.ToString() ?? string.Empty;
+                        TBGoukeiKingaku.Text = row.Cells["合計金額"].Value?.ToString() ?? string.Empty;
+                    }
                     // 各テキストボックスにデータを入力 (null許可)
-                    TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value?.ToString() ?? string.Empty;
                     TBJyutyuIDS.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
                     TBSyohinID.Text = row.Cells["商品ID"].Value?.ToString() ?? string.Empty;
                     TBSuryou.Text = row.Cells["数量"].Value?.ToString() ?? string.Empty;
-                    TBGoukeiKingaku.Text = row.Cells["合計金額"].Value?.ToString() ?? string.Empty;
                 }
             }
             catch (Exception ex)

@@ -94,30 +94,40 @@ namespace SalesManagement_SysDev
             TBRiyuu.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
+            TBSyohinID.BackColor = Color.White;
         }
 
         private void b_reg_Click(object sender, EventArgs e)
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSyohinID.Enabled = false;
+            TBSyohinID.BackColor = Color.Gray;
+            TBSyohinID.Text = "";
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSyohinID.Enabled = true;
+            TBSyohinID.BackColor = Color.White;
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSyohinID.Enabled = true;
+            TBSyohinID.BackColor = Color.White;
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSyohinID.Enabled = true;
+            TBSyohinID.BackColor = Color.White;
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
@@ -456,9 +466,15 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBSyohinID.Text = "";
+                    }
+                    else
+                    {
+                        TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
+                    }
                     // 各テキストボックスにデータを入力
-                    TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     TBMakerId.Text = row.Cells["メーカーID"].Value.ToString();
                     TBSyohinName.Text = row.Cells["商品名"].Value.ToString();
                     TBSell.Text = row.Cells["値段"].Value.ToString();

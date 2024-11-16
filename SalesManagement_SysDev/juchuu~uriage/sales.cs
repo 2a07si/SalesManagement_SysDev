@@ -64,6 +64,7 @@ namespace SalesManagement_SysDev
                 b_reg.Enabled = false;
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
+            TBTotal.Enabled = false;
         }
 
         // メインメニューに戻る 
@@ -104,14 +105,33 @@ namespace SalesManagement_SysDev
 
         private void b_reg_Click(object sender, EventArgs e)
         {
+            RegisterStatus();
+            TBSalesID.Enabled = false;
+            TBUriageSyosaiID.Enabled = false;
+            TBSalesID.BackColor = Color.Gray;
+            TBUriageSyosaiID.BackColor = Color.Gray;
+            TBTotal.BackColor = Color.Gray;
+            TBSalesID.Text = "";
+            TBUriageSyosaiID.Text = "";
+            TBTotal.Text = "";
+        }
+
+        private void RegisterStatus()
+        {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            DisplaySales();
+            DisplaySaleDetails();
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSalesID.Enabled = true;
+            TBUriageSyosaiID.Enabled = true;
+            TBSalesID.BackColor = Color.White;
+            TBUriageSyosaiID.BackColor = Color.White;
         }
 
         private void B_iti_Click(object sender, EventArgs e)
@@ -120,6 +140,10 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             DisplaySales();
             DisplaySaleDetails();
+            TBSalesID.Enabled = true;
+            TBUriageSyosaiID.Enabled = true;
+            TBSalesID.BackColor = Color.White;
+            TBUriageSyosaiID.BackColor = Color.White;
 
         }
 
@@ -127,6 +151,10 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+            TBSalesID.Enabled = true;
+            TBUriageSyosaiID.Enabled = true;
+            TBSalesID.BackColor = Color.White;
+            TBUriageSyosaiID.BackColor = Color.White;
 
         }
 
@@ -152,6 +180,8 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            TBSalesID.BackColor = Color.White;
+            TBUriageSyosaiID.BackColor = Color.White;
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)
@@ -796,9 +826,15 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBSalesID.Text = "";
+                    }
+                    else
+                    {
+                        TBSalesID.Text = row.Cells["売上ID"].Value.ToString();
+                    }
                     // 各テキストボックスにデータを入力
-                    TBSalesID.Text = row.Cells["売上ID"].Value.ToString();
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value.ToString();
                     TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
@@ -828,7 +864,16 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得 
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBUriageSyosaiID.Text = "";
+                        TBTotal.Text = "";
+                    }
+                    else
+                    {
+                        TBUriageSyosaiID.Text = row.Cells["売上詳細ID"].Value.ToString();
+                        TBTotal.Text = row.Cells["合計金額"].Value.ToString();
+                    }
                     // 各テキストボックスにデータを入力
                     TBUriageSyosaiID.Text = row.Cells["売上詳細ID"].Value.ToString();
                     TBUriageIDS.Text = row.Cells["売上ID"].Value.ToString();
@@ -857,14 +902,21 @@ namespace SalesManagement_SysDev
                 if (rowIndex >= 0)
                 {
                     // 行データを取得 
-                    DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
+                    DataGridViewRow row = dataGridView3.Rows[rowIndex];
+                    if (label2.Text == "登録")
+                    {
+                        TBUriageSyosaiID.Text = "";
+                        TBTotal.Text = "";
+                    }
+                    else
+                    {
+                        TBUriageSyosaiID.Text = row.Cells["売上詳細ID"].Value.ToString();
+                        TBTotal.Text = row.Cells["合計金額"].Value.ToString();
+                    }
                     // 各テキストボックスにデータを入力
-                    TBUriageSyosaiID.Text = row.Cells["売上詳細ID"].Value.ToString();
                     TBUriageIDS.Text = row.Cells["売上ID"].Value.ToString();
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     TBSuryou.Text = row.Cells["数量"].Value.ToString();
-                    TBTotal.Text = row.Cells["合計金額"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -957,7 +1009,7 @@ namespace SalesManagement_SysDev
         private void colorReset()
         {
 
-    
+
             TBKokyakuID.BackColor = SystemColors.Window;
             TBKokyakuID.BackColor = SystemColors.Window;
             TBShopID.BackColor = SystemColors.Window;
@@ -969,6 +1021,11 @@ namespace SalesManagement_SysDev
             TBSyohinID.BackColor = SystemColors.Window;
             TBSuryou.BackColor = SystemColors.Window;
             TBTotal.BackColor = SystemColors.Window;
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 

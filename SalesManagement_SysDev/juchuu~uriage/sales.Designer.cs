@@ -582,6 +582,7 @@
             dataGridView3.Size = new Size(580, 490);
             dataGridView3.TabIndex = 10;
             dataGridView3.CellClick += dataGridView3_CellClick;
+            dataGridView3.CellContentClick += dataGridView3_CellContentClick;
             // 
             // TBUriageSyosaiID
             // 

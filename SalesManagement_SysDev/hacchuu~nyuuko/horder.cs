@@ -90,26 +90,50 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            TBHattyuuID.BackColor = Color.White;
+            TBHattyuuSyosaiID.BackColor = Color.White;
         }
 
 
-        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+            TBHattyuuID.Enabled = true;
+            TBHattyuuSyosaiID.Enabled = true;
+            TBHattyuuID.BackColor = Color.White;
+            TBHattyuuSyosaiID.BackColor = Color.White;
 
+        }
         private void PerformSearch()
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
-
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+            UpdateStatus();
+            TBHattyuuID.Enabled = true;
+            TBHattyuuSyosaiID.Enabled = true;
+            TBHattyuuID.BackColor = Color.White;
+            TBHattyuuSyosaiID.BackColor = Color.White;
+        }
         private void UpdateStatus()
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+            RegisterStatus();
+            TBHattyuuID.Enabled = false;
+            TBHattyuuSyosaiID.Enabled = false;
+            TBHattyuuID.BackColor = Color.Gray;
+            TBHattyuuSyosaiID.BackColor = Color.Gray;
+            TBHattyuuID.Text = "";
+            TBHattyuuSyosaiID.Text = "";
+        }
 
         private void RegisterStatus()
         {
@@ -119,8 +143,14 @@ namespace SalesManagement_SysDev
             DisplayHattyuDetails();
         }
 
-        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
-
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            ListStatus();
+            TBHattyuuID.Enabled = true;
+            TBHattyuuSyosaiID.Enabled = true;
+            TBHattyuuID.BackColor = Color.White;
+            TBHattyuuSyosaiID.BackColor = Color.White;
+        }
         private void ListStatus()
         {
             CurrentStatus.ListStatus(label2);
@@ -713,9 +743,15 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得 
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBHattyuuID.Text = "";
+                    }
+                    else
+                    {
+                        TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
+                    }
                     // 各テキストボックスにデータを入力 
-                    TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
                     TBMakerID.Text = row.Cells["メーカID"].Value.ToString() ?? string.Empty;
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
 
@@ -744,9 +780,15 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得  
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBHattyuuSyosaiID.Text = "";
+                    }
+                    else
+                    {
+                        TBHattyuuSyosaiID.Text = row.Cells["発注詳細ID"].Value.ToString() ?? string.Empty;
+                    }
                     // 各テキストボックスにデータを入力 
-                    TBHattyuuSyosaiID.Text = row.Cells["発注詳細ID"].Value.ToString() ?? string.Empty;
                     TBHattyuIDS.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
                     TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;

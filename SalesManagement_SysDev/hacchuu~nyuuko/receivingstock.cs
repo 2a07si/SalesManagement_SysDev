@@ -84,25 +84,48 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            TBNyukoID.BackColor = Color.White;
+            TBNyuukoSyosaiID.BackColor = Color.White;
         }
 
-        private void b_ser_Click(object sender, EventArgs e) => PerformSearch();
-
+        private void b_ser_Click(object sender, EventArgs e)
+        {
+            PerformSearch();
+            TBNyukoID.Enabled = true;
+            TBNyuukoSyosaiID.Enabled = true;
+            TBNyukoID.BackColor = Color.White;
+            TBNyuukoSyosaiID.BackColor = Color.White;
+        }
         private void PerformSearch()
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_upd_Click(object sender, EventArgs e) => UpdateStatus();
-
+        private void b_upd_Click(object sender, EventArgs e)
+        {
+            UpdateStatus();
+            TBNyukoID.Enabled = true;
+            TBNyuukoSyosaiID.Enabled = true;
+            TBNyukoID.BackColor = Color.White;
+            TBNyuukoSyosaiID.BackColor = Color.White;
+        }
         private void UpdateStatus()
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
         }
 
-        private void b_reg_Click(object sender, EventArgs e) => RegisterStatus();
+        private void b_reg_Click(object sender, EventArgs e)
+        {
+            RegisterStatus();
+            TBNyukoID.Enabled = false;
+            TBNyuukoSyosaiID.Enabled = false;
+            TBNyukoID.BackColor = Color.Gray;
+            TBNyuukoSyosaiID.BackColor = Color.Gray;
+            TBNyukoID.Text = "";
+            TBNyuukoSyosaiID.Text = "";
+        }
 
         private void RegisterStatus()
         {
@@ -112,8 +135,14 @@ namespace SalesManagement_SysDev
             DisplayReceivingStockDetails();
         }
 
-        private void B_iti_Click(object sender, EventArgs e) => ListStatus();
-
+        private void B_iti_Click(object sender, EventArgs e)
+        {
+            ListStatus();
+            TBNyukoID.Enabled = true;
+            TBNyuukoSyosaiID.Enabled = true;
+            TBNyukoID.BackColor = Color.White;
+            TBNyuukoSyosaiID.BackColor = Color.White;
+        }
         private void ListStatus()
         {
             CurrentStatus.ListStatus(label2);
@@ -708,13 +737,19 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得  
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBNyukoID.Text = "";
+                    }
+                    else
+                    {
+                        TBNyukoID.Text = row.Cells["入庫ID"].Value.ToString() ?? string.Empty;
+                    }
                     // 各テキストボックスにデータを入力  
-                    TBNyukoID.Text = row.Cells["入庫ID"].Value.ToString() ?? string.Empty;
                     TBHattyuuID.Text = row.Cells["発注ID"].Value.ToString() ?? string.Empty;
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString() ?? string.Empty;
-                    date.Value = Convert.ToDateTime(row.Cells["入庫日"].Value);
-                    NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫フラグ"].Value);
+                    date.Value = Convert.ToDateTime(row.Cells["入庫年月日"].Value);
+                    NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫済フラグ"].Value);
                     DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
                 }
             }
@@ -736,9 +771,15 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得   
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
-
+                    if (label2.Text == "登録")
+                    {
+                        TBNyuukoSyosaiID.Text = "";
+                    }
+                    else
+                    {
+                        TBNyuukoSyosaiID.Text = row.Cells["入庫詳細ID"].Value.ToString();
+                    }
                     // 各テキストボックスにデータを入力  
-                    TBNyuukoSyosaiID.Text = row.Cells["入庫詳細ID"].Value.ToString();
                     TBNyuukoIDS.Text = row.Cells["入庫ID"].Value.ToString();
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     TBSuryou.Text = row.Cells["数量"].Value.ToString();
