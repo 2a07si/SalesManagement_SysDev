@@ -6,6 +6,7 @@ using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
+using static SalesManagement_SysDev.Classまとめ.DeptCheck;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,7 @@ namespace SalesManagement_SysDev
 
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
+        private DeptCheck deptCheck;
 
         private int lastFocusedPanelId = 1;
 
@@ -27,6 +29,7 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             formChanger = new ClassChangeForms(this);
             accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+
 
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
@@ -189,7 +192,9 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            deptCheck.DeptCompare(TBShainID.Text);
         }
+
 
         private void HandleOrderOperation()
         {
