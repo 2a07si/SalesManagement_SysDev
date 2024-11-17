@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
-using static SalesManagement_SysDev.Classまとめ.DeptCheck;
 using System.Diagnostics;
 using Microsoft.Data.SqlClient;
 using System.Text.RegularExpressions;
@@ -18,7 +17,6 @@ namespace SalesManagement_SysDev
         private bool isPasswordVisible = true;  // パスワード表示状態を管理するフラグ 
         private ClassTimerManager timerManager;
         private ClassChangeForms classChangeForms;
-        private DeptCheck deptCheck;
         public F_login()
         {
             InitializeComponent();
@@ -30,7 +28,6 @@ namespace SalesManagement_SysDev
             this.dateNameLabel = new ClassDateNamelabel(labeltime, labeldate);
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             this.classChangeForms = new ClassChangeForms(this);
-            this.deptCheck = new DeptCheck();
             timer1.Start();
         }
 

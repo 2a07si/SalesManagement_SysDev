@@ -84,17 +84,13 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
-            TBNyukoID.BackColor = Color.White;
-            TBNyuukoSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             PerformSearch();
-            TBNyukoID.Enabled = true;
-            TBNyuukoSyosaiID.Enabled = true;
-            TBNyukoID.BackColor = Color.White;
-            TBNyuukoSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
         private void PerformSearch()
         {
@@ -105,10 +101,7 @@ namespace SalesManagement_SysDev
         private void b_upd_Click(object sender, EventArgs e)
         {
             UpdateStatus();
-            TBNyukoID.Enabled = true;
-            TBNyuukoSyosaiID.Enabled = true;
-            TBNyukoID.BackColor = Color.White;
-            TBNyuukoSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
         private void UpdateStatus()
         {
@@ -119,12 +112,7 @@ namespace SalesManagement_SysDev
         private void b_reg_Click(object sender, EventArgs e)
         {
             RegisterStatus();
-            TBNyukoID.Enabled = false;
-            TBNyuukoSyosaiID.Enabled = false;
-            TBNyukoID.BackColor = Color.Gray;
-            TBNyuukoSyosaiID.BackColor = Color.Gray;
-            TBNyukoID.Text = "";
-            TBNyuukoSyosaiID.Text = "";
+            tbfalse();
         }
 
         private void RegisterStatus()
@@ -138,10 +126,7 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             ListStatus();
-            TBNyukoID.Enabled = true;
-            TBNyuukoSyosaiID.Enabled = true;
-            TBNyukoID.BackColor = Color.White;
-            TBNyuukoSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
         private void ListStatus()
         {
@@ -155,6 +140,23 @@ namespace SalesManagement_SysDev
         private void ResetStatus()
         {
             CurrentStatus.ResetStatus(label2);
+        }
+
+        private void tbfalse()
+        {
+            TBNyukoID.Enabled = false;
+            TBNyuukoSyosaiID.Enabled = false;
+            TBNyukoID.BackColor = Color.Gray;
+            TBNyuukoSyosaiID.BackColor = Color.Gray;
+            TBNyukoID.Text = "";
+            TBNyuukoSyosaiID.Text = "";
+        }
+        private void tbtrue()
+        {
+            TBNyukoID.Enabled = true;
+            TBNyuukoSyosaiID.Enabled = true;
+            TBNyukoID.BackColor = Color.White;
+            TBNyuukoSyosaiID.BackColor = Color.White;
         }
 
         private void kakutei_Click(object sender, EventArgs e)

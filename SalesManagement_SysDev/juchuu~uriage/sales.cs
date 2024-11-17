@@ -106,14 +106,7 @@ namespace SalesManagement_SysDev
         private void b_reg_Click(object sender, EventArgs e)
         {
             RegisterStatus();
-            TBSalesID.Enabled = false;
-            TBUriageSyosaiID.Enabled = false;
-            TBSalesID.BackColor = Color.Gray;
-            TBUriageSyosaiID.BackColor = Color.Gray;
-            TBTotal.BackColor = Color.Gray;
-            TBSalesID.Text = "";
-            TBUriageSyosaiID.Text = "";
-            TBTotal.Text = "";
+            tbfalse();
         }
 
         private void RegisterStatus()
@@ -128,10 +121,7 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            TBSalesID.Enabled = true;
-            TBUriageSyosaiID.Enabled = true;
-            TBSalesID.BackColor = Color.White;
-            TBUriageSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
 
         private void B_iti_Click(object sender, EventArgs e)
@@ -140,10 +130,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             DisplaySales();
             DisplaySaleDetails();
-            TBSalesID.Enabled = true;
-            TBUriageSyosaiID.Enabled = true;
-            TBSalesID.BackColor = Color.White;
-            TBUriageSyosaiID.BackColor = Color.White;
+            tbtrue();
 
         }
 
@@ -151,10 +138,7 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            TBSalesID.Enabled = true;
-            TBUriageSyosaiID.Enabled = true;
-            TBSalesID.BackColor = Color.White;
-            TBUriageSyosaiID.BackColor = Color.White;
+            tbtrue();
 
         }
 
@@ -180,6 +164,25 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            tbtrue();
+        }
+
+        private void tbfalse()
+        {
+            TBSalesID.Enabled = false;
+            TBUriageSyosaiID.Enabled = false;
+            TBSalesID.BackColor = Color.Gray;
+            TBUriageSyosaiID.BackColor = Color.Gray;
+            TBTotal.BackColor = Color.Gray;
+            TBSalesID.Text = "";
+            TBUriageSyosaiID.Text = "";
+            TBTotal.Text = "";
+        }
+
+        private void tbtrue()
+        {
+            TBSalesID.Enabled = true;
+            TBUriageSyosaiID.Enabled = true;
             TBSalesID.BackColor = Color.White;
             TBUriageSyosaiID.BackColor = Color.White;
         }
