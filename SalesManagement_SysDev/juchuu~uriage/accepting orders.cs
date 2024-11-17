@@ -392,7 +392,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("受注の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void RegisterOrder()
         {
             try
@@ -406,7 +405,7 @@ namespace SalesManagement_SysDev
                 bool tyumonFlag = TyumonFlag.Checked;
                 bool delFlag = DelFlag.Checked;
 
-                if (TBShopID.Text == null)
+                if (string.IsNullOrEmpty(TBShopID.Text))
                 {
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBShopID.BackColor = Color.Yellow;
@@ -414,7 +413,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBShainID.Text == null)
+                if (string.IsNullOrEmpty(TBShainID.Text))
                 {
                     MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBShainID.BackColor = Color.Yellow;
@@ -422,7 +421,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBKokyakuID.Text == null)
+                if (string.IsNullOrEmpty(TBKokyakuID.Text))
                 {
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBKokyakuID.BackColor = SystemColors.Window;
@@ -432,7 +431,6 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
-
                     if (!int.TryParse(shopID, out int eigyou) || !context.TOrders.Any(s => s.SoId == eigyou))
                     {
                         TBShopID.BackColor = Color.Yellow;
@@ -440,19 +438,31 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if (!int.TryParse(shainID, out int shain) || !context.TOrders.Any(s => s.EmId == shain))
+
+                    if (!int.TryParse(shainID, out int shain))
+                    {
+                        TBShainID.BackColor = Color.Yellow;
+                        TBShainID.Focus();
+                        MessageBox.Show("社員IDの形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // 社員IDが存在するか確認し、存在する場合は担当者名を取得
+                    var employee = context.MEmployees.FirstOrDefault(e => e.EmId == shain);
+                    if (employee == null)
                     {
                         TBShainID.BackColor = Color.Yellow;
                         TBShainID.Focus();
                         MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+                    
                     var newOrder = new TOrder
                     {
-                        SoId = int.Parse(shopID),
-                        EmId = int.Parse(shainID),
+                        SoId = eigyou,
+                        EmId = shain,
                         ClId = int.Parse(kokyakuID),
-                        ClCharge = tantoName,
+                        ClCharge = TBTantoName.Text, 
                         OrDate = jyutyuDate,
                         OrStateFlag = tyumonFlag ? 2 : 0,
                         OrFlag = delFlag ? 1 : 0,
@@ -466,7 +476,6 @@ namespace SalesManagement_SysDev
                         var orderDetailExists = context.TOrderDetails.Any(d => d.OrId == newOrder.OrId);
                         if (!orderDetailExists)
                         {
-
                             MessageBox.Show("受注詳細が登録されていません。。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
@@ -884,7 +893,7 @@ namespace SalesManagement_SysDev
                             受注ID = od.OrId,
                             商品ID = od.PrId,
                             数量 = od.OrQuantity,
-                            合計金額 = od.OrTotalPrice
+                            合計金額 = od.OrTotalPrice.ToString("N0")
                         }).ToList();
                     }
                     else
