@@ -8,6 +8,7 @@ using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
+using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 
 namespace SalesManagement_SysDev
 {
@@ -51,6 +52,8 @@ namespace SalesManagement_SysDev
             DisplayOrders();
             DisplayOrderDetails();
             TBGoukeiKingaku.Enabled = false;
+            TBShainID.Text = GlobalData.EmployeeID;
+            TBShainID.Enabled = false;
         }
 
         // メインメニューに戻る
@@ -269,6 +272,9 @@ namespace SalesManagement_SysDev
                 string riyuu = TBRiyuu.Text;
 
                 // 条件精査
+
+
+                
 
 
                 if (TBJyutyuID.Text == null)
@@ -966,7 +972,7 @@ namespace SalesManagement_SysDev
                     // 各テキストボックスにデータを入力 (null許可)
                     
                     TBShopID.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
-                    TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
+                    //TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
                     TBTantoName.Text = row.Cells["担当社員名"].Value?.ToString() ?? string.Empty;
                     date.Value = row.Cells["受注日"].Value != null ?

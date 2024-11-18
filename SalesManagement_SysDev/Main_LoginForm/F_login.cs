@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Microsoft.Data.SqlClient;
 using System.Text.RegularExpressions;
 using SalesManagement_SysDev.Main_LoginForm;
+using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 
 namespace SalesManagement_SysDev
 {
@@ -782,6 +783,8 @@ namespace SalesManagement_SysDev
                     tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
                     return;
                 }
+
+                GlobalData.EmployeeID = tb_ID.Text;
 
                 string pass = tb_Pass.Text;
                 bool isLoginSuccessful = false; // 初期化して成功状態を保存する変数  
