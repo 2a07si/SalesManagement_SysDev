@@ -137,7 +137,7 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             ListStatus();
-            tbtrue();   
+            tbtrue();
         }
         private void ListStatus()
         {
@@ -398,7 +398,7 @@ namespace SalesManagement_SysDev
                 if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
                 {
                     MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBJyutyuId.BackColor= Color.Yellow;
+                    TBJyutyuId.BackColor = Color.Yellow;
                     TBJyutyuId.Focus();
                     return;
                 }
@@ -893,7 +893,7 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得  
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-                    if(label2.Text == "登録")
+                    if (label2.Text == "登録")
                     {
                         TBNyuukaId.Text = "";
                     }
@@ -1091,19 +1091,26 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            TBNyuukaId.BackColor = SystemColors.Window;
-            TBShopId.BackColor = SystemColors.Window;
-            TBShainId.BackColor = SystemColors.Window;
-            TBKokyakuId.BackColor = SystemColors.Window;
-            TBJyutyuId.BackColor = SystemColors.Window;
-
-            TBNyukaSyosaiID.BackColor = SystemColors.Window;
-            TBNyuukaIDS.BackColor = SystemColors.Window;
-            TBSyohinID.BackColor = SystemColors.Window;
-            TBSuryou.BackColor = SystemColors.Window;
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.登録:
+                    tbfalse();
+                    break;
+                default:
+                    TBNyuukaId.BackColor = SystemColors.Window;
+                    TBShopId.BackColor = SystemColors.Window;
+                    TBShainId.BackColor = SystemColors.Window;
+                    TBKokyakuId.BackColor = SystemColors.Window;
+                    TBJyutyuId.BackColor = SystemColors.Window;
+                    TBNyukaSyosaiID.BackColor = SystemColors.Window;
+                    TBNyuukaIDS.BackColor = SystemColors.Window;
+                    TBSyohinID.BackColor = SystemColors.Window;
+                    TBSuryou.BackColor = SystemColors.Window;
+                    break;
+            }
         }
+
+
     }
-
-
 }
 

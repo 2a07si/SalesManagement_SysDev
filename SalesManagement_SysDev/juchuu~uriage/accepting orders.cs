@@ -52,8 +52,7 @@ namespace SalesManagement_SysDev
             DisplayOrders();
             DisplayOrderDetails();
             TBGoukeiKingaku.Enabled = false;
-            TBShainID.Text = GlobalData.EmployeeID;
-            TBShainID.Enabled = false;
+            //TBShainID.Text = GlobalData.EmployeeID;　ログイン時の社員ＩＤが処理画面の社員ＩＤのテキストボックスに自動的に反映される
         }
 
         // メインメニューに戻る
@@ -972,7 +971,7 @@ namespace SalesManagement_SysDev
                     // 各テキストボックスにデータを入力 (null許可)
                     
                     TBShopID.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
-                    //TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
+                    TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
                     TBTantoName.Text = row.Cells["担当社員名"].Value?.ToString() ?? string.Empty;
                     date.Value = row.Cells["受注日"].Value != null ?
@@ -1176,16 +1175,27 @@ namespace SalesManagement_SysDev
 
         private void colorReset()
         {
-            TBJyutyuID.BackColor = SystemColors.Window;
-            TBShopID.BackColor = SystemColors.Window;
-            TBShainID.BackColor = SystemColors.Window;
-            TBKokyakuID.BackColor = SystemColors.Window;
-            TBTantoName.BackColor = SystemColors.Window;
-            TBJyutyuSyosaiID.BackColor = SystemColors.Window;
-            TBJyutyuIDS.BackColor = SystemColors.Window;
-            TBSyohinID.BackColor = SystemColors.Window;
-            TBSuryou.BackColor = SystemColors.Window;
-            TBGoukeiKingaku.BackColor = SystemColors.Window;
+            switch(CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.登録:
+                    TBJyutyuID.BackColor = Color.Gray;
+                    TBGoukeiKingaku.BackColor = Color.Gray;
+                    TBJyutyuSyosaiID.BackColor = Color.Gray;
+                    break;
+                default:
+                    TBJyutyuID.BackColor = SystemColors.Window;
+                    TBShopID.BackColor = SystemColors.Window;
+                    TBShainID.BackColor = SystemColors.Window;
+                    TBKokyakuID.BackColor = SystemColors.Window;
+                    TBTantoName.BackColor = SystemColors.Window;
+                    TBJyutyuSyosaiID.BackColor = SystemColors.Window;
+                    TBJyutyuIDS.BackColor = SystemColors.Window;
+                    TBSyohinID.BackColor = SystemColors.Window;
+                    TBSuryou.BackColor = SystemColors.Window;
+                    TBGoukeiKingaku.BackColor = Color.Gray;
+                    break;
+
+            }
         }
     }
 }
