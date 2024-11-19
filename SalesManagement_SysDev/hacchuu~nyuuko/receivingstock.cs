@@ -239,7 +239,7 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            if (TBHattyuuID.Text == null)
+            if (TBHattyuuID.Text == "")
             {
                 TBHattyuuID.BackColor = Color.Yellow;
                 TBHattyuuID.Focus();
@@ -247,7 +247,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBNyukoID.Text == null)
+            if (TBNyukoID.Text == "")
             {
                 TBNyukoID.BackColor = Color.Yellow;
                 TBNyukoID.Focus();
@@ -255,7 +255,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBShainID.Text == null)
+            if (TBShainID.Text == "")
             {
                 TBShainID.BackColor = Color.Yellow;
                 TBShainID.Focus();
@@ -362,7 +362,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBNyukoID.Text == null)
+                if (TBNyukoID.Text == "")
                 {
                     TBNyukoID.BackColor = Color.Yellow;
                     TBNyukoID.Focus();
@@ -370,7 +370,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBShainID.Text == null)
+                if (TBShainID.Text == "")
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
@@ -500,7 +500,7 @@ namespace SalesManagement_SysDev
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
-            if (TBNyuukoSyosaiID.Text == null)
+            if (TBNyuukoSyosaiID.Text == "")
             {
                 TBNyuukoSyosaiID.BackColor = Color.Yellow;
                 TBNyuukoSyosaiID.Focus();
@@ -508,7 +508,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBNyuukoIDS.Text == null)
+            if (TBNyuukoIDS.Text == "")
             {
                 TBNyuukoIDS.BackColor = Color.Yellow;
                 TBNyuukoIDS.Focus();
@@ -517,7 +517,7 @@ namespace SalesManagement_SysDev
             }
 
 
-            if (TBSyohinID.Text == null)
+            if (TBSyohinID.Text == "")
             {
                 TBSyohinID.BackColor = Color.Yellow;
                 TBSyohinID.Focus();
@@ -525,7 +525,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBSuryou.Text == null)
+            if (TBSuryou.Text == "")
             {
                 TBSuryou.BackColor = Color.Yellow;
                 TBSuryou.Focus();
@@ -585,7 +585,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量が無効です。正の整数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBNyuukoIDS.Text == null)
+                if (TBNyuukoIDS.Text == "")
                 {
                     TBNyuukoIDS.BackColor = Color.Yellow;
                     TBNyuukoIDS.Focus();
@@ -594,7 +594,7 @@ namespace SalesManagement_SysDev
                 }
 
 
-                if (TBSyohinID.Text == null)
+                if (TBSyohinID.Text == "")
                 {
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
@@ -602,7 +602,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBSuryou.Text == null)
+                if (TBSuryou.Text == "")
                 {
                     TBSuryou.BackColor = Color.Yellow;
                     TBSuryou.Focus();
