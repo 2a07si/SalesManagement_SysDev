@@ -185,6 +185,7 @@ namespace SalesManagement_SysDev
                     case CurrentStatus.Mode.詳細:
                         colorReset();
                         HandleOrderDetailOperation();
+                       
                         break;
                     default:
                         MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -337,13 +338,6 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if (!int.TryParse(shainID, out int shain) || !context.TOrders.Any(s => s.EmId == shain))
-                    {
-                        TBShainID.BackColor = Color.Yellow;
-                        TBShainID.Focus();
-                        MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
                     if (order != null)
                     {
                         order.SoId = int.Parse(shopID);
@@ -458,13 +452,6 @@ namespace SalesManagement_SysDev
                         TBShopID.BackColor = Color.Yellow;
                         TBShopID.Focus();
                         MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (!int.TryParse(shainID, out int shain) || !context.TOrders.Any(s => s.EmId == shain))
-                    {
-                        TBShainID.BackColor = Color.Yellow;
-                        TBShainID.Focus();
-                        MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     var newOrder = new TOrder
