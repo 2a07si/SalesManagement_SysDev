@@ -353,9 +353,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(HN);
             Controls.Add(JU);
             Controls.Add(mas);
+            Controls.Add(HN);
             Name = "mainmenu3";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "mainmenu";
