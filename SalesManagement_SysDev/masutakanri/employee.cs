@@ -158,6 +158,17 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // パスワードを表示する列のインデックスを指定 (例: 0列目)
+            if (e.ColumnIndex == 5 && e.Value != null)
+            {
+                // パスワードの文字数分、●を表示
+                e.Value = new string('●', e.Value.ToString().Length);
+                e.FormattingApplied = true; // 既定の書式適用を防止
+            }
+        }
         private void UpdateEmployee()
         {
             string ShainID = TBSyainID.Text;
@@ -318,6 +329,10 @@ namespace SalesManagement_SysDev
                 DisplayEmployee();
             }
         }
+
+        // DataGridViewのCellFormattingイベントを使用
+        
+
         private void DisplayEmployee()
         {
             try
