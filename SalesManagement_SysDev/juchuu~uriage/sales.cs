@@ -556,6 +556,7 @@ namespace SalesManagement_SysDev
             if (TBUriageSyosaiID.Text == null)
             {
                 TBUriageIDS.BackColor = Color.Yellow;
+                TBUriageIDS.Focus();
                 MessageBox.Show("売上詳細IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
