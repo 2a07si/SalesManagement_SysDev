@@ -96,7 +96,6 @@ namespace SalesManagement_SysDev
             tbtrue();
         }
 
-
         private void b_ser_Click(object sender, EventArgs e)
         {
             PerformSearch();
@@ -276,11 +275,15 @@ namespace SalesManagement_SysDev
 
                 // 条件精査
 
+<<<<<<< HEAD
+                if (TBJyutyuID.Text == null)
+=======
 
 
 
 
                 if (TBJyutyuID.Text == "")
+>>>>>>> 416aa9662b73f233753a7a10e0bf8fd7b0917f0e
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
@@ -1037,7 +1040,6 @@ namespace SalesManagement_SysDev
                     else
                     {
                         TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value?.ToString() ?? string.Empty;
-                        TBGoukeiKingaku.Text = row.Cells["合計金額"].Value?.ToString() ?? string.Empty;
                     }
                     // 各テキストボックスにデータを入力 (null許可)
                     TBJyutyuIDS.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
