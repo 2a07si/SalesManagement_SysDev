@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
+using YourNamespace.Models;
 
 namespace SalesManagement_SysDev;
 
@@ -67,7 +68,7 @@ public partial class SalesManagementContext : DbContext
 
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
-    public virtual DbSet<LoginHistoryLog> LoginHistoryLog { get; set; }  // LoginHistoryLog テーブルを追加
+    public virtual DbSet<LoginHistoryLog> LoginHistoryLogs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

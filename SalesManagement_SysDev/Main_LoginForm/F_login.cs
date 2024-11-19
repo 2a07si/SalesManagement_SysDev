@@ -942,6 +942,10 @@ namespace SalesManagement_SysDev
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poId))
                     {
                         HandleSuccessfulLogin(empID, employeeName, positionName, poId);
+                        var log = new LoginHistoryLog(context)
+                        {
+
+                        }
                     }
                     else
                     {

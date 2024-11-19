@@ -275,11 +275,6 @@ namespace SalesManagement_SysDev
 
                 // 条件精査
 
-                if (TBJyutyuID.Text == null)
-
-
-
-
                 if (TBJyutyuID.Text == "")
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
@@ -817,6 +812,7 @@ namespace SalesManagement_SysDev
         {
             try
             {
+                
                 using (var context = new SalesManagementContext())
                 {
                     // 受注詳細のリストを取得
@@ -1241,7 +1237,7 @@ namespace SalesManagement_SysDev
                 e.Handled = true;
             }
         }
-
+        
 
     }
 }
