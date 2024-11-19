@@ -102,34 +102,30 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            TBSyainID.Enabled = false;
-            TBSyainID.BackColor = Color.Gray;
-            TBSyainID.Text = "";
         }
 
         private void b_upd_Click(object sender, EventArgs e)
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            TBSyainID.Enabled = true;
-            TBSyainID.BackColor = Color.White;
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+<<<<<<< HEAD
             TBSyainID.Enabled = true;
             TBSyainID.BackColor = Color.White;
             DisplayEmployee();
+=======
+>>>>>>> fdd811bfb5acc17f640bd5069b1a44af1d12dfbe
         }
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            TBSyainID.Enabled = true;
-            TBSyainID.BackColor = Color.White;
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)
@@ -160,7 +156,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        /*private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // パスワードを表示する列のインデックスを指定 (例: 0列目)
             if (e.ColumnIndex == 5 && e.Value != null)
@@ -169,7 +165,7 @@ namespace SalesManagement_SysDev
                 e.Value = new string('●', e.Value.ToString().Length);
                 e.FormattingApplied = true; // 既定の書式適用を防止
             }
-        }
+        }*/
         private void UpdateEmployee()
         {
             string ShainID = TBSyainID.Text;
@@ -182,42 +178,42 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            if (TBSyainID.Text == null)
+            if (TBSyainID.Text == "")
             {
                 TBSyainID.BackColor = Color.Yellow;
                 TBSyainID.Focus();
                 MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBSyainName.Text == null)
+            if (TBSyainName.Text == "")
             {
                 TBSyainName.BackColor = Color.Yellow;
                 TBSyainName.Focus();
                 MessageBox.Show("社員名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBShopId.Text == null)
+            if (TBShopId.Text == "")
             {
                 TBShopId.BackColor = Color.Yellow;
                 TBShopId.Focus();
                 MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBJobID.Text == null)
+            if (TBJobID.Text == "")
             {
                 TBJobID.BackColor = Color.Yellow;
                 TBJobID.Focus();
                 MessageBox.Show("役職IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBPass.Text == null)
+            if (TBPass.Text == "")
             {
                 TBPass.BackColor = Color.Yellow;
                 TBPass.Focus();
                 MessageBox.Show("パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBTellNo.Text == null)
+            if (TBTellNo.Text == "")
             {
                 TBTellNo.BackColor = Color.Yellow;
                 TBTellNo.Focus();
@@ -260,8 +256,48 @@ namespace SalesManagement_SysDev
             string Pass = TBPass.Text;
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
-            string riyuu = TBRiyuu.Text;
-
+            if (TBSyainID.Text == "")
+            {
+                TBSyainID.BackColor = Color.Yellow;
+                TBSyainID.Focus();
+                MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBSyainName.Text == "")
+            {
+                TBSyainName.BackColor = Color.Yellow;
+                TBSyainName.Focus();
+                MessageBox.Show("社員名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBShopId.Text == "")
+            {
+                TBShopId.BackColor = Color.Yellow;
+                TBShopId.Focus();
+                MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBJobID.Text == "")
+            {
+                TBJobID.BackColor = Color.Yellow;
+                TBJobID.Focus();
+                MessageBox.Show("役職IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBPass.Text == "")
+            {
+                TBPass.BackColor = Color.Yellow;
+                TBPass.Focus();
+                MessageBox.Show("パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBTellNo.Text == "")
+            {
+                TBTellNo.BackColor = Color.Yellow;
+                TBTellNo.Focus();
+                MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             using (var context = new SalesManagementContext())
             {
                 int shop;
@@ -278,41 +314,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("役職IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBSyainName.Text == null)
-                {
-                    TBSyainName.BackColor = Color.Yellow;
-                    TBSyainName.Focus();
-                    MessageBox.Show("社員名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBShopId.Text == null)
-                {
-                    TBShopId.BackColor = Color.Yellow;
-                    TBShopId.Focus();
-                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBJobID.Text == null)
-                {
-                    TBJobID.BackColor = Color.Yellow;
-                    TBJobID.Focus();
-                    MessageBox.Show("役職IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBPass.Text == null)
-                {
-                    TBPass.BackColor = Color.Yellow;
-                    TBPass.Focus();
-                    MessageBox.Show("パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBTellNo.Text == null)
-                {
-                    TBTellNo.BackColor = Color.Yellow;
-                    TBTellNo.Focus();
-                    MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                
                 var newEmployee = new MEmployee
                 {
                     EmId = int.Parse(ShainID),
@@ -334,7 +336,7 @@ namespace SalesManagement_SysDev
         }
 
         // DataGridViewのCellFormattingイベントを使用
-        
+
 
         private void DisplayEmployee()
         {
@@ -457,14 +459,8 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-                    if (label2.Text == "登録")
-                    {
-                        TBSyainID.Text = "";
-                    }
-                    else
-                    {
-                        TBSyainID.Text = row.Cells["社員ID"].Value.ToString();
-                    }
+
+                    TBSyainID.Text = row.Cells["社員ID"].Value.ToString();
                     TBSyainName.Text = row.Cells["社員名"].Value.ToString();
                     TBShopId.Text = row.Cells["営業所ID"].Value.ToString();
                     TBJobID.Text = row.Cells["役職ID"].Value.ToString();
@@ -524,20 +520,13 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            switch (CurrentStatus.CurrentStatusValue)
-            {
-                case CurrentStatus.Status.登録:
-                    TBSyainID.BackColor = Color.Gray;
-                    break;
-                default:
-                    TBSyainID.BackColor = SystemColors.Window;
-                    TBSyainName.BackColor = SystemColors.Window;
-                    TBJobID.BackColor = SystemColors.Window;
-                    TBJobID.BackColor = SystemColors.Window;
-                    TBPass.BackColor = SystemColors.Window;
-                    TBTellNo.BackColor = SystemColors.Window;
-                    break;
-            }
+            TBSyainID.BackColor = SystemColors.Window;
+            TBSyainName.BackColor = SystemColors.Window;
+            TBJobID.BackColor = SystemColors.Window;
+            TBJobID.BackColor = SystemColors.Window;
+            TBPass.BackColor = SystemColors.Window;
+            TBTellNo.BackColor = SystemColors.Window;
+
         }
 
 

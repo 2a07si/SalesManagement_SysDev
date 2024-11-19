@@ -44,7 +44,7 @@ namespace SalesManagement_SysDev
             GlobalUtility.UpdateLabels(label_id, label_ename);
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
-                b_acc,
+                b_arr,
                 b_shi,
                 b_sal,
                 b_lss
@@ -451,6 +451,8 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
+                
+
                 // 入荷が既に存在するか確認
                 var arrival = context.TArrivals.SingleOrDefault(o => o.OrId.ToString() == NyuukaId);
                 if (arrival == null)
@@ -753,6 +755,13 @@ namespace SalesManagement_SysDev
                     TBNyuukaId.Focus();
                     MessageBox.Show("該当する入荷IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
+                }
+
+                var existingOrderDetail = context.TArrivalDetails.FirstOrDefault(o => o.ArId == nyuuka);
+                if (existingOrderDetail != null)
+                {
+                    MessageBox.Show("この入荷IDにはすでに入荷詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // 処理を終了
                 }
                 var newArrivalDetail = new TArrivalDetail
                 {

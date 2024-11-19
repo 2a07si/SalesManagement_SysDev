@@ -40,7 +40,13 @@ namespace SalesManagement_SysDev
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
             // CBアクセス制御を設定
-            accessManager.SetCB_JU(CB);
+            accessManager.SetButtonAccess(new Control[] {
+                b_ord,
+                b_arr,
+                b_shi,
+                b_sal,
+                b_lss
+            });
 
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
@@ -58,54 +64,7 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateTo3();
         }
-        private void formChanger_Click(object sender, EventArgs e)
-        {
-            // ComboBoxの選択された値を取得
-            string selectedValue = CB.SelectedItem?.ToString();
-
-            // 選択された値に応じた画面遷移
-            switch (selectedValue)
-            {
-                case "受注":
-                    MessageBox.Show
-                    (
-                        "ここです。",
-                        "すんません",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    ); break;
-
-                case "注文":
-                    formChanger.NavigateToOrderForm(); // 注文画面に遷移
-                    break;
-
-                case "出庫":
-                    formChanger.NavigateToIssueForm(); // 出庫画面に遷移
-                    break;
-
-                case "入荷":
-                    formChanger.NavigateToArrivalForm(); // 入荷画面に遷移
-                    break;
-
-                case "出荷":
-                    formChanger.NavigateToShippingForm(); // 出荷画面に遷移
-                    break;
-
-                case "売上":
-                    formChanger.NavigateToSalesForm(); // 売上画面に遷移
-                    break;
-
-                default:
-                    MessageBox.Show
-                        (
-                        "遷移先を選択してください。",
-                        "確認",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                        );
-                    break;
-            }
-        }
+        // 各ボタンでの画面遷移
         // 各ボタンでの画面遷移
         private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToOrderForm();
         private void b_arr_Click(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
@@ -142,7 +101,6 @@ namespace SalesManagement_SysDev
         {
             PerformSearch();
             tbtrue();
-
         }
 
         private void PerformSearch()
@@ -155,7 +113,6 @@ namespace SalesManagement_SysDev
         {
             UpdateStatus();
             tbtrue();
-
         }
 
         private void UpdateStatus()
@@ -303,6 +260,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrder()
         {
+            
             try
             {
                 string jyutyuID = TBJyutyuID.Text;
@@ -789,6 +747,8 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
+
+
                     if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrderDetails.Any(s => s.OrId == jyutyu))
                     {
                         TBJyutyuIDS.BackColor = Color.Yellow;
@@ -811,6 +771,15 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
+                    var existingOrderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrId == jyutyu);
+                    if (existingOrderDetail != null)
+                    {
+                        MessageBox.Show("この受注IDにはすでに受注詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // 処理を終了
+                    }
+
+
                     var newOrderDetail = new TOrderDetail
                     {
                         OrId = int.Parse(jyutyuID),
@@ -1261,6 +1230,7 @@ namespace SalesManagement_SysDev
             }
         }
 
+<<<<<<< HEAD
         // 数値のみを許可するテキストボックスの初期設定
         private void SetupNumericOnlyTextBoxes()
         {
@@ -1287,5 +1257,7 @@ namespace SalesManagement_SysDev
         }
 
 
+=======
+>>>>>>> fdd811bfb5acc17f640bd5069b1a44af1d12dfbe
     }
 }

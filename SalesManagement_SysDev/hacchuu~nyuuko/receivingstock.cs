@@ -609,7 +609,12 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+                var existingOrderDetail = context.TWarehousingDetails.FirstOrDefault(o => o.WaId == warehousingId);
+                if (existingOrderDetail != null)
+                {
+                    MessageBox.Show("この発注IDにはすでに発注詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // 処理を終了
+                }
                 var newReceivingStockDetail = new TWarehousingDetail
                 {
                     WaId = warehousingId, // 入庫IDを適切に設定

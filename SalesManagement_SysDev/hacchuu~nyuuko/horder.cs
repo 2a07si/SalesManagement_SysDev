@@ -614,7 +614,12 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+                var existingOrderDetail = context.THattyuDetails.FirstOrDefault(o => o.HaId == hattyuId);
+                if (existingOrderDetail != null)
+                {
+                    MessageBox.Show("この発注IDにはすでに発注詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // 処理を終了
+                }
                 var newOrderDetail = new THattyuDetail
                 {
                     HaId = hattyuId,
@@ -698,7 +703,7 @@ namespace SalesManagement_SysDev
                     // 数量を検索条件に追加
                     query = query.Where(od => od.HaQuantity == quantity);
                 }
-
+                
                 // 結果を取得
                 var orderDetails = query.ToList();
 
