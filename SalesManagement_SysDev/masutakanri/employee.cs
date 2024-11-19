@@ -172,42 +172,42 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            if (TBSyainID.Text == null)
+            if (TBSyainID.Text == "")
             {
                 TBSyainID.BackColor = Color.Yellow;
                 TBSyainID.Focus();
                 MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBSyainName.Text == null)
+            if (TBSyainName.Text == "")
             {
                 TBSyainName.BackColor = Color.Yellow;
                 TBSyainName.Focus();
                 MessageBox.Show("社員名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBShopId.Text == null)
+            if (TBShopId.Text == "")
             {
                 TBShopId.BackColor = Color.Yellow;
                 TBShopId.Focus();
                 MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBJobID.Text == null)
+            if (TBJobID.Text == "")
             {
                 TBJobID.BackColor = Color.Yellow;
                 TBJobID.Focus();
                 MessageBox.Show("役職IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBPass.Text == null)
+            if (TBPass.Text == "")
             {
                 TBPass.BackColor = Color.Yellow;
                 TBPass.Focus();
                 MessageBox.Show("パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBTellNo.Text == null)
+            if (TBTellNo.Text == "")
             {
                 TBTellNo.BackColor = Color.Yellow;
                 TBTellNo.Focus();
