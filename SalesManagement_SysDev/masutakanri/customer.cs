@@ -105,6 +105,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             TBKokyakuID.Enabled = true;
             TBKokyakuID.BackColor = Color.White;
+            DisplayCustomer();
         }
 
         private void b_ser_Click(object sender, EventArgs e)

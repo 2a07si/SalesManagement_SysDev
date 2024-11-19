@@ -120,6 +120,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             TBSyohinID.Enabled = true;
             TBSyohinID.BackColor = Color.White;
+            Displaymerchandise();
         }
 
         private void b_ser_Click(object sender, EventArgs e)
