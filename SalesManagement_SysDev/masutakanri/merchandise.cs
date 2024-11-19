@@ -360,12 +360,12 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var merchandises = context.MProducts.ToList();
+                    // checkBox_2 がチェックされている場合、全ての商品を表示
+                    var merchandises = checkBox_2.Checked
+                        ? context.MProducts.ToList()
+                        // チェックされていなければ、PrFlagが1のものを除外
+                        : context.MProducts.Where(m => m.PrFlag != 1).ToList();
 
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-                    var Ptoducts = checkBox_2.Checked
-                        ? context.MProducts.ToList()  // チェックされていれば全ての注文を表示
-                        : context.MProducts.Where(o => o.PrFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = merchandises.Select(m => new
                     {
                         商品ID = m.PrId,

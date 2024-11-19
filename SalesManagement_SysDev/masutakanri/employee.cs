@@ -121,6 +121,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             TBSyainID.Enabled = true;
             TBSyainID.BackColor = Color.White;
+            DisplayEmployee();
         }
 
         private void b_ser_Click(object sender, EventArgs e)

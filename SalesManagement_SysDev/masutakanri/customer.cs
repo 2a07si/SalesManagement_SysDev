@@ -154,6 +154,7 @@ namespace SalesManagement_SysDev
             string yuubinbangou = TBYuubinNo.Text;
             string tel = TBTellNo.Text;
             string fax = TBFax.Text;
+            bool flag = DelFlag.Checked;
 
 
             if (TBKokyakuID.Text == null)
@@ -220,6 +221,8 @@ namespace SalesManagement_SysDev
                     customer.ClAddress = juusho;
                     customer.ClPhone = tel;
                     customer.ClFax = fax;
+                    customer.ClFlag = flag ? 1 : 0;
+                    customer.ClHidden = TBRiyuu.Text;
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
