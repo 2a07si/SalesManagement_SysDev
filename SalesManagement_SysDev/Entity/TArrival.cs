@@ -5,15 +5,15 @@ namespace SalesManagement_SysDev;
 
 public partial class TArrival
 {
-    public int ArId { get; set; }
+    public int ArID { get; set; }
 
-    public int SoId { get; set; }
+    public int SoID { get; set; }
 
-    public int? EmId { get; set; }
+    public int? EmID { get; set; }
 
-    public int ClId { get; set; }
+    public int ClID { get; set; }
 
-    public int OrId { get; set; }
+    public int OrID { get; set; }
 
     public DateTime? ArDate { get; set; }
 

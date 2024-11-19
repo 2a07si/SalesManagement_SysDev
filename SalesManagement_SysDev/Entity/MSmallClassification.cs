@@ -5,9 +5,9 @@ namespace SalesManagement_SysDev;
 
 public partial class MSmallClassification
 {
-    public int ScId { get; set; }
+    public int ScID { get; set; }
 
-    public int McId { get; set; }
+    public int McID { get; set; }
 
     public string ScName { get; set; } = null!;
 

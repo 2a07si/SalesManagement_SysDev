@@ -69,7 +69,7 @@ namespace SalesManagement_SysDev
         {
             using SalesManagementContext context = new SalesManagementContext();
 
-            List<MPosition> po = context.MPositions.OrderBy(x => x.PoId).ToList();
+            List<MPosition> po = context.MPositions.OrderBy(x => x.PoID).ToList();
             List<MMaker> ma = new List<MMaker>();
             List<MSalesOffice> so = new List<MSalesOffice>();
             List<MClient> cl = new List<MClient>();
@@ -242,11 +242,11 @@ namespace SalesManagement_SysDev
                 context.SaveChanges();
             }
             {
-                if (context.MEmployees.Where(x => x.EmId == 116).Count() == 0)
+                if (context.MEmployees.Where(x => x.EmID == 116).Count() == 0)
                 {
                     em.Add(116, new MEmployee()
                     {
-                        EmId = 116,
+                        EmID = 116,
                         EmName = "ç‚å˚àËî¸",
                         EmHiredate = new DateTime(1980, 6, 17),
                         EmPassword = "0116",
@@ -255,11 +255,11 @@ namespace SalesManagement_SysDev
                         Po = po[2],
                     });
                 }
-                if (context.MEmployees.Where(x => x.EmId == 310).Count() == 0)
+                if (context.MEmployees.Where(x => x.EmID == 310).Count() == 0)
                 {
                     em.Add(310, new MEmployee()
                     {
-                        EmId = 310,
+                        EmID = 310,
                         EmName = "çÇíJètíj",
                         EmHiredate = new DateTime(1973, 3, 21),
                         EmPassword = "0310",
@@ -268,11 +268,11 @@ namespace SalesManagement_SysDev
                         Po = po[1],
                     });
                 }
-                if (context.MEmployees.Where(x => x.EmId == 1002).Count() == 0)
+                if (context.MEmployees.Where(x => x.EmID == 1002).Count() == 0)
                 {
                     em.Add(1002, new MEmployee()
                     {
-                        EmId = 1002,
+                        EmID = 1002,
                         EmName = "ì˙â∫ïîèrïv",
                         EmHiredate = new DateTime(1990, 9, 4),
                         EmPassword = "1002",
@@ -281,11 +281,11 @@ namespace SalesManagement_SysDev
                         Po = po[1],
                     });
                 }
-                if (context.MEmployees.Where(x => x.EmId == 1007).Count() == 0)
+                if (context.MEmployees.Where(x => x.EmID == 1007).Count() == 0)
                 {
                     em.Add(1007, new MEmployee()
                     {
-                        EmId = 1007,
+                        EmID = 1007,
                         EmName = "ä›ñ{âËê∂",
                         EmHiredate = new DateTime(1997, 2, 4),
                         EmPassword = "1007",
@@ -294,11 +294,11 @@ namespace SalesManagement_SysDev
                         Po = po[1],
                     });
                 }
-                if (context.MEmployees.Where(x => x.EmId == 1111).Count() == 0)
+                if (context.MEmployees.Where(x => x.EmID == 1111).Count() == 0)
                 {
                     em.Add(1111, new MEmployee()
                     {
-                        EmId = 1111,
+                        EmID = 1111,
                         EmName = "âúë∫ì÷ïF",
                         EmHiredate = new DateTime(1985, 3, 17),
                         EmPassword = "999",
@@ -307,11 +307,11 @@ namespace SalesManagement_SysDev
                         Po = po[2],
                     });
                 }
-                if (context.MEmployees.Where(x => x.EmId == 1208).Count() == 0)
+                if (context.MEmployees.Where(x => x.EmID == 1208).Count() == 0)
                 {
                     em.Add(1208, new MEmployee()
                     {
-                        EmId = 1208,
+                        EmID = 1208,
                         EmName = "èaíJèHù„",
                         EmHiredate = new DateTime(1994, 1, 31),
                         EmPassword = "1208",
@@ -320,11 +320,11 @@ namespace SalesManagement_SysDev
                         Po = po[1],
                     });
                 }
-                if (context.MEmployees.Where(x => x.EmId == 1227).Count() == 0)
+                if (context.MEmployees.Where(x => x.EmID == 1227).Count() == 0)
                 {
                     em.Add(1227, new MEmployee()
                     {
-                        EmId = 1227,
+                        EmID = 1227,
                         EmName = "ê∂ìcìøéüòY",
                         EmHiredate = new DateTime(1964, 3, 20),
                         EmPassword = "1227",
@@ -337,7 +337,7 @@ namespace SalesManagement_SysDev
                 context.SaveChanges();
                 foreach (var emp in context.MEmployees)
                 {
-                    em[emp.EmId] = emp;
+                    em[emp.EmID] = emp;
                 }
             }
             {
@@ -792,9 +792,9 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     var employeeService = new EmployeeService(context);
-                    if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poId))
+                    if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
-                        HandleSuccessfulLogin(empID, employeeName, positionName, poId);
+                        HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
                     {
@@ -822,12 +822,12 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void HandleSuccessfulLogin(int empID, string employeeName, string positionName, int poId)
+        private void HandleSuccessfulLogin(int empID, string employeeName, string positionName, int poID)
         {
             Global.EmployeeID = empID;
             Global.EmployeeName = employeeName;
             Global.PositionName = positionName;
-            Global.EmployeePermission = GetPermissionByPoId(poId);
+            Global.EmployeePermission = GetPermissionByPoID(poID);
 
             // å†å¿Ç™ïsë´ÇµÇƒÇ¢ÇÈèÍçá 
             if (Global.EmployeePermission == 0)
@@ -840,18 +840,18 @@ namespace SalesManagement_SysDev
             classChangeForms.NavigateTo3();
         }
 
-        // PoIdÇ…äÓÇ√Ç¢Çƒå†å¿ÇåàíËÇ∑ÇÈä÷êî  
-        private int GetPermissionByPoId(int poId)
+        // PoIDÇ…äÓÇ√Ç¢Çƒå†å¿ÇåàíËÇ∑ÇÈä÷êî  
+        private int GetPermissionByPoID(int poID)
         {
             // êEà IDÇ…äÓÇ√Ç¢Çƒå†å¿ÉåÉxÉãÇï‘Ç∑Åió·: 1, 2, 3Åj  
-            switch (poId)
+            switch (poID)
             {
                 case 1: return 1; // å†å¿1  
                 case 2: return 2; // å†å¿2  
                 case 3: return 3; // å†å¿3  
                 default: return 0; // ñ¢íËã`ÇÃå†å¿  
             }
-            Global.EmployeePermission = poId;
+            Global.EmployeePermission = poID;
         }
 
 
@@ -939,13 +939,9 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     var employeeService = new EmployeeService(context);
-                    if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poId))
+                    if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
-                        HandleSuccessfulLogin(empID, employeeName, positionName, poId);
-                        var log = new LoginHistoryLog(context)
-                        {
-
-                        }
+                        HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
                     {

@@ -5,9 +5,9 @@ namespace SalesManagement_SysDev;
 
 public partial class TStock
 {
-    public int StId { get; set; }
+    public int StID { get; set; }
 
-    public int PrId { get; set; }
+    public int PrID { get; set; }
 
     public int StQuantity { get; set; }
 

@@ -31,28 +31,28 @@ namespace SalesManagement_SysDev.Classまとめ
         /// <param name="password">パスワード</param> 
         /// <param name="employeeName">出力される社員名</param> 
         /// <param name="positionName">出力されるポジション名</param> 
-        /// <param name="poId">出力される職位ID</param> 
+        /// <param name="poID">出力される職位ID</param> 
         /// <returns>認証が成功した場合はtrue、失敗した場合はfalse。</returns> 
-        public bool ValidateEmployee(int empID, string password, out string employeeName, out string positionName, out int poId)
+        public bool ValidateEmployee(int empID, string password, out string employeeName, out string positionName, out int poID)
         {
-            var employee = context.MEmployees.SingleOrDefault(e => e.EmId == empID);
+            var employee = context.MEmployees.SingleOrDefault(e => e.EmID == empID);
             if (employee != null && employee.EmPassword == password)
             {
                 employeeName = employee.EmName;
                 positionName = context.MPositions
-                    .Where(p => p.PoId == employee.PoId)
+                    .Where(p => p.PoID == employee.PoID)
                     .Select(p => p.PoName)
                     .FirstOrDefault();
 
                 // PoID（職位ID）を取得
-                poId = employee.PoId;
+                poID = employee.PoID;
 
                 return true;
             }
 
             employeeName = string.Empty;
             positionName = string.Empty;
-            poId = 0; // エラー時のデフォルト値
+            poID = 0; // エラー時のデフォルト値
             return false;
         }
     }

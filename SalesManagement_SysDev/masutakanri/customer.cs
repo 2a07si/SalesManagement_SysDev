@@ -212,13 +212,13 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var customer = context.MClients.SingleOrDefault(c => c.ClId.ToString() == kokyakuID);
+                var customer = context.MClients.SingleOrDefault(c => c.ClID.ToString() == kokyakuID);
                 if (customer != null)
                 {
-                    customer.SoId = int.Parse(shopID);
+                    customer.SoID = int.Parse(shopID);
                     customer.ClPostal = yuubinbangou;
                     customer.ClName = kokyakuname;
-                    customer.ClId = int.Parse(kokyakuID);
+                    customer.ClID = int.Parse(kokyakuID);
                     customer.ClAddress = juusho;
                     customer.ClPhone = tel;
                     customer.ClFax = fax;
@@ -251,7 +251,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int shop;
-                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
                     MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -300,7 +300,7 @@ namespace SalesManagement_SysDev
                 }
                 var newcustomer = new MClient
                 {
-                    SoId = int.Parse(shopID),
+                    SoID = int.Parse(shopID),
                     ClPostal = yuubinbangou,
                     ClAddress = juusho,
                     ClName = kokyakuname,
@@ -348,8 +348,8 @@ namespace SalesManagement_SysDev
 
                     dataGridView1.DataSource = customers.Select(c => new
                     {
-                        顧客ID = c.ClId,
-                        営業所ID = c.SoId,
+                        顧客ID = c.ClID,
+                        営業所ID = c.SoID,
                         顧客名 = c.ClName,
                         郵便番号 = c.ClPostal,
                         住所 = c.ClAddress,
@@ -387,13 +387,13 @@ namespace SalesManagement_SysDev
                 // 受注IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedkokyakuID))
                 {
-                    query = query.Where(c => c.ClId == parsedkokyakuID);
+                    query = query.Where(c => c.ClID == parsedkokyakuID);
                 }
 
                 // 営業所IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
                 {
-                    query = query.Where(sh => sh.SoId == parsedShopID);
+                    query = query.Where(sh => sh.SoID == parsedShopID);
                 }
 
                 // 社員IDを検索条件に追加 
@@ -432,8 +432,8 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = customer.Select(c => new
                     {
-                        顧客ID = c.ClId,
-                        営業所ID = c.SoId,
+                        顧客ID = c.ClID,
+                        営業所ID = c.SoID,
                         顧客名 = c.ClName,
                         郵便番号 = c.ClPostal,
                         住所 = c.ClAddress,

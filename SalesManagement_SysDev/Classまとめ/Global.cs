@@ -45,9 +45,9 @@ namespace SalesManagement_SysDev.Classまとめ
         public static List<string> StockUpdateMessages = new List<string>();
 
         // 在庫更新メッセージを追加するメソッド  
-        public static void AddStockUpdateMessage(int prId, int waQuantity)
+        public static void AddStockUpdateMessage(int prID, int waQuantity)
         {
-            string message = $"在庫の更新がありました。商品ID：{prId} 在庫数：{waQuantity}";
+            string message = $"在庫の更新がありました。商品ID：{prID} 在庫数：{waQuantity}";
             StockUpdateMessages.Add(message);
         }
 
@@ -76,13 +76,13 @@ namespace SalesManagement_SysDev.Classまとめ
             {
                 // Syukkoに関連するTSyukkoDetailsを検索
                 var syukkoDetails = context.TSyukkoDetails
-                    .Where(d => d.SyId == syukko.SyId)
+                    .Where(d => d.SyID == syukko.SyID)
                     .ToList();
 
                 foreach (var detail in syukkoDetails)
                 {
-                    // PrIdとSyQuantityをTSyukkoDetailsから取得し、メッセージを作成
-                    messages.Add($"在庫不足のため非表示となった出庫情報があります。商品ID：{detail.PrId} 出庫数量：{detail.SyQuantity}");
+                    // PrIDとSyQuantityをTSyukkoDetailsから取得し、メッセージを作成
+                    messages.Add($"在庫不足のため非表示となった出庫情報があります。商品ID：{detail.PrID} 出庫数量：{detail.SyQuantity}");
                 }
             }
 
