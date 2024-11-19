@@ -423,7 +423,7 @@ namespace SalesManagement_SysDev
                 if (TBShopID.Text == null)
                 {
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.BackColor = Color.Yellow; 
                     TBShopID.Focus();
                     return;
                 }
@@ -750,20 +750,26 @@ namespace SalesManagement_SysDev
                 {
                     if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrderDetails.Any(s => s.OrId == jyutyu))
                     {
-                        MessageBox.Show("受注IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBJyutyuID.BackColor = Color.Yellow;
-                        TBJyutyuID.Focus();
+                        MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBJyutyuIDS.BackColor = Color.Yellow;
+                        TBJyutyuIDS.Focus();
                         return;
                     }
                     if (!int.TryParse(syohinID, out int syohin) || !context.TOrderDetails.Any(s => s.PrId == syohin))
                     {
-                        TBShopID.BackColor = Color.Yellow;
-                        TBShopID.Focus();
-                        MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBSyohinID.BackColor= Color.Yellow;
+                        TBSyohinID.Focus();
                         return;
                     }
 
-
+                    if (TBSuryou.Text == null)
+                    {
+                        MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBSuryou.BackColor= Color.Yellow;
+                        TBSuryou.Focus();
+                        return;
+                    }
                     var newOrderDetail = new TOrderDetail
                     {
                         OrId = int.Parse(jyutyuID),
