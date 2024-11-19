@@ -40,7 +40,13 @@ namespace SalesManagement_SysDev
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
             // CBアクセス制御を設定
-            accessManager.SetCB_JU(CB);
+            accessManager.SetButtonAccess(new Control[] {
+                b_ord,
+                b_arr,
+                b_shi,
+                b_sal,
+                b_lss
+            });
 
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
@@ -57,54 +63,7 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateTo3();
         }
-        private void formChanger_Click(object sender, EventArgs e)
-        {
-            // ComboBoxの選択された値を取得
-            string selectedValue = CB.SelectedItem?.ToString();
-
-            // 選択された値に応じた画面遷移
-            switch (selectedValue)
-            {
-                case "受注":
-                    MessageBox.Show
-                    (
-                        "ここです。",
-                        "すんません",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    ); break;
-
-                case "注文":
-                    formChanger.NavigateToOrderForm(); // 注文画面に遷移
-                    break;
-
-                case "出庫":
-                    formChanger.NavigateToIssueForm(); // 出庫画面に遷移
-                    break;
-
-                case "入荷":
-                    formChanger.NavigateToArrivalForm(); // 入荷画面に遷移
-                    break;
-
-                case "出荷":
-                    formChanger.NavigateToShippingForm(); // 出荷画面に遷移
-                    break;
-
-                case "売上":
-                    formChanger.NavigateToSalesForm(); // 売上画面に遷移
-                    break;
-
-                default:
-                    MessageBox.Show
-                        (
-                        "遷移先を選択してください。",
-                        "確認",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                        );
-                    break;
-            }
-        }
+        // 各ボタンでの画面遷移
         // 各ボタンでの画面遷移
         private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToOrderForm();
         private void b_arr_Click(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
@@ -1259,7 +1218,6 @@ namespace SalesManagement_SysDev
 
             }
         }
-
 
     }
 }
