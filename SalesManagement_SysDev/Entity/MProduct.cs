@@ -5,9 +5,9 @@ namespace SalesManagement_SysDev;
 
 public partial class MProduct
 {
-    public int PrId { get; set; }
+    public int PrID { get; set; }
 
-    public int MaId { get; set; }
+    public int MaID { get; set; }
 
     public string PrName { get; set; } = null!;
 
@@ -17,7 +17,7 @@ public partial class MProduct
 
     public int PrSafetyStock { get; set; }
 
-    public int ScId { get; set; }
+    public int ScID { get; set; }
 
     public string PrModelNumber { get; set; } = null!;
 

@@ -5,11 +5,11 @@ namespace SalesManagement_SysDev;
 
 public partial class TWarehousingDetail
 {
-    public int WaDetailId { get; set; }
+    public int WaDetailID { get; set; }
 
-    public int WaId { get; set; }
+    public int WaID { get; set; }
 
-    public int PrId { get; set; }
+    public int PrID { get; set; }
 
     public int WaQuantity { get; set; }
 

@@ -23,7 +23,7 @@ namespace SalesManagement_SysDev
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager;
 
-        private int lastFocusedPanelId = 1;
+        private int lastFocusedPanelID = 1;
 
         // コンストラクターでmainFormを引数として受け取る 
         public shipping(Form mainForm)
@@ -65,6 +65,8 @@ namespace SalesManagement_SysDev
                 b_reg.Enabled = false;
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
+
+            SetupNumericOnlyTextBoxes();
         }
         private void close_Click(object sender, EventArgs e)
         {
@@ -252,7 +254,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateShipping()
         {
-            string jyutyuID = TBJyutyuID.Text;
+            string JyutyuID = TBJyutyuID.Text;
             string shopID = TBShopID.Text;
             string shainID = TBShainID.Text;
             string kokyakuID = TBKokyakuID.Text;
@@ -313,13 +315,13 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var shipping = context.TShipments.SingleOrDefault(sh => sh.ShId.ToString() == shukkaID);
+                var shipping = context.TShipments.SingleOrDefault(sh => sh.ShID.ToString() == shukkaID);
                 if (shipping != null)
                 {
-                    shipping.SoId = int.Parse(shopID);
-                    shipping.EmId = int.Parse(shainID);
-                    shipping.ClId = int.Parse(kokyakuID);
-                    shipping.OrId = int.Parse(jyutyuID);
+                    shipping.SoID = int.Parse(shopID);
+                    shipping.EmID = int.Parse(shainID);
+                    shipping.ClID = int.Parse(kokyakuID);
+                    shipping.OrID = int.Parse(JyutyuID);
                     shipping.ShFinishDate = shukkaDate;
                     shipping.ShFlag = delFlag ? 1 : 0;
                     shipping.ShStateFlag = shipFlag ? 2 : 0;
@@ -330,7 +332,7 @@ namespace SalesManagement_SysDev
                     {
                         // 出荷詳細が存在するか確認
                         var shippingDetailsExist = context.TShipmentDetails
-                            .Any(sd => sd.ShId == shipping.ShId); // ShId が一致する出荷詳細が存在するか確認
+                            .Any(sd => sd.ShID == shipping.ShID); // ShID が一致する出荷詳細が存在するか確認
                         if (!shippingDetailsExist)
                         {
                             // 出荷詳細が存在しない場合はエラーメッセージを表示
@@ -340,7 +342,7 @@ namespace SalesManagement_SysDev
 
                         context.SaveChanges();
                         // 出荷詳細が存在する場合、出荷確認処理を実行
-                        ShippingConfirm(shipping.ShId);
+                        ShippingConfirm(shipping.ShID);
                     }
 
                     // 更新を保存
@@ -378,7 +380,7 @@ namespace SalesManagement_SysDev
 
         private void RegisterShipping()
         {
-            string jyutyuID = TBJyutyuID.Text;
+            string JyutyuID = TBJyutyuID.Text;
             string shopID = TBShopID.Text;
             string shainID = TBShainID.Text;
             string kokyakuID = TBKokyakuID.Text;
@@ -391,22 +393,22 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int shop;
-                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
                     MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // 社員IDが存在するか確認
-                int employeeId;
-                if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                int employeeID;
+                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int kokyaku;
-                if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
+                if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
                 {
                     MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -414,7 +416,7 @@ namespace SalesManagement_SysDev
 
                 // 受注IDが存在するか確認
                 int juchu;
-                if (!int.TryParse(jyutyuID, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
+                if (!int.TryParse(JyutyuID, out juchu) || !context.TOrders.Any(j => j.OrID == juchu))
                 {
                     MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -460,7 +462,7 @@ namespace SalesManagement_SysDev
                 }
 
                 // 出荷情報が既に存在するか確認
-                var shipping = context.TShipments.SingleOrDefault(o => o.ShId.ToString() == shukkaID);
+                var shipping = context.TShipments.SingleOrDefault(o => o.ShID.ToString() == shukkaID);
                 if (shipping == null)
                 {
                     try
@@ -468,10 +470,10 @@ namespace SalesManagement_SysDev
                         // 新しい出荷情報を作成
                         var newShipping = new TShipment
                         {
-                            SoId = int.Parse(shopID),                  // 店舗ID
-                            EmId = int.Parse(shainID),                 // 社員ID
-                            ClId = int.Parse(kokyakuID),               // 顧客ID
-                            OrId = int.Parse(jyutyuID),                // 受注ID
+                            SoID = int.Parse(shopID),                  // 店舗ID
+                            EmID = int.Parse(shainID),                 // 社員ID
+                            ClID = int.Parse(kokyakuID),               // 顧客ID
+                            OrID = int.Parse(JyutyuID),                // 受注ID
                             ShFinishDate = shukkaDate,                 // 出荷日
                             ShFlag = shipFlag ? 1 : 0,                 // 管理フラグ
                             ShStateFlag = shipFlag ? 2 : 0,            // 出荷状態フラグ
@@ -483,7 +485,7 @@ namespace SalesManagement_SysDev
 
                         // 出荷詳細が存在するか確認
                         var shipmentDetails = context.TShipmentDetails
-                                                     .Where(sd => sd.ShId == newShipping.ShId)
+                                                     .Where(sd => sd.ShID == newShipping.ShID)
                                                      .ToList();
 
                         if (shipmentDetails.Count == 0)
@@ -543,11 +545,11 @@ namespace SalesManagement_SysDev
                         : context.TShipments.Where(o => o.ShFlag != 1 && o.ShStateFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = shipping.Select(sh => new
                     {
-                        出荷ID = sh.ShId,
-                        顧客ID = sh.ClId,
-                        社員ID = sh.EmId,
-                        営業所ID = sh.SoId,
-                        受注ID = sh.OrId,
+                        出荷ID = sh.ShID,
+                        顧客ID = sh.ClID,
+                        社員ID = sh.EmID,
+                        営業所ID = sh.SoID,
+                        受注ID = sh.OrID,
                         出荷終了日 = sh.ShFinishDate,
                         出荷フラグ = sh.ShFlag,
                         非表示フラグ = sh.ShHidden
@@ -564,7 +566,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得  
-                var jyutyuID = TBJyutyuID.Text.Trim();       // 受注ID  
+                var JyutyuID = TBJyutyuID.Text.Trim();       // 受注ID  
                 var shopID = TBShopID.Text.Trim();           // 営業所ID  
                 var shainID = TBShainID.Text.Trim();         // 社員ID  
                 var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID  
@@ -576,33 +578,33 @@ namespace SalesManagement_SysDev
                 var query = context.TShipments.AsQueryable();
 
                 // 受注IDを検索条件に追加  
-                if (!string.IsNullOrEmpty(jyutyuID) && int.TryParse(jyutyuID, out int parsedJyutyuID))
+                if (!string.IsNullOrEmpty(JyutyuID) && int.TryParse(JyutyuID, out int parsedJyutyuID))
                 {
-                    query = query.Where(sh => sh.OrId == parsedJyutyuID);
+                    query = query.Where(sh => sh.OrID == parsedJyutyuID);
                 }
 
                 // 営業所IDを検索条件に追加  
                 if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
                 {
-                    query = query.Where(sh => sh.SoId == parsedShopID);
+                    query = query.Where(sh => sh.SoID == parsedShopID);
                 }
 
                 // 社員IDを検索条件に追加  
                 if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
                 {
-                    query = query.Where(sh => sh.EmId == parsedShainID);
+                    query = query.Where(sh => sh.EmID == parsedShainID);
                 }
 
                 // 顧客IDを検索条件に追加  
                 if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
-                    query = query.Where(sh => sh.ClId == parsedKokyakuID);
+                    query = query.Where(sh => sh.ClID == parsedKokyakuID);
                 }
 
                 // 出荷IDを検索条件に追加  
                 if (!string.IsNullOrEmpty(shukkaID) && int.TryParse(shukkaID, out int parsedShukkaID))
                 {
-                    query = query.Where(sh => sh.ShId == parsedShukkaID);
+                    query = query.Where(sh => sh.ShID == parsedShukkaID);
                 }
 
                 // 受注日を検索条件に追加（チェックボックスがチェックされている場合）  
@@ -620,11 +622,11 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示  
                     dataGridView1.DataSource = shipping.Select(sh => new
                     {
-                        出荷ID = sh.ShId,
-                        顧客ID = sh.ClId,
-                        社員ID = sh.EmId,
-                        営業所ID = sh.SoId,
-                        受注ID = sh.OrId,
+                        出荷ID = sh.ShID,
+                        顧客ID = sh.ClID,
+                        社員ID = sh.EmID,
+                        営業所ID = sh.SoID,
+                        受注ID = sh.OrID,
                         出荷終了日 = sh.ShFinishDate,
                         状態フラグ = sh.ShStateFlag,  // 出荷フラグの表示
                         管理フラグ = sh.ShFlag,
@@ -684,11 +686,11 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var shippingDetail = context.TShipmentDetails.SingleOrDefault(sh => sh.ShDetailId.ToString() == shukkasyosaiID);
+                var shippingDetail = context.TShipmentDetails.SingleOrDefault(sh => sh.ShDetailID.ToString() == shukkasyosaiID);
                 if (shippingDetail != null)
                 {
-                    shippingDetail.PrId = int.Parse(syohinID);
-                    shippingDetail.ShId = int.Parse(shukkaID);
+                    shippingDetail.PrID = int.Parse(syohinID);
+                    shippingDetail.ShID = int.Parse(shukkaID);
                     shippingDetail.ShQuantity = int.Parse(suryou);
 
                     context.SaveChanges();
@@ -711,15 +713,15 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int shukka;
-                if (!int.TryParse(shukkaID, out shukka) || !context.TShipments.Any(s => s.ShId == shukka))
+                if (!int.TryParse(shukkaID, out shukka) || !context.TShipments.Any(s => s.ShID == shukka))
                 {
                     MessageBox.Show("出荷IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // EmIDがMEmployeeテーブルに存在するか確認
                 int shouhin;
-                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(e => e.PrId == shouhin))
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(e => e.PrID == shouhin))
                 {
                     MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -749,7 +751,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                var existingOrderDetail = context.TShipmentDetails.FirstOrDefault(o => o.ShId == shukka);
+                var existingOrderDetail = context.TShipmentDetails.FirstOrDefault(o => o.ShID == shukka);
                 if (existingOrderDetail != null)
                 {
                     MessageBox.Show("この出荷IDにはすでに出荷詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -757,8 +759,8 @@ namespace SalesManagement_SysDev
                 }
                 var newShippingDetail = new TShipmentDetail
                 {
-                    PrId = int.Parse(syohinID),
-                    ShId = int.Parse(shukkaID),
+                    PrID = int.Parse(syohinID),
+                    ShID = int.Parse(shukkaID),
                     ShQuantity = int.Parse(suryou)
                 };
 
@@ -781,17 +783,17 @@ namespace SalesManagement_SysDev
                         ? ShipmentDetails
                         : ShipmentDetails.Where(od =>
                         {
-                            var Shipment = context.TShipments.FirstOrDefault(o => o.ShId == od.ShId);
+                            var Shipment = context.TShipments.FirstOrDefault(o => o.ShID == od.ShID);
 
                             return Shipment == null || (Shipment.ShFlag != 1 && Shipment.ShStateFlag != 2);
                         }).ToList();
 
                     dataGridView2.DataSource = visibleShipmentDetails.Select(sh => new
                     {
-                        出荷詳細ID = sh.ShDetailId,
-                        商品ID = sh.PrId,
+                        出荷詳細ID = sh.ShDetailID,
+                        商品ID = sh.PrID,
                         数量 = sh.ShQuantity,
-                        出荷ID = sh.ShId
+                        出荷ID = sh.ShID
                     }).ToList();
                 }
             }
@@ -818,19 +820,19 @@ namespace SalesManagement_SysDev
                 if (!string.IsNullOrEmpty(shukkasyosaiID))
                 {
                     // 受注詳細IDを検索条件に追加
-                    query = query.Where(sh => sh.ShDetailId.ToString() == shukkasyosaiID);
+                    query = query.Where(sh => sh.ShDetailID.ToString() == shukkasyosaiID);
                 }
 
                 if (!string.IsNullOrEmpty(shukkaID))
                 {
                     // 受注IDを検索条件に追加
-                    query = query.Where(sh => sh.ShId.ToString() == shukkaID);
+                    query = query.Where(sh => sh.ShID.ToString() == shukkaID);
                 }
 
                 if (!string.IsNullOrEmpty(syohinID))
                 {
                     // 商品IDを検索条件に追加
-                    query = query.Where(sh => sh.PrId.ToString() == syohinID);
+                    query = query.Where(sh => sh.PrID.ToString() == syohinID);
                 }
 
                 if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
@@ -845,9 +847,9 @@ namespace SalesManagement_SysDev
                 {
                     dataGridView2.DataSource = shippingDetails.Select(sh => new
                     {
-                        出荷詳細ID = sh.ShDetailId,
-                        出荷ID = sh.ShId,
-                        商品ID = sh.PrId,
+                        出荷詳細ID = sh.ShDetailID,
+                        出荷ID = sh.ShID,
+                        商品ID = sh.PrID,
                         数量 = sh.ShQuantity,
                     }).ToList();
                 }
@@ -867,9 +869,9 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isShippingSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
 
             if (shippingFlag == "←通常")
-                lastFocusedPanelId = 1;
+                lastFocusedPanelID = 1;
             else if (shippingFlag == "詳細→")
-                lastFocusedPanelId = 2;
+                lastFocusedPanelID = 2;
         }
 
 
@@ -967,13 +969,13 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void ShippingConfirm(int ShId)
+        private void ShippingConfirm(int ShID)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
-                var shipment = context.TShipments.SingleOrDefault(o => o.ShId == ShId);
+                var shipment = context.TShipments.SingleOrDefault(o => o.ShID == ShID);
 
                 if (shipment == null)
                 {
@@ -985,10 +987,10 @@ namespace SalesManagement_SysDev
                 // 情報追加
                 var newSales = new TSale
                 {
-                    EmId = shipment.EmId ?? 0,
-                    SoId = shipment.SoId,  // 営業所ID    
-                    ClId = shipment.ClId,  // 顧客ID    
-                    OrId = shipment.OrId,  // 受注ID
+                    EmID = shipment.EmID ?? 0,
+                    SoID = shipment.SoID,  // 営業所ID    
+                    ClID = shipment.ClID,  // 顧客ID    
+                    OrID = shipment.OrID,  // 受注ID
                     SaDate = shipment.ShFinishDate ?? DateTime.MinValue,
                     SaFlag = 0
 
@@ -1005,22 +1007,22 @@ namespace SalesManagement_SysDev
                     throw new Exception("TSalesへの登録に失敗しました: " + ex.Message + "\n\nスタックトレース:\n" + ex.InnerException);
                 }
 
-                var shipmentDetail = context.TShipmentDetails.SingleOrDefault(o => o.ShId == shipment.ShId);
-                var product = context.MProducts.SingleOrDefault(o => o.PrId == shipmentDetail.PrId);
+                var shipmentDetail = context.TShipmentDetails.SingleOrDefault(o => o.ShID == shipment.ShID);
+                var product = context.MProducts.SingleOrDefault(o => o.PrID == shipmentDetail.PrID);
                 var newSaleDetail = new TSaleDetail
                 {
-                    // `PrId` が nullable 型のため、`Value` プロパティを使って値を取得
-                    // `PrId` が null の場合、0 を代入
-                    SaId = newSales.SaId,
-                    PrId = shipmentDetail.PrId,  // null の場合、0 を代入
+                    // `PrID` が nullable 型のため、`Value` プロパティを使って値を取得
+                    // `PrID` が null の場合、0 を代入
+                    SaID = newSales.SaID,
+                    PrID = shipmentDetail.PrID,  // null の場合、0 を代入
                     SaQuantity = shipmentDetail.ShQuantity,  // null の場合、0 を代入
                     SaPrTotalPrice = shipmentDetail.ShQuantity + product.Price
 
 
                 };
-                if (newSaleDetail.PrId == 0 || newSaleDetail.SaQuantity == 0)
+                if (newSaleDetail.PrID == 0 || newSaleDetail.SaQuantity == 0)
                 {
-                    MessageBox.Show("PrIdかShquantityが0で入力されています");
+                    MessageBox.Show("PrIDかShquantityが0で入力されています");
                 }
 
                 try
@@ -1037,24 +1039,24 @@ namespace SalesManagement_SysDev
 
         // パネル内のすべてのコントロールにEnterイベントを追加
         // パネル内のすべてのコントロールにEnterイベントを追加
-        private void AddControlEventHandlers(Control panel, int panelId)
+        private void AddControlEventHandlers(Control panel, int panelID)
         {
             foreach (Control control in panel.Controls)
             {
                 // コントロールにEnterイベントを追加
-                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelID);
             }
         }
 
         // コントロールが選択（フォーカス）された時
-        private void Control_Enter(object sender, EventArgs e, int panelId)
+        private void Control_Enter(object sender, EventArgs e, int panelID)
         {
             // 異なるパネルに移動したときのみイベントを発生させる
-            if (panelId != lastFocusedPanelId)
+            if (panelID != lastFocusedPanelID)
             {
                 ToggleShippingSelection();
                 UpdateFlagButtonText();
-                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
+                lastFocusedPanelID = panelID; // 現在のパネルIDを更新
             }
         }
 
@@ -1125,11 +1127,36 @@ namespace SalesManagement_SysDev
                     TBShainID.BackColor = SystemColors.Window;
                     TBShopID.BackColor = SystemColors.Window;
                     TBJyutyuID.BackColor = SystemColors.Window;
+
                     TBSyukkaSyosaiID.BackColor = SystemColors.Window;
                     TBSyukkaIDS.BackColor = SystemColors.Window;
                     TBSyohinID.BackColor = SystemColors.Window;
                     TBSuryou.BackColor = SystemColors.Window;
                     break;
+            }
+        }
+        private void SetupNumericOnlyTextBoxes()
+        {
+            // 対象のテキストボックスのみイベントを追加
+            TBSyukkaID.KeyPress += NumericTextBox_KeyPress;
+            TBKokyakuID.KeyPress += NumericTextBox_KeyPress;
+            TBShainID.KeyPress += NumericTextBox_KeyPress;
+            TBShopID.KeyPress += NumericTextBox_KeyPress;
+            TBJyutyuID.KeyPress += NumericTextBox_KeyPress;
+
+            TBSyukkaSyosaiID.KeyPress += NumericTextBox_KeyPress;
+            TBSyukkaIDS.KeyPress += NumericTextBox_KeyPress;
+            TBSyohinID.KeyPress += NumericTextBox_KeyPress;
+            TBSuryou.KeyPress += NumericTextBox_KeyPress;
+        }
+
+        // 半角数字のみを許可するKeyPressイベントハンドラ
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

@@ -5,7 +5,7 @@ namespace SalesManagement_SysDev;
 
 public partial class MMajorClassification
 {
-    public int McId { get; set; }
+    public int McID { get; set; }
 
     public string McName { get; set; } = null!;
 

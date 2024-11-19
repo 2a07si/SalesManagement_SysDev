@@ -21,10 +21,10 @@ namespace SalesManagement_SysDev.Classまとめ
         public static class GlobalUtility
         {
             // ラベルのテキストを更新するメソッド
-            public static void UpdateLabels(Label labelId, Label labelEname)
+            public static void UpdateLabels(Label labelID, Label labelEname)
             {
                 // グローバル変数の権限名をラベルに設定  
-                labelId.Text = Global.PositionName;
+                labelID.Text = Global.PositionName;
 
                 // グローバル変数の社員名をラベルに設定  
                 labelEname.Text = Global.EmployeeName;

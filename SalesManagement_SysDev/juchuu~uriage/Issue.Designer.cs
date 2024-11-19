@@ -49,15 +49,15 @@
             label17 = new Label();
             date = new DateTimePicker();
             label18 = new Label();
-            TBJyutyuId = new TextBox();
+            TBJyutyuID = new TextBox();
             label7 = new Label();
-            TBShopId = new TextBox();
+            TBShopID = new TextBox();
             label12 = new Label();
-            TBKokyakuId = new TextBox();
+            TBKokyakuID = new TextBox();
             label5 = new Label();
-            TBShainId = new TextBox();
+            TBShainID = new TextBox();
             label14 = new Label();
-            TBSyukkoId = new TextBox();
+            TBSyukkoID = new TextBox();
             label6 = new Label();
             dataGridView1 = new DataGridView();
             b_kakutei = new Button();
@@ -68,13 +68,13 @@
             label2 = new Label();
             label1 = new Label();
             panel3 = new Panel();
-            TBSyukkoSyosaiId = new TextBox();
+            TBSyukkoSyosaiID = new TextBox();
             dataGridView2 = new DataGridView();
             TBSuryou = new TextBox();
             label15 = new Label();
             label9 = new Label();
             label13 = new Label();
-            TBSyohinId = new TextBox();
+            TBSyohinID = new TextBox();
             label10 = new Label();
             TBSyukkoIDS = new TextBox();
             b_FormSelector = new Button();
@@ -232,7 +232,6 @@
             b_lss.TabIndex = 17;
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
-            b_lss.Click += b_lss_Click;
             // 
             // panel1
             // 
@@ -243,15 +242,15 @@
             panel1.Controls.Add(label17);
             panel1.Controls.Add(date);
             panel1.Controls.Add(label18);
-            panel1.Controls.Add(TBJyutyuId);
+            panel1.Controls.Add(TBJyutyuID);
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(TBShopId);
+            panel1.Controls.Add(TBShopID);
             panel1.Controls.Add(label12);
-            panel1.Controls.Add(TBKokyakuId);
+            panel1.Controls.Add(TBKokyakuID);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(TBShainId);
+            panel1.Controls.Add(TBShainID);
             panel1.Controls.Add(label14);
-            panel1.Controls.Add(TBSyukkoId);
+            panel1.Controls.Add(TBSyukkoID);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(150, 145);
@@ -320,13 +319,13 @@
             label18.TabIndex = 10;
             label18.Text = "出庫年月日";
             // 
-            // TBJyutyuId
+            // TBJyutyuID
             // 
-            TBJyutyuId.Location = new Point(90, 70);
-            TBJyutyuId.Name = "TBJyutyuId";
-            TBJyutyuId.Size = new Size(100, 31);
-            TBJyutyuId.TabIndex = 9;
-            TBJyutyuId.TextChanged += TBJyutyuId_TextChanged;
+            TBJyutyuID.Location = new Point(90, 70);
+            TBJyutyuID.Name = "TBJyutyuID";
+            TBJyutyuID.Size = new Size(100, 31);
+            TBJyutyuID.TabIndex = 9;
+            TBJyutyuID.TextChanged += TBJyutyuID_TextChanged;
             // 
             // label7
             // 
@@ -339,13 +338,13 @@
             label7.TabIndex = 8;
             label7.Text = "受注ID";
             // 
-            // TBShopId
+            // TBShopID
             // 
-            TBShopId.Location = new Point(650, 20);
-            TBShopId.Name = "TBShopId";
-            TBShopId.Size = new Size(50, 31);
-            TBShopId.TabIndex = 7;
-            TBShopId.TextChanged += TBShopId_TextChanged;
+            TBShopID.Location = new Point(650, 20);
+            TBShopID.Name = "TBShopID";
+            TBShopID.Size = new Size(50, 31);
+            TBShopID.TabIndex = 7;
+            TBShopID.TextChanged += TBShopID_TextChanged;
             // 
             // label12
             // 
@@ -358,13 +357,13 @@
             label12.TabIndex = 6;
             label12.Text = "営業所ID";
             // 
-            // TBKokyakuId
+            // TBKokyakuID
             // 
-            TBKokyakuId.Location = new Point(450, 20);
-            TBKokyakuId.Name = "TBKokyakuId";
-            TBKokyakuId.Size = new Size(100, 31);
-            TBKokyakuId.TabIndex = 5;
-            TBKokyakuId.TextChanged += TBKokyakuId_TextChanged;
+            TBKokyakuID.Location = new Point(450, 20);
+            TBKokyakuID.Name = "TBKokyakuID";
+            TBKokyakuID.Size = new Size(100, 31);
+            TBKokyakuID.TabIndex = 5;
+            TBKokyakuID.TextChanged += TBKokyakuID_TextChanged;
             // 
             // label5
             // 
@@ -377,13 +376,13 @@
             label5.TabIndex = 4;
             label5.Text = "顧客ID";
             // 
-            // TBShainId
+            // TBShainID
             // 
-            TBShainId.Location = new Point(270, 20);
-            TBShainId.Name = "TBShainId";
-            TBShainId.Size = new Size(100, 31);
-            TBShainId.TabIndex = 3;
-            TBShainId.TextChanged += TBShainId_TextChanged;
+            TBShainID.Location = new Point(270, 20);
+            TBShainID.Name = "TBShainID";
+            TBShainID.Size = new Size(100, 31);
+            TBShainID.TabIndex = 3;
+            TBShainID.TextChanged += TBShainID_TextChanged;
             // 
             // label14
             // 
@@ -396,13 +395,13 @@
             label14.TabIndex = 2;
             label14.Text = "社員ID";
             // 
-            // TBSyukkoId
+            // TBSyukkoID
             // 
-            TBSyukkoId.Location = new Point(90, 20);
-            TBSyukkoId.Name = "TBSyukkoId";
-            TBSyukkoId.Size = new Size(100, 31);
-            TBSyukkoId.TabIndex = 1;
-            TBSyukkoId.TextChanged += TBSyukkoId_TextChanged;
+            TBSyukkoID.Location = new Point(90, 20);
+            TBSyukkoID.Name = "TBSyukkoID";
+            TBSyukkoID.Size = new Size(100, 31);
+            TBSyukkoID.TabIndex = 1;
+            TBSyukkoID.TextChanged += TBSyukkoID_TextChanged;
             // 
             // label6
             // 
@@ -497,13 +496,13 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(255, 128, 128);
-            panel3.Controls.Add(TBSyukkoSyosaiId);
+            panel3.Controls.Add(TBSyukkoSyosaiID);
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(TBSuryou);
             panel3.Controls.Add(label15);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(label13);
-            panel3.Controls.Add(TBSyohinId);
+            panel3.Controls.Add(TBSyohinID);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(TBSyukkoIDS);
             panel3.Location = new Point(970, 145);
@@ -511,13 +510,13 @@
             panel3.Size = new Size(600, 690);
             panel3.TabIndex = 6;
             // 
-            // TBSyukkoSyosaiId
+            // TBSyukkoSyosaiID
             // 
-            TBSyukkoSyosaiId.Location = new Point(130, 20);
-            TBSyukkoSyosaiId.Name = "TBSyukkoSyosaiId";
-            TBSyukkoSyosaiId.Size = new Size(100, 31);
-            TBSyukkoSyosaiId.TabIndex = 1;
-            TBSyukkoSyosaiId.TextChanged += TBSyukkoSyosaiId_TextChanged;
+            TBSyukkoSyosaiID.Location = new Point(130, 20);
+            TBSyukkoSyosaiID.Name = "TBSyukkoSyosaiID";
+            TBSyukkoSyosaiID.Size = new Size(100, 31);
+            TBSyukkoSyosaiID.TabIndex = 1;
+            TBSyukkoSyosaiID.TextChanged += TBSyukkoSyosaiID_TextChanged;
             // 
             // dataGridView2
             // 
@@ -574,13 +573,13 @@
             label13.TabIndex = 0;
             label13.Text = "出庫詳細ID";
             // 
-            // TBSyohinId
+            // TBSyohinID
             // 
-            TBSyohinId.Location = new Point(490, 20);
-            TBSyohinId.Name = "TBSyohinId";
-            TBSyohinId.Size = new Size(100, 31);
-            TBSyohinId.TabIndex = 5;
-            TBSyohinId.TextChanged += TBSyohinId_TextChanged;
+            TBSyohinID.Location = new Point(490, 20);
+            TBSyohinID.Name = "TBSyohinID";
+            TBSyohinID.Size = new Size(100, 31);
+            TBSyohinID.TabIndex = 5;
+            TBSyohinID.TextChanged += TBSyohinID_TextChanged;
             // 
             // label10
             // 
@@ -692,22 +691,22 @@
         private Button b_arr;
         private Button b_lss;
         private Panel panel1;
-        private TextBox TBSyukkoId;
+        private TextBox TBSyukkoID;
         private Label label6;
         private DataGridView dataGridView1;
         private Button b_kakutei;
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;
-        private TextBox TBShainId;
+        private TextBox TBShainID;
         private Label label14;
-        private TextBox TBKokyakuId;
+        private TextBox TBKokyakuID;
         private Label label5;
-        private TextBox TBShopId;
+        private TextBox TBShopID;
         private Label label12;
         private DateTimePicker date;
         private Label label18;
-        private TextBox TBJyutyuId;
+        private TextBox TBJyutyuID;
         private Label label7;
         private CheckBox SyukkoFlag;
         private CheckBox DelFlag;
@@ -717,13 +716,13 @@
         private Label label2;
         private Label label1;
         private Panel panel3;
-        private TextBox TBSyukkoSyosaiId;
+        private TextBox TBSyukkoSyosaiID;
         private DataGridView dataGridView2;
         private TextBox TBSuryou;
         private Label label15;
         private Label label9;
         private Label label13;
-        private TextBox TBSyohinId;
+        private TextBox TBSyohinID;
         private Label label10;
         private TextBox TBSyukkoIDS;
         private Button Next;

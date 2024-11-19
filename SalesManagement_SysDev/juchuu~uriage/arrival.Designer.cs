@@ -37,23 +37,23 @@
             label3 = new Label();
             b_reg = new Button();
             panel1 = new Panel();
-            TBJyutyuId = new TextBox();
+            TBJyutyuID = new TextBox();
             NyuukaFlag = new CheckBox();
             label7 = new Label();
             dataGridView1 = new DataGridView();
             DelFlag = new CheckBox();
             label6 = new Label();
-            TBKokyakuId = new TextBox();
+            TBKokyakuID = new TextBox();
             label5 = new Label();
             date = new DateTimePicker();
             label12 = new Label();
             label18 = new Label();
             label14 = new Label();
             TBRiyuu = new TextBox();
-            TBNyuukaId = new TextBox();
+            TBNyuukaID = new TextBox();
             label17 = new Label();
-            TBShopId = new TextBox();
-            TBShainId = new TextBox();
+            TBShopID = new TextBox();
+            TBShainID = new TextBox();
             b_kakutei = new Button();
             clear = new Button();
             close = new Button();
@@ -161,35 +161,35 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(255, 192, 128);
-            panel1.Controls.Add(TBJyutyuId);
+            panel1.Controls.Add(TBJyutyuID);
             panel1.Controls.Add(NyuukaFlag);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(DelFlag);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(TBKokyakuId);
+            panel1.Controls.Add(TBKokyakuID);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(date);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(TBRiyuu);
-            panel1.Controls.Add(TBNyuukaId);
+            panel1.Controls.Add(TBNyuukaID);
             panel1.Controls.Add(label17);
-            panel1.Controls.Add(TBShopId);
-            panel1.Controls.Add(TBShainId);
+            panel1.Controls.Add(TBShopID);
+            panel1.Controls.Add(TBShainID);
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 4;
             // 
-            // TBJyutyuId
+            // TBJyutyuID
             // 
-            TBJyutyuId.Location = new Point(90, 70);
-            TBJyutyuId.Name = "TBJyutyuId";
-            TBJyutyuId.Size = new Size(100, 31);
-            TBJyutyuId.TabIndex = 9;
-            TBJyutyuId.TextChanged += TBJyutyuId_TextChanged;
+            TBJyutyuID.Location = new Point(90, 70);
+            TBJyutyuID.Name = "TBJyutyuID";
+            TBJyutyuID.Size = new Size(100, 31);
+            TBJyutyuID.TabIndex = 9;
+            TBJyutyuID.TextChanged += TBJyutyuID_TextChanged;
             // 
             // NyuukaFlag
             // 
@@ -251,13 +251,13 @@
             label6.TabIndex = 0;
             label6.Text = "入荷ID";
             // 
-            // TBKokyakuId
+            // TBKokyakuID
             // 
-            TBKokyakuId.Location = new Point(590, 20);
-            TBKokyakuId.Name = "TBKokyakuId";
-            TBKokyakuId.Size = new Size(100, 31);
-            TBKokyakuId.TabIndex = 7;
-            TBKokyakuId.TextChanged += TBKokyakuId_TextChanged;
+            TBKokyakuID.Location = new Point(590, 20);
+            TBKokyakuID.Name = "TBKokyakuID";
+            TBKokyakuID.Size = new Size(100, 31);
+            TBKokyakuID.TabIndex = 7;
+            TBKokyakuID.TextChanged += TBKokyakuID_TextChanged;
             // 
             // label5
             // 
@@ -318,13 +318,13 @@
             TBRiyuu.Size = new Size(325, 31);
             TBRiyuu.TabIndex = 15;
             // 
-            // TBNyuukaId
+            // TBNyuukaID
             // 
-            TBNyuukaId.Location = new Point(90, 20);
-            TBNyuukaId.Name = "TBNyuukaId";
-            TBNyuukaId.Size = new Size(100, 31);
-            TBNyuukaId.TabIndex = 1;
-            TBNyuukaId.TextChanged += TBNyuukaId_TextChanged;
+            TBNyuukaID.Location = new Point(90, 20);
+            TBNyuukaID.Name = "TBNyuukaID";
+            TBNyuukaID.Size = new Size(100, 31);
+            TBNyuukaID.TabIndex = 1;
+            TBNyuukaID.TextChanged += TBNyuukaID_TextChanged;
             // 
             // label17
             // 
@@ -337,21 +337,21 @@
             label17.TabIndex = 14;
             label17.Text = "非表示理由";
             // 
-            // TBShopId
+            // TBShopID
             // 
-            TBShopId.Location = new Point(290, 20);
-            TBShopId.Name = "TBShopId";
-            TBShopId.Size = new Size(40, 31);
-            TBShopId.TabIndex = 3;
-            TBShopId.TextChanged += TBShopId_TextChanged;
+            TBShopID.Location = new Point(290, 20);
+            TBShopID.Name = "TBShopID";
+            TBShopID.Size = new Size(40, 31);
+            TBShopID.TabIndex = 3;
+            TBShopID.TextChanged += TBShopID_TextChanged;
             // 
-            // TBShainId
+            // TBShainID
             // 
-            TBShainId.Location = new Point(410, 20);
-            TBShainId.Name = "TBShainId";
-            TBShainId.Size = new Size(100, 31);
-            TBShainId.TabIndex = 5;
-            TBShainId.TextChanged += TBShainId_TextChanged;
+            TBShainID.Location = new Point(410, 20);
+            TBShainID.Name = "TBShainID";
+            TBShainID.Size = new Size(100, 31);
+            TBShainID.TabIndex = 5;
+            TBShainID.TextChanged += TBShainID_TextChanged;
             // 
             // b_kakutei
             // 
@@ -693,18 +693,18 @@
         private CheckBox NyuukaFlag;
         private CheckBox DelFlag;
         private Label label6;
-        private TextBox TBKokyakuId;
+        private TextBox TBKokyakuID;
         private Label label5;
         private DateTimePicker date;
         private Label label12;
         private Label label18;
         private Label label14;
         private TextBox TBRiyuu;
-        private TextBox TBNyuukaId;
+        private TextBox TBNyuukaID;
         private Label label17;
-        private TextBox TBShopId;
-        private TextBox TBShainId;
-        private TextBox TBJyutyuId;
+        private TextBox TBShopID;
+        private TextBox TBShainID;
+        private TextBox TBJyutyuID;
         private Label label7;
         private Button B_iti;
         private Panel panel3;

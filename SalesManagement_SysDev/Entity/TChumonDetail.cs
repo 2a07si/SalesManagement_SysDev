@@ -5,11 +5,11 @@ namespace SalesManagement_SysDev;
 
 public partial class TChumonDetail
 {
-    public int ChDetailId { get; set; }
+    public int ChDetailID { get; set; }
 
-    public int ChId { get; set; }
+    public int ChID { get; set; }
 
-    public int PrId { get; set; }
+    public int PrID { get; set; }
 
     public int ChQuantity { get; set; }
 

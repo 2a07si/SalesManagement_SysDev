@@ -5,7 +5,7 @@ namespace SalesManagement_SysDev;
 
 public partial class MPosition
 {
-    public int PoId { get; set; }
+    public int PoID { get; set; }
 
     public string PoName { get; set; } = null!;
 

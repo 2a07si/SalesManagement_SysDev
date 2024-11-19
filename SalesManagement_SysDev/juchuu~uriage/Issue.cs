@@ -22,12 +22,12 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
-        private int lastFocusedPanelId = 1;
+        private int lastFocusedPanelID = 1;
         public issue()
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            //this.Load += new EventHandler(issue_Load);
+            //this. += new EventHandler(issue_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
 
@@ -70,6 +70,8 @@ namespace SalesManagement_SysDev
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
 
+            SetupNumericOnlyTextBoxes();
+
             // 在庫不足で非表示となった出庫情報に関するメッセージを取得
 
             // 在庫更新メッセージを取得
@@ -103,18 +105,18 @@ namespace SalesManagement_SysDev
 
         private void ClearText()
         {
-            TBSyukkoId.Text = "";
-            TBShopId.Text = "";
-            TBShainId.Text = "";
-            TBKokyakuId.Text = "";
-            TBJyutyuId.Text = "";
+            TBSyukkoID.Text = "";
+            TBShopID.Text = "";
+            TBShainID.Text = "";
+            TBKokyakuID.Text = "";
+            TBJyutyuID.Text = "";
             SyukkoFlag.Checked = false;
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
-            TBSyukkoSyosaiId.Text = "";
+            TBSyukkoSyosaiID.Text = "";
             TBSyukkoIDS.Text = "";
             TBSuryou.Text = "";
-            TBSyohinId.Text = "";
+            TBSyohinID.Text = "";
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
@@ -177,19 +179,19 @@ namespace SalesManagement_SysDev
 
         private void tbfalse()
         {
-            TBSyukkoId.Enabled = false;
-            TBSyukkoSyosaiId.Enabled = false;
-            TBSyukkoId.BackColor = Color.Gray;
-            TBSyukkoSyosaiId.BackColor = Color.Gray;
-            TBSyukkoId.Text = "";
-            TBSyukkoSyosaiId.Text = "";
+            TBSyukkoID.Enabled = false;
+            TBSyukkoSyosaiID.Enabled = false;
+            TBSyukkoID.BackColor = Color.Gray;
+            TBSyukkoSyosaiID.BackColor = Color.Gray;
+            TBSyukkoID.Text = "";
+            TBSyukkoSyosaiID.Text = "";
         }
         private void tbtrue()
         {
-            TBSyukkoId.Enabled = true;
-            TBSyukkoSyosaiId.Enabled = true;
-            TBSyukkoId.BackColor = Color.White;
-            TBSyukkoSyosaiId.BackColor = Color.White;
+            TBSyukkoID.Enabled = true;
+            TBSyukkoSyosaiID.Enabled = true;
+            TBSyukkoID.BackColor = Color.White;
+            TBSyukkoSyosaiID.BackColor = Color.White;
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
@@ -262,74 +264,74 @@ namespace SalesManagement_SysDev
 
         private void UpdateIssue()
         {
-            string SyukkoId = TBSyukkoId.Text;
-            string ShopId = TBShopId.Text;
-            string ShainId = TBShainId.Text;
-            string KokyakuId = TBKokyakuId.Text;
-            string JyutyuId = TBJyutyuId.Text;
+            string SyukkoID = TBSyukkoID.Text;
+            string ShopID = TBShopID.Text;
+            string ShainID = TBShainID.Text;
+            string KokyakuID = TBKokyakuID.Text;
+            string JyutyuID = TBJyutyuID.Text;
             bool SyukkoFlg = SyukkoFlag.Checked;
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
             DateTime Syukkodate = date.Value;
 
-            if (TBSyukkoId.Text == "")
+            if (TBSyukkoID.Text == "")
             {
-                TBSyukkoId.BackColor = Color.Yellow;
-                TBSyukkoId.Focus();
+                TBSyukkoID.BackColor = Color.Yellow;
+                TBSyukkoID.Focus();
                 MessageBox.Show("出庫IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBShopId.Text == "")
+            if (TBShopID.Text == "")
             {
-                TBShopId.BackColor = Color.Yellow;
-                TBShopId.Focus();
+                TBShopID.BackColor = Color.Yellow;
+                TBShopID.Focus();
                 MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBShainId.Text == "")
+            if (TBShainID.Text == "")
             {
-                TBShainId.BackColor = Color.Yellow;
-                TBShainId.Focus();
+                TBShainID.BackColor = Color.Yellow;
+                TBShainID.Focus();
                 MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBKokyakuId.Text == "")
+            if (TBKokyakuID.Text == "")
             {
-                TBKokyakuId.BackColor = Color.Yellow;
-                TBKokyakuId.Focus();
+                TBKokyakuID.BackColor = Color.Yellow;
+                TBKokyakuID.Focus();
                 MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBJyutyuId.Text == "")
+            if (TBJyutyuID.Text == "")
             {
-                TBJyutyuId.BackColor = Color.Yellow;
-                TBJyutyuId.Focus();
+                TBJyutyuID.BackColor = Color.Yellow;
+                TBJyutyuID.Focus();
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBShainId.Text != empID)
+            if (TBShainID.Text != empID)
             {
                 MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
-                TBShainId.BackColor = Color.Yellow;
-                TBShainId.Focus();
+                TBShainID.BackColor = Color.Yellow;
+                TBShainID.Focus();
                 return;
             }
 
             using (var context = new SalesManagementContext())
             {
 
-                var issue = context.TSyukkos.SingleOrDefault(o => o.SyId.ToString() == SyukkoId);
+                var issue = context.TSyukkos.SingleOrDefault(o => o.SyID.ToString() == SyukkoID);
                 if (issue != null)
                 {
-                    issue.SoId = int.Parse(ShopId);                   // 店舗ID
-                    issue.EmId = int.Parse(ShainId);                  // 社員ID
-                    issue.ClId = int.Parse(KokyakuId);                // クライアントID
-                    issue.OrId = int.Parse(JyutyuId);                 // 受注ID
+                    issue.SoID = int.Parse(ShopID);                   // 店舗ID
+                    issue.EmID = int.Parse(ShainID);                  // 社員ID
+                    issue.ClID = int.Parse(KokyakuID);                // クライアントID
+                    issue.OrID = int.Parse(JyutyuID);                 // 受注ID
                     issue.SyDate = Syukkodate;                        // 出庫日
                     issue.SyStateFlag = SyukkoFlg ? 2 : 0;            // 出庫状態フラグ
                     issue.SyFlag = DelFlg ? 1 : 0;                    // 削除フラグ
@@ -340,7 +342,7 @@ namespace SalesManagement_SysDev
                     {
                         // 出庫詳細が存在するか確認
                         var issueDetailsExist = context.TSyukkoDetails
-                            .Any(sd => sd.SyId == issue.SyId); // SyId が一致する出庫詳細が存在するか確認
+                            .Any(sd => sd.SyID == issue.SyID); // SyID が一致する出庫詳細が存在するか確認
 
                         if (!issueDetailsExist)
                         {
@@ -350,7 +352,7 @@ namespace SalesManagement_SysDev
                         }
 
                         // 出庫詳細が存在する場合、出庫確認処理を実行
-                        IssueConfirm(int.Parse(JyutyuId), issue.SyId);
+                        IssueConfirm(int.Parse(JyutyuID), issue.SyID);
                     }
 
                     // 更新を保存
@@ -387,11 +389,11 @@ namespace SalesManagement_SysDev
 
         private void RegisterIssue()
         {
-            string SyukkoId = TBSyukkoId.Text;
-            string ShopId = TBShopId.Text;
-            string ShainId = TBShainId.Text;
-            string KokyakuId = TBKokyakuId.Text;
-            string JyutyuId = TBJyutyuId.Text;
+            string SyukkoID = TBSyukkoID.Text;
+            string ShopID = TBShopID.Text;
+            string ShainID = TBShainID.Text;
+            string KokyakuID = TBKokyakuID.Text;
+            string JyutyuID = TBJyutyuID.Text;
             bool SyukkoFlg = SyukkoFlag.Checked;
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
@@ -400,82 +402,82 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int shop;
-                if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    TBShopId.BackColor = Color.Yellow;
-                    TBShopId.Focus();
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
                     MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                int employeeId;
-                if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                int employeeID;
+                if (!int.TryParse(ShainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    TBShainId.BackColor = Color.Yellow;
-                    TBShainId.Focus();
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int kokyaku;
-                if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
+                if (!int.TryParse(KokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
                 {
-                    TBKokyakuId.BackColor = Color.Yellow;
-                    TBKokyakuId.Focus();
+                    TBKokyakuID.BackColor = Color.Yellow;
+                    TBKokyakuID.Focus();
                     MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int juchu;
-                if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
+                if (!int.TryParse(JyutyuID, out juchu) || !context.TOrders.Any(j => j.OrID == juchu))
                 {
-                    TBJyutyuId.BackColor = Color.Yellow;
-                    TBJyutyuId.Focus();
+                    TBJyutyuID.BackColor = Color.Yellow;
+                    TBJyutyuID.Focus();
                     MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (TBShopId.Text == "")
+                if (TBShopID.Text == "")
                 {
-                    TBShopId.BackColor = Color.Yellow;
-                    TBShopId.Focus();
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (TBShainId.Text == "")
+                if (TBShainID.Text == "")
                 {
-                    TBShainId.BackColor = Color.Yellow;
-                    TBShainId.Focus();
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (TBKokyakuId.Text == "")
+                if (TBKokyakuID.Text == "")
                 {
-                    TBKokyakuId.BackColor = Color.Yellow;
-                    TBKokyakuId.Focus();
+                    TBKokyakuID.BackColor = Color.Yellow;
+                    TBKokyakuID.Focus();
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (TBJyutyuId.Text == "")
+                if (TBJyutyuID.Text == "")
                 {
-                    TBJyutyuId.BackColor = Color.Yellow;
-                    TBJyutyuId.Focus();
+                    TBJyutyuID.BackColor = Color.Yellow;
+                    TBJyutyuID.Focus();
                     MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBShainId.Text != empID)
+                if (TBShainID.Text != empID)
                 {
                     MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
-                    TBShainId.BackColor = Color.Yellow;
-                    TBShainId.Focus();
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     return;
                 }
 
                 // 出庫が既に存在するか確認 
-                var issue = context.TSyukkos.SingleOrDefault(o => o.OrId.ToString() == SyukkoId);
+                var issue = context.TSyukkos.SingleOrDefault(o => o.OrID.ToString() == SyukkoID);
                 if (issue == null)
                 {
                     try
@@ -483,10 +485,10 @@ namespace SalesManagement_SysDev
                         // 新しい出庫情報を作成 
                         var newIssue = new TSyukko
                         {
-                            SoId = int.Parse(ShopId),           // 店舗ID 
-                            EmId = int.Parse(ShainId),          // 社員ID 
-                            ClId = int.Parse(KokyakuId),        // クライアントID 
-                            OrId = int.Parse(JyutyuId),         // 受注ID 
+                            SoID = int.Parse(ShopID),           // 店舗ID 
+                            EmID = int.Parse(ShainID),          // 社員ID 
+                            ClID = int.Parse(KokyakuID),        // クライアントID 
+                            OrID = int.Parse(JyutyuID),         // 受注ID 
                             SyDate = Syukkodate,                // 出庫日 
                             SyStateFlag = SyukkoFlg ? 2 : 0,    // 出庫状態フラグ 
                             SyFlag = DelFlg ? 1 : 0,            // 削除フラグ 
@@ -501,7 +503,7 @@ namespace SalesManagement_SysDev
                         if (SyukkoFlag.Checked)
                         {
                             var syukkoDetailsExist = context.TSyukkoDetails
-                                .Any(sd => sd.SyId == newIssue.SyId); // SyId が一致する出庫詳細が存在するか確認
+                                .Any(sd => sd.SyID == newIssue.SyID); // SyID が一致する出庫詳細が存在するか確認
 
                             if (!syukkoDetailsExist)
                             {
@@ -511,7 +513,7 @@ namespace SalesManagement_SysDev
                             }
 
                             // 出庫詳細が存在する場合、出庫確認処理を実行
-                            IssueConfirm(issue.OrId, newIssue.SyId);
+                            IssueConfirm(issue.OrID, newIssue.SyID);
                         }
 
                         // 出庫登録成功メッセージ
@@ -559,11 +561,11 @@ namespace SalesManagement_SysDev
                          .ToList();       // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = issues.Select(o => new
                     {
-                        出庫ID = o.SyId,            // 出庫ID
-                        社員ID = o.EmId,
-                        顧客ID = o.ClId,             // クライアントID
-                        営業所ID = o.SoId,              // 店舗ID
-                        受注ID = o.OrId,              // 受注ID
+                        出庫ID = o.SyID,            // 出庫ID
+                        社員ID = o.EmID,
+                        顧客ID = o.ClID,             // クライアントID
+                        営業所ID = o.SoID,              // 店舗ID
+                        受注ID = o.OrID,              // 受注ID
                         出庫年月日 = o.SyDate,        // 出庫日
                         状態フラグ = o.SyStateFlag,     // 出庫状態フラグ
                         非表示フラグ = o.SyFlag,         // 削除フラグ
@@ -583,49 +585,49 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得
-                string nyuukaId = TBSyukkoId.Text;
-                string shopId = TBShopId.Text;
-                string shainId = TBShainId.Text;
-                string kokyakuId = TBKokyakuId.Text;
-                string jyutyuId = TBJyutyuId.Text;
+                string nyuukaID = TBSyukkoID.Text;
+                string shopID = TBShopID.Text;
+                string shainID = TBShainID.Text;
+                string kokyakuID = TBKokyakuID.Text;
+                string JyutyuID = TBJyutyuID.Text;
                 DateTime? nyuukodate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
 
                 // 基本的なクエリ
                 var query = context.TSyukkos.AsQueryable();
 
                 // 出庫IDを検索条件に追加
-                if (!string.IsNullOrEmpty(nyuukaId))
+                if (!string.IsNullOrEmpty(nyuukaID))
                 {
-                    int arId = int.Parse(nyuukaId);
-                    query = query.Where(issue => issue.SyId == arId);
+                    int arID = int.Parse(nyuukaID);
+                    query = query.Where(issue => issue.SyID == arID);
                 }
 
                 // 店舗IDを検索条件に追加
-                if (!string.IsNullOrEmpty(shopId))
+                if (!string.IsNullOrEmpty(shopID))
                 {
-                    int soId = int.Parse(shopId);
-                    query = query.Where(issue => issue.SoId == soId);
+                    int soID = int.Parse(shopID);
+                    query = query.Where(issue => issue.SoID == soID);
                 }
 
                 // 社員IDを検索条件に追加
-                if (!string.IsNullOrEmpty(shainId))
+                if (!string.IsNullOrEmpty(shainID))
                 {
-                    int emId = int.Parse(shainId);
-                    query = query.Where(issue => issue.EmId == emId);
+                    int emID = int.Parse(shainID);
+                    query = query.Where(issue => issue.EmID == emID);
                 }
 
                 // 顧客IDを検索条件に追加
-                if (!string.IsNullOrEmpty(kokyakuId))
+                if (!string.IsNullOrEmpty(kokyakuID))
                 {
-                    int clId = int.Parse(kokyakuId);
-                    query = query.Where(issue => issue.ClId == clId);
+                    int clID = int.Parse(kokyakuID);
+                    query = query.Where(issue => issue.ClID == clID);
                 }
 
                 // 受注IDを検索条件に追加
-                if (!string.IsNullOrEmpty(jyutyuId))
+                if (!string.IsNullOrEmpty(JyutyuID))
                 {
-                    int orId = int.Parse(jyutyuId);
-                    query = query.Where(issue => issue.OrId == orId);
+                    int orID = int.Parse(JyutyuID);
+                    query = query.Where(issue => issue.OrID == orID);
                 }
 
                 // 出庫日を検索条件に追加（チェックボックスがチェックされている場合）
@@ -642,11 +644,11 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示
                     dataGridView1.DataSource = issues.Select(issue => new
                     {
-                        出庫ID = issue.SyId,         // 出庫ID
-                        営業所ID = issue.SoId,           // 店舗ID
-                        社員ID = issue.EmId,        // 社員ID
-                        顧客ID = issue.ClId,          // クライアントID
-                        受注ID = issue.OrId,           // 受注ID
+                        出庫ID = issue.SyID,         // 出庫ID
+                        営業所ID = issue.SoID,           // 店舗ID
+                        社員ID = issue.EmID,        // 社員ID
+                        顧客ID = issue.ClID,          // クライアントID
+                        受注ID = issue.OrID,           // 受注ID
                         出庫年月日 = issue.SyDate,     // 出庫日
                         状態フラグ = issue.SyStateFlag,  // 出庫状態フラグ
                         非表示フラグ = issue.SyFlag,      // 削除フラグ
@@ -666,15 +668,15 @@ namespace SalesManagement_SysDev
 
         private void UpdateIssueDetails()
         {
-            string SyukkoSyosaiID = TBSyukkoSyosaiId.Text;
+            string SyukkoSyosaiID = TBSyukkoSyosaiID.Text;
             string SyukkoID = TBSyukkoIDS.Text;
-            string syohinID = TBSyohinId.Text;
+            string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
-            if (TBSyukkoSyosaiId.Text == "")
+            if (TBSyukkoSyosaiID.Text == "")
             {
-                TBSyukkoSyosaiId.BackColor = Color.Yellow;
-                TBSyukkoSyosaiId.Focus();
+                TBSyukkoSyosaiID.BackColor = Color.Yellow;
+                TBSyukkoSyosaiID.Focus();
                 MessageBox.Show("出庫詳細IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -688,10 +690,10 @@ namespace SalesManagement_SysDev
             }
 
 
-            if (TBSyohinId.Text == "")
+            if (TBSyohinID.Text == "")
             {
-                TBSyohinId.BackColor = Color.Yellow;
-                TBSyohinId.Focus();
+                TBSyohinID.BackColor = Color.Yellow;
+                TBSyohinID.Focus();
                 MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -706,11 +708,11 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var issueDetail = context.TSyukkoDetails.SingleOrDefault(od => od.SyDetailId.ToString() == SyukkoSyosaiID);
+                var issueDetail = context.TSyukkoDetails.SingleOrDefault(od => od.SyDetailID.ToString() == SyukkoSyosaiID);
                 if (issueDetail != null)
                 {
-                    issueDetail.SyId = int.Parse(SyukkoID);
-                    issueDetail.PrId = int.Parse(syohinID);
+                    issueDetail.SyID = int.Parse(SyukkoID);
+                    issueDetail.PrID = int.Parse(syohinID);
                     issueDetail.SyQuantity = int.Parse(suryou);
 
                     context.SaveChanges();
@@ -726,15 +728,15 @@ namespace SalesManagement_SysDev
 
         private void RegisterIssueDetails()
         {
-            string SyukkoSyosaiID = TBSyukkoSyosaiId.Text;
+            string SyukkoSyosaiID = TBSyukkoSyosaiID.Text;
             string SyukkoID = TBSyukkoIDS.Text;
-            string syohinID = TBSyohinId.Text;
+            string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
             using (var context = new SalesManagementContext())
             {
                 int shukko;
-                if (!int.TryParse(SyukkoID, out shukko) || !context.TSyukkos.Any(s => s.SyId == shukko))
+                if (!int.TryParse(SyukkoID, out shukko) || !context.TSyukkos.Any(s => s.SyID == shukko))
                 {
                     TBSyukkoIDS.BackColor = Color.Yellow;
                     TBSyukkoIDS.Focus();
@@ -749,10 +751,10 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBSyohinId.Text == "")
+                if (TBSyohinID.Text == "")
                 {
-                    TBSyohinId.BackColor = Color.Yellow;
-                    TBSyohinId.Focus();
+                    TBSyohinID.BackColor = Color.Yellow;
+                    TBSyohinID.Focus();
                     MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -765,16 +767,16 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // EmIDがMEmployeeテーブルに存在するか確認
                 int shouhin;
-                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                 {
-                    TBSyohinId.BackColor = Color.Yellow;
-                    TBSyohinId.Focus();
+                    TBSyohinID.BackColor = Color.Yellow;
+                    TBSyohinID.Focus();
                     MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                var existingOrderDetail = context.TSyukkoDetails.FirstOrDefault(o => o.SyId == shukko);
+                var existingOrderDetail = context.TSyukkoDetails.FirstOrDefault(o => o.SyID == shukko);
                 if (existingOrderDetail != null)
                 {
                     MessageBox.Show("この出庫IDにはすでに出庫詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -782,8 +784,8 @@ namespace SalesManagement_SysDev
                 }
                 var newIssueDetail = new TSyukkoDetail
                 {
-                    SyId = int.Parse(SyukkoID),
-                    PrId = int.Parse(syohinID),
+                    SyID = int.Parse(SyukkoID),
+                    PrID = int.Parse(syohinID),
                     SyQuantity = int.Parse(suryou),
                 };
 
@@ -806,16 +808,16 @@ namespace SalesManagement_SysDev
                         ? SyukkoDetails
                         : SyukkoDetails.Where(od =>
                         {
-                            var Syukko = context.TSyukkos.FirstOrDefault(o => o.SyId == od.SyId);
+                            var Syukko = context.TSyukkos.FirstOrDefault(o => o.SyID == od.SyID);
 
                             return Syukko == null || (Syukko.SyFlag != 1 && Syukko.SyStateFlag != 2);
                         }).ToList();
 
                     dataGridView2.DataSource = visibleSyukkoDetails.Select(od => new
                     {
-                        出庫詳細ID = od.SyDetailId,
-                        出庫ID = od.SyId,
-                        商品ID = od.PrId,
+                        出庫詳細ID = od.SyDetailID,
+                        出庫ID = od.SyID,
+                        商品ID = od.PrID,
                         数量 = od.SyQuantity,
                     }).ToList();
                 }
@@ -831,9 +833,9 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得
-                var SyukkoSyosaiID = TBSyukkoSyosaiId.Text;
-                var SyukkoIdS = TBSyukkoIDS.Text;
-                var syohinID = TBSyohinId.Text;
+                var SyukkoSyosaiID = TBSyukkoSyosaiID.Text;
+                var SyukkoIDS = TBSyukkoIDS.Text;
+                var syohinID = TBSyohinID.Text;
                 var suryou = TBSuryou.Text;
 
                 // 基本的なクエリ
@@ -843,19 +845,19 @@ namespace SalesManagement_SysDev
                 if (!string.IsNullOrEmpty(SyukkoSyosaiID))
                 {
                     // 出庫詳細IDを検索条件に追加
-                    query = query.Where(od => od.SyDetailId.ToString() == SyukkoSyosaiID);
+                    query = query.Where(od => od.SyDetailID.ToString() == SyukkoSyosaiID);
                 }
 
-                if (!string.IsNullOrEmpty(SyukkoIdS))
+                if (!string.IsNullOrEmpty(SyukkoIDS))
                 {
                     //出庫IDを検索条件に追加
-                    query = query.Where(od => od.SyId.ToString() == SyukkoIdS);
+                    query = query.Where(od => od.SyID.ToString() == SyukkoIDS);
                 }
 
                 if (!string.IsNullOrEmpty(syohinID))
                 {
                     // 商品IDを検索条件に追加
-                    query = query.Where(od => od.PrId.ToString() == syohinID);
+                    query = query.Where(od => od.PrID.ToString() == syohinID);
                 }
 
                 if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
@@ -873,9 +875,9 @@ namespace SalesManagement_SysDev
                 {
                     dataGridView2.DataSource = issueDetails.Select(od => new
                     {
-                        出庫詳細ID = od.SyDetailId,
-                        出庫ID = od.SyId,
-                        商品ID = od.PrId,
+                        出庫詳細ID = od.SyDetailID,
+                        出庫ID = od.SyID,
+                        商品ID = od.PrID,
                         数量 = od.SyQuantity,
                     }).ToList();
                 }
@@ -895,9 +897,9 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isIssueSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
 
             if (issueFlag == "←通常")
-                lastFocusedPanelId = 1;
+                lastFocusedPanelID = 1;
             else if (issueFlag == "詳細→")
-                lastFocusedPanelId = 2;
+                lastFocusedPanelID = 2;
         }
 
         private void b_FormSelector_Click(object sender, EventArgs e)
@@ -930,17 +932,17 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
                     if (label2.Text == "登録")
                     {
-                        TBSyukkoId.Text = "";
+                        TBSyukkoID.Text = "";
                     }
                     else
                     {
-                        TBSyukkoId.Text = row.Cells["出庫ID"].Value?.ToString() ?? string.Empty;
+                        TBSyukkoID.Text = row.Cells["出庫ID"].Value?.ToString() ?? string.Empty;
                     }
                     // 各テキストボックスにデータを入力 (null許可)
-                    TBShopId.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
-                    TBShainId.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
-                    TBKokyakuId.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
-                    TBJyutyuId.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    TBShopID.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
+                    TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
+                    TBKokyakuID.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
+                    TBJyutyuID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
                     date.Value = row.Cells["出庫年月日"].Value != null
                                  ? Convert.ToDateTime(row.Cells["出庫年月日"].Value)
                                  : DateTime.Now; // nullの場合は現在の日付を設定
@@ -967,15 +969,15 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView2.Rows[rowIndex];
                     if (label2.Text == "登録")
                     {
-                        TBSyukkoSyosaiId.Text = "";
+                        TBSyukkoSyosaiID.Text = "";
                     }
                     else
                     {
-                        TBSyukkoSyosaiId.Text = row.Cells["出庫詳細ID"].Value?.ToString() ?? string.Empty;
+                        TBSyukkoSyosaiID.Text = row.Cells["出庫詳細ID"].Value?.ToString() ?? string.Empty;
                     }
                     // 各テキストボックスにデータを入力 (null許可)
                     TBSyukkoIDS.Text = row.Cells["出庫ID"].Value?.ToString() ?? string.Empty;
-                    TBSyohinId.Text = row.Cells["商品ID"].Value?.ToString() ?? string.Empty;
+                    TBSyohinID.Text = row.Cells["商品ID"].Value?.ToString() ?? string.Empty;
                     TBSuryou.Text = row.Cells["数量"].Value?.ToString() ?? string.Empty;
                 }
             }
@@ -985,13 +987,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void IssueConfirm(int orderId, int SyId)
+        private void IssueConfirm(int orderID, int SyID)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
-                var syukko = context.TSyukkos.SingleOrDefault(o => o.SyId == SyId);
+                var syukko = context.TSyukkos.SingleOrDefault(o => o.SyID == SyID);
 
                 if (syukko == null)
                 {
@@ -1001,10 +1003,10 @@ namespace SalesManagement_SysDev
                 var newArrival = new TArrival
                 {
 
-                    EmId = null,  // 社員ID
-                    SoId = syukko.SoId,  // 営業所ID    
-                    ClId = syukko.ClId,  // 顧客ID    
-                    OrId = syukko.OrId,  // 受注ID 
+                    EmID = null,  // 社員ID
+                    SoID = syukko.SoID,  // 営業所ID    
+                    ClID = syukko.ClID,  // 顧客ID    
+                    OrID = syukko.OrID,  // 受注ID 
                     ArDate = null, // 注文日    
                     ArStateFlag = 0,
                     ArFlag = 0
@@ -1019,11 +1021,11 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("TArrivalへの登録に失敗しました: " + ex.Message);
                 }
-                var syukkoDetail = context.TSyukkoDetails.SingleOrDefault(o => o.SyId == syukko.SyId);
+                var syukkoDetail = context.TSyukkoDetails.SingleOrDefault(o => o.SyID == syukko.SyID);
                 var newArrivalDetail = new TArrivalDetail
                 {
-                    ArId = newArrival.ArId,
-                    PrId = syukkoDetail.PrId,
+                    ArID = newArrival.ArID,
+                    PrID = syukkoDetail.PrID,
                     ArQuantity = syukkoDetail.SyQuantity
                 };
                 try
@@ -1041,24 +1043,24 @@ namespace SalesManagement_SysDev
 
 
         // パネル内のすべてのコントロールにEnterイベントを追加
-        private void AddControlEventHandlers(Control panel, int panelId)
+        private void AddControlEventHandlers(Control panel, int panelID)
         {
             foreach (Control control in panel.Controls)
             {
                 // コントロールにEnterイベントを追加
-                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelID);
             }
         }
 
         // コントロールが選択（フォーカス）された時
-        private void Control_Enter(object sender, EventArgs e, int panelId)
+        private void Control_Enter(object sender, EventArgs e, int panelID)
         {
             // 異なるパネルに移動したときのみイベントを発生させる
-            if (panelId != lastFocusedPanelId)
+            if (panelID != lastFocusedPanelID)
             {
                 ToggleIssueSelection();
                 UpdateFlagButtonText();
-                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
+                lastFocusedPanelID = panelID; // 現在のパネルIDを更新
             }
         }
         //↓以下北島匙投げゾーン
@@ -1071,33 +1073,33 @@ namespace SalesManagement_SysDev
                 textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
             }
         }
-        private void TBSyukkoId_TextChanged(object sender, EventArgs e)
+        private void TBSyukkoID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBShainId_TextChanged(object sender, EventArgs e)
+        private void TBShainID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBKokyakuId_TextChanged(object sender, EventArgs e)
+        private void TBKokyakuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBShopId_TextChanged(object sender, EventArgs e)
+        private void TBShopID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
 
-        private void TBJyutyuId_TextChanged(object sender, EventArgs e)
+        private void TBJyutyuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
 
-        private void TBSyukkoSyosaiId_TextChanged(object sender, EventArgs e)
+        private void TBSyukkoSyosaiID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
@@ -1107,7 +1109,7 @@ namespace SalesManagement_SysDev
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBSyohinId_TextChanged(object sender, EventArgs e)
+        private void TBSyohinID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
@@ -1124,23 +1126,43 @@ namespace SalesManagement_SysDev
                     tbfalse();
                     break;
                 default:
-                    TBShainId.BackColor = SystemColors.Window;
-                    TBKokyakuId.BackColor = SystemColors.Window;
-                    TBShopId.BackColor = SystemColors.Window;
-                    TBJyutyuId.BackColor = SystemColors.Window;
+                    TBSyukkoID.BackColor = SystemColors.Window;
+                    TBShainID.BackColor = SystemColors.Window;
+                    TBKokyakuID.BackColor = SystemColors.Window;
+                    TBShopID.BackColor = SystemColors.Window;
+                    TBJyutyuID.BackColor = SystemColors.Window;
 
-                    TBJyutyuId.BackColor = SystemColors.Window;
+                    TBJyutyuID.BackColor = SystemColors.Window;
                     TBSyukkoIDS.BackColor = SystemColors.Window;
-                    TBSyohinId.BackColor = SystemColors.Window;
+                    TBSyohinID.BackColor = SystemColors.Window;
                     TBSuryou.BackColor = SystemColors.Window;
                     break;
             }
 
         }
-
-        private void b_lss_Click(object sender, EventArgs e)
+        private void SetupNumericOnlyTextBoxes()
         {
+            // 対象のテキストボックスのみイベントを追加
+            TBSyukkoID.KeyPress += NumericTextBox_KeyPress;
+            TBShainID.KeyPress += NumericTextBox_KeyPress;
+            TBKokyakuID.KeyPress += NumericTextBox_KeyPress;
+            TBShopID.KeyPress += NumericTextBox_KeyPress;
+            TBJyutyuID.KeyPress += NumericTextBox_KeyPress;
 
+            TBJyutyuID.KeyPress += NumericTextBox_KeyPress;
+            TBSyukkoIDS.KeyPress += NumericTextBox_KeyPress;
+            TBSyohinID.KeyPress += NumericTextBox_KeyPress;
+            TBSuryou.KeyPress += NumericTextBox_KeyPress;
+        }
+
+        // 半角数字のみを許可するKeyPressイベントハンドラ
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 

@@ -25,7 +25,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
 
-        private int lastFocusedPanelId = 1;
+        private int lastFocusedPanelID = 1;
         public arrival(Form mainForm)
         {
             InitializeComponent();
@@ -63,6 +63,8 @@ namespace SalesManagement_SysDev
                 b_reg.Enabled = false;
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
+
+            SetupNumericOnlyTextBoxes();
         }
 
         // メインメニューに戻る 
@@ -81,11 +83,11 @@ namespace SalesManagement_SysDev
 
         private void ClearText()
         {
-            TBNyuukaId.Text = "";
-            TBShopId.Text = "";
-            TBShainId.Text = "";
-            TBKokyakuId.Text = "";
-            TBJyutyuId.Text = "";
+            TBNyuukaID.Text = "";
+            TBShopID.Text = "";
+            TBShainID.Text = "";
+            TBKokyakuID.Text = "";
+            TBJyutyuID.Text = "";
             NyuukaFlag.Checked = false;
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
@@ -157,18 +159,18 @@ namespace SalesManagement_SysDev
 
         private void tbfalse()
         {
-            TBNyuukaId.Enabled = false;
+            TBNyuukaID.Enabled = false;
             TBNyukaSyosaiID.Enabled = false;
-            TBNyuukaId.BackColor = Color.Gray;
+            TBNyuukaID.BackColor = Color.Gray;
             TBNyukaSyosaiID.BackColor = Color.Gray;
-            TBNyuukaId.Text = "";
+            TBNyuukaID.Text = "";
             TBNyukaSyosaiID.Text = "";
         }
         private void tbtrue()
         {
-            TBNyuukaId.Enabled = true;
+            TBNyuukaID.Enabled = true;
             TBNyukaSyosaiID.Enabled = true;
-            TBNyuukaId.BackColor = Color.White;
+            TBNyuukaID.BackColor = Color.White;
             TBNyukaSyosaiID.BackColor = Color.White;
         }
         private void b_kakutei_Click(object sender, EventArgs e)
@@ -243,72 +245,72 @@ namespace SalesManagement_SysDev
 
         private void UpdateArrival()
         {
-            string ArId = TBNyuukaId.Text;
-            string ShopId = TBShopId.Text;
-            string ShainId = TBShainId.Text;
-            string KokyakuId = TBKokyakuId.Text;
-            string JyutyuId = TBJyutyuId.Text;
+            string ArID = TBNyuukaID.Text;
+            string ShopID = TBShopID.Text;
+            string ShainID = TBShainID.Text;
+            string KokyakuID = TBKokyakuID.Text;
+            string JyutyuID = TBJyutyuID.Text;
             bool NyuukaFlg = NyuukaFlag.Checked;
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
             DateTime Nyuukadate = date.Value;
 
-            if (TBNyuukaId.Text == "")
+            if (TBNyuukaID.Text == "")
             {
-                TBNyuukaId.BackColor = Color.Yellow;
-                TBNyuukaId.Focus();
+                TBNyuukaID.BackColor = Color.Yellow;
+                TBNyuukaID.Focus();
                 MessageBox.Show("入荷IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBShopId.Text == "")
+            if (TBShopID.Text == "")
             {
-                TBShopId.BackColor = Color.Yellow;
-                TBShopId.Focus();
+                TBShopID.BackColor = Color.Yellow;
+                TBShopID.Focus();
                 MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBShainId.Text == "")
+            if (TBShainID.Text == "")
             {
-                TBShainId.BackColor = Color.Yellow;
-                TBShainId.Focus();
+                TBShainID.BackColor = Color.Yellow;
+                TBShainID.Focus();
                 MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBKokyakuId.Text == "")
+            if (TBKokyakuID.Text == "")
             {
-                TBKokyakuId.BackColor = Color.Yellow;
-                TBKokyakuId.Focus();
+                TBKokyakuID.BackColor = Color.Yellow;
+                TBKokyakuID.Focus();
                 MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBJyutyuId.Text == "")
+            if (TBJyutyuID.Text == "")
             {
-                TBJyutyuId.BackColor = Color.Yellow;
-                TBJyutyuId.Focus();
+                TBJyutyuID.BackColor = Color.Yellow;
+                TBJyutyuID.Focus();
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBShainId.Text != empID)
+            if (TBShainID.Text != empID)
             {
                 MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
-                TBShainId.BackColor = Color.Yellow;
-                TBShainId.Focus();
+                TBShainID.BackColor = Color.Yellow;
+                TBShainID.Focus();
                 return;
             }
 
             using (var context = new SalesManagementContext())
             {
-                var arrival = context.TArrivals.SingleOrDefault(o => o.ArId.ToString() == ArId);
+                var arrival = context.TArrivals.SingleOrDefault(o => o.ArID.ToString() == ArID);
                 if (arrival != null)
                 {
-                    arrival.SoId = int.Parse(ShopId);
-                    arrival.EmId = int.Parse(ShainId);
-                    arrival.ClId = int.Parse(KokyakuId);
-                    arrival.OrId = int.Parse(JyutyuId);
+                    arrival.SoID = int.Parse(ShopID);
+                    arrival.EmID = int.Parse(ShainID);
+                    arrival.ClID = int.Parse(KokyakuID);
+                    arrival.OrID = int.Parse(JyutyuID);
                     arrival.ArDate = Nyuukadate;
                     arrival.ArStateFlag = NyuukaFlg ? 2 : 0;
                     arrival.ArFlag = DelFlg ? 1 : 0;
@@ -317,14 +319,14 @@ namespace SalesManagement_SysDev
                     if (NyuukaFlg)
                     {
                         var arrivalDetailsExist = context.TArrivalDetails
-                            .Any(ad => ad.ArId == arrival.ArId);
+                            .Any(ad => ad.ArID == arrival.ArID);
                         if (!arrivalDetailsExist)
                         {
                             MessageBox.Show("入荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
-                        ArrivalConfirm(arrival.ArId);
+                        ArrivalConfirm(arrival.ArID);
                     }
 
                     try
@@ -359,11 +361,11 @@ namespace SalesManagement_SysDev
 
         private void RegisterArrival()
         {
-            string NyuukaId = TBNyuukaId.Text;
-            string ShopId = TBShopId.Text;
-            string ShainId = TBShainId.Text;
-            string KokyakuId = TBKokyakuId.Text;
-            string JyutyuId = TBJyutyuId.Text;
+            string NyuukaID = TBNyuukaID.Text;
+            string ShopID = TBShopID.Text;
+            string ShainID = TBShainID.Text;
+            string KokyakuID = TBKokyakuID.Text;
+            string JyutyuID = TBJyutyuID.Text;
             bool NyuukaFlg = NyuukaFlag.Checked;
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
@@ -373,88 +375,88 @@ namespace SalesManagement_SysDev
             {
                 // 営業所IDの存在確認
                 int shop;
-                if (!int.TryParse(ShopId, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
                     MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShopId.BackColor = Color.Yellow;
-                    TBShopId.Focus();
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
                     return;
                 }
 
                 // 社員IDの存在確認
-                int employeeId;
-                if (!int.TryParse(ShainId, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                int employeeID;
+                if (!int.TryParse(ShainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShainId.BackColor = Color.Yellow;
-                    TBShainId.Focus();
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     return;
                 }
 
                 // 顧客IDの存在確認
                 int kokyaku;
-                if (!int.TryParse(KokyakuId, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
+                if (!int.TryParse(KokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
                 {
                     MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBKokyakuId.BackColor = Color.Yellow;
-                    TBKokyakuId.Focus();
+                    TBKokyakuID.BackColor = Color.Yellow;
+                    TBKokyakuID.Focus();
                     return;
                 }
 
                 // 受注IDの存在確認
                 int juchu;
-                if (!int.TryParse(JyutyuId, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
+                if (!int.TryParse(JyutyuID, out juchu) || !context.TOrders.Any(j => j.OrID == juchu))
                 {
                     MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBJyutyuId.BackColor = Color.Yellow;
-                    TBJyutyuId.Focus();
+                    TBJyutyuID.BackColor = Color.Yellow;
+                    TBJyutyuID.Focus();
                     return;
                 }
 
-                if (TBShopId.Text == "")
+                if (TBShopID.Text == "")
                 {
-                    TBShopId.BackColor = Color.Yellow;
-                    TBShopId.Focus();
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (TBShainId.Text == "")
+                if (TBShainID.Text == "")
                 {
-                    TBShainId.BackColor = Color.Yellow;
-                    TBShainId.Focus();
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (TBKokyakuId.Text == "")
+                if (TBKokyakuID.Text == "")
                 {
-                    TBKokyakuId.BackColor = Color.Yellow;
-                    TBKokyakuId.Focus();
+                    TBKokyakuID.BackColor = Color.Yellow;
+                    TBKokyakuID.Focus();
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (TBJyutyuId.Text == "")
+                if (TBJyutyuID.Text == "")
                 {
-                    TBJyutyuId.BackColor = Color.Yellow;
-                    TBJyutyuId.Focus();
+                    TBJyutyuID.BackColor = Color.Yellow;
+                    TBJyutyuID.Focus();
                     MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (TBShainId.Text != empID)
+                if (TBShainID.Text != empID)
                 {
                     MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
-                    TBShainId.BackColor = Color.Yellow;
-                    TBShainId.Focus();
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     return;
                 }
 
                 
 
                 // 入荷が既に存在するか確認
-                var arrival = context.TArrivals.SingleOrDefault(o => o.OrId.ToString() == NyuukaId);
+                var arrival = context.TArrivals.SingleOrDefault(o => o.OrID.ToString() == NyuukaID);
                 if (arrival == null)
                 {
                     try
@@ -462,10 +464,10 @@ namespace SalesManagement_SysDev
                         // 新しい入荷情報を作成
                         var newArrival = new TArrival
                         {
-                            SoId = int.Parse(ShopId),                           // 店舗ID
-                            EmId = int.Parse(ShainId),                           // 社員ID（null許容）
-                            ClId = int.Parse(KokyakuId),                        // クライアントID
-                            OrId = int.Parse(JyutyuId),                         // 受注ID
+                            SoID = int.Parse(ShopID),                           // 店舗ID
+                            EmID = int.Parse(ShainID),                           // 社員ID（null許容）
+                            ClID = int.Parse(KokyakuID),                        // クライアントID
+                            OrID = int.Parse(JyutyuID),                         // 受注ID
                             ArDate = Nyuukodate,                                // 入荷日
                             ArStateFlag = NyuukaFlg ? 2 : 0,                    // 入荷状態フラグ
                             ArFlag = DelFlg ? 1 : 0,                            // 削除フラグ
@@ -480,7 +482,7 @@ namespace SalesManagement_SysDev
                         {
                             // 入荷詳細が存在するか確認
                             var arrivalDetailsExist = context.TArrivalDetails
-                                .Any(ad => ad.ArId == newArrival.ArId); // ArId が一致する入荷詳細が存在するか確認
+                                .Any(ad => ad.ArID == newArrival.ArID); // ArID が一致する入荷詳細が存在するか確認
 
                             if (!arrivalDetailsExist)
                             {
@@ -490,7 +492,7 @@ namespace SalesManagement_SysDev
                             }
 
                             // 入荷詳細が存在する場合、入荷確認処理を実行
-                            ArrivalConfirm(newArrival.ArId);
+                            ArrivalConfirm(newArrival.ArID);
                         }
 
                         // 新規入荷情報を保存
@@ -543,11 +545,11 @@ namespace SalesManagement_SysDev
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = arrivals.Select(o => new
                     {
-                        入荷ID = o.ArId,            // 入荷ID
-                        営業所ID = o.SoId,              // 店舗ID
-                        社員ID = o.EmId,           // 社員ID
-                        顧客ID = o.ClId,             // クライアントID
-                        受注ID = o.OrId,              // 受注ID
+                        入荷ID = o.ArID,            // 入荷ID
+                        営業所ID = o.SoID,              // 店舗ID
+                        社員ID = o.EmID,           // 社員ID
+                        顧客ID = o.ClID,             // クライアントID
+                        受注ID = o.OrID,              // 受注ID
                         入荷日 = o.ArDate,        // 入荷日
                         状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
                         非表示フラグ = o.ArFlag,         // 削除フラグ
@@ -566,49 +568,49 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得
-                string nyuukaId = TBNyuukaId.Text;
-                string shopId = TBShopId.Text;
-                string shainId = TBShainId.Text;
-                string kokyakuId = TBKokyakuId.Text;
-                string jyutyuId = TBJyutyuId.Text;
+                string nyuukaID = TBNyuukaID.Text;
+                string shopID = TBShopID.Text;
+                string shainID = TBShainID.Text;
+                string kokyakuID = TBKokyakuID.Text;
+                string JyutyuID = TBJyutyuID.Text;
                 DateTime? nyuukodate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
 
                 // 基本的なクエリ
                 var query = context.TArrivals.AsQueryable();
 
                 // 入荷IDを検索条件に追加
-                if (!string.IsNullOrEmpty(nyuukaId))
+                if (!string.IsNullOrEmpty(nyuukaID))
                 {
-                    int arId = int.Parse(nyuukaId);
-                    query = query.Where(arrival => arrival.ArId == arId);
+                    int arID = int.Parse(nyuukaID);
+                    query = query.Where(arrival => arrival.ArID == arID);
                 }
 
                 // 店舗IDを検索条件に追加
-                if (!string.IsNullOrEmpty(shopId))
+                if (!string.IsNullOrEmpty(shopID))
                 {
-                    int soId = int.Parse(shopId);
-                    query = query.Where(arrival => arrival.SoId == soId);
+                    int soID = int.Parse(shopID);
+                    query = query.Where(arrival => arrival.SoID == soID);
                 }
 
                 // 社員IDを検索条件に追加
-                if (!string.IsNullOrEmpty(shainId))
+                if (!string.IsNullOrEmpty(shainID))
                 {
-                    int emId = int.Parse(shainId);
-                    query = query.Where(arrival => arrival.EmId == emId);
+                    int emID = int.Parse(shainID);
+                    query = query.Where(arrival => arrival.EmID == emID);
                 }
 
                 // 顧客IDを検索条件に追加
-                if (!string.IsNullOrEmpty(kokyakuId))
+                if (!string.IsNullOrEmpty(kokyakuID))
                 {
-                    int clId = int.Parse(kokyakuId);
-                    query = query.Where(arrival => arrival.ClId == clId);
+                    int clID = int.Parse(kokyakuID);
+                    query = query.Where(arrival => arrival.ClID == clID);
                 }
 
                 // 受注IDを検索条件に追加
-                if (!string.IsNullOrEmpty(jyutyuId))
+                if (!string.IsNullOrEmpty(JyutyuID))
                 {
-                    int orId = int.Parse(jyutyuId);
-                    query = query.Where(arrival => arrival.OrId == orId);
+                    int orID = int.Parse(JyutyuID);
+                    query = query.Where(arrival => arrival.OrID == orID);
                 }
 
                 // 入荷日を検索条件に追加（チェックボックスがチェックされている場合）
@@ -625,11 +627,11 @@ namespace SalesManagement_SysDev
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = arrivals.Select(o => new
                     {
-                        入荷ID = o.ArId,            // 入荷ID
-                        営業所ID = o.SoId,              // 店舗ID
-                        社員ID = o.EmId,           // 社員ID
-                        顧客ID = o.ClId,             // クライアントID
-                        受注ID = o.OrId,              // 受注ID
+                        入荷ID = o.ArID,            // 入荷ID
+                        営業所ID = o.SoID,              // 店舗ID
+                        社員ID = o.EmID,           // 社員ID
+                        顧客ID = o.ClID,             // クライアントID
+                        受注ID = o.OrID,              // 受注ID
                         入荷日 = o.ArDate,        // 入荷日
                         状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
                         非表示フラグ = o.ArFlag,         // 削除フラグ
@@ -686,11 +688,11 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var arrivalDetail = context.TArrivalDetails.SingleOrDefault(od => od.ArDetailId.ToString() == nyuukaSyosaiID);
+                var arrivalDetail = context.TArrivalDetails.SingleOrDefault(od => od.ArDetailID.ToString() == nyuukaSyosaiID);
                 if (arrivalDetail != null)
                 {
-                    arrivalDetail.ArId = int.Parse(nyuukaID);
-                    arrivalDetail.PrId = int.Parse(syohinID);
+                    arrivalDetail.ArID = int.Parse(nyuukaID);
+                    arrivalDetail.PrID = int.Parse(syohinID);
                     arrivalDetail.ArQuantity = int.Parse(suryou);
 
                     context.SaveChanges();
@@ -715,10 +717,10 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int nyuuka;
-                if (!int.TryParse(NyuukaID, out nyuuka) || !context.TArrivals.Any(n => n.ArId == nyuuka))
+                if (!int.TryParse(NyuukaID, out nyuuka) || !context.TArrivals.Any(n => n.ArID == nyuuka))
                 {
-                    TBNyuukaId.BackColor = Color.Yellow;
-                    TBNyuukaId.Focus();
+                    TBNyuukaID.BackColor = Color.Yellow;
+                    TBNyuukaID.Focus();
                     MessageBox.Show("入荷IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -747,17 +749,17 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認 
+                // EmIDがMEmployeeテーブルに存在するか確認 
                 int shouhin;
-                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                 {
-                    TBNyuukaId.BackColor = Color.Yellow;
-                    TBNyuukaId.Focus();
+                    TBNyuukaID.BackColor = Color.Yellow;
+                    TBNyuukaID.Focus();
                     MessageBox.Show("該当する入荷IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                var existingOrderDetail = context.TArrivalDetails.FirstOrDefault(o => o.ArId == nyuuka);
+                var existingOrderDetail = context.TArrivalDetails.FirstOrDefault(o => o.ArID == nyuuka);
                 if (existingOrderDetail != null)
                 {
                     MessageBox.Show("この入荷IDにはすでに入荷詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -765,8 +767,8 @@ namespace SalesManagement_SysDev
                 }
                 var newArrivalDetail = new TArrivalDetail
                 {
-                    ArId = int.Parse(NyuukaID),
-                    PrId = int.Parse(syohinID),
+                    ArID = int.Parse(NyuukaID),
+                    PrID = int.Parse(syohinID),
                     ArQuantity = int.Parse(suryou),
                 };
 
@@ -790,7 +792,7 @@ namespace SalesManagement_SysDev
                         : ArrivalDetails.Where(od =>
                         {
                             var Arrival
-                            = context.TArrivals.FirstOrDefault(o => o.ArId == od.ArId);
+                            = context.TArrivals.FirstOrDefault(o => o.ArID == od.ArID);
 
                             return Arrival == null || (Arrival.ArFlag != 1 && Arrival.ArStateFlag != 2);
                         }).ToList();
@@ -798,9 +800,9 @@ namespace SalesManagement_SysDev
 
                     dataGridView2.DataSource = visibleArrivalDetails.Select(od => new
                     {
-                        入荷詳細ID = od.ArDetailId,
-                        入荷ID = od.ArId,
-                        商品ID = od.PrId,
+                        入荷詳細ID = od.ArDetailID,
+                        入荷ID = od.ArID,
+                        商品ID = od.PrID,
                         数量 = od.ArQuantity,
                     }).ToList();
                 }
@@ -828,19 +830,19 @@ namespace SalesManagement_SysDev
                 if (!string.IsNullOrEmpty(nyuukaSyosaiID))
                 {
                     // 入荷詳細IDを検索条件に追加
-                    query = query.Where(od => od.ArDetailId.ToString() == nyuukaSyosaiID);
+                    query = query.Where(od => od.ArDetailID.ToString() == nyuukaSyosaiID);
                 }
 
                 if (!string.IsNullOrEmpty(nyuukaID))
                 {
                     //入荷IDを検索条件に追加
-                    query = query.Where(od => od.ArId.ToString() == nyuukaID);
+                    query = query.Where(od => od.ArID.ToString() == nyuukaID);
                 }
 
                 if (!string.IsNullOrEmpty(syohinID))
                 {
                     // 商品IDを検索条件に追加
-                    query = query.Where(od => od.PrId.ToString() == syohinID);
+                    query = query.Where(od => od.PrID.ToString() == syohinID);
                 }
 
                 if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
@@ -856,9 +858,9 @@ namespace SalesManagement_SysDev
                 {
                     dataGridView2.DataSource = arrivalDetails.Select(od => new
                     {
-                        入荷詳細ID = od.ArDetailId,
-                        入荷ID = od.ArId,
-                        商品ID = od.PrId,
+                        入荷詳細ID = od.ArDetailID,
+                        入荷ID = od.ArID,
+                        商品ID = od.PrID,
                         数量 = od.ArQuantity,
                     }).ToList();
                 }
@@ -886,9 +888,9 @@ namespace SalesManagement_SysDev
             }
 
             if (arrivalFlag == "←通常")
-                lastFocusedPanelId = 1;
+                lastFocusedPanelID = 1;
             else if (arrivalFlag == "詳細→")
-                lastFocusedPanelId = 2;
+                lastFocusedPanelID = 2;
         }
 
         private void b_FormSelector_Click(object sender, EventArgs e)
@@ -920,17 +922,17 @@ namespace SalesManagement_SysDev
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
                     if (label2.Text == "登録")
                     {
-                        TBNyuukaId.Text = "";
+                        TBNyuukaID.Text = "";
                     }
                     else
                     {
-                        TBNyuukaId.Text = row.Cells["入荷ID"].Value?.ToString() ?? string.Empty;
+                        TBNyuukaID.Text = row.Cells["入荷ID"].Value?.ToString() ?? string.Empty;
                     }
                     // 各テキストボックスにデータを入力 (null許可)
-                    TBShopId.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
-                    TBShainId.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
-                    TBKokyakuId.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
-                    TBJyutyuId.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                    TBShopID.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
+                    TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
+                    TBKokyakuID.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
+                    TBJyutyuID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
                     date.Value = row.Cells["入荷日"].Value != null ?
                                  Convert.ToDateTime(row.Cells["入荷日"].Value) :
                                  DateTime.Today;  // nullなら現在日付を設定
@@ -975,13 +977,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void ArrivalConfirm(int ArId)
+        private void ArrivalConfirm(int ArID)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
-                var arrival = context.TArrivals.SingleOrDefault(o => o.ArId == ArId);
+                var arrival = context.TArrivals.SingleOrDefault(o => o.ArID == ArID);
 
                 if (arrival == null)
                 {
@@ -992,10 +994,10 @@ namespace SalesManagement_SysDev
                 var newShipment = new TShipment
                 {
 
-                    EmId = null,  // 社員ID
-                    SoId = arrival.SoId,  // 営業所ID    
-                    ClId = arrival.ClId,  // 顧客ID    
-                    OrId = arrival.OrId,  // 受注ID 
+                    EmID = null,  // 社員ID
+                    SoID = arrival.SoID,  // 営業所ID    
+                    ClID = arrival.ClID,  // 顧客ID    
+                    OrID = arrival.OrID,  // 受注ID 
                     ShFinishDate = null, // 注文日    
                     ShStateFlag = 0,
                     ShFlag = 0
@@ -1011,20 +1013,20 @@ namespace SalesManagement_SysDev
                     throw new Exception("TShipmentへの登録に失敗しました: " + ex.Message);
                 }
 
-                var arrivalDetail = context.TArrivalDetails.SingleOrDefault(o => o.ArId == arrival.ArId);
+                var arrivalDetail = context.TArrivalDetails.SingleOrDefault(o => o.ArID == arrival.ArID);
                 var newShipmentDetail = new TShipmentDetail
                 {
-                    // `PrId` が nullable 型のため、`Value` プロパティを使って値を取得
-                    // `PrId` が null の場合、0 を代入
-                    ShId = newShipment.ShId,
-                    PrId = arrivalDetail.PrId ?? 0,  // null の場合、0 を代入
+                    // `PrID` が nullable 型のため、`Value` プロパティを使って値を取得
+                    // `PrID` が null の場合、0 を代入
+                    ShID = newShipment.ShID,
+                    PrID = arrivalDetail.PrID ?? 0,  // null の場合、0 を代入
                     ShQuantity = arrivalDetail.ArQuantity ?? 0  // null の場合、0 を代入
 
 
                 };
-                if (newShipmentDetail.PrId == 0 || newShipmentDetail.ShQuantity == 0)
+                if (newShipmentDetail.PrID == 0 || newShipmentDetail.ShQuantity == 0)
                 {
-                    MessageBox.Show("PrIdかShquantityが0で入力されています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("PrIDかShquantityが0で入力されています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 try
@@ -1040,24 +1042,24 @@ namespace SalesManagement_SysDev
         }
 
         // パネル内のすべてのコントロールにEnterイベントを追加
-        private void AddControlEventHandlers(Control panel, int panelId)
+        private void AddControlEventHandlers(Control panel, int panelID)
         {
             foreach (Control control in panel.Controls)
             {
                 // コントロールにEnterイベントを追加
-                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelID);
             }
         }
 
         // コントロールが選択（フォーカス）された時
-        private void Control_Enter(object sender, EventArgs e, int panelId)
+        private void Control_Enter(object sender, EventArgs e, int panelID)
         {
             // 異なるパネルに移動したときのみイベントを発生させる
-            if (panelId != lastFocusedPanelId)
+            if (panelID != lastFocusedPanelID)
             {
                 ToggleArrivalSelection();
                 UpdateFlagButtonText();
-                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
+                lastFocusedPanelID = panelID; // 現在のパネルIDを更新
             }
         }
         //↓以下北島匙投げゾーン
@@ -1070,27 +1072,27 @@ namespace SalesManagement_SysDev
                 textBox.SelectionStart = maxLength;  // カーソル位置を末尾に設定
             }
         }
-        private void TBNyuukaId_TextChanged(object sender, EventArgs e)
+        private void TBNyuukaID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBShopId_TextChanged(object sender, EventArgs e)
+        private void TBShopID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
 
-        private void TBShainId_TextChanged(object sender, EventArgs e)
+        private void TBShainID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBKokyakuId_TextChanged(object sender, EventArgs e)
+        private void TBKokyakuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBJyutyuId_TextChanged(object sender, EventArgs e)
+        private void TBJyutyuID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 6);
         }
@@ -1122,16 +1124,39 @@ namespace SalesManagement_SysDev
                     tbfalse();
                     break;
                 default:
-                    TBNyuukaId.BackColor = SystemColors.Window;
-                    TBShopId.BackColor = SystemColors.Window;
-                    TBShainId.BackColor = SystemColors.Window;
-                    TBKokyakuId.BackColor = SystemColors.Window;
-                    TBJyutyuId.BackColor = SystemColors.Window;
+                    TBNyuukaID.BackColor = SystemColors.Window;
+                    TBShopID.BackColor = SystemColors.Window;
+                    TBShainID.BackColor = SystemColors.Window;
+                    TBKokyakuID.BackColor = SystemColors.Window;
+                    TBJyutyuID.BackColor = SystemColors.Window;
                     TBNyukaSyosaiID.BackColor = SystemColors.Window;
                     TBNyuukaIDS.BackColor = SystemColors.Window;
                     TBSyohinID.BackColor = SystemColors.Window;
                     TBSuryou.BackColor = SystemColors.Window;
                     break;
+            }
+        }
+        private void SetupNumericOnlyTextBoxes()
+        {
+            // 対象のテキストボックスのみイベントを追加
+            TBNyuukaID.KeyPress += NumericTextBox_KeyPress;
+            TBShopID.KeyPress += NumericTextBox_KeyPress;
+            TBShainID.KeyPress += NumericTextBox_KeyPress;
+            TBKokyakuID.KeyPress += NumericTextBox_KeyPress;
+            TBJyutyuID.KeyPress += NumericTextBox_KeyPress;
+            TBNyukaSyosaiID.KeyPress += NumericTextBox_KeyPress;
+            TBNyuukaIDS.KeyPress += NumericTextBox_KeyPress;
+            TBSyohinID.KeyPress += NumericTextBox_KeyPress;
+            TBSuryou.KeyPress += NumericTextBox_KeyPress;
+        }
+
+        // 半角数字のみを許可するKeyPressイベントハンドラ
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
 

@@ -5,7 +5,7 @@ namespace SalesManagement_SysDev;
 
 public partial class MSalesOffice
 {
-    public int SoId { get; set; }
+    public int SoID { get; set; }
 
     public string SoName { get; set; } = null!;
 

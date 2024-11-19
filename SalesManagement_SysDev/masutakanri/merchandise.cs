@@ -83,7 +83,7 @@ namespace SalesManagement_SysDev
         {
             TBSell.Text = "";
             TBSyohinID.Text = "";
-            TBMakerId.Text = "";
+            TBMakerID.Text = "";
             TBSyohinName.Text = "";
             TBSafeNum.Text = "";
             TBSyohinName.Text = "";
@@ -160,7 +160,7 @@ namespace SalesManagement_SysDev
         private void Updatemerchandise()
         {
             string SyohinID = TBSyohinID.Text;
-            string MakerID = TBMakerId.Text;
+            string MakerID = TBMakerID.Text;
             string SyohinName = TBSyohinName.Text;
             string Sell = TBSell.Text;
             string SafeNum = TBSafeNum.Text;
@@ -177,10 +177,10 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBMakerId.Text == null)
+            if (TBMakerID.Text == null)
             {
-                TBMakerId.BackColor = Color.Yellow;
-                TBMakerId.Focus();
+                TBMakerID.BackColor = Color.Yellow;
+                TBMakerID.Focus();
                 MessageBox.Show("メーカーIDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -229,15 +229,15 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var merchandise = context.MProducts.SingleOrDefault(e => e.PrId.ToString() == SyohinID);
+                var merchandise = context.MProducts.SingleOrDefault(e => e.PrID.ToString() == SyohinID);
                 if (merchandise != null)
                 {
-                    merchandise.PrId = int.Parse(SyohinID);
-                    merchandise.MaId = int.Parse(MakerID);
+                    merchandise.PrID = int.Parse(SyohinID);
+                    merchandise.MaID = int.Parse(MakerID);
                     merchandise.PrName = SyohinName;
                     merchandise.Price = int.Parse(Sell);
                     merchandise.PrSafetyStock = int.Parse(SafeNum);
-                    merchandise.ScId = int.Parse(Sclass);
+                    merchandise.ScID = int.Parse(Sclass);
                     merchandise.PrReleaseDate = SyohinDate;
                     merchandise.PrModelNumber = TModel;
                     merchandise.PrColor = TColor;
@@ -257,7 +257,7 @@ namespace SalesManagement_SysDev
         private void Registermerchandise()
         {
             string SyohinID = TBSyohinID.Text;
-            string MakerID = TBMakerId.Text;
+            string MakerID = TBMakerID.Text;
             string SyohinName = TBSyohinName.Text;
             string Sell = TBSell.Text;
             string SafeNum = TBSafeNum.Text;
@@ -271,24 +271,24 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int maker;
-                if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaId == maker))
+                if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaID == maker))
                 {
                     MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // EmIDがMEmployeeテーブルに存在するか確認
                 int shoubunrui;
-                if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScId == shoubunrui))
+                if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScID == shoubunrui))
                 {
                     MessageBox.Show("小分類IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (TBMakerId.Text == "")
+                if (TBMakerID.Text == "")
                 {
-                    TBMakerId.BackColor = Color.Yellow;
-                    TBMakerId.Focus();
+                    TBMakerID.BackColor = Color.Yellow;
+                    TBMakerID.Focus();
                     MessageBox.Show("メーカーIDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -336,11 +336,11 @@ namespace SalesManagement_SysDev
                 }
                 var newProducts = new MProduct
                 {
-                    MaId = int.Parse(MakerID),
+                    MaID = int.Parse(MakerID),
                     PrName = SyohinName,
                     Price = int.Parse(Sell),
                     PrSafetyStock = int.Parse(SafeNum),
-                    ScId = int.Parse(Sclass),
+                    ScID = int.Parse(Sclass),
                     PrReleaseDate = SyohinDate,
                     PrModelNumber = TModel,
                     PrColor = TColor,
@@ -369,12 +369,12 @@ namespace SalesManagement_SysDev
 
                     dataGridView1.DataSource = merchandises.Select(m => new
                     {
-                        商品ID = m.PrId,
-                        メーカーID = m.MaId,
+                        商品ID = m.PrID,
+                        メーカーID = m.MaID,
                         商品名 = m.PrName,
                         値段 = m.Price,
                         安全在庫数 = m.PrSafetyStock,
-                        小分類ID = m.ScId,
+                        小分類ID = m.ScID,
                         型番 = m.PrModelNumber,
                         色 = m.PrColor,
                         発売日 = m.PrReleaseDate,
@@ -396,7 +396,7 @@ namespace SalesManagement_SysDev
             {
                 // 各テキストボックスの値を取得 
                 var SyohinID = TBSyohinID.Text.Trim();       // 商品
-                var MakerId = TBMakerId.Text.Trim();           // めーかー 
+                var MakerID = TBMakerID.Text.Trim();           // めーかー 
                 var SyohinName = TBSyohinName.Text.Trim();         //商品名
                 var Sell = TBSell.Text.Trim();     // 値段
                 var safe = TBSafeNum.Text.Trim();
@@ -411,13 +411,13 @@ namespace SalesManagement_SysDev
                 // 社員IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int parsedSyohinID))
                 {
-                    query = query.Where(m => m.PrId == parsedSyohinID);
+                    query = query.Where(m => m.PrID == parsedSyohinID);
                 }
 
                 // 商品名を検索条件に追加 
-                if (!string.IsNullOrEmpty(MakerId) && int.TryParse(MakerId, out int parsedMakerID))
+                if (!string.IsNullOrEmpty(MakerID) && int.TryParse(MakerID, out int parsedMakerID))
                 {
-                    query = query.Where(m => m.MaId == parsedMakerID);
+                    query = query.Where(m => m.MaID == parsedMakerID);
                 }
 
                 // 営業所IDを検索条件に追加 
@@ -439,7 +439,7 @@ namespace SalesManagement_SysDev
 
                 if (!string.IsNullOrEmpty(shou) && int.TryParse(shou, out int parsedshou))
                 {
-                    query = query.Where(m => m.ScId == parsedshou);
+                    query = query.Where(m => m.ScID == parsedshou);
                 }
 
                 // 担当者名を検索条件に追加 
@@ -464,12 +464,12 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = m.Select(m => new
                     {
-                        商品ID = m.PrId,
-                        メーカーID = m.MaId,
+                        商品ID = m.PrID,
+                        メーカーID = m.MaID,
                         商品名 = m.PrName,
                         値段 = m.Price,
                         安全在庫数 = m.PrSafetyStock,
-                        小分類ID = m.ScId,
+                        小分類ID = m.ScID,
                         型番 = m.PrModelNumber,
                         色 = m.PrColor,
                         発売日 = m.PrReleaseDate,
@@ -506,7 +506,7 @@ namespace SalesManagement_SysDev
                         TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     }
                     // 各テキストボックスにデータを入力
-                    TBMakerId.Text = row.Cells["メーカーID"].Value.ToString();
+                    TBMakerID.Text = row.Cells["メーカーID"].Value.ToString();
                     TBSyohinName.Text = row.Cells["商品名"].Value.ToString();
                     TBSell.Text = row.Cells["値段"].Value.ToString();
                     date.Value = Convert.ToDateTime(row.Cells["発売日"].Value);
@@ -539,7 +539,7 @@ namespace SalesManagement_SysDev
             LimitTextLength(sender as TextBox, 6);
         }
 
-        private void TBMakerId_TextChanged(object sender, EventArgs e)
+        private void TBMakerID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 4);
         }
@@ -582,7 +582,7 @@ namespace SalesManagement_SysDev
                     break;
                 default:
                     TBSyohinID.BackColor = SystemColors.Window;
-                    TBMakerId.BackColor = SystemColors.Window;
+                    TBMakerID.BackColor = SystemColors.Window;
                     TBSyohinName.BackColor = SystemColors.Window;
                     TBSell.BackColor = SystemColors.Window;
                     TBSafeNum.BackColor = SystemColors.Window;

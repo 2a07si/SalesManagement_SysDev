@@ -21,18 +21,18 @@ namespace SalesManagement_SysDev.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.20")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIDentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("SalesManagement_SysDev.LoginHistoryLog", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasColumnName("ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<bool>("IsSuccessful")
                         .HasColumnType("bit")
@@ -41,7 +41,7 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<DateTime>("LoginDateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("LoginId")
+                    b.Property<string>("LoginID")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -51,7 +51,7 @@ namespace SalesManagement_SysDev.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.HasKey("Id")
+                    b.HasKey("ID")
                         .HasName("PK_LoginHistoryLog");
 
                     b.ToTable("LoginHistoryLog", (string)null);
@@ -59,12 +59,12 @@ namespace SalesManagement_SysDev.Migrations
 
             modelBuilder.Entity("SalesManagement_SysDev.MClient", b =>
                 {
-                    b.Property<int>("ClId")
+                    b.Property<int>("ClID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ClID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClID"));
 
                     b.Property<string>("ClAddress")
                         .IsRequired()
@@ -98,21 +98,21 @@ namespace SalesManagement_SysDev.Migrations
                         .HasMaxLength(7)
                         .HasColumnType("nvarchar(7)");
 
-                    b.Property<int>("SoId")
+                    b.Property<int>("SoID")
                         .HasColumnType("int")
                         .HasColumnName("SoID");
 
-                    b.HasKey("ClId")
+                    b.HasKey("ClID")
                         .HasName("PK__M_Client__B1FCF8D58C35E4D2");
 
-                    b.HasIndex("SoId");
+                    b.HasIndex("SoID");
 
                     b.ToTable("M_Client", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.MEmployee", b =>
                 {
-                    b.Property<int>("EmId")
+                    b.Property<int>("EmID")
                         .HasColumnType("int")
                         .HasColumnName("EmID");
 
@@ -140,32 +140,32 @@ namespace SalesManagement_SysDev.Migrations
                         .HasMaxLength(13)
                         .HasColumnType("nvarchar(13)");
 
-                    b.Property<int>("PoId")
+                    b.Property<int>("PoID")
                         .HasColumnType("int")
                         .HasColumnName("PoID");
 
-                    b.Property<int>("SoId")
+                    b.Property<int>("SoID")
                         .HasColumnType("int")
                         .HasColumnName("SoID");
 
-                    b.HasKey("EmId")
+                    b.HasKey("EmID")
                         .HasName("PK__M_Employ__DCB5BEC24482B998");
 
-                    b.HasIndex("PoId");
+                    b.HasIndex("PoID");
 
-                    b.HasIndex("SoId");
+                    b.HasIndex("SoID");
 
                     b.ToTable("M_Employee", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.MMajorClassification", b =>
                 {
-                    b.Property<int>("McId")
+                    b.Property<int>("McID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("McID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("McId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("McID"));
 
                     b.Property<int>("McFlag")
                         .HasColumnType("int");
@@ -178,7 +178,7 @@ namespace SalesManagement_SysDev.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("McId")
+                    b.HasKey("McID")
                         .HasName("PK__M_MajorC__27B1E232B6CE2E6D");
 
                     b.ToTable("M_MajorClassification", (string)null);
@@ -186,12 +186,12 @@ namespace SalesManagement_SysDev.Migrations
 
             modelBuilder.Entity("SalesManagement_SysDev.MMaker", b =>
                 {
-                    b.Property<int>("MaId")
+                    b.Property<int>("MaID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("MaID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaID"));
 
                     b.Property<string>("MaAddress")
                         .IsRequired()
@@ -225,7 +225,7 @@ namespace SalesManagement_SysDev.Migrations
                         .HasMaxLength(7)
                         .HasColumnType("nvarchar(7)");
 
-                    b.HasKey("MaId")
+                    b.HasKey("MaID")
                         .HasName("PK__M_Maker__2725BF40FEBFC979");
 
                     b.ToTable("M_Maker", (string)null);
@@ -233,12 +233,12 @@ namespace SalesManagement_SysDev.Migrations
 
             modelBuilder.Entity("SalesManagement_SysDev.MPosition", b =>
                 {
-                    b.Property<int>("PoId")
+                    b.Property<int>("PoID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("PoID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PoID"));
 
                     b.Property<int>("PoFlag")
                         .HasColumnType("int");
@@ -251,7 +251,7 @@ namespace SalesManagement_SysDev.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("PoId")
+                    b.HasKey("PoID")
                         .HasName("PK__M_Positi__A4C01F9E8A03A2CA");
 
                     b.ToTable("M_Position", (string)null);
@@ -259,14 +259,14 @@ namespace SalesManagement_SysDev.Migrations
 
             modelBuilder.Entity("SalesManagement_SysDev.MProduct", b =>
                 {
-                    b.Property<int>("PrId")
+                    b.Property<int>("PrID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrID"));
 
-                    b.Property<int>("MaId")
+                    b.Property<int>("MaID")
                         .HasColumnType("int")
                         .HasColumnName("MaID");
 
@@ -305,28 +305,28 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(9, 0)");
 
-                    b.Property<int>("ScId")
+                    b.Property<int>("ScID")
                         .HasColumnType("int")
                         .HasColumnName("ScID");
 
-                    b.HasKey("PrId")
+                    b.HasKey("PrID")
                         .HasName("PK__M_Produc__A5021A4FEB48A98E");
 
-                    b.HasIndex("MaId");
+                    b.HasIndex("MaID");
 
-                    b.HasIndex("ScId");
+                    b.HasIndex("ScID");
 
                     b.ToTable("M_Product", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.MSalesOffice", b =>
                 {
-                    b.Property<int>("SoId")
+                    b.Property<int>("SoID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("SoID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SoID"));
 
                     b.Property<string>("SoAddress")
                         .IsRequired()
@@ -360,7 +360,7 @@ namespace SalesManagement_SysDev.Migrations
                         .HasMaxLength(7)
                         .HasColumnType("nvarchar(7)");
 
-                    b.HasKey("SoId")
+                    b.HasKey("SoID")
                         .HasName("PK__M_SalesO__BC3C9374243FA851");
 
                     b.ToTable("M_SalesOffice", (string)null);
@@ -368,14 +368,14 @@ namespace SalesManagement_SysDev.Migrations
 
             modelBuilder.Entity("SalesManagement_SysDev.MSmallClassification", b =>
                 {
-                    b.Property<int>("ScId")
+                    b.Property<int>("ScID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ScID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScID"));
 
-                    b.Property<int>("McId")
+                    b.Property<int>("McID")
                         .HasColumnType("int")
                         .HasColumnName("McID");
 
@@ -390,22 +390,22 @@ namespace SalesManagement_SysDev.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("ScId")
+                    b.HasKey("ScID")
                         .HasName("PK__M_SmallC__ACB791BA805D9A7F");
 
-                    b.HasIndex("McId");
+                    b.HasIndex("McID");
 
                     b.ToTable("M_SmallClassification", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TArrival", b =>
                 {
-                    b.Property<int>("ArId")
+                    b.Property<int>("ArID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ArID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArID"));
 
                     b.Property<DateTime?>("ArDate")
                         .HasColumnType("date");
@@ -419,72 +419,72 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<int?>("ArStateFlag")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClId")
+                    b.Property<int>("ClID")
                         .HasColumnType("int")
                         .HasColumnName("ClID");
 
-                    b.Property<int?>("EmId")
+                    b.Property<int?>("EmID")
                         .HasColumnType("int")
                         .HasColumnName("EmID");
 
-                    b.Property<int>("OrId")
+                    b.Property<int>("OrID")
                         .HasColumnType("int")
                         .HasColumnName("OrID");
 
-                    b.Property<int>("SoId")
+                    b.Property<int>("SoID")
                         .HasColumnType("int")
                         .HasColumnName("SoID");
 
-                    b.HasKey("ArId");
+                    b.HasKey("ArID");
 
-                    b.HasIndex("ClId");
+                    b.HasIndex("ClID");
 
-                    b.HasIndex("EmId");
+                    b.HasIndex("EmID");
 
-                    b.HasIndex("OrId");
+                    b.HasIndex("OrID");
 
-                    b.HasIndex("SoId");
+                    b.HasIndex("SoID");
 
                     b.ToTable("T_Arrival", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TArrivalDetail", b =>
                 {
-                    b.Property<int>("ArDetailId")
+                    b.Property<int>("ArDetailID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ArDetailID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArDetailID"));
 
-                    b.Property<int?>("ArId")
+                    b.Property<int?>("ArID")
                         .HasColumnType("int")
                         .HasColumnName("ArID");
 
                     b.Property<int?>("ArQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PrId")
+                    b.Property<int?>("PrID")
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
-                    b.HasKey("ArDetailId");
+                    b.HasKey("ArDetailID");
 
-                    b.HasIndex("ArId");
+                    b.HasIndex("ArID");
 
-                    b.HasIndex("PrId");
+                    b.HasIndex("PrID");
 
                     b.ToTable("T_ArrivalDetail", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TChumon", b =>
                 {
-                    b.Property<int>("ChId")
+                    b.Property<int>("ChID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ChID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChID"));
 
                     b.Property<DateTime?>("ChDate")
                         .HasColumnType("date");
@@ -498,75 +498,75 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<int?>("ChStateFlag")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClId")
+                    b.Property<int>("ClID")
                         .HasColumnType("int")
                         .HasColumnName("ClID");
 
-                    b.Property<int?>("EmId")
+                    b.Property<int?>("EmID")
                         .HasColumnType("int")
                         .HasColumnName("EmID");
 
-                    b.Property<int>("OrId")
+                    b.Property<int>("OrID")
                         .HasColumnType("int")
                         .HasColumnName("OrID");
 
-                    b.Property<int>("SoId")
+                    b.Property<int>("SoID")
                         .HasColumnType("int")
                         .HasColumnName("SoID");
 
-                    b.HasKey("ChId")
+                    b.HasKey("ChID")
                         .HasName("PK__T_Chumon__AF02F0B8EDF28122");
 
-                    b.HasIndex("ClId");
+                    b.HasIndex("ClID");
 
-                    b.HasIndex("EmId");
+                    b.HasIndex("EmID");
 
-                    b.HasIndex("OrId");
+                    b.HasIndex("OrID");
 
-                    b.HasIndex("SoId");
+                    b.HasIndex("SoID");
 
                     b.ToTable("T_Chumon", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TChumonDetail", b =>
                 {
-                    b.Property<int>("ChDetailId")
+                    b.Property<int>("ChDetailID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ChDetailID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChDetailID"));
 
-                    b.Property<int>("ChId")
+                    b.Property<int>("ChID")
                         .HasColumnType("int")
                         .HasColumnName("ChID");
 
                     b.Property<int>("ChQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("PrId")
+                    b.Property<int>("PrID")
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
-                    b.HasKey("ChDetailId");
+                    b.HasKey("ChDetailID");
 
-                    b.HasIndex("ChId");
+                    b.HasIndex("ChID");
 
-                    b.HasIndex("PrId");
+                    b.HasIndex("PrID");
 
                     b.ToTable("T_ChumonDetail", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.THattyu", b =>
                 {
-                    b.Property<int>("HaId")
+                    b.Property<int>("HaID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("HaID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HaId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HaID"));
 
-                    b.Property<int>("EmId")
+                    b.Property<int>("EmID")
                         .HasColumnType("int")
                         .HasColumnName("EmID");
 
@@ -579,70 +579,70 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<string>("HaHidden")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MaId")
+                    b.Property<int>("MaID")
                         .HasColumnType("int")
                         .HasColumnName("MaID");
 
                     b.Property<int?>("WaWarehouseFlag")
                         .HasColumnType("int");
 
-                    b.HasKey("HaId");
+                    b.HasKey("HaID");
 
-                    b.HasIndex("EmId");
+                    b.HasIndex("EmID");
 
-                    b.HasIndex("MaId");
+                    b.HasIndex("MaID");
 
                     b.ToTable("T_Hattyu", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.THattyuDetail", b =>
                 {
-                    b.Property<int>("HaDetailId")
+                    b.Property<int>("HaDetailID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("HaDetailID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HaDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HaDetailID"));
 
-                    b.Property<int>("HaId")
+                    b.Property<int>("HaID")
                         .HasColumnType("int")
                         .HasColumnName("HaID");
 
                     b.Property<int>("HaQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("PrId")
+                    b.Property<int>("PrID")
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
-                    b.HasKey("HaDetailId");
+                    b.HasKey("HaDetailID");
 
-                    b.HasIndex("HaId");
+                    b.HasIndex("HaID");
 
-                    b.HasIndex("PrId");
+                    b.HasIndex("PrID");
 
                     b.ToTable("T_HattyuDetail", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TOrder", b =>
                 {
-                    b.Property<int>("OrId")
+                    b.Property<int>("OrID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("OrID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrID"));
 
                     b.Property<string>("ClCharge")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("ClId")
+                    b.Property<int>("ClID")
                         .HasColumnType("int")
                         .HasColumnName("ClID");
 
-                    b.Property<int>("EmId")
+                    b.Property<int>("EmID")
                         .HasColumnType("int")
                         .HasColumnName("EmID");
 
@@ -658,32 +658,32 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<int?>("OrStateFlag")
                         .HasColumnType("int");
 
-                    b.Property<int>("SoId")
+                    b.Property<int>("SoID")
                         .HasColumnType("int")
                         .HasColumnName("SoID");
 
-                    b.HasKey("OrId")
+                    b.HasKey("OrID")
                         .HasName("PK__T_Order__E1649648FAE4D6E9");
 
-                    b.HasIndex("ClId");
+                    b.HasIndex("ClID");
 
-                    b.HasIndex("EmId");
+                    b.HasIndex("EmID");
 
-                    b.HasIndex("SoId");
+                    b.HasIndex("SoID");
 
                     b.ToTable("T_Order", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TOrderDetail", b =>
                 {
-                    b.Property<int>("OrDetailId")
+                    b.Property<int>("OrDetailID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("OrDetailID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrDetailID"));
 
-                    b.Property<int>("OrId")
+                    b.Property<int>("OrID")
                         .HasColumnType("int")
                         .HasColumnName("OrID");
 
@@ -693,38 +693,38 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<decimal>("OrTotalPrice")
                         .HasColumnType("decimal(10, 0)");
 
-                    b.Property<int>("PrId")
+                    b.Property<int>("PrID")
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
-                    b.HasKey("OrDetailId")
+                    b.HasKey("OrDetailID")
                         .HasName("PK__T_OrderD__45EDE90EEC5B2390");
 
-                    b.HasIndex("OrId");
+                    b.HasIndex("OrID");
 
-                    b.HasIndex("PrId");
+                    b.HasIndex("PrID");
 
                     b.ToTable("T_OrderDetail", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TSale", b =>
                 {
-                    b.Property<int>("SaId")
+                    b.Property<int>("SaID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("SaID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaID"));
 
-                    b.Property<int>("ClId")
+                    b.Property<int>("ClID")
                         .HasColumnType("int")
                         .HasColumnName("ClID");
 
-                    b.Property<int>("EmId")
+                    b.Property<int>("EmID")
                         .HasColumnType("int")
                         .HasColumnName("EmID");
 
-                    b.Property<int>("OrId")
+                    b.Property<int>("OrID")
                         .HasColumnType("int")
                         .HasColumnName("OrID");
 
@@ -737,37 +737,37 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<string>("SaHidden")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SoId")
+                    b.Property<int>("SoID")
                         .HasColumnType("int")
                         .HasColumnName("SoID");
 
-                    b.HasKey("SaId");
+                    b.HasKey("SaID");
 
-                    b.HasIndex("ClId");
+                    b.HasIndex("ClID");
 
-                    b.HasIndex("EmId");
+                    b.HasIndex("EmID");
 
-                    b.HasIndex("OrId");
+                    b.HasIndex("OrID");
 
-                    b.HasIndex("SoId");
+                    b.HasIndex("SoID");
 
                     b.ToTable("T_Sale", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TSaleDetail", b =>
                 {
-                    b.Property<int>("SaDetailId")
+                    b.Property<int>("SaDetailID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("SaDetailID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaDetailID"));
 
-                    b.Property<int>("PrId")
+                    b.Property<int>("PrID")
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
-                    b.Property<int>("SaId")
+                    b.Property<int>("SaID")
                         .HasColumnType("int")
                         .HasColumnName("SaID");
 
@@ -777,33 +777,33 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<int>("SaQuantity")
                         .HasColumnType("int");
 
-                    b.HasKey("SaDetailId");
+                    b.HasKey("SaDetailID");
 
-                    b.HasIndex("PrId");
+                    b.HasIndex("PrID");
 
-                    b.HasIndex("SaId");
+                    b.HasIndex("SaID");
 
                     b.ToTable("T_SaleDetail", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TShipment", b =>
                 {
-                    b.Property<int>("ShId")
+                    b.Property<int>("ShID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ShID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShID"));
 
-                    b.Property<int>("ClId")
+                    b.Property<int>("ClID")
                         .HasColumnType("int")
                         .HasColumnName("ClID");
 
-                    b.Property<int?>("EmId")
+                    b.Property<int?>("EmID")
                         .HasColumnType("int")
                         .HasColumnName("EmID");
 
-                    b.Property<int>("OrId")
+                    b.Property<int>("OrID")
                         .HasColumnType("int")
                         .HasColumnName("OrID");
 
@@ -819,62 +819,62 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<int?>("ShStateFlag")
                         .HasColumnType("int");
 
-                    b.Property<int>("SoId")
+                    b.Property<int>("SoID")
                         .HasColumnType("int")
                         .HasColumnName("SoID");
 
-                    b.HasKey("ShId");
+                    b.HasKey("ShID");
 
-                    b.HasIndex("ClId");
+                    b.HasIndex("ClID");
 
-                    b.HasIndex("EmId");
+                    b.HasIndex("EmID");
 
-                    b.HasIndex("OrId");
+                    b.HasIndex("OrID");
 
-                    b.HasIndex("SoId");
+                    b.HasIndex("SoID");
 
                     b.ToTable("T_Shipment", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TShipmentDetail", b =>
                 {
-                    b.Property<int>("ShDetailId")
+                    b.Property<int>("ShDetailID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ShDetailID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShDetailID"));
 
-                    b.Property<int>("PrId")
+                    b.Property<int>("PrID")
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
-                    b.Property<int>("ShId")
+                    b.Property<int>("ShID")
                         .HasColumnType("int")
                         .HasColumnName("ShID");
 
                     b.Property<int>("ShQuantity")
                         .HasColumnType("int");
 
-                    b.HasKey("ShDetailId");
+                    b.HasKey("ShDetailID");
 
-                    b.HasIndex("PrId");
+                    b.HasIndex("PrID");
 
-                    b.HasIndex("ShId");
+                    b.HasIndex("ShID");
 
                     b.ToTable("T_ShipmentDetail", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TStock", b =>
                 {
-                    b.Property<int>("StId")
+                    b.Property<int>("StID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("StID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StID"));
 
-                    b.Property<int>("PrId")
+                    b.Property<int>("PrID")
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
@@ -884,36 +884,36 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<int>("StQuantity")
                         .HasColumnType("int");
 
-                    b.HasKey("StId")
+                    b.HasKey("StID")
                         .HasName("PK__T_Stock__C33CEFE204B2DFA6");
 
-                    b.HasIndex("PrId");
+                    b.HasIndex("PrID");
 
                     b.ToTable("T_Stock", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TSyukko", b =>
                 {
-                    b.Property<int>("SyId")
+                    b.Property<int>("SyID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("SyID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SyId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SyID"));
 
-                    b.Property<int>("ClId")
+                    b.Property<int>("ClID")
                         .HasColumnType("int")
                         .HasColumnName("ClID");
 
-                    b.Property<int?>("EmId")
+                    b.Property<int?>("EmID")
                         .HasColumnType("int")
                         .HasColumnName("EmID");
 
-                    b.Property<int>("OrId")
+                    b.Property<int>("OrID")
                         .HasColumnType("int")
                         .HasColumnName("OrID");
 
-                    b.Property<int>("SoId")
+                    b.Property<int>("SoID")
                         .HasColumnType("int")
                         .HasColumnName("SoID");
 
@@ -929,63 +929,63 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<int?>("SyStateFlag")
                         .HasColumnType("int");
 
-                    b.HasKey("SyId");
+                    b.HasKey("SyID");
 
-                    b.HasIndex("ClId");
+                    b.HasIndex("ClID");
 
-                    b.HasIndex("EmId");
+                    b.HasIndex("EmID");
 
-                    b.HasIndex("OrId");
+                    b.HasIndex("OrID");
 
-                    b.HasIndex("SoId");
+                    b.HasIndex("SoID");
 
                     b.ToTable("T_Syukko", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TSyukkoDetail", b =>
                 {
-                    b.Property<int>("SyDetailId")
+                    b.Property<int>("SyDetailID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("SyDetailID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SyDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SyDetailID"));
 
-                    b.Property<int>("PrId")
+                    b.Property<int>("PrID")
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
-                    b.Property<int>("SyId")
+                    b.Property<int>("SyID")
                         .HasColumnType("int")
                         .HasColumnName("SyID");
 
                     b.Property<int>("SyQuantity")
                         .HasColumnType("int");
 
-                    b.HasKey("SyDetailId");
+                    b.HasKey("SyDetailID");
 
-                    b.HasIndex("PrId");
+                    b.HasIndex("PrID");
 
-                    b.HasIndex("SyId");
+                    b.HasIndex("SyID");
 
                     b.ToTable("T_SyukkoDetail", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TWarehousing", b =>
                 {
-                    b.Property<int>("WaId")
+                    b.Property<int>("WaID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("WaID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WaId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WaID"));
 
-                    b.Property<int?>("EmId")
+                    b.Property<int?>("EmID")
                         .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("EmID");
 
-                    b.Property<int>("HaId")
+                    b.Property<int>("HaID")
                         .HasColumnType("int")
                         .HasColumnName("HaID");
 
@@ -1001,40 +1001,40 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<int?>("WaShelfFlag")
                         .HasColumnType("int");
 
-                    b.HasKey("WaId");
+                    b.HasKey("WaID");
 
-                    b.HasIndex("EmId");
+                    b.HasIndex("EmID");
 
-                    b.HasIndex("HaId");
+                    b.HasIndex("HaID");
 
                     b.ToTable("T_Warehousing", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.TWarehousingDetail", b =>
                 {
-                    b.Property<int>("WaDetailId")
+                    b.Property<int>("WaDetailID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("WaDetailID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WaDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WaDetailID"));
 
-                    b.Property<int>("PrId")
+                    b.Property<int>("PrID")
                         .HasColumnType("int")
                         .HasColumnName("PrID");
 
-                    b.Property<int>("WaId")
+                    b.Property<int>("WaID")
                         .HasColumnType("int")
                         .HasColumnName("WaID");
 
                     b.Property<int>("WaQuantity")
                         .HasColumnType("int");
 
-                    b.HasKey("WaDetailId");
+                    b.HasKey("WaDetailID");
 
-                    b.HasIndex("PrId");
+                    b.HasIndex("PrID");
 
-                    b.HasIndex("WaId");
+                    b.HasIndex("WaID");
 
                     b.ToTable("T_WarehousingDetail", (string)null);
                 });
@@ -1043,7 +1043,7 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MSalesOffice", "So")
                         .WithMany("MClients")
-                        .HasForeignKey("SoId")
+                        .HasForeignKey("SoID")
                         .IsRequired()
                         .HasConstraintName("FK_M_Client_ToM_SalesOffice");
 
@@ -1054,13 +1054,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MPosition", "Po")
                         .WithMany("MEmployees")
-                        .HasForeignKey("PoId")
+                        .HasForeignKey("PoID")
                         .IsRequired()
                         .HasConstraintName("FK_M_Employee_ToM_Position");
 
                     b.HasOne("SalesManagement_SysDev.MSalesOffice", "So")
                         .WithMany("MEmployees")
-                        .HasForeignKey("SoId")
+                        .HasForeignKey("SoID")
                         .IsRequired()
                         .HasConstraintName("FK_M_Employee_ToM_SalesOffice");
 
@@ -1073,13 +1073,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MMaker", "Ma")
                         .WithMany("MProducts")
-                        .HasForeignKey("MaId")
+                        .HasForeignKey("MaID")
                         .IsRequired()
                         .HasConstraintName("FK_M_Product_ToM_Maker");
 
                     b.HasOne("SalesManagement_SysDev.MSmallClassification", "Sc")
                         .WithMany("MProducts")
-                        .HasForeignKey("ScId")
+                        .HasForeignKey("ScID")
                         .IsRequired()
                         .HasConstraintName("FK_M_Product_ToM_SmallClassification");
 
@@ -1092,7 +1092,7 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MMajorClassification", "Mc")
                         .WithMany("MSmallClassifications")
-                        .HasForeignKey("McId")
+                        .HasForeignKey("McID")
                         .IsRequired()
                         .HasConstraintName("FK_M_SmallClassification_ToM_MajorClassification");
 
@@ -1103,24 +1103,24 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MClient", "Cl")
                         .WithMany("TArrivals")
-                        .HasForeignKey("ClId")
+                        .HasForeignKey("ClID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Arrival_ToM_Client");
 
                     b.HasOne("SalesManagement_SysDev.MEmployee", "Em")
                         .WithMany("TArrivals")
-                        .HasForeignKey("EmId")
+                        .HasForeignKey("EmID")
                         .HasConstraintName("FK_T_Arrival_ToM_Employee");
 
                     b.HasOne("SalesManagement_SysDev.TOrder", "Or")
                         .WithMany("TArrivals")
-                        .HasForeignKey("OrId")
+                        .HasForeignKey("OrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Arrival_ToT_Order");
 
                     b.HasOne("SalesManagement_SysDev.MSalesOffice", "So")
                         .WithMany("TArrivals")
-                        .HasForeignKey("SoId")
+                        .HasForeignKey("SoID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Arrival_ToM_SalesOffice");
 
@@ -1137,12 +1137,12 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.TArrival", "Ar")
                         .WithMany("TArrivalDetails")
-                        .HasForeignKey("ArId")
+                        .HasForeignKey("ArID")
                         .HasConstraintName("FK_T_ArrivalDetail_ToT_Arrival");
 
                     b.HasOne("SalesManagement_SysDev.MProduct", "Pr")
                         .WithMany("TArrivalDetails")
-                        .HasForeignKey("PrId")
+                        .HasForeignKey("PrID")
                         .HasConstraintName("FK_T_ArrivalDetail_ToM_Product");
 
                     b.Navigation("Ar");
@@ -1154,24 +1154,24 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MClient", "Cl")
                         .WithMany("TChumons")
-                        .HasForeignKey("ClId")
+                        .HasForeignKey("ClID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Chumon_ToM_Client");
 
                     b.HasOne("SalesManagement_SysDev.MEmployee", "Em")
                         .WithMany("TChumons")
-                        .HasForeignKey("EmId")
+                        .HasForeignKey("EmID")
                         .HasConstraintName("FK_T_Chumon_ToM_Employee");
 
                     b.HasOne("SalesManagement_SysDev.TOrder", "Or")
                         .WithMany("TChumons")
-                        .HasForeignKey("OrId")
+                        .HasForeignKey("OrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Chumon_ToT_Order");
 
                     b.HasOne("SalesManagement_SysDev.MSalesOffice", "So")
                         .WithMany("TChumons")
-                        .HasForeignKey("SoId")
+                        .HasForeignKey("SoID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Chumon_ToM_SalesOffice");
 
@@ -1188,13 +1188,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.TChumon", "Ch")
                         .WithMany("TChumonDetails")
-                        .HasForeignKey("ChId")
+                        .HasForeignKey("ChID")
                         .IsRequired()
                         .HasConstraintName("FK_T_ChumonDetail_ToT_Chumon");
 
                     b.HasOne("SalesManagement_SysDev.MProduct", "Pr")
                         .WithMany("TChumonDetails")
-                        .HasForeignKey("PrId")
+                        .HasForeignKey("PrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_ChumonDetail_ToM_Product");
 
@@ -1207,13 +1207,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MEmployee", "Em")
                         .WithMany("THattyus")
-                        .HasForeignKey("EmId")
+                        .HasForeignKey("EmID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Hattyu_ToM_Employee");
 
                     b.HasOne("SalesManagement_SysDev.MMaker", "Ma")
                         .WithMany("THattyus")
-                        .HasForeignKey("MaId")
+                        .HasForeignKey("MaID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Hattyu_ToM_Maker");
 
@@ -1226,13 +1226,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.THattyu", "Ha")
                         .WithMany("THattyuDetails")
-                        .HasForeignKey("HaId")
+                        .HasForeignKey("HaID")
                         .IsRequired()
                         .HasConstraintName("FK_T_HattyuDetail_ToT_Hattyu");
 
                     b.HasOne("SalesManagement_SysDev.MProduct", "Pr")
                         .WithMany("THattyuDetails")
-                        .HasForeignKey("PrId")
+                        .HasForeignKey("PrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_HattyuDetail_ToM_Product");
 
@@ -1245,19 +1245,19 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MClient", "Cl")
                         .WithMany("TOrders")
-                        .HasForeignKey("ClId")
+                        .HasForeignKey("ClID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Order_ToM_Client");
 
                     b.HasOne("SalesManagement_SysDev.MEmployee", "Em")
                         .WithMany("TOrders")
-                        .HasForeignKey("EmId")
+                        .HasForeignKey("EmID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Order_ToM_Employee");
 
                     b.HasOne("SalesManagement_SysDev.MSalesOffice", "So")
                         .WithMany("TOrders")
-                        .HasForeignKey("SoId")
+                        .HasForeignKey("SoID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Order_ToM_SalesOffice");
 
@@ -1272,13 +1272,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.TOrder", "Or")
                         .WithMany("TOrderDetails")
-                        .HasForeignKey("OrId")
+                        .HasForeignKey("OrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_OrderDetail_ToT_Order");
 
                     b.HasOne("SalesManagement_SysDev.MProduct", "Pr")
                         .WithMany("TOrderDetails")
-                        .HasForeignKey("PrId")
+                        .HasForeignKey("PrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_OrderDetail_ToM_Product");
 
@@ -1291,25 +1291,25 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MClient", "Cl")
                         .WithMany("TSales")
-                        .HasForeignKey("ClId")
+                        .HasForeignKey("ClID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Sale_ToM_Client");
 
                     b.HasOne("SalesManagement_SysDev.MEmployee", "Em")
                         .WithMany("TSales")
-                        .HasForeignKey("EmId")
+                        .HasForeignKey("EmID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Sale_ToM_Employee");
 
                     b.HasOne("SalesManagement_SysDev.TOrder", "Or")
                         .WithMany("TSales")
-                        .HasForeignKey("OrId")
+                        .HasForeignKey("OrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Sale_ToT_Order");
 
                     b.HasOne("SalesManagement_SysDev.MSalesOffice", "So")
                         .WithMany("TSales")
-                        .HasForeignKey("SoId")
+                        .HasForeignKey("SoID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Sale_ToM_SalesOffice");
 
@@ -1326,13 +1326,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MProduct", "Pr")
                         .WithMany("TSaleDetails")
-                        .HasForeignKey("PrId")
+                        .HasForeignKey("PrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_SaleDetail_ToM_Product");
 
                     b.HasOne("SalesManagement_SysDev.TSale", "Sa")
                         .WithMany("TSaleDetails")
-                        .HasForeignKey("SaId")
+                        .HasForeignKey("SaID")
                         .IsRequired()
                         .HasConstraintName("FK_T_SaleDetail_ToT_Sale");
 
@@ -1345,24 +1345,24 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MClient", "Cl")
                         .WithMany("TShipments")
-                        .HasForeignKey("ClId")
+                        .HasForeignKey("ClID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Shipment_ToM_Client");
 
                     b.HasOne("SalesManagement_SysDev.MEmployee", "Em")
                         .WithMany("TShipments")
-                        .HasForeignKey("EmId")
+                        .HasForeignKey("EmID")
                         .HasConstraintName("FK_T_Shipment_ToM_Employee");
 
                     b.HasOne("SalesManagement_SysDev.TOrder", "Or")
                         .WithMany("TShipments")
-                        .HasForeignKey("OrId")
+                        .HasForeignKey("OrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Shipment_ToT_Order");
 
                     b.HasOne("SalesManagement_SysDev.MSalesOffice", "So")
                         .WithMany("TShipments")
-                        .HasForeignKey("SoId")
+                        .HasForeignKey("SoID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Shipment_ToM_SalesOffice");
 
@@ -1379,13 +1379,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MProduct", "Pr")
                         .WithMany("TShipmentDetails")
-                        .HasForeignKey("PrId")
+                        .HasForeignKey("PrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_ShipmentDetail_ToM_Product");
 
                     b.HasOne("SalesManagement_SysDev.TShipment", "Sh")
                         .WithMany("TShipmentDetails")
-                        .HasForeignKey("ShId")
+                        .HasForeignKey("ShID")
                         .IsRequired()
                         .HasConstraintName("FK_T_ShipmentDetail_ToT_Shipment");
 
@@ -1398,7 +1398,7 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MProduct", "Pr")
                         .WithMany("TStocks")
-                        .HasForeignKey("PrId")
+                        .HasForeignKey("PrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Stock_ToM_Product");
 
@@ -1409,24 +1409,24 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MClient", "Cl")
                         .WithMany("TSyukkos")
-                        .HasForeignKey("ClId")
+                        .HasForeignKey("ClID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Syukko_ToM_Client");
 
                     b.HasOne("SalesManagement_SysDev.MEmployee", "Em")
                         .WithMany("TSyukkos")
-                        .HasForeignKey("EmId")
+                        .HasForeignKey("EmID")
                         .HasConstraintName("FK_T_Syukko_ToM_Employee");
 
                     b.HasOne("SalesManagement_SysDev.TOrder", "Or")
                         .WithMany("TSyukkos")
-                        .HasForeignKey("OrId")
+                        .HasForeignKey("OrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Syukko_ToT_Order");
 
                     b.HasOne("SalesManagement_SysDev.MSalesOffice", "So")
                         .WithMany("TSyukkos")
-                        .HasForeignKey("SoId")
+                        .HasForeignKey("SoID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Syukko_ToM_SalesOffice");
 
@@ -1443,13 +1443,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MProduct", "Pr")
                         .WithMany("TSyukkoDetails")
-                        .HasForeignKey("PrId")
+                        .HasForeignKey("PrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_SyukkoDetail_ToM_Product");
 
                     b.HasOne("SalesManagement_SysDev.TSyukko", "Sy")
                         .WithMany("TSyukkoDetails")
-                        .HasForeignKey("SyId")
+                        .HasForeignKey("SyID")
                         .IsRequired()
                         .HasConstraintName("FK_T_SyukkoDetail_ToT_Syukko");
 
@@ -1462,14 +1462,14 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MEmployee", "Em")
                         .WithMany("TWarehousings")
-                        .HasForeignKey("EmId")
+                        .HasForeignKey("EmID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_T_Warehousing_ToM_Employee");
 
                     b.HasOne("SalesManagement_SysDev.THattyu", "Ha")
                         .WithMany("TWarehousings")
-                        .HasForeignKey("HaId")
+                        .HasForeignKey("HaID")
                         .IsRequired()
                         .HasConstraintName("FK_T_Warehousing_ToT_Hattyu");
 
@@ -1482,13 +1482,13 @@ namespace SalesManagement_SysDev.Migrations
                 {
                     b.HasOne("SalesManagement_SysDev.MProduct", "Pr")
                         .WithMany("TWarehousingDetails")
-                        .HasForeignKey("PrId")
+                        .HasForeignKey("PrID")
                         .IsRequired()
                         .HasConstraintName("FK_T_WarehousingDetail_ToM_Product");
 
                     b.HasOne("SalesManagement_SysDev.TWarehousing", "Wa")
                         .WithMany("TWarehousingDetails")
-                        .HasForeignKey("WaId")
+                        .HasForeignKey("WaID")
                         .IsRequired()
                         .HasConstraintName("FK_T_WarehousingDetail_ToT_Warehousing");
 

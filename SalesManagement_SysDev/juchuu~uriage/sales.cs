@@ -23,7 +23,7 @@ namespace SalesManagement_SysDev
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager;
 
-        private int lastFocusedPanelId = 1;
+        private int lastFocusedPanelID = 1;
         public sales()
         {
             InitializeComponent();
@@ -67,6 +67,8 @@ namespace SalesManagement_SysDev
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
             TBTotal.Enabled = false;
+
+            SetupNumericOnlyTextBoxes();
         }
 
         // メインメニューに戻る 
@@ -261,7 +263,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateSale()
         {
-            string jyutyuID = TBJyutyuID.Text;
+            string JyutyuID = TBJyutyuID.Text;
             string shopID = TBShopID.Text;
             string shainID = TBShainID.Text;
             string kokyakuID = TBKokyakuID.Text;
@@ -319,14 +321,14 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var sales = context.TSales.SingleOrDefault(s => s.SaId.ToString() == salesID);
+                var sales = context.TSales.SingleOrDefault(s => s.SaID.ToString() == salesID);
                 if (sales != null)
                 {
-                    sales.SoId = int.Parse(shopID);
-                    sales.EmId = int.Parse(shainID);
-                    sales.ClId = int.Parse(kokyakuID);
-                    sales.SaId = int.Parse(salesID);
-                    sales.OrId = int.Parse(jyutyuID);
+                    sales.SoID = int.Parse(shopID);
+                    sales.EmID = int.Parse(shainID);
+                    sales.ClID = int.Parse(kokyakuID);
+                    sales.SaID = int.Parse(salesID);
+                    sales.OrID = int.Parse(JyutyuID);
                     sales.SaDate = salesDate;
                     sales.SaFlag = delFlag ? 1 : 0;
                     sales.SaHidden = Riyuu;
@@ -349,14 +351,14 @@ namespace SalesManagement_SysDev
                 string shopID = TBShopID.Text;
                 string shainID = TBShainID.Text;
                 string kokyakuID = TBKokyakuID.Text;
-                string jyutyuID = TBJyutyuID.Text;
+                string JyutyuID = TBJyutyuID.Text;
                 DateTime salesDate = date.Value;
                 bool delFlag = DelFlag.Checked;
 
                 using (var context = new SalesManagementContext())
                 {
                     int shop;
-                    if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
+                    if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                     {
                         TBShopID.BackColor = Color.Yellow;
                         TBShopID.Focus();
@@ -364,8 +366,8 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    int employeeId;
-                    if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                    int employeeID;
+                    if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                     {
                         TBShainID.BackColor = Color.Yellow;
                         TBShainID.Focus();
@@ -374,7 +376,7 @@ namespace SalesManagement_SysDev
                     }
 
                     int kokyaku;
-                    if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClId == kokyaku))
+                    if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
                     {
                         TBKokyakuID.BackColor = Color.Yellow;
                         TBKokyakuID.Focus();
@@ -383,7 +385,7 @@ namespace SalesManagement_SysDev
                     }
 
                     int juchu;
-                    if (!int.TryParse(jyutyuID, out juchu) || !context.TOrders.Any(j => j.OrId == juchu))
+                    if (!int.TryParse(JyutyuID, out juchu) || !context.TOrders.Any(j => j.OrID == juchu))
                     {
                         TBJyutyuID.BackColor = Color.Yellow;
                         TBJyutyuID.Focus();
@@ -432,10 +434,10 @@ namespace SalesManagement_SysDev
 
                     var newSale = new TSale
                     {
-                        SoId = shop,
-                        EmId = employeeId,
-                        ClId = kokyaku,
-                        OrId = juchu,
+                        SoID = shop,
+                        EmID = employeeID,
+                        ClID = kokyaku,
+                        OrID = juchu,
                         SaDate = salesDate,
                         SaHidden = delFlag ? "1" : "0"
                     };
@@ -468,11 +470,11 @@ namespace SalesManagement_SysDev
 
                     dataGridView1.DataSource = sales.Select(s => new
                     {
-                        売上ID = s.SaId,
-                        顧客ID = s.ClId,
-                        営業所ID = s.SoId,
-                        社員ID = s.EmId,
-                        受注ID = s.OrId,
+                        売上ID = s.SaID,
+                        顧客ID = s.ClID,
+                        営業所ID = s.SoID,
+                        社員ID = s.EmID,
+                        受注ID = s.OrID,
                         売上日 = s.SaDate,
                         売上フラグ = s.SaFlag,
                         非表示理由 = s.SaHidden
@@ -490,7 +492,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得 
-                var jyutyuID = TBJyutyuID.Text.Trim();       // 受注ID 
+                var JyutyuID = TBJyutyuID.Text.Trim();       // 受注ID 
                 var shopID = TBShopID.Text.Trim();           // 営業所ID 
                 var shainID = TBShainID.Text.Trim();         // 社員ID 
                 var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID 
@@ -500,33 +502,33 @@ namespace SalesManagement_SysDev
                 var query = context.TSales.AsQueryable();
 
                 // 受注IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(jyutyuID) && int.TryParse(jyutyuID, out int parsedJyutyuID))
+                if (!string.IsNullOrEmpty(JyutyuID) && int.TryParse(JyutyuID, out int parsedJyutyuID))
                 {
-                    query = query.Where(s => s.OrId == parsedJyutyuID);
+                    query = query.Where(s => s.OrID == parsedJyutyuID);
                 }
 
                 // 営業所IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
                 {
-                    query = query.Where(s => s.SoId == parsedShopID);
+                    query = query.Where(s => s.SoID == parsedShopID);
                 }
 
                 // 社員IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
                 {
-                    query = query.Where(s => s.EmId == parsedShainID);
+                    query = query.Where(s => s.EmID == parsedShainID);
                 }
 
                 // 顧客IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
-                    query = query.Where(s => s.ClId == parsedKokyakuID);
+                    query = query.Where(s => s.ClID == parsedKokyakuID);
                 }
 
                 // 担当者名を検索条件に追加 
                 if (!string.IsNullOrEmpty(salesID) && int.TryParse(shainID, out int parsedsalesID))
                 {
-                    query = query.Where(s => s.SaId == parsedsalesID);
+                    query = query.Where(s => s.SaID == parsedsalesID);
                 }
 
                 // 受注日を検索条件に追加（チェックボックスがチェックされている場合） 
@@ -544,11 +546,11 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = sales.Select(sale => new
                     {
-                        売上ID = sale.SaId,
-                        顧客ID = sale.ClId,
-                        営業所ID = sale.SoId,
-                        社員ID = sale.EmId,
-                        受注ID = sale.OrId,
+                        売上ID = sale.SaID,
+                        顧客ID = sale.ClID,
+                        営業所ID = sale.SoID,
+                        社員ID = sale.EmID,
+                        受注ID = sale.OrID,
                         受注日 = sale.SaDate,
                         削除フラグ = DelFlag.Checked ? "〇" : "×"
                     }).ToList();
@@ -600,12 +602,12 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var saleDetail = context.TSaleDetails.SingleOrDefault(sa => sa.SaDetailId.ToString() == UriageSyosaiID);
+                var saleDetail = context.TSaleDetails.SingleOrDefault(sa => sa.SaDetailID.ToString() == UriageSyosaiID);
                 if (saleDetail != null)
                 {
-                    saleDetail.SaDetailId = int.Parse(UriageSyosaiID);
-                    saleDetail.PrId = int.Parse(syohinID);
-                    saleDetail.SaId = int.Parse(uriageID);
+                    saleDetail.SaDetailID = int.Parse(UriageSyosaiID);
+                    saleDetail.PrID = int.Parse(syohinID);
+                    saleDetail.SaID = int.Parse(uriageID);
                     saleDetail.SaQuantity = int.Parse(suryou);
                     saleDetail.SaPrTotalPrice = int.Parse(total);
 
@@ -634,14 +636,14 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // 売上IDの検証
-                    if (!int.TryParse(uriageID, out int uriage) || !context.TSales.Any(s => s.SaId == uriage))
+                    if (!int.TryParse(uriageID, out int uriage) || !context.TSales.Any(s => s.SaID == uriage))
                     {
                         MessageBox.Show("売上IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     // 商品IDの検証
-                    if (!int.TryParse(syohinID, out int shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                    if (!int.TryParse(syohinID, out int shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                     {
                         MessageBox.Show("商品IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -672,7 +674,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    var existingOrderDetail = context.TSaleDetails.FirstOrDefault(o => o.SaId == uriage);
+                    var existingOrderDetail = context.TSaleDetails.FirstOrDefault(o => o.SaID == uriage);
                     if (existingOrderDetail != null)
                     {
                         MessageBox.Show("この売上IDにはすでに売上詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -681,15 +683,15 @@ namespace SalesManagement_SysDev
                     var newSaleDetail = new TSaleDetail
                     {
 
-                        SaId = uriage,
-                        PrId = shouhin,
+                        SaID = uriage,
+                        PrID = shouhin,
                         SaQuantity = quantity
                     };
 
                     // 合計金額が入力されていない場合は自動で計算
                     if (string.IsNullOrEmpty(total))
                     {
-                        var product = context.MProducts.SingleOrDefault(p => p.PrId == newSaleDetail.PrId);
+                        var product = context.MProducts.SingleOrDefault(p => p.PrID == newSaleDetail.PrID);
                         if (product != null)
                         {
                             newSaleDetail.SaPrTotalPrice = product.Price * newSaleDetail.SaQuantity;
@@ -749,15 +751,15 @@ namespace SalesManagement_SysDev
                         ? saleDetails
                         : saleDetails.Where(od =>
                         {
-                            var Sale = context.TSales.FirstOrDefault(o => o.SaId == od.SaId);
+                            var Sale = context.TSales.FirstOrDefault(o => o.SaID == od.SaID);
                             return Sale == null || (Sale.SaFlag != 1);
                         }).ToList();
 
                     dataGridView3.DataSource = visibleUriageDetails.Select(sa => new
                     {
-                        売上詳細ID = sa.SaDetailId,
-                        売上ID = sa.SaId,
-                        商品ID = sa.PrId,
+                        売上詳細ID = sa.SaDetailID,
+                        売上ID = sa.SaID,
+                        商品ID = sa.PrID,
                         数量 = sa.SaQuantity,
                         合計金額 = sa.SaPrTotalPrice
 
@@ -788,19 +790,19 @@ namespace SalesManagement_SysDev
                 if (!string.IsNullOrEmpty(uriagesyosaiID))
                 {
                     // 受注詳細IDを検索条件に追加
-                    query = query.Where(sa => sa.SaDetailId.ToString() == uriagesyosaiID);
+                    query = query.Where(sa => sa.SaDetailID.ToString() == uriagesyosaiID);
                 }
 
                 if (!string.IsNullOrEmpty(uriageID))
                 {
                     // 受注IDを検索条件に追加
-                    query = query.Where(sa => sa.SaId.ToString() == uriageID);
+                    query = query.Where(sa => sa.SaID.ToString() == uriageID);
                 }
 
                 if (!string.IsNullOrEmpty(syohinID))
                 {
                     // 商品IDを検索条件に追加
-                    query = query.Where(sa => sa.PrId.ToString() == syohinID);
+                    query = query.Where(sa => sa.PrID.ToString() == syohinID);
                 }
 
                 if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
@@ -821,9 +823,9 @@ namespace SalesManagement_SysDev
                 {
                     dataGridView3.DataSource = saleDetails.Select(sa => new
                     {
-                        売上詳細ID = sa.SaDetailId,
-                        売上ID = sa.SaId,
-                        商品ID = sa.PrId,
+                        売上詳細ID = sa.SaDetailID,
+                        売上ID = sa.SaID,
+                        商品ID = sa.PrID,
                         数量 = sa.SaQuantity,
                         合計金額 = sa.SaPrTotalPrice.ToString("N0")
                     }).ToList();
@@ -845,9 +847,9 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isSaleSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
 
             if (saleFlag == "←通常")
-                lastFocusedPanelId = 1;
+                lastFocusedPanelID = 1;
             else if (saleFlag == "詳細→")
-                lastFocusedPanelId = 2;
+                lastFocusedPanelID = 2;
         }
 
         private void b_FormSelector_Click(object sender, EventArgs e)
@@ -979,24 +981,24 @@ namespace SalesManagement_SysDev
 
 
         // パネル内のすべてのコントロールにEnterイベントを追加
-        private void AddControlEventHandlers(Control panel, int panelId)
+        private void AddControlEventHandlers(Control panel, int panelID)
         {
             foreach (Control control in panel.Controls)
             {
                 // コントロールにEnterイベントを追加
-                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelID);
             }
         }
 
         // コントロールが選択（フォーカス）された時
-        private void Control_Enter(object sender, EventArgs e, int panelId)
+        private void Control_Enter(object sender, EventArgs e, int panelID)
         {
             // 異なるパネルに移動したときのみイベントを発生させる
-            if (panelId != lastFocusedPanelId)
+            if (panelID != lastFocusedPanelID)
             {
                 ToggleSaleSelection();
                 UpdateFlagButtonText();
-                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
+                lastFocusedPanelID = panelID; // 現在のパネルIDを更新
             }
         }
         //↓以下北島匙投げゾーン
@@ -1067,7 +1069,7 @@ namespace SalesManagement_SysDev
                     tbfalse();
                     break;
                 default:
-                    TBKokyakuID.BackColor = SystemColors.Window;
+                    TBSalesID.BackColor = SystemColors.Window;
                     TBKokyakuID.BackColor = SystemColors.Window;
                     TBShopID.BackColor = SystemColors.Window;
                     TBShainID.BackColor = SystemColors.Window;
@@ -1081,12 +1083,33 @@ namespace SalesManagement_SysDev
                     break;
             }    
         }
-
-        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void SetupNumericOnlyTextBoxes()
         {
+            // 対象のテキストボックスのみイベントを追加
+            TBSalesID.KeyPress += NumericTextBox_KeyPress;
+            TBKokyakuID.KeyPress += NumericTextBox_KeyPress;
+            TBShopID.KeyPress += NumericTextBox_KeyPress;
+            TBShainID.KeyPress += NumericTextBox_KeyPress;
+            TBJyutyuID.KeyPress += NumericTextBox_KeyPress;
 
+            TBUriageSyosaiID.KeyPress += NumericTextBox_KeyPress;
+            TBUriageIDS.KeyPress += NumericTextBox_KeyPress;
+            TBSyohinID.KeyPress += NumericTextBox_KeyPress;
+            TBSuryou.KeyPress += NumericTextBox_KeyPress;
+            TBTotal.KeyPress += NumericTextBox_KeyPress;
+        }
+
+        // 半角数字のみを許可するKeyPressイベントハンドラ
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
+
 
 
 }

@@ -5,11 +5,11 @@ namespace SalesManagement_SysDev;
 
 public partial class TSyukkoDetail
 {
-    public int SyDetailId { get; set; }
+    public int SyDetailID { get; set; }
 
-    public int SyId { get; set; }
+    public int SyID { get; set; }
 
-    public int PrId { get; set; }
+    public int PrID { get; set; }
 
     public int SyQuantity { get; set; }
 

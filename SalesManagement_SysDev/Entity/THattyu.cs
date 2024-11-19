@@ -5,11 +5,11 @@ namespace SalesManagement_SysDev;
 
 public partial class THattyu
 {
-    public int HaId { get; set; }
+    public int HaID { get; set; }
 
-    public int MaId { get; set; }
+    public int MaID { get; set; }
 
-    public int EmId { get; set; }
+    public int EmID { get; set; }
 
     public DateTime HaDate { get; set; }
 
