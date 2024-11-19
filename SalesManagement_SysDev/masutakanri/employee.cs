@@ -159,7 +159,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        /*private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // パスワードを表示する列のインデックスを指定 (例: 0列目)
             if (e.ColumnIndex == 5 && e.Value != null)
@@ -168,7 +168,7 @@ namespace SalesManagement_SysDev
                 e.Value = new string('●', e.Value.ToString().Length);
                 e.FormattingApplied = true; // 既定の書式適用を防止
             }
-        }
+        }*/
         private void UpdateEmployee()
         {
             string ShainID = TBSyainID.Text;

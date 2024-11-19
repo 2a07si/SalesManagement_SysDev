@@ -774,6 +774,12 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                var existingOrderDetail = context.TSyukkoDetails.FirstOrDefault(o => o.SyId == shukko);
+                if (existingOrderDetail != null)
+                {
+                    MessageBox.Show("この出庫IDにはすでに出庫詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // 処理を終了
+                }
                 var newIssueDetail = new TSyukkoDetail
                 {
                     SyId = int.Parse(SyukkoID),

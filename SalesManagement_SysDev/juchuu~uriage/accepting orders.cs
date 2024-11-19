@@ -746,6 +746,8 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
+
+
                     if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrderDetails.Any(s => s.OrId == jyutyu))
                     {
                         TBJyutyuIDS.BackColor = Color.Yellow;
@@ -768,6 +770,15 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
+                    var existingOrderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrId == jyutyu);
+                    if (existingOrderDetail != null)
+                    {
+                        MessageBox.Show("この受注IDにはすでに受注詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // 処理を終了
+                    }
+
+
                     var newOrderDetail = new TOrderDetail
                     {
                         OrId = int.Parse(jyutyuID),

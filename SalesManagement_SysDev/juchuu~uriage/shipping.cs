@@ -749,6 +749,12 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                var existingOrderDetail = context.TShipmentDetails.FirstOrDefault(o => o.ShId == shukka);
+                if (existingOrderDetail != null)
+                {
+                    MessageBox.Show("この出荷IDにはすでに出荷詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // 処理を終了
+                }
                 var newShippingDetail = new TShipmentDetail
                 {
                     PrId = int.Parse(syohinID),

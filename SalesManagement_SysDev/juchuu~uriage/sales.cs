@@ -672,7 +672,12 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
+                    var existingOrderDetail = context.TSaleDetails.FirstOrDefault(o => o.SaId == uriage);
+                    if (existingOrderDetail != null)
+                    {
+                        MessageBox.Show("この売上IDにはすでに売上詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // 処理を終了
+                    }
                     var newSaleDetail = new TSaleDetail
                     {
 

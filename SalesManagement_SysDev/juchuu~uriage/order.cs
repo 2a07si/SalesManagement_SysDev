@@ -801,6 +801,12 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                var existingOrderDetail = context.TChumonDetails.FirstOrDefault(o => o.ChId == tyuumon);
+                if (existingOrderDetail != null)
+                {
+                    MessageBox.Show("この注文IDにはすでに注文詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // 処理を終了
+                }
                 var newOrderDetail = new TChumonDetail
                 {
                     ChId = int.Parse(chuumon),
