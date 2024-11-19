@@ -483,12 +483,20 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            TBSyainID.BackColor = SystemColors.Window;
-            TBSyainName.BackColor = SystemColors.Window;
-            TBJobID.BackColor = SystemColors.Window;
-            TBJobID.BackColor = SystemColors.Window;
-            TBPass.BackColor = SystemColors.Window;
-            TBTellNo.BackColor = SystemColors.Window;
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.登録:
+                    TBSyainID.BackColor = Color.Gray;
+                    break;
+                default:
+                    TBSyainID.BackColor = SystemColors.Window;
+                    TBSyainName.BackColor = SystemColors.Window;
+                    TBJobID.BackColor = SystemColors.Window;
+                    TBJobID.BackColor = SystemColors.Window;
+                    TBPass.BackColor = SystemColors.Window;
+                    TBTellNo.BackColor = SystemColors.Window;
+                    break;
+            }
         }
     }
 }

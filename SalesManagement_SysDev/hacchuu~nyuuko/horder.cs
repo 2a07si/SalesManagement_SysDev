@@ -90,18 +90,14 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
-            TBHattyuuID.BackColor = Color.White;
-            TBHattyuuSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
 
 
         private void b_ser_Click(object sender, EventArgs e)
         {
             PerformSearch();
-            TBHattyuuID.Enabled = true;
-            TBHattyuuSyosaiID.Enabled = true;
-            TBHattyuuID.BackColor = Color.White;
-            TBHattyuuSyosaiID.BackColor = Color.White;
+            tbtrue();
 
         }
         private void PerformSearch()
@@ -113,10 +109,7 @@ namespace SalesManagement_SysDev
         private void b_upd_Click(object sender, EventArgs e)
         {
             UpdateStatus();
-            TBHattyuuID.Enabled = true;
-            TBHattyuuSyosaiID.Enabled = true;
-            TBHattyuuID.BackColor = Color.White;
-            TBHattyuuSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
         private void UpdateStatus()
         {
@@ -127,12 +120,7 @@ namespace SalesManagement_SysDev
         private void b_reg_Click(object sender, EventArgs e)
         {
             RegisterStatus();
-            TBHattyuuID.Enabled = false;
-            TBHattyuuSyosaiID.Enabled = false;
-            TBHattyuuID.BackColor = Color.Gray;
-            TBHattyuuSyosaiID.BackColor = Color.Gray;
-            TBHattyuuID.Text = "";
-            TBHattyuuSyosaiID.Text = "";
+            tbfalse();
         }
 
         private void RegisterStatus()
@@ -146,10 +134,7 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             ListStatus();
-            TBHattyuuID.Enabled = true;
-            TBHattyuuSyosaiID.Enabled = true;
-            TBHattyuuID.BackColor = Color.White;
-            TBHattyuuSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
         private void ListStatus()
         {
@@ -163,7 +148,22 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
         }
 
-
+        private void tbfalse()
+        {
+            TBHattyuuID.Enabled = false;
+            TBHattyuuSyosaiID.Enabled = false;
+            TBHattyuuID.BackColor = Color.Gray;
+            TBHattyuuSyosaiID.BackColor = Color.Gray;
+            TBHattyuuID.Text = "";
+            TBHattyuuSyosaiID.Text = "";
+        }
+        private void tbtrue()
+        {
+            TBHattyuuID.Enabled = true;
+            TBHattyuuSyosaiID.Enabled = true;
+            TBHattyuuID.BackColor = Color.White;
+            TBHattyuuSyosaiID.BackColor = Color.White;
+        }
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
@@ -926,13 +926,21 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            TBHattyuuID.BackColor = SystemColors.Window;
-            TBMakerID.BackColor = SystemColors.Window;
-            TBShainID.BackColor = SystemColors.Window;
-            TBHattyuuSyosaiID.BackColor = SystemColors.Window;
-            TBHattyuIDS.BackColor = SystemColors.Window;
-            TBSyohinID.BackColor = SystemColors.Window;
-            TBSuryou.BackColor = SystemColors.Window;
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.登録:
+                    tbfalse();
+                    break;
+                default:
+                    TBHattyuuID.BackColor = SystemColors.Window;
+                    TBMakerID.BackColor = SystemColors.Window;
+                    TBShainID.BackColor = SystemColors.Window;
+                    TBHattyuuSyosaiID.BackColor = SystemColors.Window;
+                    TBHattyuIDS.BackColor = SystemColors.Window;
+                    TBSyohinID.BackColor = SystemColors.Window;
+                    TBSuryou.BackColor = SystemColors.Window;
+                    break;
+            }
         }
     }
 

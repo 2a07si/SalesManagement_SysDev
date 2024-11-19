@@ -100,13 +100,7 @@ namespace SalesManagement_SysDev
         private void b_reg_Click(object sender, EventArgs e)
         {
             RegisterStatus();
-            TBSyukkaID.Enabled = false;
-            TBSyukkaSyosaiID.Enabled = false;
-            TBSyukkaID.BackColor = Color.Gray;
-            TBSyukkaSyosaiID.BackColor = Color.Gray;
-
-            TBSyukkaID.Text = "";
-            TBSyukkaSyosaiID.Text = "";
+            tbfalse();
         }
 
         private void RegisterStatus()
@@ -121,10 +115,7 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.UpDateStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            TBSyukkaID.Enabled = true;
-            TBSyukkaSyosaiID.Enabled = true;
-            TBSyukkaID.BackColor = Color.White;
-            TBSyukkaSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
 
         private void B_iti_Click(object sender, EventArgs e)
@@ -133,10 +124,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             DisplayShipping();
             DisplayShippingDetails();
-            TBSyukkaID.Enabled = true;
-            TBSyukkaSyosaiID.Enabled = true;
-            TBSyukkaID.BackColor = Color.White;
-            TBSyukkaSyosaiID.BackColor = Color.White;
+            tbtrue();
 
         }
 
@@ -144,10 +132,7 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.SearchStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            TBSyukkaID.Enabled = true;
-            TBSyukkaSyosaiID.Enabled = true;
-            TBSyukkaID.BackColor = Color.White;
-            TBSyukkaSyosaiID.BackColor = Color.White;
+            tbtrue();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -173,11 +158,26 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
+            tbtrue();
+        }
+
+        private void tbfalse()
+        {
+            TBSyukkaID.Enabled = false;
+            TBSyukkaSyosaiID.Enabled = false;
+            TBSyukkaID.BackColor = Color.Gray;
+            TBSyukkaSyosaiID.BackColor = Color.Gray;
+            TBSyukkaID.Text = "";
+            TBSyukkaSyosaiID.Text = "";
+        }
+
+        private void tbtrue()
+        {
+            TBSyukkaID.Enabled = true;
+            TBSyukkaSyosaiID.Enabled = true;
             TBSyukkaID.BackColor = Color.White;
             TBSyukkaSyosaiID.BackColor = Color.White;
         }
-
-
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
@@ -1061,15 +1061,23 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            TBSyukkaID.BackColor = SystemColors.Window;
-            TBKokyakuID.BackColor = SystemColors.Window;
-            TBShainID.BackColor = SystemColors.Window;
-            TBShopID.BackColor = SystemColors.Window;
-            TBJyutyuID.BackColor = SystemColors.Window;
-            TBSyukkaSyosaiID.BackColor = SystemColors.Window;
-            TBSyukkaIDS.BackColor = SystemColors.Window;
-            TBSyohinID.BackColor = SystemColors.Window;
-            TBSuryou.BackColor = SystemColors.Window;
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.登録:
+                    tbfalse();
+                    break;
+                default:
+                    TBSyukkaID.BackColor = SystemColors.Window;
+                    TBKokyakuID.BackColor = SystemColors.Window;
+                    TBShainID.BackColor = SystemColors.Window;
+                    TBShopID.BackColor = SystemColors.Window;
+                    TBJyutyuID.BackColor = SystemColors.Window;
+                    TBSyukkaSyosaiID.BackColor = SystemColors.Window;
+                    TBSyukkaIDS.BackColor = SystemColors.Window;
+                    TBSyohinID.BackColor = SystemColors.Window;
+                    TBSuryou.BackColor = SystemColors.Window;
+                    break;
+            }
         }
     }
 

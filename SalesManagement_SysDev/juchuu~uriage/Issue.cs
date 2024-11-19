@@ -113,16 +113,12 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
-            TBSyukkoId.BackColor = Color.White;
-            TBSyukkoSyosaiId.BackColor = Color.White;
+            tbtrue();
         }
         private void b_ser_Click(object sender, EventArgs e)
         {
             PerformSearch();
-            TBSyukkoId.Enabled = true;
-            TBSyukkoSyosaiId.Enabled = true;
-            TBSyukkoId.BackColor = Color.White;
-            TBSyukkoSyosaiId.BackColor = Color.White;
+            tbtrue();
         }
         private void PerformSearch()
         {
@@ -133,10 +129,7 @@ namespace SalesManagement_SysDev
         private void b_upd_Click(object sender, EventArgs e)
         {
             UpdateStatus();
-            TBSyukkoId.Enabled = true;
-            TBSyukkoSyosaiId.Enabled = true;
-            TBSyukkoId.BackColor = Color.White;
-            TBSyukkoSyosaiId.BackColor = Color.White;
+            tbtrue();
         }
         private void UpdateStatus()
         {
@@ -147,12 +140,7 @@ namespace SalesManagement_SysDev
         private void b_reg_Click(object sender, EventArgs e)
         {
             RegisterStatus();
-            TBSyukkoId.Enabled = false;
-            TBSyukkoSyosaiId.Enabled = false;
-            TBSyukkoId.BackColor = Color.Gray;
-            TBSyukkoSyosaiId.BackColor = Color.Gray;
-            TBSyukkoId.Text = "";
-            TBSyukkoSyosaiId.Text = "";
+            tbfalse();
         }
 
         private void RegisterStatus()
@@ -164,10 +152,7 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             ListStatus();
-            TBSyukkoId.Enabled = true;
-            TBSyukkoSyosaiId.Enabled = true;
-            TBSyukkoId.BackColor = Color.White;
-            TBSyukkoSyosaiId.BackColor = Color.White;
+            tbtrue();
         }
 
         private void ListStatus()
@@ -182,6 +167,23 @@ namespace SalesManagement_SysDev
         private void ResetStatus()
         {
             CurrentStatus.ResetStatus(label2);
+        }
+
+        private void tbfalse()
+        {
+            TBSyukkoId.Enabled = false;
+            TBSyukkoSyosaiId.Enabled = false;
+            TBSyukkoId.BackColor = Color.Gray;
+            TBSyukkoSyosaiId.BackColor = Color.Gray;
+            TBSyukkoId.Text = "";
+            TBSyukkoSyosaiId.Text = "";
+        }
+        private void tbtrue()
+        {
+            TBSyukkoId.Enabled = true;
+            TBSyukkoSyosaiId.Enabled = true;
+            TBSyukkoId.BackColor = Color.White;
+            TBSyukkoSyosaiId.BackColor = Color.White;
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
@@ -1089,16 +1091,24 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            TBSyukkoId.BackColor = SystemColors.Window;
-            TBShainId.BackColor = SystemColors.Window;
-            TBKokyakuId.BackColor = SystemColors.Window;
-            TBShopId.BackColor = SystemColors.Window;
-            TBJyutyuId.BackColor = SystemColors.Window;
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.登録:
+                    tbfalse();
+                    break;
+                default:
+                    TBShainId.BackColor = SystemColors.Window;
+                    TBKokyakuId.BackColor = SystemColors.Window;
+                    TBShopId.BackColor = SystemColors.Window;
+                    TBJyutyuId.BackColor = SystemColors.Window;
 
-            TBJyutyuId.BackColor = SystemColors.Window;
-            TBSyukkoIDS.BackColor = SystemColors.Window;
-            TBSyohinId.BackColor = SystemColors.Window;
-            TBSuryou.BackColor = SystemColors.Window;
+                    TBJyutyuId.BackColor = SystemColors.Window;
+                    TBSyukkoIDS.BackColor = SystemColors.Window;
+                    TBSyohinId.BackColor = SystemColors.Window;
+                    TBSuryou.BackColor = SystemColors.Window;
+                    break;
+            }
+          
         }
     }
 

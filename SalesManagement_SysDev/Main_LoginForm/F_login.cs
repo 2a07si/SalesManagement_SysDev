@@ -7,6 +7,8 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using System.Diagnostics;
 using Microsoft.Data.SqlClient;
 using System.Text.RegularExpressions;
+using SalesManagement_SysDev.Main_LoginForm;
+using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 
 namespace SalesManagement_SysDev
 {
@@ -745,6 +747,8 @@ namespace SalesManagement_SysDev
             dateNameLabel.UpdateDateTime(); // 日付と時間のラベルを更新
         }
 
+       
+
         private void B_login_Click(object sender, EventArgs e)
         {
             try
@@ -779,6 +783,8 @@ namespace SalesManagement_SysDev
                     tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
                     return;
                 }
+
+                GlobalData.EmployeeID = tb_ID.Text;
 
                 string pass = tb_Pass.Text;
                 bool isLoginSuccessful = false; // 初期化して成功状態を保存する変数  

@@ -98,16 +98,12 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
-            TBTyumonId.BackColor = Color.White;
-            TBTyumonSyosaiId.BackColor = Color.White;
+            tbtrue();
         }
         private void b_ser_Click(object sender, EventArgs e)
         {
             PerformSearch();
-            TBTyumonId.Enabled = true;
-            TBTyumonSyosaiId.Enabled = true;
-            TBTyumonId.BackColor = Color.White;
-            TBTyumonSyosaiId.BackColor = Color.White;
+            tbtrue();
         }
         private void PerformSearch()
         {
@@ -118,10 +114,7 @@ namespace SalesManagement_SysDev
         private void b_upd_Click(object sender, EventArgs e)
         {
             UpdateStatus();
-            TBTyumonId.Enabled = true;
-            TBTyumonSyosaiId.Enabled = true;
-            TBTyumonId.BackColor = Color.White;
-            TBTyumonSyosaiId.BackColor = Color.White;
+            tbtrue();
         }
         private void UpdateStatus()
         {
@@ -132,12 +125,7 @@ namespace SalesManagement_SysDev
         private void b_reg_Click(object sender, EventArgs e)
         {
             RegisterStatus();
-            TBTyumonId.Enabled = false;
-            TBTyumonSyosaiId.Enabled = false;
-            TBTyumonId.BackColor = Color.Gray;
-            TBTyumonSyosaiId.BackColor = Color.Gray;
-            TBTyumonId.Text = "";
-            TBTyumonSyosaiId.Text = "";
+            tbfalse();
         }
 
         private void RegisterStatus()
@@ -149,10 +137,7 @@ namespace SalesManagement_SysDev
         private void B_iti_Click(object sender, EventArgs e)
         {
             ListStatus();
-            TBTyumonId.Enabled = true;
-            TBTyumonSyosaiId.Enabled = true;
-            TBTyumonId.BackColor = Color.White;
-            TBTyumonSyosaiId.BackColor = Color.White;
+            tbtrue();
         }
         private void ListStatus()
         {
@@ -167,6 +152,23 @@ namespace SalesManagement_SysDev
         private void ResetStatus()
         {
             CurrentStatus.ResetStatus(label2);
+        }
+
+        private void tbfalse()
+        {
+            TBTyumonId.Enabled = false;
+            TBTyumonSyosaiId.Enabled = false;
+            TBTyumonId.BackColor = Color.Gray;
+            TBTyumonSyosaiId.BackColor = Color.Gray;
+            TBTyumonId.Text = "";
+            TBTyumonSyosaiId.Text = "";
+        }
+        private void tbtrue()
+        {
+            TBTyumonId.Enabled = true;
+            TBTyumonSyosaiId.Enabled = true;
+            TBTyumonId.BackColor = Color.White;
+            TBTyumonSyosaiId.BackColor = Color.White;
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
@@ -1213,16 +1215,25 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            TBTyumonId.BackColor = SystemColors.Window;
-            TBShopId.BackColor = SystemColors.Window;
-            TBShainId.BackColor = SystemColors.Window;
-            TBKokyakuId.BackColor = SystemColors.Window;
-            TBJyutyuId.BackColor = SystemColors.Window;
 
-            TBTyumonSyosaiId.BackColor = SystemColors.Window;
-            TBTyumonIDS.BackColor = SystemColors.Window;
-            TBSyohinId.BackColor = SystemColors.Window;
-            TBSuryou.BackColor = SystemColors.Window;
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.登録:
+                    tbfalse();
+                    break;
+                default:
+                    TBTyumonId.BackColor = SystemColors.Window;
+                    TBShopId.BackColor = SystemColors.Window;
+                    TBShainId.BackColor = SystemColors.Window;
+                    TBKokyakuId.BackColor = SystemColors.Window;
+                    TBJyutyuId.BackColor = SystemColors.Window;
+
+                    TBTyumonSyosaiId.BackColor = SystemColors.Window;
+                    TBTyumonIDS.BackColor = SystemColors.Window;
+                    TBSyohinId.BackColor = SystemColors.Window;
+                    TBSuryou.BackColor = SystemColors.Window;
+                    break;
+            }
         }
     }
 }

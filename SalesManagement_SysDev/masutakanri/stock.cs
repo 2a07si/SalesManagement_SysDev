@@ -404,9 +404,17 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            TBZaikoID.BackColor = SystemColors.Window;
-            TBSyohinID.BackColor = SystemColors.Window;
-            TBZaiko.BackColor = SystemColors.Window;
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.登録:
+                    TBZaikoID.BackColor = Color.Gray;
+                    break;
+                default:
+                    TBZaikoID.BackColor = SystemColors.Window;
+                    TBSyohinID.BackColor = SystemColors.Window;
+                    TBZaiko.BackColor = SystemColors.Window;
+                    break;
+            }
 
         }
     }
