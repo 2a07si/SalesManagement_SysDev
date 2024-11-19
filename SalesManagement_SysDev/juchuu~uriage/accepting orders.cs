@@ -14,6 +14,7 @@ namespace SalesManagement_SysDev
 {
     public partial class acceptingorders : Form
     {
+        string empID = GlobalEmp.EmployeeID;　//ログイン時の社員ＩＤが処理画面の社員ＩＤのテキストボックスに自動的に反映される
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
         private string orderFlag = "←通常"; // 初期状態を「注文」に設定
         private ClassDataGridViewClearer dgvClearer;
@@ -312,6 +313,14 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
+                if (TBShainID.Text != empID)
+                {
+                    MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
+                    TBKokyakuID.BackColor = Color.Yellow;
+                    TBKokyakuID.Focus();
+                    return;
+                }
+
                 using (var context = new SalesManagementContext())
                 {
                     var order = context.TOrders.SingleOrDefault(o => o.OrId.ToString() == jyutyuID);
@@ -399,7 +408,6 @@ namespace SalesManagement_SysDev
 
         private void RegisterOrder()
         {
-            string empID = GlobalEmp.EmployeeID;　//ログイン時の社員ＩＤが処理画面の社員ＩＤのテキストボックスに自動的に反映される
 
             try
             {
@@ -438,6 +446,8 @@ namespace SalesManagement_SysDev
                 if(TBShainID.Text != empID)
                 {
                     MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     return;
                 }
 
