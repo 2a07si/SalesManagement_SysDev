@@ -285,49 +285,49 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBMakerId.Text == null)
+                if (TBMakerId.Text == "")
                 {
                     TBMakerId.BackColor = Color.Yellow;
                     TBMakerId.Focus();
                     MessageBox.Show("メーカーIDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBSyohinName.Text == null)
+                if (TBSyohinName.Text == "")
                 {
                     TBSyohinName.BackColor = Color.Yellow;
                     TBSyohinName.Focus();
                     MessageBox.Show("商品名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBSell.Text == null)
+                if (TBSell.Text == "")
                 {
                     TBSell.BackColor = Color.Yellow;
                     TBSell.Focus();
                     MessageBox.Show("値段を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBSafeNum.Text == null)
+                if (TBSafeNum.Text == "")
                 {
                     TBSafeNum.BackColor = Color.Yellow;
                     TBSafeNum.Focus();
                     MessageBox.Show("安全在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBSyoubunrui.Text == null)
+                if (TBSyoubunrui.Text == "")
                 {
                     TBSyoubunrui.BackColor = Color.Yellow;
                     TBSyoubunrui.Focus();
                     MessageBox.Show("小分類IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBModel.Text == null)
+                if (TBModel.Text == "")
                 {
                     TBModel.BackColor = Color.Yellow;
                     TBModel.Focus();
                     MessageBox.Show("型番を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBColor.Text == null)
+                if (TBColor.Text == "")
                 {
                     TBColor.BackColor = Color.Yellow;
                     TBColor.Focus();

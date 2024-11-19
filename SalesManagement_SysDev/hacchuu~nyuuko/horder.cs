@@ -245,7 +245,7 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            if (TBHattyuuID.Text == null)
+            if (TBHattyuuID.Text == "")
             {
                 TBHattyuuID.BackColor = Color.Yellow;
                 TBHattyuuID.Focus();
@@ -253,7 +253,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBMakerID.Text == null)
+            if (TBMakerID.Text == "")
             {
                 TBMakerID.BackColor = Color.Yellow;
                 TBMakerID.Focus();
@@ -261,7 +261,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBShainID.Text == null)
+            if (TBShainID.Text == "")
             {
                 TBShainID.BackColor = Color.Yellow;
                 TBShainID.Focus();
@@ -361,7 +361,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBMakerID.Text == null)
+                if (TBMakerID.Text == "")
                 {
                     TBMakerID.BackColor = Color.Yellow;
                     TBMakerID.Focus();
@@ -369,7 +369,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBShainID.Text == null)
+                if (TBShainID.Text == "")
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
@@ -505,7 +505,7 @@ namespace SalesManagement_SysDev
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
-            if (TBHattyuuSyosaiID.Text == null)
+            if (TBHattyuuSyosaiID.Text == "")
             {
                 TBHattyuuSyosaiID.BackColor = Color.Yellow;
                 TBHattyuuSyosaiID.Focus();
@@ -513,7 +513,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBHattyuIDS.Text == null)
+            if (TBHattyuIDS.Text == "")
             {
                 TBHattyuIDS.BackColor = Color.Yellow;
                 TBHattyuIDS.Focus();
@@ -522,7 +522,7 @@ namespace SalesManagement_SysDev
             }
 
 
-            if (TBSyohinID.Text == null)
+            if (TBSyohinID.Text == "")
             {
                 TBSyohinID.BackColor = Color.Yellow;
                 TBSyohinID.Focus();
@@ -530,7 +530,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBSuryou.Text == null)
+            if (TBSuryou.Text == "")
             {
                 TBSuryou.BackColor = Color.Yellow;
                 TBSuryou.Focus();
@@ -590,7 +590,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBHattyuIDS.Text == null)
+                if (TBHattyuIDS.Text == "")
                 {
                     TBHattyuIDS.BackColor = Color.Yellow;
                     TBHattyuIDS.Focus();
@@ -599,7 +599,7 @@ namespace SalesManagement_SysDev
                 }
 
 
-                if (TBSyohinID.Text == null)
+                if (TBSyohinID.Text == "")
                 {
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
@@ -607,7 +607,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBSuryou.Text == null)
+                if (TBSuryou.Text == "")
                 {
                     TBSuryou.BackColor = Color.Yellow;
                     TBSuryou.Focus();

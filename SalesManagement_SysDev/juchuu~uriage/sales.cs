@@ -270,7 +270,7 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
 
-            if (TBSalesID.Text == null)
+            if (TBSalesID.Text == "")
             {
                 TBSalesID.BackColor = Color.Yellow;
                 TBSalesID.Focus();
@@ -278,7 +278,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBShopID.Text == null)
+            if (TBShopID.Text == "")
             {
                 TBShopID.BackColor = Color.Yellow;
                 TBShopID.Focus();
@@ -286,7 +286,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBShainID.Text == null)
+            if (TBShainID.Text == "")
             {
                 TBShainID.BackColor = Color.Yellow;
                 TBShopID.Focus();
@@ -294,7 +294,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBKokyakuID.Text == null)
+            if (TBKokyakuID.Text == "")
             {
                 TBKokyakuID.BackColor = Color.Yellow;
                 TBKokyakuID.Focus();
@@ -302,7 +302,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBJyutyuID.Text == null)
+            if (TBJyutyuID.Text == "")
             {
                 TBJyutyuID.BackColor = Color.Yellow;
                 TBJyutyuID.Focus();
@@ -571,7 +571,7 @@ namespace SalesManagement_SysDev
             string suryou = TBSuryou.Text;
             string total = TBTotal.Text;
 
-            if (TBUriageSyosaiID.Text == null)
+            if (TBUriageSyosaiID.Text == "")
             {
                 TBUriageIDS.BackColor = Color.Yellow;
                 TBUriageIDS.Focus();
@@ -579,20 +579,20 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBUriageIDS.Text == null)
+            if (TBUriageIDS.Text == "")
             {
                 MessageBox.Show("売上IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
 
-            if (TBSyohinID.Text == null)
+            if (TBSyohinID.Text == "")
             {
                 MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBSuryou.Text == null)
+            if (TBSuryou.Text == "")
             {
                 MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -654,20 +654,20 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    if (TBUriageIDS.Text == null)
+                    if (TBUriageIDS.Text == "")
                     {
                         MessageBox.Show("売上IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
 
-                    if (TBSyohinID.Text == null)
+                    if (TBSyohinID.Text == "")
                     {
                         MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    if (TBSuryou.Text == null)
+                    if (TBSuryou.Text == "")
                     {
                         MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;

@@ -256,7 +256,7 @@ namespace SalesManagement_SysDev
             string Riyuu = TBRiyuu.Text;
             DateTime Orderdate = date.Value;
 
-            if(TBTyumonId.Text == null)
+            if(TBTyumonId.Text == "")
             {
                 TBTyumonId.BackColor = Color.Yellow;
                 TBTyumonId.Focus();
@@ -264,7 +264,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBShopId.Text == null)
+            if (TBShopId.Text == "")
             {
                 TBShopId.BackColor = Color.Yellow;
                 TBShopId.Focus();
@@ -272,7 +272,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBShainId.Text == null)
+            if (TBShainId.Text == "")
             {
                 TBShainId.BackColor = Color.Yellow;
                 TBShainId.Focus();
@@ -280,7 +280,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBKokyakuId.Text == null)
+            if (TBKokyakuId.Text == "")
             {
                 TBKokyakuId.BackColor = Color.Yellow;
                 TBKokyakuId.Focus();
@@ -288,7 +288,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBJyutyuId.Text == null)
+            if (TBJyutyuId.Text == "")
             {
                 TBJyutyuId.BackColor= Color.Yellow;
                 TBJyutyuId.Focus();
@@ -435,7 +435,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBShopId.Text == null)
+                if (TBShopId.Text == "")
                 {
                     TBShopId.BackColor = Color.Yellow;
                     TBShopId.Focus();
@@ -443,7 +443,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBShainId.Text == null)
+                if (TBShainId.Text == "")
                 {
                     TBShainId.BackColor = Color.Yellow;
                     TBShainId.Focus();
@@ -451,7 +451,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBKokyakuId.Text == null)
+                if (TBKokyakuId.Text == "")
                 {
                     TBKokyakuId.BackColor = Color.Yellow;
                     TBKokyakuId.Focus();
@@ -459,7 +459,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBJyutyuId.Text == null)
+                if (TBJyutyuId.Text == "")
                 {
                     TBJyutyuId.BackColor = Color.Yellow;
                     TBJyutyuId.Focus();

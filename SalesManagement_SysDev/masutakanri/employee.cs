@@ -253,7 +253,8 @@ namespace SalesManagement_SysDev
             string Pass = TBPass.Text;
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
-            string riyuu = TBRiyuu.Text;
+            string Riyuu = TBRiyuu.Text;
+
             if (TBSyainID.Text == "")
             {
                 TBSyainID.BackColor = Color.Yellow;
@@ -323,7 +324,7 @@ namespace SalesManagement_SysDev
                     EmPassword = Pass,
                     EmPhone = TelNo,
                     EmFlag = delFlag ? 1 : 0,
-                    EmHidden = riyuu
+                    EmHidden = Riyuu
                 };
 
                 context.MEmployees.Add(newEmployee);
