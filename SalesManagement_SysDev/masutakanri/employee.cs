@@ -114,12 +114,9 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.ListStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-<<<<<<< HEAD
             TBSyainID.Enabled = true;
             TBSyainID.BackColor = Color.White;
             DisplayEmployee();
-=======
->>>>>>> fdd811bfb5acc17f640bd5069b1a44af1d12dfbe
         }
 
         private void b_ser_Click(object sender, EventArgs e)
@@ -256,6 +253,7 @@ namespace SalesManagement_SysDev
             string Pass = TBPass.Text;
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
+            string riyuu = TBRiyuu.Text;
             if (TBSyainID.Text == "")
             {
                 TBSyainID.BackColor = Color.Yellow;

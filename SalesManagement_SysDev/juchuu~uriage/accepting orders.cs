@@ -1230,7 +1230,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-<<<<<<< HEAD
         // 数値のみを許可するテキストボックスの初期設定
         private void SetupNumericOnlyTextBoxes()
         {
@@ -1257,7 +1256,5 @@ namespace SalesManagement_SysDev
         }
 
 
-=======
->>>>>>> fdd811bfb5acc17f640bd5069b1a44af1d12dfbe
     }
 }
