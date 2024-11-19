@@ -171,41 +171,57 @@ namespace SalesManagement_SysDev
 
             if (TBSyohinID.Text == null)
             {
+                TBSyohinID.BackColor = Color.Yellow;
+                TBSyohinID.Focus();
                 MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBMakerId.Text == null)
             {
+                TBMakerId.BackColor = Color.Yellow;
+                TBMakerId.Focus();
                 MessageBox.Show("メーカーIDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBSyohinName.Text == null)
             {
+                TBSyohinName.BackColor = Color.Yellow;
+                TBSyohinName.Focus();
                 MessageBox.Show("商品名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBSell.Text == null)
             {
+                TBSell.BackColor = Color.Yellow;
+                TBSell.Focus();
                 MessageBox.Show("値段を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBSafeNum.Text == null)
             {
+                TBSafeNum.BackColor = Color.Yellow;
+                TBSafeNum.Focus();
                 MessageBox.Show("安全在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBSyoubunrui.Text == null)
             {
+                TBSyoubunrui.BackColor = Color.Yellow;
+                TBSyoubunrui.Focus();
                 MessageBox.Show("小分類IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBModel.Text == null)
             {
+                TBModel.BackColor = Color.Yellow;
+                TBModel.Focus();
                 MessageBox.Show("型番を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBColor.Text == null)
             {
+                TBColor.BackColor = Color.Yellow;
+                TBColor.Focus();
                 MessageBox.Show("色を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -270,36 +286,50 @@ namespace SalesManagement_SysDev
 
                 if (TBMakerId.Text == null)
                 {
+                    TBMakerId.BackColor = Color.Yellow;
+                    TBMakerId.Focus();
                     MessageBox.Show("メーカーIDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBSyohinName.Text == null)
                 {
+                    TBSyohinName.BackColor = Color.Yellow;
+                    TBSyohinName.Focus();
                     MessageBox.Show("商品名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBSell.Text == null)
                 {
+                    TBSell.BackColor = Color.Yellow;
+                    TBSell.Focus();
                     MessageBox.Show("値段を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBSafeNum.Text == null)
                 {
+                    TBSafeNum.BackColor = Color.Yellow;
+                    TBSafeNum.Focus();
                     MessageBox.Show("安全在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBSyoubunrui.Text == null)
                 {
+                    TBSyoubunrui.BackColor = Color.Yellow;
+                    TBSyoubunrui.Focus();
                     MessageBox.Show("小分類IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBModel.Text == null)
                 {
+                    TBModel.BackColor = Color.Yellow;
+                    TBModel.Focus();
                     MessageBox.Show("型番を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBColor.Text == null)
                 {
+                    TBColor.BackColor = Color.Yellow;
+                    TBColor.Focus();
                     MessageBox.Show("色を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -544,14 +574,22 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            TBSyohinID.BackColor = SystemColors.Window;
-            TBMakerId.BackColor = SystemColors.Window;
-            TBSyohinName.BackColor = SystemColors.Window;
-            TBSell.BackColor = SystemColors.Window;
-            TBSafeNum.BackColor = SystemColors.Window;
-            TBSyoubunrui.BackColor = SystemColors.Window;
-            TBModel.BackColor = SystemColors.Window;
-            TBColor.BackColor = SystemColors.Window;
+            switch (CurrentStatus.CurrentStatusValue)
+            {
+                case CurrentStatus.Status.登録:
+                    TBSyohinID.BackColor = Color.Gray;
+                    break;
+                default:
+                    TBSyohinID.BackColor = SystemColors.Window;
+                    TBMakerId.BackColor = SystemColors.Window;
+                    TBSyohinName.BackColor = SystemColors.Window;
+                    TBSell.BackColor = SystemColors.Window;
+                    TBSafeNum.BackColor = SystemColors.Window;
+                    TBSyoubunrui.BackColor = SystemColors.Window;
+                    TBModel.BackColor = SystemColors.Window;
+                    TBColor.BackColor = SystemColors.Window;
+                    break;
+            }
         }
 
     }
