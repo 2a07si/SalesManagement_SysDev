@@ -939,6 +939,7 @@ namespace SalesManagement_SysDev
             else
             if (orderFlag == "詳細→")
                 lastFocusedPanelId = 2;
+
         }
 
         private void b_FormSelector_Click(object sender, EventArgs e)
