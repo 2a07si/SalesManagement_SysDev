@@ -96,7 +96,6 @@ namespace SalesManagement_SysDev
             tbtrue();
         }
 
-
         private void b_ser_Click(object sender, EventArgs e)
         {
             PerformSearch();
@@ -274,10 +273,6 @@ namespace SalesManagement_SysDev
                 string riyuu = TBRiyuu.Text;
 
                 // 条件精査
-
-
-
-
 
                 if (TBJyutyuID.Text == null)
                 {
@@ -1050,7 +1045,6 @@ namespace SalesManagement_SysDev
                     else
                     {
                         TBJyutyuSyosaiID.Text = row.Cells["受注詳細ID"].Value?.ToString() ?? string.Empty;
-                        TBGoukeiKingaku.Text = row.Cells["合計金額"].Value?.ToString() ?? string.Empty;
                     }
                     // 各テキストボックスにデータを入力 (null許可)
                     TBJyutyuIDS.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
