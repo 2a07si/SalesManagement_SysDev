@@ -165,31 +165,43 @@ namespace SalesManagement_SysDev
             }
             if (TBShopID.Text == null)
             {
+                TBShopID.BackColor = Color.Yellow;
+                TBShopID.Focus();
                 MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBKokyakuName.Text == null)
             {
+                TBKokyakuName.BackColor = Color.Yellow;
+                TBKokyakuName.Focus();
                 MessageBox.Show("顧客名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBJyusyo.Text == null)
             {
+                TBJyusyo.BackColor = Color.Yellow;
+                TBJyusyo.Focus();
                 MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBYuubinNo.Text == null)
             {
+                TBYuubinNo.BackColor = Color.Yellow;
+                TBYuubinNo.Focus();
                 MessageBox.Show("郵便番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBTellNo.Text == null)
             {
+                TBTellNo.BackColor = Color.Yellow;
+                TBTellNo.Focus();
                 MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBFax.Text == null)
             {
+                TBFax.BackColor = Color.Yellow;
+                TBFax.Focus();
                 MessageBox.Show("FAXを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -242,31 +254,43 @@ namespace SalesManagement_SysDev
                 }
                 if (TBShopID.Text == null)
                 {
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBKokyakuName.Text == null)
                 {
+                    TBKokyakuName.BackColor = Color.Yellow;
+                    TBKokyakuName.Focus();
                     MessageBox.Show("顧客名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBJyusyo.Text == null)
                 {
+                    TBJyusyo.BackColor = Color.Yellow;
+                    TBJyusyo.Focus();
                     MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBYuubinNo.Text == null)
                 {
+                    TBYuubinNo.BackColor = Color.Yellow;
+                    TBYuubinNo.Focus();
                     MessageBox.Show("郵便番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBTellNo.Text == null)
                 {
+                    TBTellNo.BackColor = Color.Yellow;
+                    TBTellNo.Focus();
                     MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBFax.Text == null)
                 {
+                    TBFax.BackColor = Color.Yellow;
+                    TBFax.Focus();
                     MessageBox.Show("FAXを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
