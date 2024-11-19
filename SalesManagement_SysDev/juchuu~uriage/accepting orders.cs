@@ -275,15 +275,12 @@ namespace SalesManagement_SysDev
 
                 // 条件精査
 
-<<<<<<< HEAD
                 if (TBJyutyuID.Text == null)
-=======
 
 
 
 
                 if (TBJyutyuID.Text == "")
->>>>>>> 416aa9662b73f233753a7a10e0bf8fd7b0917f0e
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
