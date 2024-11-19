@@ -99,7 +99,6 @@ namespace SalesManagement_SysDev
         {
             PerformSearch();
             tbtrue();
-
         }
 
         private void PerformSearch()
@@ -112,7 +111,6 @@ namespace SalesManagement_SysDev
         {
             UpdateStatus();
             tbtrue();
-
         }
 
         private void UpdateStatus()
@@ -260,6 +258,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrder()
         {
+            
             try
             {
                 string jyutyuID = TBJyutyuID.Text;
@@ -1228,5 +1227,8 @@ namespace SalesManagement_SysDev
 
             }
         }
+        
+
+
     }
 }
