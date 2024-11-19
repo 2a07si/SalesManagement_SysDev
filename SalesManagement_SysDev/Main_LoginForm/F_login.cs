@@ -784,7 +784,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                GlobalData.EmployeeID = tb_ID.Text;
+                GlobalEmp.EmployeeID = tb_ID.Text;
 
                 string pass = tb_Pass.Text;
                 bool isLoginSuccessful = false; // ‰Šú‰»‚µ‚Ä¬Œ÷ó‘Ô‚ğ•Û‘¶‚·‚é•Ï”  

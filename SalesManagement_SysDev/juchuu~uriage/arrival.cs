@@ -6,6 +6,7 @@ using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
+using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -16,6 +17,7 @@ namespace SalesManagement_SysDev
 {
     public partial class arrival : Form
     {
+        string empID = GlobalEmp.EmployeeID;
         private bool isArrivalSelected = true; // 初期状態を入荷(TArrival)に設定
         private string arrivalFlag = "←通常"; // 初期状態を「注文」に設定
 
@@ -290,7 +292,13 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            if (TBShainId.Text != empID)
+            {
+                MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
+                TBShainId.BackColor = Color.Yellow;
+                TBShainId.Focus();
+                return;
+            }
 
             using (var context = new SalesManagementContext())
             {
@@ -432,6 +440,14 @@ namespace SalesManagement_SysDev
                     TBJyutyuId.BackColor = Color.Yellow;
                     TBJyutyuId.Focus();
                     MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (TBShainId.Text != empID)
+                {
+                    MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
+                    TBShainId.BackColor = Color.Yellow;
+                    TBShainId.Focus();
                     return;
                 }
 

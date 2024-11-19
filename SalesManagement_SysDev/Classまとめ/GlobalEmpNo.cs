@@ -8,7 +8,7 @@ namespace SalesManagement_SysDev.Classまとめ
 {
     internal class GlobalEmpNo
     {
-        public static class GlobalData
+        public static class GlobalEmp
         {
             public static string EmployeeID { get; set; }
         }

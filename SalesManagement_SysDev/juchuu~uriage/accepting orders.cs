@@ -52,7 +52,8 @@ namespace SalesManagement_SysDev
             DisplayOrders();
             DisplayOrderDetails();
             TBGoukeiKingaku.Enabled = false;
-            //TBShainID.Text = GlobalData.EmployeeID;　ログイン時の社員ＩＤが処理画面の社員ＩＤのテキストボックスに自動的に反映される
+            TBGoukeiKingaku.BackColor = Color.Gray;
+          
         }
 
         // メインメニューに戻る
@@ -398,6 +399,8 @@ namespace SalesManagement_SysDev
 
         private void RegisterOrder()
         {
+            string empID = GlobalEmp.EmployeeID;　//ログイン時の社員ＩＤが処理画面の社員ＩＤのテキストボックスに自動的に反映される
+
             try
             {
                 string shopID = TBShopID.Text;
@@ -430,6 +433,11 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBKokyakuID.BackColor = SystemColors.Window;
                     TBKokyakuID.Focus();
+                    return;
+                }
+                if(TBShainID.Text != empID)
+                {
+                    MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
                     return;
                 }
 
@@ -1178,9 +1186,7 @@ namespace SalesManagement_SysDev
             switch(CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.登録:
-                    TBJyutyuID.BackColor = Color.Gray;
-                    TBGoukeiKingaku.BackColor = Color.Gray;
-                    TBJyutyuSyosaiID.BackColor = Color.Gray;
+                    tbfalse();
                     break;
                 default:
                     TBJyutyuID.BackColor = SystemColors.Window;

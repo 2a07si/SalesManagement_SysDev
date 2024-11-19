@@ -7,6 +7,7 @@ using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
 using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
+using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -14,7 +15,7 @@ namespace SalesManagement_SysDev
 {
     public partial class shipping : Form
     {
-
+        string empID = GlobalEmp.EmployeeID;
         private bool isShippingSelected = true; // 初期状態を受注(TOrder)に設定
         private string shippingFlag = "←通常"; // 初期状態を「注文」に設定
 
@@ -290,6 +291,13 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (TBShainID.Text != empID)
+            {
+                MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
+                TBShainID.BackColor = Color.Yellow;
+                TBShainID.Focus();
+                return;
+            }
 
 
 
@@ -423,6 +431,13 @@ namespace SalesManagement_SysDev
                 if (TBJyutyuID.Text == null)
                 {
                     MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBShainID.Text != empID)
+                {
+                    MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     return;
                 }
 
