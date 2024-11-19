@@ -280,26 +280,26 @@ namespace SalesManagement_SysDev
 
                 if (TBJyutyuID.Text == null)
                 {
-                    MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
+                    MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
 
                 if (TBShopID.Text == null)
                 {
-                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
+                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBShainID.Text == null)
                 {
-                    MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
+                    MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -307,9 +307,7 @@ namespace SalesManagement_SysDev
                 {
                     TBKokyakuID.BackColor = Color.Yellow;
                     TBKokyakuID.Focus();
-
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return;
                 }
 
@@ -422,25 +420,25 @@ namespace SalesManagement_SysDev
 
                 if (TBShopID.Text == null)
                 {
-                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShopID.BackColor = Color.Yellow; 
+                    TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
+                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBShainID.Text == null)
                 {
-                    MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
+                    MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBKokyakuID.Text == null)
                 {
-                    MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBKokyakuID.BackColor = SystemColors.Window;
                     TBKokyakuID.Focus();
+                    MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if(TBShainID.Text != empID)
@@ -723,26 +721,26 @@ namespace SalesManagement_SysDev
 
                 if (TBJyutyuIDS == null)
                 {
-                    MessageBox.Show("受注IDを入力してください", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
+                    MessageBox.Show("受注IDを入力して下さい", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
 
                 if (TBSyohinID == null)
                 {
-                    MessageBox.Show("商品IDを入力してください", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
+                    MessageBox.Show("商品IDを入力して下さい", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBSuryou == null)
                 {
-                    MessageBox.Show("数量を入力してください", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBSuryou.BackColor = Color.Yellow;
                     TBSuryou.Focus();
+                    MessageBox.Show("数量を入力して下さい", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -750,24 +748,24 @@ namespace SalesManagement_SysDev
                 {
                     if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrderDetails.Any(s => s.OrId == jyutyu))
                     {
-                        MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         TBJyutyuIDS.BackColor = Color.Yellow;
                         TBJyutyuIDS.Focus();
+                        MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     if (!int.TryParse(syohinID, out int syohin) || !context.TOrderDetails.Any(s => s.PrId == syohin))
                     {
-                        MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBSyohinID.BackColor= Color.Yellow;
+                        TBSyohinID.BackColor = Color.Yellow;
                         TBSyohinID.Focus();
+                        MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     if (TBSuryou.Text == null)
                     {
-                        MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBSuryou.BackColor= Color.Yellow;
+                        TBSuryou.BackColor = Color.Yellow;
                         TBSuryou.Focus();
+                        MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     var newOrderDetail = new TOrderDetail

@@ -158,6 +158,8 @@ namespace SalesManagement_SysDev
 
             if (TBKokyakuID.Text == null)
             {
+                TBKokyakuID.BackColor = Color.Yellow;
+                TBKokyakuID.Focus();
                 MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }

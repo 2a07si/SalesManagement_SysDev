@@ -247,18 +247,24 @@ namespace SalesManagement_SysDev
 
             if (TBHattyuuID.Text == null)
             {
+                TBHattyuuID.BackColor = Color.Yellow;
+                TBHattyuuID.Focus();
                 MessageBox.Show("発注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (TBMakerID.Text == null)
             {
+                TBMakerID.BackColor = Color.Yellow;
+                TBMakerID.Focus();
                 MessageBox.Show("メーカーIDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (TBShainID.Text == null)
             {
+                TBShainID.BackColor = Color.Yellow;
+                TBShainID.Focus();
                 MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -357,12 +363,16 @@ namespace SalesManagement_SysDev
 
                 if (TBMakerID.Text == null)
                 {
+                    TBMakerID.BackColor = Color.Yellow;
+                    TBMakerID.Focus();
                     MessageBox.Show("メーカーIDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBShainID.Text == null)
                 {
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
                     MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -497,12 +507,16 @@ namespace SalesManagement_SysDev
 
             if (TBHattyuuSyosaiID.Text == null)
             {
+                TBHattyuuSyosaiID.BackColor = Color.Yellow;
+                TBHattyuuSyosaiID.Focus();
                 MessageBox.Show("発注詳細IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (TBHattyuIDS.Text == null)
             {
+                TBHattyuIDS.BackColor = Color.Yellow;
+                TBHattyuIDS.Focus();
                 MessageBox.Show("発注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -510,12 +524,16 @@ namespace SalesManagement_SysDev
 
             if (TBSyohinID.Text == null)
             {
+                TBSyohinID.BackColor = Color.Yellow;
+                TBSyohinID.Focus();
                 MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (TBSuryou.Text == null)
             {
+                TBSuryou.BackColor = Color.Yellow;
+                TBSuryou.Focus();
                 MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -574,6 +592,8 @@ namespace SalesManagement_SysDev
 
                 if (TBHattyuIDS.Text == null)
                 {
+                    TBHattyuIDS.BackColor = Color.Yellow;
+                    TBHattyuIDS.Focus();
                     MessageBox.Show("発注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -581,12 +601,16 @@ namespace SalesManagement_SysDev
 
                 if (TBSyohinID.Text == null)
                 {
+                    TBSyohinID.BackColor = Color.Yellow;
+                    TBSyohinID.Focus();
                     MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (TBSuryou.Text == null)
                 {
+                    TBSuryou.BackColor = Color.Yellow;
+                    TBSuryou.Focus();
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }

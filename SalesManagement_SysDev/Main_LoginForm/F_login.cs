@@ -756,7 +756,7 @@ namespace SalesManagement_SysDev
                 // 入力検証
                 if (!InputValidator.IsNotEmpty(tb_ID.Text) || !InputValidator.IsValidEmployeeID(tb_ID.Text, out int empID))
                 {
-                    MessageBox.Show("社員IDを正しく入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("社員IDを正しく入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_ID.Focus(); // ID テキストボックスにフォーカス 
                     return;
                 }
@@ -764,14 +764,14 @@ namespace SalesManagement_SysDev
                 // 社員IDが3～4桁の数字かどうかをチェック 
                 if (tb_ID.Text.Length < 3 || tb_ID.Text.Length > 4 || !Regex.IsMatch(tb_ID.Text, @"^\d+$"))
                 {
-                    MessageBox.Show("社員IDは3～4桁の数字で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("社員IDは3～4桁の数字で入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_ID.Focus(); // ID テキストボックスにフォーカス 
                     return;
                 }
 
                 if (!InputValidator.IsNotEmpty(tb_Pass.Text))
                 {
-                    MessageBox.Show("パスワードを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
                     return;
                 }
@@ -779,7 +779,7 @@ namespace SalesManagement_SysDev
                 // パスワードが3～4桁の数字かどうかをチェック 
                 if (tb_Pass.Text.Length < 3 || tb_Pass.Text.Length > 4 || !Regex.IsMatch(tb_Pass.Text, @"^\d+$"))
                 {
-                    MessageBox.Show("パスワードは3～4桁の数字で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("パスワードは3～4桁の数字で入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
                     return;
                 }
@@ -905,7 +905,7 @@ namespace SalesManagement_SysDev
                 // 入力検証
                 if (!InputValidator.IsNotEmpty(tb_ID.Text) || !InputValidator.IsValidEmployeeID(tb_ID.Text, out int empID))
                 {
-                    MessageBox.Show("社員IDを正しく入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("社員IDを正しく入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_ID.Focus(); // ID テキストボックスにフォーカス 
                     return;
                 }
@@ -913,14 +913,14 @@ namespace SalesManagement_SysDev
                 // 社員IDが3～4桁の数字かどうかをチェック 
                 if (tb_ID.Text.Length < 3 || tb_ID.Text.Length > 4 || !Regex.IsMatch(tb_ID.Text, @"^\d+$"))
                 {
-                    MessageBox.Show("社員IDは3～4桁の数字で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("社員IDは3～4桁の数字で入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_ID.Focus(); // ID テキストボックスにフォーカス 
                     return;
                 }
 
                 if (!InputValidator.IsNotEmpty(tb_Pass.Text))
                 {
-                    MessageBox.Show("パスワードを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
                     return;
                 }
@@ -928,7 +928,7 @@ namespace SalesManagement_SysDev
                 // パスワードが3～4桁の数字かどうかをチェック 
                 if (tb_Pass.Text.Length < 3 || tb_Pass.Text.Length > 4 || !Regex.IsMatch(tb_Pass.Text, @"^\d+$"))
                 {
-                    MessageBox.Show("パスワードは3～4桁の数字で入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("パスワードは3～4桁の数字で入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
                     return;
                 }

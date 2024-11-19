@@ -172,31 +172,43 @@ namespace SalesManagement_SysDev
 
             if (TBSyainID.Text == null)
             {
+                TBSyainID.BackColor = Color.Yellow;
+                TBSyainID.Focus();
                 MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBSyainName.Text == null)
             {
+                TBSyainName.BackColor = Color.Yellow;
+                TBSyainName.Focus();
                 MessageBox.Show("社員名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBShopId.Text == null)
             {
+                TBShopId.BackColor = Color.Yellow;
+                TBShopId.Focus();
                 MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBJobID.Text == null)
             {
+                TBJobID.BackColor = Color.Yellow;
+                TBJobID.Focus();
                 MessageBox.Show("役職IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBPass.Text == null)
             {
+                TBPass.BackColor = Color.Yellow;
+                TBPass.Focus();
                 MessageBox.Show("パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBTellNo.Text == null)
             {
+                TBTellNo.BackColor = Color.Yellow;
+                TBTellNo.Focus();
                 MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -255,26 +267,36 @@ namespace SalesManagement_SysDev
                 }
                 if (TBSyainName.Text == null)
                 {
+                    TBSyainName.BackColor = Color.Yellow;
+                    TBSyainName.Focus();
                     MessageBox.Show("社員名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBShopId.Text == null)
                 {
+                    TBShopId.BackColor = Color.Yellow;
+                    TBShopId.Focus();
                     MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBJobID.Text == null)
                 {
+                    TBJobID.BackColor = Color.Yellow;
+                    TBJobID.Focus();
                     MessageBox.Show("役職IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBPass.Text == null)
                 {
+                    TBPass.BackColor = Color.Yellow;
+                    TBPass.Focus();
                     MessageBox.Show("パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBTellNo.Text == null)
                 {
+                    TBTellNo.BackColor = Color.Yellow;
+                    TBTellNo.Focus();
                     MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }

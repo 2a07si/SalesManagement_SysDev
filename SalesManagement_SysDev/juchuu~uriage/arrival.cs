@@ -255,9 +255,9 @@ namespace SalesManagement_SysDev
 
             if (TBNyuukaId.Text == null)
             {
-                MessageBox.Show("入荷IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TBNyuukaId.BackColor = Color.Yellow;
                 TBNyuukaId.Focus();
+                MessageBox.Show("入荷IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

@@ -164,16 +164,22 @@ namespace SalesManagement_SysDev
 
             if(TBZaikoID.Text == null)
             {
+                TBZaikoID.BackColor = Color.Yellow;
+                TBZaikoID.Focus();
                 MessageBox.Show("在庫IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBSyohinID.Text == null)
             {
+                TBSyohinID.BackColor = Color.Yellow;
+                TBSyohinID.Focus();
                 MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBZaiko.Text == null)
             {
+                TBZaiko.BackColor = Color.Yellow;
+                TBZaiko.Focus();
                 MessageBox.Show("在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -218,11 +224,15 @@ namespace SalesManagement_SysDev
                 }
                 if (TBSyohinID.Text == null)
                 {
+                    TBSyohinID.BackColor = Color.Yellow;
+                    TBSyohinID.Focus();
                     MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBZaiko.Text == null)
                 {
+                    TBZaiko.BackColor = Color.Yellow;
+                    TBZaiko.Focus();
                     MessageBox.Show("在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
