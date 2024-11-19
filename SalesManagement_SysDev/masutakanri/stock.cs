@@ -115,6 +115,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             TBZaikoID.Enabled = true;
             TBZaikoID.BackColor = Color.White;
+            DisplayStock();
         }
 
         private void b_ser_Click(object sender, EventArgs e)
@@ -276,18 +277,18 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var stock = context.TStocks.ToList();
+                    // checkBox_2 がチェックされている場合、全ての在庫情報を表示
+                    var stock = checkBox_2.Checked
+                        ? context.TStocks.ToList()
+                        // チェックされていなければ、StFlagが1のものを除外
+                        : context.TStocks.Where(s => s.StFlag != 1).ToList();
 
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-                    var orders = checkBox_2.Checked
-                        ? context.TStocks.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TStocks.Where(o => o.StFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = stock.Select(s => new
                     {
                         在庫ID = s.StId,
                         商品ID = s.PrId,
                         在庫数 = s.StQuantity,
-                        管理フラグ = s.StFlag,
+                        管理フラグ = s.StFlag
                     }).ToList();
                 }
             }
@@ -296,6 +297,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void SearchStock()
         {

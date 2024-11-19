@@ -105,6 +105,7 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             TBKokyakuID.Enabled = true;
             TBKokyakuID.BackColor = Color.White;
+            DisplayCustomer();
         }
 
         private void b_ser_Click(object sender, EventArgs e)
@@ -154,6 +155,7 @@ namespace SalesManagement_SysDev
             string yuubinbangou = TBYuubinNo.Text;
             string tel = TBTellNo.Text;
             string fax = TBFax.Text;
+            bool flag = DelFlag.Checked;
 
 
             if (TBKokyakuID.Text == "")
@@ -220,6 +222,8 @@ namespace SalesManagement_SysDev
                     customer.ClAddress = juusho;
                     customer.ClPhone = tel;
                     customer.ClFax = fax;
+                    customer.ClFlag = flag ? 1 : 0;
+                    customer.ClHidden = TBRiyuu.Text;
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");

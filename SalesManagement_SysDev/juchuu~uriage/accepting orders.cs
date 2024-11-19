@@ -55,6 +55,7 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.Enabled = false;
             TBGoukeiKingaku.BackColor = Color.Gray;
 
+            SetupNumericOnlyTextBoxes();
         }
 
 
@@ -1228,6 +1229,32 @@ namespace SalesManagement_SysDev
 
             }
         }
+
+        // 数値のみを許可するテキストボックスの初期設定
+        private void SetupNumericOnlyTextBoxes()
+        {
+            // 対象のテキストボックスのみイベントを追加
+            TBJyutyuID.KeyPress += NumericTextBox_KeyPress;
+            TBKokyakuID.KeyPress += NumericTextBox_KeyPress;
+            TBShainID.KeyPress += NumericTextBox_KeyPress;
+            TBShopID.KeyPress += NumericTextBox_KeyPress;
+            TBJyutyuIDS.KeyPress += NumericTextBox_KeyPress;
+            TBJyutyuSyosaiID.KeyPress += NumericTextBox_KeyPress;
+            TBSuryou.KeyPress += NumericTextBox_KeyPress;
+            TBSyohinID.KeyPress += NumericTextBox_KeyPress;
+
+        }
+
+        // 半角数字のみを許可するKeyPressイベントハンドラ
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
 
     }
 }
