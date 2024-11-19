@@ -75,14 +75,14 @@ namespace SalesManagement_SysDev
             // 在庫更新メッセージを取得
             string stockUpdateMessages2 = Global.GetStockUpdateMessages();
 
-                // メッセージが存在する場合、MessageBoxで表示
-                if (!string.IsNullOrEmpty(stockUpdateMessages2))
+            // メッセージが存在する場合、MessageBoxで表示
+            if (!string.IsNullOrEmpty(stockUpdateMessages2))
                 {
                     MessageBox.Show(stockUpdateMessages2, "在庫更新通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("特に在庫更新はありません。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("特に在庫更新はありません。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             
         }
