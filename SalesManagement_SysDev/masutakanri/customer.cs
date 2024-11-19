@@ -330,21 +330,19 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
         private void DisplayCustomer()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var customer = context.MClients.ToList();
+                    // checkBox_2 がチェックされている場合、全ての顧客を表示
+                    var customers = checkBox_2.Checked
+                        ? context.MClients.ToList()
+                        // チェックされていなければ、ClFlagが1のものを除外
+                        : context.MClients.Where(c => c.ClFlag != 1).ToList();
 
-
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-                    var orders = checkBox_2.Checked
-                        ? context.MClients.ToList()  // チェックされていれば全ての注文を表示
-                        : context.MClients.Where(o => o.ClFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
-                    dataGridView1.DataSource = customer.Select(c => new
+                    dataGridView1.DataSource = customers.Select(c => new
                     {
                         顧客ID = c.ClId,
                         営業所ID = c.SoId,

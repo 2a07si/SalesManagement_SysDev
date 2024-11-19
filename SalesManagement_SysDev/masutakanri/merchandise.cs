@@ -363,7 +363,7 @@ namespace SalesManagement_SysDev
                     var merchandises = context.MProducts.ToList();
 
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-                    var orders = checkBox_2.Checked
+                    var Ptoducts = checkBox_2.Checked
                         ? context.MProducts.ToList()  // チェックされていれば全ての注文を表示
                         : context.MProducts.Where(o => o.PrFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = merchandises.Select(m => new
@@ -474,7 +474,7 @@ namespace SalesManagement_SysDev
                         発売日 = m.PrReleaseDate,
                         非表示フラグ = m.PrFlag,
                         非表示理由 = m.PrHidden,
-                        削除フラグ = DelFlag.Checked ? "〇" : "×"
+                        削除フラグ = DelFlag.Checked ? 1 : 0
                     }).ToList();
                 }
                 else

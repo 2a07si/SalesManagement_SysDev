@@ -19,8 +19,8 @@ namespace SalesManagement_SysDev.Classまとめ
             try
             {
                 // 現在のフォームを透明化  
-                currentForm.TransparencyKey = currentForm.BackColor;
-                currentForm.Opacity = 0.5; // 半透明に設定  
+                //currentForm.TransparencyKey = currentForm.BackColor;
+                currentForm.Opacity = 1; // 半透明に設定  
 
                 // フォームの初期化処理（必要に応じて）
                 targetForm.Load += (s, e) =>

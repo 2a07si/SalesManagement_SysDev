@@ -226,9 +226,9 @@ namespace SalesManagement_SysDev
                     employee.EmHiredate = ShainDate;
                     employee.EmPhone = TelNo;
                     employee.EmPassword = Pass;
-                    employee.EmHidden = delFlag ? "1" : "0";
+                    employee.EmFlag = delFlag ? 1 : 0;
                     employee.EmHidden = riyuu;
-
+                    
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
                     DisplayEmployee();
@@ -318,7 +318,8 @@ namespace SalesManagement_SysDev
                     EmHiredate = ShainDate,
                     EmPassword = Pass,
                     EmPhone = TelNo,
-                    EmHidden = delFlag ? "1" : "0"
+                    EmFlag = delFlag ? 1 : 0,
+                    EmHidden = riyuu
                 };
 
                 context.MEmployees.Add(newEmployee);
@@ -337,11 +338,11 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var employees = context.MEmployees.ToList();
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-                    var orders = checkBox_2.Checked
-                        ? context.MEmployees.ToList()  // チェックされていれば全ての注文を表示
-                        : context.MEmployees.Where(o => o.EmFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                    // checkBox_2 がチェックされている場合、全員の社員情報を表示
+                    var employees = checkBox_2.Checked
+                        ? context.MEmployees.ToList()
+                        // チェックされていなければ非表示フラグが "1" のものを除外
+                        : context.MEmployees.Where(e => e.EmFlag != 1).ToList();
 
                     dataGridView1.DataSource = employees.Select(e => new
                     {
@@ -362,6 +363,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void SearchEmployee()
         {
@@ -426,7 +428,7 @@ namespace SalesManagement_SysDev
                         パスワード = employee.EmPassword,
                         電話番号 = employee.EmPhone,
                         非表示理由 = employee.EmHidden,
-                        削除フラグ = DelFlag.Checked ? "〇" : "×"
+                        削除フラグ = DelFlag.Checked ? 1 : 0
                     }).ToList();
                 }
                 else

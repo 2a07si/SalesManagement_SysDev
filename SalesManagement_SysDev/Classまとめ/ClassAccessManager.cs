@@ -20,9 +20,11 @@ namespace SalesManagement_SysDev.Classまとめ
                     case 1:
                         // 権限1: 全てのボタンを有効
                         button.Enabled = true;
-                        break;
+
+                            break;
 
                     case 2:
+                        
                         if(button.Name == "Loginkanri")
                         {
                             button.Visible = false;
@@ -72,3 +74,4 @@ namespace SalesManagement_SysDev.Classまとめ
         }
     }
 }
+

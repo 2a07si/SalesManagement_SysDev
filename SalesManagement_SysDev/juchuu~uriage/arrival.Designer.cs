@@ -54,12 +54,6 @@
             label17 = new Label();
             TBShopId = new TextBox();
             TBShainId = new TextBox();
-            b_acc = new Button();
-            b_sal = new Button();
-            b_ord = new Button();
-            b_shi = new Button();
-            b_arr = new Button();
-            b_lss = new Button();
             b_kakutei = new Button();
             clear = new Button();
             close = new Button();
@@ -80,6 +74,12 @@
             b_FormSelector = new Button();
             dateCheckBox = new CheckBox();
             checkBox_2 = new CheckBox();
+            b_lss = new Button();
+            b_arr = new Button();
+            b_shi = new Button();
+            b_ord = new Button();
+            b_sal = new Button();
+            b_acc = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -353,81 +353,6 @@
             TBShainId.TabIndex = 5;
             TBShainId.TextChanged += TBShainId_TextChanged;
             // 
-            // b_acc
-            // 
-            b_acc.BackColor = Color.FromArgb(252, 252, 192);
-            b_acc.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_acc.ForeColor = Color.Black;
-            b_acc.Location = new Point(15, 150);
-            b_acc.Name = "b_acc";
-            b_acc.Size = new Size(120, 70);
-            b_acc.TabIndex = 8;
-            b_acc.Text = "受注";
-            b_acc.UseVisualStyleBackColor = false;
-            b_acc.Click += b_acc_Click;
-            // 
-            // b_sal
-            // 
-            b_sal.BackColor = Color.FromArgb(252, 252, 192);
-            b_sal.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_sal.ForeColor = Color.Black;
-            b_sal.Location = new Point(15, 570);
-            b_sal.Name = "b_sal";
-            b_sal.Size = new Size(120, 70);
-            b_sal.TabIndex = 13;
-            b_sal.Text = "売上";
-            b_sal.UseVisualStyleBackColor = false;
-            b_sal.Click += b_sal_Click;
-            // 
-            // b_ord
-            // 
-            b_ord.BackColor = Color.FromArgb(252, 252, 192);
-            b_ord.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ord.Location = new Point(15, 230);
-            b_ord.Name = "b_ord";
-            b_ord.Size = new Size(120, 70);
-            b_ord.TabIndex = 9;
-            b_ord.Text = "注文";
-            b_ord.UseVisualStyleBackColor = false;
-            b_ord.Click += b_ord_Click;
-            // 
-            // b_shi
-            // 
-            b_shi.BackColor = Color.FromArgb(252, 252, 192);
-            b_shi.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_shi.Location = new Point(15, 490);
-            b_shi.Name = "b_shi";
-            b_shi.Size = new Size(120, 70);
-            b_shi.TabIndex = 12;
-            b_shi.Text = "出荷";
-            b_shi.UseVisualStyleBackColor = false;
-            b_shi.Click += b_shi_Click;
-            // 
-            // b_arr
-            // 
-            b_arr.BackColor = Color.FromArgb(255, 192, 128);
-            b_arr.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_arr.ForeColor = Color.Black;
-            b_arr.Location = new Point(15, 390);
-            b_arr.Name = "b_arr";
-            b_arr.Size = new Size(120, 90);
-            b_arr.TabIndex = 11;
-            b_arr.Text = "入荷";
-            b_arr.UseVisualStyleBackColor = false;
-            // 
-            // b_lss
-            // 
-            b_lss.BackColor = Color.FromArgb(252, 252, 192);
-            b_lss.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_lss.ForeColor = Color.Black;
-            b_lss.Location = new Point(15, 310);
-            b_lss.Name = "b_lss";
-            b_lss.Size = new Size(120, 70);
-            b_lss.TabIndex = 10;
-            b_lss.Text = "出庫";
-            b_lss.UseVisualStyleBackColor = false;
-            b_lss.Click += b_lss_Click;
-            // 
             // b_kakutei
             // 
             b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
@@ -631,6 +556,81 @@
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
+            // b_lss
+            // 
+            b_lss.BackColor = Color.FromArgb(252, 252, 192);
+            b_lss.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_lss.ForeColor = Color.Black;
+            b_lss.Location = new Point(15, 310);
+            b_lss.Name = "b_lss";
+            b_lss.Size = new Size(120, 70);
+            b_lss.TabIndex = 10;
+            b_lss.Text = "出庫";
+            b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click;
+            // 
+            // b_arr
+            // 
+            b_arr.BackColor = Color.FromArgb(255, 192, 128);
+            b_arr.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_arr.ForeColor = Color.Black;
+            b_arr.Location = new Point(15, 390);
+            b_arr.Name = "b_arr";
+            b_arr.Size = new Size(120, 90);
+            b_arr.TabIndex = 11;
+            b_arr.Text = "入荷";
+            b_arr.UseVisualStyleBackColor = false;
+            // 
+            // b_shi
+            // 
+            b_shi.BackColor = Color.FromArgb(252, 252, 192);
+            b_shi.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_shi.Location = new Point(15, 490);
+            b_shi.Name = "b_shi";
+            b_shi.Size = new Size(120, 70);
+            b_shi.TabIndex = 12;
+            b_shi.Text = "出荷";
+            b_shi.UseVisualStyleBackColor = false;
+            b_shi.Click += b_shi_Click;
+            // 
+            // b_ord
+            // 
+            b_ord.BackColor = Color.FromArgb(252, 252, 192);
+            b_ord.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_ord.Location = new Point(15, 230);
+            b_ord.Name = "b_ord";
+            b_ord.Size = new Size(120, 70);
+            b_ord.TabIndex = 9;
+            b_ord.Text = "注文";
+            b_ord.UseVisualStyleBackColor = false;
+            b_ord.Click += b_ord_Click;
+            // 
+            // b_sal
+            // 
+            b_sal.BackColor = Color.FromArgb(252, 252, 192);
+            b_sal.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_sal.ForeColor = Color.Black;
+            b_sal.Location = new Point(15, 570);
+            b_sal.Name = "b_sal";
+            b_sal.Size = new Size(120, 70);
+            b_sal.TabIndex = 13;
+            b_sal.Text = "売上";
+            b_sal.UseVisualStyleBackColor = false;
+            b_sal.Click += b_sal_Click;
+            // 
+            // b_acc
+            // 
+            b_acc.BackColor = Color.FromArgb(252, 252, 192);
+            b_acc.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_acc.ForeColor = Color.Black;
+            b_acc.Location = new Point(15, 150);
+            b_acc.Name = "b_acc";
+            b_acc.Size = new Size(120, 70);
+            b_acc.TabIndex = 8;
+            b_acc.Text = "受注";
+            b_acc.UseVisualStyleBackColor = false;
+            b_acc.Click += b_acc_Click;
+            // 
             // arrival
             // 
             AcceptButton = b_kakutei;
@@ -686,12 +686,6 @@
         private Button b_reg;
         private Panel panel1;
         private DataGridView dataGridView1;
-        private Button b_acc;
-        private Button b_sal;
-        private Button b_ord;
-        private Button b_shi;
-        private Button b_arr;
-        private Button b_lss;
         private Button b_kakutei;
         private Button clear;
         private Button close;
@@ -730,5 +724,11 @@
         private Button b_FormSelector;
         private CheckBox dateCheckBox;
         private CheckBox checkBox_2;
+        private Button b_lss;
+        private Button b_arr;
+        private Button b_shi;
+        private Button b_ord;
+        private Button b_sal;
+        private Button b_acc;
     }
 }

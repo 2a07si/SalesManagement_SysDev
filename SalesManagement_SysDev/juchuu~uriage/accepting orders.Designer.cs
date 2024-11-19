@@ -51,12 +51,6 @@ namespace SalesManagement_SysDev
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
             label14 = new UpdateLabel2();
-            b_lss = new Button();
-            b_arr = new Button();
-            b_shi = new Button();
-            b_add = new Button();
-            b_sal = new Button();
-            b_ord = new Button();
             b_reg = new Button();
             label3 = new Label();
             b_upd = new Button();
@@ -79,16 +73,22 @@ namespace SalesManagement_SysDev
             TBJyutyuSyosaiID = new TextBox();
             label11 = new Label();
             TBGoukeiKingaku = new TextBox();
-            panel3 = new Panel();
+            panel2 = new Panel();
             label1 = new Label();
             label2 = new Label();
             b_FormSelector = new Button();
             checkBoxDateFilter = new CheckBox();
             checkBox_2 = new CheckBox();
+            b_arr = new Button();
+            b_sal = new Button();
+            b_ord = new Button();
+            b_shi = new Button();
+            b_acc = new Button();
+            b_lss = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            panel3.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // kakutei
@@ -294,83 +294,6 @@ namespace SalesManagement_SysDev
             label14.Size = new Size(66, 25);
             label14.TabIndex = 4;
             label14.Text = "社員ID";
-            // 
-            // b_lss
-            // 
-            b_lss.BackColor = Color.FromArgb(252, 252, 192);
-            b_lss.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_lss.ForeColor = Color.Black;
-            b_lss.Location = new Point(15, 330);
-            b_lss.Name = "b_lss";
-            b_lss.Size = new Size(120, 70);
-            b_lss.TabIndex = 11;
-            b_lss.Text = "出庫";
-            b_lss.UseVisualStyleBackColor = false;
-            b_lss.Click += b_lss_Click;
-            // 
-            // b_arr
-            // 
-            b_arr.BackColor = Color.FromArgb(252, 252, 192);
-            b_arr.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_arr.ForeColor = Color.Black;
-            b_arr.Location = new Point(15, 410);
-            b_arr.Name = "b_arr";
-            b_arr.Size = new Size(120, 70);
-            b_arr.TabIndex = 12;
-            b_arr.Text = "入荷";
-            b_arr.UseVisualStyleBackColor = false;
-            b_arr.Click += b_arr_Click;
-            // 
-            // b_shi
-            // 
-            b_shi.BackColor = Color.FromArgb(252, 252, 192);
-            b_shi.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_shi.ForeColor = Color.Black;
-            b_shi.Location = new Point(15, 490);
-            b_shi.Name = "b_shi";
-            b_shi.Size = new Size(120, 70);
-            b_shi.TabIndex = 13;
-            b_shi.Text = "出荷";
-            b_shi.UseVisualStyleBackColor = false;
-            b_shi.Click += b_shi_Click;
-            // 
-            // b_add
-            // 
-            b_add.BackColor = Color.FromArgb(255, 192, 128);
-            b_add.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_add.ForeColor = Color.Black;
-            b_add.Location = new Point(15, 150);
-            b_add.Name = "b_add";
-            b_add.Size = new Size(120, 90);
-            b_add.TabIndex = 9;
-            b_add.Text = "受注";
-            b_add.UseVisualStyleBackColor = false;
-            // 
-            // b_sal
-            // 
-            b_sal.BackColor = Color.FromArgb(252, 252, 192);
-            b_sal.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_sal.ForeColor = Color.Black;
-            b_sal.Location = new Point(15, 570);
-            b_sal.Name = "b_sal";
-            b_sal.Size = new Size(120, 70);
-            b_sal.TabIndex = 14;
-            b_sal.Text = "売上";
-            b_sal.UseVisualStyleBackColor = false;
-            b_sal.Click += b_sal_Click;
-            // 
-            // b_ord
-            // 
-            b_ord.BackColor = Color.FromArgb(252, 252, 192);
-            b_ord.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ord.ForeColor = Color.Black;
-            b_ord.Location = new Point(15, 250);
-            b_ord.Name = "b_ord";
-            b_ord.Size = new Size(120, 70);
-            b_ord.TabIndex = 10;
-            b_ord.Text = "注文";
-            b_ord.UseVisualStyleBackColor = false;
-            b_ord.Click += b_ord_Click;
             // 
             // b_reg
             // 
@@ -597,24 +520,24 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.TabIndex = 8;
             TBGoukeiKingaku.TextChanged += TBGoukeiKingaku_TextChanged;
             // 
-            // panel3
+            // panel2
             // 
-            panel3.BackColor = Color.FromArgb(255, 128, 128);
-            panel3.Controls.Add(TBGoukeiKingaku);
-            panel3.Controls.Add(label11);
-            panel3.Controls.Add(TBJyutyuSyosaiID);
-            panel3.Controls.Add(dataGridView2);
-            panel3.Controls.Add(TBSuryou);
-            panel3.Controls.Add(label15);
-            panel3.Controls.Add(label9);
-            panel3.Controls.Add(label13);
-            panel3.Controls.Add(TBSyohinID);
-            panel3.Controls.Add(label10);
-            panel3.Controls.Add(TBJyutyuIDS);
-            panel3.Location = new Point(970, 145);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(600, 690);
-            panel3.TabIndex = 6;
+            panel2.BackColor = Color.FromArgb(255, 128, 128);
+            panel2.Controls.Add(TBGoukeiKingaku);
+            panel2.Controls.Add(label11);
+            panel2.Controls.Add(TBJyutyuSyosaiID);
+            panel2.Controls.Add(dataGridView2);
+            panel2.Controls.Add(TBSuryou);
+            panel2.Controls.Add(label15);
+            panel2.Controls.Add(label9);
+            panel2.Controls.Add(label13);
+            panel2.Controls.Add(TBSyohinID);
+            panel2.Controls.Add(label10);
+            panel2.Controls.Add(TBJyutyuIDS);
+            panel2.Location = new Point(970, 145);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(600, 690);
+            panel2.TabIndex = 6;
             // 
             // label1
             // 
@@ -667,6 +590,81 @@ namespace SalesManagement_SysDev
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
+            // b_arr
+            // 
+            b_arr.BackColor = Color.FromArgb(252, 252, 192);
+            b_arr.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_arr.ForeColor = Color.Black;
+            b_arr.Location = new Point(15, 405);
+            b_arr.Name = "b_arr";
+            b_arr.Size = new Size(120, 70);
+            b_arr.TabIndex = 268;
+            b_arr.Text = "入荷";
+            b_arr.UseVisualStyleBackColor = false;
+            b_arr.Click += b_arr_Click;
+            // 
+            // b_sal
+            // 
+            b_sal.BackColor = Color.FromArgb(252, 252, 192);
+            b_sal.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_sal.ForeColor = Color.Black;
+            b_sal.Location = new Point(15, 565);
+            b_sal.Name = "b_sal";
+            b_sal.Size = new Size(120, 70);
+            b_sal.TabIndex = 273;
+            b_sal.Text = "売上";
+            b_sal.UseVisualStyleBackColor = false;
+            b_sal.Click += b_sal_Click;
+            // 
+            // b_ord
+            // 
+            b_ord.BackColor = Color.FromArgb(252, 252, 192);
+            b_ord.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_ord.Location = new Point(15, 245);
+            b_ord.Name = "b_ord";
+            b_ord.Size = new Size(120, 70);
+            b_ord.TabIndex = 269;
+            b_ord.Text = "注文";
+            b_ord.UseVisualStyleBackColor = false;
+            b_ord.Click += b_ord_Click;
+            // 
+            // b_shi
+            // 
+            b_shi.BackColor = Color.FromArgb(252, 252, 192);
+            b_shi.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_shi.Location = new Point(15, 485);
+            b_shi.Name = "b_shi";
+            b_shi.Size = new Size(120, 70);
+            b_shi.TabIndex = 272;
+            b_shi.Text = "出荷";
+            b_shi.UseVisualStyleBackColor = false;
+            b_shi.Click += b_shi_Click;
+            // 
+            // b_acc
+            // 
+            b_acc.BackColor = Color.FromArgb(255, 192, 128);
+            b_acc.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_acc.ForeColor = Color.Black;
+            b_acc.Location = new Point(15, 145);
+            b_acc.Name = "b_acc";
+            b_acc.Size = new Size(120, 90);
+            b_acc.TabIndex = 271;
+            b_acc.Text = "受注";
+            b_acc.UseVisualStyleBackColor = false;
+            // 
+            // b_lss
+            // 
+            b_lss.BackColor = Color.FromArgb(252, 252, 192);
+            b_lss.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_lss.ForeColor = Color.Black;
+            b_lss.Location = new Point(15, 325);
+            b_lss.Name = "b_lss";
+            b_lss.Size = new Size(120, 70);
+            b_lss.TabIndex = 270;
+            b_lss.Text = "出庫";
+            b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click;
+            // 
             // acceptingorders
             // 
             AcceptButton = b_kakutei;
@@ -675,13 +673,19 @@ namespace SalesManagement_SysDev
             AutoScroll = true;
             CancelButton = clear;
             ClientSize = new Size(1578, 844);
+            Controls.Add(b_arr);
+            Controls.Add(b_sal);
+            Controls.Add(b_ord);
+            Controls.Add(b_shi);
+            Controls.Add(b_acc);
+            Controls.Add(b_lss);
             Controls.Add(panel1);
             Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(b_FormSelector);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(B_iti);
             Controls.Add(b_kakutei);
             Controls.Add(clear);
@@ -693,12 +697,6 @@ namespace SalesManagement_SysDev
             Controls.Add(b_upd);
             Controls.Add(label3);
             Controls.Add(b_reg);
-            Controls.Add(b_ord);
-            Controls.Add(b_sal);
-            Controls.Add(b_add);
-            Controls.Add(b_shi);
-            Controls.Add(b_arr);
-            Controls.Add(b_lss);
             Name = "acceptingorders";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "受注";
@@ -707,8 +705,8 @@ namespace SalesManagement_SysDev
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -728,12 +726,6 @@ namespace SalesManagement_SysDev
         private Button b_upd;
         private Label label3;
         private Button b_reg;
-        private Button b_ord;
-        private Button b_sal;
-        private Button b_add;
-        private Button b_shi;
-        private Button b_arr;
-        private Button b_lss;
         private Panel panel1;
         private CheckBox TyumonFlag;
         private CheckBox DelFlag;
@@ -751,7 +743,7 @@ namespace SalesManagement_SysDev
         private Label label6;
         private TextBox TBTantoName;
         private Button B_iti;
-        private Panel panel3;
+        private Panel panel2;
         private DataGridView dataGridView1;
         private Button Next;
         private Button Prev;
@@ -774,5 +766,16 @@ namespace SalesManagement_SysDev
         private CheckBox checkBoxDateFilter;
         private CheckBox checkBox_2;
         private UpdateLabel2 label14;
+        private Panel kengen2;
+        private ComboBox CB2;
+        private Panel kengen3;
+        private ComboBox CB3;
+        private Panel kengen1;
+        private Button b_arr;
+        private Button b_sal;
+        private Button b_ord;
+        private Button b_shi;
+        private Button b_acc;
+        private Button b_lss;
     }
 }
