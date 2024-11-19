@@ -275,7 +275,7 @@ namespace SalesManagement_SysDev
             panel1.Controls.Add(label12);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
-            panel1.Location = new Point(10, 145);
+            panel1.Location = new Point(149, 145);
             panel1.Name = "panel1";
             panel1.Size = new Size(960, 690);
             panel1.TabIndex = 4;
@@ -291,11 +291,88 @@ namespace SalesManagement_SysDev
             label14.TabIndex = 4;
             label14.Text = "社員ID";
             // 
+            // b_lss
+            // 
+            b_lss.BackColor = Color.FromArgb(252, 252, 192);
+            b_lss.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_lss.ForeColor = Color.Black;
+            b_lss.Location = new Point(14, 330);
+            b_lss.Name = "b_lss";
+            b_lss.Size = new Size(120, 70);
+            b_lss.TabIndex = 11;
+            b_lss.Text = "出庫";
+            b_lss.UseVisualStyleBackColor = false;
+            b_lss.Click += b_lss_Click;
+            // 
+            // b_arr
+            // 
+            b_arr.BackColor = Color.FromArgb(252, 252, 192);
+            b_arr.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_arr.ForeColor = Color.Black;
+            b_arr.Location = new Point(14, 410);
+            b_arr.Name = "b_arr";
+            b_arr.Size = new Size(120, 70);
+            b_arr.TabIndex = 12;
+            b_arr.Text = "入荷";
+            b_arr.UseVisualStyleBackColor = false;
+            b_arr.Click += b_arr_Click;
+            // 
+            // b_shi
+            // 
+            b_shi.BackColor = Color.FromArgb(252, 252, 192);
+            b_shi.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_shi.ForeColor = Color.Black;
+            b_shi.Location = new Point(14, 490);
+            b_shi.Name = "b_shi";
+            b_shi.Size = new Size(120, 70);
+            b_shi.TabIndex = 13;
+            b_shi.Text = "出荷";
+            b_shi.UseVisualStyleBackColor = false;
+            b_shi.Click += b_shi_Click;
+            // 
+            // b_add
+            // 
+            b_add.BackColor = Color.FromArgb(255, 192, 128);
+            b_add.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_add.ForeColor = Color.Black;
+            b_add.Location = new Point(14, 150);
+            b_add.Name = "b_add";
+            b_add.Size = new Size(120, 90);
+            b_add.TabIndex = 9;
+            b_add.Text = "受注";
+            b_add.UseVisualStyleBackColor = false;
+            // 
+            // b_sal
+            // 
+            b_sal.BackColor = Color.FromArgb(252, 252, 192);
+            b_sal.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_sal.ForeColor = Color.Black;
+            b_sal.Location = new Point(14, 570);
+            b_sal.Name = "b_sal";
+            b_sal.Size = new Size(120, 70);
+            b_sal.TabIndex = 14;
+            b_sal.Text = "売上";
+            b_sal.UseVisualStyleBackColor = false;
+            b_sal.Click += b_sal_Click;
+            // 
+            // b_ord
+            // 
+            b_ord.BackColor = Color.FromArgb(252, 252, 192);
+            b_ord.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_ord.ForeColor = Color.Black;
+            b_ord.Location = new Point(14, 250);
+            b_ord.Name = "b_ord";
+            b_ord.Size = new Size(120, 70);
+            b_ord.TabIndex = 10;
+            b_ord.Text = "注文";
+            b_ord.UseVisualStyleBackColor = false;
+            b_ord.Click += b_ord_Click;
+            // 
             // b_reg
             // 
             b_reg.BackColor = Color.FromArgb(255, 224, 192);
             b_reg.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_reg.Location = new Point(240, 70);
+            b_reg.Location = new Point(149, 70);
             b_reg.Name = "b_reg";
             b_reg.Size = new Size(150, 70);
             b_reg.TabIndex = 0;
@@ -306,7 +383,7 @@ namespace SalesManagement_SysDev
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(450, 25);
+            label3.Location = new Point(264, 25);
             label3.Name = "label3";
             label3.Size = new Size(52, 25);
             label3.TabIndex = 252;
@@ -316,7 +393,7 @@ namespace SalesManagement_SysDev
             // 
             b_upd.BackColor = Color.FromArgb(255, 224, 192);
             b_upd.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_upd.Location = new Point(410, 70);
+            b_upd.Location = new Point(329, 70);
             b_upd.Name = "b_upd";
             b_upd.Size = new Size(150, 70);
             b_upd.TabIndex = 1;
@@ -327,7 +404,7 @@ namespace SalesManagement_SysDev
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(285, 25);
+            label4.Location = new Point(99, 25);
             label4.Name = "label4";
             label4.Size = new Size(70, 25);
             label4.TabIndex = 253;
@@ -337,7 +414,7 @@ namespace SalesManagement_SysDev
             // 
             b_ser.BackColor = Color.FromArgb(255, 224, 192);
             b_ser.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ser.Location = new Point(750, 70);
+            b_ser.Location = new Point(689, 70);
             b_ser.Name = "b_ser";
             b_ser.Size = new Size(150, 70);
             b_ser.TabIndex = 3;
@@ -348,7 +425,7 @@ namespace SalesManagement_SysDev
             // label_id
             // 
             label_id.AutoSize = true;
-            label_id.Location = new Point(495, 25);
+            label_id.Location = new Point(309, 25);
             label_id.Name = "label_id";
             label_id.Size = new Size(54, 25);
             label_id.TabIndex = 254;
@@ -357,7 +434,7 @@ namespace SalesManagement_SysDev
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(350, 25);
+            label_ename.Location = new Point(164, 25);
             label_ename.Name = "label_ename";
             label_ename.Size = new Size(96, 25);
             label_ename.TabIndex = 255;
@@ -365,7 +442,7 @@ namespace SalesManagement_SysDev
             // 
             // close
             // 
-            close.Location = new Point(1460, 10);
+            close.Location = new Point(1459, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
             close.TabIndex = 15;
@@ -376,7 +453,7 @@ namespace SalesManagement_SysDev
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(1400, 70);
+            clear.Location = new Point(1399, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
             clear.TabIndex = 8;
@@ -388,7 +465,7 @@ namespace SalesManagement_SysDev
             // 
             b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
             b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Location = new Point(1199, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
             b_kakutei.TabIndex = 0;
@@ -400,7 +477,7 @@ namespace SalesManagement_SysDev
             // 
             B_iti.BackColor = Color.FromArgb(255, 224, 192);
             B_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            B_iti.Location = new Point(580, 70);
+            B_iti.Location = new Point(509, 70);
             B_iti.Name = "B_iti";
             B_iti.Size = new Size(150, 70);
             B_iti.TabIndex = 2;
@@ -518,28 +595,28 @@ namespace SalesManagement_SysDev
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(255, 128, 128);
-            panel2.Controls.Add(TBGoukeiKingaku);
-            panel2.Controls.Add(label11);
-            panel2.Controls.Add(TBJyutyuSyosaiID);
-            panel2.Controls.Add(dataGridView2);
-            panel2.Controls.Add(TBSuryou);
-            panel2.Controls.Add(label15);
-            panel2.Controls.Add(label9);
-            panel2.Controls.Add(label13);
-            panel2.Controls.Add(TBSyohinID);
-            panel2.Controls.Add(label10);
-            panel2.Controls.Add(TBJyutyuIDS);
-            panel2.Location = new Point(970, 145);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(600, 690);
-            panel2.TabIndex = 6;
+            panel3.BackColor = Color.FromArgb(255, 128, 128);
+            panel3.Controls.Add(TBGoukeiKingaku);
+            panel3.Controls.Add(label11);
+            panel3.Controls.Add(TBJyutyuSyosaiID);
+            panel3.Controls.Add(dataGridView2);
+            panel3.Controls.Add(TBSuryou);
+            panel3.Controls.Add(label15);
+            panel3.Controls.Add(label9);
+            panel3.Controls.Add(label13);
+            panel3.Controls.Add(TBSyohinID);
+            panel3.Controls.Add(label10);
+            panel3.Controls.Add(TBJyutyuIDS);
+            panel3.Location = new Point(969, 145);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(600, 690);
+            panel3.TabIndex = 6;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1080, 70);
+            label1.Location = new Point(1079, 70);
             label1.Name = "label1";
             label1.Size = new Size(108, 28);
             label1.TabIndex = 261;
@@ -549,7 +626,7 @@ namespace SalesManagement_SysDev
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.Location = new Point(1100, 98);
+            label2.Location = new Point(1099, 98);
             label2.Name = "label2";
             label2.Size = new Size(86, 32);
             label2.TabIndex = 262;
@@ -558,7 +635,7 @@ namespace SalesManagement_SysDev
             // b_FormSelector
             // 
             b_FormSelector.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_FormSelector.Location = new Point(920, 70);
+            b_FormSelector.Location = new Point(899, 70);
             b_FormSelector.Name = "b_FormSelector";
             b_FormSelector.Size = new Size(150, 70);
             b_FormSelector.TabIndex = 17;
@@ -569,7 +646,7 @@ namespace SalesManagement_SysDev
             // checkBoxDateFilter
             // 
             checkBoxDateFilter.AutoSize = true;
-            checkBoxDateFilter.Location = new Point(967, 17);
+            checkBoxDateFilter.Location = new Point(966, 17);
             checkBoxDateFilter.Name = "checkBoxDateFilter";
             checkBoxDateFilter.Size = new Size(225, 29);
             checkBoxDateFilter.TabIndex = 266;
@@ -579,7 +656,7 @@ namespace SalesManagement_SysDev
             // checkBox_2
             // 
             checkBox_2.AutoSize = true;
-            checkBox_2.Location = new Point(680, 17);
+            checkBox_2.Location = new Point(679, 17);
             checkBox_2.Name = "checkBox_2";
             checkBox_2.Size = new Size(225, 29);
             checkBox_2.TabIndex = 267;

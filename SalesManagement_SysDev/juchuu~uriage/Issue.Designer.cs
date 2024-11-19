@@ -89,7 +89,7 @@
             // label_ename
             // 
             label_ename.AutoSize = true;
-            label_ename.Location = new Point(165, 25);
+            label_ename.Location = new Point(164, 25);
             label_ename.Name = "label_ename";
             label_ename.Size = new Size(59, 25);
             label_ename.TabIndex = 176;
@@ -98,7 +98,7 @@
             // label_id
             // 
             label_id.AutoSize = true;
-            label_id.Location = new Point(310, 25);
+            label_id.Location = new Point(309, 25);
             label_id.Name = "label_id";
             label_id.Size = new Size(59, 25);
             label_id.TabIndex = 175;
@@ -108,7 +108,7 @@
             // 
             b_ser.BackColor = Color.FromArgb(255, 224, 192);
             b_ser.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ser.Location = new Point(690, 70);
+            b_ser.Location = new Point(689, 70);
             b_ser.Name = "b_ser";
             b_ser.Size = new Size(150, 70);
             b_ser.TabIndex = 3;
@@ -119,7 +119,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(100, 25);
+            label4.Location = new Point(99, 25);
             label4.Name = "label4";
             label4.Size = new Size(70, 25);
             label4.TabIndex = 174;
@@ -129,7 +129,7 @@
             // 
             b_upd.BackColor = Color.FromArgb(255, 224, 192);
             b_upd.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_upd.Location = new Point(330, 70);
+            b_upd.Location = new Point(329, 70);
             b_upd.Name = "b_upd";
             b_upd.Size = new Size(150, 70);
             b_upd.TabIndex = 1;
@@ -140,7 +140,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(265, 25);
+            label3.Location = new Point(264, 25);
             label3.Name = "label3";
             label3.Size = new Size(52, 25);
             label3.TabIndex = 173;
@@ -150,7 +150,7 @@
             // 
             b_reg.BackColor = Color.FromArgb(255, 224, 192);
             b_reg.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_reg.Location = new Point(150, 70);
+            b_reg.Location = new Point(149, 70);
             b_reg.Name = "b_reg";
             b_reg.Size = new Size(150, 70);
             b_reg.TabIndex = 0;
@@ -163,7 +163,7 @@
             b_acc.BackColor = Color.FromArgb(252, 252, 192);
             b_acc.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_acc.ForeColor = Color.Black;
-            b_acc.Location = new Point(15, 150);
+            b_acc.Location = new Point(14, 150);
             b_acc.Name = "b_acc";
             b_acc.Size = new Size(120, 70);
             b_acc.TabIndex = 15;
@@ -176,7 +176,7 @@
             b_sal.BackColor = Color.FromArgb(252, 252, 192);
             b_sal.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_sal.ForeColor = Color.Black;
-            b_sal.Location = new Point(15, 570);
+            b_sal.Location = new Point(14, 570);
             b_sal.Name = "b_sal";
             b_sal.Size = new Size(120, 70);
             b_sal.TabIndex = 20;
@@ -188,7 +188,7 @@
             // 
             b_ord.BackColor = Color.FromArgb(252, 252, 192);
             b_ord.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_ord.Location = new Point(15, 230);
+            b_ord.Location = new Point(14, 230);
             b_ord.Name = "b_ord";
             b_ord.Size = new Size(120, 70);
             b_ord.TabIndex = 16;
@@ -200,7 +200,7 @@
             // 
             b_shi.BackColor = Color.FromArgb(252, 252, 192);
             b_shi.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_shi.Location = new Point(15, 490);
+            b_shi.Location = new Point(14, 490);
             b_shi.Name = "b_shi";
             b_shi.Size = new Size(120, 70);
             b_shi.TabIndex = 19;
@@ -213,7 +213,7 @@
             b_arr.BackColor = Color.FromArgb(252, 252, 192);
             b_arr.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             b_arr.ForeColor = Color.Black;
-            b_arr.Location = new Point(15, 410);
+            b_arr.Location = new Point(14, 410);
             b_arr.Name = "b_arr";
             b_arr.Size = new Size(120, 70);
             b_arr.TabIndex = 18;
@@ -226,7 +226,7 @@
             b_lss.BackColor = Color.FromArgb(255, 192, 128);
             b_lss.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
             b_lss.ForeColor = Color.Black;
-            b_lss.Location = new Point(15, 310);
+            b_lss.Location = new Point(14, 310);
             b_lss.Name = "b_lss";
             b_lss.Size = new Size(120, 90);
             b_lss.TabIndex = 17;
@@ -254,7 +254,7 @@
             panel1.Controls.Add(TBSyukkoId);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(dataGridView1);
-            panel1.Location = new Point(150, 145);
+            panel1.Location = new Point(149, 145);
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 5;
@@ -433,7 +433,7 @@
             // 
             b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
             b_kakutei.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_kakutei.Location = new Point(1200, 70);
+            b_kakutei.Location = new Point(1199, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
             b_kakutei.TabIndex = 7;
@@ -444,7 +444,7 @@
             // clear
             // 
             clear.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            clear.Location = new Point(1400, 70);
+            clear.Location = new Point(1399, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
             clear.TabIndex = 8;
@@ -454,7 +454,7 @@
             // 
             // close
             // 
-            close.Location = new Point(1460, 10);
+            close.Location = new Point(1459, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
             close.TabIndex = 21;
@@ -466,7 +466,7 @@
             // 
             B_iti.BackColor = Color.FromArgb(255, 224, 192);
             B_iti.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            B_iti.Location = new Point(510, 70);
+            B_iti.Location = new Point(509, 70);
             B_iti.Name = "B_iti";
             B_iti.Size = new Size(150, 70);
             B_iti.TabIndex = 2;
@@ -478,7 +478,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.Location = new Point(1105, 100);
+            label2.Location = new Point(1104, 100);
             label2.Name = "label2";
             label2.Size = new Size(86, 32);
             label2.TabIndex = 4;
@@ -488,7 +488,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1080, 70);
+            label1.Location = new Point(1079, 70);
             label1.Name = "label1";
             label1.Size = new Size(108, 28);
             label1.TabIndex = 263;
@@ -506,7 +506,7 @@
             panel3.Controls.Add(TBSyohinId);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(TBSyukkoIDS);
-            panel3.Location = new Point(970, 145);
+            panel3.Location = new Point(969, 145);
             panel3.Name = "panel3";
             panel3.Size = new Size(600, 690);
             panel3.TabIndex = 6;
@@ -604,7 +604,7 @@
             // b_FormSelector
             // 
             b_FormSelector.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            b_FormSelector.Location = new Point(900, 70);
+            b_FormSelector.Location = new Point(899, 70);
             b_FormSelector.Name = "b_FormSelector";
             b_FormSelector.Size = new Size(150, 70);
             b_FormSelector.TabIndex = 23;
@@ -615,7 +615,7 @@
             // dateCheckBox
             // 
             dateCheckBox.AutoSize = true;
-            dateCheckBox.Location = new Point(967, 17);
+            dateCheckBox.Location = new Point(966, 17);
             dateCheckBox.Name = "dateCheckBox";
             dateCheckBox.Size = new Size(225, 29);
             dateCheckBox.TabIndex = 269;
@@ -625,7 +625,7 @@
             // checkBox_2
             // 
             checkBox_2.AutoSize = true;
-            checkBox_2.Location = new Point(680, 17);
+            checkBox_2.Location = new Point(679, 17);
             checkBox_2.Name = "checkBox_2";
             checkBox_2.Size = new Size(225, 29);
             checkBox_2.TabIndex = 270;
