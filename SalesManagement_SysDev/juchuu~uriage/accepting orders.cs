@@ -9,6 +9,7 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesManagement_SysDev
 {
@@ -32,21 +33,14 @@ namespace SalesManagement_SysDev
 
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
-            AddControlEventHandlers(panel3, 2);  // パネル2の場合
+            AddControlEventHandlers(panel2, 2);  // パネル2の場合
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            // ボタンアクセス制御を設定
-            accessManager.SetButtonAccess(new Control[]
-            {
-                b_ord,
-                b_arr,
-                b_shi,
-                b_sal,
-                b_lss
-            });
+            // CBアクセス制御を設定
+            accessManager.SetCB_JU(CB);
 
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
@@ -54,15 +48,63 @@ namespace SalesManagement_SysDev
             DisplayOrderDetails();
             TBGoukeiKingaku.Enabled = false;
             TBGoukeiKingaku.BackColor = Color.Gray;
-          
+
         }
+
 
         // メインメニューに戻る
         private void close_Click(object sender, EventArgs e)
         {
             formChanger.NavigateTo3();
         }
+        private void formChanger_Click(object sender, EventArgs e)
+        {
+            // ComboBoxの選択された値を取得
+            string selectedValue = CB.SelectedItem?.ToString();
 
+            // 選択された値に応じた画面遷移
+            switch (selectedValue)
+            {
+                case "受注":
+                    MessageBox.Show
+                    (
+                        "ここです。",
+                        "すんません",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    ); break;
+
+                case "注文":
+                    formChanger.NavigateToOrderForm(); // 注文画面に遷移
+                    break;
+
+                case "出庫":
+                    formChanger.NavigateToIssueForm(); // 出庫画面に遷移
+                    break;
+
+                case "入荷":
+                    formChanger.NavigateToArrivalForm(); // 入荷画面に遷移
+                    break;
+
+                case "出荷":
+                    formChanger.NavigateToShippingForm(); // 出荷画面に遷移
+                    break;
+
+                case "売上":
+                    formChanger.NavigateToSalesForm(); // 売上画面に遷移
+                    break;
+
+                default:
+                    MessageBox.Show
+                        (
+                        "遷移先を選択してください。",
+                        "確認",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
+                    break;
+            }
+        }
         // 各ボタンでの画面遷移
         private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToOrderForm();
         private void b_arr_Click(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
@@ -196,7 +238,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
 
         private void HandleOrderOperation()
         {
@@ -275,7 +317,7 @@ namespace SalesManagement_SysDev
                 // 条件精査
 
 
-                
+
 
 
                 if (TBJyutyuID.Text == null)
@@ -441,7 +483,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if(TBShainID.Text != empID)
+                if (TBShainID.Text != empID)
                 {
                     MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
                     TBShainID.BackColor = Color.Yellow;
@@ -982,7 +1024,7 @@ namespace SalesManagement_SysDev
                 {
                     // 行データを取得  
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-                    if(label2.Text == "登録")
+                    if (label2.Text == "登録")
                     {
                         TBJyutyuID.Text = "";
                     }
@@ -991,7 +1033,7 @@ namespace SalesManagement_SysDev
                         TBJyutyuID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
                     }
                     // 各テキストボックスにデータを入力 (null許可)
-                    
+
                     TBShopID.Text = row.Cells["営業所ID"].Value?.ToString() ?? string.Empty;
                     TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
@@ -1133,7 +1175,7 @@ namespace SalesManagement_SysDev
         //↓以下北島匙投げゾーン
 
 
-        private void LimitTextLength(TextBox textBox, int maxLength)
+        private void LimitTextLength(System.Windows.Forms.TextBox textBox, int maxLength)
         {
             if (textBox.Text.Length > maxLength)
             {
@@ -1144,60 +1186,60 @@ namespace SalesManagement_SysDev
         }
         private void TBJyutyuID_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 6);
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 6);
         }
 
         private void TBShopID_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 2);
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 2);
         }
 
         private void TBShainID_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 6);  // textBox1の制限を50文字に設定
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 6);  // textBox1の制限を50文字に設定
 
         }
 
         private void TBKokyakuID_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 6);  // textBox1の制限を50文字に設定
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 6);  // textBox1の制限を50文字に設定
 
         }
 
         private void TBTantoName_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 50);  // textBox1の制限を50文字に設定
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 50);  // textBox1の制限を50文字に設定
 
         }
 
         private void TBJyutyuSyosaiID_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 6);
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 6);
         }
 
         private void TBJyutyuIDS_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 6);
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 6);
         }
 
         private void TBSyohinID_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 6);
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 6);
         }
 
         private void TBSuryou_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 4);
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 4);
         }
 
         private void TBGoukeiKingaku_TextChanged(object sender, EventArgs e)
         {
-            LimitTextLength(sender as TextBox, 10);
+            LimitTextLength(sender as System.Windows.Forms.TextBox, 10);
         }
 
         private void colorReset()
         {
-            switch(CurrentStatus.CurrentStatusValue)
+            switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.登録:
                     tbfalse();
@@ -1217,5 +1259,7 @@ namespace SalesManagement_SysDev
 
             }
         }
+
+
     }
 }

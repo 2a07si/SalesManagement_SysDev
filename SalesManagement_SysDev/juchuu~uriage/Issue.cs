@@ -27,7 +27,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
-            this.Load += new EventHandler(issue_Load);
+            //this.Load += new EventHandler(issue_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
 
@@ -43,8 +43,10 @@ namespace SalesManagement_SysDev
 
         private void issue_Load(object sender, EventArgs e)
         {
+
+
             GlobalUtility.UpdateLabels(label_id, label_ename);
-            accessManager.SetButtonAccess(new Control[] {
+                accessManager.SetButtonAccess(new Control[] {
                 b_ord,
                 b_acc,
                 b_shi,
@@ -53,20 +55,20 @@ namespace SalesManagement_SysDev
                 b_arr
             });
 
-            b_FormSelector.Text = "←通常";
-            CurrentStatus.SetMode(Mode.通常);
-            DisplayIssues();
-            DisplayIssueDetails();
+                b_FormSelector.Text = "←通常";
+                CurrentStatus.SetMode(Mode.通常);
+                DisplayIssues();
+                DisplayIssueDetails();
 
-            if (Global.EmployeePermission == 1)
-            {
-                b_reg.Enabled = true;
-            }
-            else
-            {
-                b_reg.Enabled = false;
-                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
-            }
+                if (Global.EmployeePermission == 1)
+                {
+                    b_reg.Enabled = true;
+                }
+                else
+                {
+                    b_reg.Enabled = false;
+                    b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
+                }
 
             // 在庫不足で非表示となった出庫情報に関するメッセージを取得
 
@@ -75,14 +77,16 @@ namespace SalesManagement_SysDev
 
             // メッセージが存在する場合、MessageBoxで表示
             if (!string.IsNullOrEmpty(stockUpdateMessages2))
-            {
-                MessageBox.Show(stockUpdateMessages2, "在庫更新通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
+                {
+                    MessageBox.Show(stockUpdateMessages2, "在庫更新通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
                 MessageBox.Show("特に在庫更新はありません。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                }
+            
         }
+
         // メインメニューに戻る 
         private void close_Click(object sender, EventArgs e)
         {
@@ -1126,6 +1130,11 @@ namespace SalesManagement_SysDev
                     break;
             }
           
+        }
+
+        private void b_lss_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
