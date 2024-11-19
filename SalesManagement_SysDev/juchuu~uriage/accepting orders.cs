@@ -274,15 +274,8 @@ namespace SalesManagement_SysDev
 
                 // 条件精査
 
-<<<<<<< HEAD
-                if (TBJyutyuID.Text == null)
-=======
-
-
-
 
                 if (TBJyutyuID.Text == "")
->>>>>>> 416aa9662b73f233753a7a10e0bf8fd7b0917f0e
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
@@ -1251,7 +1244,7 @@ namespace SalesManagement_SysDev
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 数字とBackspace以外は入力を無効化
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
