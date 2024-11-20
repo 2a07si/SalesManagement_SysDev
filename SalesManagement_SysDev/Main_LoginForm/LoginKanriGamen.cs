@@ -62,5 +62,10 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

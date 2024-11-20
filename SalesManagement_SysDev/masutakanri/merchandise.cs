@@ -597,7 +597,7 @@ namespace SalesManagement_SysDev
         {
             // 対象のテキストボックスのみイベントを追加
             TBSyohinID.KeyPress += NumericTextBox_KeyPress;
-            TBMakerId.KeyPress += NumericTextBox_KeyPress;
+            TBMakerID.KeyPress += NumericTextBox_KeyPress;
             TBSell.KeyPress += NumericTextBox_KeyPress;
             TBSafeNum.KeyPress += NumericTextBox_KeyPress;
             TBSyoubunrui.KeyPress += NumericTextBox_KeyPress;
