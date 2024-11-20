@@ -39,6 +39,7 @@ namespace SalesManagement_SysDev
                 b_sto,
             });
             DisplayCustomer();
+            SetupNumericOnlyTextBoxes();
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -555,6 +556,26 @@ namespace SalesManagement_SysDev
                     TBFax.BackColor = SystemColors.Window;
                     break;
 
+            }
+        }
+        private void SetupNumericOnlyTextBoxes()
+        {
+            // 対象のテキストボックスのみイベントを追加
+            TBKokyakuID.KeyPress += NumericTextBox_KeyPress;
+            TBShopID.KeyPress += NumericTextBox_KeyPress;
+            TBYuubinNo.KeyPress += NumericTextBox_KeyPress;
+            TBTellNo.KeyPress += NumericTextBox_KeyPress;
+            TBFax.KeyPress += NumericTextBox_KeyPress;
+
+        }
+
+        // 半角数字のみを許可するKeyPressイベントハンドラ
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

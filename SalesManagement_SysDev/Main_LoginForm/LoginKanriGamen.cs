@@ -57,5 +57,10 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private void UpdatePassword()
         {
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
