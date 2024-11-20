@@ -30,23 +30,25 @@
         {
             close = new Button();
             p_NA = new Panel();
-            comboBox1 = new ComboBox();
+            ComboLog = new ComboBox();
             LoginKensaku = new Button();
             listBox1 = new ListBox();
             dataGridView1 = new DataGridView();
+            dateTimePicker1 = new DateTimePicker();
+            TB_Log = new TextBox();
             panel1 = new Panel();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox1 = new TextBox();
+            TB_ID = new TextBox();
             ShousaiKensaku = new Button();
             dataGridView2 = new DataGridView();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            comboBox4 = new ComboBox();
+            ComboGamen = new ComboBox();
+            ComboMode = new ComboBox();
+            ComboShori = new ComboBox();
             label1 = new Label();
-            textBox2 = new TextBox();
+            clear = new Button();
             p_NA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -55,9 +57,9 @@
             // 
             // close
             // 
-            close.Location = new Point(1413, 31);
+            close.Location = new Point(1264, 42);
             close.Name = "close";
-            close.Size = new Size(122, 56);
+            close.Size = new Size(136, 70);
             close.TabIndex = 245;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
@@ -66,25 +68,26 @@
             // p_NA
             // 
             p_NA.BackColor = Color.FromArgb(212, 222, 255);
-            p_NA.Controls.Add(textBox2);
-            p_NA.Controls.Add(comboBox1);
+            p_NA.Controls.Add(ComboLog);
             p_NA.Controls.Add(LoginKensaku);
             p_NA.Controls.Add(listBox1);
             p_NA.Controls.Add(dataGridView1);
+            p_NA.Controls.Add(dateTimePicker1);
+            p_NA.Controls.Add(TB_Log);
             p_NA.Location = new Point(160, 145);
             p_NA.Name = "p_NA";
             p_NA.Size = new Size(489, 690);
             p_NA.TabIndex = 249;
             // 
-            // comboBox1
+            // ComboLog
             // 
-            comboBox1.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "社員ID", "社員名", "ログイン日時" });
-            comboBox1.Location = new Point(16, 18);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(248, 54);
-            comboBox1.TabIndex = 255;
+            ComboLog.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            ComboLog.FormattingEnabled = true;
+            ComboLog.Items.AddRange(new object[] { "社員ID", "社員名", "ログイン日時" });
+            ComboLog.Location = new Point(16, 18);
+            ComboLog.Name = "ComboLog";
+            ComboLog.Size = new Size(248, 54);
+            ComboLog.TabIndex = 255;
             // 
             // LoginKensaku
             // 
@@ -118,6 +121,23 @@
             dataGridView1.Size = new Size(451, 527);
             dataGridView1.TabIndex = 250;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.CalendarFont = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePicker1.Font = new Font("Yu Gothic UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePicker1.Location = new Point(16, 84);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(248, 47);
+            dateTimePicker1.TabIndex = 254;
+            // 
+            // TB_Log
+            // 
+            TB_Log.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            TB_Log.Location = new Point(16, 78);
+            TB_Log.Name = "TB_Log";
+            TB_Log.Size = new Size(246, 53);
+            TB_Log.TabIndex = 259;
+            // 
             // panel1
             // 
             panel1.BackColor = Color.LightSkyBlue;
@@ -125,12 +145,12 @@
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(TB_ID);
             panel1.Controls.Add(ShousaiKensaku);
             panel1.Controls.Add(dataGridView2);
-            panel1.Controls.Add(comboBox2);
-            panel1.Controls.Add(comboBox3);
-            panel1.Controls.Add(comboBox4);
+            panel1.Controls.Add(ComboGamen);
+            panel1.Controls.Add(ComboMode);
+            panel1.Controls.Add(ComboShori);
             panel1.Location = new Point(650, 145);
             panel1.Name = "panel1";
             panel1.Size = new Size(750, 690);
@@ -177,13 +197,13 @@
             label6.TabIndex = 257;
             label6.Text = "ID";
             // 
-            // textBox1
+            // TB_ID
             // 
-            textBox1.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(427, 66);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(116, 53);
-            textBox1.TabIndex = 258;
+            TB_ID.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            TB_ID.Location = new Point(427, 66);
+            TB_ID.Name = "TB_ID";
+            TB_ID.Size = new Size(116, 53);
+            TB_ID.TabIndex = 258;
             // 
             // ShousaiKensaku
             // 
@@ -206,35 +226,35 @@
             dataGridView2.Size = new Size(713, 527);
             dataGridView2.TabIndex = 251;
             // 
-            // comboBox2
+            // ComboGamen
             // 
-            comboBox2.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "受注", "注文", "出庫", "入荷", "出荷", "売上", "発注", "入庫", "社員", "商品", "在庫", "顧客" });
-            comboBox2.Location = new Point(19, 66);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(116, 54);
-            comboBox2.TabIndex = 255;
+            ComboGamen.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            ComboGamen.FormattingEnabled = true;
+            ComboGamen.Items.AddRange(new object[] { "受注", "注文", "出庫", "入荷", "出荷", "売上", "発注", "入庫", "社員", "商品", "在庫", "顧客" });
+            ComboGamen.Location = new Point(19, 66);
+            ComboGamen.Name = "ComboGamen";
+            ComboGamen.Size = new Size(116, 54);
+            ComboGamen.TabIndex = 255;
             // 
-            // comboBox3
+            // ComboMode
             // 
-            comboBox3.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Items.AddRange(new object[] { "通常", "詳細" });
-            comboBox3.Location = new Point(154, 66);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(116, 54);
-            comboBox3.TabIndex = 256;
+            ComboMode.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            ComboMode.FormattingEnabled = true;
+            ComboMode.Items.AddRange(new object[] { "通常", "詳細" });
+            ComboMode.Location = new Point(154, 66);
+            ComboMode.Name = "ComboMode";
+            ComboMode.Size = new Size(116, 54);
+            ComboMode.TabIndex = 256;
             // 
-            // comboBox4
+            // ComboShori
             // 
-            comboBox4.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Items.AddRange(new object[] { "登録", "更新", "確定" });
-            comboBox4.Location = new Point(289, 66);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(116, 54);
-            comboBox4.TabIndex = 257;
+            ComboShori.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            ComboShori.FormattingEnabled = true;
+            ComboShori.Items.AddRange(new object[] { "登録", "更新", "確定" });
+            ComboShori.Location = new Point(289, 66);
+            ComboShori.Name = "ComboShori";
+            ComboShori.Size = new Size(116, 54);
+            ComboShori.TabIndex = 257;
             // 
             // label1
             // 
@@ -247,19 +267,23 @@
             label1.Text = "ログ管理画面";
             label1.Click += label1_Click;
             // 
-            // textBox2
+            // clear
             // 
-            textBox2.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox2.Location = new Point(16, 78);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(246, 53);
-            textBox2.TabIndex = 259;
+            clear.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            clear.Location = new Point(1093, 42);
+            clear.Name = "clear";
+            clear.Size = new Size(150, 70);
+            clear.TabIndex = 253;
+            clear.Text = "クリア";
+            clear.UseVisualStyleBackColor = true;
+            clear.Click += clear_Click_1;
             // 
             // LoginKanriGamen
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
+            Controls.Add(clear);
             Controls.Add(p_NA);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -291,15 +315,17 @@
         private ListBox listBox1;
         private Button ShousaiKensaku;
         private Label label1;
-        private ComboBox comboBox1;
+        private ComboBox ComboLog;
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
-        private ComboBox comboBox4;
+        private TextBox TB_ID;
+        private ComboBox ComboGamen;
+        private ComboBox ComboMode;
+        private ComboBox ComboShori;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox TB_Log;
+        private Button clear;
+        private DateTimePicker dateTimePicker1;
     }
 }
