@@ -151,9 +151,9 @@
             panel1.Controls.Add(ComboGamen);
             panel1.Controls.Add(ComboMode);
             panel1.Controls.Add(ComboShori);
-            panel1.Location = new Point(650, 145);
+            panel1.Location = new Point(649, 145);
             panel1.Name = "panel1";
-            panel1.Size = new Size(750, 690);
+            panel1.Size = new Size(751, 690);
             panel1.TabIndex = 250;
             // 
             // label3
@@ -204,6 +204,7 @@
             TB_ID.Name = "TB_ID";
             TB_ID.Size = new Size(116, 53);
             TB_ID.TabIndex = 258;
+            TB_ID.KeyDown += TB_ID_KeyDown_1;
             // 
             // ShousaiKensaku
             // 
@@ -260,7 +261,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(176, 42);
+            label1.Location = new Point(160, 42);
             label1.Name = "label1";
             label1.Size = new Size(246, 54);
             label1.TabIndex = 252;

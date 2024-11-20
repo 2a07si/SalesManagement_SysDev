@@ -184,7 +184,7 @@ namespace SalesManagement_SysDev
                     case CurrentStatus.Mode.詳細:
                         colorReset();
                         HandleOrderDetailOperation();
-                       
+
                         break;
                     default:
                         MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -260,7 +260,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrder()
         {
-            
+
             try
             {
                 string JyutyuID = TBJyutyuID.Text;
@@ -811,7 +811,7 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                
+
                 using (var context = new SalesManagementContext())
                 {
                     // 受注詳細のリストを取得
@@ -1236,7 +1236,7 @@ namespace SalesManagement_SysDev
                 e.Handled = true;
             }
         }
-        
+
 
     }
 }
