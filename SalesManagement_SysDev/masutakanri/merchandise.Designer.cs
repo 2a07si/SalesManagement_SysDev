@@ -48,7 +48,7 @@
             label12 = new Label();
             TBSyohinName = new TextBox();
             label5 = new Label();
-            TBMakerId = new TextBox();
+            TBMakerID = new TextBox();
             label14 = new Label();
             TBSyohinID = new TextBox();
             label6 = new Label();
@@ -109,7 +109,7 @@
             panel1.Controls.Add(label12);
             panel1.Controls.Add(TBSyohinName);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(TBMakerId);
+            panel1.Controls.Add(TBMakerID);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(TBSyohinID);
             panel1.Controls.Add(label6);
@@ -282,13 +282,13 @@
             label5.TabIndex = 4;
             label5.Text = "商品名";
             // 
-            // TBMakerId
+            // TBMakerID
             // 
-            TBMakerId.Location = new Point(280, 20);
-            TBMakerId.Name = "TBMakerId";
-            TBMakerId.Size = new Size(80, 31);
-            TBMakerId.TabIndex = 3;
-            TBMakerId.TextChanged += TBMakerId_TextChanged;
+            TBMakerID.Location = new Point(280, 20);
+            TBMakerID.Name = "TBMakerID";
+            TBMakerID.Size = new Size(80, 31);
+            TBMakerID.TabIndex = 3;
+            TBMakerID.TextChanged += TBMakerID_TextChanged;
             // 
             // label14
             // 
@@ -590,7 +590,7 @@
         private Label label12;
         private TextBox TBSyohinName;
         private Label label5;
-        private TextBox TBMakerId;
+        private TextBox TBMakerID;
         private Label label14;
         private TextBox TBSyohinID;
         private Label label6;

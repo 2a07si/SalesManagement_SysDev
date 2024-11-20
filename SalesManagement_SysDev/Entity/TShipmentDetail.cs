@@ -5,11 +5,11 @@ namespace SalesManagement_SysDev;
 
 public partial class TShipmentDetail
 {
-    public int ShDetailId { get; set; }
+    public int ShDetailID { get; set; }
 
-    public int ShId { get; set; }
+    public int ShID { get; set; }
 
-    public int PrId { get; set; }
+    public int PrID { get; set; }
 
     public int ShQuantity { get; set; }
 

@@ -5,11 +5,11 @@ namespace SalesManagement_SysDev;
 
 public partial class TOrderDetail
 {
-    public int OrDetailId { get; set; }
+    public int OrDetailID { get; set; }
 
-    public int OrId { get; set; }
+    public int OrID { get; set; }
 
-    public int PrId { get; set; }
+    public int PrID { get; set; }
 
     public int OrQuantity { get; set; }
 

@@ -7,13 +7,13 @@ namespace SalesManagement_SysDev;
 public partial class MEmployee
 {
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public int EmId { get; set; }
+    public int EmID { get; set; }
 
     public string EmName { get; set; } = null!;
 
-    public int SoId { get; set; }
+    public int SoID { get; set; }
 
-    public int PoId { get; set; }
+    public int PoID { get; set; }
 
     public DateTime EmHiredate { get; set; }
 

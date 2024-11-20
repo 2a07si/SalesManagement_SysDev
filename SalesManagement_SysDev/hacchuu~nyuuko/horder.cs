@@ -24,7 +24,7 @@ namespace SalesManagement_SysDev
         private ClassDateNamelabel dateNameLabel; // 日付と時間ラベル管理用クラス
         private ClassAccessManager accessManager; // アクセスマネージャのインスタンス
 
-        private int lastFocusedPanelId = 1;
+        private int lastFocusedPanelID = 1;
 
 
         public horder()
@@ -271,11 +271,11 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var hattyu = context.THattyus.SingleOrDefault(h => h.HaId.ToString() == hattyuuID);
+                var hattyu = context.THattyus.SingleOrDefault(h => h.HaID.ToString() == hattyuuID);
                 if (hattyu != null)
                 {
-                    hattyu.MaId = int.Parse(makerID);
-                    hattyu.EmId = int.Parse(shainID);
+                    hattyu.MaID = int.Parse(makerID);
+                    hattyu.EmID = int.Parse(shainID);
                     hattyu.HaDate = hattyuuDate;
                     hattyu.WaWarehouseFlag = nyuukoFlag ? 2 : 0; // 入庫フラグ
                     hattyu.HaFlag = delFlag ? 1 : 0;              // 削除フラグ
@@ -286,7 +286,7 @@ namespace SalesManagement_SysDev
                     {
                         // 発注詳細が存在するか確認
                         var hattyuDetailsExist = context.THattyuDetails
-                            .Any(hd => hd.HaId == hattyu.HaId); // HaId が一致する発注詳細が存在するか確認
+                            .Any(hd => hd.HaID == hattyu.HaID); // HaID が一致する発注詳細が存在するか確認
 
                         if (!hattyuDetailsExist)
                         {
@@ -298,7 +298,7 @@ namespace SalesManagement_SysDev
 
                         // 発注詳細が存在する場合、発注確認処理を実行
 
-                        HorderConfirm(hattyu.HaId);
+                        HorderConfirm(hattyu.HaID);
                     }
 
                     // 更新を保存
@@ -347,15 +347,15 @@ namespace SalesManagement_SysDev
             {
                 // メーカーIDがMMakerテーブルに存在するか確認
                 int maker;
-                if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaId == maker))
+                if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
                 {
                     MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
-                int employeeId;
-                if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                // EmIDがMEmployeeテーブルに存在するか確認
+                int employeeID;
+                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -380,8 +380,8 @@ namespace SalesManagement_SysDev
                 // 新しい発注情報を作成
                 var newHattyu = new THattyu
                 {
-                    MaId = int.Parse(makerID),
-                    EmId = employeeId,               // 確認済みの社員ID
+                    MaID = int.Parse(makerID),
+                    EmID = employeeID,               // 確認済みの社員ID
                     HaDate = hattyuuDate,            // 発注日
                     WaWarehouseFlag = nyuukoFlag ? 2 : 0, // 入庫状態フラグ
                     HaFlag = delFlag ? 1 : 0,        // 削除フラグ
@@ -401,7 +401,7 @@ namespace SalesManagement_SysDev
                 {
                     // 発注詳細が存在するか確認
                     var hattyuDetailsExist = context.THattyuDetails
-                        .Any(hd => hd.HaId == newHattyu.HaId); // HaId が一致する発注詳細が存在するか確認
+                        .Any(hd => hd.HaID == newHattyu.HaID); // HaID が一致する発注詳細が存在するか確認
 
                     if (!hattyuDetailsExist)
                     {
@@ -411,7 +411,7 @@ namespace SalesManagement_SysDev
                     }
 
                     // 発注詳細が存在する場合、発注確認処理を実行
-                    HorderConfirm(newHattyu.HaId);
+                    HorderConfirm(newHattyu.HaID);
                 }
             }
         }
@@ -429,9 +429,9 @@ namespace SalesManagement_SysDev
                         : context.THattyus.Where(o => o.HaFlag != 1 && o.WaWarehouseFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = hattyus.Select(h => new
                     {
-                        発注ID = h.HaId,
-                        メーカID = h.MaId,
-                        社員ID = h.EmId,
+                        発注ID = h.HaID,
+                        メーカID = h.MaID,
+                        社員ID = h.EmID,
                         発注年月日 = h.HaDate,
                         状態フラグ = h.WaWarehouseFlag,
                         非表示フラグ = h.HaFlag,
@@ -457,17 +457,17 @@ namespace SalesManagement_SysDev
 
                 if (!string.IsNullOrEmpty(hattyuuID) && int.TryParse(hattyuuID, out int parsedHattyuuID))
                 {
-                    query = query.Where(h => h.HaId == parsedHattyuuID);
+                    query = query.Where(h => h.HaID == parsedHattyuuID);
                 }
 
                 if (!string.IsNullOrEmpty(makerID) && int.TryParse(makerID, out int parsedMakerID))
                 {
-                    query = query.Where(h => h.MaId == parsedMakerID);
+                    query = query.Where(h => h.MaID == parsedMakerID);
                 }
 
                 if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
                 {
-                    query = query.Where(h => h.EmId == parsedShainID);
+                    query = query.Where(h => h.EmID == parsedShainID);
                 }
 
                 if (checkBoxDateFilter.Checked)
@@ -482,9 +482,9 @@ namespace SalesManagement_SysDev
                 {
                     dataGridView1.DataSource = hattyus.Select(h => new
                     {
-                        発注ID = h.HaId,
-                        メーカID = h.MaId,
-                        社員ID = h.EmId,
+                        発注ID = h.HaID,
+                        メーカID = h.MaID,
+                        社員ID = h.EmID,
                         発注年月日 = h.HaDate,
                         発注状態 = NyuukoFlag.Checked ? 2 : 1,
                         非表示フラグ = DelFlag.Checked ? 1 : 0
@@ -540,11 +540,11 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var orderDetail = context.THattyuDetails.SingleOrDefault(od => od.HaDetailId.ToString() == hattyuuSyosaiID);
+                var orderDetail = context.THattyuDetails.SingleOrDefault(od => od.HaDetailID.ToString() == hattyuuSyosaiID);
                 if (orderDetail != null)
                 {
-                    orderDetail.HaId = int.Parse(hattyuuID);
-                    orderDetail.PrId = int.Parse(syohinID);
+                    orderDetail.HaID = int.Parse(hattyuuID);
+                    orderDetail.PrID = int.Parse(syohinID);
                     orderDetail.HaQuantity = int.Parse(suryou);
 
                     context.SaveChanges();
@@ -566,17 +566,17 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                // HaId（発注ID）がTHattyuテーブルに存在するか確認
-                int hattyuId;
-                if (!int.TryParse(hattyuuID, out hattyuId) || !context.THattyus.Any(h => h.HaId == hattyuId))
+                // HaID（発注ID）がTHattyuテーブルに存在するか確認
+                int hattyuID;
+                if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
                     MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // PrId（商品ID）がMProductテーブルに存在するか確認
-                int productId;
-                if (!int.TryParse(syohinID, out productId) || !context.MProducts.Any(p => p.PrId == productId))
+                // PrID（商品ID）がMProductテーブルに存在するか確認
+                int productID;
+                if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
                     MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -614,7 +614,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                var existingOrderDetail = context.THattyuDetails.FirstOrDefault(o => o.HaId == hattyuId);
+                var existingOrderDetail = context.THattyuDetails.FirstOrDefault(o => o.HaID == hattyuID);
                 if (existingOrderDetail != null)
                 {
                     MessageBox.Show("この発注IDにはすでに発注詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -622,8 +622,8 @@ namespace SalesManagement_SysDev
                 }
                 var newOrderDetail = new THattyuDetail
                 {
-                    HaId = hattyuId,
-                    PrId = productId,
+                    HaID = hattyuID,
+                    PrID = productID,
                     HaQuantity = quantity
                 };
 
@@ -646,16 +646,16 @@ namespace SalesManagement_SysDev
                         ? HattyuDetails
                         : HattyuDetails.Where(od =>
                         {
-                            var Hattyu = context.THattyus.FirstOrDefault(o => o.HaId == od.HaId);
+                            var Hattyu = context.THattyus.FirstOrDefault(o => o.HaID == od.HaID);
 
                             return Hattyu == null || (Hattyu.HaFlag != 1 && Hattyu.WaWarehouseFlag != 2);
                         }).ToList();
 
                     dataGridView2.DataSource = visibleHattyuDetails.Select(od => new
                     {
-                        発注詳細ID = od.HaDetailId,
-                        発注ID = od.HaId,
-                        商品ID = od.PrId,
+                        発注詳細ID = od.HaDetailID,
+                        発注ID = od.HaID,
+                        商品ID = od.PrID,
                         数量 = od.HaQuantity
                     }).ToList();
                 }
@@ -683,19 +683,19 @@ namespace SalesManagement_SysDev
                 if (!string.IsNullOrEmpty(hattyuuSyosaiID))
                 {
                     // 発注詳細IDを検索条件に追加
-                    query = query.Where(od => od.HaDetailId.ToString() == hattyuuSyosaiID);
+                    query = query.Where(od => od.HaDetailID.ToString() == hattyuuSyosaiID);
                 }
 
                 if (!string.IsNullOrEmpty(hattyuuID))
                 {
                     // 発注IDを検索条件に追加
-                    query = query.Where(od => od.HaId.ToString() == hattyuuID);
+                    query = query.Where(od => od.HaID.ToString() == hattyuuID);
                 }
 
                 if (!string.IsNullOrEmpty(syohinID))
                 {
                     // 商品IDを検索条件に追加
-                    query = query.Where(od => od.PrId.ToString() == syohinID);
+                    query = query.Where(od => od.PrID.ToString() == syohinID);
                 }
 
                 if (!string.IsNullOrEmpty(suryou) && int.TryParse(suryou, out int quantity))
@@ -711,9 +711,9 @@ namespace SalesManagement_SysDev
                 {
                     dataGridView2.DataSource = orderDetails.Select(od => new
                     {
-                        発注詳細ID = od.HaDetailId,
-                        発注ID = od.HaId,
-                        商品ID = od.PrId,
+                        発注詳細ID = od.HaDetailID,
+                        発注ID = od.HaID,
+                        商品ID = od.PrID,
                         数量 = od.HaQuantity
                     }).ToList();
                 }
@@ -732,9 +732,9 @@ namespace SalesManagement_SysDev
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
             if (orderFlag == "←通常")
-                lastFocusedPanelId = 1;
+                lastFocusedPanelID = 1;
             else if (orderFlag == "詳細→")
-                lastFocusedPanelId = 2;
+                lastFocusedPanelID = 2;
         }
 
 
@@ -747,9 +747,9 @@ namespace SalesManagement_SysDev
             UpdateFlagButtonText();
 
             if (orderFlag == "←通常")
-                lastFocusedPanelId = 1;
+                lastFocusedPanelID = 1;
             else if (orderFlag == "詳細→")
-                lastFocusedPanelId = 2;
+                lastFocusedPanelID = 2;
         }
 
 
@@ -830,13 +830,13 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void HorderConfirm(int HaId)
+        private void HorderConfirm(int HaID)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
-                var horder = context.THattyus.SingleOrDefault(o => o.HaId == HaId);
+                var horder = context.THattyus.SingleOrDefault(o => o.HaID == HaID);
 
                 if (horder == null)
                 {
@@ -846,8 +846,8 @@ namespace SalesManagement_SysDev
                 // 情報追加
                 var newWarehousing = new TWarehousing
                 {
-                    HaId = HaId,
-                    EmId = horder.EmId,
+                    HaID = HaID,
+                    EmID = horder.EmID,
                     //datetime
                     WaShelfFlag = 0,
                     WaFlag = 0
@@ -865,11 +865,11 @@ namespace SalesManagement_SysDev
                 }
 
 
-                var hattyuDetail = context.THattyuDetails.SingleOrDefault(o => o.HaId == HaId);
+                var hattyuDetail = context.THattyuDetails.SingleOrDefault(o => o.HaID == HaID);
                 var newWarehousingDetail = new TWarehousingDetail
                 {
-                    WaId = newWarehousing.WaId,
-                    PrId = hattyuDetail.PrId,
+                    WaID = newWarehousing.WaID,
+                    PrID = hattyuDetail.PrID,
                     WaQuantity = hattyuDetail.HaQuantity
 
                 };
@@ -889,24 +889,24 @@ namespace SalesManagement_SysDev
         }
 
         // パネル内のすべてのコントロールにEnterイベントを追加
-        private void AddControlEventHandlers(Control panel, int panelId)
+        private void AddControlEventHandlers(Control panel, int panelID)
         {
             foreach (Control control in panel.Controls)
             {
                 // コントロールにEnterイベントを追加
-                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelID);
             }
         }
 
         // コントロールが選択（フォーカス）された時
-        private void Control_Enter(object sender, EventArgs e, int panelId)
+        private void Control_Enter(object sender, EventArgs e, int panelID)
         {
             // 異なるパネルに移動したときのみイベントを発生させる
-            if (panelId != lastFocusedPanelId)
+            if (panelID != lastFocusedPanelID)
             {
                 ToggleHattyuSelection();
                 UpdateFlagButtonText();
-                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
+                lastFocusedPanelID = panelID; // 現在のパネルIDを更新
             }
         }
         //↓以下北島匙投げゾーン

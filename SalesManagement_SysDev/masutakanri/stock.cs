@@ -188,11 +188,11 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var stock = context.TStocks.SingleOrDefault(s => s.StId.ToString() == zaikoID);
+                var stock = context.TStocks.SingleOrDefault(s => s.StID.ToString() == zaikoID);
                 if (stock != null)
                 {
-                    stock.StId = int.Parse(zaikoID);
-                    stock.PrId = int.Parse(syohinID);
+                    stock.StID = int.Parse(zaikoID);
+                    stock.PrID = int.Parse(syohinID);
                     stock.StQuantity = int.Parse(zaiko);
                     stock.StFlag = stflag ? 1 : 0;
 
@@ -219,7 +219,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int shouhin;
-                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrId == shouhin))
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                 {
                     MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -240,7 +240,7 @@ namespace SalesManagement_SysDev
                 }
                 var newstock = new TStock
                 {
-                    PrId = int.Parse(syohinID),
+                    PrID = int.Parse(syohinID),
                     StQuantity = int.Parse(zaiko),
                     StFlag = stflag ? 1 : 0,
                 };
@@ -286,8 +286,8 @@ namespace SalesManagement_SysDev
 
                     dataGridView1.DataSource = stock.Select(s => new
                     {
-                        在庫ID = s.StId,
-                        商品ID = s.PrId,
+                        在庫ID = s.StID,
+                        商品ID = s.PrID,
                         在庫数 = s.StQuantity,
                         管理フラグ = s.StFlag
                     }).ToList();
@@ -317,13 +317,13 @@ namespace SalesManagement_SysDev
                 // 受注IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(zaikoID) && int.TryParse(zaikoID, out int parsedzaikoID))
                 {
-                    query = query.Where(s => s.StId == parsedzaikoID);
+                    query = query.Where(s => s.StID == parsedzaikoID);
                 }
 
                 // 営業所IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(syohinID) && int.TryParse(syohinID, out int parsedsyohinID))
                 {
-                    query = query.Where(s => s.PrId == parsedsyohinID);
+                    query = query.Where(s => s.PrID == parsedsyohinID);
                 }
 
                 // 営業所IDを検索条件に追加 
@@ -340,8 +340,8 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = stock.Select(s => new
                     {
-                        在庫ID = s.StId,
-                        商品ID = s.PrId,
+                        在庫ID = s.StID,
+                        商品ID = s.PrID,
                         在庫数 = s.StQuantity,
                         在庫管理フラグ = s.StFlag,
                     }).ToList();

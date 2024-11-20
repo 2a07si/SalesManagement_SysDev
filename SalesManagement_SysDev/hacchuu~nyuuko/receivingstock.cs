@@ -26,7 +26,7 @@ namespace SalesManagement_SysDev
         private ClassDateNamelabel dateNamelabel;
         private ClassAccessManager accessManager;
 
-        private int lastFocusedPanelId = 1;
+        private int lastFocusedPanelID = 1;
 
         public receivingstock()
         {
@@ -266,11 +266,11 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var receivingStock = context.TWarehousings.SingleOrDefault(ws => ws.WaId.ToString() == nyuukoID);
+                var receivingStock = context.TWarehousings.SingleOrDefault(ws => ws.WaID.ToString() == nyuukoID);
                 if (receivingStock != null)
                 {
-                    receivingStock.HaId = int.Parse(haID);                 // 発注ID 
-                    receivingStock.EmId = int.Parse(shainID);              // 社員ID 
+                    receivingStock.HaID = int.Parse(haID);                 // 発注ID 
+                    receivingStock.EmID = int.Parse(shainID);              // 社員ID 
                     receivingStock.WaDate = nyuukoDate;                    // 入庫日 
                     receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;       // 入庫棚フラグ 
                     receivingStock.WaFlag = delFlag ? 1 : 0;               // 削除フラグ 
@@ -281,7 +281,7 @@ namespace SalesManagement_SysDev
                     {
                         // 入庫詳細が存在するか確認 
                         var receivingDetailsExist = context.TWarehousingDetails
-                            .Any(wd => wd.WaId == receivingStock.WaId); // WaId が一致する入庫詳細が存在するか確認 
+                            .Any(wd => wd.WaID == receivingStock.WaID); // WaID が一致する入庫詳細が存在するか確認 
 
                         if (!receivingDetailsExist)
                         {
@@ -292,15 +292,15 @@ namespace SalesManagement_SysDev
 
                         MessageBox.Show("入庫確定処理");
                         // 入庫詳細が存在する場合、入庫確認処理を実行 
-                        ReceiveConfirm(receivingStock.WaId);
+                        ReceiveConfirm(receivingStock.WaID);
 
                         // 在庫更新メッセージを保存
                         var receivingDetails = context.TWarehousingDetails
-                            .Where(wd => wd.WaId == receivingStock.WaId);
+                            .Where(wd => wd.WaID == receivingStock.WaID);
 
                         foreach (var detail in receivingDetails)
                         {
-                            Global.AddStockUpdateMessage(detail.PrId, detail.WaQuantity); // メッセージ追加
+                            Global.AddStockUpdateMessage(detail.PrID, detail.WaQuantity); // メッセージ追加
                         }
                     }
 
@@ -348,16 +348,16 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // HaIDがTHattyuテーブルに存在するか確認
-                int hattyuId;
-                if (!int.TryParse(haID, out hattyuId) || !context.THattyus.Any(h => h.HaId == hattyuId))
+                int hattyuID;
+                if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
                     MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
-                int employeeId;
-                if (!int.TryParse(shainID, out employeeId) || !context.MEmployees.Any(e => e.EmId == employeeId))
+                // EmIDがMEmployeeテーブルに存在するか確認
+                int employeeID;
+                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -381,8 +381,8 @@ namespace SalesManagement_SysDev
 
                 var newReceivingStock = new TWarehousing
                 {
-                    HaId = hattyuId, // 発注IDを適切に設定
-                    EmId = employeeId, // 社員IDを適切に設定
+                    HaID = hattyuID, // 発注IDを適切に設定
+                    EmID = employeeID, // 社員IDを適切に設定
                     WaDate = nyuukoDate,
                     WaShelfFlag = nyuukoFlag ? 2 : 0,
                     WaFlag = nyuukoFlag ? 1 : 0,
@@ -430,9 +430,9 @@ namespace SalesManagement_SysDev
                         : context.TWarehousings.Where(o => o.WaFlag != 1 && o.WaShelfFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
                     dataGridView1.DataSource = receivingStocks.Select(ws => new
                     {
-                        入庫ID = ws.WaId,
-                        発注ID = ws.HaId,
-                        社員ID = ws.EmId,
+                        入庫ID = ws.WaID,
+                        発注ID = ws.HaID,
+                        社員ID = ws.EmID,
                         入庫年月日 = ws.WaDate,
                         入庫済フラグ = ws.WaShelfFlag,
                         非表示フラグ = ws.WaFlag,
@@ -459,17 +459,17 @@ namespace SalesManagement_SysDev
 
                 if (!string.IsNullOrEmpty(nyuukoID) && int.TryParse(nyuukoID, out int parsedNyuukoID))
                 {
-                    query = query.Where(ws => ws.WaId == parsedNyuukoID);
+                    query = query.Where(ws => ws.WaID == parsedNyuukoID);
                 }
 
                 if (!string.IsNullOrEmpty(haID) && int.TryParse(haID, out int parsedHaID))
                 {
-                    query = query.Where(ws => ws.HaId == parsedHaID);
+                    query = query.Where(ws => ws.HaID == parsedHaID);
                 }
 
                 if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
                 {
-                    query = query.Where(ws => ws.EmId == parsedShainID);
+                    query = query.Where(ws => ws.EmID == parsedShainID);
                 }
 
                 var receivingStocks = query.ToList();
@@ -478,9 +478,9 @@ namespace SalesManagement_SysDev
                 {
                     dataGridView1.DataSource = receivingStocks.Select(ws => new
                     {
-                        入庫ID = ws.WaId,
-                        発注ID = ws.HaId,
-                        社員ID = ws.EmId,
+                        入庫ID = ws.WaID,
+                        発注ID = ws.HaID,
+                        社員ID = ws.EmID,
                         入庫年月日 = ws.WaDate,
                         入庫済フラグ = ws.WaFlag,
                         非表示フラグ = ws.WaHidden
@@ -536,11 +536,11 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var receivingStockDetail = context.TWarehousingDetails.SingleOrDefault(ws => ws.WaDetailId.ToString() == nyuukoDetailID);
+                var receivingStockDetail = context.TWarehousingDetails.SingleOrDefault(ws => ws.WaDetailID.ToString() == nyuukoDetailID);
                 if (receivingStockDetail != null)
                 {
-                    receivingStockDetail.WaId = int.Parse(nyuukoID);
-                    receivingStockDetail.PrId = int.Parse(syohinID);
+                    receivingStockDetail.WaID = int.Parse(nyuukoID);
+                    receivingStockDetail.PrID = int.Parse(syohinID);
                     receivingStockDetail.WaQuantity = int.Parse(suryou);
 
                     context.SaveChanges();
@@ -563,16 +563,16 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // WaIDがTWarehousingテーブルに存在するか確認
-                int warehousingId;
-                if (!int.TryParse(nyuukoID, out warehousingId) || !context.TWarehousings.Any(w => w.WaId == warehousingId))
+                int warehousingID;
+                if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
                 {
                     MessageBox.Show("入庫IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // PrIDがTProductテーブルに存在するか確認
-                int productId;
-                if (!int.TryParse(syohinID, out productId) || !context.MProducts.Any(p => p.PrId == productId))
+                int productID;
+                if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
                     MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -610,7 +610,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                var existingOrderDetail = context.TWarehousingDetails.FirstOrDefault(o => o.WaId == warehousingId);
+                var existingOrderDetail = context.TWarehousingDetails.FirstOrDefault(o => o.WaID == warehousingID);
                 if (existingOrderDetail != null)
                 {
                     MessageBox.Show("この発注IDにはすでに発注詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -618,8 +618,8 @@ namespace SalesManagement_SysDev
                 }
                 var newReceivingStockDetail = new TWarehousingDetail
                 {
-                    WaId = warehousingId, // 入庫IDを適切に設定
-                    PrId = productId, // 商品IDを適切に設定
+                    WaID = warehousingID, // 入庫IDを適切に設定
+                    PrID = productID, // 商品IDを適切に設定
                     WaQuantity = quantity // 数量を適切に設定
                 };
 
@@ -664,16 +664,16 @@ namespace SalesManagement_SysDev
                         ? WarehousingDetails
                         : WarehousingDetails.Where(od =>
                         {
-                            var Warehousing = context.TWarehousings.FirstOrDefault(o => o.WaId == od.WaId);
+                            var Warehousing = context.TWarehousings.FirstOrDefault(o => o.WaID == od.WaID);
 
                             return Warehousing == null || (Warehousing.WaFlag != 1 && Warehousing.WaShelfFlag != 2);
                         }).ToList();
 
                     dataGridView2.DataSource = visibleWarehousingDetails.Select(ws => new
                     {
-                        入庫詳細ID = ws.WaDetailId,
-                        入庫ID = ws.WaId,
-                        商品ID = ws.PrId,
+                        入庫詳細ID = ws.WaDetailID,
+                        入庫ID = ws.WaID,
+                        商品ID = ws.PrID,
                         数量 = ws.WaQuantity,
                     }).ToList();
                 }
@@ -696,17 +696,17 @@ namespace SalesManagement_SysDev
 
                 if (!string.IsNullOrEmpty(nyuukoDetailID) && int.TryParse(nyuukoDetailID, out int parsedNyuukoDetailID))
                 {
-                    query = query.Where(ws => ws.WaDetailId == parsedNyuukoDetailID);
+                    query = query.Where(ws => ws.WaDetailID == parsedNyuukoDetailID);
                 }
 
                 if (!string.IsNullOrEmpty(nyuukoID) && int.TryParse(nyuukoID, out int parsedNyuukoID))
                 {
-                    query = query.Where(ws => ws.WaId == parsedNyuukoID);
+                    query = query.Where(ws => ws.WaID == parsedNyuukoID);
                 }
 
                 if (!string.IsNullOrEmpty(syohinID) && int.TryParse(syohinID, out int parsedSyohinID))
                 {
-                    query = query.Where(ws => ws.PrId == parsedSyohinID);
+                    query = query.Where(ws => ws.PrID == parsedSyohinID);
                 }
 
                 var receivingStockDetails = query.ToList();
@@ -715,9 +715,9 @@ namespace SalesManagement_SysDev
                 {
                     dataGridView2.DataSource = receivingStockDetails.Select(ws => new
                     {
-                        入庫詳細ID = ws.WaDetailId,
-                        入庫ID = ws.WaId,
-                        商品ID = ws.PrId,
+                        入庫詳細ID = ws.WaDetailID,
+                        入庫ID = ws.WaID,
+                        商品ID = ws.PrID,
                         数量 = ws.WaQuantity,
                     }).ToList();
                 }
@@ -738,9 +738,9 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
 
             if (orderFlag == "←通常")
-                lastFocusedPanelId = 1;
+                lastFocusedPanelID = 1;
             else if (orderFlag == "詳細→")
-                lastFocusedPanelId = 2;
+                lastFocusedPanelID = 2;
 
         }
 
@@ -826,26 +826,26 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void ReceiveConfirm(int WaId)
+        private void ReceiveConfirm(int WaID)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 入庫情報を取得
-                var receive = context.TWarehousingDetails.SingleOrDefault(o => o.WaId == WaId);
+                var receive = context.TWarehousingDetails.SingleOrDefault(o => o.WaID == WaID);
                 if (receive == null)
                 {
                     throw new Exception("入庫IDが見つかりません。");
                 }
                 // 在庫テーブルで商品IDが存在するか検索
-                var existingStock = context.TStocks.FirstOrDefault(s => s.PrId == receive.PrId);
+                var existingStock = context.TStocks.FirstOrDefault(s => s.PrID == receive.PrID);
                 if (existingStock == null)
                 {
                     // 存在しない場合、新しい在庫行を追加
                     var newStock = new TStock
                     {
 
-                        PrId = receive.PrId,
+                        PrID = receive.PrID,
                         StQuantity = receive.WaQuantity,
                     };
                     try
@@ -876,24 +876,24 @@ namespace SalesManagement_SysDev
         }
 
         // パネル内のすべてのコントロールにEnterイベントを追加
-        private void AddControlEventHandlers(Control panel, int panelId)
+        private void AddControlEventHandlers(Control panel, int panelID)
         {
             foreach (Control control in panel.Controls)
             {
                 // コントロールにEnterイベントを追加
-                control.Enter += (sender, e) => Control_Enter(sender, e, panelId);
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelID);
             }
         }
 
         // コントロールが選択（フォーカス）された時
-        private void Control_Enter(object sender, EventArgs e, int panelId)
+        private void Control_Enter(object sender, EventArgs e, int panelID)
         {
             // 異なるパネルに移動したときのみイベントを発生させる
-            if (panelId != lastFocusedPanelId)
+            if (panelID != lastFocusedPanelID)
             {
                 ToggleOrderSelection();
                 UpdateFlagButtonText();
-                lastFocusedPanelId = panelId; // 現在のパネルIDを更新
+                lastFocusedPanelID = panelID; // 現在のパネルIDを更新
             }
         }
         //↓以下北島匙投げゾーン

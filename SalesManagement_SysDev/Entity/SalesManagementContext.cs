@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
+using YourNamespace.Models;
 
 namespace SalesManagement_SysDev;
 
@@ -67,7 +68,7 @@ public partial class SalesManagementContext : DbContext
 
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
-    public virtual DbSet<LoginHistoryLog> LoginHistoryLog { get; set; }  // LoginHistoryLog テーブルを追加
+    public virtual DbSet<LoginHistoryLog> LoginHistoryLogs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -78,11 +79,11 @@ public partial class SalesManagementContext : DbContext
     {
         modelBuilder.Entity<MClient>(entity =>
         {
-            entity.HasKey(e => e.ClId).HasName("PK__M_Client__B1FCF8D58C35E4D2");
+            entity.HasKey(e => e.ClID).HasName("PK__M_Client__B1FCF8D58C35E4D2");
 
             entity.ToTable("M_Client");
 
-            entity.Property(e => e.ClId).HasColumnName("ClID");
+            entity.Property(e => e.ClID).HasColumnName("ClID");
             entity.Property(e => e.ClAddress).HasMaxLength(50);
             entity.Property(e => e.ClFax)
                 .HasMaxLength(13)
@@ -90,56 +91,56 @@ public partial class SalesManagementContext : DbContext
             entity.Property(e => e.ClName).HasMaxLength(50);
             entity.Property(e => e.ClPhone).HasMaxLength(13);
             entity.Property(e => e.ClPostal).HasMaxLength(7);
-            entity.Property(e => e.SoId).HasColumnName("SoID");
+            entity.Property(e => e.SoID).HasColumnName("SoID");
 
             entity.HasOne(d => d.So).WithMany(p => p.MClients)
-                .HasForeignKey(d => d.SoId)
+                .HasForeignKey(d => d.SoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_M_Client_ToM_SalesOffice");
         });
 
         modelBuilder.Entity<MEmployee>(entity =>
         {
-            entity.HasKey(e => e.EmId).HasName("PK__M_Employ__DCB5BEC24482B998");
+            entity.HasKey(e => e.EmID).HasName("PK__M_Employ__DCB5BEC24482B998");
 
             entity.ToTable("M_Employee");
 
-            entity.Property(e => e.EmId).HasColumnName("EmID");
+            entity.Property(e => e.EmID).HasColumnName("EmID");
             entity.Property(e => e.EmHiredate).HasColumnType("date");
             entity.Property(e => e.EmName).HasMaxLength(50);
             entity.Property(e => e.EmPassword).HasMaxLength(10);
             entity.Property(e => e.EmPhone).HasMaxLength(13);
-            entity.Property(e => e.PoId).HasColumnName("PoID");
-            entity.Property(e => e.SoId).HasColumnName("SoID");
+            entity.Property(e => e.PoID).HasColumnName("PoID");
+            entity.Property(e => e.SoID).HasColumnName("SoID");
 
             entity.HasOne(d => d.Po).WithMany(p => p.MEmployees)
-                .HasForeignKey(d => d.PoId)
+                .HasForeignKey(d => d.PoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_M_Employee_ToM_Position");
 
             entity.HasOne(d => d.So).WithMany(p => p.MEmployees)
-                .HasForeignKey(d => d.SoId)
+                .HasForeignKey(d => d.SoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_M_Employee_ToM_SalesOffice");
         });
 
         modelBuilder.Entity<MMajorClassification>(entity =>
         {
-            entity.HasKey(e => e.McId).HasName("PK__M_MajorC__27B1E232B6CE2E6D");
+            entity.HasKey(e => e.McID).HasName("PK__M_MajorC__27B1E232B6CE2E6D");
 
             entity.ToTable("M_MajorClassification");
 
-            entity.Property(e => e.McId).HasColumnName("McID");
+            entity.Property(e => e.McID).HasColumnName("McID");
             entity.Property(e => e.McName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<MMaker>(entity =>
         {
-            entity.HasKey(e => e.MaId).HasName("PK__M_Maker__2725BF40FEBFC979");
+            entity.HasKey(e => e.MaID).HasName("PK__M_Maker__2725BF40FEBFC979");
 
             entity.ToTable("M_Maker");
 
-            entity.Property(e => e.MaId).HasColumnName("MaID");
+            entity.Property(e => e.MaID).HasColumnName("MaID");
             entity.Property(e => e.MaAddress).HasMaxLength(50);
             entity.Property(e => e.MaFax)
                 .HasMaxLength(13)
@@ -151,22 +152,22 @@ public partial class SalesManagementContext : DbContext
 
         modelBuilder.Entity<MPosition>(entity =>
         {
-            entity.HasKey(e => e.PoId).HasName("PK__M_Positi__A4C01F9E8A03A2CA");
+            entity.HasKey(e => e.PoID).HasName("PK__M_Positi__A4C01F9E8A03A2CA");
 
             entity.ToTable("M_Position");
 
-            entity.Property(e => e.PoId).HasColumnName("PoID");
+            entity.Property(e => e.PoID).HasColumnName("PoID");
             entity.Property(e => e.PoName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<MProduct>(entity =>
         {
-            entity.HasKey(e => e.PrId).HasName("PK__M_Produc__A5021A4FEB48A98E");
+            entity.HasKey(e => e.PrID).HasName("PK__M_Produc__A5021A4FEB48A98E");
 
             entity.ToTable("M_Product");
 
-            entity.Property(e => e.PrId).HasColumnName("PrID");
-            entity.Property(e => e.MaId).HasColumnName("MaID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
+            entity.Property(e => e.MaID).HasColumnName("MaID");
             entity.Property(e => e.PrColor).HasMaxLength(20);
             entity.Property(e => e.PrJcode)
                 .HasMaxLength(13)
@@ -175,26 +176,26 @@ public partial class SalesManagementContext : DbContext
             entity.Property(e => e.PrName).HasMaxLength(50);
             entity.Property(e => e.PrReleaseDate).HasColumnType("date");
             entity.Property(e => e.Price).HasColumnType("decimal(9, 0)");
-            entity.Property(e => e.ScId).HasColumnName("ScID");
+            entity.Property(e => e.ScID).HasColumnName("ScID");
 
             entity.HasOne(d => d.Sc).WithMany(p => p.MProducts)
-                .HasForeignKey(d => d.ScId)
+                .HasForeignKey(d => d.ScID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_M_Product_ToM_SmallClassification");
 
             entity.HasOne(d => d.Ma).WithMany(p => p.MProducts)
-                .HasForeignKey(d => d.MaId)
+                .HasForeignKey(d => d.MaID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_M_Product_ToM_Maker");
         });
 
         modelBuilder.Entity<MSalesOffice>(entity =>
         {
-            entity.HasKey(e => e.SoId).HasName("PK__M_SalesO__BC3C9374243FA851");
+            entity.HasKey(e => e.SoID).HasName("PK__M_SalesO__BC3C9374243FA851");
 
             entity.ToTable("M_SalesOffice");
 
-            entity.Property(e => e.SoId).HasColumnName("SoID");
+            entity.Property(e => e.SoID).HasColumnName("SoID");
             entity.Property(e => e.SoAddress).HasMaxLength(50);
             entity.Property(e => e.SoFax)
                 .HasMaxLength(13)
@@ -206,437 +207,437 @@ public partial class SalesManagementContext : DbContext
 
         modelBuilder.Entity<MSmallClassification>(entity =>
         {
-            entity.HasKey(e => e.ScId).HasName("PK__M_SmallC__ACB791BA805D9A7F");
+            entity.HasKey(e => e.ScID).HasName("PK__M_SmallC__ACB791BA805D9A7F");
 
             entity.ToTable("M_SmallClassification");
 
-            entity.Property(e => e.ScId).HasColumnName("ScID");
-            entity.Property(e => e.McId).HasColumnName("McID");
+            entity.Property(e => e.ScID).HasColumnName("ScID");
+            entity.Property(e => e.McID).HasColumnName("McID");
             entity.Property(e => e.ScName).HasMaxLength(50);
 
             entity.HasOne(d => d.Mc).WithMany(p => p.MSmallClassifications)
-                .HasForeignKey(d => d.McId)
+                .HasForeignKey(d => d.McID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_M_SmallClassification_ToM_MajorClassification");
         });
 
         modelBuilder.Entity<TArrival>(entity =>
         {
-            entity.HasKey(e => e.ArId);
+            entity.HasKey(e => e.ArID);
 
             entity.ToTable("T_Arrival");
 
-            entity.Property(e => e.ArId).HasColumnName("ArID");
+            entity.Property(e => e.ArID).HasColumnName("ArID");
             entity.Property(e => e.ArDate).HasColumnType("date");
-            entity.Property(e => e.ClId).HasColumnName("ClID");
-            entity.Property(e => e.EmId).HasColumnName("EmID");
-            entity.Property(e => e.OrId).HasColumnName("OrID");
-            entity.Property(e => e.SoId).HasColumnName("SoID");
+            entity.Property(e => e.ClID).HasColumnName("ClID");
+            entity.Property(e => e.EmID).HasColumnName("EmID");
+            entity.Property(e => e.OrID).HasColumnName("OrID");
+            entity.Property(e => e.SoID).HasColumnName("SoID");
 
             entity.HasOne(d => d.Cl).WithMany(p => p.TArrivals)
-                .HasForeignKey(d => d.ClId)
+                .HasForeignKey(d => d.ClID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Arrival_ToM_Client");
 
             entity.HasOne(d => d.Em).WithMany(p => p.TArrivals)
-                .HasForeignKey(d => d.EmId)
+                .HasForeignKey(d => d.EmID)
                 .HasConstraintName("FK_T_Arrival_ToM_Employee");
 
             entity.HasOne(d => d.Or).WithMany(p => p.TArrivals)
-                .HasForeignKey(d => d.OrId)
+                .HasForeignKey(d => d.OrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Arrival_ToT_Order");
 
             entity.HasOne(d => d.So).WithMany(p => p.TArrivals)
-                .HasForeignKey(d => d.SoId)
+                .HasForeignKey(d => d.SoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Arrival_ToM_SalesOffice");
         });
 
         modelBuilder.Entity<TArrivalDetail>(entity =>
         {
-            entity.HasKey(e => e.ArDetailId);
+            entity.HasKey(e => e.ArDetailID);
 
             entity.ToTable("T_ArrivalDetail");
 
-            entity.Property(e => e.ArDetailId).HasColumnName("ArDetailID");
-            entity.Property(e => e.ArId).HasColumnName("ArID");
-            entity.Property(e => e.PrId).HasColumnName("PrID");
+            entity.Property(e => e.ArDetailID).HasColumnName("ArDetailID");
+            entity.Property(e => e.ArID).HasColumnName("ArID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
 
             entity.HasOne(d => d.Ar).WithMany(p => p.TArrivalDetails)
-                .HasForeignKey(d => d.ArId)
+                .HasForeignKey(d => d.ArID)
                 .HasConstraintName("FK_T_ArrivalDetail_ToT_Arrival");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.TArrivalDetails)
-                .HasForeignKey(d => d.PrId)
+                .HasForeignKey(d => d.PrID)
                 .HasConstraintName("FK_T_ArrivalDetail_ToM_Product");
         });
 
         modelBuilder.Entity<TChumon>(entity =>
         {
-            entity.HasKey(e => e.ChId).HasName("PK__T_Chumon__AF02F0B8EDF28122");
+            entity.HasKey(e => e.ChID).HasName("PK__T_Chumon__AF02F0B8EDF28122");
 
             entity.ToTable("T_Chumon");
 
-            entity.Property(e => e.ChId).HasColumnName("ChID");
+            entity.Property(e => e.ChID).HasColumnName("ChID");
             entity.Property(e => e.ChDate).HasColumnType("date");
-            entity.Property(e => e.ClId).HasColumnName("ClID");
-            entity.Property(e => e.EmId).HasColumnName("EmID");
-            entity.Property(e => e.OrId).HasColumnName("OrID");
-            entity.Property(e => e.SoId).HasColumnName("SoID");
+            entity.Property(e => e.ClID).HasColumnName("ClID");
+            entity.Property(e => e.EmID).HasColumnName("EmID");
+            entity.Property(e => e.OrID).HasColumnName("OrID");
+            entity.Property(e => e.SoID).HasColumnName("SoID");
 
             entity.HasOne(d => d.Cl).WithMany(p => p.TChumons)
-                .HasForeignKey(d => d.ClId)
+                .HasForeignKey(d => d.ClID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Chumon_ToM_Client");
 
             entity.HasOne(d => d.Em).WithMany(p => p.TChumons)
-                .HasForeignKey(d => d.EmId)
+                .HasForeignKey(d => d.EmID)
                 .HasConstraintName("FK_T_Chumon_ToM_Employee");
 
             entity.HasOne(d => d.Or).WithMany(p => p.TChumons)
-                .HasForeignKey(d => d.OrId)
+                .HasForeignKey(d => d.OrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Chumon_ToT_Order");
 
             entity.HasOne(d => d.So).WithMany(p => p.TChumons)
-                .HasForeignKey(d => d.SoId)
+                .HasForeignKey(d => d.SoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Chumon_ToM_SalesOffice");
         });
 
         modelBuilder.Entity<TChumonDetail>(entity =>
         {
-            entity.HasKey(e => e.ChDetailId);
+            entity.HasKey(e => e.ChDetailID);
 
             entity.ToTable("T_ChumonDetail");
 
-            entity.Property(e => e.ChDetailId).HasColumnName("ChDetailID");
-            entity.Property(e => e.ChId).HasColumnName("ChID");
-            entity.Property(e => e.PrId).HasColumnName("PrID");
+            entity.Property(e => e.ChDetailID).HasColumnName("ChDetailID");
+            entity.Property(e => e.ChID).HasColumnName("ChID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
 
             entity.HasOne(d => d.Ch).WithMany(p => p.TChumonDetails)
-                .HasForeignKey(d => d.ChId)
+                .HasForeignKey(d => d.ChID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_ChumonDetail_ToT_Chumon");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.TChumonDetails)
-                .HasForeignKey(d => d.PrId)
+                .HasForeignKey(d => d.PrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_ChumonDetail_ToM_Product");
         });
 
         modelBuilder.Entity<THattyu>(entity =>
         {
-            entity.HasKey(e => e.HaId);
+            entity.HasKey(e => e.HaID);
 
             entity.ToTable("T_Hattyu");
 
-            entity.Property(e => e.HaId).HasColumnName("HaID");
-            entity.Property(e => e.EmId).HasColumnName("EmID");
+            entity.Property(e => e.HaID).HasColumnName("HaID");
+            entity.Property(e => e.EmID).HasColumnName("EmID");
             entity.Property(e => e.HaDate).HasColumnType("date");
-            entity.Property(e => e.MaId).HasColumnName("MaID");
+            entity.Property(e => e.MaID).HasColumnName("MaID");
 
             entity.HasOne(d => d.Em).WithMany(p => p.THattyus)
-                .HasForeignKey(d => d.EmId)
+                .HasForeignKey(d => d.EmID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Hattyu_ToM_Employee");
 
             entity.HasOne(d => d.Ma).WithMany(p => p.THattyus)
-                .HasForeignKey(d => d.MaId)
+                .HasForeignKey(d => d.MaID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Hattyu_ToM_Maker");
         });
 
         modelBuilder.Entity<THattyuDetail>(entity =>
         {
-            entity.HasKey(e => e.HaDetailId);
+            entity.HasKey(e => e.HaDetailID);
 
             entity.ToTable("T_HattyuDetail");
 
-            entity.Property(e => e.HaDetailId).HasColumnName("HaDetailID");
-            entity.Property(e => e.HaId).HasColumnName("HaID");
-            entity.Property(e => e.PrId).HasColumnName("PrID");
+            entity.Property(e => e.HaDetailID).HasColumnName("HaDetailID");
+            entity.Property(e => e.HaID).HasColumnName("HaID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
 
             entity.HasOne(d => d.Ha).WithMany(p => p.THattyuDetails)
-                .HasForeignKey(d => d.HaId)
+                .HasForeignKey(d => d.HaID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_HattyuDetail_ToT_Hattyu");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.THattyuDetails)
-                .HasForeignKey(d => d.PrId)
+                .HasForeignKey(d => d.PrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_HattyuDetail_ToM_Product");
         });
 
         modelBuilder.Entity<TOrder>(entity =>
         {
-            entity.HasKey(e => e.OrId).HasName("PK__T_Order__E1649648FAE4D6E9");
+            entity.HasKey(e => e.OrID).HasName("PK__T_Order__E1649648FAE4D6E9");
 
             entity.ToTable("T_Order");
 
-            entity.Property(e => e.OrId).HasColumnName("OrID");
+            entity.Property(e => e.OrID).HasColumnName("OrID");
             entity.Property(e => e.ClCharge).HasMaxLength(50);
-            entity.Property(e => e.ClId).HasColumnName("ClID");
-            entity.Property(e => e.EmId).HasColumnName("EmID");
+            entity.Property(e => e.ClID).HasColumnName("ClID");
+            entity.Property(e => e.EmID).HasColumnName("EmID");
             entity.Property(e => e.OrDate).HasColumnType("date");
-            entity.Property(e => e.SoId).HasColumnName("SoID");
+            entity.Property(e => e.SoID).HasColumnName("SoID");
 
             entity.HasOne(d => d.Cl).WithMany(p => p.TOrders)
-                .HasForeignKey(d => d.ClId)
+                .HasForeignKey(d => d.ClID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Order_ToM_Client");
 
             entity.HasOne(d => d.Em).WithMany(p => p.TOrders)
-                .HasForeignKey(d => d.EmId)
+                .HasForeignKey(d => d.EmID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Order_ToM_Employee");
 
             entity.HasOne(d => d.So).WithMany(p => p.TOrders)
-                .HasForeignKey(d => d.SoId)
+                .HasForeignKey(d => d.SoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Order_ToM_SalesOffice");
         });
 
         modelBuilder.Entity<TOrderDetail>(entity =>
         {
-            entity.HasKey(e => e.OrDetailId).HasName("PK__T_OrderD__45EDE90EEC5B2390");
+            entity.HasKey(e => e.OrDetailID).HasName("PK__T_OrderD__45EDE90EEC5B2390");
 
             entity.ToTable("T_OrderDetail");
 
-            entity.Property(e => e.OrDetailId).HasColumnName("OrDetailID");
-            entity.Property(e => e.OrId).HasColumnName("OrID");
+            entity.Property(e => e.OrDetailID).HasColumnName("OrDetailID");
+            entity.Property(e => e.OrID).HasColumnName("OrID");
             entity.Property(e => e.OrTotalPrice).HasColumnType("decimal(10, 0)");
-            entity.Property(e => e.PrId).HasColumnName("PrID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
 
             entity.HasOne(d => d.Or).WithMany(p => p.TOrderDetails)
-                .HasForeignKey(d => d.OrId)
+                .HasForeignKey(d => d.OrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_OrderDetail_ToT_Order");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.TOrderDetails)
-                .HasForeignKey(d => d.PrId)
+                .HasForeignKey(d => d.PrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_OrderDetail_ToM_Product");
         });
 
         modelBuilder.Entity<TSale>(entity =>
         {
-            entity.HasKey(e => e.SaId);
+            entity.HasKey(e => e.SaID);
 
             entity.ToTable("T_Sale");
 
-            entity.Property(e => e.SaId).HasColumnName("SaID");
-            entity.Property(e => e.OrId).HasColumnName("OrID");
-            entity.Property(e => e.ClId).HasColumnName("ClID");
-            entity.Property(e => e.EmId).HasColumnName("EmID");
+            entity.Property(e => e.SaID).HasColumnName("SaID");
+            entity.Property(e => e.OrID).HasColumnName("OrID");
+            entity.Property(e => e.ClID).HasColumnName("ClID");
+            entity.Property(e => e.EmID).HasColumnName("EmID");
             entity.Property(e => e.SaDate).HasColumnType("date");
-            entity.Property(e => e.SoId).HasColumnName("SoID");
+            entity.Property(e => e.SoID).HasColumnName("SoID");
 
             entity.HasOne(d => d.Or).WithMany(p => p.TSales)
-                .HasForeignKey(d => d.OrId)
+                .HasForeignKey(d => d.OrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Sale_ToT_Order");
 
             entity.HasOne(d => d.Cl).WithMany(p => p.TSales)
-                .HasForeignKey(d => d.ClId)
+                .HasForeignKey(d => d.ClID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Sale_ToM_Client");
 
             entity.HasOne(d => d.Em).WithMany(p => p.TSales)
-                .HasForeignKey(d => d.EmId)
+                .HasForeignKey(d => d.EmID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Sale_ToM_Employee");
 
             entity.HasOne(d => d.So).WithMany(p => p.TSales)
-                .HasForeignKey(d => d.SoId)
+                .HasForeignKey(d => d.SoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Sale_ToM_SalesOffice");
         });
 
         modelBuilder.Entity<TSaleDetail>(entity =>
         {
-            entity.HasKey(e => e.SaDetailId);
+            entity.HasKey(e => e.SaDetailID);
 
             entity.ToTable("T_SaleDetail");
 
-            entity.Property(e => e.SaDetailId).HasColumnName("SaDetailID");
-            entity.Property(e => e.PrId).HasColumnName("PrID");
-            entity.Property(e => e.SaId).HasColumnName("SaID");
+            entity.Property(e => e.SaDetailID).HasColumnName("SaDetailID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
+            entity.Property(e => e.SaID).HasColumnName("SaID");
             entity.Property(e => e.SaPrTotalPrice).HasColumnType("decimal(10, 0)");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.TSaleDetails)
-                .HasForeignKey(d => d.PrId)
+                .HasForeignKey(d => d.PrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_SaleDetail_ToM_Product");
 
             entity.HasOne(d => d.Sa).WithMany(p => p.TSaleDetails)
-                .HasForeignKey(d => d.SaId)
+                .HasForeignKey(d => d.SaID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_SaleDetail_ToT_Sale");
         });
 
         modelBuilder.Entity<TShipment>(entity =>
         {
-            entity.HasKey(e => e.ShId);
+            entity.HasKey(e => e.ShID);
 
             entity.ToTable("T_Shipment");
 
-            entity.Property(e => e.ShId).HasColumnName("ShID");
-            entity.Property(e => e.ClId).HasColumnName("ClID");
-            entity.Property(e => e.EmId).HasColumnName("EmID");
-            entity.Property(e => e.OrId).HasColumnName("OrID");
+            entity.Property(e => e.ShID).HasColumnName("ShID");
+            entity.Property(e => e.ClID).HasColumnName("ClID");
+            entity.Property(e => e.EmID).HasColumnName("EmID");
+            entity.Property(e => e.OrID).HasColumnName("OrID");
             entity.Property(e => e.ShFinishDate).HasColumnType("date");
-            entity.Property(e => e.SoId).HasColumnName("SoID");
+            entity.Property(e => e.SoID).HasColumnName("SoID");
 
             entity.HasOne(d => d.Cl).WithMany(p => p.TShipments)
-                .HasForeignKey(d => d.ClId)
+                .HasForeignKey(d => d.ClID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Shipment_ToM_Client");
 
             entity.HasOne(d => d.Em).WithMany(p => p.TShipments)
-                .HasForeignKey(d => d.EmId)
+                .HasForeignKey(d => d.EmID)
                 .HasConstraintName("FK_T_Shipment_ToM_Employee");
 
             entity.HasOne(d => d.Or).WithMany(p => p.TShipments)
-                .HasForeignKey(d => d.OrId)
+                .HasForeignKey(d => d.OrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Shipment_ToT_Order");
 
             entity.HasOne(d => d.So).WithMany(p => p.TShipments)
-                .HasForeignKey(d => d.SoId)
+                .HasForeignKey(d => d.SoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Shipment_ToM_SalesOffice");
         });
 
         modelBuilder.Entity<TShipmentDetail>(entity =>
         {
-            entity.HasKey(e => e.ShDetailId);
+            entity.HasKey(e => e.ShDetailID);
 
             entity.ToTable("T_ShipmentDetail");
 
-            entity.Property(e => e.ShDetailId).HasColumnName("ShDetailID");
-            entity.Property(e => e.PrId).HasColumnName("PrID");
-            entity.Property(e => e.ShId).HasColumnName("ShID");
+            entity.Property(e => e.ShDetailID).HasColumnName("ShDetailID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
+            entity.Property(e => e.ShID).HasColumnName("ShID");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.TShipmentDetails)
-                .HasForeignKey(d => d.PrId)
+                .HasForeignKey(d => d.PrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_ShipmentDetail_ToM_Product");
 
             entity.HasOne(d => d.Sh).WithMany(p => p.TShipmentDetails)
-                .HasForeignKey(d => d.ShId)
+                .HasForeignKey(d => d.ShID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_ShipmentDetail_ToT_Shipment");
         });
 
         modelBuilder.Entity<TStock>(entity =>
         {
-            entity.HasKey(e => e.StId).HasName("PK__T_Stock__C33CEFE204B2DFA6");
+            entity.HasKey(e => e.StID).HasName("PK__T_Stock__C33CEFE204B2DFA6");
 
             entity.ToTable("T_Stock");
 
-            entity.Property(e => e.StId).HasColumnName("StID");
-            entity.Property(e => e.PrId).HasColumnName("PrID");
+            entity.Property(e => e.StID).HasColumnName("StID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.TStocks)
-                .HasForeignKey(d => d.PrId)
+                .HasForeignKey(d => d.PrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Stock_ToM_Product");
         });
 
         modelBuilder.Entity<TSyukko>(entity =>
         {
-            entity.HasKey(e => e.SyId);
+            entity.HasKey(e => e.SyID);
 
             entity.ToTable("T_Syukko");
 
-            entity.Property(e => e.SyId).HasColumnName("SyID");
-            entity.Property(e => e.ClId).HasColumnName("ClID");
-            entity.Property(e => e.EmId).HasColumnName("EmID");
-            entity.Property(e => e.OrId).HasColumnName("OrID");
-            entity.Property(e => e.SoId).HasColumnName("SoID");
+            entity.Property(e => e.SyID).HasColumnName("SyID");
+            entity.Property(e => e.ClID).HasColumnName("ClID");
+            entity.Property(e => e.EmID).HasColumnName("EmID");
+            entity.Property(e => e.OrID).HasColumnName("OrID");
+            entity.Property(e => e.SoID).HasColumnName("SoID");
             entity.Property(e => e.SyDate).HasColumnType("date");
 
             entity.HasOne(d => d.Cl).WithMany(p => p.TSyukkos)
-                .HasForeignKey(d => d.ClId)
+                .HasForeignKey(d => d.ClID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Syukko_ToM_Client");
 
             entity.HasOne(d => d.Em).WithMany(p => p.TSyukkos)
-                .HasForeignKey(d => d.EmId)
+                .HasForeignKey(d => d.EmID)
                 .HasConstraintName("FK_T_Syukko_ToM_Employee");
 
             entity.HasOne(d => d.Or).WithMany(p => p.TSyukkos)
-                .HasForeignKey(d => d.OrId)
+                .HasForeignKey(d => d.OrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Syukko_ToT_Order");
 
             entity.HasOne(d => d.So).WithMany(p => p.TSyukkos)
-                .HasForeignKey(d => d.SoId)
+                .HasForeignKey(d => d.SoID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Syukko_ToM_SalesOffice");
         });
 
         modelBuilder.Entity<TSyukkoDetail>(entity =>
         {
-            entity.HasKey(e => e.SyDetailId);
+            entity.HasKey(e => e.SyDetailID);
 
             entity.ToTable("T_SyukkoDetail");
 
-            entity.Property(e => e.SyDetailId).HasColumnName("SyDetailID");
-            entity.Property(e => e.PrId).HasColumnName("PrID");
-            entity.Property(e => e.SyId).HasColumnName("SyID");
+            entity.Property(e => e.SyDetailID).HasColumnName("SyDetailID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
+            entity.Property(e => e.SyID).HasColumnName("SyID");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.TSyukkoDetails)
-                .HasForeignKey(d => d.PrId)
+                .HasForeignKey(d => d.PrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_SyukkoDetail_ToM_Product");
 
             entity.HasOne(d => d.Sy).WithMany(p => p.TSyukkoDetails)
-                .HasForeignKey(d => d.SyId)
+                .HasForeignKey(d => d.SyID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_SyukkoDetail_ToT_Syukko");
         });
 
         modelBuilder.Entity<TWarehousing>(entity =>
         {
-            entity.HasKey(e => e.WaId);
+            entity.HasKey(e => e.WaID);
 
             entity.ToTable("T_Warehousing");
 
-            entity.Property(e => e.WaId).HasColumnName("WaID");
-            entity.Property(e => e.EmId).HasColumnName("EmID");
-            entity.Property(e => e.HaId).HasColumnName("HaID");
+            entity.Property(e => e.WaID).HasColumnName("WaID");
+            entity.Property(e => e.EmID).HasColumnName("EmID");
+            entity.Property(e => e.HaID).HasColumnName("HaID");
             entity.Property(e => e.WaDate).HasColumnType("date");
 
             entity.HasOne(d => d.Em).WithMany(p => p.TWarehousings)
-                .HasForeignKey(d => d.EmId)
+                .HasForeignKey(d => d.EmID)
                 .HasConstraintName("FK_T_Warehousing_ToM_Employee");
 
             entity.HasOne(d => d.Ha).WithMany(p => p.TWarehousings)
-                .HasForeignKey(d => d.HaId)
+                .HasForeignKey(d => d.HaID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_Warehousing_ToT_Hattyu");
         });
 
         modelBuilder.Entity<TWarehousingDetail>(entity =>
         {
-            entity.HasKey(e => e.WaDetailId);
+            entity.HasKey(e => e.WaDetailID);
 
             entity.ToTable("T_WarehousingDetail");
 
-            entity.Property(e => e.WaDetailId).HasColumnName("WaDetailID");
-            entity.Property(e => e.PrId).HasColumnName("PrID");
-            entity.Property(e => e.WaId).HasColumnName("WaID");
+            entity.Property(e => e.WaDetailID).HasColumnName("WaDetailID");
+            entity.Property(e => e.PrID).HasColumnName("PrID");
+            entity.Property(e => e.WaID).HasColumnName("WaID");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.TWarehousingDetails)
-                .HasForeignKey(d => d.PrId)
+                .HasForeignKey(d => d.PrID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_WarehousingDetail_ToM_Product");
 
             entity.HasOne(d => d.Wa).WithMany(p => p.TWarehousingDetails)
-                .HasForeignKey(d => d.WaId)
+                .HasForeignKey(d => d.WaID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_T_WarehousingDetail_ToT_Warehousing");
         });

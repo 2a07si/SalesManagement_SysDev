@@ -56,7 +56,7 @@
             TBJobID = new TextBox();
             label17 = new Label();
             label7 = new Label();
-            TBShopId = new TextBox();
+            TBShopID = new TextBox();
             TBSyainName = new TextBox();
             DelFlag = new CheckBox();
             b_kakutei = new Button();
@@ -211,7 +211,7 @@
             panel1.Controls.Add(TBJobID);
             panel1.Controls.Add(label17);
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(TBShopId);
+            panel1.Controls.Add(TBShopID);
             panel1.Controls.Add(TBSyainName);
             panel1.Controls.Add(DelFlag);
             panel1.Location = new Point(150, 145);
@@ -370,13 +370,13 @@
             label7.TabIndex = 6;
             label7.Text = "役職ID";
             // 
-            // TBShopId
+            // TBShopID
             // 
-            TBShopId.Location = new Point(570, 20);
-            TBShopId.Name = "TBShopId";
-            TBShopId.Size = new Size(50, 31);
-            TBShopId.TabIndex = 5;
-            TBShopId.TextChanged += TBShopId_TextChanged;
+            TBShopID.Location = new Point(570, 20);
+            TBShopID.Name = "TBShopID";
+            TBShopID.Size = new Size(50, 31);
+            TBShopID.TabIndex = 5;
+            TBShopID.TextChanged += TBShopID_TextChanged;
             // 
             // TBSyainName
             // 
@@ -546,7 +546,7 @@
         private TextBox TBJobID;
         private Label label17;
         private Label label7;
-        private TextBox TBShopId;
+        private TextBox TBShopID;
         private TextBox TBSyainName;
         private CheckBox DelFlag;
         private DateTimePicker date;

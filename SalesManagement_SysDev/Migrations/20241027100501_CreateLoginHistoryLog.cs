@@ -15,16 +15,16 @@ namespace SalesManagement_SysDev.Migrations
                 name: "LoginHistoryLog",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LoginId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:IDentity", "1, 1"),
+                    LoginID = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     LoginDateTime = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsSuccessful = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LoginHistoryLog", x => x.Id);
+                    table.PrimaryKey("PK_LoginHistoryLog", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -32,7 +32,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     McID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     McName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     McFlag = table.Column<int>(type: "int", nullable: false),
                     McHidden = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -47,7 +47,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     MaID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     MaName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     MaAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     MaPhone = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
@@ -66,7 +66,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     PoID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     PoName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PoFlag = table.Column<int>(type: "int", nullable: false),
                     PoHidden = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -81,7 +81,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     SoID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     SoName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     SoAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     SoPhone = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
@@ -100,7 +100,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     ScID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     McID = table.Column<int>(type: "int", nullable: false),
                     ScName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ScFlag = table.Column<int>(type: "int", nullable: false),
@@ -121,7 +121,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     ClID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     SoID = table.Column<int>(type: "int", nullable: false),
                     ClName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ClAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -175,7 +175,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     PrID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     MaID = table.Column<int>(type: "int", nullable: false),
                     PrName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(9,0)", nullable: false),
@@ -208,7 +208,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     HaID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     MaID = table.Column<int>(type: "int", nullable: false),
                     EmID = table.Column<int>(type: "int", nullable: false),
                     HaDate = table.Column<DateTime>(type: "date", nullable: false),
@@ -236,7 +236,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     OrID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     SoID = table.Column<int>(type: "int", nullable: false),
                     EmID = table.Column<int>(type: "int", nullable: false),
                     ClID = table.Column<int>(type: "int", nullable: false),
@@ -271,7 +271,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     StID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     PrID = table.Column<int>(type: "int", nullable: false),
                     StQuantity = table.Column<int>(type: "int", nullable: false),
                     StFlag = table.Column<int>(type: "int", nullable: false)
@@ -291,7 +291,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     HaDetailID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     HaID = table.Column<int>(type: "int", nullable: false),
                     PrID = table.Column<int>(type: "int", nullable: false),
                     HaQuantity = table.Column<int>(type: "int", nullable: false)
@@ -316,7 +316,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     WaID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     HaID = table.Column<int>(type: "int", nullable: false),
                     EmID = table.Column<int>(type: "int", nullable: false),
                     WaDate = table.Column<DateTime>(type: "date", nullable: false),
@@ -345,7 +345,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     ArID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     SoID = table.Column<int>(type: "int", nullable: false),
                     EmID = table.Column<int>(type: "int", nullable: true),
                     ClID = table.Column<int>(type: "int", nullable: false),
@@ -385,7 +385,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     ChID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     SoID = table.Column<int>(type: "int", nullable: false),
                     EmID = table.Column<int>(type: "int", nullable: true),
                     ClID = table.Column<int>(type: "int", nullable: false),
@@ -425,7 +425,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     OrDetailID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     OrID = table.Column<int>(type: "int", nullable: false),
                     PrID = table.Column<int>(type: "int", nullable: false),
                     OrQuantity = table.Column<int>(type: "int", nullable: false),
@@ -451,7 +451,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     SaID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     ClID = table.Column<int>(type: "int", nullable: false),
                     SoID = table.Column<int>(type: "int", nullable: false),
                     EmID = table.Column<int>(type: "int", nullable: false),
@@ -490,7 +490,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     ShID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     ClID = table.Column<int>(type: "int", nullable: false),
                     EmID = table.Column<int>(type: "int", nullable: true),
                     SoID = table.Column<int>(type: "int", nullable: false),
@@ -530,7 +530,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     SyID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     EmID = table.Column<int>(type: "int", nullable: true),
                     ClID = table.Column<int>(type: "int", nullable: false),
                     SoID = table.Column<int>(type: "int", nullable: false),
@@ -570,7 +570,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     WaDetailID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     WaID = table.Column<int>(type: "int", nullable: false),
                     PrID = table.Column<int>(type: "int", nullable: false),
                     WaQuantity = table.Column<int>(type: "int", nullable: false)
@@ -595,7 +595,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     ArDetailID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     ArID = table.Column<int>(type: "int", nullable: true),
                     PrID = table.Column<int>(type: "int", nullable: true),
                     ArQuantity = table.Column<int>(type: "int", nullable: true)
@@ -620,7 +620,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     ChDetailID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     ChID = table.Column<int>(type: "int", nullable: false),
                     PrID = table.Column<int>(type: "int", nullable: false),
                     ChQuantity = table.Column<int>(type: "int", nullable: false)
@@ -645,7 +645,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     SaDetailID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     SaID = table.Column<int>(type: "int", nullable: false),
                     PrID = table.Column<int>(type: "int", nullable: false),
                     SaQuantity = table.Column<int>(type: "int", nullable: false),
@@ -671,7 +671,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     ShDetailID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     ShID = table.Column<int>(type: "int", nullable: false),
                     PrID = table.Column<int>(type: "int", nullable: false),
                     ShQuantity = table.Column<int>(type: "int", nullable: false)
@@ -696,7 +696,7 @@ namespace SalesManagement_SysDev.Migrations
                 columns: table => new
                 {
                     SyDetailID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:IDentity", "1, 1"),
                     SyID = table.Column<int>(type: "int", nullable: false),
                     PrID = table.Column<int>(type: "int", nullable: false),
                     SyQuantity = table.Column<int>(type: "int", nullable: false)

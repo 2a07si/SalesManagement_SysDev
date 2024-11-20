@@ -5,7 +5,7 @@ namespace SalesManagement_SysDev;
 
 public partial class MMaker
 {
-    public int MaId { get; set; }
+    public int MaID { get; set; }
 
     public string MaName { get; set; } = null!;
 

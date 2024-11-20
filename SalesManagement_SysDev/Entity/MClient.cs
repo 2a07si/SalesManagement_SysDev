@@ -5,9 +5,9 @@ namespace SalesManagement_SysDev;
 
 public partial class MClient
 {
-    public int ClId { get; set; }
+    public int ClID { get; set; }
 
-    public int SoId { get; set; }
+    public int SoID { get; set; }
 
     public string ClName { get; set; } = null!;
 

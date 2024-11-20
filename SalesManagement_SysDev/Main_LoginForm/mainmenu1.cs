@@ -28,7 +28,7 @@ namespace SalesManagement_SysDev
                 // グローバル変数からEmployeeIDを取得し、該当する従業員を取得  
                 var employee = context.MEmployees
                     .Include(e => e.Po) // 職位情報を含めて取得
-                    .SingleOrDefault(e => e.EmId == Global.EmployeeID); // EmployeeIDを直接比較  
+                    .SingleOrDefault(e => e.EmID == Global.EmployeeID); // EmployeeIDを直接比較  
 
                 if (employee != null)
                 {
