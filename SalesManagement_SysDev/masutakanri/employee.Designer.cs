@@ -376,7 +376,7 @@
             TBShopID.Name = "TBShopID";
             TBShopID.Size = new Size(50, 31);
             TBShopID.TabIndex = 5;
-            TBShopID.TextChanged += TBShopID_TextChanged;
+            //TBShopID.TextChanged += TBShopID_TextChanged;
             // 
             // TBSyainName
             // 

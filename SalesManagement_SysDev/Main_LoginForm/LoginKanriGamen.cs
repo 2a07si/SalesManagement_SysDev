@@ -121,8 +121,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         // 半角数字のみを許可するKeyPressイベントハンドラ
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // 数字とBackspace以外は入力を無効化
-            if ((e.KeyChar < '0' || e.KeyChar > '9') && !char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar)  && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }

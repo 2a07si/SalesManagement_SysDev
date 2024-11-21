@@ -185,10 +185,6 @@ namespace SalesManagement_SysDev
                     case CurrentStatus.Mode.詳細:
                         colorReset();
                         HandleOrderDetailOperation();
-<<<<<<< HEAD
-=======
-
->>>>>>> a79780eabbb69aa9797fa08fb6777a5106823d3b
                         break;
                     default:
                         MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
