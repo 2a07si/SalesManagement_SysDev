@@ -374,6 +374,40 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+
+                if (TBShopID.Text == "")
+                {
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
+                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (TBShainID.Text == "")
+                {
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
+                    MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (TBKokyakuID.Text == "")
+                {
+                    TBKokyakuID.BackColor = Color.Yellow;
+                    TBKokyakuID.Focus();
+                    MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (TBJyutyuID.Text == "")
+                {
+                    TBJyutyuID.BackColor = Color.Yellow;
+                    TBJyutyuID.Focus();
+                    MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
                 // 営業所IDの存在確認
                 int shop;
                 if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
@@ -411,38 +445,6 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
-                    return;
-                }
-
-                if (TBShopID.Text == "")
-                {
-                    TBShopID.BackColor = Color.Yellow;
-                    TBShopID.Focus();
-                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (TBShainID.Text == "")
-                {
-                    TBShainID.BackColor = Color.Yellow;
-                    TBShainID.Focus();
-                    MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (TBKokyakuID.Text == "")
-                {
-                    TBKokyakuID.BackColor = Color.Yellow;
-                    TBKokyakuID.Focus();
-                    MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (TBJyutyuID.Text == "")
-                {
-                    TBJyutyuID.BackColor = Color.Yellow;
-                    TBJyutyuID.Focus();
-                    MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
