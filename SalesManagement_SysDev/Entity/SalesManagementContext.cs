@@ -69,8 +69,6 @@ public partial class SalesManagementContext : DbContext
     
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
-    public virtual DbSet<LogHistory_EMP>LogHistory_EMPs { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer($"Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=SalesManagement;Integrated Security=True");
