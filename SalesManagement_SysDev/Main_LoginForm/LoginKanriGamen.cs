@@ -22,6 +22,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
@@ -155,6 +156,47 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 // Enter キーの既定動作を抑制
                 e.SuppressKeyPress = true;
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                int selectedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
+
+                // 詳細情報の取得
+                //List<Detail> details = GetDetailsByID(selectedID);
+
+                //↑のコードは詳細情報の取得に使えるけどまだテーブルが無くてエラーが出るから
+                //コード書くときにコメント解除してください
+
+                // 右側のDataGridViewをクリア
+                dataGridView2.Rows.Clear();
+
+                // 詳細情報を右側のDataGridViewに追加
+                /*foreach (var detail in details)
+                {
+                    dataGridView2.Rows.Add(detail.DetailID, detail.DetailName);
+                }これも！！！！！！！！！！！！！！！！！！*/
+            }
+
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+
+            // 行インデックスが有効かどうかをチェック   
+            if (rowIndex >= 0)
+            {
+                // 行データを取得   
+                DataGridViewRow row = dataGridView2.Rows[rowIndex];
+
+                ComboGamen.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[0].Value.ToString();
+                ComboMode.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[1].Value.ToString();
+                ComboShori.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[2].Value.ToString();
+                TB_ID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
             }
         }
 
