@@ -169,7 +169,7 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             tbtrue();
-            dateCheckBox.Checked = false;
+            checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
+using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev;
 
@@ -66,6 +67,8 @@ public partial class SalesManagementContext : DbContext
 
 
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
+
+    public virtual DbSet<LogHistory_EMP>LogHistory_EMPs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

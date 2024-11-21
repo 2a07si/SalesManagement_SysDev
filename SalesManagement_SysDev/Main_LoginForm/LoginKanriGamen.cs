@@ -17,6 +17,10 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
@@ -121,7 +125,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         // 半角数字のみを許可するKeyPressイベントハンドラ
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar)  && !char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -152,5 +156,53 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 e.SuppressKeyPress = true;
             }
         }
+
+        public class LogHistory_EMP
+        {
+            public string empID { get; set; }
+            public string empName { get; set; }
+            public DateTime LoginDateTime { get; set; }
+        }
+
+        public class ApplicationDbContext : DbContext
+        {
+            public DbSet<LogHistory_EMP> LogHistory_EMPs { get; set; }
+
+            public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        }
+
+        class Program
+        {
+            // グローバル変数として社員情報を定義
+            static string globalEmpID = GlobalEmp.EmployeeID;
+            static string globalEmpName = GlobalEmp.EmployeeName;
+            static DateTime globalLoginDateTime = GlobalEmp.dateNow;
+
+            static void Main(string[] args)
+            {
+                // DbContextのインスタンス作成
+                var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+                optionsBuilder.UseSqlServer($"Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=SalesManagement;Integrated Security=True");
+
+                // データベースに接続
+                using (var context = new ApplicationDbContext(optionsBuilder.Options))
+                {
+                    // グローバル変数のデータをLogHistory_EMPテーブルに追加
+                    var logHistory = new LogHistory_EMP
+                    {
+                        empID = globalEmpID,
+                        empName = globalEmpName,
+                        LoginDateTime = globalLoginDateTime
+                    };
+
+                    // LogHistory_EMPテーブルにデータを追加
+                    context.LogHistory_EMPs.Add(logHistory);
+
+                    // 変更をデータベースに保存
+                    context.SaveChanges();
+                }
+            }
+        }
+
     }
 }
