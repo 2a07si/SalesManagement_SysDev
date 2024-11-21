@@ -25,18 +25,12 @@ namespace SalesManagement_SysDev.Migrations
             modelBuilder.Entity("SalesManagement_SysDev.Entity.LoginHistoryLog", b =>
                 {
                     b.Property<int>("ID")
-<<<<<<< HEAD
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-=======
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
                     .HasColumnName("ID");
->>>>>>> f8ff934ce2be2ef3cfd3b9570706d9ca8a2d60b7
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-<<<<<<< HEAD
                     b.Property<bool>("IsSuccessful")
                         .HasColumnType("bit");
 
@@ -46,13 +40,6 @@ namespace SalesManagement_SysDev.Migrations
                     b.Property<string>("LoginID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-=======
-                    b.Property<string>("LoginEmID")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("LoginEmID");
->>>>>>> f8ff934ce2be2ef3cfd3b9570706d9ca8a2d60b7
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -60,13 +47,9 @@ namespace SalesManagement_SysDev.Migrations
 
                     b.HasKey("ID");
 
-<<<<<<< HEAD
-                    b.ToTable("LoginHistoryLogs");
-=======
                     b.HasKey("ID").HasName("PK_LoginHistoryLog");
 
                     b.ToTable("LoginHistoryLog", (string)null);
->>>>>>> f8ff934ce2be2ef3cfd3b9570706d9ca8a2d60b7
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.MClient", b =>
