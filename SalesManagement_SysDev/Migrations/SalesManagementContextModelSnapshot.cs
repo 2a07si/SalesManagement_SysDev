@@ -24,18 +24,18 @@ namespace SalesManagement_SysDev.Migrations
 
             modelBuilder.Entity("SalesManagement_SysDev.LoginHistoryLog", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
-                    .HasColumnName("Id");
+                    .HasColumnName("ID");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("LoginEmId")
+                    b.Property<string>("LoginEmID")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
-                        .HasColumnName("LoginEmId");
+                        .HasColumnName("LoginEmID");
 
                     b.Property<string>("LoginEmName")
                         .IsRequired()
@@ -47,7 +47,7 @@ namespace SalesManagement_SysDev.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("LoginTime");
 
-                    b.HasKey("Id").HasName("PK_LoginHistoryLog");
+                    b.HasKey("ID").HasName("PK_LoginHistoryLog");
 
                     b.ToTable("LoginHistoryLog", (string)null);
                 });
