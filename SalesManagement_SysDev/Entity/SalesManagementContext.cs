@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
-using YourNamespace.Models;
 
 namespace SalesManagement_SysDev;
 

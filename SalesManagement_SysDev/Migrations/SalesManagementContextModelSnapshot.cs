@@ -24,32 +24,30 @@ namespace SalesManagement_SysDev.Migrations
 
             modelBuilder.Entity("SalesManagement_SysDev.LoginHistoryLog", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ID");
+                    b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("Id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("IsSuccessful")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsSuccessful");
-
-                    b.Property<DateTime>("LoginDateTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("LoginID")
+                    b.Property<string>("LoginEmId")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LoginEmId");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("LoginEmName")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("LoginEmName");
 
-                    b.HasKey("ID")
-                        .HasName("PK_LoginHistoryLog");
+                    b.Property<DateTime>("LoginTime")
+                        .HasColumnType("datetime")
+                        .HasColumnName("LoginTime");
+
+                    b.HasKey("Id").HasName("PK_LoginHistoryLog");
 
                     b.ToTable("LoginHistoryLog", (string)null);
                 });
