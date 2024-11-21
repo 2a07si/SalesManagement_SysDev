@@ -158,7 +158,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             }
         }
 
-        public class LogHistory_EMP
+        /*public class LogHistory_EMP
         {
 
             public int logID { get; set; }
@@ -224,7 +224,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     Console.WriteLine($"エラーが発生しました: {ex.Message}");
                 }
             }
-        }
+        }*/
 
     }
 }
