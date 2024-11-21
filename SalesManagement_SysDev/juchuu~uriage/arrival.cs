@@ -725,13 +725,6 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int nyuuka;
-                if (!int.TryParse(NyuukaID, out nyuuka) || !context.TArrivals.Any(n => n.ArID == nyuuka))
-                {
-                    TBNyuukaID.BackColor = Color.Yellow;
-                    TBNyuukaID.Focus();
-                    MessageBox.Show("入荷IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
                 if (TBNyuukaIDS.Text == "")
                 {
                     TBNyuukaIDS.BackColor = Color.Yellow;
@@ -756,6 +749,14 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (!int.TryParse(NyuukaID, out nyuuka) || !context.TArrivals.Any(n => n.ArID == nyuuka))
+                {
+                    TBNyuukaID.BackColor = Color.Yellow;
+                    TBNyuukaID.Focus();
+                    MessageBox.Show("入荷IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                
 
                 // EmIDがMEmployeeテーブルに存在するか確認 
                 int shouhin;
