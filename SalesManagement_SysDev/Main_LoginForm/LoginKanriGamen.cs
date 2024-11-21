@@ -21,6 +21,7 @@ using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
@@ -159,6 +160,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         public class LogHistory_EMP
         {
+
+            public int logID { get; set; }
             public string empID { get; set; }
             public string empName { get; set; }
             public DateTime LoginDateTime { get; set; }
@@ -169,6 +172,12 @@ namespace SalesManagement_SysDev.Main_LoginForm
             public DbSet<LogHistory_EMP> LogHistory_EMPs { get; set; }
 
             public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                // Fluent APIを使用してempIDを主キーとして設定
+                modelBuilder.Entity<LogHistory_EMP>()
+                    .HasKey(e => e.logID);
+            }
         }
 
         class Program
@@ -178,28 +187,41 @@ namespace SalesManagement_SysDev.Main_LoginForm
             static string globalEmpName = GlobalEmp.EmployeeName;
             static DateTime globalLoginDateTime = GlobalEmp.dateNow;
 
-            static void Main(string[] args)
+            static void database(string[] args)
             {
-                // DbContextのインスタンス作成
-                var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-                optionsBuilder.UseSqlServer($"Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=SalesManagement;Integrated Security=True");
-
-                // データベースに接続
-                using (var context = new ApplicationDbContext(optionsBuilder.Options))
+                try
                 {
-                    // グローバル変数のデータをLogHistory_EMPテーブルに追加
-                    var logHistory = new LogHistory_EMP
+                    // DbContextのインスタンス作成
+                    var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+
+                    // データベース接続文字列を設定（接続文字列をセキュリティ的に管理する方法）
+                    string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=SalesManagement;Integrated Security=True";
+                    optionsBuilder.UseSqlServer(connectionString);
+
+                    // データベースに接続
+                    using (var context = new ApplicationDbContext(optionsBuilder.Options))
                     {
-                        empID = globalEmpID,
-                        empName = globalEmpName,
-                        LoginDateTime = globalLoginDateTime
-                    };
+                        // グローバル変数のデータをLogHistory_EMPテーブルに追加
+                        var logHistory = new LogHistory_EMP
+                        {
+                            empID = globalEmpID,
+                            empName = globalEmpName,
+                            LoginDateTime = globalLoginDateTime
+                        };
 
-                    // LogHistory_EMPテーブルにデータを追加
-                    context.LogHistory_EMPs.Add(logHistory);
+                        // LogHistory_EMPテーブルにデータを追加
+                        context.LogHistory_EMPs.Add(logHistory);
 
-                    // 変更をデータベースに保存
-                    context.SaveChanges();
+                        // 変更をデータベースに保存
+                        context.SaveChanges();
+                    }
+
+                    Console.WriteLine("ログイン情報がデータベースに追加されました。");
+                }
+                catch (Exception ex)
+                {
+                    // エラーハンドリング
+                    Console.WriteLine($"エラーが発生しました: {ex.Message}");
                 }
             }
         }
