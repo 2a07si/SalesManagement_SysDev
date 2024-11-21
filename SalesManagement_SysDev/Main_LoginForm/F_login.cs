@@ -785,8 +785,6 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                GlobalEmp.EmployeeID = tb_ID.Text;
-                GlobalEmp.dateNow = DateTime.Now;
 
                 string pass = tb_Pass.Text;
                 bool isLoginSuccessful = false; // ‰Šú‰»‚µ‚Ä¬Œ÷ó‘Ô‚ğ•Û‘¶‚·‚é•Ï”  
@@ -830,6 +828,8 @@ namespace SalesManagement_SysDev
             Global.EmployeeName = employeeName;
             Global.PositionName = positionName;
             Global.EmployeePermission = GetPermissionByPoID(poID);
+
+            GlobalEmp.EmployeeID = tb_ID.Text;
 
             // Œ ŒÀ‚ª•s‘«‚µ‚Ä‚¢‚éê‡ 
             if (Global.EmployeePermission == 0)

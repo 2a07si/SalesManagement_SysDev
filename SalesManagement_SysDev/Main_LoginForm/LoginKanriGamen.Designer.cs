@@ -120,6 +120,7 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(451, 527);
             dataGridView1.TabIndex = 250;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // dateTimePicker1
             // 
@@ -226,6 +227,7 @@
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.Size = new Size(713, 527);
             dataGridView2.TabIndex = 251;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // ComboGamen
             // 
