@@ -6,11 +6,11 @@ namespace YourNamespace.Models
     public class LoginHistoryLog
     {
         [Key]
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string LoginId { get; set; }
+        public string LoginID { get; set; }
 
         [Required]
         [MaxLength(100)]
