@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace SalesManagement_SysDev
 {
@@ -79,7 +80,11 @@ namespace SalesManagement_SysDev
         private void b_shi_Click(object sender, EventArgs e) => formChanger.NavigateToShippingForm();
         private void b_sal_Click(object sender, EventArgs e) => formChanger.NavigateToSalesForm();
         private void b_lss_Click(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
-        private void clear_Click(object sender, EventArgs e) => ClearText();
+        private void clear_Click(object sender, EventArgs e)
+        {
+            colorReset();
+            ClearText();
+        }
 
         private void ClearText()
         {
@@ -456,7 +461,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                
+
 
                 // 入荷が既に存在するか確認
                 var arrival = context.TArrivals.SingleOrDefault(o => o.OrID.ToString() == NyuukaID);
@@ -939,6 +944,19 @@ namespace SalesManagement_SysDev
                     date.Value = row.Cells["入荷日"].Value != null ?
                                  Convert.ToDateTime(row.Cells["入荷日"].Value) :
                                  DateTime.Today;  // nullなら現在日付を設定
+                    int flagValue = Convert.ToInt32(dataGridView1.CurrentRow.Cells["状態フラグ"].Value);
+                    if (flagValue == 2)
+                        NyuukaFlag.Checked = true;
+                    else
+                        NyuukaFlag.Checked = false;
+                    flagValue = Convert.ToInt32(dataGridView1.CurrentRow.Cells["非表示フラグ"].Value);
+                    if (flagValue == 1)
+                        DelFlag.Checked = true;
+                    else
+                        DelFlag.Checked = false;
+                    TBRiyuu.Text = row.Cells["非表示理由"].Value?.ToString() ?? string.Empty;
+
+
                 }
             }
             catch (Exception ex)
@@ -972,6 +990,7 @@ namespace SalesManagement_SysDev
                     TBNyuukaIDS.Text = row.Cells["入荷ID"].Value.ToString() ?? string.Empty;
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
                     TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;
+
                 }
             }
             catch (Exception ex)
@@ -1162,8 +1181,6 @@ namespace SalesManagement_SysDev
                 e.Handled = true;
             }
         }
-
-
     }
 }
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SalesManagement_SysDev;
 
@@ -11,9 +12,11 @@ using SalesManagement_SysDev;
 namespace SalesManagement_SysDev.Migrations
 {
     [DbContext(typeof(SalesManagementContext))]
-    partial class SalesManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20241121061624_AddLoginHistoryLogTable")]
+    partial class AddLoginHistoryLogTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +28,8 @@ namespace SalesManagement_SysDev.Migrations
             modelBuilder.Entity("SalesManagement_SysDev.Entity.LoginHistoryLog", b =>
                 {
                     b.Property<int>("ID")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasColumnName("ID");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
@@ -47,9 +49,7 @@ namespace SalesManagement_SysDev.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasKey("ID").HasName("PK_LoginHistoryLog");
-
-                    b.ToTable("LoginHistoryLog", (string)null);
+                    b.ToTable("LoginHistoryLogs");
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.MClient", b =>

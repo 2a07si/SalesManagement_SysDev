@@ -65,7 +65,8 @@ public partial class SalesManagementContext : DbContext
 
     public virtual DbSet<TWarehousing> TWarehousings { get; set; }
 
-
+    public virtual DbSet<LoginHistoryLog> LoginHistoryLogs { get; set; }
+    
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
     public virtual DbSet<LogHistory_EMP>LogHistory_EMPs { get; set; }
