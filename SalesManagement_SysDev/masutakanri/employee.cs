@@ -254,6 +254,7 @@ namespace SalesManagement_SysDev
             string Pass = TBPass.Text;
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
+            string riyuu = TBRiyuu.Text;
             if (TBSyainID.Text == "")
             {
                 TBSyainID.BackColor = Color.Yellow;
@@ -305,7 +306,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
+                // EmIDがMEmployeeテーブルに存在するか確認
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
                 {
@@ -497,7 +498,7 @@ namespace SalesManagement_SysDev
             LimitTextLength(sender as TextBox, 50);
         }
 
-        private void TBShopId_TextChanged(object sender, EventArgs e)
+        private void TBShopID_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
