@@ -106,6 +106,7 @@ namespace SalesManagement_SysDev
             tbtrue();
             dateCheckBox.Checked = false;
             checkBox_2.Checked = false;
+            colorReset();
         }
         private void b_ser_Click(object sender, EventArgs e)
         {

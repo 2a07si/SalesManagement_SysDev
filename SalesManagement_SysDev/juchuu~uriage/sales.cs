@@ -171,6 +171,7 @@ namespace SalesManagement_SysDev
             tbtrue();
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
+            colorReset();
         }
 
         private void tbfalse()

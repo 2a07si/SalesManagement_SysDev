@@ -81,6 +81,7 @@ namespace SalesManagement_SysDev
             TBRiyuu.Text = "";
             CurrentStatus.ResetStatus(label2);
             TBKokyakuID.BackColor = Color.White;
+            colorReset();
         }
 
         private void b_reg_Click(object sender, EventArgs e)
