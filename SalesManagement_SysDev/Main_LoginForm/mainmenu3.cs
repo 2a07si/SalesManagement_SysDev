@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
+using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
@@ -31,7 +32,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             GlobalUtility.UpdateLabels(label_id, label_ename); // ラベルを更新  
             LoadEmployeeName(); // 従業員名をデータベースから取得して表示 
-            SetButtonPermissions(); // ボタンの権限を設定 
+            SetButtonPermissions(); // ボタンの権限を設定
+            GlobalEmp.EmployeeName = label_ename.Text;
         }
 
         // 従業員名をデータベースから取得して表示するメソッド
