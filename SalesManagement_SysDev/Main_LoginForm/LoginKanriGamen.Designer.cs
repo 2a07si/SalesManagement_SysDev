@@ -265,7 +265,7 @@
             label1.Name = "label1";
             label1.Size = new Size(246, 54);
             label1.TabIndex = 252;
-            label1.Text = "ログ管理画面";
+            label1.Text = "ログ履歴画面";
             label1.Click += label1_Click;
             // 
             // clear

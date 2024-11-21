@@ -64,7 +64,7 @@
             Loginkanri.Size = new Size(129, 45);
             Loginkanri.TabIndex = 1000;
             Loginkanri.TabStop = false;
-            Loginkanri.Text = "ログイン管理";
+            Loginkanri.Text = "ログイン履歴";
             Loginkanri.UseVisualStyleBackColor = true;
             Loginkanri.Click += Loginkanri_Click;
             // 
