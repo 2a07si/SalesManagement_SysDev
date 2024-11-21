@@ -232,7 +232,7 @@ namespace SalesManagement_SysDev
                     employee.EmPassword = Pass;
                     employee.EmFlag = delFlag ? 1 : 0;
                     employee.EmHidden = riyuu;
-                    
+
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
                     DisplayEmployee();
@@ -314,7 +314,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("役職IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
                 var newEmployee = new MEmployee
                 {
                     EmID = int.Parse(ShainID),
@@ -548,6 +548,12 @@ namespace SalesManagement_SysDev
             {
                 e.Handled = true;
             }
+        }
+
+        private void TBTellNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+
         }
     }
 }

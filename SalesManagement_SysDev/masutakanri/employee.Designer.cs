@@ -271,7 +271,6 @@
             dataGridView1.Size = new Size(1400, 490);
             dataGridView1.TabIndex = 19;
             dataGridView1.CellClick += dataGridView1_CellClick;
-            //dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             // 
             // label5
             // 
@@ -313,6 +312,7 @@
             TBTellNo.Size = new Size(133, 31);
             TBTellNo.TabIndex = 13;
             TBTellNo.TextChanged += TBTellNo_TextChanged;
+            TBTellNo.KeyPress += TBTellNo_KeyPress;
             // 
             // TBRiyuu
             // 
