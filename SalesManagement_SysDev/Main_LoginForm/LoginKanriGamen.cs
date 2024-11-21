@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SalesManagement_SysDev.Classまとめ;
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
@@ -43,6 +45,17 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void LoginKanriGamen_Load(object sender, EventArgs e)
         {
+            // デフォルト選択
+            ComboLog.SelectedIndex = 0;
+            ComboGamen.SelectedIndex = 0;
+            ComboMode.SelectedIndex = 0;
+            ComboShori.SelectedIndex = 0;
+
+            // イベントハンドラを設定
+            ComboLog.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
+            TB_ID.KeyDown += TB_ID_KeyDown_1;
+            dateTimePicker1.Visible = false;
+            SetupNumericOnlyTextBoxes();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -56,6 +69,89 @@ namespace SalesManagement_SysDev.Main_LoginForm
         }
         private void UpdatePassword()
         {
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clear_Click_1(object sender, EventArgs e)
+        {
+            cleartext();
+        }
+        private void cleartext()
+        {
+            TB_Log.Text = string.Empty;
+            TB_ID.Text = string.Empty;
+            dateTimePicker1.Value = DateTime.Now;
+
+            ComboLog.SelectedIndex = 0;
+            ComboGamen.SelectedIndex = 0;
+            ComboMode.SelectedIndex = 0;
+            ComboShori.SelectedIndex = 0;
+        }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択された項目に応じて動作を切り替える
+            if (ComboLog.SelectedItem.ToString() == "ログイン日時")
+            {
+                TB_Log.Visible = false;
+                dateTimePicker1.Visible = true; // DateTimePicker を表示
+            }
+            else
+            {
+                TB_Log.Visible = true; // テキストボックスを表示
+                dateTimePicker1.Visible = false; // DateTimePicker を隠す
+            }
+        }
+        private void SetupNumericOnlyTextBoxes()
+        {
+            // 対象のテキストボックスのみイベントを追加
+            TB_ID.KeyPress += NumericTextBox_KeyPress;
+
+        }
+
+        // 半角数字のみを許可するKeyPressイベントハンドラ
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// 全角文字を半角文字に変換する
+        /// </summary>
+        /// <param name="input">変換対象の文字列</param>
+        /// <returns>半角文字列</returns>
+        private string ConvertToHalfWidth(string input)
+        {
+            return input.Normalize(NormalizationForm.FormKC); // 全角→半角変換
+        }
+
+        private void TB_ID_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) // Enter キーが押された場合
+            {
+                TextBoxBase textBox = sender as TextBoxBase;
+                // テキストを全角から半角に変換
+                textBox.Text = ConvertToHalfWidth(textBox.Text);
+
+                // カーソルを末尾に移動
+                textBox.SelectionStart = textBox.Text.Length;
+
+                // Enter キーの既定動作を抑制
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }

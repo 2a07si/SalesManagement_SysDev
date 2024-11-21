@@ -65,6 +65,7 @@ namespace SalesManagement_SysDev
                 b_cus,
             });
             DisplayStock();
+            SetupNumericOnlyTextBoxes();
 
             if (Global.EmployeePermission == 1)
             {
@@ -428,6 +429,24 @@ namespace SalesManagement_SysDev
                     break;
             }
 
+        }
+        private void SetupNumericOnlyTextBoxes()
+        {
+            // 対象のテキストボックスのみイベントを追加
+            TBZaikoID.KeyPress += NumericTextBox_KeyPress;
+            TBZaiko.KeyPress += NumericTextBox_KeyPress;
+            TBSyohinID.KeyPress += NumericTextBox_KeyPress;
+
+        }
+
+        // 半角数字のみを許可するKeyPressイベントハンドラ
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

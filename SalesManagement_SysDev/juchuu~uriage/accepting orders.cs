@@ -185,6 +185,10 @@ namespace SalesManagement_SysDev
                     case CurrentStatus.Mode.詳細:
                         colorReset();
                         HandleOrderDetailOperation();
+<<<<<<< HEAD
+=======
+
+>>>>>>> a79780eabbb69aa9797fa08fb6777a5106823d3b
                         break;
                     default:
                         MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -260,7 +264,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateOrder()
         {
-            
+
             try
             {
                 string jyutyuID = TBJyutyuID.Text;
@@ -830,6 +834,10 @@ namespace SalesManagement_SysDev
         {
             try
             {
+<<<<<<< HEAD
+=======
+
+>>>>>>> a79780eabbb69aa9797fa08fb6777a5106823d3b
                 using (var context = new SalesManagementContext())
                 {
                     // 受注詳細のリストを取得
@@ -1254,6 +1262,10 @@ namespace SalesManagement_SysDev
                 e.Handled = true;
             }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a79780eabbb69aa9797fa08fb6777a5106823d3b
 
     }
 }

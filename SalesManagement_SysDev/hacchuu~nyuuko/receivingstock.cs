@@ -61,6 +61,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayReceivingStocks();
             DisplayReceivingStockDetails();
+            SetupNumericOnlyTextBoxes();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -950,6 +951,28 @@ namespace SalesManagement_SysDev
                     TBNyuukoSyosaiID.BackColor = SystemColors.Window;
                     TBSuryou.BackColor = SystemColors.Window;
                     break;
+            }
+        }
+        private void SetupNumericOnlyTextBoxes()
+        {
+            // 対象のテキストボックスのみイベントを追加
+            TBNyukoID.KeyPress += NumericTextBox_KeyPress;
+            TBHattyuuID.KeyPress += NumericTextBox_KeyPress;
+            TBShainID.KeyPress += NumericTextBox_KeyPress;
+            TBNyuukoIDS.KeyPress += NumericTextBox_KeyPress;
+            TBNyuukoSyosaiID.KeyPress += NumericTextBox_KeyPress;
+            TBSuryou.KeyPress += NumericTextBox_KeyPress;
+            TBSyohinID.KeyPress += NumericTextBox_KeyPress;
+
+        }
+
+        // 半角数字のみを許可するKeyPressイベントハンドラ
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }
