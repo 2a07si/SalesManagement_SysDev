@@ -82,7 +82,7 @@ namespace SalesManagement_SysDev
         {
             TBSyainID.Text = "";
             TBSyainName.Text = "";
-            TBShopID.Text = "";
+            TBShopId.Text = "";
             TBJobID.Text = "";
             TBPass.Text = "";
             TBTellNo.Text = "";
@@ -167,7 +167,7 @@ namespace SalesManagement_SysDev
         {
             string ShainID = TBSyainID.Text;
             string ShainName = TBSyainName.Text;
-            string ShopID = TBShopID.Text;
+            string ShopID = TBShopId.Text;
             string JobID = TBJobID.Text;
             DateTime ShainDate = date.Value;
             string Pass = TBPass.Text;
@@ -189,10 +189,10 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("社員名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBShopID.Text == "")
+            if (TBShopId.Text == "")
             {
-                TBShopID.BackColor = Color.Yellow;
-                TBShopID.Focus();
+                TBShopId.BackColor = Color.Yellow;
+                TBShopId.Focus();
                 MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -220,12 +220,12 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var employee = context.MEmployees.SingleOrDefault(e => e.EmID.ToString() == ShainID);
+                var employee = context.MEmployees.SingleOrDefault(e => e.EmId.ToString() == ShainID);
                 if (employee != null)
                 {
                     employee.EmName = ShainName;
-                    employee.SoID = int.Parse(ShopID);
-                    employee.PoID = int.Parse(JobID);
+                    employee.SoId = int.Parse(ShopID);
+                    employee.PoId = int.Parse(JobID);
                     employee.EmHiredate = ShainDate;
                     employee.EmPhone = TelNo;
                     employee.EmPassword = Pass;
@@ -247,14 +247,12 @@ namespace SalesManagement_SysDev
         {
             string ShainID = TBSyainID.Text;
             string ShainName = TBSyainName.Text;
-            string ShopID = TBShopID.Text;
+            string ShopID = TBShopId.Text;
             string JobID = TBJobID.Text;
             DateTime ShainDate = date.Value;
             string Pass = TBPass.Text;
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
-            string Riyuu = TBRiyuu.Text;
-
             if (TBSyainID.Text == "")
             {
                 TBSyainID.BackColor = Color.Yellow;
@@ -269,10 +267,10 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("社員名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBShopID.Text == "")
+            if (TBShopId.Text == "")
             {
-                TBShopID.BackColor = Color.Yellow;
-                TBShopID.Focus();
+                TBShopId.BackColor = Color.Yellow;
+                TBShopId.Focus();
                 MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -300,15 +298,15 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int shop;
-                if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
+                if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoId == shop))
                 {
                     MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // EmIDがMEmployeeテーブルに存在するか確認
+                // EmIdがMEmployeeテーブルに存在するか確認
                 int job;
-                if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
+                if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoId == job))
                 {
                     MessageBox.Show("役職IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -316,15 +314,15 @@ namespace SalesManagement_SysDev
                 
                 var newEmployee = new MEmployee
                 {
-                    EmID = int.Parse(ShainID),
+                    EmId = int.Parse(ShainID),
                     EmName = ShainName,
-                    SoID = int.Parse(ShopID),
-                    PoID = int.Parse(JobID),
+                    SoId = int.Parse(ShopID),
+                    PoId = int.Parse(JobID),
                     EmHiredate = ShainDate,
                     EmPassword = Pass,
                     EmPhone = TelNo,
                     EmFlag = delFlag ? 1 : 0,
-                    EmHidden = Riyuu
+                    EmHidden = riyuu
                 };
 
                 context.MEmployees.Add(newEmployee);
@@ -351,10 +349,10 @@ namespace SalesManagement_SysDev
 
                     dataGridView1.DataSource = employees.Select(e => new
                     {
-                        社員ID = e.EmID,
+                        社員ID = e.EmId,
                         社員名 = e.EmName,
-                        営業所ID = e.SoID,
-                        役職ID = e.PoID,
+                        営業所ID = e.SoId,
+                        役職ID = e.PoId,
                         入社年月日 = e.EmHiredate,
                         パスワード = e.EmPassword,
                         電話番号 = e.EmPhone,
@@ -377,7 +375,7 @@ namespace SalesManagement_SysDev
                 // 各テキストボックスの値を取得 
                 var ShainID = TBSyainID.Text.Trim();       // 社員ID 
                 var ShainName = TBSyainName.Text.Trim();           // 
-                var ShopID = TBShopID.Text.Trim();         // 店あいデー
+                var ShopID = TBShopId.Text.Trim();         // 店あいデー
                 var JobID = TBJobID.Text.Trim();     // 役職
                 var TelNo = TBTellNo.Text.Trim();     // でんわ 
 
@@ -387,7 +385,7 @@ namespace SalesManagement_SysDev
                 // 社員IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(ShainID) && int.TryParse(ShainID, out int parsedShainID))
                 {
-                    query = query.Where(e => e.EmID == parsedShainID);
+                    query = query.Where(e => e.EmId == parsedShainID);
                 }
 
                 // 社員名を検索条件に追加 
@@ -399,13 +397,13 @@ namespace SalesManagement_SysDev
                 // 営業所IDを検索条件に追加 
                 if (!string.IsNullOrEmpty(ShopID) && int.TryParse(ShopID, out int parsedShopID))
                 {
-                    query = query.Where(o => o.SoID == parsedShopID);
+                    query = query.Where(o => o.SoId == parsedShopID);
                 }
 
                 // 役職 
                 if (!string.IsNullOrEmpty(JobID) && int.TryParse(JobID, out int parsedJobID))
                 {
-                    query = query.Where(e => e.PoID == parsedJobID);
+                    query = query.Where(e => e.PoId == parsedJobID);
                 }
 
                 // でんわ 
@@ -425,10 +423,10 @@ namespace SalesManagement_SysDev
                     // dataGridView1 に結果を表示 
                     dataGridView1.DataSource = employees.Select(employee => new
                     {
-                        社員ID = employee.EmID,
+                        社員ID = employee.EmId,
                         社員名 = employee.EmName,
-                        営業所ID = employee.SoID,
-                        役職ID = employee.PoID,
+                        営業所ID = employee.SoId,
+                        役職ID = employee.PoId,
                         入社年月日 = employee.EmHiredate,
                         パスワード = employee.EmPassword,
                         電話番号 = employee.EmPhone,
@@ -461,7 +459,7 @@ namespace SalesManagement_SysDev
 
                     TBSyainID.Text = row.Cells["社員ID"].Value.ToString();
                     TBSyainName.Text = row.Cells["社員名"].Value.ToString();
-                    TBShopID.Text = row.Cells["営業所ID"].Value.ToString();
+                    TBShopId.Text = row.Cells["営業所ID"].Value.ToString();
                     TBJobID.Text = row.Cells["役職ID"].Value.ToString();
                     date.Value = Convert.ToDateTime(row.Cells["入社年月日"].Value);
                     TBPass.Text = row.Cells["パスワード"].Value.ToString();
@@ -499,7 +497,7 @@ namespace SalesManagement_SysDev
             LimitTextLength(sender as TextBox, 50);
         }
 
-        private void TBShopID_TextChanged(object sender, EventArgs e)
+        private void TBShopId_TextChanged(object sender, EventArgs e)
         {
             LimitTextLength(sender as TextBox, 2);
         }
