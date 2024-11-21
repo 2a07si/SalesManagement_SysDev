@@ -96,6 +96,7 @@ namespace SalesManagement_SysDev
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
             TBSyohinID.BackColor = Color.White;
+            colorReset();
         }
 
         private void b_reg_Click(object sender, EventArgs e)

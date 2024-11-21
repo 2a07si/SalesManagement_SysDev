@@ -91,6 +91,7 @@ namespace SalesManagement_SysDev
             StFlag.Checked = false;
             CurrentStatus.ResetStatus(label2);
             TBZaikoID.BackColor = Color.White;
+            colorReset();
         }
 
         private void b_reg_Click(object sender, EventArgs e)
