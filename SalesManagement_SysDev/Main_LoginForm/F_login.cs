@@ -9,6 +9,7 @@ using Microsoft.Data.SqlClient;
 using System.Text.RegularExpressions;
 using SalesManagement_SysDev.Main_LoginForm;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
+using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev
 {
@@ -970,6 +971,22 @@ namespace SalesManagement_SysDev
             catch (Exception ex)
             {
                 MessageBox.Show("予期しないエラーが発生しました。システム管理者にお問い合わせください。", "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+     
+        }
+
+        private void updateLoginLog()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                var log = context.LoginHistoryLogs.FirstOrDefault();
+                {
+
+                }
+                var Log = new LoginHistoryLog
+                {
+                    
+                };
             }
         }
     }
