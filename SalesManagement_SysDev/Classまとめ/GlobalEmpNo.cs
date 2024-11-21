@@ -11,6 +11,8 @@ namespace SalesManagement_SysDev.Classまとめ
         public static class GlobalEmp
         {
             public static string EmployeeID { get; set; }
+            public static string EmployeeName { get; set;}
+            public static DateTime dateNow { get; set;}
         }
 
     }

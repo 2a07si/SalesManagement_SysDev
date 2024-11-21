@@ -785,6 +785,7 @@ namespace SalesManagement_SysDev
                 }
 
                 GlobalEmp.EmployeeID = tb_ID.Text;
+                GlobalEmp.dateNow = DateTime.Now;
 
                 string pass = tb_Pass.Text;
                 bool isLoginSuccessful = false; // ‰Šú‰»‚µ‚Ä¬Œ÷ó‘Ô‚ğ•Û‘¶‚·‚é•Ï”  
@@ -838,6 +839,9 @@ namespace SalesManagement_SysDev
 
             // ƒƒOƒCƒ“¬Œ÷‚Ìˆ— 
             classChangeForms.NavigateTo3();
+            using (var context = new SalesManagementContext())
+            {
+            }
         }
 
         // PoID‚ÉŠî‚Ã‚¢‚ÄŒ ŒÀ‚ğŒˆ’è‚·‚éŠÖ”  
