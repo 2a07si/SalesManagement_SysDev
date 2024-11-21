@@ -100,7 +100,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択された項目に応じて動作を切り替える
-            if (ComboLog.SelectedItem.ToString() == "ログイン日時")
+            if (ComboLog.SelectedItem.ToString() == "ログイン日")
             {
                 TB_Log.Visible = false;
                 dateTimePicker1.Visible = true; // DateTimePicker を表示

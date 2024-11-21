@@ -232,7 +232,7 @@ namespace SalesManagement_SysDev
                     employee.EmPassword = Pass;
                     employee.EmFlag = delFlag ? 1 : 0;
                     employee.EmHidden = riyuu;
-                    
+
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
                     DisplayEmployee();
@@ -313,7 +313,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("役職IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
                 var newEmployee = new MEmployee
                 {
                     EmID = int.Parse(ShainID),
@@ -543,10 +543,16 @@ namespace SalesManagement_SysDev
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 数字とBackspace以外は入力を無効化
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '-' && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
+        }
+
+        private void TBTellNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+
         }
     }
 }
