@@ -349,20 +349,6 @@ namespace SalesManagement_SysDev
             {
                 // メーカーIDがMMakerテーブルに存在するか確認
                 int maker;
-                if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
-                {
-                    MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // EmIDがMEmployeeテーブルに存在するか確認
-                int employeeID;
-                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
-                {
-                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 if (TBMakerID.Text == "")
                 {
                     TBMakerID.BackColor = Color.Yellow;
@@ -378,6 +364,22 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
+                {
+                    MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // EmIDがMEmployeeテーブルに存在するか確認
+                int employeeID;
+                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
+                {
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                
 
                 // 新しい発注情報を作成
                 var newHattyu = new THattyu
@@ -570,28 +572,6 @@ namespace SalesManagement_SysDev
             {
                 // HaID（発注ID）がTHattyuテーブルに存在するか確認
                 int hattyuID;
-                if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
-                {
-                    MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // PrID（商品ID）がMProductテーブルに存在するか確認
-                int productID;
-                if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
-                {
-                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // 数量のパース
-                int quantity;
-                if (!int.TryParse(suryou, out quantity) || quantity <= 0)
-                {
-                    MessageBox.Show("数量が無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 if (TBHattyuIDS.Text == "")
                 {
                     TBHattyuIDS.BackColor = Color.Yellow;
@@ -616,6 +596,29 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
+                {
+                    MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // PrID（商品ID）がMProductテーブルに存在するか確認
+                int productID;
+                if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
+                {
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 数量のパース
+                int quantity;
+                if (!int.TryParse(suryou, out quantity) || quantity <= 0)
+                {
+                    MessageBox.Show("数量が無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                
                 var existingOrderDetail = context.THattyuDetails.FirstOrDefault(o => o.HaID == hattyuID);
                 if (existingOrderDetail != null)
                 {
