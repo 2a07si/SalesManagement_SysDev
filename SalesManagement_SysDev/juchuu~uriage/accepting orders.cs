@@ -46,7 +46,7 @@ namespace SalesManagement_SysDev
                 b_arr,
                 b_shi,
                 b_sal,
-                b_lss
+                b_iss
             });
 
             b_FormSelector.Text = "←通常";
@@ -71,7 +71,7 @@ namespace SalesManagement_SysDev
         private void b_arr_Click(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
         private void b_shi_Click(object sender, EventArgs e) => formChanger.NavigateToShippingForm();
         private void b_sal_Click(object sender, EventArgs e) => formChanger.NavigateToSalesForm();
-        private void b_lss_Click(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
+        private void b_iss_Click(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
 
         private void clear_Click(object sender, EventArgs e) => ClearText();
 
@@ -1300,7 +1300,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void b_lss_Paint(object sender, PaintEventArgs e)
+        private void b_iss_Paint(object sender, PaintEventArgs e)
         {
             using (var context = new SalesManagementContext())
             {

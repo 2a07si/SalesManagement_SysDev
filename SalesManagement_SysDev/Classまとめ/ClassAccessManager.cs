@@ -32,7 +32,7 @@ namespace SalesManagement_SysDev.Classまとめ
                         
                         // 権限2:　商品、在庫、社員、出荷、発注、入庫、ログイン画面が無効
                         if (button.Name == "b_mer" || button.Name == "b_sto" ||
-                            button.Name == "b_emp" || button.Name == "b_lss" ||
+                            button.Name == "b_emp" || button.Name == "b_iss" ||
                             button.Name == "b_hor" || button.Name == "b_rec" ||
                             button.Name == "b_hacchuu" || button.Name == "b_reg")
                         {

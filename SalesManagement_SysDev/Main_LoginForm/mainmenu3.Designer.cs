@@ -34,7 +34,7 @@
             b_mas = new Button();
             JU = new Panel();
             b_sal = new Button();
-            b_lss = new Button();
+            b_iss = new Button();
             b_arr = new Button();
             b_shi = new Button();
             b_ord = new Button();
@@ -104,7 +104,7 @@
             // 
             JU.BackColor = Color.FromArgb(244, 226, 207);
             JU.Controls.Add(b_sal);
-            JU.Controls.Add(b_lss);
+            JU.Controls.Add(b_iss);
             JU.Controls.Add(b_arr);
             JU.Controls.Add(b_shi);
             JU.Controls.Add(b_ord);
@@ -126,18 +126,18 @@
             b_sal.UseVisualStyleBackColor = false;
             b_sal.Click += b_sal_Click;
             // 
-            // b_lss
+            // b_iss
             // 
-            b_lss.BackColor = SystemColors.ControlLightLight;
-            b_lss.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_lss.Location = new Point(800, 120);
-            b_lss.Name = "b_lss";
-            b_lss.Size = new Size(250, 150);
-            b_lss.TabIndex = 2;
-            b_lss.Text = "出庫管理";
-            b_lss.UseVisualStyleBackColor = false;
-            b_lss.Click += b_lss_Click;
-            b_lss.Paint += b_lss_Paint;
+            b_iss.BackColor = SystemColors.ControlLightLight;
+            b_iss.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_iss.Location = new Point(800, 120);
+            b_iss.Name = "b_iss";
+            b_iss.Size = new Size(250, 150);
+            b_iss.TabIndex = 2;
+            b_iss.Text = "出庫管理";
+            b_iss.UseVisualStyleBackColor = false;
+            b_iss.Click += b_iss_Click;
+            b_iss.Paint += b_iss_Paint;
             // 
             // b_arr
             // 
@@ -384,7 +384,7 @@
         private Button b_mas;
         private Panel JU;
         private Button b_sal;
-        private Button b_lss;
+        private Button b_iss;
         private Button b_arr;
         private Button b_shi;
         private Button b_ord;

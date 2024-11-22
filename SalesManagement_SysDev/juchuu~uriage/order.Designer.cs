@@ -41,7 +41,7 @@
             b_ord = new Button();
             b_shi = new Button();
             b_arr = new Button();
-            b_lss = new Button();
+            b_iss = new Button();
             panel1 = new Panel();
             TBJyutyuID = new TextBox();
             label7 = new Label();
@@ -170,6 +170,7 @@
             b_acc.Text = "受注";
             b_acc.UseVisualStyleBackColor = false;
             b_acc.Click += b_acc_Click;
+            b_acc.Paint += b_acc_Paint;
             // 
             // b_sal
             // 
@@ -183,6 +184,7 @@
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
             b_sal.Click += b_sal_Click;
+            b_sal.Paint += b_sal_Paint;
             // 
             // b_ord
             // 
@@ -195,6 +197,7 @@
             b_ord.TabIndex = 9;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
+            b_ord.Paint += b_ord_Paint;
             // 
             // b_shi
             // 
@@ -208,6 +211,7 @@
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
             b_shi.Click += b_shi_Click;
+            b_shi.Paint += b_shi_Paint;
             // 
             // b_arr
             // 
@@ -221,19 +225,21 @@
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
             b_arr.Click += b_arr_Click;
+            b_arr.Paint += b_arr_Paint;
             // 
-            // b_lss
+            // b_iss
             // 
-            b_lss.BackColor = Color.FromArgb(252, 252, 192);
-            b_lss.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_lss.ForeColor = Color.Black;
-            b_lss.Location = new Point(15, 330);
-            b_lss.Name = "b_lss";
-            b_lss.Size = new Size(120, 70);
-            b_lss.TabIndex = 10;
-            b_lss.Text = "出庫";
-            b_lss.UseVisualStyleBackColor = false;
-            b_lss.Click += b_lss_Click;
+            b_iss.BackColor = Color.FromArgb(252, 252, 192);
+            b_iss.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_iss.ForeColor = Color.Black;
+            b_iss.Location = new Point(15, 330);
+            b_iss.Name = "b_iss";
+            b_iss.Size = new Size(120, 70);
+            b_iss.TabIndex = 10;
+            b_iss.Text = "出庫";
+            b_iss.UseVisualStyleBackColor = false;
+            b_iss.Click += b_iss_Click;
+            b_iss.Paint += b_iss_Paint;
             // 
             // panel1
             // 
@@ -662,7 +668,7 @@
             Controls.Add(b_ord);
             Controls.Add(b_shi);
             Controls.Add(b_arr);
-            Controls.Add(b_lss);
+            Controls.Add(b_iss);
             Controls.Add(panel1);
             Name = "order";
             StartPosition = FormStartPosition.CenterScreen;
@@ -691,7 +697,7 @@
         private Button b_ord;
         private Button b_shi;
         private Button b_arr;
-        private Button b_lss;
+        private Button b_iss;
         private Panel panel1;
         private DataGridView dataGridView1;
         private Button b_kakutei;
