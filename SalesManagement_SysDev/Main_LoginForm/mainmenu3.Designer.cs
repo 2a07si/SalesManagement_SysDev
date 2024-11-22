@@ -137,6 +137,7 @@
             b_lss.Text = "出庫管理";
             b_lss.UseVisualStyleBackColor = false;
             b_lss.Click += b_lss_Click;
+            b_lss.Paint += b_lss_Paint;
             // 
             // b_arr
             // 
@@ -149,6 +150,7 @@
             b_arr.Text = "入荷管理";
             b_arr.UseVisualStyleBackColor = false;
             b_arr.Click += b_arr_Click;
+            b_arr.Paint += b_arr_Paint;
             // 
             // b_shi
             // 
@@ -161,6 +163,7 @@
             b_shi.Text = "出荷管理";
             b_shi.UseVisualStyleBackColor = false;
             b_shi.Click += b_shi_Click;
+            b_shi.Paint += b_shi_Paint;
             // 
             // b_ord
             // 
@@ -173,6 +176,7 @@
             b_ord.Text = "注文管理";
             b_ord.UseVisualStyleBackColor = false;
             b_ord.Click += b_ord_Click;
+            b_ord.Paint += b_ord_Paint;
             // 
             // b_add
             // 
@@ -185,6 +189,7 @@
             b_add.Text = "受注管理";
             b_add.UseVisualStyleBackColor = false;
             b_add.Click += b_add_Click;
+            b_add.Paint += b_add_Paint;
             // 
             // b_HN
             // 
@@ -197,6 +202,7 @@
             b_HN.Text = "発注～入庫";
             b_HN.UseVisualStyleBackColor = false;
             b_HN.Click += b_HN_Click;
+            b_HN.Paint += b_HN_Paint;
             // 
             // b_JU
             // 
@@ -209,6 +215,7 @@
             b_JU.Text = "受注～売上";
             b_JU.UseVisualStyleBackColor = false;
             b_JU.Click += b_JU_Click;
+            b_JU.Paint += b_JU_Paint;
             // 
             // b_logout
             // 
@@ -325,6 +332,7 @@
             b_rec.Text = "入庫管理";
             b_rec.UseVisualStyleBackColor = false;
             b_rec.Click += b_rec_Click;
+            b_rec.Paint += b_rec_Paint;
             // 
             // b_hor
             // 
@@ -337,6 +345,7 @@
             b_hor.Text = "発注管理";
             b_hor.UseVisualStyleBackColor = false;
             b_hor.Click += b_hor_Click;
+            b_hor.Paint += b_hor_Paint;
             // 
             // mainmenu3
             // 
@@ -353,9 +362,9 @@
             Controls.Add(b_logout);
             Controls.Add(label4);
             Controls.Add(label3);
+            Controls.Add(HN);
             Controls.Add(JU);
             Controls.Add(mas);
-            Controls.Add(HN);
             Name = "mainmenu3";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "mainmenu";
