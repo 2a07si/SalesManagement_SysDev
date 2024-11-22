@@ -38,7 +38,7 @@
             b_rec = new Button();
             b_shi = new Button();
             b_arr = new Button();
-            b_lss = new Button();
+            b_iss = new Button();
             b_back = new Button();
             label_ename = new Label();
             label_id = new Label();
@@ -144,16 +144,16 @@
             b_arr.Text = "入荷管理";
             b_arr.UseVisualStyleBackColor = false;
             // 
-            // b_lss
+            // b_iss
             // 
-            b_lss.BackColor = Color.FromArgb(252, 252, 192);
-            b_lss.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_lss.Location = new Point(151, 386);
-            b_lss.Name = "b_lss";
-            b_lss.Size = new Size(259, 164);
-            b_lss.TabIndex = 40;
-            b_lss.Text = "出庫管理";
-            b_lss.UseVisualStyleBackColor = false;
+            b_iss.BackColor = Color.FromArgb(252, 252, 192);
+            b_iss.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            b_iss.Location = new Point(151, 386);
+            b_iss.Name = "b_iss";
+            b_iss.Size = new Size(259, 164);
+            b_iss.TabIndex = 40;
+            b_iss.Text = "出庫管理";
+            b_iss.UseVisualStyleBackColor = false;
             // 
             // b_back
             // 
@@ -191,7 +191,7 @@
             Controls.Add(label_ename);
             Controls.Add(label_id);
             Controls.Add(b_back);
-            Controls.Add(b_lss);
+            Controls.Add(b_iss);
             Controls.Add(b_arr);
             Controls.Add(b_shi);
             Controls.Add(b_rec);
@@ -221,7 +221,7 @@
         private Button b_rec;
         private Button b_shi;
         private Button b_arr;
-        private Button b_lss;
+        private Button b_iss;
         private Button b_back;
         private Label label_ename;
         private Label label_id;

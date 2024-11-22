@@ -79,7 +79,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             List<Button> buttons = new List<Button>
             {
                 b_hor, b_rec, b_cus, b_mer, b_sto, b_emp,
-                b_add, b_ord, b_lss, b_arr, b_shi, b_sal,
+                b_add, b_ord, b_iss, b_arr, b_shi, b_sal,
                 b_JU, b_HN, b_mas, Loginkanri
             };
 
@@ -98,7 +98,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 case 3: // 物流
                     foreach (var button in buttons)
-                        button.Enabled = new[] { b_mer, b_sto, b_rec, b_lss, b_hor, b_JU, b_HN, b_mas }.Contains(button);
+                        button.Enabled = new[] { b_mer, b_sto, b_rec, b_iss, b_hor, b_JU, b_HN, b_mas }.Contains(button);
                     break;
 
                 default:
@@ -160,7 +160,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             HandleNavigationError(() => changeForm.NavigateToOrderForm()); // 発注フォームに遷移 
         }
 
-        private void b_lss_Click(object sender, EventArgs e)
+        private void b_iss_Click(object sender, EventArgs e)
         {
             HandleNavigationError(() => changeForm.NavigateToIssueForm()); // 出荷フォームに遷移 
         }
@@ -346,7 +346,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             }
         }
 
-        private void b_lss_Paint(object sender, PaintEventArgs e)
+        private void b_iss_Paint(object sender, PaintEventArgs e)
         {
             using (var context = new SalesManagementContext())
             {
