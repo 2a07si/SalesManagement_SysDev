@@ -836,7 +836,7 @@ namespace SalesManagement_SysDev
                         受注詳細ID = od.OrDetailID,
                         受注ID = od.OrID,
                         商品ID = od.PrID,
-                        数量 = od.OrQuantity,
+                        数量 = od.OrQuantity.ToString("N0"),
                         合計金額 = od.OrTotalPrice.ToString("N0")  // 3桁区切り 
                     }).ToList();
                 }

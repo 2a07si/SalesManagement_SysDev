@@ -799,7 +799,7 @@ namespace SalesManagement_SysDev
                     {
                         出荷詳細ID = sh.ShDetailID,
                         商品ID = sh.PrID,
-                        数量 = sh.ShQuantity,
+                        数量 = sh.ShQuantity.ToString("N0"),
                         出荷ID = sh.ShID
                     }).ToList();
                 }

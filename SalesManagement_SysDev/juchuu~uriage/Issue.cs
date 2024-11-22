@@ -829,7 +829,7 @@ namespace SalesManagement_SysDev
                         出庫詳細ID = od.SyDetailID,
                         出庫ID = od.SyID,
                         商品ID = od.PrID,
-                        数量 = od.SyQuantity,
+                        数量 = od.SyQuantity.ToString("N0"),
                     }).ToList();
                 }
             }

@@ -858,7 +858,7 @@ namespace SalesManagement_SysDev
                         注文詳細ID = od.ChDetailID,
                         注文ID = od.ChID,
                         商品ID = od.PrID,
-                        数量 = od.ChQuantity,
+                        数量 = od.ChQuantity.ToString("N0"),
                     }).ToList();
                 }
             }

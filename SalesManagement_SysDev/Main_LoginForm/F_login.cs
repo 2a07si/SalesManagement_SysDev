@@ -762,8 +762,6 @@ namespace SalesManagement_SysDev
             dateNameLabel.UpdateDateTime(); // 日付と時間のラベルを更新
         }
 
-
-
         private void B_login_Click(object sender, EventArgs e)
         {
             try

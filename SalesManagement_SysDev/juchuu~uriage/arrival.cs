@@ -820,7 +820,7 @@ namespace SalesManagement_SysDev
                         入荷詳細ID = od.ArDetailID,
                         入荷ID = od.ArID,
                         商品ID = od.PrID,
-                        数量 = od.ArQuantity,
+                        数量 = od.ArQuantity.HasValue ? od.ArQuantity.Value.ToString("N0") : "0"
                     }).ToList();
                 }
             }

@@ -773,8 +773,8 @@ namespace SalesManagement_SysDev
                         売上詳細ID = sa.SaDetailID,
                         売上ID = sa.SaID,
                         商品ID = sa.PrID,
-                        数量 = sa.SaQuantity,
-                        合計金額 = sa.SaPrTotalPrice
+                        数量 = sa.SaQuantity.ToString("N0"),
+                        合計金額 = sa.SaPrTotalPrice.ToString("N0")
 
                     }).ToList();
                 }
