@@ -23,6 +23,8 @@ using System;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
@@ -62,6 +64,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
             TB_ID.KeyDown += TB_ID_KeyDown_1;
             dateTimePicker1.Visible = false;
             SetupNumericOnlyTextBoxes();
+
+            DisplayLoginLog();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -199,6 +203,35 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 TB_ID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
             }
         }
+
+        public void DisplayLoginLog()
+        {
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // LoginHistoryLog テーブルのデータを取得
+                    var logData = context.LoginHistoryLogs
+                        .Select(o => new
+                        {
+                            o.ID,                  // 表示するカラム (例: ID)
+                            o.LoginID,             // 表示するカラム (例: LoginID)
+                            o.LoginDateTime,       // 表示するカラム (例: ログイン日時)
+                        })
+                        .ToList();
+
+                    // DataGridView にデータをバインド
+                    dataGridView1.DataSource = logData;
+                }
+            }
+            catch (Exception ex)
+            {
+                // 例外発生時にエラーメッセージを表示
+                MessageBox.Show($"エラー: {ex.Message}", "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         /*public class LogHistory_EMP
         {

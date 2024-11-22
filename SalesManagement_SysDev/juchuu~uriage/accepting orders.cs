@@ -721,8 +721,8 @@ namespace SalesManagement_SysDev
                 string suryou = TBSuryou.Text;
                 string goukeiKingaku = TBGoukeiKingaku.Text;
 
-
-                if (TBJyutyuIDS == null)
+                MessageBox.Show("あ");
+                if ((string.IsNullOrWhiteSpace(TBJyutyuIDS.Text)))
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
@@ -731,7 +731,7 @@ namespace SalesManagement_SysDev
                 }
 
 
-                if (TBSyohinID == null)
+                if (TBSyohinID.Text == null)
                 {
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
@@ -739,7 +739,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBSuryou == null)
+                if (TBSuryou.Text == null)
                 {
                     TBSuryou.BackColor = Color.Yellow;
                     TBSuryou.Focus();
@@ -750,31 +750,7 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
 
-
-                    if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrderDetails.Any(s => s.OrID == jyutyu))
-                    {
-                        TBJyutyuIDS.BackColor = Color.Yellow;
-                        TBJyutyuIDS.Focus();
-                        MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (!int.TryParse(syohinID, out int syohin) || !context.TOrderDetails.Any(s => s.PrID == syohin))
-                    {
-                        TBSyohinID.BackColor = Color.Yellow;
-                        TBSyohinID.Focus();
-                        MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (TBSuryou.Text == null)
-                    {
-                        TBSuryou.BackColor = Color.Yellow;
-                        TBSuryou.Focus();
-                        MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    var existingOrderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrID == jyutyu);
+                    var existingOrderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrID == int.Parse(jyutyuID));
                     if (existingOrderDetail != null)
                     {
                         MessageBox.Show("この受注IDにはすでに受注詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
