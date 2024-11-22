@@ -377,7 +377,7 @@ namespace SalesManagement_SysDev
                                 // AcceptionConfirm実行
                                 AcceptionConfirm(int.Parse(jyutyuID));
                             }
-
+                            Log_Accept(order.OrID);
                             MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             DisplayOrders();
                             DisplayOrderDetails();
@@ -493,8 +493,10 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("受注詳細が登録されていません。。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+
                         AcceptionConfirm(newOrder.OrID);
                     }
+                    Log_Accept(newOrder.OrID);
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplayOrders();
                     DisplayOrderDetails();
@@ -793,6 +795,7 @@ namespace SalesManagement_SysDev
 
                     context.TOrderDetails.Add(newOrderDetail);
                     context.SaveChanges();
+                    Log_Accept(newOrderDetail.OrDetailID);
                     MessageBox.Show("受注詳細の登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplayOrderDetails();
                 }
@@ -1366,6 +1369,15 @@ namespace SalesManagement_SysDev
         }
         private void Log_Accept(int id)
         {
+            string ModeFlag = "";
+            if(orderFlag == "←通常")
+            {
+                ModeFlag = "通常";
+            }
+            else
+            {
+                ModeFlag = "詳細";
+            }
             try
             {
                 using (var context = new SalesManagementContext())
@@ -1382,7 +1394,7 @@ namespace SalesManagement_SysDev
                         {
                             ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
                             Display = "受注",
-                            Mode = b_FormSelector.Text,
+                            Mode = ModeFlag,
                             Process = label2.Text,
                             LogID = id,  //
                             AcceptDateTime = DateTime.Now
