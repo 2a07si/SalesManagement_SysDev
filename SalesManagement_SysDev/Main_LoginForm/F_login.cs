@@ -808,6 +808,7 @@ namespace SalesManagement_SysDev
                     var employeeService = new EmployeeService(context);
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
+                        AddLoginLog();
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
