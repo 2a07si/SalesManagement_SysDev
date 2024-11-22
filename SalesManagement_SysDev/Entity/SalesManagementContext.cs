@@ -67,8 +67,6 @@ public partial class SalesManagementContext : DbContext
 
     public virtual DbSet<LoginHistoryLog> LoginHistoryLogs { get; set; }
 
-    public virtual DbSet<LoginHistoryLog> LoginHistorys { get; set; }
-
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
