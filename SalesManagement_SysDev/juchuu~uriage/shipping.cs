@@ -355,6 +355,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         DisplayShipping(); // 更新後に出荷情報を再表示
                         DisplayShippingDetails();
+                        countFlag();
                     }
                     catch (DbUpdateException ex)
                     {
@@ -1167,12 +1168,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1188,12 +1191,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1209,12 +1214,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1230,12 +1237,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1251,18 +1260,32 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
                     {
                         badge.pinpoint(e, button);
                     }
+                }
+            }
+        }
+
+        private void countFlag()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count == 0)
+                {
+                    this.Invalidate();
                 }
             }
         }
