@@ -160,5 +160,10 @@ namespace SalesManagement_SysDev.Classまとめ
             mainmenu3 mainmenu3Form = new mainmenu3();
             NavigateTo(mainmenu3Form);
         }
+        internal void passwordchange()
+        {
+            passwordchange passwordchange = new passwordchange();
+            NavigateTo(passwordchange);
+        }
     }
 }

@@ -748,7 +748,7 @@ namespace SalesManagement_SysDev
             dateNameLabel.UpdateDateTime(); // 日付と時間のラベルを更新
         }
 
-       
+
 
         private void B_login_Click(object sender, EventArgs e)
         {
@@ -974,11 +974,22 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("予期しないエラーが発生しました。システム管理者にお問い合わせください。", "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-     
+
         }
 
         private void AddLoginLog()
         {
+            using (var context = new SalesManagementContext())
+            {
+                var log = context.LoginHistoryLogs.FirstOrDefault();
+                {
+
+                }
+                var Log = new LoginHistoryLog
+                {
+
+                };
+            }
             try
             {
                 using (var context = new SalesManagementContext())
@@ -1000,6 +1011,11 @@ namespace SalesManagement_SysDev
                 MessageBox.Show($"エラー: {ex.Message}\n内部例外: {ex.InnerException?.Message}");
             }
 
+        }
+
+        private void passwordchange_Click(object sender, EventArgs e)
+        {
+            classChangeForms.passwordchange();
         }
 
     }
