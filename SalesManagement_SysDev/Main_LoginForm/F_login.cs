@@ -946,6 +946,8 @@ namespace SalesManagement_SysDev
                     var employeeService = new EmployeeService(context);
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
+                        MessageBox.Show("ログイン成功、登録処理開始");
+                        AddLoginLog();
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
@@ -975,20 +977,31 @@ namespace SalesManagement_SysDev
      
         }
 
-        private void updateLoginLog()
+        private void AddLoginLog()
         {
-            using (var context = new SalesManagementContext())
+            try
             {
-                var log = context.LoginHistoryLogs.FirstOrDefault();
+                using (var context = new SalesManagementContext())
                 {
-
+                    var logEntry = new LoginHistoryLog
+                    {
+                        LoginID = tb_ID.Text,
+                        LoginDateTime = DateTime.Now,
+                        IsSuccessful = true
+                    };
+                    context.LoginHistoryLogs.Add(logEntry);
+                    context.SaveChanges();
+                    MessageBox.Show("登録成功");
                 }
-                var Log = new LoginHistoryLog
-                {
-                    
-                };
             }
+            catch (Exception ex)
+            {
+                // 内部例外を表示する
+                MessageBox.Show($"エラー: {ex.Message}\n内部例外: {ex.InnerException?.Message}");
+            }
+
         }
+
     }
 
 }
