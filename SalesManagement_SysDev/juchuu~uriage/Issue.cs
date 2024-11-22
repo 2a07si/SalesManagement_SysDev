@@ -1175,7 +1175,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TOrders.Count(order => order.OrFlag == 0 || order.OrFlag == null);
+                int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
                 Button button = sender as Button;
                 if (button.Enabled == false)
                 {
@@ -1198,7 +1198,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TChumons.Count(order => order.ChFlag == 0 || order.ChFlag == null);
+                int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
                 Button button = sender as Button;
                 if (button.Enabled == false)
                 {
@@ -1221,7 +1221,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TSyukkos.Count(order => order.SyFlag == 0 || order.SyFlag == null);
+                int count = context.TSyukkos.Count(order => order.SyStateFlag == 0 || order.SyStateFlag == null);
                 Button button = sender as Button;
                 if (button.Enabled == false)
                 {
@@ -1245,7 +1245,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
                 Button button = sender as Button;
                 if (button.Enabled == false)
                 {
@@ -1268,7 +1268,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TShipments.Count(order => order.ShFlag == 0 || order.ShFlag == null);
+                int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
                 Button button = sender as Button;
                 if (button.Enabled == false)
                 {

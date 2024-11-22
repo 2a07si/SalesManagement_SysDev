@@ -166,24 +166,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex >= 0) // ヘッダー行ではない場合
             {
-                int selectedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
+                // クリックした行からIDを取得
+                var selectedRow = dataGridView1.Rows[e.RowIndex];
+                var selectedID = selectedRow.Cells["ID"].Value.ToString();
 
-                // 詳細情報の取得
-                //List<Detail> details = GetDetailsByID(selectedID);
-
-                //↑のコードは詳細情報の取得に使えるけどまだテーブルが無くてエラーが出るから
-                //コード書くときにコメント解除してください
-
-                // 右側のDataGridViewをクリア
-                dataGridView2.Rows.Clear();
-
-                // 詳細情報を右側のDataGridViewに追加
-                /*foreach (var detail in details)
-                {
-                    dataGridView2.Rows.Add(detail.DetailID, detail.DetailName);
-                }これも！！！！！！！！！！！！！！！！！！*/
+                // 詳細画面を開き、選択したIDに基づく詳細情報を渡す
             }
 
         }
