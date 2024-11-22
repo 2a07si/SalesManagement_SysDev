@@ -831,6 +831,8 @@ namespace SalesManagement_SysDev
 
             GlobalEmp.EmployeeID = tb_ID.Text;
 
+
+
             // Œ ŒÀ‚ª•s‘«‚µ‚Ä‚¢‚éê‡ 
             if (Global.EmployeePermission == 0)
             {

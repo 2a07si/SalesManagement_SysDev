@@ -10,6 +10,7 @@ using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static SalesManagement_SysDev.Classまとめ.GlobalBadge;
 
 namespace SalesManagement_SysDev
 {
@@ -56,6 +57,8 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.BackColor = Color.Gray;
 
             SetupNumericOnlyTextBoxes();
+
+
         }
 
 
@@ -1260,6 +1263,18 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private void b_ord_Paint(object sender, PaintEventArgs e)
+        {
+            GlobalBadge badge = new GlobalBadge(""); // 通知数を指定
 
+            // ボタンを取得
+            Button button = sender as Button;
+
+            // バッジを描画
+            if (button != null)
+            {
+                badge.pinpoint(e, button);
+            }
+        }
     }
 }
