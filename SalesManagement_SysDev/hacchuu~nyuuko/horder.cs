@@ -380,7 +380,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                
+
 
                 // 新しい発注情報を作成
                 var newHattyu = new THattyu
@@ -619,7 +619,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                
+
                 var existingOrderDetail = context.THattyuDetails.FirstOrDefault(o => o.HaID == hattyuID);
                 if (existingOrderDetail != null)
                 {
@@ -709,7 +709,7 @@ namespace SalesManagement_SysDev
                     // 数量を検索条件に追加
                     query = query.Where(od => od.HaQuantity == quantity);
                 }
-                
+
                 // 結果を取得
                 var orderDetails = query.ToList();
 
@@ -997,6 +997,41 @@ namespace SalesManagement_SysDev
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void b_hor_Paint(object sender, PaintEventArgs e)
+        {
+            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+            // ボタンを取得
+            Button button = sender as Button;
+
+            // バッジを描画
+            if (button != null)
+            {
+                badge.pinpoint(e, button);
+            }
+        }
+
+        private void b_rec_Paint(object sender, PaintEventArgs e)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
             }
         }
     }
