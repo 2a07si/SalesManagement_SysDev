@@ -354,7 +354,6 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (TBNyukoID.Text == "")
                 {
-                    TBNyukoID.BackColor = Color.Yellow;
                     TBNyukoID.Focus();
                     MessageBox.Show("入庫IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
