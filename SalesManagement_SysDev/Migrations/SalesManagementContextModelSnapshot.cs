@@ -18,35 +18,40 @@ namespace SalesManagement_SysDev.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.20")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIDentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SalesManagement_SysDev.Entity.LoginHistoryLog", b =>
+            modelBuilder.Entity("SalesManagement_SysDev.LoginHistoryLog", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<bool>("IsSuccessful")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("IsSuccessful");
 
                     b.Property<DateTime>("LoginDateTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("LoginID")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
-                    b.HasKey("ID");
+                    b.HasKey("ID")
+                        .HasName("PK_LoginHistoryLog");
 
-                    b.ToTable("LoginHistoryLogs");
+                    b.ToTable("LoginHistoryLog", (string)null);
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.MClient", b =>
@@ -267,7 +272,7 @@ namespace SalesManagement_SysDev.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("PrFlag")
+                    b.Property<int>("PrFlag")
                         .HasColumnType("int");
 
                     b.Property<string>("PrHidden")
