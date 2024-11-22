@@ -9,7 +9,6 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static SalesManagement_SysDev.Classまとめ.GlobalBadge;
 
 namespace SalesManagement_SysDev
@@ -20,6 +19,7 @@ namespace SalesManagement_SysDev
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
         private string orderFlag = "←通常"; // 初期状態を「注文」に設定
         private ClassDataGridViewClearer dgvClearer;
+        private GlobalBadge globalBadge;
 
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
@@ -57,8 +57,6 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.BackColor = Color.Gray;
 
             SetupNumericOnlyTextBoxes();
-
-
         }
 
 
@@ -1261,7 +1259,7 @@ namespace SalesManagement_SysDev
 
         private void b_ord_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge(""); // 通知数を指定
+            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
 
             // ボタンを取得
             Button button = sender as Button;
