@@ -38,6 +38,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             ne = new Label();
             kakutei = new Button();
             label1 = new Label();
+            B_return = new Button();
             SuspendLayout();
             // 
             // TBID
@@ -110,11 +111,22 @@ namespace SalesManagement_SysDev.Main_LoginForm
             label1.Text = "ぱしわぁどちぇんじほーむ";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // B_return
+            // 
+            B_return.Location = new Point(830, 25);
+            B_return.Name = "B_return";
+            B_return.Size = new Size(112, 34);
+            B_return.TabIndex = 3;
+            B_return.Text = "戻る";
+            B_return.UseVisualStyleBackColor = true;
+            B_return.Click += B_return_Click;
+            // 
             // passwordchange
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 544);
+            Controls.Add(B_return);
             Controls.Add(kakutei);
             Controls.Add(ne);
             Controls.Add(old);
@@ -139,5 +151,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private Label ne;
         private Button kakutei;
         private Label label1;
+        private Button B_return;
     }
 }
