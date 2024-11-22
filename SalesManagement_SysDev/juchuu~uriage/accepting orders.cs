@@ -1263,7 +1263,6 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
-                GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
