@@ -50,7 +50,7 @@ namespace SalesManagement_SysDev
                 b_acc,
                 b_shi,
                 b_sal,
-                b_lss
+                b_iss
             });
 
             b_FormSelector.Text = "←通常";
@@ -78,7 +78,7 @@ namespace SalesManagement_SysDev
         }
 
         // 各ボタンでの画面遷移
-        private void b_lss_Click(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
+        private void b_iss_Click(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
         private void b_acc_Click(object sender, EventArgs e) => formChanger.NavigateToAcceptingOrderForm();
         private void b_shi_Click(object sender, EventArgs e) => formChanger.NavigateToShippingForm();
         private void b_sal_Click(object sender, EventArgs e) => formChanger.NavigateToSalesForm();
@@ -262,7 +262,7 @@ namespace SalesManagement_SysDev
             string Riyuu = TBRiyuu.Text;
             DateTime Orderdate = date.Value;
 
-            if(TBTyumonID.Text == "")
+            if (TBTyumonID.Text == "")
             {
                 TBTyumonID.BackColor = Color.Yellow;
                 TBTyumonID.Focus();
@@ -296,7 +296,7 @@ namespace SalesManagement_SysDev
 
             if (TBJyutyuID.Text == "")
             {
-                TBJyutyuID.BackColor= Color.Yellow;
+                TBJyutyuID.BackColor = Color.Yellow;
                 TBJyutyuID.Focus();
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -472,7 +472,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                
+
                 if (TBShainID.Text != empID)
                 {
                     MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
@@ -808,7 +808,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                
+
                 var existingOrderDetail = context.TChumonDetails.FirstOrDefault(o => o.ChID == tyuumon);
                 if (existingOrderDetail != null)
                 {
@@ -1287,6 +1287,125 @@ namespace SalesManagement_SysDev
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void b_acc_Paint(object sender, PaintEventArgs e)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
+            }
+        }
+
+        private void b_ord_Paint(object sender, PaintEventArgs e)
+        {
+            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+            // ボタンを取得
+            Button button = sender as Button;
+
+            // バッジを描画
+            if (button != null)
+            {
+                badge.pinpoint(e, button);
+            }    
+        }
+
+        private void b_iss_Paint(object sender, PaintEventArgs e)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
+            }
+        }
+
+        private void b_arr_Paint(object sender, PaintEventArgs e)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
+            }
+        }
+
+        private void b_shi_Paint(object sender, PaintEventArgs e)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
+            }
+        }
+
+        private void b_sal_Paint(object sender, PaintEventArgs e)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
             }
         }
     }

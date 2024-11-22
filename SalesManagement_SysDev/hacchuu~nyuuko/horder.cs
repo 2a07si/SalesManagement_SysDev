@@ -310,6 +310,7 @@ namespace SalesManagement_SysDev
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayHattyus(); // 更新後に発注情報を再表示
+                        countFlag();
                     }
                     catch (DbUpdateException ex)
                     {
@@ -1002,15 +1003,22 @@ namespace SalesManagement_SysDev
 
         private void b_hor_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.pinpoint(e, button);
+                int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
             }
         }
 
@@ -1031,6 +1039,17 @@ namespace SalesManagement_SysDev
                     {
                         badge.pinpoint(e, button);
                     }
+                }
+            }
+        }
+        private void countFlag()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count == 0)
+                {
+                    this.Invalidate();
                 }
             }
         }

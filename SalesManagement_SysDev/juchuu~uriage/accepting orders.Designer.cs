@@ -84,7 +84,7 @@ namespace SalesManagement_SysDev
             b_ord = new Button();
             b_shi = new Button();
             b_acc = new Button();
-            b_lss = new Button();
+            b_iss = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -616,7 +616,6 @@ namespace SalesManagement_SysDev
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
             b_sal.Click += b_sal_Click;
-            b_sal.Paint += b_sal_Paint;
             // 
             // b_ord
             // 
@@ -657,19 +656,19 @@ namespace SalesManagement_SysDev
             b_acc.UseVisualStyleBackColor = false;
             b_acc.Paint += b_acc_Paint;
             // 
-            // b_lss
+            // b_iss
             // 
-            b_lss.BackColor = Color.FromArgb(252, 252, 192);
-            b_lss.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            b_lss.ForeColor = Color.Black;
-            b_lss.Location = new Point(15, 325);
-            b_lss.Name = "b_lss";
-            b_lss.Size = new Size(120, 70);
-            b_lss.TabIndex = 270;
-            b_lss.Text = "出庫";
-            b_lss.UseVisualStyleBackColor = false;
-            b_lss.Click += b_lss_Click;
-            b_lss.Paint += b_lss_Paint;
+            b_iss.BackColor = Color.FromArgb(252, 252, 192);
+            b_iss.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            b_iss.ForeColor = Color.Black;
+            b_iss.Location = new Point(15, 325);
+            b_iss.Name = "b_iss";
+            b_iss.Size = new Size(120, 70);
+            b_iss.TabIndex = 270;
+            b_iss.Text = "出庫";
+            b_iss.UseVisualStyleBackColor = false;
+            b_iss.Click += b_iss_Click;
+            b_iss.Paint += b_iss_Paint;
             // 
             // acceptingorders
             // 
@@ -684,7 +683,7 @@ namespace SalesManagement_SysDev
             Controls.Add(b_ord);
             Controls.Add(b_shi);
             Controls.Add(b_acc);
-            Controls.Add(b_lss);
+            Controls.Add(b_iss);
             Controls.Add(panel1);
             Controls.Add(checkBox_2);
             Controls.Add(checkBoxDateFilter);
@@ -782,6 +781,6 @@ namespace SalesManagement_SysDev
         private Button b_ord;
         private Button b_shi;
         private Button b_acc;
-        private Button b_lss;
+        private Button b_iss;
     }
 }

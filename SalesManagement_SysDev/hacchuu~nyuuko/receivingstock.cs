@@ -312,7 +312,10 @@ namespace SalesManagement_SysDev
                     {
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
-                        DisplayReceivingStocks(); // 更新後に入庫情報を再表示 
+                        DisplayReceivingStocks(); // 更新後に入庫情報を再表示
+                        countFlag();
+
+
                     }
                     catch (DbUpdateException ex)
                     {
@@ -984,7 +987,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
@@ -1003,15 +1006,34 @@ namespace SalesManagement_SysDev
 
         private void b_rec_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
 
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.pinpoint(e, button);
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
+            }
+        }
+        private void countFlag()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count == 0)
+                {
+                    this.Invalidate();
+                }
             }
         }
     }
