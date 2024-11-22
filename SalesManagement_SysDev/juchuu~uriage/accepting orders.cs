@@ -96,6 +96,7 @@ namespace SalesManagement_SysDev
             tbtrue();
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
+            colorReset();
         }
 
 
@@ -277,10 +278,6 @@ namespace SalesManagement_SysDev
                 string riyuu = TBRiyuu.Text;
 
                 // 条件精査
-
-
-
-
 
                 if (TBJyutyuID.Text == null)
                 {
@@ -1259,6 +1256,9 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

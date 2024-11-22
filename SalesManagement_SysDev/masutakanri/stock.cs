@@ -91,6 +91,7 @@ namespace SalesManagement_SysDev
             StFlag.Checked = false;
             CurrentStatus.ResetStatus(label2);
             TBZaikoID.BackColor = Color.White;
+            colorReset();
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -219,11 +220,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int shouhin;
-                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
-                {
-                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                
                 if (TBSyohinID.Text == "")
                 {
                     TBSyohinID.BackColor = Color.Yellow;
@@ -236,6 +233,11 @@ namespace SalesManagement_SysDev
                     TBZaiko.BackColor = Color.Yellow;
                     TBZaiko.Focus();
                     MessageBox.Show("在庫数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
+                {
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var newstock = new TStock

@@ -81,6 +81,7 @@ namespace SalesManagement_SysDev
             TBRiyuu.Text = "";
             CurrentStatus.ResetStatus(label2);
             TBKokyakuID.BackColor = Color.White;
+            colorReset();
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -252,11 +253,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int shop;
-                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
-                {
-                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                
                 if (TBShopID.Text == "")
                 {
                     TBShopID.BackColor = Color.Yellow;
@@ -297,6 +294,11 @@ namespace SalesManagement_SysDev
                     TBFax.BackColor = Color.Yellow;
                     TBFax.Focus();
                     MessageBox.Show("FAXを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
+                {
+                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var newcustomer = new MClient

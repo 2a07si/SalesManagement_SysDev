@@ -92,6 +92,7 @@ namespace SalesManagement_SysDev
             date.Value = DateTime.Now;
             CurrentStatus.ResetStatus(label2);
             TBSyainID.BackColor = Color.White;
+            colorReset();
         }
 
         private void date_ValueChanged(object sender, EventArgs e)
