@@ -53,14 +53,14 @@ namespace SalesManagement_SysDev.Main_LoginForm
             TBold.Location = new Point(400, 220);
             TBold.Name = "TBold";
             TBold.Size = new Size(200, 31);
-            TBold.TabIndex = 0;
+            TBold.TabIndex = 1;
             // 
             // TBnew
             // 
             TBnew.Location = new Point(400, 320);
             TBnew.Name = "TBnew";
             TBnew.Size = new Size(200, 31);
-            TBnew.TabIndex = 0;
+            TBnew.TabIndex = 2;
             // 
             // user
             // 
@@ -96,7 +96,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             kakutei.Location = new Point(425, 400);
             kakutei.Name = "kakutei";
             kakutei.Size = new Size(150, 70);
-            kakutei.TabIndex = 2;
+            kakutei.TabIndex = 3;
             kakutei.Text = "確定";
             kakutei.UseVisualStyleBackColor = false;
             kakutei.Click += kakutei_Click;
@@ -116,7 +116,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             B_return.Location = new Point(830, 25);
             B_return.Name = "B_return";
             B_return.Size = new Size(112, 34);
-            B_return.TabIndex = 3;
+            B_return.TabIndex = 4;
             B_return.Text = "戻る";
             B_return.UseVisualStyleBackColor = true;
             B_return.Click += B_return_Click;
