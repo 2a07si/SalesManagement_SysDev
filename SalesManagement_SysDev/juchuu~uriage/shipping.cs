@@ -1266,6 +1266,11 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
+        private void b_sal_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
 
