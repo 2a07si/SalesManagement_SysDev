@@ -9,7 +9,6 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static SalesManagement_SysDev.Classまとめ.GlobalBadge;
 
 namespace SalesManagement_SysDev

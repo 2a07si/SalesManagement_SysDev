@@ -283,7 +283,6 @@ namespace SalesManagement_SysDev
             panel1.Name = "panel1";
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 4;
-            panel1.Paint += panel1_Paint;
             // 
             // label14
             // 

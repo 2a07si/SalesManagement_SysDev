@@ -995,9 +995,7 @@ namespace SalesManagement_SysDev
 
         private void AddLoginLog()
         {
-<<<<<<< HEAD
             MessageBox.Show("AddLoginHistoryŽÀs");
-=======
             using (var context = new SalesManagementContext())
             {
                 var log = context.LoginHistoryLogs.FirstOrDefault();
@@ -1009,7 +1007,6 @@ namespace SalesManagement_SysDev
 
                 };
             }
->>>>>>> e868ddc05403ca3c744e167eb85dd52771ad68fc
             try
             {
                 using (var context = new SalesManagementContext())
