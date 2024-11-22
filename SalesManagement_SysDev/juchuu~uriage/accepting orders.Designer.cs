@@ -602,6 +602,7 @@ namespace SalesManagement_SysDev
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
             b_arr.Click += b_arr_Click;
+            b_arr.Paint += b_arr_Paint;
             // 
             // b_sal
             // 
@@ -615,6 +616,7 @@ namespace SalesManagement_SysDev
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
             b_sal.Click += b_sal_Click;
+            b_sal.Paint += b_sal_Paint;
             // 
             // b_ord
             // 
@@ -640,6 +642,7 @@ namespace SalesManagement_SysDev
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
             b_shi.Click += b_shi_Click;
+            b_shi.Paint += b_shi_Paint;
             // 
             // b_acc
             // 
@@ -652,6 +655,7 @@ namespace SalesManagement_SysDev
             b_acc.TabIndex = 271;
             b_acc.Text = "受注";
             b_acc.UseVisualStyleBackColor = false;
+            b_acc.Paint += b_acc_Paint;
             // 
             // b_lss
             // 
@@ -665,6 +669,7 @@ namespace SalesManagement_SysDev
             b_lss.Text = "出庫";
             b_lss.UseVisualStyleBackColor = false;
             b_lss.Click += b_lss_Click;
+            b_lss.Paint += b_lss_Paint;
             // 
             // acceptingorders
             // 

@@ -161,6 +161,7 @@
             b_hor.TabIndex = 8;
             b_hor.Text = "発注";
             b_hor.UseVisualStyleBackColor = false;
+            b_hor.Paint += b_hor_Paint;
             // 
             // b_rec
             // 
@@ -174,6 +175,7 @@
             b_rec.Text = "入庫";
             b_rec.UseVisualStyleBackColor = false;
             b_rec.Click += b_rec_Click;
+            b_rec.Paint += b_rec_Paint;
             // 
             // panel1
             // 
