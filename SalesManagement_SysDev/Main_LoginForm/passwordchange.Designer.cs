@@ -104,11 +104,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(412, 30);
+            label1.Location = new Point(445, 30);
             label1.Name = "label1";
-            label1.Size = new Size(174, 25);
+            label1.Size = new Size(115, 25);
             label1.TabIndex = 1;
-            label1.Text = "ぱしわぁどちぇんじほーむ";
+            label1.Text = "パスワード変更";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // B_return
