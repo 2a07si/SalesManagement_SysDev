@@ -380,7 +380,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                
+
 
                 var newReceivingStock = new TWarehousing
                 {
@@ -613,7 +613,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量が無効です。正の整数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
                 var existingOrderDetail = context.TWarehousingDetails.FirstOrDefault(o => o.WaID == warehousingID);
                 if (existingOrderDetail != null)
                 {
@@ -977,6 +977,41 @@ namespace SalesManagement_SysDev
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void b_hor_Paint(object sender, PaintEventArgs e)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
+            }
+        }
+
+        private void b_rec_Paint(object sender, PaintEventArgs e)
+        {
+            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+            // ボタンを取得
+            Button button = sender as Button;
+
+            // バッジを描画
+            if (button != null)
+            {
+                badge.pinpoint(e, button);
             }
         }
     }
