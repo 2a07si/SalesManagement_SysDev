@@ -1297,12 +1297,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TOrders.Count(order => order.OrFlag == 0 || order.OrFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1318,12 +1320,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TChumons.Count(order => order.ChFlag == 0 || order.ChFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1339,12 +1343,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TSyukkos.Count(order => order.SyFlag == 0 || order.SyFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1360,12 +1366,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1381,12 +1389,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TShipments.Count(order => order.ShFlag == 0 || order.ShFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
