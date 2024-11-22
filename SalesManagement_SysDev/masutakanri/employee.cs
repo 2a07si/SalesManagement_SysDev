@@ -245,6 +245,7 @@ namespace SalesManagement_SysDev
             }
 
         }
+
         private void RegisterEmployee()
         {
             string ShainID = TBSyainID.Text;
@@ -255,6 +256,7 @@ namespace SalesManagement_SysDev
             string Pass = TBPass.Text;
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
+
             if (TBSyainID.Text == "")
             {
                 TBSyainID.BackColor = Color.Yellow;
@@ -297,8 +299,19 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             using (var context = new SalesManagementContext())
             {
+                // すでに存在する社員IDか確認
+                int emID;
+                if (!int.TryParse(ShainID, out emID) || context.MEmployees.Any(e => e.EmID == emID))
+                {
+                    TBSyainID.BackColor = Color.Yellow;
+                    TBSyainID.Focus();
+                    MessageBox.Show("既に登録されている社員IDです", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 int shop;
                 if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
@@ -306,7 +319,6 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // EmIdがMEmployeeテーブルに存在するか確認
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
                 {
@@ -324,7 +336,7 @@ namespace SalesManagement_SysDev
                     EmPassword = Pass,
                     EmPhone = TelNo,
                     EmFlag = delFlag ? 1 : 0,
-                    // EmHidden = TBRiyuu
+                    EmHidden = TBRiyuu.Text
                 };
 
                 context.MEmployees.Add(newEmployee);
