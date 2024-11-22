@@ -1197,6 +1197,17 @@ namespace SalesManagement_SysDev
                 badge.pinpoint(e, button);
             }
         }
+        private void countFlag()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count == 0)
+                {
+                    this.Invalidate();
+                }
+            }
+        }
     }
 }
 

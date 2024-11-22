@@ -380,6 +380,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             DisplayOrders();
                             DisplayOrderDetails();
+                            countFlag();
                         }
                         catch (Exception ex)
                         {
@@ -1259,85 +1260,120 @@ namespace SalesManagement_SysDev
 
         private void b_ord_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.pinpoint(e, button);
+                int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
+                GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
             }
         }
 
         private void b_acc_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.pinpoint(e, button);
+                int count = context.TOrders.Count(order => order.OrFlag == 0 || order.OrFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
             }
         }
 
         private void b_lss_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.pinpoint(e, button);
+                int count = context.TSyukkos.Count(order => order.SyStateFlag == 0 || order.SyStateFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
             }
         }
 
         private void b_arr_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.pinpoint(e, button);
+                int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
+
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
             }
         }
 
         private void b_shi_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.pinpoint(e, button);
+                int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null); // 通知数を指定
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
             }
         }
 
-        private void b_sal_Paint(object sender, PaintEventArgs e)
+        private void countFlag()
         {
-            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.pinpoint(e, button);
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count == 0)
+                {
+                    this.Invalidate();
+                }
             }
         }
     }
