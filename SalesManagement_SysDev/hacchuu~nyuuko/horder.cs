@@ -1002,15 +1002,22 @@ namespace SalesManagement_SysDev
 
         private void b_hor_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.pinpoint(e, button);
+                int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
             }
         }
 
