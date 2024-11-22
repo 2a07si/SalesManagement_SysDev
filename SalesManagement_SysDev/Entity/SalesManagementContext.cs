@@ -67,6 +67,8 @@ public partial class SalesManagementContext : DbContext
 
     public virtual DbSet<LoginHistoryLog> LoginHistoryLogs { get; set; }
 
+    public virtual DbSet<LoginHistoryLogDetail> LoginHistoryLogDetails { get; set; }
+
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -79,6 +81,14 @@ public partial class SalesManagementContext : DbContext
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<LoginHistoryLog>().ToTable("LoginHistoryLogs");
 
+        modelBuilder.Entity<LoginHistoryLogDetail>(entity =>
+        {
+            entity.HasKey(e => e.DetailID); // 主キーの設定
+
+            entity.HasOne(e => e.LoginHistoryLog)
+                .WithMany()
+                .HasForeignKey(e => e.ID); // 外部キーの設定
+        });
 
         modelBuilder.Entity<Entity.LoginHistoryLog>(entity =>
         {
