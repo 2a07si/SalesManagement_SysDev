@@ -361,6 +361,44 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     int shop;
+                    if (TBShopID.Text == null)
+                    {
+                        TBaaaaaID.BackColor = Color.Yellow;
+                        TBaaaaaID.Focus();
+                        MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBShainID.Text == null)
+                    {
+                        TBShainID.BackColor = Color.Yellow;
+                        TBShainID.Focus();
+                        MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBKokyakuID.Text == null)
+                    {
+                        TBKokyakuID.BackColor = Color.Yellow;
+                        TBKokyakuID.Focus();
+                        MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBJyutyuID.Text == null)
+                    {
+                        TBJyutyuID.BackColor = Color.Yellow;
+                        TBJyutyuID.Focus();
+                        MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (TBShainID.Text != empID)
+                    {
+                        MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
+                        TBShainID.BackColor = Color.Yellow;
+                        TBShainID.Focus();
+                        return;
+                    }
                     if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                     {
                         TBShopID.BackColor = Color.Yellow;
@@ -396,44 +434,7 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    if (TBShopID.Text == null)
-                    {
-                        TBaaaaaID.BackColor = Color.Yellow;
-                        TBaaaaaID.Focus();
-                        MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (TBShainID.Text == null)
-                    {
-                        TBShainID.BackColor = Color.Yellow;
-                        TBShainID.Focus();
-                        MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (TBKokyakuID.Text == null)
-                    {
-                        TBKokyakuID.BackColor= Color.Yellow;
-                        TBKokyakuID.Focus();
-                        MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (TBJyutyuID.Text == null)
-                    {
-                        TBJyutyuID.BackColor = Color.Yellow;
-                        TBJyutyuID.Focus();
-                        MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (TBShainID.Text != empID)
-                    {
-                        MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
-                        TBShainID.BackColor = Color.Yellow;
-                        TBShainID.Focus();
-                        return;
-                    }
+                    
 
                     var newSale = new TSale
                     {
@@ -638,6 +639,27 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
+                    if (TBUriageIDS.Text == "")
+                    {
+                        TBUriageIDS.BackColor = Color.Yellow;
+                        MessageBox.Show("売上IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+
+                    if (TBSyohinID.Text == "")
+                    {
+                        TBSyohinID.BackColor = Color.Yellow;
+                        MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (TBSuryou.Text == "")
+                    {
+                        TBSuryou.BackColor = Color.Yellow;
+                        MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     // 売上IDの検証
                     if (!int.TryParse(uriageID, out int uriage) || !context.TSales.Any(s => s.SaID == uriage))
                     {
@@ -659,24 +681,7 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    if (TBUriageIDS.Text == "")
-                    {
-                        MessageBox.Show("売上IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-
-                    if (TBSyohinID.Text == "")
-                    {
-                        MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (TBSuryou.Text == "")
-                    {
-                        MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    
                     var existingOrderDetail = context.TSaleDetails.FirstOrDefault(o => o.SaID == uriage);
                     if (existingOrderDetail != null)
                     {

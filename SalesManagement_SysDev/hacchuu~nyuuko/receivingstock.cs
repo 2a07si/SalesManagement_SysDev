@@ -568,28 +568,6 @@ namespace SalesManagement_SysDev
             {
                 // WaIDがTWarehousingテーブルに存在するか確認
                 int warehousingID;
-                if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
-                {
-                    MessageBox.Show("入庫IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // PrIDがTProductテーブルに存在するか確認
-                int productID;
-                if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
-                {
-                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                int quantity;
-                if (!int.TryParse(suryou, out quantity) || quantity <= 0)
-                {
-                    TBSuryou.BackColor = Color.Yellow;
-                    TBSuryou.Focus();
-                    MessageBox.Show("数量が無効です。正の整数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
                 if (TBNyuukoIDS.Text == "")
                 {
                     TBNyuukoIDS.BackColor = Color.Yellow;
@@ -614,6 +592,29 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
+                {
+                    MessageBox.Show("入庫IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // PrIDがTProductテーブルに存在するか確認
+                int productID;
+                if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
+                {
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int quantity;
+                if (!int.TryParse(suryou, out quantity) || quantity <= 0)
+                {
+                    TBSuryou.BackColor = Color.Yellow;
+                    TBSuryou.Focus();
+                    MessageBox.Show("数量が無効です。正の整数を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                
                 var existingOrderDetail = context.TWarehousingDetails.FirstOrDefault(o => o.WaID == warehousingID);
                 if (existingOrderDetail != null)
                 {
