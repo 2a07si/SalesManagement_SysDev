@@ -189,7 +189,6 @@
             b_sal.TabIndex = 14;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
-            b_sal.Paint += b_sal_Paint;
             // 
             // b_ord
             // 
