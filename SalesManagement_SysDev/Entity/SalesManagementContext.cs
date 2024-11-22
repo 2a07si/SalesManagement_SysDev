@@ -76,6 +76,36 @@ public partial class SalesManagementContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<LoginHistoryLog>(entity =>
+        {
+            entity.HasKey(e => e.ID).HasName("PK_LoginHistoryLog");
+
+            entity.ToTable("LoginHistoryLog");
+
+            entity.Property(e => e.ID).HasColumnName("ID");
+
+            entity.Property(e => e.LoginID)
+                .HasMaxLength(50)
+                .HasColumnName("LoginID")
+                .IsRequired();  // 必須
+
+            entity.Property(e => e.Password)
+                .HasMaxLength(255)
+                .HasColumnName("Password")
+                .IsRequired();  // 必須
+
+            entity.Property(e => e.LoginDateTime)
+                .HasColumnType("datetime")
+                .HasColumnName("LoginDateTime")
+                .IsRequired();  // 必須
+
+            entity.Property(e => e.IsSuccessful)
+                .HasColumnType("bit")
+                .HasColumnName("IsSuccessful");
+                
+        });
+
+
         modelBuilder.Entity<MClient>(entity =>
         {
             entity.HasKey(e => e.ClID).HasName("PK__M_Client__B1FCF8D58C35E4D2");

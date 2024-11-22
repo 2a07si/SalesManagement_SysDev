@@ -273,20 +273,6 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int maker;
-                if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaID == maker))
-                {
-                    MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // EmIDがMEmployeeテーブルに存在するか確認
-                int shoubunrui;
-                if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScID == shoubunrui))
-                {
-                    MessageBox.Show("小分類IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 if (TBMakerID.Text == "")
                 {
                     TBMakerID.BackColor = Color.Yellow;
@@ -336,6 +322,20 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("色を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaID == maker))
+                {
+                    MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // EmIDがMEmployeeテーブルに存在するか確認
+                int shoubunrui;
+                if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScID == shoubunrui))
+                {
+                    MessageBox.Show("小分類IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var newProducts = new MProduct
                 {
                     MaID = int.Parse(MakerID),

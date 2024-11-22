@@ -282,10 +282,6 @@ namespace SalesManagement_SysDev
 
                 // 条件精査
 
-
-
-
-
                 if (TBJyutyuID.Text == null)
                 {
                     TBJyutyuID.BackColor = Color.Yellow;

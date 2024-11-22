@@ -748,7 +748,7 @@ namespace SalesManagement_SysDev
             dateNameLabel.UpdateDateTime(); // 日付と時間のラベルを更新
         }
 
-       
+
 
         private void B_login_Click(object sender, EventArgs e)
         {
@@ -948,6 +948,8 @@ namespace SalesManagement_SysDev
                     var employeeService = new EmployeeService(context);
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
+                        MessageBox.Show("ログイン成功、登録処理開始");
+                        AddLoginLog();
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
@@ -974,10 +976,10 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("予期しないエラーが発生しました。システム管理者にお問い合わせください。", "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-     
+
         }
 
-        private void updateLoginLog()
+        private void AddLoginLog()
         {
             using (var context = new SalesManagementContext())
             {
@@ -987,10 +989,37 @@ namespace SalesManagement_SysDev
                 }
                 var Log = new LoginHistoryLog
                 {
-                    
+
                 };
             }
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var logEntry = new LoginHistoryLog
+                    {
+                        LoginID = tb_ID.Text,
+                        LoginDateTime = DateTime.Now,
+                        IsSuccessful = true
+                    };
+                    context.LoginHistoryLogs.Add(logEntry);
+                    context.SaveChanges();
+                    MessageBox.Show("登録成功");
+                }
+            }
+            catch (Exception ex)
+            {
+                // 内部例外を表示する
+                MessageBox.Show($"エラー: {ex.Message}\n内部例外: {ex.InnerException?.Message}");
+            }
+
         }
+
+        private void passwordchange_Click(object sender, EventArgs e)
+        {
+            classChangeForms.passwordchange();
+        }
+
     }
 
 }
