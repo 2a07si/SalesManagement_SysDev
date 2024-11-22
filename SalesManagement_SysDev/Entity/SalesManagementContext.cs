@@ -66,7 +66,9 @@ public partial class SalesManagementContext : DbContext
     public virtual DbSet<TWarehousing> TWarehousings { get; set; }
 
     public virtual DbSet<LoginHistoryLog> LoginHistoryLogs { get; set; }
-    
+
+    public virtual DbSet<LoginHistoryLog> LoginHistorys { get; set; }
+
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -76,7 +78,11 @@ public partial class SalesManagementContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<LoginHistoryLog>(entity =>
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<LoginHistoryLog>().ToTable("LoginHistoryLogs");
+
+
+        modelBuilder.Entity<Entity.LoginHistoryLog>(entity =>
         {
             entity.HasKey(e => e.ID).HasName("PK_LoginHistoryLog");
 
@@ -91,8 +97,7 @@ public partial class SalesManagementContext : DbContext
 
             entity.Property(e => e.Password)
                 .HasMaxLength(255)
-                .HasColumnName("Password")
-                .IsRequired();  // 必須
+                .HasColumnName("Password");
 
             entity.Property(e => e.LoginDateTime)
                 .HasColumnType("datetime")

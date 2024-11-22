@@ -31,6 +31,20 @@ namespace SalesManagement_SysDev
             this.timerManager = new ClassTimerManager(timer1, labeltime, labeldate);
             this.classChangeForms = new ClassChangeForms(this);
             timer1.Start();
+
+            // ローカルDBへの接続文字列
+            string connectionString = @"Server=(LocalDB)\MSSQLLocalDB;Integrated Security=true;";
+
+            // テーブル名を指定
+            string tableName = "LoginHistoryLogs";
+
+            // テーブルが存在するかを確認するSQLクエリ
+            string query = $@"
+            SELECT COUNT(*) 
+            FROM INFORMATION_SCHEMA.TABLES 
+            WHERE TABLE_NAME = '{tableName}'";
+
+            
         }
 
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -981,6 +995,7 @@ namespace SalesManagement_SysDev
 
         private void AddLoginLog()
         {
+            MessageBox.Show("AddLoginHistory実行");
             using (var context = new SalesManagementContext())
             {
                 var log = context.LoginHistoryLogs.FirstOrDefault();
@@ -996,8 +1011,10 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
+
                     var logEntry = new LoginHistoryLog
                     {
+                        Password = tb_Pass.Text,
                         LoginID = tb_ID.Text,
                         LoginDateTime = DateTime.Now,
                         IsSuccessful = true
