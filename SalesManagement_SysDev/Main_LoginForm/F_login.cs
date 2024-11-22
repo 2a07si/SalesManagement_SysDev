@@ -808,7 +808,6 @@ namespace SalesManagement_SysDev
                     var employeeService = new EmployeeService(context);
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
-                        AddLoginLog();
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
@@ -996,7 +995,6 @@ namespace SalesManagement_SysDev
 
         private void AddLoginLog()
         {
-            MessageBox.Show("AddLoginHistoryé¿çs");
             using (var context = new SalesManagementContext())
             {
                 var log = context.LoginHistoryLogs.FirstOrDefault();
@@ -1008,6 +1006,7 @@ namespace SalesManagement_SysDev
 
                 };
             }
+            MessageBox.Show("AddLoginHistoryé¿çs");
             try
             {
                 using (var context = new SalesManagementContext())

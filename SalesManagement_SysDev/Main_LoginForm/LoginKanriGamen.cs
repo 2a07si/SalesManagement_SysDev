@@ -66,6 +66,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             SetupNumericOnlyTextBoxes();
 
             DisplayLoginLog();
+            DisplayRogDetail();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -222,6 +223,36 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                     // DataGridView にデータをバインド
                     dataGridView1.DataSource = logData;
+                }
+            }
+            catch (Exception ex)
+            {
+                // 例外発生時にエラーメッセージを表示
+                MessageBox.Show($"エラー: {ex.Message}", "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DisplayRogDetail()
+        {
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var logData = context.LoginHistoryLogDetails
+                        .Select(o => new
+                        {
+                            o.DetailID,
+                            o.ID,
+                            o.Display,
+                            o.Mode,
+                            o.Process,
+                            o.LogID,
+                            o.AcceptDateTime
+                        })
+                        .ToList();
+
+                    // DataGridView にデータをバインド
+                    dataGridView2.DataSource = logData;
                 }
             }
             catch (Exception ex)

@@ -696,6 +696,9 @@ namespace SalesManagement_SysDev
                         context.SaveChanges();
                         MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayOrderDetails();
+                        Log_Accept(orderDetail.OrDetailID);
+                        
+                        MessageBox.Show("ログ登録完了");
                     }
                     else
                     {
