@@ -757,7 +757,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("入荷IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
 
                 // EmIDがMEmployeeテーブルに存在するか確認 
                 int shouhin;
@@ -1181,6 +1181,20 @@ namespace SalesManagement_SysDev
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void b_acc_Paint(object sender, PaintEventArgs e)
+        {
+            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+
+            // ボタンを取得
+            Button button = sender as Button;
+
+            // バッジを描画
+            if (button != null)
+            {
+                badge.pinpoint(e, button);
             }
         }
     }

@@ -35,7 +35,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             LoadEmployeeName(); // 従業員名をデータベースから取得して表示 
             SetButtonPermissions(); // ボタンの権限を設定
             GlobalEmp.EmployeeName = label_ename.Text;
-            
+
         }
         // 従業員名をデータベースから取得して表示するメソッド
         private void LoadEmployeeName()
@@ -258,29 +258,50 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void b_JU_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.DrawBadge(e, button);
+                int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
+                count += context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
+                count += context.TSyukkos.Count(order => order.SyStateFlag == 0 || order.SyStateFlag == null);
+                count += context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
+                count += context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
+
+                if(count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.DrawBadge(e, button);
+                    }
+                }
             }
         }
 
         private void b_HN_Paint(object sender, PaintEventArgs e)
         {
-            GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
-
-            // ボタンを取得
-            Button button = sender as Button;
-
-            // バッジを描画
-            if (button != null)
+            using (var context = new SalesManagementContext())
             {
-                badge.DrawBadge(e, button);
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                count += context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
+
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
+
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.DrawBadge(e, button);
+                    }
+                }
             }
         }
 
@@ -290,15 +311,18 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-
-                // ボタンを取得
-                Button button = sender as Button;
-
-                // バッジを描画
-                if (button != null)
+                if(count > 0)
                 {
-                    badge.SecondBadge(e, button);
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.SecondBadge(e, button);
+                    }
                 }
+                
             }
         }
 
@@ -308,14 +332,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-
-                // ボタンを取得
-                Button button = sender as Button;
-
-                // バッジを描画
-                if (button != null)
+                if (count > 0)
                 {
-                    badge.SecondBadge(e, button);
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.SecondBadge(e, button);
+                    }
                 }
             }
         }
@@ -327,13 +353,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 int count = context.TSyukkos.Count(order => order.SyStateFlag == 0 || order.SyStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
 
-                // ボタンを取得
-                Button button = sender as Button;
-
-                // バッジを描画
-                if (button != null)
+                if (count > 0)
                 {
-                    badge.SecondBadge(e, button);
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.SecondBadge(e, button);
+                    }
                 }
             }
         }
@@ -345,13 +374,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
 
-                // ボタンを取得
-                Button button = sender as Button;
-
-                // バッジを描画
-                if (button != null)
+                if (count > 0)
                 {
-                    badge.SecondBadge(e, button);
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.SecondBadge(e, button);
+                    }
                 }
             }
         }
@@ -362,14 +394,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-
-                // ボタンを取得
-                Button button = sender as Button;
-
-                // バッジを描画
-                if (button != null)
+                if (count > 0)
                 {
-                    badge.SecondBadge(e, button);
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.SecondBadge(e, button);
+                    }
                 }
             }
         }
@@ -380,14 +414,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-
-                // ボタンを取得
-                Button button = sender as Button;
-
-                // バッジを描画
-                if (button != null)
+                if (count > 0)
                 {
-                    badge.SecondBadge(e, button);
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.SecondBadge(e, button);
+                    }
                 }
             }
         }
@@ -398,14 +434,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-
-                // ボタンを取得
-                Button button = sender as Button;
-
-                // バッジを描画
-                if (button != null)
+                if (count > 0)
                 {
-                    badge.SecondBadge(e, button);
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.SecondBadge(e, button);
+                    }
                 }
             }
         }
