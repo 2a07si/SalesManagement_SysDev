@@ -341,6 +341,7 @@ namespace SalesManagement_SysDev
                     {
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
+                        Log_Arrival(arrival.ArID);
                         DisplayArrivals();
                         DisplayArrivalDetails();
                         countFlag();
@@ -509,6 +510,7 @@ namespace SalesManagement_SysDev
                         // 新規入荷情報を保存
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
+                        Log_Arrival(newArrival.ArID);
                         DisplayArrivals(); // 入荷情報を再表示
                     }
                     catch (DbUpdateException ex)
@@ -709,6 +711,7 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
 
                     MessageBox.Show("入荷詳細の更新が成功しました。");
+                    Log_Arrival(arrivalDetail.ArDetailID);
                     DisplayArrivalDetails();
                     countFlag();
                 }
@@ -788,6 +791,7 @@ namespace SalesManagement_SysDev
                 context.TArrivalDetails.Add(newArrivalDetail);
                 context.SaveChanges();
                 MessageBox.Show("入荷詳細の登録が成功しました。");
+                Log_Arrival(newArrivalDetail.ArDetailID);
                 DisplayArrivalDetails();
             }
         }
@@ -1315,10 +1319,10 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void Log_Accept(int id)
+        private void Log_Arrival(int id)
         {
             string ModeFlag = "";
-            if (orderFlag == "←通常")
+            if (arrivalFlag == "←通常")
             {
                 ModeFlag = "通常";
             }
@@ -1341,7 +1345,7 @@ namespace SalesManagement_SysDev
                         var LogDet = new LoginHistoryLogDetail
                         {
                             ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
-                            Display = "受注",
+                            Display = "入荷",
                             Mode = ModeFlag,
                             Process = label2.Text,
                             LogID = id,  //

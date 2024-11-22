@@ -9,7 +9,7 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
-
+using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev
 {
@@ -339,6 +339,8 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
                     DisplaySales();
+                    DisplaySaleDetails();
+                    Log_Sale(sales.SaID);
                 }
                 else
                 {
@@ -450,6 +452,7 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplaySales();
+                    Log_Sale(newSale.SaID);
                 }
             }
             catch (FormatException)
@@ -556,7 +559,7 @@ namespace SalesManagement_SysDev
                         社員ID = sale.EmID,
                         受注ID = sale.OrID,
                         受注日 = sale.SaDate,
-                        削除フラグ = DelFlag.Checked ? "〇" : "×"
+                        削除フラグ = DelFlag.Checked ? 1 : 0
                     }).ToList();
                 }
                 else
@@ -618,6 +621,7 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
                     MessageBox.Show("売上詳細の更新が成功しました。");
                     DisplaySaleDetails();
+                    Log_Sale(saleDetail.SaDetailID);
                 }
                 else
                 {
@@ -725,6 +729,7 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
                     MessageBox.Show("売上詳細の登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplaySaleDetails();
+                    Log_Sale(newSaleDetail.SaDetailID);
 
                     // DisplaySaleDetailsの呼び出し
                     try
@@ -1221,8 +1226,55 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+        private void Log_Sale(int id)
+        {
+            string ModeFlag = "";
+            if (saleFlag == "←通常")
+            {
+                ModeFlag = "通常";
+            }
+            else
+            {
+                ModeFlag = "詳細";
+            }
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // 最新のLoginHistoryLogを取得
+                    var latestLoginHistory = context.LoginHistoryLogs
+                                                    .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
+                                                    .FirstOrDefault();  // 最新のログを取得
 
-        
+                    if (latestLoginHistory != null)
+                    {
+                        // 最新のログが見つかった場合、そのIDを設定
+                        var LogDet = new LoginHistoryLogDetail
+                        {
+                            ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
+                            Display = "売上",
+                            Mode = ModeFlag,
+                            Process = label2.Text,
+                            LogID = id,  //
+                            AcceptDateTime = DateTime.Now
+                        };
+
+                        context.LoginHistoryLogDetails.Add(LogDet);  // 新しいログ履歴を登録
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("最新のログ履歴が見つかりませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Logへの登録に失敗しました:" + ex.Message);
+            }
+        }
+
+
     }
 
 

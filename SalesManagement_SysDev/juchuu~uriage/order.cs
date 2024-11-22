@@ -9,7 +9,7 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
-
+using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev
 {
@@ -378,6 +378,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("注文更新が成功しました。");
                             DisplayOrders();
                             countFlag();
+                            Log_Order(order.OrID);
                         }
                         catch (Exception ex)
                         {
@@ -503,6 +504,7 @@ namespace SalesManagement_SysDev
 
                         context.TChumons.Add(newOrder);
                         context.SaveChanges(); // 保存後に自動で ChID が設定される 
+                        Log_Order(newOrder.OrID);
 
                         // 新規登録した注文の ChID を取得 
                         int newChID = newOrder.ChID;
@@ -753,6 +755,7 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
                     MessageBox.Show("注文詳細の更新が成功しました。");
                     DisplayOrderDetails();
+                    Log_Order(orderDetail.ChDetailID);
                 }
                 else
                 {
@@ -828,6 +831,7 @@ namespace SalesManagement_SysDev
                 context.SaveChanges();
                 MessageBox.Show("注文詳細の登録が成功しました。");
                 DisplayOrderDetails();
+                Log_Order(newOrderDetail.ChDetailID);
             }
         }
 
@@ -1151,7 +1155,7 @@ namespace SalesManagement_SysDev
 
                     context.THattyuDetails.Add(newHattyuDetail);
                     context.SaveChanges();
-
+                    
                     MessageBox.Show("発注登録が完了しました");
                 }
             }
@@ -1419,6 +1423,55 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+        private void Log_Order(int id)
+        {
+            string ModeFlag = "";
+            if (orderFlag == "←通常")
+            {
+                ModeFlag = "通常";
+            }
+            else
+            {
+                ModeFlag = "詳細";
+            }
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // 最新のLoginHistoryLogを取得
+                    var latestLoginHistory = context.LoginHistoryLogs
+                                                    .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
+                                                    .FirstOrDefault();  // 最新のログを取得
+
+                    if (latestLoginHistory != null)
+                    {
+                        // 最新のログが見つかった場合、そのIDを設定
+                        var LogDet = new LoginHistoryLogDetail
+                        {
+                            ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
+                            Display = "注文",
+                            Mode = ModeFlag,
+                            Process = label2.Text,
+                            LogID = id,  //
+                            AcceptDateTime = DateTime.Now
+                        };
+
+                        context.LoginHistoryLogDetails.Add(LogDet);  // 新しいログ履歴を登録
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("最新のログ履歴が見つかりませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Logへの登録に失敗しました:" + ex.Message);
+            }
+        }
+
+
     }
 }
 

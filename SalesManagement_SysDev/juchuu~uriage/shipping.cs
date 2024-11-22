@@ -9,7 +9,7 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using Microsoft.EntityFrameworkCore;
-
+using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev
 {
@@ -356,6 +356,7 @@ namespace SalesManagement_SysDev
                         DisplayShipping(); // 更新後に出荷情報を再表示
                         DisplayShippingDetails();
                         countFlag();
+                        Log_Shipping(shipping.SoID);
                     }
                     catch (DbUpdateException ex)
                     {
@@ -499,6 +500,7 @@ namespace SalesManagement_SysDev
                         // データを保存
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
+                        Log_Shipping(newShipping.ShID);
 
                         // 出荷情報が登録されたら、出荷確認を行う
                         if (shipFlag)
@@ -698,6 +700,7 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
                     MessageBox.Show("出荷詳細の更新が成功しました。");
                     DisplayShippingDetails();
+                    Log_Shipping(shippingDetail.ShDetailID);
                 }
                 else
                 {
@@ -771,6 +774,7 @@ namespace SalesManagement_SysDev
                 context.SaveChanges();
                 MessageBox.Show("出荷詳細の登録が成功しました。");
                 DisplayShippingDetails();
+                Log_Shipping(newShippingDetail.ShDetailID);
             }
         }
 
@@ -1294,6 +1298,54 @@ namespace SalesManagement_SysDev
         {
 
         }
+        private void Log_Shipping(int id)
+        {
+            string ModeFlag = "";
+            if (shippingFlag == "←通常")
+            {
+                ModeFlag = "通常";
+            }
+            else
+            {
+                ModeFlag = "詳細";
+            }
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // 最新のLoginHistoryLogを取得
+                    var latestLoginHistory = context.LoginHistoryLogs
+                                                    .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
+                                                    .FirstOrDefault();  // 最新のログを取得
+
+                    if (latestLoginHistory != null)
+                    {
+                        // 最新のログが見つかった場合、そのIDを設定
+                        var LogDet = new LoginHistoryLogDetail
+                        {
+                            ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
+                            Display = "出荷",
+                            Mode = ModeFlag,
+                            Process = label2.Text,
+                            LogID = id,  //
+                            AcceptDateTime = DateTime.Now
+                        };
+
+                        context.LoginHistoryLogDetails.Add(LogDet);  // 新しいログ履歴を登録
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("最新のログ履歴が見つかりませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Logへの登録に失敗しました:" + ex.Message);
+            }
+        }
+
     }
 
 
