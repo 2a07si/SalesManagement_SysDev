@@ -305,6 +305,8 @@ namespace SalesManagement_SysDev
                         {
                             Global.AddStockUpdateMessage(detail.PrID, detail.WaQuantity); // メッセージ追加
                         }
+                        receivingStock.WaFlag = 1;
+                        receivingStock.WaHidden = "入庫確定処理済";
                     }
 
                     // 更新を保存 

@@ -302,6 +302,8 @@ namespace SalesManagement_SysDev
 
                         // 発注詳細が存在する場合、発注確認処理を実行
 
+                        hattyu.HaFlag = 1;
+                        hattyu.HaHidden = "発注確定処理済";
                         HorderConfirm(hattyu.HaID);
                     }
 
