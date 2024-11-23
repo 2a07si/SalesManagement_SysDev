@@ -354,7 +354,8 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("出庫詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
-
+                        issue.SyFlag = 1;
+                        issue.SyHidden = "出庫確定処理済";
                         // 出庫詳細が存在する場合、出庫確認処理を実行
                         IssueConfirm(int.Parse(JyutyuID), issue.SyID);
                     }

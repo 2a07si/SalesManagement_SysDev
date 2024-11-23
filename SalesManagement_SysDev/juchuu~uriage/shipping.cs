@@ -342,8 +342,10 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
-
+                        
                         context.SaveChanges();
+                        shipping.ShFlag = 1;
+                        shipping.ShHidden = "出荷確定処理済";
                         // 出荷詳細が存在する場合、出荷確認処理を実行
                         ShippingConfirm(shipping.ShID);
                     }

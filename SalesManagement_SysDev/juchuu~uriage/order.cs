@@ -359,7 +359,9 @@ namespace SalesManagement_SysDev
                                 OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 0, null);
                             }
                         }
-
+                        var orders = context.TChumons;
+                        order.ChFlag = 1;
+                        order.ChHidden = "注文処理確定済";
                         // 出庫処理が完了した場合、注文情報を保存 
                         try
                         {

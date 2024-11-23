@@ -333,6 +333,8 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("入荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+                        arrival.ArFlag = 1;
+                        arrival.ArHidden = "入荷確定処理済";
 
                         ArrivalConfirm(arrival.ArID);
                     }
