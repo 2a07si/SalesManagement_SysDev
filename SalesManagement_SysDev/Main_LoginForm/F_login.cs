@@ -762,8 +762,6 @@ namespace SalesManagement_SysDev
             dateNameLabel.UpdateDateTime(); // 日付と時間のラベルを更新
         }
 
-
-
         private void B_login_Click(object sender, EventArgs e)
         {
             try
@@ -808,7 +806,6 @@ namespace SalesManagement_SysDev
                     var employeeService = new EmployeeService(context);
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
-                        AddLoginLog();
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
@@ -996,7 +993,6 @@ namespace SalesManagement_SysDev
 
         private void AddLoginLog()
         {
-            MessageBox.Show("AddLoginHistory実行");
             using (var context = new SalesManagementContext())
             {
                 var log = context.LoginHistoryLogs.FirstOrDefault();
@@ -1008,6 +1004,7 @@ namespace SalesManagement_SysDev
 
                 };
             }
+            MessageBox.Show("AddLoginHistory実行");
             try
             {
                 using (var context = new SalesManagementContext())

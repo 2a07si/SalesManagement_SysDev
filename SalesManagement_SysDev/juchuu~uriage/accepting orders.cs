@@ -10,6 +10,7 @@ using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using static SalesManagement_SysDev.Classまとめ.GlobalBadge;
+using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev
 {
@@ -345,6 +346,12 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+                    var orderDetailsExist = context.TOrderDetails.Any(od => od.OrID == order.OrID);
+                    if (!orderDetailsExist)
+                    {
+                        MessageBox.Show("受注詳細が登録されていません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     if (order != null)
                     {
                         order.SoID = int.Parse(shopID);
@@ -365,6 +372,7 @@ namespace SalesManagement_SysDev
                         if (checkBox_2.Checked)
                         {
                             order.OrFlag = 1;
+                            order.OrHidden = "受注確定処理済";
                         }
 
                         try
@@ -376,7 +384,7 @@ namespace SalesManagement_SysDev
                                 // AcceptionConfirm実行
                                 AcceptionConfirm(int.Parse(jyutyuID));
                             }
-
+                            Log_Accept(order.OrID);
                             MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             DisplayOrders();
                             DisplayOrderDetails();
@@ -492,8 +500,10 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("受注詳細が登録されていません。。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+
                         AcceptionConfirm(newOrder.OrID);
                     }
+                    Log_Accept(newOrder.OrID);
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplayOrders();
                     DisplayOrderDetails();
@@ -695,6 +705,9 @@ namespace SalesManagement_SysDev
                         context.SaveChanges();
                         MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayOrderDetails();
+                        Log_Accept(orderDetail.OrDetailID);
+                        
+                        MessageBox.Show("ログ登録完了");
                     }
                     else
                     {
@@ -721,7 +734,6 @@ namespace SalesManagement_SysDev
                 string suryou = TBSuryou.Text;
                 string goukeiKingaku = TBGoukeiKingaku.Text;
 
-                MessageBox.Show("あ");
                 if ((string.IsNullOrWhiteSpace(TBJyutyuIDS.Text)))
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
@@ -790,6 +802,7 @@ namespace SalesManagement_SysDev
 
                     context.TOrderDetails.Add(newOrderDetail);
                     context.SaveChanges();
+                    Log_Accept(newOrderDetail.OrDetailID);
                     MessageBox.Show("受注詳細の登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplayOrderDetails();
                 }
@@ -830,7 +843,7 @@ namespace SalesManagement_SysDev
                         受注詳細ID = od.OrDetailID,
                         受注ID = od.OrID,
                         商品ID = od.PrID,
-                        数量 = od.OrQuantity,
+                        数量 = od.OrQuantity.ToString("N0"),
                         合計金額 = od.OrTotalPrice.ToString("N0")  // 3桁区切り 
                     }).ToList();
                 }
@@ -1239,12 +1252,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1260,12 +1275,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TOrders.Count(order => order.OrFlag == 0 || order.OrFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1281,12 +1298,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TSyukkos.Count(order => order.SyStateFlag == 0 || order.SyStateFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1303,12 +1322,14 @@ namespace SalesManagement_SysDev
             {
                 int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
 
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1324,12 +1345,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null); // 通知数を指定
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1351,5 +1374,53 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+        private void Log_Accept(int id)
+        {
+            string ModeFlag = "";
+            if(orderFlag == "←通常")
+            {
+                ModeFlag = "通常";
+            }
+            else
+            {
+                ModeFlag = "詳細";
+            }
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // 最新のLoginHistoryLogを取得
+                    var latestLoginHistory = context.LoginHistoryLogs
+                                                    .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
+                                                    .FirstOrDefault();  // 最新のログを取得
+
+                    if (latestLoginHistory != null)
+                    {
+                        // 最新のログが見つかった場合、そのIDを設定
+                        var LogDet = new LoginHistoryLogDetail
+                        {
+                            ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
+                            Display = "受注",
+                            Mode = ModeFlag,
+                            Process = label2.Text,
+                            LogID = id,  //
+                            AcceptDateTime = DateTime.Now
+                        };
+
+                        context.LoginHistoryLogDetails.Add(LogDet);  // 新しいログ履歴を登録
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("最新のログ履歴が見つかりませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Logへの登録に失敗しました:" + ex.Message);
+            }
+        }
+
     }
 }

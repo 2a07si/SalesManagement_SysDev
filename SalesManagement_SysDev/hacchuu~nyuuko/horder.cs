@@ -8,6 +8,7 @@ using static SalesManagement_SysDev.Classまとめ.LabelStatus;
 using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
+using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev
 {
@@ -301,6 +302,8 @@ namespace SalesManagement_SysDev
 
                         // 発注詳細が存在する場合、発注確認処理を実行
 
+                        hattyu.HaFlag = 1;
+                        hattyu.HaHidden = "発注確定処理済";
                         HorderConfirm(hattyu.HaID);
                     }
 
@@ -310,7 +313,9 @@ namespace SalesManagement_SysDev
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayHattyus(); // 更新後に発注情報を再表示
+                        DisplayHattyuDetails();
                         countFlag();
+                        Log_Horder(hattyu.HaID);
                     }
                     catch (DbUpdateException ex)
                     {
@@ -397,6 +402,8 @@ namespace SalesManagement_SysDev
                 // 発注情報をコンテキストに追加
                 context.THattyus.Add(newHattyu);
                 context.SaveChanges();
+
+                Log_Horder(newHattyu.HaID);
 
                 // 登録成功メッセージ
                 MessageBox.Show("登録が成功しました。");
@@ -556,6 +563,7 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
                     MessageBox.Show("発注詳細の更新が成功しました。");
                     DisplayHattyuDetails();
+                    Log_Horder(orderDetail.HaDetailID);
                 }
                 else
                 {
@@ -638,6 +646,7 @@ namespace SalesManagement_SysDev
                 context.SaveChanges();
                 MessageBox.Show("発注詳細の登録が成功しました。");
                 DisplayHattyuDetails();
+                Log_Horder(newOrderDetail.HaDetailID);
             }
         }
 
@@ -1006,12 +1015,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1027,12 +1038,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -1053,6 +1066,54 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+        private void Log_Horder(int id)
+        {
+            string ModeFlag = "";
+            if (orderFlag == "←通常")
+            {
+                ModeFlag = "通常";
+            }
+            else
+            {
+                ModeFlag = "詳細";
+            }
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // 最新のLoginHistoryLogを取得
+                    var latestLoginHistory = context.LoginHistoryLogs
+                                                    .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
+                                                    .FirstOrDefault();  // 最新のログを取得
+
+                    if (latestLoginHistory != null)
+                    {
+                        // 最新のログが見つかった場合、そのIDを設定
+                        var LogDet = new LoginHistoryLogDetail
+                        {
+                            ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
+                            Display = "発注",
+                            Mode = ModeFlag,
+                            Process = label2.Text,
+                            LogID = id,  //
+                            AcceptDateTime = DateTime.Now
+                        };
+
+                        context.LoginHistoryLogDetails.Add(LogDet);  // 新しいログ履歴を登録
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("最新のログ履歴が見つかりませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Logへの登録に失敗しました:" + ex.Message);
+            }
+        }
+
     }
 
 }

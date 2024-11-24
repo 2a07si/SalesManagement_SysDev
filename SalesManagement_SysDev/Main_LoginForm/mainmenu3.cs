@@ -311,10 +311,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-                if(count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
                 {
-                    // ボタンを取得
-                    Button button = sender as Button;
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
+                {
 
                     // バッジを描画
                     if (button != null)
@@ -332,10 +335,15 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-                if (count > 0)
+
+                Button button = sender as Button;
+                if (button.Enabled == false)
+                {
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
                 {
                     // ボタンを取得
-                    Button button = sender as Button;
 
                     // バッジを描画
                     if (button != null)
@@ -353,10 +361,14 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 int count = context.TSyukkos.Count(order => order.SyStateFlag == 0 || order.SyStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
 
-                if (count > 0)
+                // ボタンを取得
+                Button button = sender as Button;
+                if (button.Enabled==false)
                 {
-                    // ボタンを取得
-                    Button button = sender as Button;
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
+                {
 
                     // バッジを描画
                     if (button != null)
@@ -373,12 +385,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
                 {
-                    // ボタンを取得
-                    Button button = sender as Button;
-
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
+                {
                     // バッジを描画
                     if (button != null)
                     {
@@ -394,11 +407,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
                 {
-                    // ボタンを取得
-                    Button button = sender as Button;
-
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
+                {
                     // バッジを描画
                     if (button != null)
                     {
@@ -414,11 +429,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
                 {
-                    // ボタンを取得
-                    Button button = sender as Button;
-
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
+                {
                     // バッジを描画
                     if (button != null)
                     {
@@ -434,11 +451,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-                if (count > 0)
+                Button button = sender as Button;
+                if (button.Enabled == false)
                 {
-                    // ボタンを取得
-                    Button button = sender as Button;
-
+                    return; // 描画処理を行わない
+                }
+                else if (count > 0)
+                {
                     // バッジを描画
                     if (button != null)
                     {
