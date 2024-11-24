@@ -1269,7 +1269,23 @@ namespace SalesManagement_SysDev
 
         private void b_sal_Paint(object sender, PaintEventArgs e)
         {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
 
+                    // ボタンを取得
+                    Button button = sender as Button;
+
+                    // バッジを描画
+                    if (button != null)
+                    {
+                        badge.pinpoint(e, button);
+                    }
+                }
+            }
         }
     }
 
