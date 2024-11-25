@@ -117,7 +117,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             B_return.Name = "B_return";
             B_return.Size = new Size(112, 34);
             B_return.TabIndex = 4;
-            B_return.Text = "戻る";
+            B_return.Text = "閉じる";
             B_return.UseVisualStyleBackColor = true;
             B_return.Click += B_return_Click;
             // 
