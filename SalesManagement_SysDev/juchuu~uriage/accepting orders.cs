@@ -1388,7 +1388,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
                 if (count == 0)
                 {
                     GlobalBadge badge = new GlobalBadge("");

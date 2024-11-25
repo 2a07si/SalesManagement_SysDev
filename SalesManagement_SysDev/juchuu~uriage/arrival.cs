@@ -183,7 +183,7 @@ namespace SalesManagement_SysDev
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
-            countFlag();
+            
             try
             {
                 // モードに基づいて処理を分岐
