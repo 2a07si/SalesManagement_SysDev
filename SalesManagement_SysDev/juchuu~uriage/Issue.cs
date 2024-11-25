@@ -1298,10 +1298,10 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TSyukkos.Count(order => order.SyStateFlag == 0 || order.SyStateFlag == null);
                 if (count == 0)
                 {
-                    this.Invalidate();
+                    GlobalBadge badge = new GlobalBadge("");
                 }
             }
         }

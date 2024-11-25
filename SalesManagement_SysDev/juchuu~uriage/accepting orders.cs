@@ -36,6 +36,7 @@ namespace SalesManagement_SysDev
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel2, 2);  // パネル2の場合
+
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
@@ -178,6 +179,7 @@ namespace SalesManagement_SysDev
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+            countFlag();
             try
             {
                 // モードに基づいて処理を分岐
@@ -388,7 +390,6 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             DisplayOrders();
                             DisplayOrderDetails();
-                            countFlag();
                         }
                         catch (Exception ex)
                         {
@@ -1290,6 +1291,11 @@ namespace SalesManagement_SysDev
                         badge.pinpoint(e, button);
                     }
                 }
+                else
+                {
+                    GlobalBadge badge = new GlobalBadge(""); // 空のバッジを設定
+                    badge.pinpoint(e, button);
+                }
             }
         }
 
@@ -1312,6 +1318,11 @@ namespace SalesManagement_SysDev
                     {
                         badge.pinpoint(e, button);
                     }
+                }
+                else
+                {
+                    GlobalBadge badge = new GlobalBadge(""); // 空のバッジを設定
+                    badge.pinpoint(e, button);
                 }
             }
         }
@@ -1337,6 +1348,11 @@ namespace SalesManagement_SysDev
                         badge.pinpoint(e, button);
                     }
                 }
+                else
+                {
+                    GlobalBadge badge = new GlobalBadge("");
+                    badge.pinpoint(e, button);
+                }
             }
         }
 
@@ -1360,6 +1376,11 @@ namespace SalesManagement_SysDev
                         badge.pinpoint(e, button);
                     }
                 }
+                else
+                {
+                    GlobalBadge badge = new GlobalBadge("");
+                    badge.pinpoint(e, button);
+                }
             }
         }
 
@@ -1370,7 +1391,7 @@ namespace SalesManagement_SysDev
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
                 if (count == 0)
                 {
-                    this.Invalidate();
+                    GlobalBadge badge = new GlobalBadge("");
                 }
             }
         }

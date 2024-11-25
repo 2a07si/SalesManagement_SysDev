@@ -67,6 +67,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
             DisplayLoginLog();
             DisplayRogDetail();
+
+
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -166,15 +168,40 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            int rowIndex = e.RowIndex;
             if (e.RowIndex >= 0) // ヘッダー行ではない場合
             {
                 // クリックした行からIDを取得
-                var selectedRow = dataGridView1.Rows[e.RowIndex];
-                var selectedID = selectedRow.Cells["ID"].Value.ToString();
+                var clickedData = dataGridView2.Rows[rowIndex].Cells[1].Value;
 
                 // 詳細画面を開き、選択したIDに基づく詳細情報を渡す
+                DisplayDataIn2Grid(clickedData);
             }
 
+        }
+
+        private void DisplayDataIn2Grid(object clickedData)
+        {
+            // ここでクリックされたデータに基づいて右側のグリッドに表示するデータを取得します
+            // 例: clickedDataを使ってデータベースから情報を取得したり、リストからフィルタリングする
+            var filteredData = GetDataFor2Grid(clickedData);
+
+            // 右側のデータグリッドビューにデータを設定
+            dataGridView2.DataSource = filteredData;
+        }
+
+        private List<LoginHistoryLogDetail> GetDataFor2Grid(object clickedData)
+        {
+            // clickedDataに基づいてフィルタリングしたデータを返す
+            // ここでは仮に、YourDataType は表示するデータの型だとします
+            // 例: clickedDataに一致するレコードをリストから取得する処理を書く
+
+            var result = new List<LoginHistoryLogDetail>();
+
+            // 仮の処理
+            // result = yourDataList.Where(item => item.Property == clickedData).ToList();
+
+            return result;
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -187,10 +214,10 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 // 行データを取得   
                 DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
-                ComboGamen.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[0].Value.ToString();
-                ComboMode.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[1].Value.ToString();
-                ComboShori.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[2].Value.ToString();
-                TB_ID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
+                ComboGamen.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[2].Value.ToString();
+                ComboMode.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[3].Value.ToString();
+                ComboShori.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[4].Value.ToString();
+                TB_ID.Text = row.Cells["LogID"].Value?.ToString() ?? string.Empty;
             }
         }
 

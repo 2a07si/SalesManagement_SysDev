@@ -1044,7 +1044,7 @@ namespace SalesManagement_SysDev
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
                 if (count == 0)
                 {
-                    this.Invalidate();
+                    GlobalBadge badge = new GlobalBadge("");
                 }
             }
         }

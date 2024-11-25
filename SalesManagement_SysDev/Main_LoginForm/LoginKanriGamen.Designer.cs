@@ -115,9 +115,11 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(16, 144);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(451, 527);
             dataGridView1.TabIndex = 250;
             dataGridView1.CellClick += dataGridView1_CellClick;
@@ -222,9 +224,11 @@
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(19, 144);
+            dataGridView2.MultiSelect = false;
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 33;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(713, 527);
             dataGridView2.TabIndex = 251;
             dataGridView2.CellClick += dataGridView2_CellClick;

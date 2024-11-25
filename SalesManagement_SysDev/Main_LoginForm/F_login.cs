@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using SalesManagement_SysDev.Main_LoginForm;
 using static SalesManagement_SysDev.ClassÇ‹Ç∆Çﬂ.GlobalEmpNo;
 using SalesManagement_SysDev.Entity;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace SalesManagement_SysDev
 {
@@ -1017,6 +1018,9 @@ namespace SalesManagement_SysDev
                         LoginDateTime = DateTime.Now,
                         IsSuccessful = true
                     };
+
+
+                   
                     context.LoginHistoryLogs.Add(logEntry);
                     context.SaveChanges();
                     MessageBox.Show("ìoò^ê¨å˜");

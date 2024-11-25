@@ -183,6 +183,7 @@ namespace SalesManagement_SysDev
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+            countFlag();
             try
             {
                 // モードに基づいて処理を分岐
@@ -1315,7 +1316,7 @@ namespace SalesManagement_SysDev
                 int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
                 if (count == 0)
                 {
-                    this.Invalidate();
+                    GlobalBadge badge = new GlobalBadge("");
                 }
             }
         }
