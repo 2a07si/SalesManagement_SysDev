@@ -345,7 +345,10 @@ namespace SalesManagement_SysDev
                                 var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
                                 stock.StQuantity -= detail.ChQuantity;
                                 // 発注処理を行う 
+                                Checker(int.Parse(OrderID), shortageQuantity);
                                 ProductOrder(int.Parse(OrderID), int.Parse(ChumonID), shortageQuantity);
+                                
+                                
                                 MessageBox.Show($"商品ID: {detail.PrID}の在庫が不足しているため発注処理を行いました。");
 
                                 // 非表示フラグと理由を設定して出庫登録 
@@ -379,6 +382,7 @@ namespace SalesManagement_SysDev
                             context.SaveChanges();
                             MessageBox.Show("注文更新が成功しました。");
                             DisplayOrders();
+                            DisplayOrderDetails();
 
                             Log_Order(order.OrID);
                         }
@@ -1053,6 +1057,8 @@ namespace SalesManagement_SysDev
                     SyStateFlag = 0
                 };
 
+                Checker2(order.OrID, newSyukko.SyID);
+
                 try
                 {
                     // データが正しいか事前にチェック 
@@ -1176,6 +1182,64 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Checker(int OrID, int Quantity)
+        {
+            MessageBox.Show("チェッカー処理");
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var checker = new NyuukoChecker
+                    {
+
+                        JyutyuID = OrID.ToString(),
+                        Flag = true,
+                        Quantity = Quantity
+                    };
+                    context.NyuukoCheckers.Add(checker);
+                    context.SaveChanges();
+                    MessageBox.Show("チェッカー処理確定");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message + "内部のやつ" + ex.InnerException.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void Checker2(int OrID, int SyID)
+        {
+            MessageBox.Show("チェッカー２処理");
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // OrIDに合致するNyuukoCheckerを検索
+                    var checker = context.NyuukoCheckers
+                        .FirstOrDefault(c => c.ID == OrID); // OrIDに一致するIDを検索
+
+                    if (checker != null) // 見つかった場合
+                    {
+                        checker.SyukkoID = SyID.ToString(); // SyukkoIDをSyIDで更新
+                        context.SaveChanges(); // 変更を保存
+
+                        MessageBox.Show("チェッカー２処理確定");
+                    }
+                    else
+                    {
+                        MessageBox.Show("指定されたOrIDに一致するレコードが見つかりませんでした。");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message + "内部のやつ" + ex.InnerException.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)
