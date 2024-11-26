@@ -1153,23 +1153,17 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            switch (CurrentStatus.CurrentStatusValue)
-            {
-                case CurrentStatus.Status.登録:
-                    tbfalse();
-                    break;
-                default:
-                    TBNyuukaID.BackColor = SystemColors.Window;
-                    TBShopID.BackColor = SystemColors.Window;
-                    TBShainID.BackColor = SystemColors.Window;
-                    TBKokyakuID.BackColor = SystemColors.Window;
-                    TBJyutyuID.BackColor = SystemColors.Window;
-                    TBNyukaSyosaiID.BackColor = SystemColors.Window;
-                    TBNyuukaIDS.BackColor = SystemColors.Window;
-                    TBSyohinID.BackColor = SystemColors.Window;
-                    TBSuryou.BackColor = SystemColors.Window;
-                    break;
-            }
+                    TBNyuukaID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBShopID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBShainID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBKokyakuID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBJyutyuID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBNyukaSyosaiID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBNyuukaIDS.BackColor = Color.FromArgb(252, 252, 252);
+                    TBSyohinID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBSuryou.BackColor = Color.FromArgb(252, 252, 252);
+                    return;
+            
         }
         private void SetupNumericOnlyTextBoxes()
         {
