@@ -226,6 +226,10 @@ namespace SalesManagement_SysDev
                 var employee = context.MEmployees.SingleOrDefault(e => e.EmID.ToString() == ShainID);
                 if (employee != null)
                 {
+                    // 変更前の名前を取得
+                    string originalName = employee.EmName;
+
+                    // 更新処理
                     employee.EmName = ShainName;
                     employee.SoID = int.Parse(ShopID);
                     employee.PoID = int.Parse(JobID);
@@ -236,6 +240,13 @@ namespace SalesManagement_SysDev
                     employee.EmHidden = riyuu;
 
                     context.SaveChanges();
+
+                    // グローバル変数の更新
+                    if (ShainID == Global.EmployeeID.ToString() && originalName != ShainName)
+                    {
+                        Global.EmployeeName = ShainName;
+                    }
+                    GlobalUtility.UpdateLabels(label_id, label_ename);
                     MessageBox.Show("更新が成功しました。");
                     DisplayEmployee();
                     Log_Employee(employee.EmID);
