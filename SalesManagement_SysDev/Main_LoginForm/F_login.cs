@@ -1018,8 +1018,6 @@ namespace SalesManagement_SysDev
                         LoginDateTime = DateTime.Now,
                     };
                     context.LoginHistroyLog2s.Add(logEntry);
-
-
                     context.SaveChanges();
                     MessageBox.Show("ìoò^ê¨å˜");
                 }
