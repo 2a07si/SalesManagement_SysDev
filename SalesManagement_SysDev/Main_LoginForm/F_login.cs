@@ -962,7 +962,7 @@ namespace SalesManagement_SysDev
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
                         MessageBox.Show("ÉçÉOÉCÉìê¨å˜ÅAìoò^èàóùäJén");
-                        AddLoginLog();
+                        AddLoginLog(employeeName);
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
@@ -992,7 +992,7 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void AddLoginLog()
+        private void AddLoginLog(string empname)
         {
             using (var context = new SalesManagementContext())
             {
@@ -1011,17 +1011,20 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
 
-                    var logEntry = new LoginHistoryLog
+                    var logEntry = new LoginHistroyLog2
                     {
-                        Password = tb_Pass.Text,
                         LoginID = tb_ID.Text,
+                        ShainName = empname,
                         LoginDateTime = DateTime.Now,
-                        IsSuccessful = true
                     };
+<<<<<<< HEAD
+                    context.LoginHistroyLog2s.Add(logEntry);
+=======
 
 
 
                     context.LoginHistoryLogs.Add(logEntry);
+>>>>>>> d86b5a686fc67e6cfd2336a8bfa353e96c47ab68
                     context.SaveChanges();
                     MessageBox.Show("ìoò^ê¨å˜");
                 }
