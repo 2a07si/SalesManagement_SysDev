@@ -807,6 +807,7 @@ namespace SalesManagement_SysDev
                     var employeeService = new EmployeeService(context);
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
+                        AddLoginLog(employeeName);
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
@@ -961,7 +962,6 @@ namespace SalesManagement_SysDev
                     var employeeService = new EmployeeService(context);
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
-                        MessageBox.Show("ÉçÉOÉCÉìê¨å˜ÅAìoò^èàóùäJén");
                         AddLoginLog(employeeName);
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
@@ -1005,21 +1005,19 @@ namespace SalesManagement_SysDev
 
                 };
             }
-            MessageBox.Show("AddLoginHistoryé¿çs");
             try
             {
                 using (var context = new SalesManagementContext())
                 {
 
-                    var logEntry = new LoginHistroyLog2
+                    var logEntry = new LoginHistoryLog
                     {
                         LoginID = tb_ID.Text,
-                        ShainName = empname,
+                        Password = tb_Pass.Text,
                         LoginDateTime = DateTime.Now,
                     };
-                    context.LoginHistroyLog2s.Add(logEntry);
+                    context.LoginHistoryLogs.Add(logEntry);
                     context.SaveChanges();
-                    MessageBox.Show("ìoò^ê¨å˜");
                 }
             }
             catch (Exception ex)

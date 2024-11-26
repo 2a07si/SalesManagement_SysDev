@@ -183,7 +183,6 @@ namespace SalesManagement_SysDev
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 // モードに基づいて処理を分岐
@@ -212,15 +211,18 @@ namespace SalesManagement_SysDev
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
+                    colorReset();
                     UpdateArrival();
                     break;
                 case CurrentStatus.Status.登録:
+                    colorReset();
                     RegisterArrival();
                     break;
                 case CurrentStatus.Status.一覧:
                     DisplayArrivals();
                     break;
                 case CurrentStatus.Status.検索:
+                    colorReset();
                     SearchArrivals();
                     break;
                 default:
@@ -1153,23 +1155,17 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            switch (CurrentStatus.CurrentStatusValue)
-            {
-                case CurrentStatus.Status.登録:
-                    tbfalse();
-                    break;
-                default:
-                    TBNyuukaID.BackColor = SystemColors.Window;
-                    TBShopID.BackColor = SystemColors.Window;
-                    TBShainID.BackColor = SystemColors.Window;
-                    TBKokyakuID.BackColor = SystemColors.Window;
-                    TBJyutyuID.BackColor = SystemColors.Window;
-                    TBNyukaSyosaiID.BackColor = SystemColors.Window;
-                    TBNyuukaIDS.BackColor = SystemColors.Window;
-                    TBSyohinID.BackColor = SystemColors.Window;
-                    TBSuryou.BackColor = SystemColors.Window;
-                    break;
-            }
+                    TBNyuukaID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBShopID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBShainID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBKokyakuID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBJyutyuID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBNyukaSyosaiID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBNyuukaIDS.BackColor = Color.FromArgb(252, 252, 252);
+                    TBSyohinID.BackColor = Color.FromArgb(252, 252, 252);
+                    TBSuryou.BackColor = Color.FromArgb(252, 252, 252);
+                    return;
+            
         }
         private void SetupNumericOnlyTextBoxes()
         {
