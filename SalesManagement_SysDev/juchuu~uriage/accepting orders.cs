@@ -1493,11 +1493,11 @@ namespace SalesManagement_SysDev
                         TBJyutyuID.Focus();
                         return;
                     }
-                    
+
                     if (order != null)
                     {
                         order.OrStateFlag = 2;
-                        
+
                         // checkBox_2がチェックされている場合にOrFlagを1に設定
                         if (order.OrStateFlag == 2)
                         {

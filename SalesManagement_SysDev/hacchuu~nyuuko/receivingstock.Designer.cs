@@ -537,7 +537,7 @@
             AcceptButton = b_kakutei;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            CancelButton = clear;
+            CancelButton = close;
             ClientSize = new Size(1578, 844);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(checkBox_2);

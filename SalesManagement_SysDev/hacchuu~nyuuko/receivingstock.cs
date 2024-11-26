@@ -1127,7 +1127,7 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // 入庫が確定した商品に関連するレコードを取得
-                    var nyuukoChecker = context.NyuukoCheckers.Where(n => int.TryParse(n.PrID, out productId) && productId == productId && n.Flag) .ToList();
+                    var nyuukoChecker = context.NyuukoCheckers.Where(n => int.TryParse(n.PrID, out productId) && productId == productId && n.Flag).ToList();
 
                     if (nyuukoChecker != null)
                     {

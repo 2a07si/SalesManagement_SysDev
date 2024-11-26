@@ -676,7 +676,7 @@ namespace SalesManagement_SysDev
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            CancelButton = clear;
+            CancelButton = close;
             ClientSize = new Size(1578, 844);
             Controls.Add(b_arr);
             Controls.Add(b_sal);
