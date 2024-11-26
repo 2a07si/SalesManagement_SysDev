@@ -1074,11 +1074,11 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" ");
-                    b_hor.Refresh();
+                    b_rec.Refresh();
                 }
             }
         }

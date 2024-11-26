@@ -108,6 +108,9 @@ namespace SalesManagement_SysDev.Main_LoginForm
             ComboGamen.SelectedIndex = 0;
             ComboMode.SelectedIndex = 0;
             ComboShori.SelectedIndex = 0;
+
+            DisplayLoginLog();
+            DisplayRogDetail();
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -168,41 +171,76 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-            if (e.RowIndex >= 0) // ヘッダー行ではない場合
+            // ヘッダー行または無効なセルのクリックを無視
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            try
             {
-                // クリックした行からIDを取得
-                var clickedData = dataGridView2.Rows[rowIndex].Cells[1].Value;
+                // クリックした行の指定列からデータを取得
+                var clickedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value; // 列番号1を確認してください
 
-                // 詳細画面を開き、選択したIDに基づく詳細情報を渡す
-                DisplayDataIn2Grid(clickedData);
+                if (clickedData != null)
+                {
+                    // 詳細画面を更新
+                    DisplayDataIn2Grid(clickedData);
+                }
             }
-
+            catch (Exception ex)
+            {
+                // エラー処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}");
+            }
         }
 
         private void DisplayDataIn2Grid(object clickedData)
         {
-            // ここでクリックされたデータに基づいて右側のグリッドに表示するデータを取得します
-            // 例: clickedDataを使ってデータベースから情報を取得したり、リストからフィルタリングする
-            var filteredData = GetDataFor2Grid(clickedData);
+            try
+            {
+                // フィルタリングしたデータを取得
+                var filteredData = GetDataFor2Grid(clickedData);
 
-            // 右側のデータグリッドビューにデータを設定
-            dataGridView2.DataSource = filteredData;
+                // データが存在しない場合の処理
+                if (filteredData == null || filteredData.Count == 0)
+                {
+                    MessageBox.Show("該当するデータがありません。");
+                    return;
+                }
+
+                // 右側のグリッドにデータを設定
+                dataGridView2.DataSource = null; // 再バインド前にデータをクリア
+                dataGridView2.DataSource = filteredData;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"エラーが発生しました: {ex.Message}");
+            }
         }
 
         private List<LoginHistoryLogDetail> GetDataFor2Grid(object clickedData)
         {
-            // clickedDataに基づいてフィルタリングしたデータを返す
-            // ここでは仮に、YourDataType は表示するデータの型だとします
-            // 例: clickedDataに一致するレコードをリストから取得する処理を書く
+            try
+            {
+                // クリックされたデータに基づいてフィルタリング処理を実行
+                // 例: データベースクエリやリスト操作を行う
+                using (var context = new SalesManagementContext())
+                {
+                    // クリックされたデータに基づいてデータを取得
+                    int clickedId = Convert.ToInt32(clickedData);
+                    var result = context.LoginHistoryLogDetails
+                        .Where(log => log.ID == clickedId) // フィルタ条件
+                        .ToList();
 
-            var result = new List<LoginHistoryLogDetail>();
-
-            // 仮の処理
-            // result = yourDataList.Where(item => item.Property == clickedData).ToList();
-
-            return result;
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"データ取得中にエラーが発生しました: {ex.Message}");
+                return new List<LoginHistoryLogDetail>();
+            }
         }
+
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {

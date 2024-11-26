@@ -1433,11 +1433,11 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
+                int count = context.TSyukkos.Count(order => order.SyStateFlag == 0 || order.SyStateFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" ");
-                    b_ord.Refresh();
+                    b_iss.Refresh();
                 }
             }
         }

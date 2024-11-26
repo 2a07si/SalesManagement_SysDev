@@ -384,7 +384,6 @@ namespace SalesManagement_SysDev
                 }
             }
             countFlag();
-            FlagCount();
         }
 
         private void RegisterShipping()
@@ -1294,19 +1293,6 @@ namespace SalesManagement_SysDev
                 if (count == 0)
                 {
                     GlobalBadge badge = new GlobalBadge("");
-                    b_shi.Refresh();
-                }
-            }
-        }
-
-        private void FlagCount()
-        {
-            using (var context = new SalesManagementContext())
-            {
-                int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
-                if (count > 0)
-                {
-                    GlobalBadge badge = new GlobalBadge(" ");
                     b_shi.Refresh();
                 }
             }
