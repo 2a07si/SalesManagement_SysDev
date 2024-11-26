@@ -362,13 +362,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 dataGridView2.DataSource = result;
             }
         }
-
         private void LoginKensaku_Click(object sender, EventArgs e)
         {
             string comboBox2Value = ComboLog.SelectedItem?.ToString();
             string textBoxValue = TB_Log.Text?.Trim();
             DateTime? logDate = dateTimePicker1.Checked ? (DateTime?)dateTimePicker1.Value.Date : null;
-            string ename = "";
 
             if (ComboLog.SelectedIndex == 0 ||
                 (string.IsNullOrEmpty(textBoxValue) && logDate == null))
@@ -392,21 +390,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     // 社員名での検索
                     if (comboBox2Value == "社員名" && !string.IsNullOrEmpty(textBoxValue))
                     {
-                        query = context.LoginHistoryLogs;
-                        query.Join<LoginHistoryLog, MEmployee, string, dynamic>(
-                           context.MEmployees,               // 結合するテーブル
-                           log => log.LoginID,               // 主テーブルの結合キー (LoginHistoryLogs の LoginID)
-                           emp => emp.EmID.ToString(),                  // 結合先テーブルの結合キー (MEmployees の EmID)
-                             (log, emp) => new                 // 結合後の結果
-                             {
-                                 log.ID,                       // LoginHistoryLogs の ID
-                                 log.LoginID,                  // LoginHistoryLogs の LoginID
-                                 ename = emp.EmName,    // MEmployees の社員名 (EmName)
-                                 log.LoginDateTime             // LoginHistoryLogs の LoginDateTime
-                             }
-                       )
-                       .ToList();
-                        ename = TB_Log.Text;
+                        // LoginHistoryLogsとMEmployeeをJoinして社員名で検索
+                        query = query.Join(context.MEmployees,
+                                            loginLog => loginLog.LoginID,
+                                            employee => employee.EmID.ToString(),
+                                            (loginLog, employee) => new { loginLog, employee })
+                                     .Where(joined => joined.employee.EmName.Contains(textBoxValue))
+                                     .Select(joined => joined.loginLog); // 社員名で検索した結果を含むように
                     }
 
                     // ログイン日での検索
@@ -415,25 +405,30 @@ namespace SalesManagement_SysDev.Main_LoginForm
                         query = query.Where(o => o.LoginDateTime.Date == logDate.Value);
                     }
 
-                    var result = query.Select(x => new
-                    {
-                        x.ID,
-                        x.LoginID,
-                        ename,       // 社員名のみ表示
-                        LoginDate = x.LoginDateTime.ToString("yyyy-MM-dd HH:mm:ss") // ログイン日時をフォーマットして表示
-                    })
-                    .ToList();
+                    // 必要な情報を取得
+                    var result = query.Join(context.MEmployees,
+                                            loginLog => loginLog.LoginID,
+                                            employee => employee.EmID.ToString(),
+                                            (loginLog, employee) => new
+                                            {
+                                                loginLog.ID,
+                                                loginLog.LoginID,
+                                                EmployeeName = employee.EmName, // 社員名
+                                                LoginDate = loginLog.LoginDateTime.ToString("yyyy-MM-dd HH:mm:ss") // ログイン日時をフォーマット
+                                            })
+                                       .ToList();
 
+                    // データグリッドに結果を表示
                     dataGridView1.DataSource = result;
-
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"エラーが発生しました: {ex.Message}");
             }
-
-
         }
+
+
+
     }
 }

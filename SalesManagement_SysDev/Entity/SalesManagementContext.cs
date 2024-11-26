@@ -73,6 +73,7 @@ public partial class SalesManagementContext : DbContext
     public virtual DbSet<LoginHistoryLogDetail> LoginHistoryLogDetails { get; set; }
 
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
+    public virtual DbSet<NyuukoChecker> NyuukoCheckers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -83,6 +84,10 @@ public partial class SalesManagementContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<LoginHistoryLog>().ToTable("LoginHistoryLogs");
+
+        // 必要に応じてエンティティの設定を行う
+        modelBuilder.Entity<NyuukoChecker>()
+            .HasKey(n => n.ID); // IDを主キーとして設定
 
         modelBuilder.Entity<LoginHistroyLog2>(entity =>
         {

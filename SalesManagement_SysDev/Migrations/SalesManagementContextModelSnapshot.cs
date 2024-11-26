@@ -93,6 +93,65 @@ namespace SalesManagement_SysDev.Migrations
                     b.ToTable("LoginHistoryLogDetails");
                 });
 
+            modelBuilder.Entity("SalesManagement_SysDev.Entity.LoginHistroyLog2", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime>("LoginDateTime")
+                        .HasColumnType("datetime")
+                        .HasColumnName("LoginDateTime");
+
+                    b.Property<string>("LoginID")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LoginID");
+
+                    b.Property<string>("ShainName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("ShainName");
+
+                    b.HasKey("ID")
+                        .HasName("PK_LoginHistoryLog2");
+
+                    b.ToTable("LoginHistoryLog2", (string)null);
+                });
+
+            modelBuilder.Entity("SalesManagement_SysDev.Entity.NyuukoChecker", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("ChumonID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Flag")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NyuukoID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SyukkoID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("NyuukoChecker", (string)null);
+                });
+
             modelBuilder.Entity("SalesManagement_SysDev.MClient", b =>
                 {
                     b.Property<int>("ClID")
