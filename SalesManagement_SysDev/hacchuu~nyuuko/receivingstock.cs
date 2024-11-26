@@ -318,7 +318,15 @@ namespace SalesManagement_SysDev
                         DisplayReceivingStockDetails();
                         Log_Receive(receivingStock.WaID);
 
-
+                        var nyuukocheck = context.NyuukoCheckers;
+                        foreach (var ncheck in nyuukocheck)
+                        {
+                            int productId;
+                            if (int.TryParse(ncheck.PrID, out productId))
+                            {
+                                UpdateNyuukoCheckerFlag(productId, true);
+                            }
+                        }
                     }
                     catch (DbUpdateException ex)
                     {
@@ -1110,6 +1118,47 @@ namespace SalesManagement_SysDev
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
         }
+
+        private void UpdateNyuukoCheckerFlag(int productId, bool flag)
+        {
+
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // 入庫が確定した商品に関連するレコードを取得
+                    var nyuukoChecker = context.NyuukoCheckers.Where(n => int.TryParse(n.PrID, out productId) && productId == productId && n.Flag).ToList();
+
+                    if (nyuukoChecker != null)
+                    {
+                        // 入庫IDを設定し、フラグを0に更新（再表示）
+                        // フラグを更新する対象のアイテムを取得
+                        var itemsToUpdate = context.NyuukoCheckers
+                            .Where(n => int.TryParse(n.PrID, out productId) && n.Flag == true)
+                            .ToList();
+
+                        // 各アイテムのFlagを変更
+                        foreach (var item in itemsToUpdate)
+                        {
+                            item.Flag = false;
+                        }
+
+                        // データベースに変更を保存
+                        context.SaveChanges();
+                        MessageBox.Show("フラグが0に更新されました。");
+                    }
+                    else
+                    {
+                        MessageBox.Show("該当する商品が見つかりませんでした。");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"エラーが発生しました: {ex.Message}");
+            }
+        }
+
 
     }
 }
