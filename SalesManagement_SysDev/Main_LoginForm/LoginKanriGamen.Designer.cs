@@ -83,7 +83,7 @@
             // 
             ComboLog.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
             ComboLog.FormattingEnabled = true;
-            ComboLog.Items.AddRange(new object[] { "社員ID", "社員名", "ログイン日" });
+            ComboLog.Items.AddRange(new object[] { "ーーーーー", "社員ID", "社員名", "ログイン日" });
             ComboLog.Location = new Point(16, 18);
             ComboLog.Name = "ComboLog";
             ComboLog.Size = new Size(248, 54);
