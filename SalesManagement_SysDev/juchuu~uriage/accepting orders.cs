@@ -1403,11 +1403,11 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
+                int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" ");
-                    b_acc.Refresh();
+                    b_ord.Refresh();
                 }
             }
         }

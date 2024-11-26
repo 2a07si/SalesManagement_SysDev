@@ -1327,11 +1327,11 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
+                int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-                    b_arr.Refresh();
+                    b_shi.Refresh();
                 }
             }
         }
