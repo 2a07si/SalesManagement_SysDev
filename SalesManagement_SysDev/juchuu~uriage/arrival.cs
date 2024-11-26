@@ -183,7 +183,6 @@ namespace SalesManagement_SysDev
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
-            colorReset();
             try
             {
                 // モードに基づいて処理を分岐
@@ -212,15 +211,18 @@ namespace SalesManagement_SysDev
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
+                    colorReset();
                     UpdateArrival();
                     break;
                 case CurrentStatus.Status.登録:
+                    colorReset();
                     RegisterArrival();
                     break;
                 case CurrentStatus.Status.一覧:
                     DisplayArrivals();
                     break;
                 case CurrentStatus.Status.検索:
+                    colorReset();
                     SearchArrivals();
                     break;
                 default:
