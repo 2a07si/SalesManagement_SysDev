@@ -314,7 +314,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         DisplayHattyus(); // 更新後に発注情報を再表示
                         DisplayHattyuDetails();
-                        
+
                         Log_Horder(hattyu.HaID);
                     }
                     catch (DbUpdateException ex)

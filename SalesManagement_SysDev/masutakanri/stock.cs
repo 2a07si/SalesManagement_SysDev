@@ -509,7 +509,7 @@ namespace SalesManagement_SysDev
                 {
                     badge.pinpoint(e, button);
                 }
-            } 
+            }
         }
 
         private void b_cus_Paint(object sender, PaintEventArgs e)
@@ -531,7 +531,7 @@ namespace SalesManagement_SysDev
                     }
                 }
             }
-            
+
         }
         private void Log_Stock(int id)
         {
