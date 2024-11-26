@@ -365,8 +365,6 @@ namespace SalesManagement_SysDev
                         order.OrFlag = delFlag ? 1 : 0;
                         order.OrHidden = riyuu;
 
-
-
                         // OrFlagの元の値を保存
                         var originalOrFlag = order.OrFlag;
 
@@ -806,8 +804,22 @@ namespace SalesManagement_SysDev
                     context.TOrderDetails.Add(newOrderDetail);
                     context.SaveChanges();
                     Log_Accept(newOrderDetail.OrDetailID);
-                    MessageBox.Show("受注詳細の登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplayOrderDetails();
+                    DialogResult result = MessageBox.Show("受注詳細の登録が完了しました。\n受注処理を確定させますか？",
+                                      "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    // Yes/Noでの分岐処理
+                    if (result == DialogResult.Yes)
+                    {
+                        // Yesが選ばれた場合の処理（受注処理確定）
+                        UpdateOrderAccept(jyutyuID);
+                    }
+                    else
+                    {
+                        // Noが選ばれた場合の処理（受注処理を中止）
+                        MessageBox.Show("受注処理は中止されました。", "中止", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                 }
             }
             catch (FormatException)
@@ -1457,6 +1469,79 @@ namespace SalesManagement_SysDev
             {
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
+        }
+
+
+        private void UpdateOrderAccept(string jyutyuID)
+        {
+            // 状態を切り替える処理 
+            ToggleOrderSelection();
+
+            // b_FormSelectorのテキストを現在の状態に更新 
+            UpdateFlagButtonText();
+
+            label2.Text = "更新";
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var order = context.TOrders.SingleOrDefault(o => o.OrID.ToString() == jyutyuID);
+                    if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrders.Any(s => s.OrID == jyutyu))
+                    {
+                        MessageBox.Show("受注IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBJyutyuID.BackColor = Color.Yellow;
+                        TBJyutyuID.Focus();
+                        return;
+                    }
+                    
+                    if (order != null)
+                    {
+                        order.OrStateFlag = 2;
+                        
+                        // checkBox_2がチェックされている場合にOrFlagを1に設定
+                        if (order.OrStateFlag == 2)
+                        {
+                            order.OrFlag = 1;
+                            order.OrHidden = "受注確定処理済";
+                        }
+
+                        try
+                        {
+                            context.SaveChanges();
+
+                            if (order.OrStateFlag == 2)
+                            {
+                                // AcceptionConfirm実行
+                                AcceptionConfirm(int.Parse(jyutyuID));
+                            }
+                            Log_Accept(order.OrID);
+                            MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            DisplayOrders();
+                            DisplayOrderDetails();
+                        }
+                        catch (Exception ex)
+                        {
+                            context.SaveChanges(); // 元の状態に戻す変更を保存
+
+                            MessageBox.Show($"更新が失敗しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("該当する受注が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("受注の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            countFlag();
+            FlagCount();
         }
 
     }

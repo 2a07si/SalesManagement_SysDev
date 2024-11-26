@@ -178,7 +178,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             try
             {
                 // クリックした行の指定列からデータを取得
-                var clickedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value; // 列番号1を確認してください
+                var clickedData = dataGridView1.Rows[e.RowIndex].Cells[0].Value; // 列番号0を確認してください
 
                 if (clickedData != null)
                 {
@@ -321,75 +321,44 @@ namespace SalesManagement_SysDev.Main_LoginForm
             }
         }
 
-
-
-        /*public class LogHistory_EMP
+        private void ShousaiKensaku_Click(object sender, EventArgs e)
         {
+            string comboBox1Value = ComboGamen.SelectedItem?.ToString(); // ComboBox1 の選択された値
+            string comboBox2Value = ComboMode.SelectedItem?.ToString(); // ComboBox2 の選択された値
+            string comboBox3Value = ComboShori.SelectedItem?.ToString(); // ComboBox3 の選択された値
+            string textBoxValue = TB_ID.Text; // TextBox1 のテキスト
 
-            public int logID { get; set; }
-            public string empID { get; set; }
-            public string empName { get; set; }
-            public DateTime LoginDateTime { get; set; }
-        }
-
-        public class ApplicationDbContext : DbContext
-        {
-            public DbSet<LogHistory_EMP> LogHistory_EMPs { get; set; }
-
-            public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            using (var context = new SalesManagementContext())
             {
-                // Fluent APIを使用してempIDを主キーとして設定
-                modelBuilder.Entity<LogHistory_EMP>()
-                    .HasKey(e => e.logID);
+                // 基本的なクエリを作成
+                var query = context.LoginHistoryLogDetails.AsQueryable();
+
+                // それぞれの条件に基づいてフィルタリングを追加
+                if (ComboGamen.SelectedIndex > 0 && !string.IsNullOrEmpty(comboBox1Value))
+                {
+                    query = query.Where(x => x.Display.Contains(comboBox1Value)); // Display プロパティを使う
+                }
+
+                // ComboBox2の選択されたインデックスが 0 より大きい場合のみ、その条件を追加
+                if (ComboMode.SelectedIndex > 0 && !string.IsNullOrEmpty(comboBox2Value))
+                {
+                    query = query.Where(x => x.Mode.Contains(comboBox2Value)); // Mode プロパティを使う
+                }
+
+                // ComboBox3の選択されたインデックスが 0 より大きい場合のみ、その条件を追加
+                if (ComboShori.SelectedIndex > 0 && !string.IsNullOrEmpty(comboBox3Value))
+                {
+                    query = query.Where(x => x.Process.Contains(comboBox3Value)); // Process プロパティを使う
+                }
+                if (!string.IsNullOrEmpty(textBoxValue))
+                {
+                    query = query.Where(x => x.LogID.ToString()==(textBoxValue));
+                }
+
+                // 結果を取得し、DataGridView に表示
+                var result = query.ToList();
+                dataGridView2.DataSource = result;
             }
         }
-
-        class Program
-        {
-            // グローバル変数として社員情報を定義
-            static string globalEmpID = GlobalEmp.EmployeeID;
-            static string globalEmpName = GlobalEmp.EmployeeName;
-            static DateTime globalLoginDateTime = GlobalEmp.dateNow;
-
-            static void database(string[] args)
-            {
-                try
-                {
-                    // DbContextのインスタンス作成
-                    var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-
-                    // データベース接続文字列を設定（接続文字列をセキュリティ的に管理する方法）
-                    string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=SalesManagement;Integrated Security=True";
-                    optionsBuilder.UseSqlServer(connectionString);
-
-                    // データベースに接続
-                    using (var context = new ApplicationDbContext(optionsBuilder.Options))
-                    {
-                        // グローバル変数のデータをLogHistory_EMPテーブルに追加
-                        var logHistory = new LogHistory_EMP
-                        {
-                            empID = globalEmpID,
-                            empName = globalEmpName,
-                            LoginDateTime = globalLoginDateTime
-                        };
-
-                        // LogHistory_EMPテーブルにデータを追加
-                        context.LogHistory_EMPs.Add(logHistory);
-
-                        // 変更をデータベースに保存
-                        context.SaveChanges();
-                    }
-
-                    Console.WriteLine("ログイン情報がデータベースに追加されました。");
-                }
-                catch (Exception ex)
-                {
-                    // エラーハンドリング
-                    Console.WriteLine($"エラーが発生しました: {ex.Message}");
-                }
-            }
-        }*/
-
     }
 }
