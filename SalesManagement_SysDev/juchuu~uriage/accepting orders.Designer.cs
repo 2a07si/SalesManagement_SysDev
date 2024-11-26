@@ -703,7 +703,7 @@ namespace SalesManagement_SysDev
             Controls.Add(label3);
             Controls.Add(b_reg);
             Name = "acceptingorders";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "受注";
             Load += acceptingorders_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

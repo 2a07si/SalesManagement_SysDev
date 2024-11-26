@@ -83,7 +83,7 @@
             // 
             ComboLog.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
             ComboLog.FormattingEnabled = true;
-            ComboLog.Items.AddRange(new object[] { "社員ID", "社員名", "ログイン日" });
+            ComboLog.Items.AddRange(new object[] { "未選択", "社員ID", "社員名", "ログイン日" });
             ComboLog.Location = new Point(16, 18);
             ComboLog.Name = "ComboLog";
             ComboLog.Size = new Size(248, 54);
@@ -93,9 +93,9 @@
             // 
             LoginKensaku.BackColor = Color.FromArgb(255, 255, 192);
             LoginKensaku.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            LoginKensaku.Location = new Point(300, 18);
+            LoginKensaku.Location = new Point(354, 18);
             LoginKensaku.Name = "LoginKensaku";
-            LoginKensaku.Size = new Size(167, 113);
+            LoginKensaku.Size = new Size(113, 113);
             LoginKensaku.TabIndex = 251;
             LoginKensaku.Text = "検索";
             LoginKensaku.UseVisualStyleBackColor = false;
@@ -173,7 +173,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(154, 29);
+            label4.Location = new Point(169, 30);
             label4.Name = "label4";
             label4.Size = new Size(51, 25);
             label4.TabIndex = 255;
@@ -183,7 +183,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(289, 29);
+            label5.Location = new Point(316, 30);
             label5.Name = "label5";
             label5.Size = new Size(48, 25);
             label5.TabIndex = 256;
@@ -194,7 +194,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
-            label6.Location = new Point(427, 29);
+            label6.Location = new Point(467, 30);
             label6.Name = "label6";
             label6.Size = new Size(30, 25);
             label6.TabIndex = 257;
@@ -203,9 +203,9 @@
             // TB_ID
             // 
             TB_ID.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
-            TB_ID.Location = new Point(427, 66);
+            TB_ID.Location = new Point(467, 67);
             TB_ID.Name = "TB_ID";
-            TB_ID.Size = new Size(116, 53);
+            TB_ID.Size = new Size(135, 53);
             TB_ID.TabIndex = 258;
             TB_ID.KeyDown += TB_ID_KeyDown_1;
             // 
@@ -213,9 +213,9 @@
             // 
             ShousaiKensaku.BackColor = Color.FromArgb(255, 255, 192);
             ShousaiKensaku.Font = new Font("Yu Gothic UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            ShousaiKensaku.Location = new Point(565, 18);
+            ShousaiKensaku.Location = new Point(619, 18);
             ShousaiKensaku.Name = "ShousaiKensaku";
-            ShousaiKensaku.Size = new Size(167, 102);
+            ShousaiKensaku.Size = new Size(113, 113);
             ShousaiKensaku.TabIndex = 252;
             ShousaiKensaku.Text = "検索";
             ShousaiKensaku.UseVisualStyleBackColor = false;
@@ -237,30 +237,30 @@
             // 
             ComboGamen.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
             ComboGamen.FormattingEnabled = true;
-            ComboGamen.Items.AddRange(new object[] { "受注", "注文", "出庫", "入荷", "出荷", "売上", "発注", "入庫", "社員", "商品", "在庫", "顧客" });
+            ComboGamen.Items.AddRange(new object[] { "未選択", "受注", "注文", "出庫", "入荷", "出荷", "売上", "発注", "入庫", "社員", "商品", "在庫", "顧客" });
             ComboGamen.Location = new Point(19, 66);
             ComboGamen.Name = "ComboGamen";
-            ComboGamen.Size = new Size(116, 54);
+            ComboGamen.Size = new Size(135, 54);
             ComboGamen.TabIndex = 255;
             // 
             // ComboMode
             // 
             ComboMode.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
             ComboMode.FormattingEnabled = true;
-            ComboMode.Items.AddRange(new object[] { "通常", "詳細" });
-            ComboMode.Location = new Point(154, 66);
+            ComboMode.Items.AddRange(new object[] { "未選択", "通常", "詳細" });
+            ComboMode.Location = new Point(169, 67);
             ComboMode.Name = "ComboMode";
-            ComboMode.Size = new Size(116, 54);
+            ComboMode.Size = new Size(135, 54);
             ComboMode.TabIndex = 256;
             // 
             // ComboShori
             // 
             ComboShori.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
             ComboShori.FormattingEnabled = true;
-            ComboShori.Items.AddRange(new object[] { "登録", "更新", "確定" });
-            ComboShori.Location = new Point(289, 66);
+            ComboShori.Items.AddRange(new object[] { "未選択", "登録", "更新", "確定" });
+            ComboShori.Location = new Point(316, 67);
             ComboShori.Name = "ComboShori";
-            ComboShori.Size = new Size(116, 54);
+            ComboShori.Size = new Size(135, 54);
             ComboShori.TabIndex = 257;
             // 
             // label1

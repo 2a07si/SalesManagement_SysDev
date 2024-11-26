@@ -366,7 +366,7 @@
             Controls.Add(mas);
             Controls.Add(HN);
             Name = "mainmenu3";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "mainmenu";
             Load += mainmenu3_Load;
             JU.ResumeLayout(false);
