@@ -345,7 +345,7 @@ namespace SalesManagement_SysDev
                                 var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
                                 stock.StQuantity -= detail.ChQuantity;
                                 // 発注処理を行う 
-                                Checker(int.Parse(OrderID), shortageQuantity);
+                                Checker(order.OrID, shortageQuantity);
                                 ProductOrder(int.Parse(OrderID), int.Parse(ChumonID), shortageQuantity);
                                 
                                 
@@ -1057,7 +1057,7 @@ namespace SalesManagement_SysDev
                     SyStateFlag = 0
                 };
 
-                Checker2(order.OrID, newSyukko.SyID);
+                Checker2(newSyukko.OrID, newSyukko.SyID);
 
                 try
                 {
@@ -1192,13 +1192,17 @@ namespace SalesManagement_SysDev
                 {
                     var checker = new NyuukoChecker
                     {
-
+                        SyukkoID = "未設定",
                         JyutyuID = OrID.ToString(),
+                        PrID = "未設定",
                         Flag = true,
-                        Quantity = Quantity
+                        Quantity = Quantity,
+                        DelFlag = false
+
                     };
                     context.NyuukoCheckers.Add(checker);
                     context.SaveChanges();
+                    MessageBox.Show(checker.JyutyuID.ToString());
                     MessageBox.Show("チェッカー処理確定");
                 }
 
@@ -1209,6 +1213,7 @@ namespace SalesManagement_SysDev
             }
 
         }
+
         private void Checker2(int OrID, int SyID)
         {
             MessageBox.Show("チェッカー２処理");
@@ -1216,15 +1221,14 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // OrIDに合致するNyuukoCheckerを検索
+                    // OrIDをStringに変換して比較
                     var checker = context.NyuukoCheckers
-                        .FirstOrDefault(c => c.ID == OrID); // OrIDに一致するIDを検索
+                        .FirstOrDefault(c => c.JyutyuID == OrID.ToString());
 
-                    if (checker != null) // 見つかった場合
+                    if (checker != null) // 見つかった場合 
                     {
-                        checker.SyukkoID = SyID.ToString(); // SyukkoIDをSyIDで更新
-                        context.SaveChanges(); // 変更を保存
-
+                        checker.SyukkoID = SyID.ToString(); // SyukkoIDをSyIDで更新 
+                        context.SaveChanges(); // 変更を保存 
                         MessageBox.Show("チェッカー２処理確定");
                     }
                     else
@@ -1235,7 +1239,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message + "内部のやつ" + ex.InnerException.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
