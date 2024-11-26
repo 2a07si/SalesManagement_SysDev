@@ -219,6 +219,7 @@
             ShousaiKensaku.TabIndex = 252;
             ShousaiKensaku.Text = "検索";
             ShousaiKensaku.UseVisualStyleBackColor = false;
+            ShousaiKensaku.Click += ShousaiKensaku_Click;
             // 
             // dataGridView2
             // 
