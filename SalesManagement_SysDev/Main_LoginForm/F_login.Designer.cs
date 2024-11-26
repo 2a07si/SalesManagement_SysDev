@@ -204,9 +204,9 @@
             // 
             passwordchange.Location = new Point(12, 12);
             passwordchange.Name = "passwordchange";
-            passwordchange.Size = new Size(142, 34);
+            passwordchange.Size = new Size(173, 48);
             passwordchange.TabIndex = 14;
-            passwordchange.Text = "ぱしわぁどしえんじ";
+            passwordchange.Text = "パスワード変更";
             passwordchange.UseVisualStyleBackColor = true;
             passwordchange.Click += passwordchange_Click;
             // 

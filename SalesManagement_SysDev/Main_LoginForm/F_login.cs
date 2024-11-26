@@ -45,7 +45,7 @@ namespace SalesManagement_SysDev
             FROM INFORMATION_SCHEMA.TABLES 
             WHERE TABLE_NAME = '{tableName}'";
 
-            
+
         }
 
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -1020,7 +1020,7 @@ namespace SalesManagement_SysDev
                     };
 
 
-                   
+
                     context.LoginHistoryLogs.Add(logEntry);
                     context.SaveChanges();
                     MessageBox.Show("ìoò^ê¨å˜");

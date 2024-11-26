@@ -707,7 +707,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayOrderDetails();
                         Log_Accept(orderDetail.OrDetailID);
-                        
+
                         MessageBox.Show("ログ登録完了");
                     }
                     else
@@ -1398,7 +1398,7 @@ namespace SalesManagement_SysDev
         private void Log_Accept(int id)
         {
             string ModeFlag = "";
-            if(orderFlag == "←通常")
+            if (orderFlag == "←通常")
             {
                 ModeFlag = "通常";
             }
