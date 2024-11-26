@@ -265,24 +265,28 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // LoginHistoryLog テーブルのデータを取得
-                    var logData = context.LoginHistroyLog2s
-                        .Select(o => new
-                        {
-                            o.ID,                  // 表示するカラム (例: ID)
-                            o.LoginID,             // 表示するカラム (例: LoginID)
-                            o.ShainName,
-                            o.LoginDateTime,       // 表示するカラム (例: ログイン日時)
-                        })
-                        .ToList();
+                    var loginData = context.LoginHistoryLogs
+                         .Join<LoginHistoryLog, MEmployee, string, dynamic>(
+                            context.MEmployees,               // 結合するテーブル
+                            log => log.LoginID,               // 主テーブルの結合キー (LoginHistoryLogs の LoginID)
+                            emp => emp.EmID.ToString(),                  // 結合先テーブルの結合キー (MEmployees の EmID)
+                              (log, emp) => new                 // 結合後の結果
+                              {
+                                  log.ID,                       // LoginHistoryLogs の ID
+                                  log.LoginID,                  // LoginHistoryLogs の LoginID
+                                  EmployeeName = emp.EmName,    // MEmployees の社員名 (EmName)
+                                  log.LoginDateTime             // LoginHistoryLogs の LoginDateTime
+                               }
+                     )
+                     .ToList();
 
-                    // DataGridView にデータをバインド
-                    dataGridView1.DataSource = logData;
+
+                    // データグリッドにバインド
+                    dataGridView1.DataSource = loginData;
                 }
             }
             catch (Exception ex)
             {
-                // 例外発生時にエラーメッセージを表示
                 MessageBox.Show($"エラー: {ex.Message}", "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
