@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +13,6 @@ namespace SalesManagement_SysDev.Entity
         // ログインID
         public string LoginID { get; set; }
 
-        public string UserName { get; set; }
 
         // パスワード
         public string Password { get; set; }
