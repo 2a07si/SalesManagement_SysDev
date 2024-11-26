@@ -14,8 +14,6 @@ namespace SalesManagement_SysDev.Entity
         // ログインID
         public string LoginID { get; set; }
 
-        public string UserName { get; set; }
-
         // パスワード
         public string Password { get; set; }
 

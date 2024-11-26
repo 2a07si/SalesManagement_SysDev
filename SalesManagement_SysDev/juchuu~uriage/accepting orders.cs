@@ -414,6 +414,8 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("受注の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            countFlag();
+            FlagCount();
         }
 
         private void RegisterOrder()
@@ -1392,6 +1394,20 @@ namespace SalesManagement_SysDev
                 if (count == 0)
                 {
                     GlobalBadge badge = new GlobalBadge("");
+                    b_acc.Refresh();
+                }
+            }
+        }
+
+        private void FlagCount()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" ");
+                    b_acc.Refresh();
                 }
             }
         }

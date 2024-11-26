@@ -379,7 +379,7 @@ namespace SalesManagement_SysDev
                             context.SaveChanges();
                             MessageBox.Show("注文更新が成功しました。");
                             DisplayOrders();
-                            countFlag();
+                            
                             Log_Order(order.OrID);
                         }
                         catch (Exception ex)
@@ -395,6 +395,8 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("該当する注文情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            countFlag();
+            FlagCount();
         }
 
         private void RegisterOrder()
@@ -1422,6 +1424,20 @@ namespace SalesManagement_SysDev
                 if (count == 0)
                 {
                     GlobalBadge badge = new GlobalBadge("");
+                    b_ord.Refresh();
+                }
+            }
+        }
+
+        private void FlagCount()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" ");
+                    b_ord.Refresh();
                 }
             }
         }
