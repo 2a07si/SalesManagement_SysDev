@@ -36,6 +36,7 @@ namespace SalesManagement_SysDev
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel2, 2);  // パネル2の場合
+
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
@@ -178,6 +179,7 @@ namespace SalesManagement_SysDev
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+            countFlag();
             try
             {
                 // モードに基づいて処理を分岐
@@ -388,7 +390,6 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             DisplayOrders();
                             DisplayOrderDetails();
-                            countFlag();
                         }
                         catch (Exception ex)
                         {
@@ -413,6 +414,8 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("受注の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            countFlag();
+            FlagCount();
         }
 
         private void RegisterOrder()
@@ -706,7 +709,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayOrderDetails();
                         Log_Accept(orderDetail.OrDetailID);
-                        
+
                         MessageBox.Show("ログ登録完了");
                     }
                     else
@@ -1290,6 +1293,11 @@ namespace SalesManagement_SysDev
                         badge.pinpoint(e, button);
                     }
                 }
+                else
+                {
+                    GlobalBadge badge = new GlobalBadge(""); // 空のバッジを設定
+                    badge.pinpoint(e, button);
+                }
             }
         }
 
@@ -1312,6 +1320,11 @@ namespace SalesManagement_SysDev
                     {
                         badge.pinpoint(e, button);
                     }
+                }
+                else
+                {
+                    GlobalBadge badge = new GlobalBadge(""); // 空のバッジを設定
+                    badge.pinpoint(e, button);
                 }
             }
         }
@@ -1337,6 +1350,11 @@ namespace SalesManagement_SysDev
                         badge.pinpoint(e, button);
                     }
                 }
+                else
+                {
+                    GlobalBadge badge = new GlobalBadge("");
+                    badge.pinpoint(e, button);
+                }
             }
         }
 
@@ -1360,6 +1378,11 @@ namespace SalesManagement_SysDev
                         badge.pinpoint(e, button);
                     }
                 }
+                else
+                {
+                    GlobalBadge badge = new GlobalBadge("");
+                    badge.pinpoint(e, button);
+                }
             }
         }
 
@@ -1367,17 +1390,31 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
                 if (count == 0)
                 {
-                    this.Invalidate();
+                    GlobalBadge badge = new GlobalBadge("");
+                    b_acc.Refresh();
+                }
+            }
+        }
+
+        private void FlagCount()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" ");
+                    b_acc.Refresh();
                 }
             }
         }
         private void Log_Accept(int id)
         {
             string ModeFlag = "";
-            if(orderFlag == "←通常")
+            if (orderFlag == "←通常")
             {
                 ModeFlag = "通常";
             }

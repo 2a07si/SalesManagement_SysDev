@@ -183,6 +183,7 @@ namespace SalesManagement_SysDev
         }
         private void b_kakutei_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 // モードに基づいて処理を分岐
@@ -346,7 +347,6 @@ namespace SalesManagement_SysDev
                         Log_Arrival(arrival.ArID);
                         DisplayArrivals();
                         DisplayArrivalDetails();
-                        countFlag();
                     }
                     catch (DbUpdateException ex)
                     {
@@ -369,6 +369,8 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("該当する入荷情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            countFlag();
+            FlagCount();
         }
 
         private void RegisterArrival()
@@ -1315,7 +1317,21 @@ namespace SalesManagement_SysDev
                 int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
                 if (count == 0)
                 {
-                    this.Invalidate();
+                    GlobalBadge badge = new GlobalBadge("");
+                    b_arr.Refresh();
+                }
+            }
+        }
+
+        private void FlagCount()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+                    b_arr.Refresh();
                 }
             }
         }

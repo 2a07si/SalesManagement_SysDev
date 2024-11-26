@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using SalesManagement_SysDev.Main_LoginForm;
 using static SalesManagement_SysDev.ClassÇ‹Ç∆Çﬂ.GlobalEmpNo;
 using SalesManagement_SysDev.Entity;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace SalesManagement_SysDev
 {
@@ -44,7 +45,7 @@ namespace SalesManagement_SysDev
             FROM INFORMATION_SCHEMA.TABLES 
             WHERE TABLE_NAME = '{tableName}'";
 
-            
+
         }
 
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -1016,7 +1017,14 @@ namespace SalesManagement_SysDev
                         ShainName = empname,
                         LoginDateTime = DateTime.Now,
                     };
+<<<<<<< HEAD
                     context.LoginHistroyLog2s.Add(logEntry);
+=======
+
+
+
+                    context.LoginHistoryLogs.Add(logEntry);
+>>>>>>> d86b5a686fc67e6cfd2336a8bfa353e96c47ab68
                     context.SaveChanges();
                     MessageBox.Show("ìoò^ê¨å˜");
                 }

@@ -314,7 +314,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         DisplayHattyus(); // 更新後に発注情報を再表示
                         DisplayHattyuDetails();
-                        countFlag();
+                        
                         Log_Horder(hattyu.HaID);
                     }
                     catch (DbUpdateException ex)
@@ -341,6 +341,8 @@ namespace SalesManagement_SysDev
                 }
 
             }
+            countFlag();
+            FlagCount();
         }
 
         private void RegisterHattyu()
@@ -1059,10 +1061,24 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
                 if (count == 0)
                 {
-                    this.Invalidate();
+                    GlobalBadge badge = new GlobalBadge("");
+                    b_hor.Refresh();
+                }
+            }
+        }
+
+        private void FlagCount()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" ");
+                    b_hor.Refresh();
                 }
             }
         }

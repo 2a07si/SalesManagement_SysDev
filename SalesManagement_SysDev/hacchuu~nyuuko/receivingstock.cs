@@ -316,7 +316,6 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         DisplayReceivingStocks(); // 更新後に入庫情報を再表示
                         DisplayReceivingStockDetails();
-                        countFlag();
                         Log_Receive(receivingStock.WaID);
 
 
@@ -344,6 +343,8 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("該当する入庫情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            countFlag();
+            FlagCount();
         }
 
         private void RegisterReceivingStock()
@@ -1044,7 +1045,21 @@ namespace SalesManagement_SysDev
                 int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
                 if (count == 0)
                 {
-                    this.Invalidate();
+                    GlobalBadge badge = new GlobalBadge("");
+                    b_rec.Refresh();
+                }
+            }
+        }
+
+        private void FlagCount()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" ");
+                    b_rec.Refresh();
                 }
             }
         }

@@ -357,7 +357,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         DisplayShipping(); // 更新後に出荷情報を再表示
                         DisplayShippingDetails();
-                        countFlag();
+                       
                         Log_Shipping(shipping.SoID);
                     }
                     catch (DbUpdateException ex)
@@ -383,6 +383,8 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("該当する出荷情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            countFlag();
+            FlagCount();
         }
 
         private void RegisterShipping()
@@ -1288,18 +1290,29 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
                 if (count == 0)
                 {
-                    this.Invalidate();
+                    GlobalBadge badge = new GlobalBadge("");
+                    b_shi.Refresh();
                 }
             }
         }
 
-        private void b_sal_Paint(object sender, PaintEventArgs e)
+        private void FlagCount()
         {
-
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" ");
+                    b_shi.Refresh();
+                }
+            }
         }
+
+       
         private void Log_Shipping(int id)
         {
             string ModeFlag = "";
