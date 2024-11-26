@@ -367,7 +367,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         Log_Issue(issue.SyID);
                         DisplayIssues(); // 更新後に出庫情報を再表示
-                        countFlag();
+                        
                     }
                     catch (DbUpdateException ex)
                     {
@@ -392,6 +392,8 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("該当する出庫情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            countFlag();
+            FlagCount();
         }
 
         private void RegisterIssue()
@@ -1302,6 +1304,20 @@ namespace SalesManagement_SysDev
                 if (count == 0)
                 {
                     GlobalBadge badge = new GlobalBadge("");
+                    b_iss.Refresh();
+                }
+            }
+        }
+
+        private void FlagCount()
+        {
+            using (var context = new SalesManagementContext())
+            {
+                int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
+                if (count > 0)
+                {
+                    GlobalBadge badge = new GlobalBadge(" ");
+                    b_arr.Refresh();
                 }
             }
         }
