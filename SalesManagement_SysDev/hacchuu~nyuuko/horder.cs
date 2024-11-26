@@ -80,7 +80,7 @@ namespace SalesManagement_SysDev
             TBHattyuuID.Text = "";
             TBMakerID.Text = "";
             TBShainID.Text = "";
-            NyuukoFlag.Checked = false;
+            HattyuFlag.Checked = false;
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
             TBHattyuuSyosaiID.Text = "";
@@ -245,7 +245,7 @@ namespace SalesManagement_SysDev
             string makerID = TBMakerID.Text;
             string shainID = TBShainID.Text;
             DateTime hattyuuDate = date.Value;
-            bool nyuukoFlag = NyuukoFlag.Checked;
+            bool hattyuFlag = HattyuFlag.Checked;
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
@@ -275,18 +275,18 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                var hattyu = context.THattyus.SingleOrDefault(h => h.HaID.ToString() == hattyuuID);
+                var hattyu = context.THattyus.FirstOrDefault(h => h.HaID.ToString() == hattyuuID);
                 if (hattyu != null)
                 {
                     hattyu.MaID = int.Parse(makerID);
                     hattyu.EmID = int.Parse(shainID);
                     hattyu.HaDate = hattyuuDate;
-                    hattyu.WaWarehouseFlag = nyuukoFlag ? 2 : 0; // 入庫フラグ
+                    hattyu.WaWarehouseFlag = hattyuFlag ? 2 : 0; // 入庫フラグ
                     hattyu.HaFlag = delFlag ? 1 : 0;              // 削除フラグ
                     hattyu.HaHidden = riyuu;
 
                     // 入庫フラグがチェックされている場合、発注詳細の確認を行う
-                    if (nyuukoFlag)
+                    if (hattyuFlag)
                     {
                         // 発注詳細が存在するか確認
                         var hattyuDetailsExist = context.THattyuDetails
@@ -350,7 +350,7 @@ namespace SalesManagement_SysDev
             string makerID = TBMakerID.Text;
             string shainID = TBShainID.Text;
             DateTime hattyuuDate = date.Value;
-            bool nyuukoFlag = NyuukoFlag.Checked;
+            bool nyuukoFlag = HattyuFlag.Checked;
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
@@ -501,7 +501,7 @@ namespace SalesManagement_SysDev
                         メーカID = h.MaID,
                         社員ID = h.EmID,
                         発注年月日 = h.HaDate,
-                        発注状態 = NyuukoFlag.Checked ? 2 : 1,
+                        発注状態 = HattyuFlag.Checked ? 2 : 1,
                         非表示フラグ = DelFlag.Checked ? 1 : 0
                     }).ToList();
                 }
@@ -865,8 +865,8 @@ namespace SalesManagement_SysDev
                 var newWarehousing = new TWarehousing
                 {
                     HaID = HaID,
+                    WaDate = horder.HaDate,
                     EmID = horder.EmID,
-                    //datetime
                     WaShelfFlag = 0,
                     WaFlag = 0
                 };

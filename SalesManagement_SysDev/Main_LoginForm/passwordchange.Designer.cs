@@ -65,11 +65,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // user
             // 
             user.AutoSize = true;
-            user.Location = new Point(295, 126);
+            user.Location = new Point(311, 126);
             user.Name = "user";
-            user.Size = new Size(84, 25);
+            user.Size = new Size(66, 25);
             user.TabIndex = 1;
-            user.Text = "ユーザーID";
+            user.Text = "社員ID";
             // 
             // old
             // 

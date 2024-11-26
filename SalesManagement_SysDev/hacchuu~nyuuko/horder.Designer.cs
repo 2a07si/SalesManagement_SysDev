@@ -39,7 +39,7 @@
             b_hor = new Button();
             b_rec = new Button();
             panel1 = new Panel();
-            NyuukoFlag = new CheckBox();
+            HattyuFlag = new CheckBox();
             date = new DateTimePicker();
             DelFlag = new CheckBox();
             label18 = new Label();
@@ -180,7 +180,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(190, 190, 255);
-            panel1.Controls.Add(NyuukoFlag);
+            panel1.Controls.Add(HattyuFlag);
             panel1.Controls.Add(date);
             panel1.Controls.Add(DelFlag);
             panel1.Controls.Add(label18);
@@ -198,17 +198,17 @@
             panel1.Size = new Size(820, 690);
             panel1.TabIndex = 4;
             // 
-            // NyuukoFlag
+            // HattyuFlag
             // 
-            NyuukoFlag.AutoSize = true;
-            NyuukoFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            NyuukoFlag.ForeColor = Color.Black;
-            NyuukoFlag.Location = new Point(300, 70);
-            NyuukoFlag.Name = "NyuukoFlag";
-            NyuukoFlag.Size = new Size(110, 29);
-            NyuukoFlag.TabIndex = 8;
-            NyuukoFlag.Text = "発注状態";
-            NyuukoFlag.UseVisualStyleBackColor = true;
+            HattyuFlag.AutoSize = true;
+            HattyuFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            HattyuFlag.ForeColor = Color.Black;
+            HattyuFlag.Location = new Point(300, 70);
+            HattyuFlag.Name = "HattyuFlag";
+            HattyuFlag.Size = new Size(110, 29);
+            HattyuFlag.TabIndex = 8;
+            HattyuFlag.Text = "発注状態";
+            HattyuFlag.UseVisualStyleBackColor = true;
             // 
             // date
             // 
@@ -598,7 +598,7 @@
         private Button clear;
         private Button close;
         private System.Windows.Forms.Timer timer1;
-        private CheckBox NyuukoFlag;
+        private CheckBox HattyuFlag;
         private CheckBox DelFlag;
         private TextBox TBRiyuu;
         private Label label17;
