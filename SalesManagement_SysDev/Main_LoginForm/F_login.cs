@@ -1017,14 +1017,7 @@ namespace SalesManagement_SysDev
                         ShainName = empname,
                         LoginDateTime = DateTime.Now,
                     };
-<<<<<<< HEAD
                     context.LoginHistroyLog2s.Add(logEntry);
-=======
-
-
-
-                    context.LoginHistoryLogs.Add(logEntry);
->>>>>>> d86b5a686fc67e6cfd2336a8bfa353e96c47ab68
                     context.SaveChanges();
                     MessageBox.Show("ìoò^ê¨å˜");
                 }
