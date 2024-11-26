@@ -25,6 +25,8 @@ using System.ComponentModel.DataAnnotations;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using SalesManagement_SysDev.Entity;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Microsoft.VisualBasic.Logging;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
@@ -276,7 +278,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                                   log.LoginID,                  // LoginHistoryLogs の LoginID
                                   EmployeeName = emp.EmName,    // MEmployees の社員名 (EmName)
                                   log.LoginDateTime             // LoginHistoryLogs の LoginDateTime
-                               }
+                              }
                      )
                      .ToList();
 
@@ -352,13 +354,86 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 }
                 if (!string.IsNullOrEmpty(textBoxValue))
                 {
-                    query = query.Where(x => x.LogID.ToString()==(textBoxValue));
+                    query = query.Where(x => x.LogID.ToString() == (textBoxValue));
                 }
 
                 // 結果を取得し、DataGridView に表示
                 var result = query.ToList();
                 dataGridView2.DataSource = result;
             }
+        }
+
+        private void LoginKensaku_Click(object sender, EventArgs e)
+        {
+            string comboBox2Value = ComboLog.SelectedItem?.ToString();
+            string textBoxValue = TB_Log.Text?.Trim();
+            DateTime? logDate = dateTimePicker1.Checked ? (DateTime?)dateTimePicker1.Value.Date : null;
+            string ename = "";
+
+            if (ComboLog.SelectedIndex == 0 ||
+                (string.IsNullOrEmpty(textBoxValue) && logDate == null))
+            {
+                MessageBox.Show("検索条件を入力してください。");
+                return;
+            }
+
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var query = context.LoginHistoryLogs.AsQueryable();
+
+                    // 社員IDでの検索
+                    if (comboBox2Value == "社員ID" && !string.IsNullOrEmpty(textBoxValue))
+                    {
+                        query = query.Where(x => x.LoginID == textBoxValue);
+                    }
+
+                    // 社員名での検索
+                    if (comboBox2Value == "社員名" && !string.IsNullOrEmpty(textBoxValue))
+                    {
+                        query = context.LoginHistoryLogs;
+                        query.Join<LoginHistoryLog, MEmployee, string, dynamic>(
+                           context.MEmployees,               // 結合するテーブル
+                           log => log.LoginID,               // 主テーブルの結合キー (LoginHistoryLogs の LoginID)
+                           emp => emp.EmID.ToString(),                  // 結合先テーブルの結合キー (MEmployees の EmID)
+                             (log, emp) => new                 // 結合後の結果
+                             {
+                                 log.ID,                       // LoginHistoryLogs の ID
+                                 log.LoginID,                  // LoginHistoryLogs の LoginID
+                                 ename = emp.EmName,    // MEmployees の社員名 (EmName)
+                                 log.LoginDateTime             // LoginHistoryLogs の LoginDateTime
+                             }
+                       )
+                       .ToList();
+                        ename = TB_Log.Text;
+                    }
+
+                    // ログイン日での検索
+                    if (comboBox2Value == "ログイン日" && logDate.HasValue)
+                    {
+                        query = query.Where(o => o.LoginDateTime.Date == logDate.Value);
+                    }
+
+                    var result = query.Select(x => new
+                    {
+                        x.ID,
+                        x.LoginID,
+                        ename,       // 社員名のみ表示
+                        LoginDate = x.LoginDateTime.ToString("yyyy-MM-dd HH:mm:ss") // ログイン日時をフォーマットして表示
+                    })
+                    .ToList();
+
+                    dataGridView1.DataSource = result;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"エラーが発生しました: {ex.Message}");
+            }
+
+
         }
     }
 }

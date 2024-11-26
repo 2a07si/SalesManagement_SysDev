@@ -99,6 +99,7 @@
             LoginKensaku.TabIndex = 251;
             LoginKensaku.Text = "検索";
             LoginKensaku.UseVisualStyleBackColor = false;
+            LoginKensaku.Click += LoginKensaku_Click;
             // 
             // listBox1
             // 
