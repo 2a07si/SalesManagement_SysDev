@@ -310,44 +310,24 @@ namespace SalesManagement_SysDev
                     }
 
                     // 更新を保存 
+                    // 更新を保存 
                     try
                     {
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
-
-                        // 更新後の画面再表示
-                        DisplayReceivingStocks();
+                        DisplayReceivingStocks(); // 更新後に入庫情報を再表示
                         DisplayReceivingStockDetails();
-
-                        // ログ出力
                         Log_Receive(receivingStock.WaID);
 
-                        // NyuukoChecker レコードを一括更新
-                        var nyuukoCheckersToUpdate = context.NyuukoCheckers
-                            .Where(n => n.Flag == true && n.PrID != null) // 必要な条件で絞り込む
-                            .ToList();
-
-                        if (nyuukoCheckersToUpdate.Any())
+                        var nyuukocheck = context.NyuukoCheckers;
+                        foreach (var ncheck in nyuukocheck)
                         {
-                            foreach (var checker in nyuukoCheckersToUpdate)
+                            int productId;
+                            if (int.TryParse(ncheck.PrID, out productId))
                             {
-                                // PrID を直接使用してフラグを更新
-                                checker.Flag = false; // 必要に応じて変更
-                            int SyukkoId;
-                            if (int.TryParse(ncheck.SyukkoID, out SyukkoId))
-                            {
-                                UpdateNyuukoCheckerFlag(SyukkoId, true);
+                                UpdateNyuukoCheckerFlag(productId, true);
                             }
-
-                            // 変更を一括保存
-                            context.SaveChanges();
-                            MessageBox.Show("NyuukoChecker レコードが更新されました。");
                         }
-                        else
-                        {
-                            MessageBox.Show("更新対象の NyuukoChecker レコードが見つかりませんでした。");
-                        }
-
                     }
                     catch (DbUpdateException ex)
                     {
@@ -1148,7 +1128,7 @@ namespace SalesManagement_SysDev
                 {
                     // まず、PrIDをそのまま文字列で比較して対象レコードを取得
                     var itemsToUpdate = context.NyuukoCheckers
-                        .Where(n => n.PrID == productId.ToString() && n.Flag == true)
+                        .Where(n => n.PrID == shukkoid.ToString() && n.Flag == true)
                         .ToList();
                     // 入庫が確定した商品に関連するレコードを取得
                     var nyuukoChecker = context.NyuukoCheckers.Where(n => int.TryParse(n.PrID, out shukkoid) && shukkoid == shukkoid && n.Flag) .ToList();
@@ -1158,9 +1138,7 @@ namespace SalesManagement_SysDev
                         // フラグを更新
                         // 入庫IDを設定し、フラグを0に更新（再表示）
                         // フラグを更新する対象のアイテムを取得
-                        var itemsToUpdate = context.NyuukoCheckers
-                            .Where(n => int.TryParse(n.PrID, out shukkoid) && n.Flag == true)
-                            .ToList();
+                        
 
                         // 各アイテムのFlagを変更
                         foreach (var item in itemsToUpdate)
