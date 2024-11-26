@@ -379,7 +379,7 @@ namespace SalesManagement_SysDev
                             context.SaveChanges();
                             MessageBox.Show("注文更新が成功しました。");
                             DisplayOrders();
-                            
+
                             Log_Order(order.OrID);
                         }
                         catch (Exception ex)
@@ -1159,7 +1159,7 @@ namespace SalesManagement_SysDev
 
                     context.THattyuDetails.Add(newHattyuDetail);
                     context.SaveChanges();
-                    
+
                     MessageBox.Show("発注登録が完了しました");
                 }
             }
@@ -1415,7 +1415,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-      
+
         private void countFlag()
         {
             using (var context = new SalesManagementContext())

@@ -367,7 +367,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         Log_Issue(issue.SyID);
                         DisplayIssues(); // 更新後に出庫情報を再表示
-                        
+
                     }
                     catch (DbUpdateException ex)
                     {
@@ -1295,7 +1295,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        
+
         private void countFlag()
         {
             using (var context = new SalesManagementContext())

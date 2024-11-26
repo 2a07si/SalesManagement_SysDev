@@ -583,17 +583,17 @@ namespace SalesManagement_SysDev
 
         private void b_emp_Paint(object sender, PaintEventArgs e)
         {
-                GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
+            GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
 
-                // ボタンを取得
-                Button button = sender as Button;
+            // ボタンを取得
+            Button button = sender as Button;
 
-                // バッジを描画
-                if (button != null)
-                {
-                    badge.pinpoint(e, button);
-                }
-             
+            // バッジを描画
+            if (button != null)
+            {
+                badge.pinpoint(e, button);
+            }
+
         }
 
         private void b_mer_Paint(object sender, PaintEventArgs e)

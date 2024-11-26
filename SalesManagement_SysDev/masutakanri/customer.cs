@@ -662,7 +662,7 @@ namespace SalesManagement_SysDev
         }
         private void Log_Customer(int id)
         {
-            
+
             try
             {
                 using (var context = new SalesManagementContext())

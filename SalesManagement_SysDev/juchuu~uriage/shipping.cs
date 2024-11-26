@@ -342,7 +342,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
-                        
+
                         context.SaveChanges();
                         shipping.ShFlag = 1;
                         shipping.ShHidden = "出荷確定処理済";
@@ -357,7 +357,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         DisplayShipping(); // 更新後に出荷情報を再表示
                         DisplayShippingDetails();
-                       
+
                         Log_Shipping(shipping.SoID);
                     }
                     catch (DbUpdateException ex)
@@ -1298,7 +1298,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-       
+
         private void Log_Shipping(int id)
         {
             string ModeFlag = "";
