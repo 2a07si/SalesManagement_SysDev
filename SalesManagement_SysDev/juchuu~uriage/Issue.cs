@@ -45,7 +45,7 @@ namespace SalesManagement_SysDev
         private void issue_Load(object sender, EventArgs e)
         {
 
-
+            UpdateNonDisplayFlagWhenNyuukoCheckerFlagIsFalse();
             GlobalUtility.UpdateLabels(label_id, label_ename);
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
@@ -1368,6 +1368,43 @@ namespace SalesManagement_SysDev
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
         }
+
+        private void UpdateNonDisplayFlagWhenNyuukoCheckerFlagIsFalse()
+        {
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // NyuukoCheckerのFlagがfalseのレコードを取得
+                    var nyuukoCheckersWithFlagFalse = context.NyuukoCheckers
+                        .Where(n => n.Flag == false) // Flagがfalseのレコードを選択
+                        .ToList();
+
+                    foreach (var nyuukoChecker in nyuukoCheckersWithFlagFalse)
+                    {
+                        // 出庫IDと一致するレコードを取得
+                        var matchingRecord = context.TSyukkos
+                            .Where(o => o.SyID == int.Parse(nyuukoChecker.SyukkoID) && o.SyFlag == 1) // 出庫IDが一致し、かつFlagが1（非表示）であるレコード
+                            .FirstOrDefault();
+
+                        if (matchingRecord != null)
+                        {
+                            // 一致するレコードがあった場合、そのレコードのFlagを0に変更（表示状態に戻す）
+                            matchingRecord.SyFlag = 0;
+
+                            // データベースに変更を保存
+                            context.SaveChanges();
+                            MessageBox.Show($"出庫ID {nyuukoChecker.SyukkoID} の非表示フラグが0に更新されました。");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"エラーが発生しました: {ex.Message}");
+            }
+        }
+
 
     }
 
