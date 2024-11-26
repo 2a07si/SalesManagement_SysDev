@@ -333,6 +333,10 @@ namespace SalesManagement_SysDev
                             {
                                 // PrID を直接使用してフラグを更新
                                 checker.Flag = false; // 必要に応じて変更
+                            int SyukkoId;
+                            if (int.TryParse(ncheck.SyukkoID, out SyukkoId))
+                            {
+                                UpdateNyuukoCheckerFlag(SyukkoId, true);
                             }
 
                             // 変更を一括保存
@@ -1136,7 +1140,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void UpdateNyuukoCheckerFlag(int productId, bool flag)
+        private void UpdateNyuukoCheckerFlag(int shukkoid, bool flag)
         {
             try
             {
@@ -1146,10 +1150,19 @@ namespace SalesManagement_SysDev
                     var itemsToUpdate = context.NyuukoCheckers
                         .Where(n => n.PrID == productId.ToString() && n.Flag == true)
                         .ToList();
+                    // 入庫が確定した商品に関連するレコードを取得
+                    var nyuukoChecker = context.NyuukoCheckers.Where(n => int.TryParse(n.PrID, out shukkoid) && shukkoid == shukkoid && n.Flag) .ToList();
 
                     if (itemsToUpdate.Any())
                     {
                         // フラグを更新
+                        // 入庫IDを設定し、フラグを0に更新（再表示）
+                        // フラグを更新する対象のアイテムを取得
+                        var itemsToUpdate = context.NyuukoCheckers
+                            .Where(n => int.TryParse(n.PrID, out shukkoid) && n.Flag == true)
+                            .ToList();
+
+                        // 各アイテムのFlagを変更
                         foreach (var item in itemsToUpdate)
                         {
                             item.Flag = flag;
