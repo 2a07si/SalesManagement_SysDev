@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev;
@@ -67,6 +68,8 @@ public partial class SalesManagementContext : DbContext
 
     public virtual DbSet<LoginHistoryLog> LoginHistoryLogs { get; set; }
 
+    public virtual DbSet<LoginHistroyLog2> LoginHistroyLog2s { get; set; }
+
     public virtual DbSet<LoginHistoryLogDetail> LoginHistoryLogDetails { get; set; }
 
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
@@ -80,6 +83,34 @@ public partial class SalesManagementContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<LoginHistoryLog>().ToTable("LoginHistoryLogs");
+
+        modelBuilder.Entity<LoginHistroyLog2>(entity =>
+        {
+            entity.HasKey(e => e.ID).HasName("PK_LoginHistoryLog2");
+
+            entity.ToTable("LoginHistoryLog2");
+
+            entity.Property(e => e.ID).HasColumnName("ID");
+
+            entity.Property(e => e.LoginID)
+                .HasMaxLength(50)
+                .HasColumnName("LoginID")
+                .IsRequired();  // 必須
+
+            entity.Property(e => e.ShainName)
+                .HasMaxLength(50)
+                .HasColumnName("ShainName")
+                .IsRequired();
+
+
+            entity.Property(e => e.LoginDateTime)
+                .HasColumnType("datetime")
+                .HasColumnName("LoginDateTime")
+                .IsRequired();  // 必須
+
+        });
+
+        
 
         modelBuilder.Entity<LoginHistoryLogDetail>(entity =>
         {

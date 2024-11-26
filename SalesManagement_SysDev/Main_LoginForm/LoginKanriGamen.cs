@@ -201,11 +201,12 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 using (var context = new SalesManagementContext())
                 {
                     // LoginHistoryLog テーブルのデータを取得
-                    var logData = context.LoginHistoryLogs
+                    var logData = context.LoginHistroyLog2s
                         .Select(o => new
                         {
                             o.ID,                  // 表示するカラム (例: ID)
                             o.LoginID,             // 表示するカラム (例: LoginID)
+                            o.ShainName,
                             o.LoginDateTime,       // 表示するカラム (例: ログイン日時)
                         })
                         .ToList();
