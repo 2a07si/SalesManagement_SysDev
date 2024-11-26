@@ -266,7 +266,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 count += context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
                 count += context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
 
-                if(count > 0)
+                if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
 
@@ -325,7 +325,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                         badge.SecondBadge(e, button);
                     }
                 }
-                
+
             }
         }
 
@@ -363,7 +363,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 // ボタンを取得
                 Button button = sender as Button;
-                if (button.Enabled==false)
+                if (button.Enabled == false)
                 {
                     return; // 描画処理を行わない
                 }

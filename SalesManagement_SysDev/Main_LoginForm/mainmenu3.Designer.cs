@@ -92,7 +92,7 @@
             // 
             b_mas.BackColor = Color.FromArgb(178, 228, 210);
             b_mas.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_mas.Location = new Point(980, 130);
+            b_mas.Location = new Point(980, 136);
             b_mas.Name = "b_mas";
             b_mas.Size = new Size(400, 75);
             b_mas.TabIndex = 2;
@@ -195,7 +195,7 @@
             // 
             b_HN.BackColor = Color.FromArgb(212, 222, 255);
             b_HN.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_HN.Location = new Point(580, 130);
+            b_HN.Location = new Point(580, 136);
             b_HN.Name = "b_HN";
             b_HN.Size = new Size(400, 75);
             b_HN.TabIndex = 1;
@@ -208,7 +208,7 @@
             // 
             b_JU.BackColor = Color.FromArgb(244, 226, 207);
             b_JU.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            b_JU.Location = new Point(180, 130);
+            b_JU.Location = new Point(180, 136);
             b_JU.Name = "b_JU";
             b_JU.Size = new Size(400, 75);
             b_JU.TabIndex = 0;
@@ -366,7 +366,7 @@
             Controls.Add(mas);
             Controls.Add(HN);
             Name = "mainmenu3";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "mainmenu";
             Load += mainmenu3_Load;
             JU.ResumeLayout(false);

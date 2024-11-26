@@ -136,6 +136,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             Controls.Add(TBold);
             Controls.Add(TBID);
             Name = "passwordchange";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "passwordchange";
             ResumeLayout(false);
             PerformLayout();
