@@ -12,6 +12,7 @@ using SalesManagement_SysDev.Classまとめ;
 using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using static SalesManagement_SysDev.Classまとめ.GlobalBadge;
+using SalesManagement_SysDev.Entity;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
@@ -144,8 +145,10 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 Global.PositionName = string.Empty;
                 Global.EmployeePermission = 0;
                 this.Close(); // 現在のフォームを閉じる 
+                Log_Out();
                 F_login loginForm = new F_login(); // ログインフォームを作成 
                 loginForm.Show(); // ログインフォームを表示 
+
             }
         }
 
@@ -464,6 +467,44 @@ namespace SalesManagement_SysDev.Main_LoginForm
                         badge.SecondBadge(e, button);
                     }
                 }
+            }
+        }
+        private void Log_Out()
+        {
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // 最新のLoginHistoryLogを取得
+                    var latestLoginHistory = context.LoginHistoryLogs
+                                                    .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
+                                                    .FirstOrDefault();  // 最新のログを取得
+
+                    if (latestLoginHistory != null)
+                    {
+                        // 最新のログが見つかった場合、そのIDを設定
+                        var LogDet = new LoginHistoryLogDetail
+                        {
+                            ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
+                            Display = "メインメニュー",
+                            Mode = "-",
+                            Process = "ログアウト",
+                            LogID = 0,  //
+                            AcceptDateTime = DateTime.Now
+                        };
+
+                        context.LoginHistoryLogDetails.Add(LogDet);  // 新しいログ履歴を登録
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("最新のログ履歴が見つかりませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
         }
     }

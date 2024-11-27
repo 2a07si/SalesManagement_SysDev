@@ -955,11 +955,8 @@ namespace SalesManagement_SysDev
         {
             // 状態を切り替える処理
             ToggleOrderSelection();
-
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
-
-
         }
 
         private void UpdateFlagButtonText()
@@ -1030,8 +1027,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
         private void OrdersConfirm(int JyutyuID, int ChID, int SyFlag, string SyHidden)
         {
             MessageBox.Show("登録開始します");
@@ -1057,7 +1052,7 @@ namespace SalesManagement_SysDev
                     SyStateFlag = 0
                 };
 
-                Checker2(newSyukko.OrID, newSyukko.SyID);
+                
 
                 try
                 {
@@ -1069,6 +1064,7 @@ namespace SalesManagement_SysDev
                     context.TSyukkos.Add(newSyukko);
                     context.SaveChanges();
                     MessageBox.Show("出庫登録が完了しました。"); // ここでメッセージが表示されることを確認 
+                    Checker2(newSyukko.OrID, newSyukko.SyID);
                 }
                 catch (Exception ex)
                 {
@@ -1182,7 +1178,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //発注入庫との中間テーブル登録処理 1
         private void Checker(int OrID, int Quantity)
         {
             MessageBox.Show("チェッカー処理");
@@ -1211,7 +1207,6 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message + "内部のやつ" + ex.InnerException.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void Checker2(int OrID, int SyID)
@@ -1222,14 +1217,23 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // OrIDをStringに変換して比較
-                    var checker = context.NyuukoCheckers
-                        .FirstOrDefault(c => c.JyutyuID == OrID.ToString());
+                    var checker = context.NyuukoCheckers.FirstOrDefault(c => c.JyutyuID == OrID.ToString());
 
                     if (checker != null) // 見つかった場合 
                     {
                         checker.SyukkoID = SyID.ToString(); // SyukkoIDをSyIDで更新 
                         context.SaveChanges(); // 変更を保存 
                         MessageBox.Show("チェッカー２処理確定");
+                        // 確定後のチェッカーデータをメッセージボックスで表示
+                        string checkerData = $"チェッカー２時点のデータ:\n" +
+                                             $"SyukkoID: {checker.ID}\n" +
+                                             $"SyukkoID: {checker.SyukkoID}\n" +
+                                             $"JyutyuID: {checker.JyutyuID}\n" +
+                                             $"PrID: {checker.PrID}\n" +
+                                             $"Flag: {checker.Flag}\n" +
+                                             $"Quantity: {checker.Quantity}\n" +
+                                             $"DelFlag: {checker.DelFlag}";
+                        MessageBox.Show(checkerData, "チェッカー２確定後のデータ");
                     }
                     else
                     {
@@ -1242,8 +1246,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)

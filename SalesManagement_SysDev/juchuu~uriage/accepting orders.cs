@@ -32,7 +32,6 @@ namespace SalesManagement_SysDev
             formChanger = new ClassChangeForms(this);
             accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
 
-
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel2, 2);  // パネル2の場合
@@ -61,20 +60,17 @@ namespace SalesManagement_SysDev
             SetupNumericOnlyTextBoxes();
         }
 
-
         // メインメニューに戻る
         private void close_Click(object sender, EventArgs e)
         {
             formChanger.NavigateTo3();
         }
         // 各ボタンでの画面遷移
-        // 各ボタンでの画面遷移
         private void b_ord_Click(object sender, EventArgs e) => formChanger.NavigateToOrderForm();
         private void b_arr_Click(object sender, EventArgs e) => formChanger.NavigateToArrivalForm();
         private void b_shi_Click(object sender, EventArgs e) => formChanger.NavigateToShippingForm();
         private void b_sal_Click(object sender, EventArgs e) => formChanger.NavigateToSalesForm();
         private void b_iss_Click(object sender, EventArgs e) => formChanger.NavigateToIssueForm();
-
         private void clear_Click(object sender, EventArgs e) => ClearText();
 
         private void ClearText()
@@ -101,7 +97,6 @@ namespace SalesManagement_SysDev
             checkBox_2.Checked = false;
             colorReset();
         }
-
 
         private void b_ser_Click(object sender, EventArgs e)
         {
