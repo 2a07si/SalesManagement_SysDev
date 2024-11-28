@@ -1114,7 +1114,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void UpdateNyuukoCheckerFlag(int SyID, bool flag)
+        private void UpdateNyuukoCheckerFlag(int PrID, bool flag)
         {
             try
             {
@@ -1122,7 +1122,7 @@ namespace SalesManagement_SysDev
                 {
                     // まず、受注ID（OrID）を使って、関連するNyuukoCheckerのレコードを絞り込み
                     var itemsToUpdate = context.NyuukoCheckers
-                        .Where(n => n.SyukkoID == SyID.ToString() && n.Flag == false) // まだフラグがfalseのもの
+                        .Where(n => n.PrID ==PrID.ToString() && n.Flag == false) // まだフラグがfalseのもの
                         .ToList();
 
                     if (itemsToUpdate.Any())
