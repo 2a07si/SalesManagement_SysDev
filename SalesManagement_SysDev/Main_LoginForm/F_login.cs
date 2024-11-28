@@ -996,11 +996,11 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                var log = context.LoginHistroyLog2s.FirstOrDefault();
+                var log = context.LoginHistoryLogs.FirstOrDefault();
                 {
 
                 }
-                var Log = new LoginHistroyLog2
+                var Log = new LoginHistoryLog
                 {
 
                 };
