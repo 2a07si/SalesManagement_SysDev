@@ -307,6 +307,8 @@ namespace SalesManagement_SysDev
                         }
                         receivingStock.WaFlag = 1;
                         receivingStock.WaHidden = "入庫確定処理済";
+
+                        UpdateNyuukoCheckerFlag(nyuukoID);
                     }
 
                     // 更新を保存 
@@ -318,9 +320,9 @@ namespace SalesManagement_SysDev
                         DisplayReceivingStocks(); // 更新後に入庫情報を再表示
                         DisplayReceivingStockDetails();
                         Log_Receive(receivingStock.WaID);
+                       
 
-
-
+                        
                     }
                     catch (DbUpdateException ex)
                     {
@@ -1114,36 +1116,57 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void UpdateNyuukoCheckerFlag(string PrID)
+        private void UpdateNyuukoCheckerFlag(string SyID)
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // PrIDに基づいて該当するレコードを検索
+                    // PrIDに基づいて該当するNyuukoCheckerレコードを検索
                     var recordToUpdate = context.NyuukoCheckers
-                    .Where(n => n.PrID == PrID.ToString()) // 商品IDが一致する行を検索
-                    .FirstOrDefault(); // 最初の一致するレコードを取得
-
+                        .Where(n => n.SyukkoID == SyID.ToString()) // 商品IDが一致する行を検索
+                        .FirstOrDefault(); // 最初の一致するレコードを取得
+                    MessageBox.Show($"ちーず。");
                     if (recordToUpdate != null)
                     {
-                        // フラグをtrueに更新
+                        // 取得したレコードのFlagをtrueに更新
                         recordToUpdate.Flag = true;
+                        MessageBox.Show($"ドキンちゃん。");
+                        // 出庫ID (SyukkoID) を取得
+                        var syukkoID = recordToUpdate.SyukkoID;
+                        MessageBox.Show($"食パンマン。");
+                        // TSyukkoテーブルで、出庫IDと一致するレコードを検索
+                        var matchingRecord = context.TSyukkos
+                            .FirstOrDefault(o => o.SyID.ToString() == syukkoID && o.SyFlag == 1); // SyFlagが1（非表示）で一致するレコードを検索
+                        MessageBox.Show($"あんぱんまん。");
+                        // 一致するレコードが見つかった場合
+                        if (matchingRecord != null)
+                        {
+                            // 該当するレコードのSyFlagを0に変更
+                            matchingRecord.SyFlag = 0;
+                            // 変更をデータベースに保存
+                            context.SaveChanges();
 
-                        // データベースに変更を保存
-
+                            MessageBox.Show($"かびるんるん");
+                        }
+                        else
+                        {
+                            // 一致するレコードが見つからない場合
+                            MessageBox.Show($"出庫ID {syukkoID} に一致するレコードが見つかりませんでした。");
+                        }
                     }
                     else
                     {
                         MessageBox.Show("該当する商品IDに対応する出庫IDが見つかりませんでした。");
                     }
 
+                    // 最後に変更を保存
                     context.SaveChanges();
-
                 }
             }
             catch (Exception ex)
             {
+                // エラーハンドリング
                 MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
