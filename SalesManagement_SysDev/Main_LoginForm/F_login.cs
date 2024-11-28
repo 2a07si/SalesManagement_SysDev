@@ -1006,21 +1006,19 @@ namespace SalesManagement_SysDev
 
                 };
             }
-            MessageBox.Show("AddLoginHistoryé¿çs");
             try
             {
                 using (var context = new SalesManagementContext())
                 {
 
-                    var logEntry = new LoginHistroyLog2
+                    var logEntry = new LoginHistoryLog
                     {
                         LoginID = tb_ID.Text,
-                        ShainName = empname,
+                        Password = tb_Pass.Text,
                         LoginDateTime = DateTime.Now,
                     };
-                    context.LoginHistroyLog2s.Add(logEntry);
+                    context.LoginHistoryLogs.Add(logEntry);
                     context.SaveChanges();
-                    MessageBox.Show("ìoò^ê¨å˜");
                 }
             }
             catch (Exception ex)

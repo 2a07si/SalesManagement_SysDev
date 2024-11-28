@@ -115,8 +115,6 @@ public partial class SalesManagementContext : DbContext
 
         });
 
-        
-
         modelBuilder.Entity<LoginHistoryLogDetail>(entity =>
         {
             entity.HasKey(e => e.DetailID); // 主キーの設定
