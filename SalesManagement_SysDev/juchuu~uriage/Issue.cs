@@ -1376,36 +1376,36 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // NyuukoCheckerのFlagがfalseのレコードを取得
-                    var nyuukoCheckersWithFlagFalse = context.NyuukoCheckers
-                        .Where(n => n.Flag == true) // Flagがfalseのレコードを選択
+                    var nyuukoCheckers = context.NyuukoCheckers
+                        .Where(n => n.Flag == true) // Flagがtrueのレコード
                         .ToList();
 
-                    foreach (var nyuukoChecker in nyuukoCheckersWithFlagFalse)
+                    foreach (var nyuukoChecker in nyuukoCheckers)
                     {
-                        // 出庫IDと一致するレコードを取得
+                        // NyuukoCheckerのSyukkoIDを取得
+                        var syukkoID = nyuukoChecker.SyukkoID;
+
+                        // TSyukkoテーブルで一致するSyIDを探す
                         var matchingRecord = context.TSyukkos
-                            .Where(o => o.SyID == int.Parse(nyuukoChecker.SyukkoID) && o.SyFlag == 1) // 出庫IDが一致し、かつFlagが1（非表示）であるレコード
-                            .FirstOrDefault();
+                            .FirstOrDefault(o => o.SyID.ToString() == syukkoID && o.SyFlag == 1); // SyFlagが1（非表示）の条件
 
                         if (matchingRecord != null)
                         {
-                            // 一致するレコードがあった場合、そのレコードのFlagを0に変更（表示状態に戻す）
+                            // 一致するレコードが見つかった場合、SyFlagを0に変更
                             matchingRecord.SyFlag = 0;
-
-                            // データベースに変更を保存
-                            context.SaveChanges();
-
-                            // 出庫画面に表示するために情報を取得して表示
-                            DisplaySyukkoData(matchingRecord);
                         }
                     }
+
+                    // 変更を保存
+                    context.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void DisplaySyukkoData(TSyukko matchingRecord)
         {

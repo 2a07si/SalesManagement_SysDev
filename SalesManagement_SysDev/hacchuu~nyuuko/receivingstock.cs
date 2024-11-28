@@ -319,8 +319,8 @@ namespace SalesManagement_SysDev
                         DisplayReceivingStockDetails();
                         Log_Receive(receivingStock.WaID);
 
-                        
-                    
+
+
                     }
                     catch (DbUpdateException ex)
                     {
@@ -870,7 +870,7 @@ namespace SalesManagement_SysDev
                     {
                         context.TStocks.Add(newStock);
                         context.SaveChanges();
-                        UpdateNyuukoCheckerFlag(receive.PrID, true);
+                        UpdateNyuukoCheckerFlag(receive.PrID.ToString());
                     }
                     catch (Exception ex)
                     {
@@ -1114,27 +1114,32 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void UpdateNyuukoCheckerFlag(int PrID, bool flag)
+        private void UpdateNyuukoCheckerFlag(string PrID)
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // まず、受注ID（OrID）を使って、関連するNyuukoCheckerのレコードを絞り込み
-                    var itemsToUpdate = context.NyuukoCheckers
-                        .Where(n => n.PrID ==PrID.ToString() && n.Flag == false) // まだフラグがfalseのもの
-                        .ToList();
+                    // PrIDに基づいて該当するレコードを検索
+                    var recordToUpdate = context.NyuukoCheckers
+                    .Where(n => n.PrID == PrID.ToString()) // 商品IDが一致する行を検索
+                    .FirstOrDefault(); // 最初の一致するレコードを取得
 
-                    if (itemsToUpdate.Any())
+                    if (recordToUpdate != null)
                     {
-                        itemsToUpdate.ForEach(item => item.Flag = flag); // フラグを一括更新
-                        context.SaveChanges();
+                        // フラグをtrueに更新
+                        recordToUpdate.Flag = true;
+
+                        // データベースに変更を保存
+
                     }
                     else
                     {
-
-                        MessageBox.Show("該当する出庫IDに一致するレコードが見つかりませんでした。");
+                        MessageBox.Show("該当する商品IDに対応する出庫IDが見つかりませんでした。");
                     }
+
+                    context.SaveChanges();
+
                 }
             }
             catch (Exception ex)
@@ -1142,8 +1147,5 @@ namespace SalesManagement_SysDev
                 MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
     }
 }
