@@ -319,15 +319,8 @@ namespace SalesManagement_SysDev
                         DisplayReceivingStockDetails();
                         Log_Receive(receivingStock.WaID);
 
-                        var nyuukocheck = context.NyuukoCheckers;
-                        foreach (var ncheck in nyuukocheck)
-                        {
-                            int order;
-                            if (int.TryParse(ncheck.SyukkoID, out order))
-                            {
-                                UpdateNyuukoCheckerFlag(order, true);
-                            }
-                        }
+                        
+                    
                     }
                     catch (DbUpdateException ex)
                     {
@@ -877,6 +870,7 @@ namespace SalesManagement_SysDev
                     {
                         context.TStocks.Add(newStock);
                         context.SaveChanges();
+                        UpdateNyuukoCheckerFlag(receive.PrID, true);
                     }
                     catch (Exception ex)
                     {
@@ -1133,18 +1127,13 @@ namespace SalesManagement_SysDev
 
                     if (itemsToUpdate.Any())
                     {
-                        // フラグを更新
-                        foreach (var item in itemsToUpdate)
-                        {
-                            item.Flag = flag; // 新しいフラグの値で更新
-                        }
-
-                        // データベースに変更を保存
+                        itemsToUpdate.ForEach(item => item.Flag = flag); // フラグを一括更新
                         context.SaveChanges();
                     }
                     else
                     {
-                        MessageBox.Show("該当する受注IDに一致するレコードが見つかりませんでした。");
+
+                        MessageBox.Show("該当する出庫IDに一致するレコードが見つかりませんでした。");
                     }
                 }
             }
