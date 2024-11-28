@@ -1088,10 +1088,12 @@ namespace SalesManagement_SysDev
                     SyID = newSyukko.SyID,
                     PrID = orderDetail.PrID,
                     SyQuantity = chumonDetail.ChQuantity
+                   
                 };
 
                 try
                 {
+                    Checker3(newSyukko.SyID,orderDetail.PrID);
                     context.TSyukkoDetails.Add(newSyukkoDetail);
                     context.SaveChanges();
                 }
@@ -1248,6 +1250,47 @@ namespace SalesManagement_SysDev
         }
 
 
+<<<<<<< HEAD
+=======
+        private void Checker3(int SyID, int PrID)
+        {
+            MessageBox.Show("チェッカー３処理");
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // OrIDをStringに変換して比較
+                    var checker = context.NyuukoCheckers.FirstOrDefault(c => c.SyukkoID == SyID.ToString());
+
+                    if (checker != null) // 見つかった場合 
+                    {
+                        checker.PrID = PrID.ToString(); // SyukkoIDをSyIDで更新 
+                        context.SaveChanges(); // 変更を保存 
+                        MessageBox.Show("チェッカー３処理確定");
+                        // 確定後のチェッカーデータをメッセージボックスで表示
+                        string checkerData = $"チェッカー３時点のデータ:\n" +
+                                             $"ID: {checker.ID}\n" +
+                                             $"SyukkoID: {checker.SyukkoID}\n" +
+                                             $"JyutyuID: {checker.JyutyuID}\n" +
+                                             $"PrID: {checker.PrID}\n" +
+                                             $"Flag: {checker.Flag}\n" +
+                                             $"Quantity: {checker.Quantity}\n" +
+                                             $"DelFlag: {checker.DelFlag}";
+                        MessageBox.Show(checkerData, "チェッカー２確定後のデータ");
+                    }
+                    else
+                    {
+                        MessageBox.Show("指定されたOrIDに一致するレコードが見つかりませんでした。");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+>>>>>>> d2d99080ea1d195ae70050dec09411331a26b301
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)
         {
