@@ -1394,7 +1394,9 @@ namespace SalesManagement_SysDev
 
                             // データベースに変更を保存
                             context.SaveChanges();
-                            MessageBox.Show($"出庫ID {nyuukoChecker.SyukkoID} の非表示フラグが0に更新されました。");
+
+                            // 出庫画面に表示するために情報を取得して表示
+                            DisplaySyukkoData(matchingRecord);
                         }
                     }
                 }
@@ -1405,7 +1407,19 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private void DisplaySyukkoData(TSyukko matchingRecord)
+        {
+            // 出庫データを画面に表示するロジック（例：MessageBox または 別画面に表示）
+            string syukkoInfo = $"出庫ID: {matchingRecord.SyID}\n" +
+                                $"社員ID: {matchingRecord.EmID}\n" +
+                                $"顧客ID: {matchingRecord.ClID}\n" +
+                                $"営業所ID: {matchingRecord.SoID}\n" +
+                                $"受注ID: {matchingRecord.OrID}\n" +
+                                $"出庫日: {matchingRecord.SyDate?.ToString("yyyy-MM-dd") ?? "未設定"}\n" +
+                                $"表示状態: {(matchingRecord.SyFlag == 0 ? "表示中" : "非表示")}";
 
+            MessageBox.Show(syukkoInfo, "出庫情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 
 

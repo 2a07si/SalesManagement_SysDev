@@ -322,10 +322,10 @@ namespace SalesManagement_SysDev
                         var nyuukocheck = context.NyuukoCheckers;
                         foreach (var ncheck in nyuukocheck)
                         {
-                            int productId;
-                            if (int.TryParse(ncheck.PrID, out productId))
+                            int order;
+                            if (int.TryParse(ncheck.SyukkoID, out order))
                             {
-                                UpdateNyuukoCheckerFlag(productId, true);
+                                UpdateNyuukoCheckerFlag(order, true);
                             }
                         }
                     }
@@ -1120,45 +1120,37 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void UpdateNyuukoCheckerFlag(int shukkoid, bool flag)
+        private void UpdateNyuukoCheckerFlag(int SyID, bool flag)
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // まず、PrIDをそのまま文字列で比較して対象レコードを取得
+                    // まず、受注ID（OrID）を使って、関連するNyuukoCheckerのレコードを絞り込み
                     var itemsToUpdate = context.NyuukoCheckers
-                        .Where(n => n.PrID == shukkoid.ToString() && n.Flag == true)
+                        .Where(n => n.SyukkoID == SyID.ToString() && n.Flag == false) // まだフラグがfalseのもの
                         .ToList();
-                    // 入庫が確定した商品に関連するレコードを取得
-                    var nyuukoChecker = context.NyuukoCheckers.Where(n => int.TryParse(n.PrID, out shukkoid) && shukkoid == shukkoid && n.Flag) .ToList();
 
                     if (itemsToUpdate.Any())
                     {
                         // フラグを更新
-                        // 入庫IDを設定し、フラグを0に更新（再表示）
-                        // フラグを更新する対象のアイテムを取得
-                        
-
-                        // 各アイテムのFlagを変更
                         foreach (var item in itemsToUpdate)
                         {
-                            item.Flag = flag;
+                            item.Flag = flag; // 新しいフラグの値で更新
                         }
 
                         // データベースに変更を保存
                         context.SaveChanges();
-                        MessageBox.Show($"フラグが{(flag ? 1 : 0)}に更新されました。");
                     }
                     else
                     {
-                        MessageBox.Show("該当する商品が見つかりませんでした。");
+                        MessageBox.Show("該当する受注IDに一致するレコードが見つかりませんでした。");
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

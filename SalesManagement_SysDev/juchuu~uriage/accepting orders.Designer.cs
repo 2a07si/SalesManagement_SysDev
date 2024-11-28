@@ -489,6 +489,7 @@ namespace SalesManagement_SysDev
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 33;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 9;
             dataGridView2.CellClick += dataGridView2_CellClick;
