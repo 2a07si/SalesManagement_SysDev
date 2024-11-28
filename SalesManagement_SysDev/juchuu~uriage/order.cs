@@ -1247,6 +1247,7 @@ namespace SalesManagement_SysDev
             }
         }
 
+
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)
         {

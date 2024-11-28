@@ -78,10 +78,12 @@ public partial class SalesManagementContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer($"Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=SalesManagement;Integrated Security=True");
+        optionsBuilder.EnableSensitiveDataLogging();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<LoginHistoryLog>().ToTable("LoginHistoryLogs");
 
