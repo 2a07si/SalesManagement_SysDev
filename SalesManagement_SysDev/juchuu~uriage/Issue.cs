@@ -1377,14 +1377,22 @@ namespace SalesManagement_SysDev
                 {
                     // NyuukoCheckerのFlagがfalseのレコードを取得
                     var nyuukoCheckersWithFlagFalse = context.NyuukoCheckers
-                        .Where(n => n.Flag == true) // Flagがfalseのレコードを選択
+                        .Where(n => n.Flag == true) // Flagがtrueのレコードを選択
                         .ToList();
 
                     foreach (var nyuukoChecker in nyuukoCheckersWithFlagFalse)
                     {
+                        // 出庫IDを安全にパース
+                        if (!int.TryParse(nyuukoChecker.SyukkoID, out int syukkoId))
+                        {
+                            // 無効な出庫IDをスキップ
+                            Console.WriteLine($"無効な出庫ID: {nyuukoChecker.SyukkoID} をスキップしました");
+                            continue; // 次のレコードに進む
+                        }
+
                         // 出庫IDと一致するレコードを取得
                         var matchingRecord = context.TSyukkos
-                            .Where(o => o.SyID == int.Parse(nyuukoChecker.SyukkoID) && o.SyFlag == 1) // 出庫IDが一致し、かつFlagが1（非表示）であるレコード
+                            .Where(o => o.SyID == syukkoId && o.SyFlag == 1) // 出庫IDが一致し、かつFlagが1（非表示）であるレコード
                             .FirstOrDefault();
 
                         if (matchingRecord != null)
@@ -1403,7 +1411,19 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                // エラーメッセージ、スタックトレース、内部例外を取得
+                string errorMessage = $"エラーが発生しました: {ex.Message}\n\n";
+
+                errorMessage += "スタックトレース:\n" + ex.StackTrace + "\n\n";
+
+                if (ex.InnerException != null)
+                {
+                    errorMessage += $"内部例外:\n{ex.InnerException.Message}\n\n";
+                    errorMessage += "内部例外のスタックトレース:\n" + ex.InnerException.StackTrace;
+                }
+
+                // メッセージをMessageBoxで表示
+                MessageBox.Show(errorMessage, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

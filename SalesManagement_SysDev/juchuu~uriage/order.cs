@@ -1249,9 +1249,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-<<<<<<< HEAD
-=======
         private void Checker3(int SyID, int PrID)
         {
             MessageBox.Show("チェッカー３処理");
@@ -1290,7 +1287,6 @@ namespace SalesManagement_SysDev
             }
         }
 
->>>>>>> d2d99080ea1d195ae70050dec09411331a26b301
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)
         {
