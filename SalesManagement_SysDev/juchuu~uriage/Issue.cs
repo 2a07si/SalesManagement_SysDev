@@ -1377,7 +1377,7 @@ namespace SalesManagement_SysDev
                 {
                     // NyuukoCheckerのFlagがfalseのレコードを取得
                     var nyuukoCheckersWithFlagFalse = context.NyuukoCheckers
-                        .Where(n => n.Flag == false) // Flagがfalseのレコードを選択
+                        .Where(n => n.Flag == true) // Flagがfalseのレコードを選択
                         .ToList();
 
                     foreach (var nyuukoChecker in nyuukoCheckersWithFlagFalse)

@@ -1191,7 +1191,7 @@ namespace SalesManagement_SysDev
                         SyukkoID = "未設定",
                         JyutyuID = OrID.ToString(),
                         PrID = "未設定",
-                        Flag = true,
+                        Flag = false,
                         Quantity = Quantity,
                         DelFlag = false
 
