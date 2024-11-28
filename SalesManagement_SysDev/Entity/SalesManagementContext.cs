@@ -91,9 +91,9 @@ public partial class SalesManagementContext : DbContext
 
         modelBuilder.Entity<LoginHistroyLog2>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK_LoginHistoryLog2");
+            entity.HasKey(e => e.ID).HasName("PK_LoginHistroyLog2");
 
-            entity.ToTable("LoginHistoryLog2");
+            entity.ToTable("LoginHistroyLog2");
 
             entity.Property(e => e.ID).HasColumnName("ID");
 
