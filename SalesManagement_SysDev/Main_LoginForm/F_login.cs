@@ -1024,8 +1024,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                // 内部例外を表示する
-                MessageBox.Show($"エラー: {ex.Message}\n内部例外: {ex.InnerException?.Message}");
+                MessageBox.Show($"エラー: {ex.Message}\n内部例外: {ex.InnerException?.Message}\nスタックトレース: {ex.StackTrace}");
             }
 
         }
