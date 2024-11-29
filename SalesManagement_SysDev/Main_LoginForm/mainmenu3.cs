@@ -290,7 +290,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 if (count > 0)
                 {
-                    if (b_HN.Enabled == true)
                     Button button = sender as Button;
                     if (button != null && button.Enabled)
                     {

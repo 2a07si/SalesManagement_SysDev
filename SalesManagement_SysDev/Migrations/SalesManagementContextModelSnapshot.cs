@@ -158,6 +158,34 @@ namespace SalesManagement_SysDev.Migrations
                     b.ToTable("NyuukoCheckers");
                 });
 
+            modelBuilder.Entity("SalesManagement_SysDev.Entity.RankTable", b =>
+                {
+                    b.Property<int>("RankID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RankID"));
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShopID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Total")
+                        .HasColumnType("int");
+
+                    b.HasKey("RankID");
+
+                    b.ToTable("RankTables");
+                });
+
             modelBuilder.Entity("SalesManagement_SysDev.MClient", b =>
                 {
                     b.Property<int>("ClID")
