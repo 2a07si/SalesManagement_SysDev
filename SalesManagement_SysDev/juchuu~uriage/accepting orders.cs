@@ -56,7 +56,7 @@ namespace SalesManagement_SysDev
             DisplayOrderDetails();
             TBGoukeiKingaku.Enabled = false;
             TBGoukeiKingaku.BackColor = Color.Gray;
-
+            CurrentStatus.RegistrationStatus(label2);
             SetupNumericOnlyTextBoxes();
         }
 

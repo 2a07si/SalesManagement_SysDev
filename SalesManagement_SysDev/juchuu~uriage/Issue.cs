@@ -86,6 +86,7 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("特に在庫更新はありません。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            CurrentStatus.UpDateStatus(label2);
 
         }
 

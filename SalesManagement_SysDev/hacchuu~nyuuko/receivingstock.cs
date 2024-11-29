@@ -62,6 +62,7 @@ namespace SalesManagement_SysDev
             DisplayReceivingStocks();
             DisplayReceivingStockDetails();
             SetupNumericOnlyTextBoxes();
+            CurrentStatus.UpDateStatus(label2);
         }
 
         private void clear_Click(object sender, EventArgs e)

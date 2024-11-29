@@ -67,6 +67,7 @@ namespace SalesManagement_SysDev
             }
 
             SetupNumericOnlyTextBoxes();
+            CurrentStatus.UpDateStatus(label2);
         }
         private void close_Click(object sender, EventArgs e)
         {

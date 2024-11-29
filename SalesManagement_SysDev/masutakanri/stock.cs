@@ -77,6 +77,7 @@ namespace SalesManagement_SysDev
                 b_reg.Enabled = false;
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
+            CurrentStatus.RegistrationStatus(label2);
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -475,64 +476,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void b_mer_Paint(object sender, PaintEventArgs e)
-        {
-            using (var context = new SalesManagementContext())
-            {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
-                {
-                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
-
-                    // バッジを描画
-                    if (button != null)
-                    {
-                        badge.pinpoint(e, button);
-                    }
-                }
-            }
-        }
-
-        private void b_sto_Paint(object sender, PaintEventArgs e)
-        {
-            {
-                GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                // ボタンを取得
-                Button button = sender as Button;
-
-                // バッジを描画
-                if (button != null)
-                {
-                    badge.pinpoint(e, button);
-                }
-            }
-        }
-
-        private void b_cus_Paint(object sender, PaintEventArgs e)
-        {
-            using (var context = new SalesManagementContext())
-            {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
-                {
-                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
-
-                    // バッジを描画
-                    if (button != null)
-                    {
-                        badge.pinpoint(e, button);
-                    }
-                }
-            }
-
-        }
+        
         private void Log_Stock(int id)
         {
             try

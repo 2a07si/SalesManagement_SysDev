@@ -69,6 +69,7 @@ namespace SalesManagement_SysDev
             TBTotal.Enabled = false;
 
             SetupNumericOnlyTextBoxes();
+            CurrentStatus.UpDateStatus(label2);
         }
 
         // メインメニューに戻る 
