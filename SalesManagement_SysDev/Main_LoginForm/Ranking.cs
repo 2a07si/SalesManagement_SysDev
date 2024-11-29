@@ -17,13 +17,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
         public Ranking()
         {
             InitializeComponent();
-        
+            this.formChanger = new ClassChangeForms(this);
         }
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
 
         private void Ranking_Load(object sender, EventArgs e)
         {
-
+            ListBoxInitialize1();
+            ListBoxInitialize2();
+            comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)
@@ -36,23 +39,24 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             formChanger.NavigateTo3();
         }
-
+        //商品のランキング
         private void DisplayRankingProduct()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // ComboBoxで選ばれた番号を取得
-                    int condition = comboBox1.SelectedIndex + 1; // 0～2のインデックスを1～3に変換
+                    // ComboBoxで選ばれた番号を取得 
+                    int condition = comboBox1.SelectedIndex + 1; // 0～2のインデックスを1～3に変換 
 
-                    // 3つのテーブルを結合して、商品ID、商品名、数量、合計金額を取得
+                    // 3つのテーブルを結合して、商品ID、商品名、数量、合計金額を取得 
                     var query = context.TSales
                         .Join(context.TSaleDetails,
                               sale => sale.SaID,
                               detail => detail.SaID,
                               (sale, detail) => new
                               {
+                                  sale.SaDate,             // 売上日
                                   detail.PrID,
                                   detail.SaQuantity,
                                   detail.SaPrTotalPrice
@@ -62,6 +66,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                               product => product.PrID,
                               (detail, product) => new
                               {
+                                  detail.SaDate,         // 売上日
                                   product.PrID,
                                   product.PrName,
                                   detail.SaQuantity,
@@ -72,9 +77,58 @@ namespace SalesManagement_SysDev.Main_LoginForm
                         {
                             商品ID = g.Key.PrID,
                             商品名 = g.Key.PrName,
-                            数量 = g.Sum(x => x.SaQuantity),          // 売上数量の合計
-                            合計金額 = g.Sum(x => x.SaPrTotalPrice)  // 合計金額の合計
+                            数量 = g.Sum(x => x.SaQuantity),         // 売上数量の合計
+                            合計金額 = g.Sum(x => x.SaPrTotalPrice), // 合計金額の合計
+                            売上日 = g.Select(x => x.SaDate).FirstOrDefault() // 最初の売上日の取得
                         });
+
+                    // checkBoxDateFilterがチェックされている場合、日付でフィルタリング
+                    if (checkBoxDateFilter.Checked)
+                    {
+                        DateTime startDate = date.Value.Date;   // 開始日
+                        DateTime endDate = date2.Value.Date;     // 終了日
+
+                        // フィルタリング条件を追加
+                        query = query.Where(x => x.売上日 >= startDate && x.売上日 <= endDate);
+                    }
+
+                    // checkBox1がチェックされている場合、checkedListBox1で選ばれた商品IDに絞り込む
+                    if (checkBox1.Checked)
+                    {
+                        // checkedListBox1でチェックされた項目を抽出
+                        var selectedProductIds = checkedListBox1.CheckedItems
+                            .Cast<string>()
+                            .Select(item => int.Parse(item.Split(':')[0])) // 商品IDを抽出
+                            .ToList();
+
+                        // 商品IDが選ばれたものだけをフィルタリング
+                        query = query.Where(x => selectedProductIds.Contains(x.商品ID));
+                    }
+                    // checkBoxKingakuがチェックされている場合、合計金額の範囲を指定
+                    if (checkBoxKingaku.Checked)
+                    {
+                        if (decimal.TryParse(TBKagenKin.Text, out decimal minPrice) && decimal.TryParse(TBJyogenKin.Text, out decimal maxPrice))
+                        {
+                            query = query.Where(x => x.合計金額 >= minPrice && x.合計金額 <= maxPrice);
+                        }
+                        else
+                        {
+                            MessageBox.Show("合計金額の下限または上限値が無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+
+                    // checkBoxSuryoがチェックされている場合、数量の範囲を指定
+                    if (checkBoxSuryo.Checked)
+                    {
+                        if (int.TryParse(TBKagen.Text, out int minQuantity) && int.TryParse(TBJyogen.Text, out int maxQuantity))
+                        {
+                            query = query.Where(x => x.数量 >= minQuantity && x.数量 <= maxQuantity);
+                        }
+                        else
+                        {
+                            MessageBox.Show("数量の下限または上限値が無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
 
                     // ComboBoxの選択に応じた並び替え処理
                     switch (condition)
@@ -113,6 +167,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //顧客のランキング
         private void DisplayCustomerRanking()
         {
             try
@@ -120,7 +176,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 using (var context = new SalesManagementContext())
                 {
                     // ComboBoxで選ばれた番号を取得
-                    int condition = comboBox1.SelectedIndex + 1; // 0～2のインデックスを1～3に変換
+                    int condition = comboBox2.SelectedIndex + 1; // 0～2のインデックスを1～3に変換
 
                     // 顧客IDと売上IDに基づき、売上詳細（TSaleDetail）と売上（TSale）を結合
                     var query = context.TSales
@@ -130,6 +186,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                               (sale, detail) => new
                               {
                                   sale.ClID,                     // 顧客ID
+                                  sale.SaDate,                   // 売上日
                                   detail.SaPrTotalPrice,         // 合計金額
                                   detail.SaQuantity              // 売上数量
                               })
@@ -140,6 +197,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                               {
                                   sale.ClID,
                                   client.ClName,
+                                  sale.SaDate,
                                   sale.SaPrTotalPrice,
                                   sale.SaQuantity
                               })
@@ -149,8 +207,57 @@ namespace SalesManagement_SysDev.Main_LoginForm
                             顧客ID = g.Key.ClID,
                             顧客名 = g.Key.ClName,
                             取引回数 = g.Count(),                           // 取引回数（顧客IDの出現回数）
-                            合計金額 = g.Sum(x => x.SaPrTotalPrice)        // 購入金額の合計
+                            合計金額 = g.Sum(x => x.SaPrTotalPrice),        // 購入金額の合計
+                            売上日 = g.Select(x => x.SaDate).FirstOrDefault() // 最初の売上日の取得
                         });
+
+                    // checkBoxDateFilterがチェックされている場合、日付でフィルタリング
+                    if (checkBoxDateFilter.Checked)
+                    {
+                        DateTime startDate = date3.Value.Date;   // 開始日
+                        DateTime endDate = date4.Value.Date;     // 終了日
+
+                        // フィルタリング条件を追加
+                        query = query.Where(x => x.売上日 >= startDate && x.売上日 <= endDate);
+                    }
+                    // checkBox1がチェックされている場合、checkedListBox1で選ばれた商品IDに絞り込む
+                    if (checkBox1.Checked)
+                    {
+                        // checkedListBox1でチェックされた項目を抽出
+                        var selectedCustomerIds = checkedListBox2.CheckedItems
+                            .Cast<string>()
+                            .Select(item => int.Parse(item.Split(':')[0])) // 商品IDを抽出
+                            .ToList();
+
+                        // 商品IDが選ばれたものだけをフィルタリング
+                        query = query.Where(x => selectedCustomerIds.Contains(x.顧客ID));
+                    }
+
+                    // checkBoxKingakuがチェックされている場合、合計金額の範囲を指定
+                    if (checkBoxKingaku.Checked)
+                    {
+                        if (decimal.TryParse(TBKagenKin1.Text, out decimal minPrice) && decimal.TryParse(TBJyogenKin1.Text, out decimal maxPrice))
+                        {
+                            query = query.Where(x => x.合計金額 >= minPrice && x.合計金額 <= maxPrice);
+                        }
+                        else
+                        {
+                            MessageBox.Show("合計金額の下限または上限値が無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+
+                    // checkBoxSuryoがチェックされている場合、数量の範囲を指定
+                    if (checkBoxSuryo.Checked)
+                    {
+                        if (int.TryParse(TBKagen1.Text, out int minQuantity) && int.TryParse(TBJyogen1.Text, out int maxQuantity))
+                        {
+                            query = query.Where(x => x.取引回数 >= minQuantity && x.取引回数 <= maxQuantity);
+                        }
+                        else
+                        {
+                            MessageBox.Show("数量の下限または上限値が無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
 
                     // ComboBoxの選択に応じた並び替え処理
                     switch (condition)
@@ -190,6 +297,84 @@ namespace SalesManagement_SysDev.Main_LoginForm
             }
         }
 
-        
+        private void checkBoxDateFilter_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListBoxInitialize1()
+        {
+            try
+            {
+                // データベースのコンテキストを使用
+                using (var context = new SalesManagementContext())
+                {
+                    // MProductsテーブルから商品ID（PrID）と商品名（PrName）を取得
+                    var products = context.MProducts
+                        .Select(p => new { p.PrID, p.PrName }) // 商品IDと商品名を取得
+                        .ToList();
+
+                    // CheckedListBoxをクリア
+                    checkedListBox1.Items.Clear();
+
+                    // 取得した商品をCheckedListBoxに追加
+                    foreach (var product in products)
+                    {
+                        // 商品ID: 商品名 の形式で表示
+                        checkedListBox1.Items.Add($"{product.PrID}: {product.PrName}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリング
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ListBoxInitialize2()
+        {
+            try
+            {
+                // データベースのコンテキストを使用
+                using (var context = new SalesManagementContext())
+                {
+                    // MClientsテーブルから顧客ID（ClID）と顧客名（ClName）を取得
+                    var clients = context.MClients
+                        .Select(c => new { c.ClID, c.ClName }) // 顧客IDと顧客名を取得
+                        .ToList();
+
+                    // CheckedListBoxをクリア
+                    checkedListBox2.Items.Clear();
+
+                    // 取得した顧客をCheckedListBoxに追加
+                    foreach (var client in clients)
+                    {
+                        // 顧客ID: 顧客名 の形式で表示
+                        checkedListBox2.Items.Add($"{client.ClID}: {client.ClName}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリング
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
