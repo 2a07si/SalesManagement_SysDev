@@ -377,6 +377,8 @@ namespace SalesManagement_SysDev
                         try
                         {
                             context.SaveChanges();
+                            DisplayOrders();
+                            DisplayOrderDetails();
                         }
                         catch (Exception ex)
                         {
@@ -587,6 +589,7 @@ namespace SalesManagement_SysDev
                         }
 
                         DisplayOrders();
+                        DisplayOrderDetails();
                     }
                     catch (Exception ex)
                     {
