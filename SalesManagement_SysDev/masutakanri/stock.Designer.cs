@@ -73,7 +73,6 @@
             b_emp.Text = "社員";
             b_emp.UseVisualStyleBackColor = false;
             b_emp.Click += b_emp_Click;
-            b_emp.Paint += b_emp_Paint;
             // 
             // b_mer
             // 
@@ -87,7 +86,6 @@
             b_mer.Text = "商品";
             b_mer.UseVisualStyleBackColor = false;
             b_mer.Click += b_mer_Click;
-            b_mer.Paint += b_mer_Paint;
             // 
             // b_cus
             // 
@@ -101,7 +99,6 @@
             b_cus.Text = "顧客";
             b_cus.UseVisualStyleBackColor = false;
             b_cus.Click += b_cus_Click;
-            b_cus.Paint += b_cus_Paint;
             // 
             // b_sto
             // 
@@ -114,7 +111,6 @@
             b_sto.TabIndex = 9;
             b_sto.Text = "在庫";
             b_sto.UseVisualStyleBackColor = false;
-            b_sto.Paint += b_sto_Paint;
             // 
             // label_ename
             // 

@@ -271,15 +271,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 if (count > 0)
                 {
-                    GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
-
-                    // ボタンを取得
                     Button button = sender as Button;
-
-                    // バッジを描画
-                    if (button != null)
+                    if (button != null && button.Enabled)
                     {
-                        badge.DrawBadge(e, button);
+                        GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
+                        badge.DrawBadge(e, button); // バッジを描画
                     }
                 }
             }
@@ -295,13 +291,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 if (count > 0)
                 {
                     if (b_HN.Enabled == true)
+                    Button button = sender as Button;
+                    if (button != null && button.Enabled)
                     {
-
                         GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
-                    }
-                    else
-                    {
-                        b_HN.Refresh();
+                        badge.DrawBadge(e, button); // バッジを描画
                     }
                 }
             }
@@ -431,16 +425,17 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-                if (b_HN.Enabled == false)
+                Button button = sender as Button;
+                if (button.Enabled == false)
                 {
-                    b_HN.Refresh(); // 描画処理を行わない
+                    return; // 描画処理を行わない
                 }
                 else if (count > 0)
                 {
                     // バッジを描画
-                    if (b_HN != null)
+                    if (button != null)
                     {
-                        badge.SecondBadge(e, b_HN);
+                        badge.SecondBadge(e, button);
                     }
                 }
             }

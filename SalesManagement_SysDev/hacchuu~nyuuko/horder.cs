@@ -67,7 +67,7 @@ namespace SalesManagement_SysDev
             DisplayHattyus();
             DisplayHattyuDetails();
             SetupNumericOnlyTextBoxes();
-
+            CurrentStatus.RegistrationStatus(label2);
         }
 
         private void clear_Click(object sender, EventArgs e)

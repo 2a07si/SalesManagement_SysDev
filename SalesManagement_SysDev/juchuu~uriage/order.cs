@@ -73,6 +73,7 @@ namespace SalesManagement_SysDev
             }
 
             SetupNumericOnlyTextBoxes();
+            CurrentStatus.UpDateStatus(label2);
 
         }
         // メインメニューに戻る 
