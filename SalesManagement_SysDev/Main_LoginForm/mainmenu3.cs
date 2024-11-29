@@ -294,15 +294,14 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 if (count > 0)
                 {
-                    GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
-
-                    // バッジを描画
-                    if (button != null)
+                    if(b_HN.Enabled==true)
                     {
-                        badge.DrawBadge(e, button);
+
+                        GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
+                    }
+                    else
+                    {
+                        b_HN.Refresh();
                     }
                 }
             }
@@ -432,17 +431,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 int count = context.THattyus.Count(order => order.WaWarehouseFlag == 0 || order.WaWarehouseFlag == null);
                 GlobalBadge badge = new GlobalBadge(count); // 通知数を指定
-                Button button = sender as Button;
-                if (button.Enabled == false)
+                if (b_HN.Enabled == false)
                 {
-                    return; // 描画処理を行わない
+                    b_HN.Refresh(); // 描画処理を行わない
                 }
                 else if (count > 0)
                 {
                     // バッジを描画
-                    if (button != null)
+                    if (b_HN != null)
                     {
-                        badge.SecondBadge(e, button);
+                        badge.SecondBadge(e, b_HN);
                     }
                 }
             }
@@ -457,7 +455,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 Button button = sender as Button;
                 if (button.Enabled == false)
                 {
-                    return; // 描画処理を行わない
+                    b_mas.Refresh(); // 描画処理を行わない
                 }
                 else if (count > 0)
                 {
