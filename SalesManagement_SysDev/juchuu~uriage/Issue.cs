@@ -44,6 +44,7 @@ namespace SalesManagement_SysDev
 
         private void issue_Load(object sender, EventArgs e)
         {
+            UpdateNyuukoFlags();
             GlobalUtility.UpdateLabels(label_id, label_ename);
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
@@ -1367,81 +1368,70 @@ namespace SalesManagement_SysDev
             }
         }
 
-        /*private void UpdateNonDisplayFlagWhenNyuukoCheckerFlagIsFalse(string syukkoID)
+        private void UpdateNyuukoFlags()
         {
-            
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-<<<<<<< HEAD
-                    // NyuukoCheckerのFlagがfalseのレコードを取得
-                    var nyuukoCheckersWithFlagFalse = context.NyuukoCheckers
-                        .Where(n => n.Flag == true) // Flagがtrueのレコードを選択
+                    // Flag = 1 の NyuukoChecker を取得
+                    var checkerList = context.NyuukoCheckers
+                        .Where(c => c.Flag == true)
                         .ToList();
-=======
-                    // Flagが0のレコードを取得
-                    var matchingRecord = context.TSyukkos
-                .FirstOrDefault(o => o.SyID.ToString() == syukkoID); // SyID が一致するレコードを取得
->>>>>>> 04833067346d8d0c7400280f014d554370669fbf
 
-                    if (matchingRecord != null)
+                    // SyukkoID のリストを取得
+                    var syukkoIDs = checkerList.Select(c => c.SyukkoID).ToList();
+
+                    if (syukkoIDs.Any())
                     {
-<<<<<<< HEAD
-                        // 出庫IDを安全にパース
-                        if (!int.TryParse(nyuukoChecker.SyukkoID, out int syukkoId))
+                        // 対応する SyukkoID を持つ TSyukko レコードを取得
+                        var syukkoRecords = context.TSyukkos
+                            .Where(s => syukkoIDs.Contains(s.SyID.ToString()))
+                            .ToList();
+
+                        // TSyukko の更新
+                        foreach (var record in syukkoRecords)
                         {
-                            // 無効な出庫IDをスキップ
-                            Console.WriteLine($"無効な出庫ID: {nyuukoChecker.SyukkoID} をスキップしました");
-                            continue; // 次のレコードに進む
+                            record.SyFlag = 0; // 必要に応じて設定値を変更
+                            record.SyHidden = null; // 必要に応じて設定値を変更
                         }
 
-                        // 出庫IDと一致するレコードを取得
-                        var matchingRecord = context.TSyukkos
-                            .Where(o => o.SyID == syukkoId && o.SyFlag == 1) // 出庫IDが一致し、かつFlagが1（非表示）であるレコード
-                            .FirstOrDefault();
-
-                        if (matchingRecord != null)
+                        // NyuukoChecker の更新
+                        foreach (var checker in checkerList)
                         {
-                            // 一致するレコードがあった場合、そのレコードのFlagを0に変更（表示状態に戻す）
-                            matchingRecord.SyFlag = 0;
-
-                            // データベースに変更を保存
-                            context.SaveChanges();
-
-                            // 出庫画面に表示するために情報を取得して表示
-                            DisplaySyukkoData(matchingRecord);
+                            checker.DelFlag = true; // DelFlag を true に設定
+                            checker.Flag = false;  // Flag を false に設定
                         }
-=======
-                        matchingRecord.SyFlag = 0;
-                        // 出庫データを表示するために DisplaySyukkoData を呼び出し
-                        DisplaySyukkoData(matchingRecord);
->>>>>>> 04833067346d8d0c7400280f014d554370669fbf
+
+                        // データベースへ保存
+                        context.SaveChanges();
+                        // デバッグ用メッセージを表示
+                        var debugMessage = new System.Text.StringBuilder();
+
+                        debugMessage.AppendLine("更新されたレコード:");
+                        debugMessage.AppendLine("\n--- TSyukko ---");
+                        foreach (var record in syukkoRecords)
+                        {
+                            debugMessage.AppendLine($"SyukkoID: {record.SyID}, SyFlag: {record.SyFlag}, SyHidden: {record.SyHidden}");
+                        }
+
+                        debugMessage.AppendLine("\n--- NyuukoChecker ---");
+                        foreach (var checker in checkerList)
+                        {
+                            debugMessage.AppendLine($"SyukkoID: {checker.SyukkoID}, DelFlag: {checker.DelFlag}, Flag: {checker.Flag}");
+                        }
+
+                        // MessageBox で表示
+                        MessageBox.Show(debugMessage.ToString(), "デバッグ情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
                 }
             }
             catch (Exception ex)
             {
-<<<<<<< HEAD
-                // エラーメッセージ、スタックトレース、内部例外を取得
-                string errorMessage = $"エラーが発生しました: {ex.Message}\n\n";
-
-                errorMessage += "スタックトレース:\n" + ex.StackTrace + "\n\n";
-
-                if (ex.InnerException != null)
-                {
-                    errorMessage += $"内部例外:\n{ex.InnerException.Message}\n\n";
-                    errorMessage += "内部例外のスタックトレース:\n" + ex.InnerException.StackTrace;
-                }
-
-                // メッセージをMessageBoxで表示
-                MessageBox.Show(errorMessage, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-=======
-                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
->>>>>>> 04833067346d8d0c7400280f014d554370669fbf
+                throw new Exception("エラー: " + ex.Message);
             }
-        }*/
+        }
+
 
 
         private void DisplaySyukkoData(TSyukko matchingRecord)
