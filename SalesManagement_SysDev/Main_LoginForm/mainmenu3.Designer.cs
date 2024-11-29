@@ -52,6 +52,7 @@
             HN = new Panel();
             b_rec = new Button();
             b_hor = new Button();
+            b_rank = new Button();
             JU.SuspendLayout();
             mas.SuspendLayout();
             HN.SuspendLayout();
@@ -347,12 +348,23 @@
             b_hor.Click += b_hor_Click;
             b_hor.Paint += b_hor_Paint;
             // 
+            // b_rank
+            // 
+            b_rank.Location = new Point(27, 202);
+            b_rank.Name = "b_rank";
+            b_rank.Size = new Size(129, 42);
+            b_rank.TabIndex = 1001;
+            b_rank.Text = "ランキング画面";
+            b_rank.UseVisualStyleBackColor = true;
+            b_rank.Click += b_rank_Click;
+            // 
             // mainmenu3
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = b_logout;
             ClientSize = new Size(1578, 844);
+            Controls.Add(b_rank);
             Controls.Add(Loginkanri);
             Controls.Add(label_ename);
             Controls.Add(label_id);
@@ -402,5 +414,6 @@
         private Panel HN;
         private Button b_rec;
         private Button b_hor;
+        private Button b_rank;
     }
 }

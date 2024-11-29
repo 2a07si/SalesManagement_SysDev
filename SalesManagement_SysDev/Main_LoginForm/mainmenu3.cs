@@ -294,7 +294,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 if (count > 0)
                 {
-                    if(b_HN.Enabled==true)
+                    if (b_HN.Enabled == true)
                     {
 
                         GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
@@ -504,6 +504,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
+        }
+
+        private void b_rank_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.ranking()); // 従業員フォームに遷移
         }
     }
 }
