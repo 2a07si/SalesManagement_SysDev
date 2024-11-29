@@ -296,12 +296,10 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("入庫確定処理");
                         // 入庫詳細が存在する場合、入庫確認処理を実行 
                         ReceiveConfirm(receivingStock.WaID);
-                        
 
                         // 在庫更新メッセージを保存
                         var receivingDetails = context.TWarehousingDetails
                             .Where(wd => wd.WaID == receivingStock.WaID);
-                        
 
                         foreach (var detail in receivingDetails)
                         {
@@ -309,7 +307,6 @@ namespace SalesManagement_SysDev
                         }
                         receivingStock.WaFlag = 1;
                         receivingStock.WaHidden = "入庫確定処理済";
-
                     }
 
                     // 更新を保存 
@@ -873,8 +870,7 @@ namespace SalesManagement_SysDev
                     {
                         context.TStocks.Add(newStock);
                         context.SaveChanges();
-                        
-
+                        UpdateNyuukoCheckerFlag(receive.PrID, receive.WaQuantity);
                     }
                     catch (Exception ex)
                     {
@@ -888,7 +884,6 @@ namespace SalesManagement_SysDev
                     try
                     {
                         context.SaveChanges();
-                        UpdateNyuukoCheckerFlag(receive.PrID, receive.WaQuantity);
                     }
                     catch (Exception ex)
                     {
@@ -1119,7 +1114,6 @@ namespace SalesManagement_SysDev
             }
         }
         private void UpdateNyuukoCheckerFlag(int PrID, int Quantity)
-
         {
             MessageBox.Show("upd実行");
             try
@@ -1159,9 +1153,11 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
+                // エラーハンドリング
                 MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
     }
 }
