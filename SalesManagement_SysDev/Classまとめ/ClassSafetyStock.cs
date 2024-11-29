@@ -12,24 +12,42 @@ namespace SalesManagement_SysDev.Classまとめ
         // 初期設定メソッド（1～11の商品に安全在庫数を設定）
         public static void InitializeSafetyStock()
         {
-            // 商品IDごとに安全在庫数を設定（仮の例）
-            SafetyStock[1] = 30;
-            SafetyStock[2] = 50;
-            SafetyStock[3] = 20;
-            SafetyStock[4] = 60;
-            SafetyStock[5] = 30;
-            SafetyStock[6] = 40;
-            SafetyStock[7] = 15;
-            SafetyStock[8] = 70;
-            SafetyStock[9] = 5;
-            SafetyStock[10] = 50;
-            SafetyStock[11] = 20;
+            using (var context = new SalesManagementContext()) 
+            {
+                var syohin = context.MProducts.ToList();
+
+                // 商品IDごとに安全在庫数を辞書に設定
+                foreach (var product in syohin)
+                {
+                    if (product.PrSafetyStock>0) // 安全在庫数が設定されている場合のみ追加
+                    {
+                        SafetyStock[product.PrID] = product.PrSafetyStock;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"商品ID {product.PrID} の安全在庫数が設定されていません。");
+                    }
+                }
+            }
         }
 
         // 安全在庫数を取得
         public static int GetSafetyStock(int productId)
         {
-            return SafetyStock.ContainsKey(productId) ? SafetyStock[productId] : -1; // 未設定の場合は -1 を返す
+            using (var context = new SalesManagementContext())
+            {
+                // 指定された商品IDに対応するデータを取得
+                var product = context.MProducts.FirstOrDefault(p => p.PrID == productId);
+
+                // 商品が存在しない、またはPrSafetyStockが未設定の場合は-1を返す
+                if (product.PrSafetyStock == null)
+                {
+                    return -1;
+                }
+
+                // PrSafetyStockの値を返す
+                return product.PrSafetyStock;
+            }
         }
 
         // TStockから在庫数を取得するメソッド
