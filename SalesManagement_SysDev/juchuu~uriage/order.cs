@@ -10,6 +10,7 @@ using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using SalesManagement_SysDev.Entity;
+using static SalesManagement_SysDev.Classまとめ.StockManager;
 
 namespace SalesManagement_SysDev
 {
@@ -22,11 +23,14 @@ namespace SalesManagement_SysDev
         private ClassDataGridViewClearer dgvClearer;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
+        
 
         private int lastFocusedPanelID = 1;
         public order()
         {
+            
             InitializeComponent();
+            StockManager.InitializeSafetyStock();
             this.formChanger = new ClassChangeForms(this);
             this.Load += new EventHandler(order_Load);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
@@ -356,10 +360,12 @@ namespace SalesManagement_SysDev
                             }
                             else
                             {
+                               
                                 // 在庫が足りている場合、出庫処理 
                                 stock.StQuantity -= detail.ChQuantity;
                                 MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
                                 OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 0, null);
+                                StockManager.CompareStock(detail.PrID);
                             }
                         }
                         var orders = context.TChumons;
