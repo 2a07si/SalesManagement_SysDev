@@ -51,7 +51,7 @@ namespace SalesManagement_SysDev.Classまとめ
         }
 
         // TStockから在庫数を取得するメソッド
-        public static int GetStockFromTStock(int productId)
+        public static int GetStockFromTStock(int productId,int st)
         {
             int Quantity = 0;
 
@@ -76,17 +76,11 @@ namespace SalesManagement_SysDev.Classまとめ
             return Quantity;
         }
         // 在庫数と安全在庫数を比較し、発注が必要かどうかを判定
-        public static void CompareStock(int productId)
+        public static void CompareStock(int productId,int st)
         {
             MessageBox.Show("あんぱんまん");
             // TStockから指定された商品IDの在庫数を取得
-            int stockQuantity = GetStockFromTStock(productId);
-            if (stockQuantity == -1)
-            {
-                MessageBox.Show($"商品ID {productId} の在庫は設定されていません。");
-                return;
-            }
-
+            
             // 安全在庫数を取得
             int safetyStock = GetSafetyStock(productId);
             if (safetyStock == -1)
@@ -96,12 +90,12 @@ namespace SalesManagement_SysDev.Classまとめ
             }
 
             // 比較して結果を表示
-            if (stockQuantity < safetyStock)
+            if (st < safetyStock)
             {
-                int orderQuantity = safetyStock - stockQuantity + 10; // 余裕を持たせた発注量
+                int orderQuantity = safetyStock - st + 10; // 余裕を持たせた発注量
                 AutoOrder(productId, orderQuantity);
                 MessageBox.Show($"商品ID {productId} の在庫が不足しています。自動発注を行います。");
-                MessageBox.Show($"現在の在庫数: {stockQuantity}, 安全在庫数: {safetyStock}");
+                MessageBox.Show($"現在の在庫数: {st}, 安全在庫数: {safetyStock}");
                 MessageBox.Show($"発注数量: {orderQuantity} 個");
             }
             else

@@ -365,7 +365,8 @@ namespace SalesManagement_SysDev
                                 stock.StQuantity -= detail.ChQuantity;
                                 MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
                                 OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 0, null);
-                                StockManager.CompareStock(detail.PrID);
+                                StockManager.CompareStock(detail.PrID, stock.StQuantity);
+                                
                             }
                         }
                         var orders = context.TChumons;
