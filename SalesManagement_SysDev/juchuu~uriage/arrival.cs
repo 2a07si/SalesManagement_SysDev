@@ -265,7 +265,7 @@ namespace SalesManagement_SysDev
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
             DateTime Nyuukadate = date.Value;
-
+            colorReset();
             if (TBNyuukaID.Text == "")
             {
                 TBNyuukaID.BackColor = Color.Yellow;
@@ -386,7 +386,7 @@ namespace SalesManagement_SysDev
             bool DelFlg = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
             DateTime Nyuukodate = date.Value;
-
+            colorReset();
             using (var context = new SalesManagementContext())
             {
 
@@ -1155,15 +1155,15 @@ namespace SalesManagement_SysDev
         }
         private void colorReset()
         {
-            TBNyuukaID.BackColor = Color.FromArgb(252, 252, 252);
-            TBShopID.BackColor = Color.FromArgb(252, 252, 252);
-            TBShainID.BackColor = Color.FromArgb(252, 252, 252);
-            TBKokyakuID.BackColor = Color.FromArgb(252, 252, 252);
-            TBJyutyuID.BackColor = Color.FromArgb(252, 252, 252);
-            TBNyukaSyosaiID.BackColor = Color.FromArgb(252, 252, 252);
-            TBNyuukaIDS.BackColor = Color.FromArgb(252, 252, 252);
-            TBSyohinID.BackColor = Color.FromArgb(252, 252, 252);
-            TBSuryou.BackColor = Color.FromArgb(252, 252, 252);
+            TBNyuukaID.BackColor =  SystemColors.Window;
+            TBShopID.BackColor =  SystemColors.Window;
+            TBShainID.BackColor =  SystemColors.Window;
+            TBKokyakuID.BackColor =  SystemColors.Window;
+            TBJyutyuID.BackColor =  SystemColors.Window;
+            TBNyukaSyosaiID.BackColor =  SystemColors.Window;
+            TBNyuukaIDS.BackColor =  SystemColors.Window;
+            TBSyohinID.BackColor =  SystemColors.Window;
+            TBSuryou.BackColor =  SystemColors.Window;
             return;
 
         }
