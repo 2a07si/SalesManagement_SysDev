@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Identity.Client;
+using Microsoft.VisualBasic.Logging;
+using SalesManagement_SysDev.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -144,8 +147,8 @@ namespace SalesManagement_SysDev.Classまとめ
 
                     context.THattyuDetails.Add(newHattyuDetail);
                     context.SaveChanges();
+                    Log_AutoOrder(newHattyu.HaID);
 
-                    MessageBox.Show("発注登録が完了しました");
                 }
             }
             catch (InvalidOperationException ex)
@@ -160,6 +163,48 @@ namespace SalesManagement_SysDev.Classまとめ
             {
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            static void Log_AutoOrder(int id)
+            {
+
+                try
+                {
+                    using (var context = new SalesManagementContext())
+                    {
+                        // 最新のLoginHistoryLogを取得
+                        var latestLoginHistory = context.LoginHistoryLogs
+                                                        .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
+                                                        .FirstOrDefault();  // 最新のログを取得
+
+                        if (latestLoginHistory != null)
+                        {
+                            // 最新のログが見つかった場合、そのIDを設定
+                            var LogDet = new LoginHistoryLogDetail
+                            {
+                                ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
+                                Display = "発注",
+                                Mode = "-",
+                                Process = "自動発注",
+                                LogID = id,  //
+                                AcceptDateTime = DateTime.Now
+                            };
+
+                            context.LoginHistoryLogDetails.Add(LogDet);  // 新しいログ履歴を登録
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            MessageBox.Show("最新のログ履歴が見つかりませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Logへの登録に失敗しました:" + ex.Message);
+                }
+            }
+            MessageBox.Show("発注登録が完了しました");
         }
     }
-}
+
+    }
+
