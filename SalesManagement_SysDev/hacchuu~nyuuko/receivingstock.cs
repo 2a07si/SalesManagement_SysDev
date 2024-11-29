@@ -307,6 +307,7 @@ namespace SalesManagement_SysDev
                         }
                         receivingStock.WaFlag = 1;
                         receivingStock.WaHidden = "入庫確定処理済";
+
                     }
 
                     // 更新を保存 
@@ -318,9 +319,9 @@ namespace SalesManagement_SysDev
                         DisplayReceivingStocks(); // 更新後に入庫情報を再表示
                         DisplayReceivingStockDetails();
                         Log_Receive(receivingStock.WaID);
+                       
 
                         
-                    
                     }
                     catch (DbUpdateException ex)
                     {
@@ -871,6 +872,7 @@ namespace SalesManagement_SysDev
                         context.TStocks.Add(newStock);
                         context.SaveChanges();
                         UpdateNyuukoCheckerFlag(receive.PrID, receive.WaQuantity);
+
                     }
                     catch (Exception ex)
                     {
@@ -1114,6 +1116,7 @@ namespace SalesManagement_SysDev
             }
         }
         private void UpdateNyuukoCheckerFlag(int PrID, int Quantity)
+
         {
             MessageBox.Show("upd実行");
             try
@@ -1156,7 +1159,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
     }
 }

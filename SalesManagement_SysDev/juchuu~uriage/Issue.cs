@@ -44,8 +44,6 @@ namespace SalesManagement_SysDev
 
         private void issue_Load(object sender, EventArgs e)
         {
-
-            UpdateNonDisplayFlagWhenNyuukoCheckerFlagIsFalse();
             GlobalUtility.UpdateLabels(label_id, label_ename);
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
@@ -1369,19 +1367,27 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void UpdateNonDisplayFlagWhenNyuukoCheckerFlagIsFalse()
+        /*private void UpdateNonDisplayFlagWhenNyuukoCheckerFlagIsFalse(string syukkoID)
         {
+            
             try
             {
                 using (var context = new SalesManagementContext())
                 {
+<<<<<<< HEAD
                     // NyuukoCheckerのFlagがfalseのレコードを取得
                     var nyuukoCheckersWithFlagFalse = context.NyuukoCheckers
                         .Where(n => n.Flag == true) // Flagがtrueのレコードを選択
                         .ToList();
+=======
+                    // Flagが0のレコードを取得
+                    var matchingRecord = context.TSyukkos
+                .FirstOrDefault(o => o.SyID.ToString() == syukkoID); // SyID が一致するレコードを取得
+>>>>>>> 04833067346d8d0c7400280f014d554370669fbf
 
-                    foreach (var nyuukoChecker in nyuukoCheckersWithFlagFalse)
+                    if (matchingRecord != null)
                     {
+<<<<<<< HEAD
                         // 出庫IDを安全にパース
                         if (!int.TryParse(nyuukoChecker.SyukkoID, out int syukkoId))
                         {
@@ -1406,11 +1412,18 @@ namespace SalesManagement_SysDev
                             // 出庫画面に表示するために情報を取得して表示
                             DisplaySyukkoData(matchingRecord);
                         }
+=======
+                        matchingRecord.SyFlag = 0;
+                        // 出庫データを表示するために DisplaySyukkoData を呼び出し
+                        DisplaySyukkoData(matchingRecord);
+>>>>>>> 04833067346d8d0c7400280f014d554370669fbf
                     }
+
                 }
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
                 // エラーメッセージ、スタックトレース、内部例外を取得
                 string errorMessage = $"エラーが発生しました: {ex.Message}\n\n";
 
@@ -1424,8 +1437,12 @@ namespace SalesManagement_SysDev
 
                 // メッセージをMessageBoxで表示
                 MessageBox.Show(errorMessage, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+=======
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+>>>>>>> 04833067346d8d0c7400280f014d554370669fbf
             }
-        }
+        }*/
+
 
         private void DisplaySyukkoData(TSyukko matchingRecord)
         {
