@@ -1370,6 +1370,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateNyuukoFlags()
         {
+            MessageBox.Show("バイキンマン");
             try
             {
                 using (var context = new SalesManagementContext())

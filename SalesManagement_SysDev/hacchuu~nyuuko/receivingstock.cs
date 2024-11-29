@@ -307,6 +307,7 @@ namespace SalesManagement_SysDev
                         }
                         receivingStock.WaFlag = 1;
                         receivingStock.WaHidden = "入庫確定処理済";
+
                     }
 
                     // 更新を保存 
@@ -870,6 +871,7 @@ namespace SalesManagement_SysDev
                     {
                         context.TStocks.Add(newStock);
                         context.SaveChanges();
+                        MessageBox.Show("ジャムおじさん");
                         UpdateNyuukoCheckerFlag(receive.PrID, receive.WaQuantity);
                     }
                     catch (Exception ex)
@@ -883,6 +885,8 @@ namespace SalesManagement_SysDev
                     existingStock.StQuantity += receive.WaQuantity;
                     try
                     {
+                        MessageBox.Show("バタコ");
+                        UpdateNyuukoCheckerFlag(receive.PrID, receive.WaQuantity);
                         context.SaveChanges();
                     }
                     catch (Exception ex)

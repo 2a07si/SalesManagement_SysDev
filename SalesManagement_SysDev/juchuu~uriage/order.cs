@@ -372,6 +372,7 @@ namespace SalesManagement_SysDev
                         var orders = context.TChumons;
                         order.ChFlag = 1;
                         order.ChHidden = "注文処理確定済";
+                        Log_Order(order.OrID);
                         // 出庫処理が完了した場合、注文情報を保存 
                         try
                         {
@@ -1577,7 +1578,7 @@ namespace SalesManagement_SysDev
                     var latestLoginHistory = context.LoginHistoryLogs
                                                     .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
                                                     .FirstOrDefault();  // 最新のログを取得
-
+                    MessageBox.Show("アンパンマン");
                     if (latestLoginHistory != null)
                     {
                         // 最新のログが見つかった場合、そのIDを設定
