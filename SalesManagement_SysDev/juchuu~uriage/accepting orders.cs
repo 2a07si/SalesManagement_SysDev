@@ -60,6 +60,8 @@ namespace SalesManagement_SysDev
             SetupNumericOnlyTextBoxes();
             RegisterStatus();
             tbfalse();
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
+            UpdateTextBoxState(checkBoxSyain.Checked);
         }
 
         // メインメニューに戻る
@@ -1023,7 +1025,7 @@ namespace SalesManagement_SysDev
                     int delFlag = row.Cells["非表示フラグ"].Value != null ?
                                   Convert.ToInt32(row.Cells["非表示フラグ"].Value) :
                                   0; // nullなら0を設定
-
+                    UpdateTextBoxState(checkBoxSyain.Checked);
                     // チェックボックスの状態を設定 
                 }
             }
@@ -1540,6 +1542,36 @@ namespace SalesManagement_SysDev
             countFlag();
             FlagCount();
         }
+
+        // フラグを定義して、干渉を防ぐ
+        private bool isProgrammaticChange = false;
+
+        // チェックボックス変更時のイベントハンドラ
+        private void checkBoxSyain_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateTextBoxState(checkBoxSyain.Checked);
+        }
+
+        // テキストボックスの状態を更新するメソッド
+        private void UpdateTextBoxState(bool isChecked)
+        {
+            // テキストをプログラムで変更していることを示すフラグをオン
+            isProgrammaticChange = true;
+
+            if (isChecked)
+            {
+                TBShainID.Text = empID;  // テキストを設定
+                TBShainID.Enabled = false; // 無効化
+            }
+            else
+            {
+                TBShainID.Enabled = true; // 有効化
+            }
+
+            // フラグをオフに戻す
+            isProgrammaticChange = false;
+        }
+
 
     }
 }

@@ -85,6 +85,7 @@ namespace SalesManagement_SysDev
             b_shi = new Button();
             b_acc = new Button();
             b_iss = new Button();
+            checkBoxSyain = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -671,6 +672,18 @@ namespace SalesManagement_SysDev
             b_iss.Click += b_iss_Click;
             b_iss.Paint += b_iss_Paint;
             // 
+            // checkBoxSyain
+            // 
+            checkBoxSyain.AutoSize = true;
+            checkBoxSyain.Checked = true;
+            checkBoxSyain.CheckState = CheckState.Checked;
+            checkBoxSyain.Location = new Point(412, 17);
+            checkBoxSyain.Name = "checkBoxSyain";
+            checkBoxSyain.Size = new Size(178, 29);
+            checkBoxSyain.TabIndex = 274;
+            checkBoxSyain.Text = "社員IDを自動入力";
+            checkBoxSyain.UseVisualStyleBackColor = true;
+            // 
             // acceptingorders
             // 
             AcceptButton = b_kakutei;
@@ -679,6 +692,7 @@ namespace SalesManagement_SysDev
             AutoScroll = true;
             CancelButton = close;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBoxSyain);
             Controls.Add(b_arr);
             Controls.Add(b_sal);
             Controls.Add(b_ord);
@@ -783,5 +797,6 @@ namespace SalesManagement_SysDev
         private Button b_shi;
         private Button b_acc;
         private Button b_iss;
+        private CheckBox checkBoxSyain;
     }
 }
