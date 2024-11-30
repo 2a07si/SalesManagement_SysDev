@@ -343,6 +343,13 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TChumons.Any(c => c.OrID == shipping.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({shipping.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
 
                         context.SaveChanges();
                         shipping.ShFlag = 1;

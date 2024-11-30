@@ -339,6 +339,13 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TChumons.Any(c => c.OrID == order.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({order.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
 
                         var details = context.TChumonDetails.Where(d => d.ChID == int.Parse(ChumonID)).ToList();
                         foreach (var detail in details)

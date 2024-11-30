@@ -50,8 +50,6 @@
             dataGridView1 = new DataGridView();
             checkBoxDateFilter = new CheckBox();
             b_FormSelector = new Button();
-            label2 = new Label();
-            label1 = new Label();
             panel2 = new Panel();
             updateLabel25 = new juchuu_uriage.UpdateLabel2();
             comboBox2 = new ComboBox();
@@ -299,7 +297,7 @@
             // checkBoxDateFilter
             // 
             checkBoxDateFilter.AutoSize = true;
-            checkBoxDateFilter.Location = new Point(540, 108);
+            checkBoxDateFilter.Location = new Point(708, 101);
             checkBoxDateFilter.Name = "checkBoxDateFilter";
             checkBoxDateFilter.Size = new Size(128, 29);
             checkBoxDateFilter.TabIndex = 291;
@@ -316,26 +314,7 @@
             b_FormSelector.TabIndex = 284;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.Location = new Point(1104, 103);
-            label2.Name = "label2";
-            label2.Size = new Size(86, 32);
-            label2.TabIndex = 290;
-            label2.Text = "未設定";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1084, 75);
-            label1.Name = "label1";
-            label1.Size = new Size(108, 28);
-            label1.TabIndex = 289;
-            label1.Text = "現在の状態";
+            b_FormSelector.Click += b_FormSelector_Click;
             // 
             // panel2
             // 
@@ -469,7 +448,7 @@
             label9.Name = "label9";
             label9.Size = new Size(115, 25);
             label9.TabIndex = 309;
-            label9.Text = "商品並び替え";
+            label9.Text = "顧客並び替え";
             // 
             // label10
             // 
@@ -520,6 +499,7 @@
             clear.TabIndex = 282;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
+            clear.Click += clear_Click;
             // 
             // label_ename
             // 
@@ -572,7 +552,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(345, 22);
+            checkBox1.Location = new Point(333, 101);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(113, 29);
             checkBox1.TabIndex = 296;
@@ -582,7 +562,7 @@
             // checkBoxKingaku
             // 
             checkBoxKingaku.AutoSize = true;
-            checkBoxKingaku.Location = new Point(540, 61);
+            checkBoxKingaku.Location = new Point(590, 101);
             checkBoxKingaku.Name = "checkBoxKingaku";
             checkBoxKingaku.Size = new Size(110, 29);
             checkBoxKingaku.TabIndex = 297;
@@ -592,7 +572,7 @@
             // checkBoxSuryo
             // 
             checkBoxSuryo.AutoSize = true;
-            checkBoxSuryo.Location = new Point(540, 22);
+            checkBoxSuryo.Location = new Point(465, 101);
             checkBoxSuryo.Name = "checkBoxSuryo";
             checkBoxSuryo.Size = new Size(110, 29);
             checkBoxSuryo.TabIndex = 298;
@@ -611,8 +591,6 @@
             Controls.Add(panel1);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(b_FormSelector);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(panel2);
             Controls.Add(clear);
             Controls.Add(label_ename);
