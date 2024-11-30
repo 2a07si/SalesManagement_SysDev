@@ -160,6 +160,12 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                     // DataGridViewにデータを表示
                     dataGridView1.DataSource = result;
+
+                    // 商品ID順以外の場合に上位5行を強調表示
+                    if (condition != 1) // 商品ID順以外の場合
+                    {
+                        HighlightTopRows(5);
+                    }
                 }
             }
             catch (Exception ex)
@@ -289,6 +295,12 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                     // DataGridViewにデータを表示
                     dataGridView2.DataSource = result;
+
+                    // 商品ID順以外の場合に上位5行を強調表示
+                    if (condition != 1) // 商品ID順以外の場合
+                    {
+                        HighlightTopRows2(5);
+                    }
                 }
             }
             catch (Exception ex)
@@ -367,14 +379,36 @@ namespace SalesManagement_SysDev.Main_LoginForm
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        // 上位行を強調表示するメソッド
+        private void HighlightTopRows(int rowCount)
         {
+            // 表示されているデータが少ない場合はその行数まで
+            int rowsToHighlight = Math.Min(rowCount, dataGridView1.Rows.Count);
+
+            for (int i = 0; i < rowsToHighlight; i++)
+            {
+                foreach (DataGridViewCell cell in dataGridView1.Rows[i].Cells)
+                {
+                    cell.Style.BackColor = Color.Yellow;  // 背景色を黄色に設定
+                    cell.Style.ForeColor = Color.Red;     // テキスト色を赤に設定
+                }
+            }
 
         }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        // 上位行を強調表示するメソッド
+        private void HighlightTopRows2(int rowCount)
         {
+            // 表示されているデータが少ない場合はその行数まで
+            int rowsToHighlight = Math.Min(rowCount, dataGridView2.Rows.Count);
 
+            for (int i = 0; i < rowsToHighlight; i++)
+            {
+                foreach (DataGridViewCell cell in dataGridView2.Rows[i].Cells)
+                {
+                    cell.Style.BackColor = Color.Yellow;  // 背景色を黄色に設定
+                    cell.Style.ForeColor = Color.Red;     // テキスト色を赤に設定
+                }
+            }
         }
     }
 }

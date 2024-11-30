@@ -53,6 +53,7 @@
             b_rec = new Button();
             b_hor = new Button();
             b_rank = new Button();
+            listViewLog = new ListView();
             JU.SuspendLayout();
             mas.SuspendLayout();
             HN.SuspendLayout();
@@ -358,12 +359,21 @@
             b_rank.UseVisualStyleBackColor = true;
             b_rank.Click += b_rank_Click;
             // 
+            // listViewLog
+            // 
+            listViewLog.Location = new Point(806, 23);
+            listViewLog.Name = "listViewLog";
+            listViewLog.Size = new Size(574, 96);
+            listViewLog.TabIndex = 1002;
+            listViewLog.UseCompatibleStateImageBehavior = false;
+            // 
             // mainmenu3
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = b_logout;
             ClientSize = new Size(1578, 844);
+            Controls.Add(listViewLog);
             Controls.Add(b_rank);
             Controls.Add(Loginkanri);
             Controls.Add(label_ename);
@@ -415,5 +425,6 @@
         private Button b_rec;
         private Button b_hor;
         private Button b_rank;
+        private ListView listViewLog;
     }
 }

@@ -126,7 +126,7 @@
             label14.AutoSize = true;
             label14.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label14.ForeColor = Color.Black;
-            label14.Location = new Point(302, 26);
+            label14.Location = new Point(302, 32);
             label14.Name = "label14";
             label14.Size = new Size(84, 25);
             label14.TabIndex = 4;
@@ -179,7 +179,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(720, 690);
             panel1.TabIndex = 280;
-            panel1.Paint += panel1_Paint;
             // 
             // TBJyogenKin
             // 
@@ -251,7 +250,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(22, 23);
+            label6.Location = new Point(24, 33);
             label6.Name = "label6";
             label6.Size = new Size(115, 25);
             label6.TabIndex = 294;
@@ -277,7 +276,7 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "商品ID", "購入個数", "合計金額" });
-            comboBox1.Location = new Point(152, 17);
+            comboBox1.Location = new Point(154, 27);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(129, 33);
             comboBox1.TabIndex = 293;
@@ -362,7 +361,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(720, 690);
             panel2.TabIndex = 281;
-            panel2.Paint += panel2_Paint;
             // 
             // updateLabel25
             // 
@@ -379,7 +377,7 @@
             // 
             comboBox2.FormattingEnabled = true;
             comboBox2.Items.AddRange(new object[] { "商品ID", "購入回数", "合計金額" });
-            comboBox2.Location = new Point(161, 20);
+            comboBox2.Location = new Point(161, 24);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(129, 33);
             comboBox2.TabIndex = 295;
@@ -467,7 +465,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label9.ForeColor = Color.Black;
-            label9.Location = new Point(27, 26);
+            label9.Location = new Point(27, 30);
             label9.Name = "label9";
             label9.Size = new Size(115, 25);
             label9.TabIndex = 309;
