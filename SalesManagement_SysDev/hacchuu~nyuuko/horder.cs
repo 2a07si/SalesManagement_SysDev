@@ -68,6 +68,8 @@ namespace SalesManagement_SysDev
             DisplayHattyuDetails();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.RegistrationStatus(label2);
+            RegisterStatus();
+            tbfalse();
         }
 
         private void clear_Click(object sender, EventArgs e)

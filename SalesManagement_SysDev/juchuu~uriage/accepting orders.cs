@@ -58,6 +58,8 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.BackColor = Color.Gray;
             CurrentStatus.RegistrationStatus(label2);
             SetupNumericOnlyTextBoxes();
+            RegisterStatus();
+            tbfalse();
         }
 
         // メインメニューに戻る

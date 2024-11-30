@@ -544,7 +544,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     // 取得したログデータをListViewに登録
                     foreach (var log in logs)
                     {
-                        string logDetail = $"{log.AcceptDateTime:yyyy/MM/dd HH:mm}：{log.EmployeeName}が{log.Display}{log.Mode}を{log.Process}しました。";
+                        string logDetail = $"{log.AcceptDateTime:yyyy/MM/dd HH:mm}：{log.EmployeeName}が{log.Display}{log.Mode}を{log.Process}しました";
 
                         // ListViewの行を追加
                         var listViewItem = new ListViewItem(log.DetailID.ToString()); // DetailIDを表示
