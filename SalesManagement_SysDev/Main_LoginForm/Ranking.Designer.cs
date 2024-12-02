@@ -621,6 +621,7 @@
             Controls.Add(label3);
             Controls.Add(b_kakutei);
             Name = "Ranking";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Ranking";
             Load += Ranking_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
