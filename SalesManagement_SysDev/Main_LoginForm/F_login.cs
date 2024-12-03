@@ -947,7 +947,7 @@ namespace SalesManagement_SysDev
                 }
 
                 // パスワードが10文字以下かつ文字型かどうかをチェック
-                if (tb_Pass.Text.Length > 10 || !Regex.IsMatch(tb_Pass.Text, @"^[a-zA-Z]+$"))
+                if (tb_Pass.Text.Length > 10 || !Regex.IsMatch(tb_Pass.Text, @"^[0-9][a-zA-Z]+$"))
                 {
                     MessageBox.Show("パスワードは10文字以下のアルファベットで入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
