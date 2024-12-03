@@ -355,6 +355,7 @@
             b_rank.Name = "b_rank";
             b_rank.Size = new Size(129, 45);
             b_rank.TabIndex = 1001;
+            b_rank.TabStop = false;
             b_rank.Text = "ランキング画面";
             b_rank.UseVisualStyleBackColor = true;
             b_rank.Click += b_rank_Click;
