@@ -283,7 +283,7 @@ namespace SalesManagement_SysDev
 
                 // 条件精査
 
-                if (TBJyutyuID.Text == null)
+                if (TBJyutyuID.Text == "")
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
@@ -292,7 +292,7 @@ namespace SalesManagement_SysDev
                 }
 
 
-                if (TBShopID.Text == null)
+                if (TBShopID.Text == "")
                 {
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
@@ -300,7 +300,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBShainID.Text == null)
+                if (TBShainID.Text == "")
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
@@ -308,7 +308,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBKokyakuID.Text == null)
+                if (TBKokyakuID.Text == "")
                 {
                     TBKokyakuID.BackColor = Color.Yellow;
                     TBKokyakuID.Focus();
@@ -360,6 +360,13 @@ namespace SalesManagement_SysDev
                         TBShainID.BackColor = Color.Yellow;
                         TBShainID.Focus();
                         MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (!int.TryParse(kokyakuID, out int kokyaku) || !context.TOrders.Any(s => s.ClID == kokyaku))
+                    {
+                        TBKokyakuID.BackColor = Color.Yellow;
+                        TBKokyakuID.Focus();
+                        MessageBox.Show("顧客IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -727,18 +734,25 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
-                    if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrderDetails.Any(s => s.OrID == jyutyu))
+                    if (!int.TryParse(jyutyuID, out int syosai) || !context.TOrderDetails.Any(s => s.OrDetailID == syosai))
                     {
-                        MessageBox.Show("受注IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBJyutyuID.BackColor = Color.Yellow;
-                        TBJyutyuID.Focus();
+                        MessageBox.Show("受注詳細IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBJyutyuSyosaiID.BackColor = Color.Yellow;
+                        TBJyutyuSyosaiID.Focus();
                         return;
                     }
-                    if (!int.TryParse(syohinID, out int syohin) || !context.TOrderDetails.Any(s => s.PrID == syohin))
+                    if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrders.Any(s => s.OrID == jyutyu))
                     {
-                        TBShopID.BackColor = Color.Yellow;
-                        TBShopID.Focus();
-                        MessageBox.Show("営業所IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("該当する受注IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBJyutyuIDS.BackColor = Color.Yellow;
+                        TBJyutyuIDS.Focus();
+                        return;
+                    }
+                    if (!int.TryParse(syohinID, out int syohin) || !context.MProducts.Any(s => s.PrID == syohin))
+                    {
+                        TBSyohinID.BackColor = Color.Yellow;
+                        TBSyohinID.Focus();
+                        MessageBox.Show("商品IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -806,8 +820,24 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
+               
+
                 using (var context = new SalesManagementContext())
                 {
+                    if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrders.Any(s => s.OrID == jyutyu))
+                    {
+                        MessageBox.Show("受注IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBJyutyuIDS.BackColor = Color.Yellow;
+                        TBJyutyuIDS.Focus();
+                        return;
+                    }
+                    if (!int.TryParse(syohinID, out int syohin) || !context.MProducts.Any(s => s.PrID == syohin))
+                    {
+                        TBSyohinID.BackColor = Color.Yellow;
+                        TBSyohinID.Focus();
+                        MessageBox.Show("商品IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     var existingOrderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrID == int.Parse(jyutyuID));
                     if (existingOrderDetail != null)

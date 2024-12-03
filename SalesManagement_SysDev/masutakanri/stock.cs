@@ -191,6 +191,13 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                var product = context.MProducts.FirstOrDefault(p => p.PrID == int.Parse(syohinID));
+                if (product == null)
+                {
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var stock = context.TStocks.SingleOrDefault(s => s.StID.ToString() == zaikoID);
                 if (stock != null)
                 {
@@ -246,7 +253,7 @@ namespace SalesManagement_SysDev
                 var product = context.MProducts.FirstOrDefault(p => p.PrID == shouhin);
                 if (product == null)
                 {
-                    MessageBox.Show("指定された商品が存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 // 安全在庫数チェック
