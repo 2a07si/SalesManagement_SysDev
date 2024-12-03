@@ -351,9 +351,9 @@
             // 
             // b_rank
             // 
-            b_rank.Location = new Point(27, 202);
+            b_rank.Location = new Point(27, 180);
             b_rank.Name = "b_rank";
-            b_rank.Size = new Size(129, 42);
+            b_rank.Size = new Size(129, 45);
             b_rank.TabIndex = 1001;
             b_rank.Text = "ランキング画面";
             b_rank.UseVisualStyleBackColor = true;

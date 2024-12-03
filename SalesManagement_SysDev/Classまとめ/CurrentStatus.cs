@@ -22,11 +22,19 @@ namespace SalesManagement_SysDev.Classまとめ
             詳細
         }
 
+        public enum ItemType
+        {
+            商品,
+            顧客
+        }
+
         // グローバル変数としての現在の状態を保持
         public static Status CurrentStatusValue { get; private set; } = Status.未設定;
 
         // モードを保持
         public static Mode CurrentMode { get; private set; } = Mode.通常;
+
+        public static ItemType CurrentRanking { get; private set; } = ItemType.商品;
 
         // 状態の変更とラベルの更新
         public static void RegistrationStatus(Label label2)
@@ -63,6 +71,11 @@ namespace SalesManagement_SysDev.Classまとめ
         public static void SetMode(Mode mode)
         {
             CurrentMode = mode;
+        }
+
+        public static void RankingMode(ItemType mm)
+        {
+            CurrentRanking = mm;
         }
     }
 }
