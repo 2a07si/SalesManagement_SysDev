@@ -946,10 +946,10 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // パスワードが3～4桁の数字かどうかをチェック 
-                if (tb_Pass.Text.Length < 3 || tb_Pass.Text.Length > 4 || !Regex.IsMatch(tb_Pass.Text, @"^\d+$"))
+                // パスワードが10文字以下かつ文字型かどうかをチェック
+                if (tb_Pass.Text.Length > 10 || !Regex.IsMatch(tb_Pass.Text, @"^[a-zA-Z]+$"))
                 {
-                    MessageBox.Show("パスワードは3～4桁の数字で入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("パスワードは10文字以下のアルファベットで入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
                     return;
                 }
