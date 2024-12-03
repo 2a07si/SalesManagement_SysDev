@@ -326,7 +326,7 @@ namespace SalesManagement_SysDev
                 if (jyutyuDate > DateTime.Today)
                 {
                     var result = MessageBox.Show(
-                        "受注年月日が未来を指していますが、よろしいですか？",
+                        "受注日が未来を指していますが、よろしいですか？",
                         "確認",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning
@@ -362,7 +362,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    
+
                     if (order != null)
                     {
                         order.SoID = int.Parse(shopID);
@@ -493,7 +493,20 @@ namespace SalesManagement_SysDev
                     TBShainID.Focus();
                     return;
                 }
+                if (date.Value > DateTime.Today)
+                {
+                    var result = MessageBox.Show(
+                        "受注日が未来を指していますが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
 
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理を中断
+                    }
+                }
                 using (var context = new SalesManagementContext())
                 {
 
