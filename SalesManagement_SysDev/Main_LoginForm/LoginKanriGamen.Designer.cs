@@ -239,7 +239,7 @@
             // 
             ComboGamen.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
             ComboGamen.FormattingEnabled = true;
-            ComboGamen.Items.AddRange(new object[] { "未選択", "受注", "注文", "出庫", "入荷", "出荷", "売上", "発注", "入庫", "社員", "商品", "在庫", "顧客" });
+            ComboGamen.Items.AddRange(new object[] { "未選択", "メイン", "受注", "注文", "出庫", "入荷", "出荷", "売上", "発注", "入庫", "社員", "商品", "在庫", "顧客" });
             ComboGamen.Location = new Point(19, 66);
             ComboGamen.Name = "ComboGamen";
             ComboGamen.Size = new Size(135, 54);

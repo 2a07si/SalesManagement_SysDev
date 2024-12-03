@@ -9,6 +9,7 @@ using static SalesManagement_SysDev.Classまとめ.ClassChangeForms;
 using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using SalesManagement_SysDev.Entity;
+using System.Text.RegularExpressions;
 
 namespace SalesManagement_SysDev
 {
@@ -277,6 +278,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
+
             using (var context = new SalesManagementContext())
             {
                 var hattyu = context.THattyus.FirstOrDefault(h => h.HaID.ToString() == hattyuuID);
@@ -391,8 +393,6 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-
 
                 // 新しい発注情報を作成
                 var newHattyu = new THattyu
@@ -557,6 +557,8 @@ namespace SalesManagement_SysDev
                 return;
             }
 
+            
+
             using (var context = new SalesManagementContext())
             {
                 var orderDetail = context.THattyuDetails.SingleOrDefault(od => od.HaDetailID.ToString() == hattyuuSyosaiID);
@@ -650,10 +652,10 @@ namespace SalesManagement_SysDev
 
                 context.THattyuDetails.Add(newOrderDetail);
                 context.SaveChanges();
-                
+
                 DisplayHattyuDetails();
                 Log_Horder(newOrderDetail.HaDetailID);
-                DialogResult result = MessageBox.Show("受注詳細の登録が完了しました。\n受注処理を確定させますか？",
+                DialogResult result = MessageBox.Show("発注詳細の登録が完了しました。\n発注処理を確定させますか？",
                                      "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 // Yes/Noでの分岐処理
@@ -665,7 +667,7 @@ namespace SalesManagement_SysDev
                 else
                 {
                     // Noが選ばれた場合の処理（受注処理を中止）
-                    MessageBox.Show("受注処理は中止されました。", "中止", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("発注処理は中止されました。", "中止", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -1026,7 +1028,7 @@ namespace SalesManagement_SysDev
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 数字とBackspace以外は入力を無効化
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -1166,7 +1168,7 @@ namespace SalesManagement_SysDev
 
             if (isChecked)
             {
-                TBShainID.Text = Global.EmployeeID.ToString() ;  // テキストを設定
+                TBShainID.Text = Global.EmployeeID.ToString();  // テキストを設定
                 TBShainID.Enabled = false; // 無効化
             }
             else
