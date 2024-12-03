@@ -807,7 +807,7 @@ namespace SalesManagement_SysDev
                     var employeeService = new EmployeeService(context);
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
-                      
+
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
@@ -963,7 +963,7 @@ namespace SalesManagement_SysDev
                     if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
                     {
                         MessageBox.Show("ログイン成功、登録処理開始");
-                        
+
                         HandleSuccessfulLogin(empID, employeeName, positionName, poID);
                     }
                     else
@@ -980,7 +980,7 @@ namespace SalesManagement_SysDev
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("データベースに接続できません。ネットワーク状態を確認してください: " + ex.Message, "接続エラー" + "\nスタックトレース: " +ex.StackTrace, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("データベースに接続できません。ネットワーク状態を確認してください: " + ex.Message, "接続エラー" + "\nスタックトレース: " + ex.StackTrace, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (InvalidOperationException ex)
             {
