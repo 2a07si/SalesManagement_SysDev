@@ -585,7 +585,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-            private void AlphabetTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void AlphabetTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 数字、英字、Backspace以外は入力を無効化
             if (!((e.KeyChar >= '0' && e.KeyChar <= '9') || // 数字
@@ -604,7 +604,7 @@ namespace SalesManagement_SysDev
 
         }
 
-        
+
         private void Log_Employee(int id)
         {
             try
