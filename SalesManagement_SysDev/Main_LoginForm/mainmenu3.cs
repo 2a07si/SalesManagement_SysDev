@@ -468,7 +468,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                         var LogDet = new LoginHistoryLogDetail
                         {
                             ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
-                            Display = "メインメニュー",
+                            Display = "メイン",
                             Mode = "-",
                             Process = "ログアウト",
                             LogID = 0,  //
