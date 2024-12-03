@@ -304,6 +304,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 11;
+            dataGridView1.TabStop = false;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // DelFlag
@@ -591,6 +592,7 @@
             dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView3.Size = new Size(580, 490);
             dataGridView3.TabIndex = 10;
+            dataGridView3.TabStop = false;
             dataGridView3.CellClick += dataGridView3_CellClick;
             // 
             // TBUriageSyosaiID

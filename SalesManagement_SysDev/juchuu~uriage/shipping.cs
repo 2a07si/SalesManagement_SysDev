@@ -336,7 +336,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 var shipping = context.TShipments.SingleOrDefault(sh => sh.ShID.ToString() == shukkaID);
-                
+
                 if (shipping != null)
                 {
                     shipping.SoID = int.Parse(shopID);
@@ -367,7 +367,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
-                       
+
                         context.SaveChanges();
                         shipping.ShFlag = 1;
                         shipping.ShHidden = "出荷確定処理済";
