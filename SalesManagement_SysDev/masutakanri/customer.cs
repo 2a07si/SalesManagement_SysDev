@@ -585,7 +585,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-       
+
         private void Log_Customer(int id)
         {
 

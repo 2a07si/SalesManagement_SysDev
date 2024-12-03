@@ -320,9 +320,9 @@ namespace SalesManagement_SysDev
                         DisplayReceivingStocks(); // 更新後に入庫情報を再表示
                         DisplayReceivingStockDetails();
                         Log_Receive(receivingStock.WaID);
-                       
 
-                        
+
+
                     }
                     catch (DbUpdateException ex)
                     {
