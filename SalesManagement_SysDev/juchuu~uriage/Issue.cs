@@ -333,13 +333,7 @@ namespace SalesManagement_SysDev
             {
 
                 var issue = context.TSyukkos.SingleOrDefault(o => o.SyID.ToString() == SyukkoID);
-                // 受注IDの重複チェック
-                bool isDuplicate = context.TArrivals.Any(c => c.OrID == issue.OrID);
-                if (isDuplicate)
-                {
-                    MessageBox.Show($"この受注ID ({issue.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // 更新処理を中止
-                }
+                
                 if (issue != null)
                 {
                     issue.SoID = int.Parse(ShopID);                   // 店舗ID
@@ -354,6 +348,13 @@ namespace SalesManagement_SysDev
                     // SyukkoFlgがチェックされている場合、出庫詳細の確認を行う
                     if (SyukkoFlg)
                     {
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TArrivals.Any(c => c.OrID == issue.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({issue.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
                         // 出庫詳細が存在するか確認
                         var issueDetailsExist = context.TSyukkoDetails
                             .Any(sd => sd.SyID == issue.SyID); // SyID が一致する出庫詳細が存在するか確認

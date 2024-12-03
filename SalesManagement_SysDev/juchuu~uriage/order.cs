@@ -321,13 +321,7 @@ namespace SalesManagement_SysDev
 
                 var order = context.TChumons.FirstOrDefault(o => o.ChID.ToString() == ChumonID);
 
-                // 受注IDの重複チェック
-                bool isDuplicate = context.TSyukkos.Any(c => c.OrID == order.OrID);
-                if (isDuplicate)
-                {
-                    MessageBox.Show($"この受注ID ({order.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // 更新処理を中止
-                }
+                
                 if (order != null)
                 {
                     order.SoID = int.Parse(ShopID);
@@ -343,6 +337,13 @@ namespace SalesManagement_SysDev
                     // checkBox_2のチェックがある場合、出庫処理へ 
                     if (TyumonFlag.Checked)
                     {
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TSyukkos.Any(c => c.OrID == order.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({order.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
                         var orderDetailExists = context.TChumonDetails.Any(d => d.ChID == int.Parse(ChumonID));
                         if (!orderDetailExists)
                         {

@@ -320,13 +320,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 var arrival = context.TArrivals.SingleOrDefault(o => o.ArID.ToString() == ArID);
-                // 受注IDの重複チェック
-                bool isDuplicate = context.TShipments.Any(c => c.OrID == arrival.OrID);
-                if (isDuplicate)
-                {
-                    MessageBox.Show($"この受注ID ({arrival.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // 更新処理を中止
-                }
+                
                 if (arrival != null)
                 {
                     arrival.SoID = int.Parse(ShopID);
@@ -342,6 +336,13 @@ namespace SalesManagement_SysDev
                     
                     if (NyuukaFlg)
                     {
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TShipments.Any(c => c.OrID == arrival.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({arrival.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
                         var arrivalDetailsExist = context.TArrivalDetails
                             .Any(ad => ad.ArID == arrival.ArID);
                         if (!arrivalDetailsExist)
