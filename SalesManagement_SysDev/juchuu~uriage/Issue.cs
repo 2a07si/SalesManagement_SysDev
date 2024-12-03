@@ -345,9 +345,53 @@ namespace SalesManagement_SysDev
             }
             using (var context = new SalesManagementContext())
             {
+                int shukko;
+                if (!int.TryParse(ShopID, out shukko) || !context.TSyukkos.Any(s => s.SyID == shukko))
+                {
+                    TBSyukkoID.BackColor = Color.Yellow;
+                    TBSyukkoID.Focus();
+                    MessageBox.Show("出庫IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int shop;
+                if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
+                {
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
+                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int employeeID;
+                if (!int.TryParse(ShainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
+                {
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int kokyaku;
+                if (!int.TryParse(KokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
+                {
+                    TBKokyakuID.BackColor = Color.Yellow;
+                    TBKokyakuID.Focus();
+                    MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int juchu;
+                if (!int.TryParse(JyutyuID, out juchu) || !context.TOrders.Any(j => j.OrID == juchu))
+                {
+                    TBJyutyuID.BackColor = Color.Yellow;
+                    TBJyutyuID.Focus();
+                    MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 var issue = context.TSyukkos.SingleOrDefault(o => o.SyID.ToString() == SyukkoID);
-                
+
                 if (issue != null)
                 {
                     issue.SoID = int.Parse(ShopID);                   // 店舗ID
@@ -380,7 +424,7 @@ namespace SalesManagement_SysDev
                             return; // 処理を中断
                         }
 
-                        
+
                         issue.SyFlag = 1;
                         issue.SyHidden = "出庫確定処理済";
                         // 出庫詳細が存在する場合、出庫確認処理を実行
@@ -759,6 +803,34 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int shousai;
+                if (!int.TryParse(SyukkoSyosaiID, out shousai) || !context.TSyukkoDetails.Any(s => s.SyDetailID == shousai))
+                {
+                    TBSyukkoSyosaiID.BackColor = Color.Yellow;
+                    TBSyukkoSyosaiID.Focus();
+                    MessageBox.Show("出庫詳細IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int shukko;
+                if (!int.TryParse(SyukkoID, out shukko) || !context.TSyukkos.Any(s => s.SyID == shukko))
+                {
+                    TBSyukkoIDS.BackColor = Color.Yellow;
+                    TBSyukkoIDS.Focus();
+                    MessageBox.Show("出庫IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                // EmIDがMEmployeeテーブルに存在するか確認
+                int shouhin;
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
+                {
+                    TBSyohinID.BackColor = Color.Yellow;
+                    TBSyohinID.Focus();
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 var issueDetail = context.TSyukkoDetails.SingleOrDefault(od => od.SyDetailID.ToString() == SyukkoSyosaiID);
                 if (issueDetail != null)
                 {

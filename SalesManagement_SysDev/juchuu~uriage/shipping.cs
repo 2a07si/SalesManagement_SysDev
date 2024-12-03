@@ -335,8 +335,45 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int ship;
+                if (!int.TryParse(shopID, out ship) || !context.TShipments.Any(s => s.ShID == ship))
+                {
+                    MessageBox.Show("出荷IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int shop;
+                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
+                {
+                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 社員IDが存在するか確認
+                int employeeID;
+                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
+                {
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int kokyaku;
+                if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
+                {
+                    MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 受注IDが存在するか確認
+                int juchu;
+                if (!int.TryParse(JyutyuID, out juchu) || !context.TOrders.Any(j => j.OrID == juchu))
+                {
+                    MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var shipping = context.TShipments.SingleOrDefault(sh => sh.ShID.ToString() == shukkaID);
-                
+
                 if (shipping != null)
                 {
                     shipping.SoID = int.Parse(shopID);
@@ -367,7 +404,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
-                       
+
                         context.SaveChanges();
                         shipping.ShFlag = 1;
                         shipping.ShHidden = "出荷確定処理済";
@@ -732,6 +769,28 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int syousai;
+                if (!int.TryParse(shukkasyosaiID, out syousai) || !context.TShipmentDetails.Any(s => s.ShDetailID == syousai))
+                {
+                    MessageBox.Show("出荷詳細IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int shukka;
+                if (!int.TryParse(shukkaID, out shukka) || !context.TShipments.Any(s => s.ShID == shukka))
+                {
+                    MessageBox.Show("出荷IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // EmIDがMEmployeeテーブルに存在するか確認
+                int shouhin;
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(e => e.PrID == shouhin))
+                {
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var shippingDetail = context.TShipmentDetails.SingleOrDefault(sh => sh.ShDetailID.ToString() == shukkasyosaiID);
                 if (shippingDetail != null)
                 {

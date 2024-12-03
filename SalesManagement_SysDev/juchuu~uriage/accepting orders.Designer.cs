@@ -248,6 +248,7 @@ namespace SalesManagement_SysDev
             // dataGridView1
             // 
             dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(10, 190);
@@ -259,7 +260,9 @@ namespace SalesManagement_SysDev
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 16;
+            dataGridView1.TabStop = false;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // panel1
             // 
@@ -485,6 +488,7 @@ namespace SalesManagement_SysDev
             // dataGridView2
             // 
             dataGridView2.AllowUserToOrderColumns = true;
+            dataGridView2.AllowUserToResizeColumns = false;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(10, 190);
@@ -495,6 +499,7 @@ namespace SalesManagement_SysDev
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 9;
+            dataGridView2.TabStop = false;
             dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // TBJyutyuSyosaiID

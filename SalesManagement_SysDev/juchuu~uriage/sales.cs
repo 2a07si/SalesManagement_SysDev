@@ -343,6 +343,51 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int sale;
+                if (!int.TryParse(salesID, out sale) || !context.TSales.Any(s => s.SaID == sale))
+                {
+                    TBSalesID.BackColor = Color.Yellow;
+                    TBSalesID.Focus();
+                    MessageBox.Show("売上IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int shop;
+                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
+                {
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
+                    MessageBox.Show("営業所IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int employeeID;
+                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
+                {
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
+                    MessageBox.Show("社員IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int kokyaku;
+                if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
+                {
+                    TBKokyakuID.BackColor = Color.Yellow;
+                    TBKokyakuID.Focus();
+                    MessageBox.Show("顧客IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int juchu;
+                if (!int.TryParse(JyutyuID, out juchu) || !context.TOrders.Any(j => j.OrID == juchu))
+                {
+                    TBJyutyuID.BackColor = Color.Yellow;
+                    TBJyutyuID.Focus();
+                    MessageBox.Show("受注IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var sales = context.TSales.SingleOrDefault(s => s.SaID.ToString() == salesID);
                 if (sales != null)
                 {
@@ -641,6 +686,24 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                if (!int.TryParse(UriageSyosaiID, out int syosai) || !context.TSaleDetails.Any(s => s.SaDetailID == syosai))
+                {
+                    MessageBox.Show("売上詳細IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (!int.TryParse(uriageID, out int uriage) || !context.TSales.Any(s => s.SaID == uriage))
+                {
+                    MessageBox.Show("売上IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 商品IDの検証
+                if (!int.TryParse(syohinID, out int shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
+                {
+                    MessageBox.Show("商品IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var saleDetail = context.TSaleDetails.SingleOrDefault(sa => sa.SaDetailID.ToString() == UriageSyosaiID);
                 if (saleDetail != null)
                 {
@@ -1335,7 +1398,7 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
-        
+
     }
 
 

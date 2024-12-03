@@ -10,6 +10,7 @@ using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using SalesManagement_SysDev.Entity;
 using System.Text.RegularExpressions;
+using System.Diagnostics.Metrics;
 
 namespace SalesManagement_SysDev
 {
@@ -281,6 +282,28 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int hor;
+                if (!int.TryParse(makerID, out hor) || !context.THattyus.Any(m => m.HaID == hor))
+                {
+                    MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int maker;
+                if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
+                {
+                    MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // EmIDがMEmployeeテーブルに存在するか確認
+                int employeeID;
+                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
+                {
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var hattyu = context.THattyus.FirstOrDefault(h => h.HaID.ToString() == hattyuuID);
                 if (hattyu != null)
                 {
@@ -557,10 +580,32 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            
+
 
             using (var context = new SalesManagementContext())
             {
+                int syousai;
+                if (!int.TryParse(hattyuuID, out syousai) || !context.THattyuDetails.Any(h => h.HaDetailID == syousai))
+                {
+                    MessageBox.Show("発注詳細IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int hattyuID;
+                if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
+                {
+                    MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // PrID（商品ID）がMProductテーブルに存在するか確認
+                int productID;
+                if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
+                {
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var orderDetail = context.THattyuDetails.SingleOrDefault(od => od.HaDetailID.ToString() == hattyuuSyosaiID);
                 if (orderDetail != null)
                 {

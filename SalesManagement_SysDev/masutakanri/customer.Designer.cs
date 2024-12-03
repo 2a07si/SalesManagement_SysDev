@@ -220,7 +220,7 @@
             panel1.Location = new Point(150, 145);
             panel1.Name = "panel1";
             panel1.Size = new Size(1420, 690);
-            panel1.TabIndex = 5;
+            panel1.TabIndex = 4;
             panel1.Paint += panel1_Paint;
             // 
             // CusFlag
@@ -230,7 +230,7 @@
             CusFlag.Location = new Point(26, 119);
             CusFlag.Name = "CusFlag";
             CusFlag.Size = new Size(110, 29);
-            CusFlag.TabIndex = 288;
+            CusFlag.TabIndex = 14;
             CusFlag.Text = "顧客管理";
             CusFlag.UseVisualStyleBackColor = true;
             CusFlag.CheckedChanged += CusFlag_CheckedChanged;
@@ -259,7 +259,7 @@
             TBYuubinNo.Location = new Point(727, 20);
             TBYuubinNo.Name = "TBYuubinNo";
             TBYuubinNo.Size = new Size(84, 31);
-            TBYuubinNo.TabIndex = 9;
+            TBYuubinNo.TabIndex = 7;
             TBYuubinNo.TextChanged += TBYuubinNo_TextChanged;
             // 
             // label6
@@ -270,7 +270,7 @@
             label6.Location = new Point(637, 20);
             label6.Name = "label6";
             label6.Size = new Size(84, 25);
-            label6.TabIndex = 8;
+            label6.TabIndex = 6;
             label6.Text = "郵便番号";
             // 
             // TBTellNo
@@ -297,12 +297,13 @@
             TBJyusyo.Location = new Point(90, 70);
             TBJyusyo.Name = "TBJyusyo";
             TBJyusyo.Size = new Size(375, 31);
-            TBJyusyo.TabIndex = 7;
+            TBJyusyo.TabIndex = 9;
             TBJyusyo.TextChanged += TBJyusyo_TextChanged;
             // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(10, 190);
@@ -312,7 +313,7 @@
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1400, 490);
-            dataGridView1.TabIndex = 19;
+            dataGridView1.TabIndex = 18;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -324,7 +325,7 @@
             label7.Location = new Point(32, 73);
             label7.Name = "label7";
             label7.Size = new Size(48, 25);
-            label7.TabIndex = 6;
+            label7.TabIndex = 8;
             label7.Text = "住所";
             // 
             // TBKokyakuName
@@ -343,7 +344,7 @@
             DelFlag.Location = new Point(159, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
-            DelFlag.TabIndex = 14;
+            DelFlag.TabIndex = 15;
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
             DelFlag.CheckedChanged += DelFlag_CheckedChanged;
@@ -364,7 +365,7 @@
             label17.Location = new Point(259, 120);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
-            label17.TabIndex = 15;
+            label17.TabIndex = 16;
             label17.Text = "非表示理由";
             // 
             // TBKokyakuID
@@ -391,7 +392,7 @@
             TBRiyuu.Location = new Point(369, 120);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
-            TBRiyuu.TabIndex = 16;
+            TBRiyuu.TabIndex = 17;
             // 
             // label14
             // 

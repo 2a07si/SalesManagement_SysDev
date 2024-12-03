@@ -274,6 +274,28 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int nyuuko;
+                if (!int.TryParse(haID, out nyuuko) || !context.TWarehousings.Any(h => h.WaID == nyuuko))
+                {
+                    MessageBox.Show("入庫IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int hattyuID;
+                if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
+                {
+                    MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // EmIDがMEmployeeテーブルに存在するか確認
+                int employeeID;
+                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
+                {
+                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var receivingStock = context.TWarehousings.SingleOrDefault(ws => ws.WaID.ToString() == nyuukoID);
                 if (receivingStock != null)
                 {
@@ -556,6 +578,28 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int syousai;
+                if (!int.TryParse(nyuukoID, out syousai) || !context.TWarehousingDetails.Any(w => w.WaDetailID == syousai))
+                {
+                    MessageBox.Show("入庫詳細IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int warehousingID;
+                if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
+                {
+                    MessageBox.Show("入庫IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // PrIDがTProductテーブルに存在するか確認
+                int productID;
+                if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
+                {
+                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var receivingStockDetail = context.TWarehousingDetails.SingleOrDefault(ws => ws.WaDetailID.ToString() == nyuukoDetailID);
                 if (receivingStockDetail != null)
                 {
