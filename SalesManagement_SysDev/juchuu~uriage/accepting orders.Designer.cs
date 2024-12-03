@@ -182,14 +182,14 @@ namespace SalesManagement_SysDev
             label18.ForeColor = Color.Black;
             label18.Location = new Point(280, 70);
             label18.Name = "label18";
-            label18.Size = new Size(102, 25);
+            label18.Size = new Size(66, 25);
             label18.TabIndex = 10;
-            label18.Text = "受注年月日";
+            label18.Text = "受注日";
             // 
             // date
             // 
             date.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            date.Location = new Point(390, 70);
+            date.Location = new Point(360, 70);
             date.Name = "date";
             date.Size = new Size(185, 31);
             date.TabIndex = 11;
@@ -230,7 +230,7 @@ namespace SalesManagement_SysDev
             TyumonFlag.AutoSize = true;
             TyumonFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             TyumonFlag.ForeColor = Color.Black;
-            TyumonFlag.Location = new Point(590, 70);
+            TyumonFlag.Location = new Point(560, 70);
             TyumonFlag.Name = "TyumonFlag";
             TyumonFlag.Size = new Size(110, 29);
             TyumonFlag.TabIndex = 12;
@@ -579,9 +579,9 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.AutoSize = true;
             checkBoxDateFilter.Location = new Point(967, 17);
             checkBoxDateFilter.Name = "checkBoxDateFilter";
-            checkBoxDateFilter.Size = new Size(225, 29);
+            checkBoxDateFilter.Size = new Size(189, 29);
             checkBoxDateFilter.TabIndex = 266;
-            checkBoxDateFilter.Text = "受注年月日を検索に含む";
+            checkBoxDateFilter.Text = "受注日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             // 
             // checkBox_2
