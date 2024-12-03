@@ -797,7 +797,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int syousai;
-                if (!int.TryParse(nyuukaSyosaiID, out syousai) || !context.TArrivalDetails.Any(n => n.ArDetailID== syousai))
+                if (!int.TryParse(nyuukaSyosaiID, out syousai) || !context.TArrivalDetails.Any(n => n.ArDetailID == syousai))
                 {
                     TBNyukaSyosaiID.BackColor = Color.Yellow;
                     TBNyukaSyosaiID.Focus();
