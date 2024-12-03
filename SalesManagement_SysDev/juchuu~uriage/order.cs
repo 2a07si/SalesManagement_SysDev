@@ -1197,31 +1197,44 @@ namespace SalesManagement_SysDev
                     throw new Exception("注文詳細が見つかりません。");
                 }
 
-                var chumonDetail = context.TChumonDetails.SingleOrDefault(o => o.ChID == ChID);
-                if (chumonDetail == null)
+                // 注文詳細をすべて取得
+                var orderDetails = context.TOrderDetails.Where(o => o.OrID == order.OrID).ToList();
+
+                // 注文詳細が存在しない場合のエラー処理
+                if (orderDetails == null || orderDetails.Count == 0)
                 {
-                    throw new Exception("注文詳細（ChID）が見つかりません。");
+                    throw new Exception("注文詳細が見つかりません。");
                 }
 
-                var newSyukkoDetail = new TSyukkoDetail
+                // 各注文詳細に対して処理を実行
+                foreach (var detail in orderDetails)
                 {
-                    SyID = newSyukko.SyID,
-                    PrID = orderDetail.PrID,
-                    SyQuantity = chumonDetail.ChQuantity
+                    var chumonDetail = context.TChumonDetails.SingleOrDefault(o => o.ChID == ChID && o.PrID == detail.PrID);
+                    if (chumonDetail == null)
+                    {
+                        throw new Exception($"注文詳細（ChID: {ChID}, PrID: {detail.PrID}）が見つかりません。");
+                    }
 
-                };
+                    // 出庫詳細を作成
+                    var newSyukkoDetail = new TSyukkoDetail
+                    {
+                        SyID = newSyukko.SyID,
+                        PrID = detail.PrID,
+                        SyQuantity = chumonDetail.ChQuantity
+                    };
 
-                try
-                {
-                    Checker3(newSyukko.SyID, orderDetail.PrID);
-                    context.TSyukkoDetails.Add(newSyukkoDetail);
-                    context.SaveChanges();
+                    try
+                    {
+                        Checker3(newSyukko.SyID, detail.PrID); // チェック処理
+                        context.TSyukkoDetails.Add(newSyukkoDetail);
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception($"TSyukkoDetailへの登録に失敗しました: {ex.Message}");
+                    }
                 }
-                catch (Exception ex)
-                {
 
-                    throw new Exception("TSyukkoDetailへの登録に失敗しました: " + ex.Message);
-                }
             }
         }
 
@@ -1693,7 +1706,6 @@ namespace SalesManagement_SysDev
                     var latestLoginHistory = context.LoginHistoryLogs
                                                     .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
                                                     .FirstOrDefault();  // 最新のログを取得
-                    MessageBox.Show("アンパンマン");
                     if (latestLoginHistory != null)
                     {
                         // 最新のログが見つかった場合、そのIDを設定

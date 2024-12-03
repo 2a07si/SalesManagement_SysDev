@@ -1149,22 +1149,46 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("TArrivalへの登録に失敗しました: " + ex.Message);
                 }
-                var syukkoDetail = context.TSyukkoDetails.SingleOrDefault(o => o.SyID == syukko.SyID);
-                var newArrivalDetail = new TArrivalDetail
+                // TSyukkoDetailsの取得  
+                var syukkoDetails = context.TSyukkoDetails.Where(o => o.SyID == syukko.SyID).ToList();
+                if (!syukkoDetails.Any())
                 {
-                    ArID = newArrival.ArID,
-                    PrID = syukkoDetail.PrID,
-                    ArQuantity = syukkoDetail.SyQuantity
-                };
+                    MessageBox.Show("指定された出庫情報が見つかりません。処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 複数の出庫詳細を全て引き継ぐ
+                foreach (var syukkoDetail in syukkoDetails)
+                {
+                    // 新しい到着詳細の登録  
+                    var newArrivalDetail = new TArrivalDetail
+                    {
+                        ArID = newArrival.ArID,
+                        PrID = syukkoDetail.PrID,  // 出庫詳細から商品IDを取得
+                        ArQuantity = syukkoDetail.SyQuantity  // 出庫数量を到着数量として登録
+                    };
+
+                    try
+                    {
+                        context.TArrivalDetails.Add(newArrivalDetail);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("TArrivalDetailへの登録に失敗しました: " + ex.Message);
+                    }
+                }
+
+                // すべての到着詳細をデータベースに保存
                 try
                 {
-                    context.TArrivalDetails.Add(newArrivalDetail);
                     context.SaveChanges();
+                    MessageBox.Show("すべての到着詳細が登録されました。");
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("TArrivalDetailへの登録に失敗しました:" + ex.Message);
+                    throw new Exception("データベースへの保存に失敗しました: " + ex.Message);
                 }
+
             }
 
         }

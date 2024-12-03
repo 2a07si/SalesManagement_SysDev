@@ -1116,33 +1116,49 @@ namespace SalesManagement_SysDev
                     throw new Exception("TSalesへの登録に失敗しました: " + ex.Message + "\n\nスタックトレース:\n" + ex.InnerException);
                 }
 
-                var shipmentDetail = context.TShipmentDetails.SingleOrDefault(o => o.ShID == shipment.ShID);
-                var product = context.MProducts.SingleOrDefault(o => o.PrID == shipmentDetail.PrID);
-                var newSaleDetail = new TSaleDetail
+                // 複数の出荷詳細を取得
+                var shipmentDetails = context.TShipmentDetails.Where(o => o.ShID == shipment.ShID).ToList();
+                if (!shipmentDetails.Any())
                 {
-                    // `PrID` が nullable 型のため、`Value` プロパティを使って値を取得
-                    // `PrID` が null の場合、0 を代入
-                    SaID = newSales.SaID,
-                    PrID = shipmentDetail.PrID,  // null の場合、0 を代入
-                    SaQuantity = shipmentDetail.ShQuantity,  // null の場合、0 を代入
-                    SaPrTotalPrice = shipmentDetail.ShQuantity * product.Price
-
-
-                };
-                if (newSaleDetail.PrID == 0 || newSaleDetail.SaQuantity == 0)
-                {
-                    MessageBox.Show("PrIDかShquantityが0で入力されています");
+                    MessageBox.Show("指定された出荷情報が見つかりません。処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
+                // 複数の出荷詳細を全て引き継ぐ
+                foreach (var shipmentDetail in shipmentDetails)
+                {
+                    var product = context.MProducts.SingleOrDefault(o => o.PrID == shipmentDetail.PrID);
+                    if (product == null)
+                    {
+                        MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    var newSaleDetail = new TSaleDetail
+                    {
+                        SaID = newSales.SaID,
+                        PrID = shipmentDetail.PrID,  // null の場合、0 を代入
+                        SaQuantity = shipmentDetail.ShQuantity,  // null の場合、0 を代入
+                        SaPrTotalPrice = shipmentDetail.ShQuantity * product.Price
+                    };
+                    try
+                    {
+                        context.TSaleDetails.Add(newSaleDetail);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("TSaleDetailへの登録に失敗しました:" + ex.Message);
+                    }
+                }
                 try
                 {
-                    context.TSaleDetails.Add(newSaleDetail);
                     context.SaveChanges();
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("TSaleDetailへの登録に失敗しました:" + ex.Message);
+                    throw new Exception("データベースへの保存に失敗しました: " + ex.Message);
                 }
+
             }
         }
 
