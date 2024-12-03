@@ -314,7 +314,21 @@ namespace SalesManagement_SysDev
                 TBShainID.Focus();
                 return;
             }
+            if (date.Value > DateTime.Today)
+            {
+                var result = MessageBox.Show(
+                    "注文" +
+                    "日が未来を指していますが、よろしいですか？",
+                    "確認",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
+                if (result == DialogResult.No)
+                {
+                    return; // 処理を中断
+                }
+            }
 
             using (var context = new SalesManagementContext())
             {
@@ -513,6 +527,20 @@ namespace SalesManagement_SysDev
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
                     return;
+                }
+                if (date.Value > DateTime.Today)
+                {
+                    var result = MessageBox.Show(
+                        "受注年月日が未来を指していますが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理を中断
+                    }
                 }
 
                 // 注文が存在しない場合、新規作成 

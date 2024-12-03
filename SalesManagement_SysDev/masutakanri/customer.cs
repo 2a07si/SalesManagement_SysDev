@@ -585,7 +585,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-       
+
         private void Log_Customer(int id)
         {
 
@@ -626,6 +626,20 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private void CusFlag_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void DelFlag_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

@@ -323,6 +323,20 @@ namespace SalesManagement_SysDev
                     TBKokyakuID.Focus();
                     return;
                 }
+                if (jyutyuDate > DateTime.Today)
+                {
+                    var result = MessageBox.Show(
+                        "受注年月日が未来を指していますが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理を中断
+                    }
+                }
 
                 using (var context = new SalesManagementContext())
                 {

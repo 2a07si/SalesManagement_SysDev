@@ -316,6 +316,20 @@ namespace SalesManagement_SysDev
                 TBShainID.Focus();
                 return;
             }
+            if (date.Value > DateTime.Today)
+            {
+                var result = MessageBox.Show(
+                    "入荷日が未来を指していますが、よろしいですか？",
+                    "確認",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.No)
+                {
+                    return; // 処理を中断
+                }
+            }
 
             using (var context = new SalesManagementContext())
             {
@@ -484,7 +498,20 @@ namespace SalesManagement_SysDev
                     TBShainID.Focus();
                     return;
                 }
+                if (date.Value > DateTime.Today)
+                {
+                    var result = MessageBox.Show(
+                        "入荷日が未来を指していますが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
 
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理を中断
+                    }
+                }
 
 
                 // 入荷が既に存在するか確認
