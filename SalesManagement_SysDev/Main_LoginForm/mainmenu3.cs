@@ -13,6 +13,7 @@ using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using static SalesManagement_SysDev.Classまとめ.GlobalBadge;
 using SalesManagement_SysDev.Entity;
+using System.Text.RegularExpressions;
 
 namespace SalesManagement_SysDev.Main_LoginForm
 {
@@ -551,6 +552,206 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 // エラー表示
                 MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void listViewLog_MouseClick(object sender, MouseEventArgs e)
+        {
+            // クリックした位置を取得
+            var hitTestInfo = listViewLog.HitTest(e.Location);
+            var clickedItem = hitTestInfo.Item;
+
+            if (clickedItem != null)
+            {
+                // クリックされたサブアイテムを取得（log.Displayが格納されている部分）
+                var clickedSubItem = clickedItem.SubItems[1];  // 例えば、log.Displayの部分
+
+                // log.Displayの部分を取得
+                string displayText = clickedSubItem.Text;
+
+                // 検索するキーワードをリストとして定義
+                List<string> keywords = new List<string>
+                {
+                    "受注", "注文", "出庫", "入荷", "出荷",
+                    "売上", "発注", "入庫", "顧客", "社員",
+                    "商品", "在庫"
+                };
+                // 抽出した文字を格納するリスト
+                List<string> extractedStrings = new List<string>();
+
+                // displayTextに含まれているキーワードを探してリストに追加
+                foreach (var keyword in keywords)
+                {
+                    if (displayText.Contains(keyword))
+                    {
+                        extractedStrings.Add(keyword); // 見つかったキーワードをリストに追加
+                    }
+                }
+
+                // リストの内容を確認
+                foreach (var extracted in extractedStrings)
+                {
+                    MessageBox.Show("リストに追加された文字: " + extracted);
+                }
+
+                // 「受注」がリストに含まれている場合の処理
+                if (extractedStrings.Contains("受注"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "物流")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToAcceptingOrderForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("注文"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "物流")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToOrderForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("出庫"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "営業")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToIssueForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("入荷"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "物流")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToArrivalForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("出荷"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "物流")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToShippingForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("売上"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "物流")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToSalesForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("発注"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "営業")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToHorderForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("入庫"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "営業")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToReceivingstockForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("顧客"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "物流")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToCustomerForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("商品"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "営業")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToMerchandiseForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("在庫"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "営業")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToStockForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+                if (extractedStrings.Contains("社員"))
+                {
+                    // 権限チェック
+                    if (Global.PositionName != "物流" && Global.PositionName != "営業")
+                    {
+                        HandleNavigationError(() => changeForm.NavigateToEmployeeForm()); // 受注登録フォームに遷移 
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("権限がありません。");
+                    }
+                }
+
+
             }
         }
 

@@ -612,8 +612,8 @@ namespace SalesManagement_SysDev
                         var LogDet = new LoginHistoryLogDetail
                         {
                             ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
-                            Display = "受注",
-                            Mode = "-",
+                            Display = "顧客",
+                            Mode = "",
                             Process = label2.Text,
                             LogID = id,  //
                             AcceptDateTime = DateTime.Now

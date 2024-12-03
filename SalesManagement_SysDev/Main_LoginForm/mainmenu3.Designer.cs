@@ -367,6 +367,7 @@
             listViewLog.Size = new Size(574, 96);
             listViewLog.TabIndex = 1002;
             listViewLog.UseCompatibleStateImageBehavior = false;
+            listViewLog.MouseClick　+= listViewLog_MouseClick;
             // 
             // mainmenu3
             // 
