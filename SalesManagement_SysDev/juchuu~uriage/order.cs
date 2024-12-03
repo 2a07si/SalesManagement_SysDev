@@ -23,12 +23,12 @@ namespace SalesManagement_SysDev
         private ClassDataGridViewClearer dgvClearer;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
-
+        
 
         private int lastFocusedPanelID = 1;
         public order()
         {
-
+            
             InitializeComponent();
             StockManager.InitializeSafetyStock();
             this.formChanger = new ClassChangeForms(this);
@@ -359,8 +359,8 @@ namespace SalesManagement_SysDev
                                 // 発注処理を行う 
                                 Checker(order.OrID, shortageQuantity);
                                 ProductOrder(int.Parse(OrderID), int.Parse(ChumonID), shortageQuantity);
-
-
+                                
+                                
                                 MessageBox.Show($"商品ID: {detail.PrID}の在庫が不足しているため発注処理を行いました。");
 
                                 // 非表示フラグと理由を設定して出庫登録 
@@ -368,13 +368,13 @@ namespace SalesManagement_SysDev
                             }
                             else
                             {
-
+                               
                                 // 在庫が足りている場合、出庫処理 
                                 stock.StQuantity -= detail.ChQuantity;
                                 MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
                                 OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 0, null);
                                 StockManager.CompareStock(detail.PrID, stock.StQuantity);
-
+                                
                             }
                         }
                         var orders = context.TChumons;
@@ -1071,7 +1071,7 @@ namespace SalesManagement_SysDev
                     SyStateFlag = 0
                 };
 
-
+                
 
                 try
                 {
@@ -1107,12 +1107,12 @@ namespace SalesManagement_SysDev
                     SyID = newSyukko.SyID,
                     PrID = orderDetail.PrID,
                     SyQuantity = chumonDetail.ChQuantity
-
+                   
                 };
 
                 try
                 {
-                    Checker3(newSyukko.SyID, orderDetail.PrID);
+                    Checker3(newSyukko.SyID,orderDetail.PrID);
                     context.TSyukkoDetails.Add(newSyukkoDetail);
                     context.SaveChanges();
                 }

@@ -619,7 +619,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-
+        
         private void Log_Merchandise(int id)
         {
             try

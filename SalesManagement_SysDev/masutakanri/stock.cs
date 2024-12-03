@@ -476,7 +476,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-
+        
         private void Log_Stock(int id)
         {
             try
