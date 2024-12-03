@@ -74,6 +74,7 @@ namespace SalesManagement_SysDev
 
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
+            UpdateTextBoxState(checkBoxSyain.Checked);
 
         }
         // メインメニューに戻る 
@@ -314,10 +315,19 @@ namespace SalesManagement_SysDev
                 return;
             }
 
+
             using (var context = new SalesManagementContext())
             {
+
                 var order = context.TChumons.FirstOrDefault(o => o.ChID.ToString() == ChumonID);
 
+                // 受注IDの重複チェック
+                bool isDuplicate = context.TSyukkos.Any(c => c.OrID == order.OrID);
+                if (isDuplicate)
+                {
+                    MessageBox.Show($"この受注ID ({order.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // 更新処理を中止
+                }
                 if (order != null)
                 {
                     order.SoID = int.Parse(ShopID);
@@ -339,13 +349,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        // 受注IDの重複チェック
-                        bool isDuplicate = context.TChumons.Any(c => c.OrID == order.OrID);
-                        if (isDuplicate)
-                        {
-                            MessageBox.Show($"この受注ID ({order.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return; // 更新処理を中止
-                        }
+                        
 
                         var details = context.TChumonDetails.Where(d => d.ChID == int.Parse(ChumonID)).ToList();
                         foreach (var detail in details)
@@ -1075,6 +1079,7 @@ namespace SalesManagement_SysDev
 
                 try
                 {
+                    
                     // データが正しいか事前にチェック 
                     if (newSyukko.SoID == 0 || newSyukko.EmID == 0 || newSyukko.ClID == 0 || newSyukko.OrID == 0 || newSyukko.SyDate == default(DateTime))
                     {
@@ -1158,6 +1163,7 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
+
                     // 新しい発注情報の登録 
                     var newHattyu = new THattyu
                     {
@@ -1168,6 +1174,8 @@ namespace SalesManagement_SysDev
                         HaFlag = 0,
                         HaHidden = null
                     };
+
+                    
 
                     context.THattyus.Add(newHattyu);
                     context.SaveChanges();

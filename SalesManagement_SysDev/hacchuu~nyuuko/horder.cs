@@ -55,6 +55,8 @@ namespace SalesManagement_SysDev
 
         private void horder_Load(object sender, EventArgs e)
         {
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
+            UpdateTextBoxState(checkBoxSyain.Checked);
 
             GlobalUtility.UpdateLabels(label_id, label_ename); // ラベル更新
 

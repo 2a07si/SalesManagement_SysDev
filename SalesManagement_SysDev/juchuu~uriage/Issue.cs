@@ -59,6 +59,9 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayIssues();
             DisplayIssueDetails();
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
+            UpdateTextBoxState(checkBoxSyain.Checked);
+
 
             if (Global.EmployeePermission == 1)
             {

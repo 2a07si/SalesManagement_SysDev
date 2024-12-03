@@ -68,6 +68,9 @@ namespace SalesManagement_SysDev
 
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
+            UpdateTextBoxState(checkBoxSyain.Checked);
+
         }
         private void close_Click(object sender, EventArgs e)
         {

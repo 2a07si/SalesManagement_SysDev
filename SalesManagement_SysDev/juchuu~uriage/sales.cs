@@ -56,6 +56,9 @@ namespace SalesManagement_SysDev
             labelStatus.labelstatus(label2, b_kakutei);
             DisplaySales();
             DisplaySaleDetails();
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
+            UpdateTextBoxState(checkBoxSyain.Checked);
+
 
             if (Global.EmployeePermission == 1)
             {
