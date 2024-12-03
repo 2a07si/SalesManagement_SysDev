@@ -946,13 +946,14 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // パスワードが10文字以下かつ文字型かどうかをチェック
-                if (tb_Pass.Text.Length > 10 || !Regex.IsMatch(tb_Pass.Text, @"^[0-9][a-zA-Z]+$"))
+                // パスワードが10文字以下かつ英数字で構成されているかどうかをチェック
+                if (tb_Pass.Text.Length > 10 || !Regex.IsMatch(tb_Pass.Text, @"^[a-zA-Z0-9]+$"))
                 {
-                    MessageBox.Show("パスワードは10文字以下のアルファベットで入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("パスワードは10文字以下の英数字で入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
                     return;
                 }
+
 
                 string pass = tb_Pass.Text;
                 bool isLoginSuccessful = false; // 初期化して成功状態を保存する変数  
