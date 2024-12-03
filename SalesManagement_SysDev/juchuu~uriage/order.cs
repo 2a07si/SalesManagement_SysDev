@@ -306,7 +306,7 @@ namespace SalesManagement_SysDev
                 TBJyutyuID.Focus();
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            }   
             if (TBShainID.Text != empID)
             {
                 MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
@@ -1174,12 +1174,8 @@ namespace SalesManagement_SysDev
                     SyDate = null,
                     SyStateFlag = 0
                 };
-
-
-
                 try
                 {
-
                     // データが正しいか事前にチェック 
                     if (newSyukko.SoID == 0 || newSyukko.EmID == 0 || newSyukko.ClID == 0 || newSyukko.OrID == 0 || newSyukko.SyDate == default(DateTime))
                     {
