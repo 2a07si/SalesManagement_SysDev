@@ -611,6 +611,7 @@ namespace SalesManagement_SysDev
                     var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID  
                     var tantoName = TBTantoName.Text.Trim();     // 担当者  
 
+
                     // 基本的なクエリ  
                     var query = context.TOrders.AsQueryable();
 
@@ -665,7 +666,7 @@ namespace SalesManagement_SysDev
                             顧客ID = order.ClID,
                             担当社員名 = order.ClCharge,
                             受注日 = order.OrDate,
-                            注文フラグ = TyumonFlag.Checked ? 1 : 0,
+                            注文フラグ = TyumonFlag.Checked ? 2 : 0,
                             削除フラグ = DelFlag.Checked ? 1 : 0
                         }).ToList();
                     }
