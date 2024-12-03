@@ -243,6 +243,29 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                var product = context.MProducts.FirstOrDefault(p => p.PrID == shouhin);
+                if (product == null)
+                {
+                    MessageBox.Show("指定された商品が存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                // 安全在庫数チェック
+                int inputZaiko = int.Parse(zaiko); // 半角数字として入力される前提で直接変換
+
+                if (inputZaiko < product.PrSafetyStock)
+                {
+                    var result = MessageBox.Show(
+                        "安全在庫数を下回る在庫数ですが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理中断
+                    }
+                }
                 var newstock = new TStock
                 {
                     PrID = int.Parse(syohinID),

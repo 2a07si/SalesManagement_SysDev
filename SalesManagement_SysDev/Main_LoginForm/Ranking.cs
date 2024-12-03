@@ -24,7 +24,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         }
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
-        private string orderFlag = "←通常"; // 初期状態を「注文」に設定
+        private string orderFlag = "←商品"; // 初期状態を「注文」に設定
         private int lastFocusedPanelID = 1;
 
         private void Ranking_Load(object sender, EventArgs e)
@@ -34,8 +34,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
             ListBoxInitialize2();
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
-            b_FormSelector.Text = "←通常";
-            CurrentStatus.SetMode(Mode.通常);
+            b_FormSelector.Text = "←商品";
+            CurrentStatus.RankingMode(ItemType.商品);
             DisplayRankingProduct();
             DisplayCustomerRanking();
         }
@@ -45,12 +45,12 @@ namespace SalesManagement_SysDev.Main_LoginForm
             try
             {
                 // モードに基づいて処理を分岐
-                switch (CurrentStatus.CurrentMode)
+                switch (CurrentRanking)
                 {
-                    case CurrentStatus.Mode.通常:
+                    case CurrentStatus.ItemType.商品:
                         DisplayRankingProduct();
                         break;
-                    case CurrentStatus.Mode.詳細:
+                    case CurrentStatus.ItemType.顧客:
                         DisplayCustomerRanking();
                         break;
                     default:
@@ -443,15 +443,15 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private void ToggleOrderSelection()
         {
             isOrderSelected = !isOrderSelected;
-            orderFlag = isOrderSelected ? "←通常" : "詳細→";
+            orderFlag = isOrderSelected ? "←商品" : "顧客→";
 
             // CurrentStatusのモードを切り替える 
-            CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+            CurrentStatus.RankingMode(isOrderSelected ? ItemType.商品 : ItemType.顧客);
 
-            if (orderFlag == "←通常")
+            if (orderFlag == "←商品")
                 lastFocusedPanelID = 1;
             else
-            if (orderFlag == "詳細→")
+            if (orderFlag == "顧客→")
                 lastFocusedPanelID = 2;
         }
 

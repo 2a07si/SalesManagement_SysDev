@@ -72,6 +72,7 @@
             b_FormSelector = new Button();
             checkBox_2 = new CheckBox();
             checkBoxDateFilter = new CheckBox();
+            checkBoxSyain = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -532,6 +533,18 @@
             checkBoxDateFilter.Text = "入庫年月日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             // 
+            // checkBoxSyain
+            // 
+            checkBoxSyain.AutoSize = true;
+            checkBoxSyain.Checked = true;
+            checkBoxSyain.CheckState = CheckState.Checked;
+            checkBoxSyain.Location = new Point(418, 17);
+            checkBoxSyain.Name = "checkBoxSyain";
+            checkBoxSyain.Size = new Size(178, 29);
+            checkBoxSyain.TabIndex = 277;
+            checkBoxSyain.Text = "社員IDを自動入力";
+            checkBoxSyain.UseVisualStyleBackColor = true;
+            // 
             // receivingstock
             // 
             AcceptButton = b_kakutei;
@@ -539,6 +552,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = close;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBoxSyain);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(checkBox_2);
             Controls.Add(b_FormSelector);
@@ -621,5 +635,6 @@
         private Button colord;
         private CheckBox checkBox_2;
         private CheckBox checkBoxDateFilter;
+        private CheckBox checkBoxSyain;
     }
 }
