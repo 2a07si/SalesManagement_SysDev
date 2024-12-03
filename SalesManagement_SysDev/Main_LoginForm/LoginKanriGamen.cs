@@ -254,10 +254,24 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 // 行データを取得   
                 DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
-                ComboGamen.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[2].Value.ToString();
-                ComboMode.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[3].Value.ToString();
-                ComboShori.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[4].Value.ToString();
-                TB_ID.Text = row.Cells["LogID"].Value?.ToString() ?? string.Empty;
+                object secondColumnValue = dataGridView2[2, e.RowIndex].Value;
+
+                // 値が「メインメニュー」の場合
+                if (secondColumnValue != null && secondColumnValue.ToString() == "メインメニュー")
+                {
+                    ComboGamen.Text = "メイン";
+                    ComboMode.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[3].Value.ToString();
+                    ComboShori.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[4].Value.ToString();
+                    TB_ID.Text = row.Cells["LogID"].Value?.ToString() ?? string.Empty;
+                }
+                else
+                {
+
+                    ComboGamen.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[2].Value.ToString();
+                    ComboMode.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[3].Value.ToString();
+                    ComboShori.Text = dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells[4].Value.ToString();
+                    TB_ID.Text = row.Cells["LogID"].Value?.ToString() ?? string.Empty;
+                }
             }
         }
 
@@ -428,7 +442,9 @@ namespace SalesManagement_SysDev.Main_LoginForm
             }
         }
 
+        private void TB_ID_TextChanged(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
