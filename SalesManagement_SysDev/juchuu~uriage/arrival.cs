@@ -57,18 +57,9 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             DisplayArrivals();
-            DisplayArrivalDetails();
-
-            if (Global.EmployeePermission == 1)
-            {
-                b_reg.Enabled = true;
-            }
-            else
-            {
-                b_reg.Enabled = false;
-                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
-            }
-
+            DisplayArrivalDetails();            
+            b_reg.Enabled = false;
+            b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
         }

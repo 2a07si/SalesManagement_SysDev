@@ -67,6 +67,9 @@ namespace SalesManagement_SysDev
             DisplayReceivingStockDetails();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
+            b_reg.Enabled = false;
+            b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
+
         }
 
         private void clear_Click(object sender, EventArgs e)

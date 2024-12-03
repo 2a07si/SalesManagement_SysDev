@@ -62,16 +62,8 @@ namespace SalesManagement_SysDev
             DisplayOrders();
             DisplayOrderDetails();
             TyumonFlag.Enabled = false;
-            if (Global.EmployeePermission == 1)
-            {
-                b_reg.Enabled = true;
-            }
-            else
-            {
-                b_reg.Enabled = false;
-                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
-            }
-
+　          b_reg.Enabled = false;
+            b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
             UpdateTextBoxState(checkBoxSyain.Checked);
