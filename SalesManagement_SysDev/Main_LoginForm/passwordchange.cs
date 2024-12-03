@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +17,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         public passwordchange()
         {
             InitializeComponent();
+
         }
 
         private void kakutei_Click(object sender, EventArgs e)
@@ -45,6 +47,19 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 MessageBox.Show("変更後パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if(!CheckNumeric(TBID.Text))
+            {
+                MessageBox.Show("社員IDは半角数字のみです。");
+            }
+            if (!CheckHalfAlphabetNumeric(TBold.Text))
+            {
+                MessageBox.Show("現パスワードは半角英数字を入力してください。");
+            }
+            if (!CheckHalfAlphabetNumeric(TBnew.Text))
+            {
+                MessageBox.Show("新パスワードは半角英数字を入力してください。");
+            }
+
             using (var context = new SalesManagementContext())
             {
                 // ShainIDで該当社員を検索
@@ -80,6 +95,32 @@ namespace SalesManagement_SysDev.Main_LoginForm
             this.Close(); // 現在のフォームを閉じる 
             F_login loginForm = new F_login(); // ログインフォームを作成 
             loginForm.Show(); // ログインフォームを表示 
+        }
+
+        private bool CheckHalfAlphabetNumeric(string text)
+        {
+            bool flg;
+
+                Regex regex = new Regex("^[a-zA-Z0-9]+$");
+                if (!regex.IsMatch(text))
+                    flg = false;
+                else
+                    flg = true;
+
+                return flg;
+        }
+
+        private bool CheckNumeric(string text)
+        {
+            bool flg;
+
+            Regex regex = new Regex("^[0-9]+$");
+            if (!regex.IsMatch(text))
+                flg = false;
+            else
+                flg = true;
+
+            return flg;
         }
     }
 }

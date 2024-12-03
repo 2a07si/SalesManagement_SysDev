@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using static SalesManagement_SysDev.Classまとめ.GlobalBadge;
 using SalesManagement_SysDev.Entity;
+using System.Text.RegularExpressions;
 
 namespace SalesManagement_SysDev
 {
@@ -1286,7 +1287,7 @@ namespace SalesManagement_SysDev
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 数字とBackspace以外は入力を無効化
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -1603,6 +1604,17 @@ namespace SalesManagement_SysDev
             isProgrammaticChange = false;
         }
 
+        private bool CheckNumeric(string text)
+        {
+            bool flg;
 
+            Regex regex = new Regex("^[0-9]+$");
+            if (!regex.IsMatch(text))
+                flg = false;
+            else
+                flg = true;
+
+            return flg;
+        }
     }
 }

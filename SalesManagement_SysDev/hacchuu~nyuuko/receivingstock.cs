@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using SalesManagement_SysDev;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using SalesManagement_SysDev.Entity;
+using System.Text.RegularExpressions;
 
 namespace SalesManagement_SysDev
 {
@@ -392,8 +393,6 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-
-
                 var newReceivingStock = new TWarehousing
                 {
                     HaID = hattyuID, // 発注IDを適切に設定
@@ -551,6 +550,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
+
             using (var context = new SalesManagementContext())
             {
                 var receivingStockDetail = context.TWarehousingDetails.SingleOrDefault(ws => ws.WaDetailID.ToString() == nyuukoDetailID);
@@ -632,7 +632,7 @@ namespace SalesManagement_SysDev
                 var existingOrderDetail = context.TWarehousingDetails.FirstOrDefault(o => o.WaID == warehousingID);
                 if (existingOrderDetail != null)
                 {
-                    MessageBox.Show("この発注IDにはすでに発注詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("この入庫IDにはすでに入庫詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return; // 処理を終了
                 }
                 var newReceivingStockDetail = new TWarehousingDetail
@@ -992,7 +992,7 @@ namespace SalesManagement_SysDev
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // 数字とBackspace以外は入力を無効化
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
