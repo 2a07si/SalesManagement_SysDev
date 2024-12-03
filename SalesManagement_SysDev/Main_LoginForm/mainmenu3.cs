@@ -37,6 +37,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             SetButtonPermissions(); // ボタンの権限を設定
             GlobalEmp.EmployeeName = label_ename.Text;
             LoadLogData();
+            listViewLog.Scrollable = false;
 
         }
         // 従業員名をデータベースから取得して表示するメソッド
@@ -517,6 +518,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
             listViewLog.Columns.Clear();
             listViewLog.Columns.Add("ID", 50, HorizontalAlignment.Left); // 表示するIDをDetailIDに変更
             listViewLog.Columns.Add("ログ詳細", 500, HorizontalAlignment.Left);
+            // ヘッダーを非表示にする
+            listViewLog.HeaderStyle = ColumnHeaderStyle.None;
 
             try
             {
@@ -544,7 +547,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     // 取得したログデータをListViewに登録
                     foreach (var log in logs)
                     {
-                        string logDetail = $"{log.AcceptDateTime:yyyy/MM/dd HH:mm}：{log.EmployeeName}が{log.Display}{log.Mode}を{log.Process}しました";
+                        string logDetail = $"{log.AcceptDateTime:yyyy/MM/dd HH:mm}｜{log.EmployeeName}が{log.Display}{log.Mode}を{log.Process}しました";
 
                         // ListViewの行を追加
                         var listViewItem = new ListViewItem(log.DetailID.ToString()); // DetailIDを表示

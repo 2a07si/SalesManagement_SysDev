@@ -354,6 +354,14 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("出庫詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
+
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TChumons.Any(c => c.OrID == issue.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({issue.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
                         issue.SyFlag = 1;
                         issue.SyHidden = "出庫確定処理済";
                         // 出庫詳細が存在する場合、出庫確認処理を実行

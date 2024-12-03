@@ -360,7 +360,7 @@ namespace SalesManagement_SysDev
                         order.ClID = int.Parse(kokyakuID);
                         order.ClCharge = tantoName;
                         order.OrDate = jyutyuDate;
-                        order.OrStateFlag = tyumonFlag ? 2 : 0; // 適宜初期化 
+                        order.OrStateFlag = tyumonFlag ? 2 : 0; // 適宜初期化  
                         order.OrFlag = delFlag ? 1 : 0;
                         order.OrHidden = riyuu;
 
@@ -376,13 +376,30 @@ namespace SalesManagement_SysDev
 
                         try
                         {
+                            // 受注IDの重複チェック
+                            bool isDuplicate = context.TChumons.Any(c => c.OrID == order.OrID);
+                            if (isDuplicate)
+                            {
+                                MessageBox.Show($"この受注ID ({order.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return; // 更新処理を中止
+                            }
+
                             context.SaveChanges();
 
                             if (TyumonFlag.Checked)
                             {
-                                // AcceptionConfirm実行
-                                AcceptionConfirm(int.Parse(jyutyuID));
+                                try
+                                {
+                                    // AcceptionConfirm 実行
+                                    AcceptionConfirm(int.Parse(jyutyuID));
+                                }
+                                catch (Exception ex)
+                                {
+                                    // AcceptionConfirm でのエラー処理
+                                    throw new Exception($"受注確定処理中にエラーが発生しました: {ex.Message}");
+                                }
                             }
+
                             Log_Accept(order.OrID);
                             MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             DisplayOrders();
@@ -390,7 +407,7 @@ namespace SalesManagement_SysDev
                         }
                         catch (Exception ex)
                         {
-                            // エラーが発生した場合、OrFlagを元の状態に戻す
+                            // エラーが発生した場合、OrFlag を元の状態に戻す
                             order.OrFlag = originalOrFlag;
                             context.SaveChanges(); // 元の状態に戻す変更を保存
 
@@ -401,6 +418,7 @@ namespace SalesManagement_SysDev
                     {
                         MessageBox.Show("該当する受注が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                 }
             }
             catch (FormatException)
@@ -1070,15 +1088,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
-        //注文に登録する部分
+        // 注文に登録する部分
         private void AcceptionConfirm(int orderID)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
-                // 引き継ぐ情報を宣言 
+                // 引き継ぐ情報を宣言
                 var order = context.TOrders.SingleOrDefault(o => o.OrID == orderID);
 
                 if (order == null)
@@ -1086,14 +1102,22 @@ namespace SalesManagement_SysDev
                     throw new Exception("受注IDが見つかりません。");
                 }
 
-                // 注文情報をTChumonに追加
+                // TChumon テーブル内で OrID が既に存在するか確認
+                bool isDuplicate = context.TChumons.Any(c => c.OrID == orderID);
+                if (isDuplicate)
+                {
+                    MessageBox.Show($"この受注ID ({orderID}) はすでに登録されています。登録を中止します。");
+                    return;
+                }
+
+                // 注文情報を TChumon に追加
                 var newChumon = new TChumon
                 {
-                    SoID = order.SoID,  // 営業所ID    
+                    SoID = order.SoID,  // 営業所ID     
                     EmID = null,
-                    ClID = order.ClID,  // 顧客ID    
-                    OrID = order.OrID,  // 受注ID 
-                    ChDate = null, // 注文日    
+                    ClID = order.ClID,  // 顧客ID     
+                    OrID = order.OrID,  // 受注ID  
+                    ChDate = null, // 注文日     
                     ChStateFlag = 0,
                     ChFlag = 0
                 };
@@ -1108,13 +1132,20 @@ namespace SalesManagement_SysDev
                     throw new Exception("TChumonへの登録に失敗しました: " + ex.Message);
                 }
 
+                // 注文詳細情報を TChumonDetail に追加
                 var orderDetail = context.TOrderDetails.SingleOrDefault(o => o.OrID == orderID);
+                if (orderDetail == null)
+                {
+                    throw new Exception("注文詳細情報が見つかりません。");
+                }
+
                 var newChumonDetail = new TChumonDetail
                 {
                     ChID = newChumon.ChID,
                     PrID = orderDetail.PrID,
                     ChQuantity = orderDetail.OrQuantity
                 };
+
                 try
                 {
                     context.TChumonDetails.Add(newChumonDetail);
@@ -1122,7 +1153,7 @@ namespace SalesManagement_SysDev
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("TChumonDetailへの登録に失敗しました:" + ex.Message);
+                    throw new Exception("TChumonDetailへの登録に失敗しました: " + ex.Message);
                 }
             }
         }

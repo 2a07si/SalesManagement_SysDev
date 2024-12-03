@@ -328,6 +328,14 @@ namespace SalesManagement_SysDev
                     arrival.ArFlag = DelFlg ? 1 : 0;
                     arrival.ArHidden = Riyuu;
 
+
+                    // 受注IDの重複チェック
+                    bool isDuplicate = context.TChumons.Any(c => c.OrID == arrival.OrID);
+                    if (isDuplicate)
+                    {
+                        MessageBox.Show($"この受注ID ({arrival.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // 更新処理を中止
+                    }
                     if (NyuukaFlg)
                     {
                         var arrivalDetailsExist = context.TArrivalDetails

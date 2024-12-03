@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SalesManagement_SysDev.Classまとめ.CurrentStatus;
+using static SalesManagement_SysDev.Classまとめ.labelChange;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace SalesManagement_SysDev.Main_LoginForm
@@ -18,23 +20,49 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             InitializeComponent();
             this.formChanger = new ClassChangeForms(this);
+
         }
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
+        private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
+        private string orderFlag = "←通常"; // 初期状態を「注文」に設定
+        private int lastFocusedPanelID = 1;
 
         private void Ranking_Load(object sender, EventArgs e)
         {
+            GlobalUtility.UpdateLabels(label_id, label_ename);
             ListBoxInitialize1();
             ListBoxInitialize2();
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
+            b_FormSelector.Text = "←通常";
+            CurrentStatus.SetMode(Mode.通常);
+            DisplayRankingProduct();
+            DisplayCustomerRanking();
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
-            DisplayCustomerRanking();
-            DisplayRankingProduct();
+            try
+            {
+                // モードに基づいて処理を分岐
+                switch (CurrentStatus.CurrentMode)
+                {
+                    case CurrentStatus.Mode.通常:
+                        DisplayRankingProduct();
+                        break;
+                    case CurrentStatus.Mode.詳細:
+                        DisplayCustomerRanking();
+                        break;
+                    default:
+                        MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
         private void close_Click(object sender, EventArgs e)
         {
             formChanger.NavigateTo3();
@@ -409,6 +437,81 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     cell.Style.ForeColor = Color.Red;     // テキスト色を赤に設定
                 }
             }
+        }
+
+
+        private void ToggleOrderSelection()
+        {
+            isOrderSelected = !isOrderSelected;
+            orderFlag = isOrderSelected ? "←通常" : "詳細→";
+
+            // CurrentStatusのモードを切り替える 
+            CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
+
+            if (orderFlag == "←通常")
+                lastFocusedPanelID = 1;
+            else
+            if (orderFlag == "詳細→")
+                lastFocusedPanelID = 2;
+        }
+
+        private void b_FormSelector_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 状態を切り替える処理 
+                ToggleOrderSelection();
+
+                // b_FormSelectorのテキストを現在の状態に更新 
+                UpdateFlagButtonText();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ボタンのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UpdateFlagButtonText()
+        {
+            try
+            {
+                // b_FlagSelectorのテキストを現在の状態に合わせる 
+                b_FormSelector.Text = orderFlag;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("フラグボタンのテキスト更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false;
+            checkBoxDateFilter.Checked = false;
+            checkBoxKingaku.Checked = false;
+            checkBoxSuryo.Checked = false;
+            foreach (var item in checkedListBox1.CheckedItems)
+            {
+                checkedListBox1.SetItemChecked(checkedListBox1.Items.IndexOf(item), false);
+            }
+            foreach (var item in checkedListBox2.CheckedItems)
+            {
+                checkedListBox2.SetItemChecked(checkedListBox2.Items.IndexOf(item), false);
+            }
+            TBJyogen.Text = null;
+            TBKagen.Text = null;
+            TBJyogen1.Text = null;
+            TBKagen1.Text = null;
+            TBJyogenKin.Text = null;
+            TBKagenKin.Text = null;
+            TBJyogenKin1.Text = null;
+            TBKagenKin1.Text = null;
+            date.Value = DateTime.Now;
+            date2.Value = DateTime.Now;
+            date3.Value = DateTime.Now;
+            date4.Value = DateTime.Now;
         }
     }
 }
