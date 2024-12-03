@@ -52,6 +52,9 @@ namespace SalesManagement_SysDev
 
         private void receivingstock_Load(object sender, EventArgs e)
         {
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
+            UpdateTextBoxState(checkBoxSyain.Checked);
+
             GlobalUtility.UpdateLabels(label_id, label_ename);
             accessManager.SetButtonAccess(new Control[] {
                 b_hor
@@ -805,6 +808,7 @@ namespace SalesManagement_SysDev
                     date.Value = Convert.ToDateTime(row.Cells["入庫年月日"].Value);
                     NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫済フラグ"].Value);
                     DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
+                    UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
             catch (Exception ex)

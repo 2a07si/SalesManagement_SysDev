@@ -216,19 +216,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void Loginkanri_Click(object sender, EventArgs e)
         {
-            // ログ管理ボタンのクリックイベント
-            switch (Global.EmployeePermission)
-            {
-                case 1: // 管理者 
-                    HandleNavigationError(() => changeForm.NavigateToLogForm()); // ログ管理フォームに遷移 
-                    break;
-
-                default:
-                    // 権限がない場合はメインメニューに遷移
-                    changeForm.NavigateToMainMenu();
-                    MessageBox.Show("この操作ができるのは管理者のみです。"); // エラーメッセージを表示 
-                    break;
-            }
+            HandleNavigationError(() => changeForm.NavigateToLogForm()); // ログ管理フォームに遷移 
         }
 
         private void b_JU_Click(object sender, EventArgs e)

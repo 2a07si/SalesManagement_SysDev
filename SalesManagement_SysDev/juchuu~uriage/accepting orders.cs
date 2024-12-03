@@ -348,12 +348,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("社員IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    var orderDetailsExist = context.TOrderDetails.Any(od => od.OrID == order.OrID);
-                    if (!orderDetailsExist)
-                    {
-                        MessageBox.Show("受注詳細が登録されていません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    
                     if (order != null)
                     {
                         order.SoID = int.Parse(shopID);
@@ -371,6 +366,12 @@ namespace SalesManagement_SysDev
                         // checkBox_2がチェックされている場合にOrFlagを1に設定
                         if (checkBox_2.Checked)
                         {
+                            var orderDetailsExist = context.TOrderDetails.Any(od => od.OrID == order.OrID);
+                            if (!orderDetailsExist)
+                            {
+                                MessageBox.Show("受注詳細が登録されていません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
                             order.OrFlag = 1;
                             order.OrHidden = "受注確定処理済";
                         }

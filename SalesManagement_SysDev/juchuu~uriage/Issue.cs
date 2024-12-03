@@ -59,6 +59,9 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayIssues();
             DisplayIssueDetails();
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
+            UpdateTextBoxState(checkBoxSyain.Checked);
+
 
             if (Global.EmployeePermission == 1)
             {
@@ -330,6 +333,7 @@ namespace SalesManagement_SysDev
             {
 
                 var issue = context.TSyukkos.SingleOrDefault(o => o.SyID.ToString() == SyukkoID);
+                
                 if (issue != null)
                 {
                     issue.SoID = int.Parse(ShopID);                   // 店舗ID
@@ -344,6 +348,13 @@ namespace SalesManagement_SysDev
                     // SyukkoFlgがチェックされている場合、出庫詳細の確認を行う
                     if (SyukkoFlg)
                     {
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TArrivals.Any(c => c.OrID == issue.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({issue.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
                         // 出庫詳細が存在するか確認
                         var issueDetailsExist = context.TSyukkoDetails
                             .Any(sd => sd.SyID == issue.SyID); // SyID が一致する出庫詳細が存在するか確認
@@ -355,13 +366,7 @@ namespace SalesManagement_SysDev
                             return; // 処理を中断
                         }
 
-                        // 受注IDの重複チェック
-                        bool isDuplicate = context.TChumons.Any(c => c.OrID == issue.OrID);
-                        if (isDuplicate)
-                        {
-                            MessageBox.Show($"この受注ID ({issue.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return; // 更新処理を中止
-                        }
+                        
                         issue.SyFlag = 1;
                         issue.SyHidden = "出庫確定処理済";
                         // 出庫詳細が存在する場合、出庫確認処理を実行
@@ -968,6 +973,8 @@ namespace SalesManagement_SysDev
                     date.Value = row.Cells["出庫年月日"].Value != null
                                  ? Convert.ToDateTime(row.Cells["出庫年月日"].Value)
                                  : DateTime.Now; // nullの場合は現在の日付を設定
+                    UpdateTextBoxState(checkBoxSyain.Checked);
+
                 }
             }
             catch (Exception ex)

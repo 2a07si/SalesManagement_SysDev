@@ -43,6 +43,9 @@ namespace SalesManagement_SysDev
 
         private void arrival_Load(object sender, EventArgs e)
         {
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
+            UpdateTextBoxState(checkBoxSyain.Checked);
+
             GlobalUtility.UpdateLabels(label_id, label_ename);
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
@@ -317,6 +320,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 var arrival = context.TArrivals.SingleOrDefault(o => o.ArID.ToString() == ArID);
+                
                 if (arrival != null)
                 {
                     arrival.SoID = int.Parse(ShopID);
@@ -329,15 +333,16 @@ namespace SalesManagement_SysDev
                     arrival.ArHidden = Riyuu;
 
 
-                    // 受注IDの重複チェック
-                    bool isDuplicate = context.TChumons.Any(c => c.OrID == arrival.OrID);
-                    if (isDuplicate)
-                    {
-                        MessageBox.Show($"この受注ID ({arrival.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return; // 更新処理を中止
-                    }
+                    
                     if (NyuukaFlg)
                     {
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TShipments.Any(c => c.OrID == arrival.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({arrival.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
                         var arrivalDetailsExist = context.TArrivalDetails
                             .Any(ad => ad.ArID == arrival.ArID);
                         if (!arrivalDetailsExist)
@@ -980,7 +985,7 @@ namespace SalesManagement_SysDev
                         DelFlag.Checked = false;
                     TBRiyuu.Text = row.Cells["非表示理由"].Value?.ToString() ?? string.Empty;
 
-
+                    UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
             catch (Exception ex)

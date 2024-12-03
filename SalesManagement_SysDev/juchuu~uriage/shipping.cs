@@ -68,6 +68,9 @@ namespace SalesManagement_SysDev
 
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
+            UpdateTextBoxState(checkBoxSyain.Checked);
+
         }
         private void close_Click(object sender, EventArgs e)
         {
@@ -320,6 +323,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 var shipping = context.TShipments.SingleOrDefault(sh => sh.ShID.ToString() == shukkaID);
+                
                 if (shipping != null)
                 {
                     shipping.SoID = int.Parse(shopID);
@@ -334,6 +338,13 @@ namespace SalesManagement_SysDev
                     // 出荷フラグがチェックされている場合、出荷詳細の確認を行う
                     if (shipFlag)
                     {
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TSales.Any(c => c.OrID == shipping.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({shipping.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
                         // 出荷詳細が存在するか確認
                         var shippingDetailsExist = context.TShipmentDetails
                             .Any(sd => sd.ShID == shipping.ShID); // ShID が一致する出荷詳細が存在するか確認
@@ -343,14 +354,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
-                        // 受注IDの重複チェック
-                        bool isDuplicate = context.TChumons.Any(c => c.OrID == shipping.OrID);
-                        if (isDuplicate)
-                        {
-                            MessageBox.Show($"この受注ID ({shipping.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return; // 更新処理を中止
-                        }
-
+                       
                         context.SaveChanges();
                         shipping.ShFlag = 1;
                         shipping.ShHidden = "出荷確定処理済";
@@ -946,6 +950,7 @@ namespace SalesManagement_SysDev
                     // 非表示ボタンや非表示理由もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
                     // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
             catch (Exception ex)
@@ -1034,7 +1039,7 @@ namespace SalesManagement_SysDev
                     SaID = newSales.SaID,
                     PrID = shipmentDetail.PrID,  // null の場合、0 を代入
                     SaQuantity = shipmentDetail.ShQuantity,  // null の場合、0 を代入
-                    SaPrTotalPrice = shipmentDetail.ShQuantity + product.Price
+                    SaPrTotalPrice = shipmentDetail.ShQuantity * product.Price
 
 
                 };
