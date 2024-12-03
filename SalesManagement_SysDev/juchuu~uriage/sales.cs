@@ -70,7 +70,7 @@ namespace SalesManagement_SysDev
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
             TBTotal.Enabled = false;
-
+            TBTotal.BackColor = Color.Gray;
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
         }
@@ -182,6 +182,7 @@ namespace SalesManagement_SysDev
         {
             TBSalesID.Enabled = false;
             TBUriageSyosaiID.Enabled = false;
+            TBTotal.Enabled = false;
             TBSalesID.BackColor = Color.Gray;
             TBUriageSyosaiID.BackColor = Color.Gray;
             TBTotal.BackColor = Color.Gray;
@@ -1131,7 +1132,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TOrders.Count(order => order.OrStateFlag == 0 || order.OrStateFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
@@ -1152,7 +1153,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TChumons.Count(order => order.ChStateFlag == 0 || order.ChStateFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
@@ -1173,7 +1174,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TSyukkos.Count(order => order.SyStateFlag == 0 || order.SyStateFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
@@ -1194,7 +1195,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TArrivals.Count(order => order.ArStateFlag == 0 || order.ArStateFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
@@ -1215,7 +1216,7 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
+                int count = context.TShipments.Count(order => order.ShStateFlag == 0 || order.ShStateFlag == null);
                 if (count > 0)
                 {
                     GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
@@ -1307,7 +1308,7 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
-
+        
     }
 
 

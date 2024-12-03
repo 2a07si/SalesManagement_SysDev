@@ -35,7 +35,7 @@
             listBox1 = new ListBox();
             dataGridView1 = new DataGridView();
             dateTimePicker1 = new DateTimePicker();
-            TB_Log = new TextBox();
+            TB_EmpID = new TextBox();
             panel1 = new Panel();
             label3 = new Label();
             label4 = new Label();
@@ -49,6 +49,7 @@
             ComboShori = new ComboBox();
             label1 = new Label();
             clear = new Button();
+            TB_Ename = new TextBox();
             p_NA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -72,8 +73,9 @@
             p_NA.Controls.Add(LoginKensaku);
             p_NA.Controls.Add(listBox1);
             p_NA.Controls.Add(dataGridView1);
+            p_NA.Controls.Add(TB_EmpID);
             p_NA.Controls.Add(dateTimePicker1);
-            p_NA.Controls.Add(TB_Log);
+            p_NA.Controls.Add(TB_Ename);
             p_NA.Location = new Point(160, 145);
             p_NA.Name = "p_NA";
             p_NA.Size = new Size(489, 690);
@@ -134,13 +136,13 @@
             dateTimePicker1.Size = new Size(248, 47);
             dateTimePicker1.TabIndex = 254;
             // 
-            // TB_Log
+            // TB_EmpID
             // 
-            TB_Log.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
-            TB_Log.Location = new Point(16, 78);
-            TB_Log.Name = "TB_Log";
-            TB_Log.Size = new Size(246, 53);
-            TB_Log.TabIndex = 259;
+            TB_EmpID.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            TB_EmpID.Location = new Point(16, 78);
+            TB_EmpID.Name = "TB_EmpID";
+            TB_EmpID.Size = new Size(246, 53);
+            TB_EmpID.TabIndex = 259;
             // 
             // panel1
             // 
@@ -209,7 +211,6 @@
             TB_ID.Size = new Size(100, 53);
             TB_ID.TabIndex = 258;
             TB_ID.TextChanged += TB_ID_TextChanged;
-            TB_ID.KeyDown += TB_ID_KeyDown_1;
             // 
             // ShousaiKensaku
             // 
@@ -288,6 +289,14 @@
             clear.UseVisualStyleBackColor = true;
             clear.Click += clear_Click_1;
             // 
+            // TB_Ename
+            // 
+            TB_Ename.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            TB_Ename.Location = new Point(16, 77);
+            TB_Ename.Name = "TB_Ename";
+            TB_Ename.Size = new Size(246, 53);
+            TB_Ename.TabIndex = 260;
+            // 
             // LoginKanriGamen
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -334,8 +343,9 @@
         private ComboBox ComboMode;
         private ComboBox ComboShori;
         private Label label3;
-        private TextBox TB_Log;
+        private TextBox TB_EmpID;
         private Button clear;
         private DateTimePicker dateTimePicker1;
+        private TextBox TB_Ename;
     }
 }
