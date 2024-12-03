@@ -983,7 +983,7 @@ namespace SalesManagement_SysDev
                         DelFlag.Checked = false;
                     TBRiyuu.Text = row.Cells["非表示理由"].Value?.ToString() ?? string.Empty;
 
-
+                    UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
             catch (Exception ex)

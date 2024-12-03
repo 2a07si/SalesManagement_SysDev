@@ -1017,6 +1017,7 @@ namespace SalesManagement_SysDev
                     date.Value = row.Cells["注文日"].Value != null
                                  ? Convert.ToDateTime(row.Cells["注文日"].Value)
                                  : DateTime.Now; // nullの場合は現在の日付を設定
+                    UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
             catch (Exception ex)

@@ -915,6 +915,7 @@ namespace SalesManagement_SysDev
                     // 非表示ボタンや非表示理由もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
                     // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
             catch (Exception ex)

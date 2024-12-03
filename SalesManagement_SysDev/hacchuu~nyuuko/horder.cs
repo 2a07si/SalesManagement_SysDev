@@ -825,7 +825,9 @@ namespace SalesManagement_SysDev
                     // 例: NyuukoFlag.Checked = (row.Cells["入庫状態"].Value.ToString() == "1"); 
                     // 例: DelFlag.Checked = (row.Cells["非表示フラグ"].Value.ToString() == "1"); 
                     // 例: TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString(); 
+                    UpdateTextBoxState(checkBoxSyain.Checked);
                 }
+
             }
             catch (Exception ex)
             {

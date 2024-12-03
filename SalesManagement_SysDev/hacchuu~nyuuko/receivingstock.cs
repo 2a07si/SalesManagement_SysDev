@@ -808,6 +808,7 @@ namespace SalesManagement_SysDev
                     date.Value = Convert.ToDateTime(row.Cells["入庫年月日"].Value);
                     NyuukoFlag.Checked = Convert.ToBoolean(row.Cells["入庫済フラグ"].Value);
                     DelFlag.Checked = Convert.ToBoolean(row.Cells["非表示フラグ"].Value);
+                    UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
             catch (Exception ex)
