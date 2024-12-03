@@ -29,6 +29,9 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void Ranking_Load(object sender, EventArgs e)
         {
+            AddControlEventHandlers(panel1, 1);  // パネル1の場合
+            AddControlEventHandlers(panel2, 2);  // パネル2の場合
+
             GlobalUtility.UpdateLabels(label_id, label_ename);
             ListBoxInitialize1();
             ListBoxInitialize2();
@@ -512,6 +515,27 @@ namespace SalesManagement_SysDev.Main_LoginForm
             date2.Value = DateTime.Now;
             date3.Value = DateTime.Now;
             date4.Value = DateTime.Now;
+        }
+        // パネル内のすべてのコントロールにEnterイベントを追加
+        private void AddControlEventHandlers(Control panel, int panelID)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                // コントロールにEnterイベントを追加
+                control.Enter += (sender, e) => Control_Enter(sender, e, panelID);
+            }
+        }
+
+        // コントロールが選択（フォーカス）された時
+        private void Control_Enter(object sender, EventArgs e, int panelID)
+        {
+            // 異なるパネルに移動したときのみイベントを発生させる
+            if (panelID != lastFocusedPanelID)
+            {
+                ToggleOrderSelection();
+                UpdateFlagButtonText();
+                lastFocusedPanelID = panelID; // 現在のパネルIDを更新
+            }
         }
     }
 }
