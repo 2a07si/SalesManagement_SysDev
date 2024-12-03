@@ -36,6 +36,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
             LoadEmployeeName(); // 従業員名をデータベースから取得して表示 
             SetButtonPermissions(); // ボタンの権限を設定
             GlobalEmp.EmployeeName = label_ename.Text;
+            LoadLogData();
+            listViewLog.Scrollable = false;
 
         }
         // 従業員名をデータベースから取得して表示するメソッド
@@ -271,15 +273,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 if (count > 0)
                 {
-                    GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
-
-                    // ボタンを取得
                     Button button = sender as Button;
-
-                    // バッジを描画
-                    if (button != null)
+                    if (button != null && button.Enabled)
                     {
-                        badge.DrawBadge(e, button);
+                        GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
+                        badge.DrawBadge(e, button); // バッジを描画
                     }
                 }
             }
@@ -294,15 +292,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 if (count > 0)
                 {
-                    GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
-
-                    // ボタンを取得
                     Button button = sender as Button;
-
-                    // バッジを描画
-                    if (button != null)
+                    if (button != null && button.Enabled)
                     {
-                        badge.DrawBadge(e, button);
+                        GlobalBadge badge = new GlobalBadge("!"); // 通知数を指定
+                        badge.DrawBadge(e, button); // バッジを描画
                     }
                 }
             }
@@ -457,7 +451,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 Button button = sender as Button;
                 if (button.Enabled == false)
                 {
-                    return; // 描画処理を行わない
+                    b_mas.Refresh(); // 描画処理を行わない
                 }
                 else if (count > 0)
                 {
@@ -507,5 +501,68 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
         }
+
+        private void b_rank_Click(object sender, EventArgs e)
+        {
+            HandleNavigationError(() => changeForm.ranking()); // 従業員フォームに遷移
+        }
+
+        private void LoadLogData()
+        {
+            // ListViewの初期化
+            listViewLog.Items.Clear();
+            listViewLog.View = View.Details; // 詳細表示モード
+            listViewLog.FullRowSelect = true;
+
+            // 列の設定
+            listViewLog.Columns.Clear();
+            listViewLog.Columns.Add("ID", 50, HorizontalAlignment.Left); // 表示するIDをDetailIDに変更
+            listViewLog.Columns.Add("ログ詳細", 500, HorizontalAlignment.Left);
+            // ヘッダーを非表示にする
+            listViewLog.HeaderStyle = ColumnHeaderStyle.None;
+
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // Processが「自動発注」または「ログアウト」以外のものをフィルタリング
+                    var logs = (from log in context.LoginHistoryLogs
+                                join detail in context.LoginHistoryLogDetails
+                                    on log.ID equals detail.ID
+                                join employee in context.MEmployees
+                                    on log.LoginID equals employee.EmID.ToString()
+                                where !(detail.Process == "自動発注" || detail.Process == "ログアウト") // Processが「自動発注」または「ログアウト」ではない
+                                orderby detail.AcceptDateTime descending
+                                select new
+                                {
+                                    detail.DetailID,
+                                    detail.AcceptDateTime,
+                                    EmployeeName = employee.EmName,
+                                    detail.Display,
+                                    detail.Mode,
+                                    detail.Process,
+                                    log.LoginID
+                                }).Take(3).ToList();
+
+                    // 取得したログデータをListViewに登録
+                    foreach (var log in logs)
+                    {
+                        string logDetail = $"{log.AcceptDateTime:yyyy/MM/dd HH:mm}｜{log.EmployeeName}が{log.Display}{log.Mode}を{log.Process}しました";
+
+                        // ListViewの行を追加
+                        var listViewItem = new ListViewItem(log.DetailID.ToString()); // DetailIDを表示
+                        listViewItem.SubItems.Add(logDetail);
+                        listViewLog.Items.Add(listViewItem);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラー表示
+                MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

@@ -165,5 +165,10 @@ namespace SalesManagement_SysDev.Classまとめ
             passwordchange passwordchange = new passwordchange();
             NavigateTo(passwordchange);
         }
+        internal void ranking()
+        {
+            Ranking rankingForm = new Ranking();
+            NavigateTo(rankingForm);
+        }
     }
 }

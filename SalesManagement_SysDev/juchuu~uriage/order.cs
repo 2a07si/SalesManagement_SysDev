@@ -23,12 +23,12 @@ namespace SalesManagement_SysDev
         private ClassDataGridViewClearer dgvClearer;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
-        
+
 
         private int lastFocusedPanelID = 1;
         public order()
         {
-            
+
             InitializeComponent();
             StockManager.InitializeSafetyStock();
             this.formChanger = new ClassChangeForms(this);
@@ -73,6 +73,7 @@ namespace SalesManagement_SysDev
             }
 
             SetupNumericOnlyTextBoxes();
+            CurrentStatus.UpDateStatus(label2);
 
         }
         // メインメニューに戻る 
@@ -338,6 +339,13 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TChumons.Any(c => c.OrID == order.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({order.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
 
                         var details = context.TChumonDetails.Where(d => d.ChID == int.Parse(ChumonID)).ToList();
                         foreach (var detail in details)
@@ -351,8 +359,8 @@ namespace SalesManagement_SysDev
                                 // 発注処理を行う 
                                 Checker(order.OrID, shortageQuantity);
                                 ProductOrder(int.Parse(OrderID), int.Parse(ChumonID), shortageQuantity);
-                                
-                                
+
+
                                 MessageBox.Show($"商品ID: {detail.PrID}の在庫が不足しているため発注処理を行いました。");
 
                                 // 非表示フラグと理由を設定して出庫登録 
@@ -360,13 +368,13 @@ namespace SalesManagement_SysDev
                             }
                             else
                             {
-                               
+
                                 // 在庫が足りている場合、出庫処理 
                                 stock.StQuantity -= detail.ChQuantity;
                                 MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
                                 OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 0, null);
                                 StockManager.CompareStock(detail.PrID, stock.StQuantity);
-                                
+
                             }
                         }
                         var orders = context.TChumons;
@@ -377,6 +385,8 @@ namespace SalesManagement_SysDev
                         try
                         {
                             context.SaveChanges();
+                            DisplayOrders();
+                            DisplayOrderDetails();
                         }
                         catch (Exception ex)
                         {
@@ -587,6 +597,7 @@ namespace SalesManagement_SysDev
                         }
 
                         DisplayOrders();
+                        DisplayOrderDetails();
                     }
                     catch (Exception ex)
                     {
@@ -1060,7 +1071,7 @@ namespace SalesManagement_SysDev
                     SyStateFlag = 0
                 };
 
-                
+
 
                 try
                 {
@@ -1096,12 +1107,12 @@ namespace SalesManagement_SysDev
                     SyID = newSyukko.SyID,
                     PrID = orderDetail.PrID,
                     SyQuantity = chumonDetail.ChQuantity
-                   
+
                 };
 
                 try
                 {
-                    Checker3(newSyukko.SyID,orderDetail.PrID);
+                    Checker3(newSyukko.SyID, orderDetail.PrID);
                     context.TSyukkoDetails.Add(newSyukkoDetail);
                     context.SaveChanges();
                 }
@@ -1605,6 +1616,34 @@ namespace SalesManagement_SysDev
             {
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
+        }
+        // フラグを定義して、干渉を防ぐ
+        private bool isProgrammaticChange = false;
+
+        // チェックボックス変更時のイベントハンドラ
+        private void checkBoxSyain_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateTextBoxState(checkBoxSyain.Checked);
+        }
+
+        // テキストボックスの状態を更新するメソッド
+        private void UpdateTextBoxState(bool isChecked)
+        {
+            // テキストをプログラムで変更していることを示すフラグをオン
+            isProgrammaticChange = true;
+
+            if (isChecked)
+            {
+                TBShainID.Text = empID;  // テキストを設定
+                TBShainID.Enabled = false; // 無効化
+            }
+            else
+            {
+                TBShainID.Enabled = true; // 有効化
+            }
+
+            // フラグをオフに戻す
+            isProgrammaticChange = false;
         }
 
 

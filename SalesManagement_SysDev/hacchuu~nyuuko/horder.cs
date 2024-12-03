@@ -67,7 +67,9 @@ namespace SalesManagement_SysDev
             DisplayHattyus();
             DisplayHattyuDetails();
             SetupNumericOnlyTextBoxes();
-
+            CurrentStatus.RegistrationStatus(label2);
+            RegisterStatus();
+            tbfalse();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -646,9 +648,23 @@ namespace SalesManagement_SysDev
 
                 context.THattyuDetails.Add(newOrderDetail);
                 context.SaveChanges();
-                MessageBox.Show("発注詳細の登録が成功しました。");
+                
                 DisplayHattyuDetails();
                 Log_Horder(newOrderDetail.HaDetailID);
+                DialogResult result = MessageBox.Show("受注詳細の登録が完了しました。\n受注処理を確定させますか？",
+                                     "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Yes/Noでの分岐処理
+                if (result == DialogResult.Yes)
+                {
+                    // Yesが選ばれた場合の処理（受注処理確定）
+                    UpdateHattyuAccept(hattyuID.ToString());
+                }
+                else
+                {
+                    // Noが選ばれた場合の処理（受注処理を中止）
+                    MessageBox.Show("受注処理は中止されました。", "中止", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -1128,6 +1144,105 @@ namespace SalesManagement_SysDev
             {
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
+        }
+        // フラグを定義して、干渉を防ぐ
+        private bool isProgrammaticChange = false;
+
+        // チェックボックス変更時のイベントハンドラ
+        private void checkBoxSyain_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateTextBoxState(checkBoxSyain.Checked);
+        }
+
+        // テキストボックスの状態を更新するメソッド
+        private void UpdateTextBoxState(bool isChecked)
+        {
+            // テキストをプログラムで変更していることを示すフラグをオン
+            isProgrammaticChange = true;
+
+            if (isChecked)
+            {
+                TBShainID.Text = Global.EmployeeID.ToString() ;  // テキストを設定
+                TBShainID.Enabled = false; // 無効化
+            }
+            else
+            {
+                TBShainID.Enabled = true; // 有効化
+            }
+
+            // フラグをオフに戻す
+            isProgrammaticChange = false;
+        }
+        private void UpdateHattyuAccept(string hattyuID)
+        {
+            // 状態を切り替える処理 
+            ToggleHattyuSelection();
+
+            // b_FormSelectorのテキストを現在の状態に更新 
+            UpdateFlagButtonText();
+
+            label2.Text = "更新";
+            try
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    var hattyu = context.THattyus.SingleOrDefault(o => o.HaID.ToString() == hattyuID);
+                    if (!int.TryParse(hattyuID, out int hattyus) || !context.THattyus.Any(s => s.HaID == hattyus))
+                    {
+                        MessageBox.Show("発注IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBHattyuuID.BackColor = Color.Yellow;
+                        TBHattyuuID.Focus();
+                        return;
+                    }
+
+                    if (hattyu != null)
+                    {
+                        hattyu.WaWarehouseFlag = 2;
+
+                        // checkBox_2がチェックされている場合にOrFlagを1に設定
+                        if (hattyu.WaWarehouseFlag == 2)
+                        {
+                            hattyu.HaFlag = 1;
+                            hattyu.HaHidden = "発注確定処理済";
+                        }
+
+                        try
+                        {
+                            context.SaveChanges();
+
+                            if (hattyu.WaWarehouseFlag == 2)
+                            {
+                                // AcceptionConfirm実行
+                                HorderConfirm(int.Parse(hattyuID));
+                            }
+                            Log_Horder(hattyu.HaID);
+                            MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            DisplayHattyus();
+                            DisplayHattyuDetails();
+                        }
+                        catch (Exception ex)
+                        {
+                            context.SaveChanges(); // 元の状態に戻す変更を保存
+
+                            MessageBox.Show($"更新が失敗しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("該当する発注が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("入力された値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("発注の更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            countFlag();
+            FlagCount();
         }
 
     }

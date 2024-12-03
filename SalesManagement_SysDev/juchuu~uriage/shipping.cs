@@ -67,6 +67,7 @@ namespace SalesManagement_SysDev
             }
 
             SetupNumericOnlyTextBoxes();
+            CurrentStatus.UpDateStatus(label2);
         }
         private void close_Click(object sender, EventArgs e)
         {
@@ -341,6 +342,13 @@ namespace SalesManagement_SysDev
                             // 出荷詳細が存在しない場合はエラーメッセージを表示
                             MessageBox.Show("出荷詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
+                        }
+                        // 受注IDの重複チェック
+                        bool isDuplicate = context.TChumons.Any(c => c.OrID == shipping.OrID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show($"この受注ID ({shipping.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
                         }
 
                         context.SaveChanges();
@@ -1345,6 +1353,35 @@ namespace SalesManagement_SysDev
             {
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
+        }
+
+        // フラグを定義して、干渉を防ぐ
+        private bool isProgrammaticChange = false;
+
+        // チェックボックス変更時のイベントハンドラ
+        private void checkBoxSyain_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateTextBoxState(checkBoxSyain.Checked);
+        }
+
+        // テキストボックスの状態を更新するメソッド
+        private void UpdateTextBoxState(bool isChecked)
+        {
+            // テキストをプログラムで変更していることを示すフラグをオン
+            isProgrammaticChange = true;
+
+            if (isChecked)
+            {
+                TBShainID.Text = empID;  // テキストを設定
+                TBShainID.Enabled = false; // 無効化
+            }
+            else
+            {
+                TBShainID.Enabled = true; // 有効化
+            }
+
+            // フラグをオフに戻す
+            isProgrammaticChange = false;
         }
 
     }

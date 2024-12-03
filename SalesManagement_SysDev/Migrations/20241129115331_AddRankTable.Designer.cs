@@ -12,8 +12,8 @@ using SalesManagement_SysDev;
 namespace SalesManagement_SysDev.Migrations
 {
     [DbContext(typeof(SalesManagementContext))]
-    [Migration("20241128044848_CreateLoginHistroyLog2Table")]
-    partial class CreateLoginHistroyLog2Table
+    [Migration("20241129115331_AddRankTable")]
+    partial class AddRankTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -159,6 +159,34 @@ namespace SalesManagement_SysDev.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("NyuukoCheckers");
+                });
+
+            modelBuilder.Entity("SalesManagement_SysDev.Entity.RankTable", b =>
+                {
+                    b.Property<int>("RankID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RankID"));
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShopID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Total")
+                        .HasColumnType("int");
+
+                    b.HasKey("RankID");
+
+                    b.ToTable("RankTables");
                 });
 
             modelBuilder.Entity("SalesManagement_SysDev.MClient", b =>

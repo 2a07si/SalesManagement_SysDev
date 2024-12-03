@@ -77,6 +77,7 @@ namespace SalesManagement_SysDev
                 b_reg.Enabled = false;
                 b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             }
+            CurrentStatus.RegistrationStatus(label2);
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -241,6 +242,29 @@ namespace SalesManagement_SysDev
                 {
                     MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
+                }
+                var product = context.MProducts.FirstOrDefault(p => p.PrID == shouhin);
+                if (product == null)
+                {
+                    MessageBox.Show("指定された商品が存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                // 安全在庫数チェック
+                int inputZaiko = int.Parse(zaiko); // 半角数字として入力される前提で直接変換
+
+                if (inputZaiko < product.PrSafetyStock)
+                {
+                    var result = MessageBox.Show(
+                        "安全在庫数を下回る在庫数ですが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理中断
+                    }
                 }
                 var newstock = new TStock
                 {
@@ -475,64 +499,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void b_mer_Paint(object sender, PaintEventArgs e)
-        {
-            using (var context = new SalesManagementContext())
-            {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
-                {
-                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
-
-                    // バッジを描画
-                    if (button != null)
-                    {
-                        badge.pinpoint(e, button);
-                    }
-                }
-            }
-        }
-
-        private void b_sto_Paint(object sender, PaintEventArgs e)
-        {
-            {
-                GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                // ボタンを取得
-                Button button = sender as Button;
-
-                // バッジを描画
-                if (button != null)
-                {
-                    badge.pinpoint(e, button);
-                }
-            }
-        }
-
-        private void b_cus_Paint(object sender, PaintEventArgs e)
-        {
-            using (var context = new SalesManagementContext())
-            {
-                int count = context.TWarehousings.Count(order => order.WaShelfFlag == 0 || order.WaShelfFlag == null);
-                if (count > 0)
-                {
-                    GlobalBadge badge = new GlobalBadge(" "); // 通知数を指定
-
-                    // ボタンを取得
-                    Button button = sender as Button;
-
-                    // バッジを描画
-                    if (button != null)
-                    {
-                        badge.pinpoint(e, button);
-                    }
-                }
-            }
-
-        }
+        
         private void Log_Stock(int id)
         {
             try

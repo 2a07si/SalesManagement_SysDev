@@ -69,6 +69,7 @@ namespace SalesManagement_SysDev
             TBTotal.Enabled = false;
 
             SetupNumericOnlyTextBoxes();
+            CurrentStatus.UpDateStatus(label2);
         }
 
         // メインメニューに戻る 
@@ -1274,6 +1275,34 @@ namespace SalesManagement_SysDev
             }
         }
 
+        // フラグを定義して、干渉を防ぐ
+        private bool isProgrammaticChange = false;
+
+        // チェックボックス変更時のイベントハンドラ
+        private void checkBoxSyain_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateTextBoxState(checkBoxSyain.Checked);
+        }
+
+        // テキストボックスの状態を更新するメソッド
+        private void UpdateTextBoxState(bool isChecked)
+        {
+            // テキストをプログラムで変更していることを示すフラグをオン
+            isProgrammaticChange = true;
+
+            if (isChecked)
+            {
+                TBShainID.Text = empID;  // テキストを設定
+                TBShainID.Enabled = false; // 無効化
+            }
+            else
+            {
+                TBShainID.Enabled = true; // 有効化
+            }
+
+            // フラグをオフに戻す
+            isProgrammaticChange = false;
+        }
 
     }
 
