@@ -221,6 +221,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1420, 690);
             panel1.TabIndex = 5;
+            panel1.Paint += panel1_Paint;
             // 
             // CusFlag
             // 
@@ -232,6 +233,7 @@
             CusFlag.TabIndex = 288;
             CusFlag.Text = "顧客管理";
             CusFlag.UseVisualStyleBackColor = true;
+            CusFlag.CheckedChanged += CusFlag_CheckedChanged;
             // 
             // TBFax
             // 
@@ -344,6 +346,7 @@
             DelFlag.TabIndex = 14;
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
+            DelFlag.CheckedChanged += DelFlag_CheckedChanged;
             // 
             // TBShopID
             // 

@@ -57,6 +57,7 @@
             btn_CleateDabase.Text = "データベース生成";
             btn_CleateDabase.TextImageRelation = TextImageRelation.TextAboveImage;
             btn_CleateDabase.UseVisualStyleBackColor = true;
+            btn_CleateDabase.Visible = false;
             btn_CleateDabase.Click += btn_CleateDabase_Click;
             // 
             // btn_InsertSampleData
@@ -69,6 +70,7 @@
             btn_InsertSampleData.TabIndex = 0;
             btn_InsertSampleData.Text = "サンプルデータ登録";
             btn_InsertSampleData.UseVisualStyleBackColor = true;
+            btn_InsertSampleData.Visible = false;
             btn_InsertSampleData.Click += btn_InsertSampleData_Click;
             // 
             // label2
@@ -176,6 +178,7 @@
             button1.TabIndex = 11;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
+            button1.Visible = false;
             button1.Click += button1_Click;
             // 
             // button2
@@ -186,6 +189,7 @@
             button2.TabIndex = 12;
             button2.Text = "button2";
             button2.UseVisualStyleBackColor = true;
+            button2.Visible = false;
             button2.Click += button2_Click;
             // 
             // button3
@@ -196,6 +200,7 @@
             button3.TabIndex = 13;
             button3.Text = "button3";
             button3.UseVisualStyleBackColor = true;
+            button3.Visible = false;
             button3.Click += button3_Click;
             // 
             // passwordchange
