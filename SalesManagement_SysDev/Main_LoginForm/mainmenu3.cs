@@ -96,12 +96,12 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
                 case 2: // 営業
                     foreach (var button in buttons)
-                        button.Enabled = new[] { b_cus, b_add, b_arr, b_ord, b_shi, b_sal, b_JU, b_mas }.Contains(button);
+                        button.Enabled = new[] { b_cus, b_add, b_arr, b_ord, b_shi, b_sal, b_JU, b_mas, Loginkanri }.Contains(button);
                     break;
 
                 case 3: // 物流
                     foreach (var button in buttons)
-                        button.Enabled = new[] { b_mer, b_sto, b_rec, b_iss, b_hor, b_JU, b_HN, b_mas }.Contains(button);
+                        button.Enabled = new[] { b_mer, b_sto, b_rec, b_iss, b_hor, b_JU, b_HN, b_mas, Loginkanri }.Contains(button);
                     break;
 
                 default:
