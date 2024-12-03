@@ -1038,7 +1038,7 @@ namespace SalesManagement_SysDev
                     SaID = newSales.SaID,
                     PrID = shipmentDetail.PrID,  // null の場合、0 を代入
                     SaQuantity = shipmentDetail.ShQuantity,  // null の場合、0 を代入
-                    SaPrTotalPrice = shipmentDetail.ShQuantity + product.Price
+                    SaPrTotalPrice = shipmentDetail.ShQuantity * product.Price
 
 
                 };
