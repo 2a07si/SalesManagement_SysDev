@@ -61,7 +61,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
             DisplayOrderDetails();
-
+            TyumonFlag.Enabled = false;
             if (Global.EmployeePermission == 1)
             {
                 b_reg.Enabled = true;
@@ -118,6 +118,7 @@ namespace SalesManagement_SysDev
         {
             PerformSearch();
             tbtrue();
+            TyumonFlag.Enabled = false;
         }
         private void PerformSearch()
         {
@@ -129,6 +130,7 @@ namespace SalesManagement_SysDev
         {
             UpdateStatus();
             tbtrue();
+            TyumonFlag.Enabled = false;
         }
         private void UpdateStatus()
         {
@@ -140,6 +142,7 @@ namespace SalesManagement_SysDev
         {
             RegisterStatus();
             tbfalse();
+            TyumonFlag.Enabled = true;
         }
 
         private void RegisterStatus()
@@ -152,6 +155,7 @@ namespace SalesManagement_SysDev
         {
             ListStatus();
             tbtrue();
+            TyumonFlag.Enabled = false;
         }
         private void ListStatus()
         {
@@ -1346,7 +1350,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message + "内部のやつ" + ex.InnerException.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Checker2(int OrID, int SyID)
         {
             MessageBox.Show("チェッカー２処理");
@@ -1355,22 +1358,34 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // OrIDをStringに変換して比較
-                    var checker = context.NyuukoCheckers.FirstOrDefault(c => c.JyutyuID == OrID.ToString());
+                    var checkers = context.NyuukoCheckers
+                                          .Where(c => c.JyutyuID == OrID.ToString())
+                                          .ToList();
 
-                    if (checker != null) // 見つかった場合 
+                    if (checkers.Any()) // レコードが1件以上見つかった場合
                     {
-                        checker.SyukkoID = SyID.ToString(); // SyukkoIDをSyIDで更新 
-                        context.SaveChanges(); // 変更を保存 
-                        MessageBox.Show("チェッカー２処理確定");
+                        foreach (var checker in checkers)
+                        {
+                            // SyukkoIDをSyIDで更新
+                            checker.SyukkoID = SyID.ToString();
+                        }
+
+                        // 変更を保存
+                        context.SaveChanges();
+
                         // 確定後のチェッカーデータをメッセージボックスで表示
-                        string checkerData = $"チェッカー２時点のデータ:\n" +
-                                             $"SyukkoID: {checker.ID}\n" +
-                                             $"SyukkoID: {checker.SyukkoID}\n" +
-                                             $"JyutyuID: {checker.JyutyuID}\n" +
-                                             $"PrID: {checker.PrID}\n" +
-                                             $"Flag: {checker.Flag}\n" +
-                                             $"Quantity: {checker.Quantity}\n" +
-                                             $"DelFlag: {checker.DelFlag}";
+                        string checkerData = "チェッカー２時点のデータ:\n";
+                        foreach (var checker in checkers)
+                        {
+                            checkerData += $"Checker ID: {checker.ID}\n" +
+                                           $"SyukkoID: {checker.SyukkoID}\n" +
+                                           $"JyutyuID: {checker.JyutyuID}\n" +
+                                           $"PrID: {checker.PrID}\n" +
+                                           $"Flag: {checker.Flag}\n" +
+                                           $"Quantity: {checker.Quantity}\n" +
+                                           $"DelFlag: {checker.DelFlag}\n\n";
+                        }
+
                         MessageBox.Show(checkerData, "チェッカー２確定後のデータ");
                     }
                     else
@@ -1384,7 +1399,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Checker3(int SyID, int PrID)
         {
             MessageBox.Show("チェッカー３処理");
@@ -1392,28 +1406,40 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // OrIDをStringに変換して比較
-                    var checker = context.NyuukoCheckers.FirstOrDefault(c => c.SyukkoID == SyID.ToString());
+                    // SyukkoIDをStringに変換して比較
+                    var checkers = context.NyuukoCheckers
+                                          .Where(c => c.SyukkoID == SyID.ToString())
+                                          .ToList();
 
-                    if (checker != null) // 見つかった場合 
+                    if (checkers.Any()) // レコードが1件以上見つかった場合
                     {
-                        checker.PrID = PrID.ToString(); // SyukkoIDをSyIDで更新 
-                        context.SaveChanges(); // 変更を保存 
-                        MessageBox.Show("チェッカー３処理確定");
+                        foreach (var checker in checkers)
+                        {
+                            // PrIDを更新
+                            checker.PrID = PrID.ToString();
+                        }
+
+                        // 変更を保存
+                        context.SaveChanges();
+
                         // 確定後のチェッカーデータをメッセージボックスで表示
-                        string checkerData = $"チェッカー３時点のデータ:\n" +
-                                             $"ID: {checker.ID}\n" +
-                                             $"SyukkoID: {checker.SyukkoID}\n" +
-                                             $"JyutyuID: {checker.JyutyuID}\n" +
-                                             $"PrID: {checker.PrID}\n" +
-                                             $"Flag: {checker.Flag}\n" +
-                                             $"Quantity: {checker.Quantity}\n" +
-                                             $"DelFlag: {checker.DelFlag}";
-                        MessageBox.Show(checkerData, "チェッカー２確定後のデータ");
+                        string checkerData = "チェッカー３時点のデータ:\n";
+                        foreach (var checker in checkers)
+                        {
+                            checkerData += $"ID: {checker.ID}\n" +
+                                           $"SyukkoID: {checker.SyukkoID}\n" +
+                                           $"JyutyuID: {checker.JyutyuID}\n" +
+                                           $"PrID: {checker.PrID}\n" +
+                                           $"Flag: {checker.Flag}\n" +
+                                           $"Quantity: {checker.Quantity}\n" +
+                                           $"DelFlag: {checker.DelFlag}\n\n";
+                        }
+
+                        MessageBox.Show(checkerData, "チェッカー３確定後のデータ");
                     }
                     else
                     {
-                        MessageBox.Show("指定されたOrIDに一致するレコードが見つかりませんでした。");
+                        MessageBox.Show("指定されたSyukkoIDに一致するレコードが見つかりませんでした。");
                     }
                 }
             }

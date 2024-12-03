@@ -63,6 +63,7 @@ namespace SalesManagement_SysDev
             tbfalse();
             checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
             UpdateTextBoxState(checkBoxSyain.Checked);
+            TyumonFlag.Enabled = false;
         }
 
         // メインメニューに戻る
@@ -107,6 +108,7 @@ namespace SalesManagement_SysDev
         {
             PerformSearch();
             tbtrue();
+            TyumonFlag.Enabled = true;
         }
 
         private void PerformSearch()
@@ -119,6 +121,7 @@ namespace SalesManagement_SysDev
         {
             UpdateStatus();
             tbtrue();
+            TyumonFlag.Enabled = true;
         }
 
         private void UpdateStatus()
@@ -131,6 +134,7 @@ namespace SalesManagement_SysDev
         {
             RegisterStatus();
             tbfalse();
+            TyumonFlag.Enabled = false;
         }
 
         private void RegisterStatus()
@@ -143,6 +147,7 @@ namespace SalesManagement_SysDev
         {
             ListStatus();
             tbtrue();
+            TyumonFlag.Enabled = true;
         }
 
         private void ListStatus()
