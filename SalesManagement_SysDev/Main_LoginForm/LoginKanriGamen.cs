@@ -63,8 +63,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
             // イベントハンドラを設定
             ComboLog.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
-            TB_ID.KeyDown += TB_ID_KeyDown_1;
             dateTimePicker1.Visible = false;
+            TB_Ename.Visible = false;
             SetupNumericOnlyTextBoxes();
 
             DisplayLoginLog();
@@ -102,7 +102,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
         }
         private void cleartext()
         {
-            TB_Log.Text = string.Empty;
+            TB_EmpID.Text = string.Empty;
+            TB_Ename.Text = string.Empty;
             TB_ID.Text = string.Empty;
             dateTimePicker1.Value = DateTime.Now;
 
@@ -120,12 +121,20 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 選択された項目に応じて動作を切り替える
             if (ComboLog.SelectedItem.ToString() == "ログイン日")
             {
-                TB_Log.Visible = false;
+                TB_EmpID.Visible = false;
+                TB_Ename.Visible = false;
                 dateTimePicker1.Visible = true; // DateTimePicker を表示
+            }
+            else if(ComboLog.SelectedItem.ToString() == "社員名")
+            {
+                TB_Ename.Visible = true;
+                TB_EmpID.Visible = false; // テキストボックスを表示
+                dateTimePicker1.Visible = false; // DateTimePicker を隠す
             }
             else
             {
-                TB_Log.Visible = true; // テキストボックスを表示
+                TB_EmpID.Visible = true; // テキストボックスを表示
+                TB_Ename.Visible= false;
                 dateTimePicker1.Visible = false; // DateTimePicker を隠す
             }
         }
@@ -133,13 +142,14 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             // 対象のテキストボックスのみイベントを追加
             TB_ID.KeyPress += NumericTextBox_KeyPress;
+            TB_EmpID.KeyPress += NumericTextBox_KeyPress;
 
         }
 
         // 半角数字のみを許可するKeyPressイベントハンドラ
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -153,22 +163,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private string ConvertToHalfWidth(string input)
         {
             return input.Normalize(NormalizationForm.FormKC); // 全角→半角変換
-        }
-
-        private void TB_ID_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter) // Enter キーが押された場合
-            {
-                TextBoxBase textBox = sender as TextBoxBase;
-                // テキストを全角から半角に変換
-                textBox.Text = ConvertToHalfWidth(textBox.Text);
-
-                // カーソルを末尾に移動
-                textBox.SelectionStart = textBox.Text.Length;
-
-                // Enter キーの既定動作を抑制
-                e.SuppressKeyPress = true;
-            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -379,7 +373,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private void LoginKensaku_Click(object sender, EventArgs e)
         {
             string comboBox2Value = ComboLog.SelectedItem?.ToString();
-            string textBoxValue = TB_Log.Text?.Trim();
+            string textBoxValue = TB_EmpID.Text?.Trim();
+            string tbnameValue = TB_Ename.Text?.Trim();
             DateTime? logDate = dateTimePicker1.Checked ? (DateTime?)dateTimePicker1.Value.Date : null;
 
             if (ComboLog.SelectedIndex == 0 ||
@@ -402,14 +397,14 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     }
 
                     // 社員名での検索
-                    if (comboBox2Value == "社員名" && !string.IsNullOrEmpty(textBoxValue))
+                    if (comboBox2Value == "社員名" && !string.IsNullOrEmpty(tbnameValue))
                     {
                         // LoginHistoryLogsとMEmployeeをJoinして社員名で検索
                         query = query.Join(context.MEmployees,
                                             loginLog => loginLog.LoginID,
                                             employee => employee.EmID.ToString(),
                                             (loginLog, employee) => new { loginLog, employee })
-                                     .Where(joined => joined.employee.EmName.Contains(textBoxValue))
+                                     .Where(joined => joined.employee.EmName.Contains(tbnameValue))
                                      .Select(joined => joined.loginLog); // 社員名で検索した結果を含むように
                     }
 
