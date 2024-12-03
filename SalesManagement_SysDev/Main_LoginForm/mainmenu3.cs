@@ -225,6 +225,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
             HN.Visible = false;
             mas.Visible = false;
             JU.Visible = true;
+            // b_HN.TabStop = false;
+            // b_mas.TabStop = false;
 
         }
 
@@ -234,6 +236,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             JU.Visible = false;
             mas.Visible = false;
             HN.Visible = true;
+
         }
 
         private void b_mas_Click(object sender, EventArgs e)
