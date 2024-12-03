@@ -382,7 +382,7 @@ namespace SalesManagement_SysDev
                 }
 
                 var arrival = context.TArrivals.SingleOrDefault(o => o.ArID.ToString() == ArID);
-                
+
                 if (arrival != null)
                 {
                     arrival.SoID = int.Parse(ShopID);
@@ -395,7 +395,7 @@ namespace SalesManagement_SysDev
                     arrival.ArHidden = Riyuu;
 
 
-                    
+
                     if (NyuukaFlg)
                     {
                         // 受注IDの重複チェック

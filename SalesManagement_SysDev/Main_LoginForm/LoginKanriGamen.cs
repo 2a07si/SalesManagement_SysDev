@@ -125,7 +125,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 TB_Ename.Visible = false;
                 dateTimePicker1.Visible = true; // DateTimePicker を表示
             }
-            else if(ComboLog.SelectedItem.ToString() == "社員名")
+            else if (ComboLog.SelectedItem.ToString() == "社員名")
             {
                 TB_Ename.Visible = true;
                 TB_EmpID.Visible = false; // テキストボックスを表示
@@ -134,7 +134,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             else
             {
                 TB_EmpID.Visible = true; // テキストボックスを表示
-                TB_Ename.Visible= false;
+                TB_Ename.Visible = false;
                 dateTimePicker1.Visible = false; // DateTimePicker を隠す
             }
         }

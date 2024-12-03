@@ -142,6 +142,7 @@
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(700, 440);
             dataGridView2.TabIndex = 9;
+            dataGridView2.TabStop = false;
             // 
             // close
             // 
@@ -293,6 +294,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(700, 437);
             dataGridView1.TabIndex = 16;
+            dataGridView1.TabStop = false;
             // 
             // checkBoxDateFilter
             // 

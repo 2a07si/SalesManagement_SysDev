@@ -379,7 +379,7 @@ namespace SalesManagement_SysDev
 
                 var order = context.TChumons.FirstOrDefault(o => o.ChID.ToString() == ChumonID);
 
-                
+
                 if (order != null)
                 {
                     order.SoID = int.Parse(ShopID);
@@ -408,7 +408,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        
+
 
                         var details = context.TChumonDetails.Where(d => d.ChID == int.Parse(ChumonID)).ToList();
                         foreach (var detail in details)
@@ -1179,7 +1179,7 @@ namespace SalesManagement_SysDev
 
                 try
                 {
-                    
+
                     // データが正しいか事前にチェック 
                     if (newSyukko.SoID == 0 || newSyukko.EmID == 0 || newSyukko.ClID == 0 || newSyukko.OrID == 0 || newSyukko.SyDate == default(DateTime))
                     {
@@ -1275,7 +1275,7 @@ namespace SalesManagement_SysDev
                         HaHidden = null
                     };
 
-                    
+
 
                     context.THattyus.Add(newHattyu);
                     context.SaveChanges();

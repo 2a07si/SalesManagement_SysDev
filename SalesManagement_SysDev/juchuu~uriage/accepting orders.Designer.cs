@@ -259,7 +259,9 @@ namespace SalesManagement_SysDev
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 16;
+            dataGridView1.TabStop = false;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // panel1
             // 
@@ -495,6 +497,7 @@ namespace SalesManagement_SysDev
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 9;
+            dataGridView2.TabStop = false;
             dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // TBJyutyuSyosaiID

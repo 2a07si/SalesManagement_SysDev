@@ -229,6 +229,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(800, 490);
             dataGridView1.TabIndex = 16;
+            dataGridView1.TabStop = false;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // DelFlag
@@ -448,6 +449,7 @@
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
             dataGridView2.TabIndex = 8;
+            dataGridView2.TabStop = false;
             dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // TBSuryou

@@ -580,7 +580,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            
+
 
             using (var context = new SalesManagementContext())
             {

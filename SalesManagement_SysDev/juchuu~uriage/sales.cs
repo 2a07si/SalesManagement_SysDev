@@ -1398,7 +1398,7 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
-        
+
     }
 
 
