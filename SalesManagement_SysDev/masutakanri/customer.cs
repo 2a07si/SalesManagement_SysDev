@@ -570,8 +570,8 @@ namespace SalesManagement_SysDev
             TBKokyakuID.KeyPress += NumericTextBox_KeyPress;
             TBShopID.KeyPress += NumericTextBox_KeyPress;
             TBYuubinNo.KeyPress += NumericTextBox_KeyPress;
-            TBTellNo.KeyPress += NumericTextBox_KeyPress;
-            TBFax.KeyPress += NumericTextBox_KeyPress;
+            TBTellNo.KeyPress += Num_KeyPress;
+            TBFax.KeyPress += Num_KeyPress;
 
         }
 
@@ -585,6 +585,14 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private void Num_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '-' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
         private void Log_Customer(int id)
         {

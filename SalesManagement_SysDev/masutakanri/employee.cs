@@ -558,10 +558,10 @@ namespace SalesManagement_SysDev
         private void SetupNumericOnlyTextBoxes()
         {
             // 対象のテキストボックスのみイベントを追加
-            TBSyainID.KeyPress += NumericTextBox_KeyPress;
-            TBShopID.KeyPress += NumericTextBox_KeyPress;
-            TBJobID.KeyPress += NumericTextBox_KeyPress;
-            TBPass.KeyPress += NumericTextBox_KeyPress;
+            TBSyainID.KeyPress += Num_KeyPress;
+            TBShopID.KeyPress += Num_KeyPress;
+            TBJobID.KeyPress += Num_KeyPress;
+            TBPass.KeyPress += AlphabetTextBox_KeyPress;
             TBTellNo.KeyPress += NumericTextBox_KeyPress;
 
         }
@@ -575,6 +575,28 @@ namespace SalesManagement_SysDev
                 e.Handled = true;
             }
         }
+
+        private void Num_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字とBackspace以外は入力を無効化
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+            private void AlphabetTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 数字、英字、Backspace以外は入力を無効化
+            if (!((e.KeyChar >= '0' && e.KeyChar <= '9') || // 数字
+                  (e.KeyChar >= 'A' && e.KeyChar <= 'Z') ||// 英大文字
+                  (e.KeyChar >= 'a' && e.KeyChar <= 'z') || // 英小文字
+                  char.IsControl(e.KeyChar))) // 制御文字（Backspaceなど）
+            {
+                e.Handled = true;
+            }
+        }
+
 
         private void TBTellNo_KeyPress(object sender, KeyPressEventArgs e)
         {
