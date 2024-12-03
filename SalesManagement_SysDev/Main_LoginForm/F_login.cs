@@ -979,7 +979,7 @@ namespace SalesManagement_SysDev
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("データベースに接続できません。ネットワーク状態を確認してください: " + ex.Message, "接続エラー" + "\nスタックトレース: " +ex.StackTrace, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("データベースに接続できません。ネットワーク状態を確認してください: " + ex.Message, "接続エラー" + "\nスタックトレース: " + ex.StackTrace, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (InvalidOperationException ex)
             {
