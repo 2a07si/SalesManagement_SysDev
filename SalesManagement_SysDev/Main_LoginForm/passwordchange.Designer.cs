@@ -39,6 +39,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
             kakutei = new Button();
             label1 = new Label();
             B_return = new Button();
+            b_pwHyouji = new Button();
+            b_newHyouji = new Button();
             SuspendLayout();
             // 
             // TBID
@@ -52,6 +54,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 
             TBold.Location = new Point(400, 220);
             TBold.Name = "TBold";
+            TBold.PasswordChar = '●';
             TBold.Size = new Size(200, 31);
             TBold.TabIndex = 1;
             // 
@@ -59,6 +62,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 
             TBnew.Location = new Point(400, 320);
             TBnew.Name = "TBnew";
+            TBnew.PasswordChar = '●';
             TBnew.Size = new Size(200, 31);
             TBnew.TabIndex = 2;
             // 
@@ -121,11 +125,33 @@ namespace SalesManagement_SysDev.Main_LoginForm
             B_return.UseVisualStyleBackColor = true;
             B_return.Click += B_return_Click;
             // 
+            // b_pwHyouji
+            // 
+            b_pwHyouji.Location = new Point(595, 217);
+            b_pwHyouji.Name = "b_pwHyouji";
+            b_pwHyouji.Size = new Size(35, 35);
+            b_pwHyouji.TabIndex = 9;
+            b_pwHyouji.Text = "閉";
+            b_pwHyouji.UseVisualStyleBackColor = true;
+            b_pwHyouji.Click += b_pwHyouji_Click;
+            // 
+            // b_newHyouji
+            // 
+            b_newHyouji.Location = new Point(595, 318);
+            b_newHyouji.Name = "b_newHyouji";
+            b_newHyouji.Size = new Size(35, 35);
+            b_newHyouji.TabIndex = 10;
+            b_newHyouji.Text = "閉";
+            b_newHyouji.UseVisualStyleBackColor = true;
+            b_newHyouji.Click += b_newHyouji_Click;
+            // 
             // passwordchange
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 544);
+            Controls.Add(b_newHyouji);
+            Controls.Add(b_pwHyouji);
             Controls.Add(B_return);
             Controls.Add(kakutei);
             Controls.Add(ne);
@@ -153,5 +179,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private Button kakutei;
         private Label label1;
         private Button B_return;
+        private Button b_pwHyouji;
+        private Button b_newHyouji;
     }
 }

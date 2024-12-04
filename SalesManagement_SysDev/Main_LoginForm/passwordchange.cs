@@ -14,9 +14,12 @@ namespace SalesManagement_SysDev.Main_LoginForm
 {
     public partial class passwordchange : Form
     {
+
+        private bool isPasswordVisible = true;  // パスワード表示状態を管理するフラグ 
         public passwordchange()
         {
             InitializeComponent();
+
 
         }
 
@@ -47,7 +50,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 MessageBox.Show("変更後パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if(!CheckNumeric(TBID.Text))
+            if (!CheckNumeric(TBID.Text))
             {
                 MessageBox.Show("社員IDは半角数字のみです。");
             }
@@ -101,13 +104,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             bool flg;
 
-                Regex regex = new Regex("^[a-zA-Z0-9]+$");
-                if (!regex.IsMatch(text))
-                    flg = false;
-                else
-                    flg = true;
+            Regex regex = new Regex("^[a-zA-Z0-9]+$");
+            if (!regex.IsMatch(text))
+                flg = false;
+            else
+                flg = true;
 
-                return flg;
+            return flg;
         }
 
         private bool CheckNumeric(string text)
@@ -121,6 +124,42 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 flg = true;
 
             return flg;
+        }
+
+        private void b_pwHyouji_Click(object sender, EventArgs e)
+        {
+            isPasswordVisible = !isPasswordVisible;
+
+            if (!isPasswordVisible)
+            {
+                TBold.UseSystemPasswordChar = false; // パスワードを非表示 
+                TBold.PasswordChar = '\0';
+                b_pwHyouji.Text = "開";  // ボタンのテキストを「表示」に変更 
+            }
+            else
+            {
+                TBold.UseSystemPasswordChar = true; // パスワードを表示 
+
+                b_pwHyouji.Text = "閉";  // ボタンのテキストを「非表示」に変更 
+            }
+        }
+
+        private void b_newHyouji_Click(object sender, EventArgs e)
+        {
+            isPasswordVisible = !isPasswordVisible;
+
+            if (!isPasswordVisible)
+            {
+                TBnew.UseSystemPasswordChar = false; // パスワードを非表示 
+                TBnew.PasswordChar = '\0';
+                b_pwHyouji.Text = "開";  // ボタンのテキストを「表示」に変更 
+            }
+            else
+            {
+                TBnew.UseSystemPasswordChar = true; // パスワードを表示 
+
+                b_pwHyouji.Text = "閉";  // ボタンのテキストを「非表示」に変更 
+            }
         }
     }
 }
