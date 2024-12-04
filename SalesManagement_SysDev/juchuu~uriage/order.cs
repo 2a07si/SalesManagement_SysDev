@@ -572,7 +572,7 @@ namespace SalesManagement_SysDev
                     TBShainID.Focus();
                     return;
                 }
-                if (date.Value < DateTime.Now)
+                if (date.Value > DateTime.Today)
                 {
                     var result = MessageBox.Show(
                         "受注年月日が未来を指していますが、よろしいですか？",
@@ -1697,7 +1697,6 @@ namespace SalesManagement_SysDev
                     var latestLoginHistory = context.LoginHistoryLogs
                                                     .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
                                                     .FirstOrDefault();  // 最新のログを取得
-                    MessageBox.Show("アンパンマン");
                     if (latestLoginHistory != null)
                     {
                         // 最新のログが見つかった場合、そのIDを設定
