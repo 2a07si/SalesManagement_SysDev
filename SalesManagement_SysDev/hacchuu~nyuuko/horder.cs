@@ -71,9 +71,8 @@ namespace SalesManagement_SysDev
             DisplayHattyus();
             DisplayHattyuDetails();
             SetupNumericOnlyTextBoxes();
-            CurrentStatus.RegistrationStatus(label2);
-            RegisterStatus();
-            tbfalse();
+            CurrentStatus.UpDateStatus(label2);
+            UpdateStatus();
             HattyuFlag.Enabled = false;
         }
 
