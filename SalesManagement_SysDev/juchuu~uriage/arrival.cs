@@ -57,18 +57,9 @@ namespace SalesManagement_SysDev
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             DisplayArrivals();
-            DisplayArrivalDetails();
-
-            if (Global.EmployeePermission == 1)
-            {
-                b_reg.Enabled = true;
-            }
-            else
-            {
-                b_reg.Enabled = false;
-                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
-            }
-
+            DisplayArrivalDetails();            
+            b_reg.Enabled = false;
+            b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
         }
@@ -119,6 +110,7 @@ namespace SalesManagement_SysDev
         {
             PerformSearch();
             tbtrue();
+            
         }
         private void PerformSearch()
         {
@@ -1168,31 +1160,53 @@ namespace SalesManagement_SysDev
                     throw new Exception("TShipmentへの登録に失敗しました: " + ex.Message);
                 }
 
-                var arrivalDetail = context.TArrivalDetails.SingleOrDefault(o => o.ArID == arrival.ArID);
-                var newShipmentDetail = new TShipmentDetail
+                // TArrivalDetailsの取得  
+                var arrivalDetails = context.TArrivalDetails.Where(o => o.ArID == arrival.ArID).ToList();
+                if (!arrivalDetails.Any())
                 {
-                    // `PrID` が nullable 型のため、`Value` プロパティを使って値を取得
-                    // `PrID` が null の場合、0 を代入
-                    ShID = newShipment.ShID,
-                    PrID = arrivalDetail.PrID ?? 0,  // null の場合、0 を代入
-                    ShQuantity = arrivalDetail.ArQuantity ?? 0  // null の場合、0 を代入
-
-
-                };
-                if (newShipmentDetail.PrID == 0 || newShipmentDetail.ShQuantity == 0)
-                {
-                    MessageBox.Show("PrIDかShquantityが0で入力されています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("指定された到着情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
+                // 複数の到着詳細を全て引き継ぐ
+                foreach (var arrivalDetail in arrivalDetails)
+                {
+                    // 新しい出荷詳細の登録  
+                    var newShipmentDetail = new TShipmentDetail
+                    {
+                        ShID = newShipment.ShID,
+                        PrID = arrivalDetail.PrID ?? 0,  // null の場合、0 を代入
+                        ShQuantity = arrivalDetail.ArQuantity ?? 0  // null の場合、0 を代入
+                    };
+
+                    if (newShipmentDetail.PrID == 0 || newShipmentDetail.ShQuantity == 0)
+                    {
+                        MessageBox.Show("PrIDかShquantityが0で入力されています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    try
+                    {
+                        context.TShipmentDetails.Add(newShipmentDetail);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("TShipmentDetailへの登録に失敗しました: " + ex.Message);
+                    }
+                }
+
+                // すべての出荷詳細をデータベースに保存
                 try
                 {
-                    context.TShipmentDetails.Add(newShipmentDetail);
                     context.SaveChanges();
+                    MessageBox.Show("すべての出荷詳細が登録されました。");
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("TShipmentDetailへの登録に失敗しました:" + ex.Message);
+                    throw new Exception("データベースへの保存に失敗しました: " + ex.Message);
                 }
+
+
             }
         }
 

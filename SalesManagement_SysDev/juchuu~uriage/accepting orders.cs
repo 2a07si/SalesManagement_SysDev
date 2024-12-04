@@ -63,6 +63,7 @@ namespace SalesManagement_SysDev
             tbfalse();
             checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
             UpdateTextBoxState(checkBoxSyain.Checked);
+            TyumonFlag.Enabled = false;
         }
 
         // メインメニューに戻る
@@ -107,6 +108,7 @@ namespace SalesManagement_SysDev
         {
             PerformSearch();
             tbtrue();
+            TyumonFlag.Enabled = true;
         }
 
         private void PerformSearch()
@@ -119,6 +121,7 @@ namespace SalesManagement_SysDev
         {
             UpdateStatus();
             tbtrue();
+            TyumonFlag.Enabled = true;
         }
 
         private void UpdateStatus()
@@ -131,6 +134,7 @@ namespace SalesManagement_SysDev
         {
             RegisterStatus();
             tbfalse();
+            TyumonFlag.Enabled = false;
         }
 
         private void RegisterStatus()
@@ -143,6 +147,7 @@ namespace SalesManagement_SysDev
         {
             ListStatus();
             tbtrue();
+            TyumonFlag.Enabled = true;
         }
 
         private void ListStatus()
@@ -840,12 +845,7 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    var existingOrderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrID == int.Parse(jyutyuID));
-                    if (existingOrderDetail != null)
-                    {
-                        MessageBox.Show("この受注IDにはすでに受注詳細が存在します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return; // 処理を終了
-                    }
+                    
 
 
                     var newOrderDetail = new TOrderDetail
@@ -891,12 +891,7 @@ namespace SalesManagement_SysDev
                         // Yesが選ばれた場合の処理（受注処理確定）
                         UpdateOrderAccept(jyutyuID);
                     }
-                    else
-                    {
-                        // Noが選ばれた場合の処理（受注処理を中止）
-                        MessageBox.Show("受注処理は中止されました。", "中止", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-
+                    
                 }
             }
             catch (FormatException)
@@ -1192,28 +1187,41 @@ namespace SalesManagement_SysDev
                     throw new Exception("TChumonへの登録に失敗しました: " + ex.Message);
                 }
 
-                // 注文詳細情報を TChumonDetail に追加
-                var orderDetail = context.TOrderDetails.SingleOrDefault(o => o.OrID == orderID);
-                if (orderDetail == null)
+                // 受注詳細情報を TChumonDetail に追加 
+                var orderDetails = context.TOrderDetails.Where(o => o.OrID == orderID).ToList();
+
+                if (!orderDetails.Any())
                 {
-                    throw new Exception("注文詳細情報が見つかりません。");
+                    throw new Exception("受注詳細情報が見つかりません。");
                 }
 
-                var newChumonDetail = new TChumonDetail
+                foreach (var detail in orderDetails)
                 {
-                    ChID = newChumon.ChID,
-                    PrID = orderDetail.PrID,
-                    ChQuantity = orderDetail.OrQuantity
-                };
+                    var newChumonDetail = new TChumonDetail
+                    {
+                        ChID = newChumon.ChID,
+                        PrID = detail.PrID,
+                        ChQuantity = detail.OrQuantity
+                    };
 
+                    try
+                    {
+                        context.TChumonDetails.Add(newChumonDetail);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("TChumonDetailへの登録に失敗しました: " + ex.Message);
+                    }
+                }
+
+                // 一括保存
                 try
                 {
-                    context.TChumonDetails.Add(newChumonDetail);
                     context.SaveChanges();
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("TChumonDetailへの登録に失敗しました: " + ex.Message);
+                    throw new Exception("TChumonDetailの保存に失敗しました: " + ex.Message);
                 }
             }
         }

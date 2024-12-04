@@ -525,7 +525,7 @@ namespace SalesManagement_SysDev
                         {
                             ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
                             Display = "在庫",
-                            Mode = "-",
+                            Mode = "",
                             Process = label2.Text,
                             LogID = id,  //
                             AcceptDateTime = DateTime.Now
