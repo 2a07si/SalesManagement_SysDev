@@ -73,7 +73,6 @@ namespace SalesManagement_SysDev
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
             UpdateStatus();
-            HattyuFlag.Enabled = false;
         }
 
         private void clear_Click(object sender, EventArgs e)
