@@ -1716,6 +1716,23 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(message, "チェッカー登録完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
+
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
     }
 }
 
