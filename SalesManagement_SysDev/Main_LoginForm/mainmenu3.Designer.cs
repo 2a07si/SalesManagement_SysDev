@@ -362,18 +362,20 @@
             // 
             // listViewLog
             // 
+            listViewLog.GridLines = true;
             listViewLog.Location = new Point(806, 23);
             listViewLog.Name = "listViewLog";
             listViewLog.Size = new Size(574, 96);
             listViewLog.TabIndex = 1002;
             listViewLog.TabStop = false;
             listViewLog.UseCompatibleStateImageBehavior = false;
-            listViewLog.MouseClick　+= listViewLog_MouseClick;
+            listViewLog.MouseClick += listViewLog_MouseClick;
             // 
             // mainmenu3
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             CancelButton = b_logout;
             ClientSize = new Size(1578, 844);
             Controls.Add(listViewLog);

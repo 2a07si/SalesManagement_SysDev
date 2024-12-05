@@ -40,9 +40,9 @@ namespace SalesManagement_SysDev.Main_LoginForm
             LoadLogData();
             listViewLog.Scrollable = false;
 
-           
-            
-            
+
+
+
         }
         // 従業員名をデータベースから取得して表示するメソッド
         private void LoadEmployeeName()
