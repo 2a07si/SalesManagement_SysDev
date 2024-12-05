@@ -429,7 +429,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         Log_Issue(issue.SyID);
                         DisplayIssues(); // 更新後に出庫情報を再表示
-
+                        ResetYellowBackgrounds(this);
                     }
                     catch (DbUpdateException ex)
                     {
@@ -606,6 +606,7 @@ namespace SalesManagement_SysDev
                         DisplayIssues();
                         DisplayIssueDetails();
                         Log_Issue(newIssue.SyID);
+                        ResetYellowBackgrounds(this);
                     }
                     catch (DbUpdateException ex)
                     {
@@ -833,6 +834,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("出庫詳細の更新が成功しました。");
                     DisplayIssueDetails();
                     Log_Issue(issueDetail.SyDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -910,6 +912,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("出庫詳細の登録が成功しました。");
                 DisplayIssueDetails();
                 Log_Issue(newIssueDetail.SyDetailID);
+                ResetYellowBackgrounds(this);
             }
         }
 
@@ -1605,7 +1608,23 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
 
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
 
     }
 
