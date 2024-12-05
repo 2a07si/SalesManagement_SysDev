@@ -61,17 +61,8 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
             DisplayOrderDetails();
-
-            if (Global.EmployeePermission == 1)
-            {
-                b_reg.Enabled = true;
-            }
-            else
-            {
-                b_reg.Enabled = false;
-                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
-            }
-
+　          b_reg.Enabled = false;
+            b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
             UpdateTextBoxState(checkBoxSyain.Checked);
@@ -118,6 +109,7 @@ namespace SalesManagement_SysDev
         {
             PerformSearch();
             tbtrue();
+            TyumonFlag.Enabled = false;
         }
         private void PerformSearch()
         {
@@ -129,6 +121,7 @@ namespace SalesManagement_SysDev
         {
             UpdateStatus();
             tbtrue();
+            TyumonFlag.Enabled = false;
         }
         private void UpdateStatus()
         {
@@ -140,6 +133,7 @@ namespace SalesManagement_SysDev
         {
             RegisterStatus();
             tbfalse();
+            TyumonFlag.Enabled = true;
         }
 
         private void RegisterStatus()
@@ -152,6 +146,7 @@ namespace SalesManagement_SysDev
         {
             ListStatus();
             tbtrue();
+            TyumonFlag.Enabled = false;
         }
         private void ListStatus()
         {
@@ -306,7 +301,7 @@ namespace SalesManagement_SysDev
                 TBJyutyuID.Focus();
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            }   
             if (TBShainID.Text != empID)
             {
                 MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
@@ -1174,12 +1169,8 @@ namespace SalesManagement_SysDev
                     SyDate = null,
                     SyStateFlag = 0
                 };
-
-
-
                 try
                 {
-
                     // データが正しいか事前にチェック 
                     if (newSyukko.SoID == 0 || newSyukko.EmID == 0 || newSyukko.ClID == 0 || newSyukko.OrID == 0 || newSyukko.SyDate == default(DateTime))
                     {
@@ -1201,31 +1192,44 @@ namespace SalesManagement_SysDev
                     throw new Exception("注文詳細が見つかりません。");
                 }
 
-                var chumonDetail = context.TChumonDetails.SingleOrDefault(o => o.ChID == ChID);
-                if (chumonDetail == null)
+                // 注文詳細をすべて取得
+                var orderDetails = context.TOrderDetails.Where(o => o.OrID == order.OrID).ToList();
+
+                // 注文詳細が存在しない場合のエラー処理
+                if (orderDetails == null || orderDetails.Count == 0)
                 {
-                    throw new Exception("注文詳細（ChID）が見つかりません。");
+                    throw new Exception("注文詳細が見つかりません。");
                 }
 
-                var newSyukkoDetail = new TSyukkoDetail
+                // 各注文詳細に対して処理を実行
+                foreach (var detail in orderDetails)
                 {
-                    SyID = newSyukko.SyID,
-                    PrID = orderDetail.PrID,
-                    SyQuantity = chumonDetail.ChQuantity
+                    var chumonDetail = context.TChumonDetails.SingleOrDefault(o => o.ChID == ChID && o.PrID == detail.PrID);
+                    if (chumonDetail == null)
+                    {
+                        throw new Exception($"注文詳細（ChID: {ChID}, PrID: {detail.PrID}）が見つかりません。");
+                    }
 
-                };
+                    // 出庫詳細を作成
+                    var newSyukkoDetail = new TSyukkoDetail
+                    {
+                        SyID = newSyukko.SyID,
+                        PrID = detail.PrID,
+                        SyQuantity = chumonDetail.ChQuantity
+                    };
 
-                try
-                {
-                    Checker3(newSyukko.SyID, orderDetail.PrID);
-                    context.TSyukkoDetails.Add(newSyukkoDetail);
-                    context.SaveChanges();
+                    try
+                    {
+                        Checker3(newSyukko.SyID, detail.PrID); // チェック処理
+                        context.TSyukkoDetails.Add(newSyukkoDetail);
+                        context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception($"TSyukkoDetailへの登録に失敗しました: {ex.Message}");
+                    }
                 }
-                catch (Exception ex)
-                {
 
-                    throw new Exception("TSyukkoDetailへの登録に失敗しました: " + ex.Message);
-                }
             }
         }
 
@@ -1337,7 +1341,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message + "内部のやつ" + ex.InnerException.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Checker2(int OrID, int SyID)
         {
             MessageBox.Show("チェッカー２処理");
@@ -1346,22 +1349,34 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // OrIDをStringに変換して比較
-                    var checker = context.NyuukoCheckers.FirstOrDefault(c => c.JyutyuID == OrID.ToString());
+                    var checkers = context.NyuukoCheckers
+                                          .Where(c => c.JyutyuID == OrID.ToString())
+                                          .ToList();
 
-                    if (checker != null) // 見つかった場合 
+                    if (checkers.Any()) // レコードが1件以上見つかった場合
                     {
-                        checker.SyukkoID = SyID.ToString(); // SyukkoIDをSyIDで更新 
-                        context.SaveChanges(); // 変更を保存 
-                        MessageBox.Show("チェッカー２処理確定");
+                        foreach (var checker in checkers)
+                        {
+                            // SyukkoIDをSyIDで更新
+                            checker.SyukkoID = SyID.ToString();
+                        }
+
+                        // 変更を保存
+                        context.SaveChanges();
+
                         // 確定後のチェッカーデータをメッセージボックスで表示
-                        string checkerData = $"チェッカー２時点のデータ:\n" +
-                                             $"SyukkoID: {checker.ID}\n" +
-                                             $"SyukkoID: {checker.SyukkoID}\n" +
-                                             $"JyutyuID: {checker.JyutyuID}\n" +
-                                             $"PrID: {checker.PrID}\n" +
-                                             $"Flag: {checker.Flag}\n" +
-                                             $"Quantity: {checker.Quantity}\n" +
-                                             $"DelFlag: {checker.DelFlag}";
+                        string checkerData = "チェッカー２時点のデータ:\n";
+                        foreach (var checker in checkers)
+                        {
+                            checkerData += $"Checker ID: {checker.ID}\n" +
+                                           $"SyukkoID: {checker.SyukkoID}\n" +
+                                           $"JyutyuID: {checker.JyutyuID}\n" +
+                                           $"PrID: {checker.PrID}\n" +
+                                           $"Flag: {checker.Flag}\n" +
+                                           $"Quantity: {checker.Quantity}\n" +
+                                           $"DelFlag: {checker.DelFlag}\n\n";
+                        }
+
                         MessageBox.Show(checkerData, "チェッカー２確定後のデータ");
                     }
                     else
@@ -1375,7 +1390,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Checker3(int SyID, int PrID)
         {
             MessageBox.Show("チェッカー３処理");
@@ -1383,28 +1397,40 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // OrIDをStringに変換して比較
-                    var checker = context.NyuukoCheckers.FirstOrDefault(c => c.SyukkoID == SyID.ToString());
+                    // SyukkoIDをStringに変換して比較
+                    var checkers = context.NyuukoCheckers
+                                          .Where(c => c.SyukkoID == SyID.ToString())
+                                          .ToList();
 
-                    if (checker != null) // 見つかった場合 
+                    if (checkers.Any()) // レコードが1件以上見つかった場合
                     {
-                        checker.PrID = PrID.ToString(); // SyukkoIDをSyIDで更新 
-                        context.SaveChanges(); // 変更を保存 
-                        MessageBox.Show("チェッカー３処理確定");
+                        foreach (var checker in checkers)
+                        {
+                            // PrIDを更新
+                            checker.PrID = PrID.ToString();
+                        }
+
+                        // 変更を保存
+                        context.SaveChanges();
+
                         // 確定後のチェッカーデータをメッセージボックスで表示
-                        string checkerData = $"チェッカー３時点のデータ:\n" +
-                                             $"ID: {checker.ID}\n" +
-                                             $"SyukkoID: {checker.SyukkoID}\n" +
-                                             $"JyutyuID: {checker.JyutyuID}\n" +
-                                             $"PrID: {checker.PrID}\n" +
-                                             $"Flag: {checker.Flag}\n" +
-                                             $"Quantity: {checker.Quantity}\n" +
-                                             $"DelFlag: {checker.DelFlag}";
-                        MessageBox.Show(checkerData, "チェッカー２確定後のデータ");
+                        string checkerData = "チェッカー３時点のデータ:\n";
+                        foreach (var checker in checkers)
+                        {
+                            checkerData += $"ID: {checker.ID}\n" +
+                                           $"SyukkoID: {checker.SyukkoID}\n" +
+                                           $"JyutyuID: {checker.JyutyuID}\n" +
+                                           $"PrID: {checker.PrID}\n" +
+                                           $"Flag: {checker.Flag}\n" +
+                                           $"Quantity: {checker.Quantity}\n" +
+                                           $"DelFlag: {checker.DelFlag}\n\n";
+                        }
+
+                        MessageBox.Show(checkerData, "チェッカー３確定後のデータ");
                     }
                     else
                     {
-                        MessageBox.Show("指定されたOrIDに一致するレコードが見つかりませんでした。");
+                        MessageBox.Show("指定されたSyukkoIDに一致するレコードが見つかりませんでした。");
                     }
                 }
             }
@@ -1697,7 +1723,6 @@ namespace SalesManagement_SysDev
                     var latestLoginHistory = context.LoginHistoryLogs
                                                     .OrderByDescending(l => l.LoginDateTime)  // LogDateを基準に降順に並べる
                                                     .FirstOrDefault();  // 最新のログを取得
-                    MessageBox.Show("アンパンマン");
                     if (latestLoginHistory != null)
                     {
                         // 最新のログが見つかった場合、そのIDを設定

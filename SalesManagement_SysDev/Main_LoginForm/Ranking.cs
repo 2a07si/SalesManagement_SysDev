@@ -495,13 +495,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
             checkBoxDateFilter.Checked = false;
             checkBoxKingaku.Checked = false;
             checkBoxSuryo.Checked = false;
-            foreach (var item in checkedListBox1.CheckedItems)
+            foreach (int index in checkedListBox1.CheckedIndices)
             {
-                checkedListBox1.SetItemChecked(checkedListBox1.Items.IndexOf(item), false);
+                checkedListBox1.SetItemChecked(index, false);
             }
-            foreach (var item in checkedListBox2.CheckedItems)
+            foreach (int index in checkedListBox2.CheckedIndices)
             {
-                checkedListBox2.SetItemChecked(checkedListBox2.Items.IndexOf(item), false);
+                checkedListBox2.SetItemChecked(index, false);
             }
             TBJyogen.Text = null;
             TBKagen.Text = null;
@@ -515,6 +515,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
             date2.Value = DateTime.Now;
             date3.Value = DateTime.Now;
             date4.Value = DateTime.Now;
+            DisplayCustomerRanking();
+            DisplayRankingProduct();
         }
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)

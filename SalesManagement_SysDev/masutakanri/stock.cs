@@ -67,17 +67,10 @@ namespace SalesManagement_SysDev
             });
             DisplayStock();
             SetupNumericOnlyTextBoxes();
-
-            if (Global.EmployeePermission == 1)
-            {
-                b_reg.Enabled = true;
-            }
-            else
-            {
-                b_reg.Enabled = false;
-                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
-            }
             CurrentStatus.RegistrationStatus(label2);
+            TBZaikoID.Enabled = false;
+            TBZaikoID.BackColor = Color.Gray;
+            TBZaikoID.Text = "";
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -525,7 +518,7 @@ namespace SalesManagement_SysDev
                         {
                             ID = latestLoginHistory.ID,  // 最新のLogHistoryLogのIDを使用
                             Display = "在庫",
-                            Mode = "-",
+                            Mode = "",
                             Process = label2.Text,
                             LogID = id,  //
                             AcceptDateTime = DateTime.Now

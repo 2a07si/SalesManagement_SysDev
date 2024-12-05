@@ -775,13 +775,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // 社員IDが3～4桁の数字かどうかをチェック 
-                if (tb_ID.Text.Length < 3 || tb_ID.Text.Length > 4 || !Regex.IsMatch(tb_ID.Text, @"^\d+$"))
-                {
-                    MessageBox.Show("社員IDは3～4桁の数字で入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    tb_ID.Focus(); // ID テキストボックスにフォーカス 
-                    return;
-                }
+                
 
                 if (!InputValidator.IsNotEmpty(tb_Pass.Text))
                 {

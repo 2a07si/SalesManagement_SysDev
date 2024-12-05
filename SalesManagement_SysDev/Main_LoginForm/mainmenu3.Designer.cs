@@ -368,6 +368,7 @@
             listViewLog.TabIndex = 1002;
             listViewLog.TabStop = false;
             listViewLog.UseCompatibleStateImageBehavior = false;
+            listViewLog.MouseClick　+= listViewLog_MouseClick;
             // 
             // mainmenu3
             // 

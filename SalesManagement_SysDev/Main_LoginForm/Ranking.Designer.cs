@@ -90,7 +90,7 @@
             label5.Location = new Point(502, 29);
             label5.Name = "label5";
             label5.Size = new Size(84, 25);
-            label5.TabIndex = 6;
+            label5.TabIndex = 7;
             label5.Text = "数量上限";
             // 
             // date
@@ -99,7 +99,7 @@
             date.Location = new Point(410, 120);
             date.Name = "date";
             date.Size = new Size(185, 31);
-            date.TabIndex = 11;
+            date.TabIndex = 6;
             // 
             // label18
             // 
@@ -109,7 +109,7 @@
             label18.Location = new Point(302, 122);
             label18.Name = "label18";
             label18.Size = new Size(102, 25);
-            label18.TabIndex = 10;
+            label18.TabIndex = 12;
             label18.Text = "年月日指定";
             // 
             // TBKagen
@@ -117,7 +117,7 @@
             TBKagen.Location = new Point(396, 26);
             TBKagen.Name = "TBKagen";
             TBKagen.Size = new Size(100, 31);
-            TBKagen.TabIndex = 5;
+            TBKagen.TabIndex = 1;
             // 
             // label14
             // 
@@ -127,7 +127,7 @@
             label14.Location = new Point(302, 32);
             label14.Name = "label14";
             label14.Size = new Size(84, 25);
-            label14.TabIndex = 4;
+            label14.TabIndex = 5;
             label14.Text = "数量下限";
             // 
             // dataGridView2
@@ -140,7 +140,7 @@
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView2.Size = new Size(700, 440);
+            dataGridView2.Size = new Size(700, 437);
             dataGridView2.TabIndex = 9;
             dataGridView2.TabStop = false;
             // 
@@ -174,17 +174,17 @@
             panel1.Controls.Add(label18);
             panel1.Controls.Add(TBKagen);
             panel1.Controls.Add(label14);
-            panel1.Location = new Point(105, 159);
+            panel1.Location = new Point(105, 154);
             panel1.Name = "panel1";
             panel1.Size = new Size(720, 690);
-            panel1.TabIndex = 280;
+            panel1.TabIndex = 7;
             // 
             // TBJyogenKin
             // 
             TBJyogenKin.Location = new Point(603, 76);
             TBJyogenKin.Name = "TBJyogenKin";
             TBJyogenKin.Size = new Size(100, 31);
-            TBJyogenKin.TabIndex = 301;
+            TBJyogenKin.TabIndex = 4;
             // 
             // label7
             // 
@@ -194,7 +194,7 @@
             label7.Location = new Point(502, 76);
             label7.Name = "label7";
             label7.Size = new Size(84, 25);
-            label7.TabIndex = 300;
+            label7.TabIndex = 10;
             label7.Text = "金額上限";
             // 
             // TBKagenKin
@@ -202,7 +202,7 @@
             TBKagenKin.Location = new Point(396, 73);
             TBKagenKin.Name = "TBKagenKin";
             TBKagenKin.Size = new Size(100, 31);
-            TBKagenKin.TabIndex = 299;
+            TBKagenKin.TabIndex = 3;
             // 
             // updateLabel23
             // 
@@ -212,7 +212,7 @@
             updateLabel23.Location = new Point(302, 73);
             updateLabel23.Name = "updateLabel23";
             updateLabel23.Size = new Size(84, 25);
-            updateLabel23.TabIndex = 298;
+            updateLabel23.TabIndex = 1;
             updateLabel23.Text = "金額下限";
             // 
             // TBJyogen
@@ -220,7 +220,7 @@
             TBJyogen.Location = new Point(603, 29);
             TBJyogen.Name = "TBJyogen";
             TBJyogen.Size = new Size(100, 31);
-            TBJyogen.TabIndex = 297;
+            TBJyogen.TabIndex = 2;
             // 
             // updateLabel22
             // 
@@ -230,7 +230,7 @@
             updateLabel22.Location = new Point(489, 154);
             updateLabel22.Name = "updateLabel22";
             updateLabel22.Size = new Size(25, 25);
-            updateLabel22.TabIndex = 296;
+            updateLabel22.TabIndex = 14;
             updateLabel22.Text = "~";
             // 
             // updateLabel21
@@ -252,7 +252,7 @@
             label6.Location = new Point(24, 33);
             label6.Name = "label6";
             label6.Size = new Size(115, 25);
-            label6.TabIndex = 294;
+            label6.TabIndex = 3;
             label6.Text = "商品並び替え";
             // 
             // date2
@@ -261,7 +261,7 @@
             date2.Location = new Point(410, 182);
             date2.Name = "date2";
             date2.Size = new Size(185, 31);
-            date2.TabIndex = 17;
+            date2.TabIndex = 7;
             // 
             // checkedListBox1
             // 
@@ -269,7 +269,7 @@
             checkedListBox1.Location = new Point(112, 70);
             checkedListBox1.Name = "checkedListBox1";
             checkedListBox1.Size = new Size(180, 116);
-            checkedListBox1.TabIndex = 294;
+            checkedListBox1.TabIndex = 5;
             // 
             // comboBox1
             // 
@@ -278,7 +278,7 @@
             comboBox1.Location = new Point(154, 27);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(129, 33);
-            comboBox1.TabIndex = 293;
+            comboBox1.TabIndex = 0;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // dataGridView1
@@ -302,7 +302,7 @@
             checkBoxDateFilter.Location = new Point(708, 101);
             checkBoxDateFilter.Name = "checkBoxDateFilter";
             checkBoxDateFilter.Size = new Size(128, 29);
-            checkBoxDateFilter.TabIndex = 291;
+            checkBoxDateFilter.TabIndex = 3;
             checkBoxDateFilter.Text = "年月日条件";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             checkBoxDateFilter.CheckedChanged += checkBoxDateFilter_CheckedChanged;
@@ -313,7 +313,7 @@
             b_FormSelector.Location = new Point(904, 75);
             b_FormSelector.Name = "b_FormSelector";
             b_FormSelector.Size = new Size(150, 70);
-            b_FormSelector.TabIndex = 284;
+            b_FormSelector.TabIndex = 4;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
             b_FormSelector.Click += b_FormSelector_Click;
@@ -338,7 +338,7 @@
             panel2.Controls.Add(TBKagen1);
             panel2.Controls.Add(updateLabel27);
             panel2.Controls.Add(dataGridView2);
-            panel2.Location = new Point(825, 159);
+            panel2.Location = new Point(825, 154);
             panel2.Name = "panel2";
             panel2.Size = new Size(720, 690);
             panel2.TabIndex = 281;
@@ -361,7 +361,7 @@
             comboBox2.Location = new Point(161, 24);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(129, 33);
-            comboBox2.TabIndex = 295;
+            comboBox2.TabIndex = 0;
             // 
             // date4
             // 
@@ -369,14 +369,14 @@
             date4.Location = new Point(419, 182);
             date4.Name = "date4";
             date4.Size = new Size(185, 31);
-            date4.TabIndex = 19;
+            date4.TabIndex = 7;
             // 
             // TBJyogenKin1
             // 
             TBJyogenKin1.Location = new Point(612, 73);
             TBJyogenKin1.Name = "TBJyogenKin1";
             TBJyogenKin1.Size = new Size(100, 31);
-            TBJyogenKin1.TabIndex = 317;
+            TBJyogenKin1.TabIndex = 4;
             // 
             // date3
             // 
@@ -384,7 +384,7 @@
             date3.Location = new Point(419, 117);
             date3.Name = "date3";
             date3.Size = new Size(185, 31);
-            date3.TabIndex = 18;
+            date3.TabIndex = 6;
             // 
             // label8
             // 
@@ -402,7 +402,7 @@
             TBKagenKin1.Location = new Point(405, 70);
             TBKagenKin1.Name = "TBKagenKin1";
             TBKagenKin1.Size = new Size(100, 31);
-            TBKagenKin1.TabIndex = 315;
+            TBKagenKin1.TabIndex = 3;
             // 
             // checkedListBox2
             // 
@@ -410,7 +410,7 @@
             checkedListBox2.Location = new Point(121, 70);
             checkedListBox2.Name = "checkedListBox2";
             checkedListBox2.Size = new Size(180, 116);
-            checkedListBox2.TabIndex = 295;
+            checkedListBox2.TabIndex = 5;
             // 
             // updateLabel24
             // 
@@ -428,7 +428,7 @@
             TBJyogen1.Location = new Point(612, 26);
             TBJyogen1.Name = "TBJyogen1";
             TBJyogen1.Size = new Size(100, 31);
-            TBJyogen1.TabIndex = 313;
+            TBJyogen1.TabIndex = 2;
             // 
             // updateLabel26
             // 
@@ -479,7 +479,7 @@
             TBKagen1.Location = new Point(405, 23);
             TBKagen1.Name = "TBKagen1";
             TBKagen1.Size = new Size(100, 31);
-            TBKagen1.TabIndex = 303;
+            TBKagen1.TabIndex = 1;
             // 
             // updateLabel27
             // 
@@ -546,7 +546,7 @@
             b_kakutei.Location = new Point(1204, 75);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
-            b_kakutei.TabIndex = 274;
+            b_kakutei.TabIndex = 5;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
             b_kakutei.Click += b_kakutei_Click;
@@ -557,7 +557,7 @@
             checkBox1.Location = new Point(333, 101);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(113, 29);
-            checkBox1.TabIndex = 296;
+            checkBox1.TabIndex = 0;
             checkBox1.Text = "リスト条件";
             checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -567,7 +567,7 @@
             checkBoxKingaku.Location = new Point(590, 101);
             checkBoxKingaku.Name = "checkBoxKingaku";
             checkBoxKingaku.Size = new Size(110, 29);
-            checkBoxKingaku.TabIndex = 297;
+            checkBoxKingaku.TabIndex = 2;
             checkBoxKingaku.Text = "金額条件";
             checkBoxKingaku.UseVisualStyleBackColor = true;
             // 
@@ -577,7 +577,7 @@
             checkBoxSuryo.Location = new Point(465, 101);
             checkBoxSuryo.Name = "checkBoxSuryo";
             checkBoxSuryo.Size = new Size(110, 29);
-            checkBoxSuryo.TabIndex = 298;
+            checkBoxSuryo.TabIndex = 1;
             checkBoxSuryo.Text = "数量条件";
             checkBoxSuryo.UseVisualStyleBackColor = true;
             // 

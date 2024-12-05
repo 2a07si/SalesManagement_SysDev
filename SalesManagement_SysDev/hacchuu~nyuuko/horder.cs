@@ -71,9 +71,9 @@ namespace SalesManagement_SysDev
             DisplayHattyus();
             DisplayHattyuDetails();
             SetupNumericOnlyTextBoxes();
-            CurrentStatus.RegistrationStatus(label2);
-            RegisterStatus();
-            tbfalse();
+            CurrentStatus.UpDateStatus(label2);
+            UpdateStatus();
+            HattyuFlag.Enabled = false;
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace SalesManagement_SysDev
         {
             PerformSearch();
             tbtrue();
-
+            HattyuFlag.Enabled = true;
         }
         private void PerformSearch()
         {
@@ -120,6 +120,7 @@ namespace SalesManagement_SysDev
         {
             UpdateStatus();
             tbtrue();
+            HattyuFlag.Enabled = true;
         }
         private void UpdateStatus()
         {
@@ -131,6 +132,7 @@ namespace SalesManagement_SysDev
         {
             RegisterStatus();
             tbfalse();
+            HattyuFlag.Enabled = false;
         }
 
         private void RegisterStatus()
@@ -145,6 +147,7 @@ namespace SalesManagement_SysDev
         {
             ListStatus();
             tbtrue();
+            HattyuFlag.Enabled = true;
         }
         private void ListStatus()
         {

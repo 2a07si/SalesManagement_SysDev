@@ -58,17 +58,8 @@ namespace SalesManagement_SysDev
             DisplaySaleDetails();
             checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
             UpdateTextBoxState(checkBoxSyain.Checked);
-
-
-            if (Global.EmployeePermission == 1)
-            {
-                b_reg.Enabled = true;
-            }
-            else
-            {
-                b_reg.Enabled = false;
-                b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
-            }
+            b_reg.Enabled = false;
+            b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             TBTotal.Enabled = false;
             TBTotal.BackColor = Color.Gray;
             SetupNumericOnlyTextBoxes();
