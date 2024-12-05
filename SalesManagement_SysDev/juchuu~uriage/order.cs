@@ -1339,8 +1339,15 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // エラーメッセージを一か所で組み立て
+                string errorMessage = "予期しないエラーが発生しました:\n" +
+                                      ex.Message +
+                                      (ex.InnerException != null ?
+                                          "\n\n【詳細情報】\n" + ex.InnerException.Message : "");
+
+                MessageBox.Show(errorMessage, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)
