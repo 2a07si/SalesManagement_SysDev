@@ -1291,10 +1291,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    foreach (var orderDetails in orderDetail)
-                    {
-                        int prID = orderDetails.PrID;
-
+                    
                     // 商品データの取得 
                     var product = context.MProducts.FirstOrDefault(p => p.PrID == prID);
                     if (product == null)
@@ -1319,7 +1316,7 @@ namespace SalesManagement_SysDev
                         var newHattyuDetail = new THattyuDetail
                         {
                             HaID = newHattyu.HaID,
-                            PrID = orderDetails.PrID,
+                            PrID = orderDetail.PrID,
                             HaQuantity = shortageQuantity,
                         };
 
