@@ -61,7 +61,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
             DisplayOrderDetails();
-　          b_reg.Enabled = false;
+            b_reg.Enabled = false;
             b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
@@ -301,7 +301,7 @@ namespace SalesManagement_SysDev
                 TBJyutyuID.Focus();
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }   
+            }
             if (TBShainID.Text != empID)
             {
                 MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
@@ -405,35 +405,33 @@ namespace SalesManagement_SysDev
                         }
 
 
-                        var details = context.TChumonDetails.Where(d => d.ChID == int.Parse(ChumonID)).ToList();
-                        foreach (var detail in details)
+                        var detail = context.TChumonDetails.FirstOrDefault(d => d.ChID == int.Parse(ChumonID));
+
+                        var stock = context.TStocks.FirstOrDefault(s => s.PrID == detail.PrID);
+                        if (stock == null || stock.StQuantity < detail.ChQuantity)
                         {
-                            var stock = context.TStocks.FirstOrDefault(s => s.PrID == detail.PrID);
-                            if (stock == null || stock.StQuantity < detail.ChQuantity)
-                            {
-                                // 在庫が不足している場合 
-                                var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
-                                stock.StQuantity -= detail.ChQuantity;
-                                // 発注処理を行う 
-                                Checker(order.OrID, shortageQuantity);
-                                ProductOrder(int.Parse(OrderID), int.Parse(ChumonID), shortageQuantity);
+                            // 在庫が不足している場合 
+                            var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
+                            stock.StQuantity -= detail.ChQuantity;
+                            // 発注処理を行う 
+                            Checker(order.OrID, shortageQuantity);
+                            ProductOrder(int.Parse(OrderID), int.Parse(ChumonID), shortageQuantity);
 
 
-                                MessageBox.Show($"商品ID: {detail.PrID}の在庫が不足しているため発注処理を行いました。");
+                            MessageBox.Show($"商品ID: {detail.PrID}の在庫が不足しているため発注処理を行いました。");
 
-                                // 非表示フラグと理由を設定して出庫登録 
-                                OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 1, "在庫不足のため非表示中");
-                            }
-                            else
-                            {
+                            // 非表示フラグと理由を設定して出庫登録 
+                            OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 1, "在庫不足のため非表示中");
+                        }
+                        else
+                        {
 
-                                // 在庫が足りている場合、出庫処理 
-                                stock.StQuantity -= detail.ChQuantity;
-                                MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
-                                OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 0, null);
-                                StockManager.CompareStock(detail.PrID, stock.StQuantity);
+                            // 在庫が足りている場合、出庫処理 
+                            stock.StQuantity -= detail.ChQuantity;
+                            MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
+                            OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 0, null);
+                            StockManager.CompareStock(detail.PrID, stock.StQuantity);
 
-                            }
                         }
                         var orders = context.TChumons;
                         order.ChFlag = 1;
