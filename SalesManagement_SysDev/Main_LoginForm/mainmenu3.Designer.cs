@@ -320,7 +320,7 @@
             HN.Location = new Point(180, 210);
             HN.Name = "HN";
             HN.Size = new Size(1200, 600);
-            HN.TabIndex = 0;
+            HN.TabIndex = 3;
             HN.Visible = false;
             // 
             // b_rec
@@ -366,6 +366,7 @@
             listViewLog.Name = "listViewLog";
             listViewLog.Size = new Size(574, 96);
             listViewLog.TabIndex = 1002;
+            listViewLog.TabStop = false;
             listViewLog.UseCompatibleStateImageBehavior = false;
             listViewLog.MouseClick　+= listViewLog_MouseClick;
             // 
@@ -389,6 +390,7 @@
             Controls.Add(JU);
             Controls.Add(mas);
             Controls.Add(HN);
+            Location = new Point(180, 210);
             Name = "mainmenu3";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "mainmenu";

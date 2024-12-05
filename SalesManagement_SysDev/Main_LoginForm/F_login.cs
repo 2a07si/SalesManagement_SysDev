@@ -1028,6 +1028,10 @@ namespace SalesManagement_SysDev
             classChangeForms.passwordchange();
         }
 
+        private void close_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 
 }
