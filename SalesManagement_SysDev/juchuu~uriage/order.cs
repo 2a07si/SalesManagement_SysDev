@@ -1267,7 +1267,6 @@ namespace SalesManagement_SysDev
                 
             }
         }
-
         // 発注処理
         private void ProductOrder(int OrID, int ChID, int shortageQuantity)
         {
@@ -1277,7 +1276,7 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     // 注文データの取得 
-                    var order = context.TChumons.SingleOrDefault(o => o.ChID == ChID);
+                    var order = context.TChumons.FirstOrDefault(o => o.ChID == ChID);
                     if (order == null)
                     {
                         MessageBox.Show("注文情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1291,7 +1290,9 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    
+
+                    int prID = orderDetail.PrID;
+
                     // 商品データの取得 
                     var product = context.MProducts.FirstOrDefault(p => p.PrID == prID);
                     if (product == null)
@@ -1299,6 +1300,8 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
+
                     // 新しい発注情報の登録 
                     var newHattyu = new THattyu
                     {
@@ -1309,22 +1312,24 @@ namespace SalesManagement_SysDev
                         HaFlag = 0,
                         HaHidden = null
                     };
+
+
+
                     context.THattyus.Add(newHattyu);
                     context.SaveChanges();
 
-                        // 新しい発注詳細情報の登録 
-                        var newHattyuDetail = new THattyuDetail
-                        {
-                            HaID = newHattyu.HaID,
-                            PrID = orderDetail.PrID,
-                            HaQuantity = shortageQuantity,
-                        };
+                    // 新しい発注詳細情報の登録 
+                    var newHattyuDetail = new THattyuDetail
+                    {
+                        HaID = newHattyu.HaID,
+                        PrID = orderDetail.PrID,
+                        HaQuantity = shortageQuantity,
+                    };
 
-                        context.THattyuDetails.Add(newHattyuDetail);
-                        context.SaveChanges();
+                    context.THattyuDetails.Add(newHattyuDetail);
+                    context.SaveChanges();
 
                     MessageBox.Show("発注登録が完了しました");
-                    
                 }
             }
             catch (InvalidOperationException ex)
@@ -1340,7 +1345,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)
         {
