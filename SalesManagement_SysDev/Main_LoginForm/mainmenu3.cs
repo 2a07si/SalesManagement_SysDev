@@ -39,6 +39,9 @@ namespace SalesManagement_SysDev.Main_LoginForm
             LoadLogData();
             listViewLog.Scrollable = false;
 
+           
+            
+            
         }
         // 従業員名をデータベースから取得して表示するメソッド
         private void LoadEmployeeName()
@@ -225,9 +228,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
             HN.Visible = false;
             mas.Visible = false;
             JU.Visible = true;
-            // b_HN.TabStop = false;
-            // b_mas.TabStop = false;
-
         }
 
         private void b_HN_Click(object sender, EventArgs e)
@@ -236,7 +236,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
             JU.Visible = false;
             mas.Visible = false;
             HN.Visible = true;
-
         }
 
         private void b_mas_Click(object sender, EventArgs e)
