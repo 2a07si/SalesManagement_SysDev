@@ -140,12 +140,13 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
-            DisplayHattyus();
-            DisplayHattyuDetails();
         }
 
         private void B_iti_Click(object sender, EventArgs e)
         {
+            DisplayHattyus();
+            DisplayHattyuDetails();
+
             ListStatus();
             tbtrue();
             HattyuFlag.Enabled = true;
