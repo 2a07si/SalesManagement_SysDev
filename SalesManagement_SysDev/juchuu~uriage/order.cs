@@ -645,12 +645,12 @@ namespace SalesManagement_SysDev
                                 MessageBox.Show("注文詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
-
                             var details = context.TChumonDetails.Where(d => d.ChID == newChID).ToList();
-                            bool isStockSufficient = true; // 初期状態で在庫が足りていると仮定
+                            bool isStockSufficient = true; // 初期状態では全て在庫充足と仮定
 
                             foreach (var detail in details)
                             {
+                                // 在庫情報を取得
                                 var stock = context.TStocks.SingleOrDefault(s => s.PrID == detail.PrID);
                                 if (stock == null)
                                 {
@@ -660,37 +660,39 @@ namespace SalesManagement_SysDev
                                     return;
                                 }
 
-                                // 在庫確認、足りない場合は発注処理を行う 
+                                // 在庫確認
                                 int remainingStock = stock.StQuantity - detail.ChQuantity;
                                 if (remainingStock < 0)
                                 {
-                                    // 在庫が足りない場合、発注処理を行う 
-                                    int shortageQuantity = Math.Abs(remainingStock); // 足りない数量 
-                                    ProductOrder(newOrder.OrID, newOrder.ChID, shortageQuantity);
-                                    MessageBox.Show($"商品ID: {detail.PrID} の在庫が{shortageQuantity}個の不足しています。発注処理を行いました。");
+                                    // 在庫不足時
+                                    int shortageQuantity = Math.Abs(remainingStock); // 足りない数量
+                                    ProductOrder(newOrder.OrID, detail.ChID, shortageQuantity); // 不足分を発注
+                                    MessageBox.Show($"商品ID: {detail.PrID} の在庫が {shortageQuantity} 個不足しています。発注処理を行いました。");
 
-                                    // 在庫不足が発生したので非表示設定で出庫登録
+                                    // 全体の状態を在庫不足に設定
                                     isStockSufficient = false;
                                 }
                                 else
                                 {
-                                    // 在庫が足りている場合は出庫処理 
-                                    stock.StQuantity -= detail.ChQuantity;
-                                    MessageBox.Show($"商品ID: {detail.PrID}, 残り在庫: {stock.StQuantity}"); // 残り在庫を表示 
+                                    // 在庫が足りている場合
+                                    stock.StQuantity -= detail.ChQuantity; // 在庫を減らす
+                                    context.SaveChanges(); // 在庫情報をデータベースに保存
+                                    MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}"); // 残り在庫を表示
                                 }
                             }
 
-                            // 在庫の状況に応じて出庫処理を実行
+                            // 最終的な在庫状況に基づいて OrdersConfirm を実行
                             if (isStockSufficient)
                             {
-                                OrdersConfirm(int.Parse(JyutyuID), newOrder.ChID, 0, null, 0, 0); // 在庫が足りている場合
+                                OrdersConfirm(int.Parse(JyutyuID), newOrder.ChID, 0, null, 0, 0); // 在庫充足時の処理
                             }
                             else
                             {
-                                OrdersConfirm(int.Parse(JyutyuID), newOrder.ChID, 1, "在庫不足のため非表示中", 0, 0); // 在庫不足の場合
+                                OrdersConfirm(int.Parse(JyutyuID), newOrder.ChID, 1, "在庫不足のため非表示中", 0, 0); // 在庫不足時の処理
                             }
 
                             MessageBox.Show("出庫登録が完了しました。");
+
                         }
                         else
                         {
