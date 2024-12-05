@@ -309,7 +309,7 @@ namespace SalesManagement_SysDev
                 TBShainID.Focus();
                 return;
             }
-            if (date.Value > DateTime.Today)
+            if (date.Value > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "注文" +
@@ -565,7 +565,7 @@ namespace SalesManagement_SysDev
                     TBShainID.Focus();
                     return;
                 }
-                if (date.Value > DateTime.Today)
+                if (date.Value > DateTime.Now)
                 {
                     var result = MessageBox.Show(
                         "受注年月日が未来を指していますが、よろしいですか？",
@@ -1148,7 +1148,7 @@ namespace SalesManagement_SysDev
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
-                var order = context.TChumons.SingleOrDefault(o => o.ChID == ChID);
+                var order = context.TChumons.FirstOrDefault(o => o.ChID == ChID);
 
                 if (order == null)
                 {
@@ -1353,11 +1353,7 @@ namespace SalesManagement_SysDev
 
                     if (checkers.Any()) // レコードが1件以上見つかった場合
                     {
-                        foreach (var checker in checkers)
-                        {
-                            // SyukkoIDをSyIDで更新
-                            checker.SyukkoID = SyID.ToString();
-                        }
+                        //checkers.SyukkoID = SyID.ToString();
 
                         // 変更を保存
                         context.SaveChanges();

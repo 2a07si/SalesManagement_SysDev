@@ -239,6 +239,7 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void HandleOrderDetailOperation()
@@ -328,7 +329,7 @@ namespace SalesManagement_SysDev
                     TBKokyakuID.Focus();
                     return;
                 }
-                if (jyutyuDate > DateTime.Today)
+                if (jyutyuDate > DateTime.Now)
                 {
                     var result = MessageBox.Show(
                         "受注日が未来を指していますが、よろしいですか？",
@@ -505,7 +506,7 @@ namespace SalesManagement_SysDev
                     TBShainID.Focus();
                     return;
                 }
-                if (date.Value > DateTime.Today)
+                if (date.Value > DateTime.Now)
                 {
                     var result = MessageBox.Show(
                         "受注日が未来を指していますが、よろしいですか？",
@@ -566,6 +567,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplayOrders();
                     DisplayOrderDetails();
+                    ResetYellowBackgrounds(this);
                 }
             }
             catch (FormatException)
@@ -1334,6 +1336,24 @@ namespace SalesManagement_SysDev
 
             }
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
+
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
+
 
         // 数値のみを許可するテキストボックスの初期設定
         private void SetupNumericOnlyTextBoxes()

@@ -349,7 +349,7 @@ namespace SalesManagement_SysDev
                         DisplayReceivingStocks(); // 更新後に入庫情報を再表示
                         DisplayReceivingStockDetails();
                         Log_Receive(receivingStock.WaID);
-
+                        ResetYellowBackgrounds(this);
 
 
                     }
@@ -439,6 +439,7 @@ namespace SalesManagement_SysDev
                     DisplayReceivingStocks();
                     DisplayReceivingStockDetails();
                     Log_Receive(newReceivingStock.WaID);
+                    ResetYellowBackgrounds(this);
                 }
                 catch (DbUpdateException ex)
                 {
@@ -614,6 +615,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("入庫詳細の更新が成功しました。");
                     DisplayReceivingStockDetails();
                     Log_Receive(receivingStockDetail.WaDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -700,6 +702,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("入庫詳細の登録が成功しました。");
                     DisplayReceivingStockDetails();
                     Log_Receive(newReceivingStockDetail.WaDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 catch (DbUpdateException ex)
                 {
@@ -1239,7 +1242,23 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
 
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
 
     }
 }
