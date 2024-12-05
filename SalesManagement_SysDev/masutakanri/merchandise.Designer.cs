@@ -430,6 +430,7 @@
             b_mer.Name = "b_mer";
             b_mer.Size = new Size(120, 90);
             b_mer.TabIndex = 10;
+            b_mer.TabStop = false;
             b_mer.Text = "商品";
             b_mer.UseVisualStyleBackColor = false;
             // 

@@ -588,6 +588,7 @@
             b_arr.Name = "b_arr";
             b_arr.Size = new Size(120, 90);
             b_arr.TabIndex = 11;
+            b_arr.TabStop = false;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
             b_arr.Paint += b_arr_Paint;

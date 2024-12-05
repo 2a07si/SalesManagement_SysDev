@@ -160,6 +160,7 @@
             b_hor.Name = "b_hor";
             b_hor.Size = new Size(120, 90);
             b_hor.TabIndex = 8;
+            b_hor.TabStop = false;
             b_hor.Text = "発注";
             b_hor.UseVisualStyleBackColor = false;
             b_hor.Paint += b_hor_Paint;

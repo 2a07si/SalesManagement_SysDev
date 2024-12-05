@@ -80,6 +80,7 @@
             b_emp.Name = "b_emp";
             b_emp.Size = new Size(120, 90);
             b_emp.TabIndex = 7;
+            b_emp.TabStop = false;
             b_emp.Text = "社員";
             b_emp.UseVisualStyleBackColor = false;
             // 
@@ -272,6 +273,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1400, 490);
             dataGridView1.TabIndex = 19;
+            dataGridView1.TabStop = false;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // label5

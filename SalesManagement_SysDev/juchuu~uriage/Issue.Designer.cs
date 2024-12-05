@@ -235,6 +235,7 @@
             b_iss.Name = "b_iss";
             b_iss.Size = new Size(120, 90);
             b_iss.TabIndex = 17;
+            b_iss.TabStop = false;
             b_iss.Text = "出庫";
             b_iss.UseVisualStyleBackColor = false;
             b_iss.Paint += b_iss_Paint;
