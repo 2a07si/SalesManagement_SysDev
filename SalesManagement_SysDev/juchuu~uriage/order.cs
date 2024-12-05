@@ -1285,11 +1285,24 @@ namespace SalesManagement_SysDev
 
                     // 注文詳細データの取得 
                     var orderDetail = context.TChumonDetails.Where(o => o.ChID == ChID).ToList();
-                    if (orderDetail == null)
+                    if (orderDetail == null || orderDetail.Count == 0)
                     {
                         MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
+                    var newHattyu = new THattyu
+                    {
+                        MaID = null, // 商品ごとに異なる場合はnullで初期化
+                        EmID = int.Parse(order.EmID.ToString()),
+                        HaDate = order.ChDate ?? DateTime.Now, // 日付が空なら現在日時
+                        WaWarehouseFlag = 0,
+                        HaFlag = 0,
+                        HaHidden = null
+                    };
+
+                    context.THattyus.Add(newHattyu);
+                    context.SaveChanges();
 
                     foreach (var orderDetails in orderDetail)
                     {
@@ -1302,18 +1315,6 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-
-
-                        // 新しい発注情報の登録 
-                        var newHattyu = new THattyu
-                        {
-                            MaID = product.MaID,
-                            EmID = int.Parse(order.EmID.ToString()),
-                            HaDate = order.ChDate ?? DateTime.Now, // 日付が空なら現在日時 
-                            WaWarehouseFlag = 0,
-                            HaFlag = 0,
-                            HaHidden = null
-                        };
 
                         // 新しい発注詳細情報の登録 
                         var newHattyuDetail = new THattyuDetail
