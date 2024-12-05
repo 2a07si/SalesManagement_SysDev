@@ -612,7 +612,7 @@ namespace SalesManagement_SysDev
                 }
 
                 // 注文が存在しない場合、新規作成 
-                var order = context.TChumons.SingleOrDefault(o => o.OrID == int.Parse(JyutyuID));
+                var order = context.TChumons.FirstOrDefault(o => o.OrID == int.Parse(JyutyuID));
                 if (order == null)
                 {
                     try
@@ -1284,7 +1284,7 @@ namespace SalesManagement_SysDev
                     }
 
                     // 注文詳細データの取得 
-                    var orderDetail = context.TChumonDetails.SingleOrDefault(o => o.ChID == ChID);
+                    var orderDetail = context.TChumonDetails.FirstOrDefault(o => o.ChID == ChID);
                     if (orderDetail == null)
                     {
                         MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
