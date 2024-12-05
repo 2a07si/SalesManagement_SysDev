@@ -1284,12 +1284,13 @@ namespace SalesManagement_SysDev
                     }
 
                     // 注文詳細データの取得 
-                    var orderDetail = context.TChumonDetails.FirstOrDefault(o => o.ChID == ChID);
+                    var orderDetail = context.TChumonDetails.SingleOrDefault(o => o.ChID == ChID);
                     if (orderDetail == null)
                     {
                         MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+<<<<<<< HEAD
 
                     int prID = orderDetail.PrID;
 
@@ -1317,6 +1318,34 @@ namespace SalesManagement_SysDev
 
                     context.THattyus.Add(newHattyu);
                     context.SaveChanges();
+=======
+                        int prID = orderDetail.PrID;
+
+                        // 商品データの取得 
+                        var product = context.MProducts.SingleOrDefault(p => p.PrID == prID);
+                        if (product == null)
+                        {
+                            MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+
+                        // 新しい発注情報の登録 
+                        var newHattyu = new THattyu
+                        {
+                            MaID = product.MaID,
+                            EmID = int.Parse(order.EmID.ToString()),
+                            HaDate = order.ChDate ?? DateTime.Now, // 日付が空なら現在日時 
+                            WaWarehouseFlag = 0,
+                            HaFlag = 0,
+                            HaHidden = null
+                        };
+
+
+
+                        context.THattyus.Add(newHattyu);
+                        context.SaveChanges();
+>>>>>>> b7680a99982b42d08f581bc918e497b6912c9f2d
 
                     // 新しい発注詳細情報の登録 
                     var newHattyuDetail = new THattyuDetail
@@ -1329,7 +1358,11 @@ namespace SalesManagement_SysDev
                     context.THattyuDetails.Add(newHattyuDetail);
                     context.SaveChanges();
 
+<<<<<<< HEAD
                     MessageBox.Show("発注登録が完了しました");
+=======
+                        MessageBox.Show("発注登録が完了しました");
+>>>>>>> b7680a99982b42d08f581bc918e497b6912c9f2d
                 }
             }
             catch (InvalidOperationException ex)
