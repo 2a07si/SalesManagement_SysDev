@@ -1314,7 +1314,8 @@ namespace SalesManagement_SysDev
                             HaFlag = 0,
                             HaHidden = null
                         };
-
+                        context.THattyus.Add(newHattyu);
+                        context.SaveChanges();
                         // 新しい発注詳細情報の登録 
                         var newHattyuDetail = new THattyuDetail
                         {
