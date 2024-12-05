@@ -61,7 +61,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
             DisplayOrderDetails();
-　          b_reg.Enabled = false;
+            b_reg.Enabled = false;
             b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
@@ -301,7 +301,7 @@ namespace SalesManagement_SysDev
                 TBJyutyuID.Focus();
                 MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }   
+            }
             if (TBShainID.Text != empID)
             {
                 MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");

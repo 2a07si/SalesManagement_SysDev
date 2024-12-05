@@ -160,6 +160,7 @@
             b_rec.Name = "b_rec";
             b_rec.Size = new Size(120, 90);
             b_rec.TabIndex = 9;
+            b_rec.TabStop = false;
             b_rec.Text = "入庫";
             b_rec.UseVisualStyleBackColor = false;
             b_rec.Paint += b_rec_Paint;

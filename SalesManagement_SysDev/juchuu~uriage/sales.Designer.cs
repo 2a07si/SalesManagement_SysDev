@@ -188,6 +188,7 @@
             b_sal.Name = "b_sal";
             b_sal.Size = new Size(120, 90);
             b_sal.TabIndex = 14;
+            b_sal.TabStop = false;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
             // 

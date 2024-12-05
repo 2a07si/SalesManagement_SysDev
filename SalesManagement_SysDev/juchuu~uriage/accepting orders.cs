@@ -845,7 +845,7 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    
+
 
 
                     var newOrderDetail = new TOrderDetail
@@ -891,7 +891,7 @@ namespace SalesManagement_SysDev
                         // Yesが選ばれた場合の処理（受注処理確定）
                         UpdateOrderAccept(jyutyuID);
                     }
-                    
+
                 }
             }
             catch (FormatException)

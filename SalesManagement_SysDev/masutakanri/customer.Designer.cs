@@ -107,6 +107,7 @@
             b_cus.Name = "b_cus";
             b_cus.Size = new Size(120, 90);
             b_cus.TabIndex = 11;
+            b_cus.TabStop = false;
             b_cus.Text = "顧客";
             b_cus.UseVisualStyleBackColor = false;
             // 
@@ -314,6 +315,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1400, 490);
             dataGridView1.TabIndex = 18;
+            dataGridView1.TabStop = false;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 

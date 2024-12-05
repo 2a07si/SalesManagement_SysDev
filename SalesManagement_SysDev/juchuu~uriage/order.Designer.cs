@@ -195,6 +195,7 @@
             b_ord.Name = "b_ord";
             b_ord.Size = new Size(120, 90);
             b_ord.TabIndex = 9;
+            b_ord.TabStop = false;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
             b_ord.Paint += b_ord_Paint;

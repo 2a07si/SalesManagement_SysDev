@@ -109,6 +109,7 @@
             b_sto.Name = "b_sto";
             b_sto.Size = new Size(120, 90);
             b_sto.TabIndex = 9;
+            b_sto.TabStop = false;
             b_sto.Text = "在庫";
             b_sto.UseVisualStyleBackColor = false;
             // 

@@ -209,6 +209,7 @@
             b_shi.Name = "b_shi";
             b_shi.Size = new Size(120, 90);
             b_shi.TabIndex = 12;
+            b_shi.TabStop = false;
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
             b_shi.Paint += b_shi_Paint;
