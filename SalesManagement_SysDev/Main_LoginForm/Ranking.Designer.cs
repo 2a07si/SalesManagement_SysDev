@@ -140,7 +140,7 @@
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView2.Size = new Size(700, 440);
+            dataGridView2.Size = new Size(700, 437);
             dataGridView2.TabIndex = 9;
             dataGridView2.TabStop = false;
             // 
@@ -174,7 +174,7 @@
             panel1.Controls.Add(label18);
             panel1.Controls.Add(TBKagen);
             panel1.Controls.Add(label14);
-            panel1.Location = new Point(105, 159);
+            panel1.Location = new Point(105, 154);
             panel1.Name = "panel1";
             panel1.Size = new Size(720, 690);
             panel1.TabIndex = 7;
@@ -338,7 +338,7 @@
             panel2.Controls.Add(TBKagen1);
             panel2.Controls.Add(updateLabel27);
             panel2.Controls.Add(dataGridView2);
-            panel2.Location = new Point(825, 159);
+            panel2.Location = new Point(825, 154);
             panel2.Name = "panel2";
             panel2.Size = new Size(720, 690);
             panel2.TabIndex = 281;
