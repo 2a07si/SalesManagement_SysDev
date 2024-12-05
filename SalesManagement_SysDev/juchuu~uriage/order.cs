@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using SalesManagement_SysDev.Entity;
 using static SalesManagement_SysDev.Classまとめ.StockManager;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SalesManagement_SysDev
 {
@@ -121,7 +122,7 @@ namespace SalesManagement_SysDev
         {
             UpdateStatus();
             tbtrue();
-            TyumonFlag.Enabled = false;
+            TyumonFlag.Enabled = true;
         }
         private void UpdateStatus()
         {
@@ -133,7 +134,7 @@ namespace SalesManagement_SysDev
         {
             RegisterStatus();
             tbfalse();
-            TyumonFlag.Enabled = true;
+            TyumonFlag.Enabled = false;
         }
 
         private void RegisterStatus()
@@ -373,8 +374,7 @@ namespace SalesManagement_SysDev
                 }
 
                 var order = context.TChumons.FirstOrDefault(o => o.ChID.ToString() == ChumonID);
-
-
+                
                 if (order != null)
                 {
                     order.SoID = int.Parse(ShopID);
@@ -403,36 +403,68 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+                        // 対応するすべての注文詳細を取得
+                        var details = context.TChumonDetails.Where(d => d.ChID == int.Parse(ChumonID)).ToList();
+                        bool hasShortage = false; // 在庫不足が1つでもあれば true にする
+                        string hiddenReason = null; // 非表示理由
+                        int hiddenFlag = 0; // 非表示フラグ
+                        int totalShortage = 0; // 総不足数
 
-
-                        var detail = context.TChumonDetails.FirstOrDefault(d => d.ChID == int.Parse(ChumonID));
-
-                        var stock = context.TStocks.FirstOrDefault(s => s.PrID == detail.PrID);
-                        if (stock == null || stock.StQuantity < detail.ChQuantity)
+                        foreach (var detail in details)
                         {
-                            // 在庫が不足している場合 
-                            var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
-                            stock.StQuantity -= detail.ChQuantity;
-                            // 発注処理を行う 
-                            Checker(order.OrID, shortageQuantity);
-                            ProductOrder(int.Parse(OrderID), int.Parse(ChumonID), shortageQuantity);
+                            var stock = context.TStocks.FirstOrDefault(s => s.PrID == detail.PrID);
+                            if (stock == null || stock.StQuantity < detail.ChQuantity)
+                            {
+                                hasShortage = true; // 在庫不足が発生
+                                hiddenReason = "在庫不足のため非表示中";
+                                hiddenFlag = 1;
 
+                                // 在庫不足処理
+                                var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
+                                stock.StQuantity -= (stock?.StQuantity ?? 0); // 在庫を可能な範囲で減らす
+                                totalShortage += shortageQuantity; // 総不足数に加算
 
-                            MessageBox.Show($"商品ID: {detail.PrID}の在庫が不足しているため発注処理を行いました。");
+                                // 発注処理
+                                ProductOrder(int.Parse(OrderID), detail.ChID, shortageQuantity);
 
-                            // 非表示フラグと理由を設定して出庫登録 
-                            OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 1, "在庫不足のため非表示中");
+                                MessageBox.Show($"商品ID: {detail.PrID}の在庫が不足しているため発注処理を行いました。");
+                            }
+                            else
+                            {
+                                // 在庫充足処理
+                                stock.StQuantity -= detail.ChQuantity; // 在庫を減らす
+                                MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
+
+                                // 在庫比較（必要なら実行）
+                                StockManager.CompareStock(detail.PrID, stock.StQuantity);
+                            }
+                        }
+
+                        // 最終的に1回だけ OrdersConfirm を実行
+                        if (hasShortage)
+                        {
+                            // 在庫不足があった場合の OrdersConfirm
+                            OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), hiddenFlag, hiddenReason, 1, totalShortage);
                         }
                         else
                         {
-
-                            // 在庫が足りている場合、出庫処理 
-                            stock.StQuantity -= detail.ChQuantity;
-                            MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
-                            OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 0, null);
-                            StockManager.CompareStock(detail.PrID, stock.StQuantity);
-
+                            // 在庫不足がなかった場合の OrdersConfirm
+                            OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), 0, null, 0, 0);
                         }
+
+                        // データの保存
+                        try
+                        {
+                            context.SaveChanges();
+                            DisplayOrders();
+                            DisplayOrderDetails();
+                            MessageBox.Show("処理が正常に完了しました。");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("処理の保存に失敗しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
                         var orders = context.TChumons;
                         order.ChFlag = 1;
                         order.ChHidden = "注文処理確定済";
@@ -652,11 +684,11 @@ namespace SalesManagement_SysDev
                             // 在庫の状況に応じて出庫処理を実行
                             if (isStockSufficient)
                             {
-                                OrdersConfirm(int.Parse(JyutyuID), newOrder.ChID, 0, null); // 在庫が足りている場合
+                                OrdersConfirm(int.Parse(JyutyuID), newOrder.ChID, 0, null, 0, 0); // 在庫が足りている場合
                             }
                             else
                             {
-                                OrdersConfirm(int.Parse(JyutyuID), newOrder.ChID, 1, "在庫不足のため非表示中"); // 在庫不足の場合
+                                OrdersConfirm(int.Parse(JyutyuID), newOrder.ChID, 1, "在庫不足のため非表示中", 0, 0); // 在庫不足の場合
                             }
 
                             MessageBox.Show("出庫登録が完了しました。");
@@ -1143,12 +1175,12 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void OrdersConfirm(int JyutyuID, int ChID, int SyFlag, string SyHidden)
+        private void OrdersConfirm(int JyutyuID, int ChID, int SyFlag, string SyHidden, int fla, int shortagequantity)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
-                var order = context.TChumons.SingleOrDefault(o => o.ChID == ChID);
+                var order = context.TChumons.FirstOrDefault(o => o.ChID == ChID);
 
                 if (order == null)
                 {
@@ -1182,7 +1214,7 @@ namespace SalesManagement_SysDev
                     context.TSyukkos.Add(newSyukko);
                     context.SaveChanges();
                     MessageBox.Show("出庫登録が完了しました。"); // ここでメッセージが表示されることを確認 
-                    Checker2(newSyukko.OrID, newSyukko.SyID);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -1202,7 +1234,7 @@ namespace SalesManagement_SysDev
                 // 各注文詳細に対して処理を実行
                 foreach (var detail in orderDetails)
                 {
-                    var chumonDetail = context.TChumonDetails.SingleOrDefault(o => o.ChID == ChID && o.PrID == detail.PrID);
+                    var chumonDetail = context.TChumonDetails.FirstOrDefault(o => o.ChID == ChID && o.PrID == detail.PrID);
                     if (chumonDetail == null)
                     {
                         throw new Exception($"注文詳細（ChID: {ChID}, PrID: {detail.PrID}）が見つかりません。");
@@ -1218,7 +1250,10 @@ namespace SalesManagement_SysDev
 
                     try
                     {
-                        Checker3(newSyukko.SyID, detail.PrID); // チェック処理
+                        if (fla == 1)
+                        {
+                            checker(newSyukko.SyID, newSyukko.OrID, newSyukkoDetail.PrID, shortagequantity);
+                        }
                         context.TSyukkoDetails.Add(newSyukkoDetail);
                         context.SaveChanges();
                     }
@@ -1227,7 +1262,7 @@ namespace SalesManagement_SysDev
                         throw new Exception($"TSyukkoDetailへの登録に失敗しました: {ex.Message}");
                     }
                 }
-
+                
             }
         }
 
@@ -1248,7 +1283,7 @@ namespace SalesManagement_SysDev
                     }
 
                     // 注文詳細データの取得 
-                    var orderDetail = context.TChumonDetails.SingleOrDefault(o => o.ChID == ChID);
+                    var orderDetail = context.TChumonDetails.FirstOrDefault(o => o.ChID == ChID);
                     if (orderDetail == null)
                     {
                         MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1258,14 +1293,12 @@ namespace SalesManagement_SysDev
                     int prID = orderDetail.PrID;
 
                     // 商品データの取得 
-                    var product = context.MProducts.SingleOrDefault(p => p.PrID == prID);
+                    var product = context.MProducts.FirstOrDefault(p => p.PrID == prID);
                     if (product == null)
                     {
                         MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
-
                     // 新しい発注情報の登録 
                     var newHattyu = new THattyu
                     {
@@ -1276,9 +1309,6 @@ namespace SalesManagement_SysDev
                         HaFlag = 0,
                         HaHidden = null
                     };
-
-
-
                     context.THattyus.Add(newHattyu);
                     context.SaveChanges();
 
@@ -1294,6 +1324,7 @@ namespace SalesManagement_SysDev
                     context.SaveChanges();
 
                     MessageBox.Show("発注登録が完了しました");
+                    
                 }
             }
             catch (InvalidOperationException ex)
@@ -1309,135 +1340,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //発注入庫との中間テーブル登録処理 1
-        private void Checker(int OrID, int Quantity)
-        {
-            MessageBox.Show("チェッカー処理");
-            try
-            {
-                using (var context = new SalesManagementContext())
-                {
-                    var checker = new NyuukoChecker
-                    {
-                        SyukkoID = "未設定",
-                        JyutyuID = OrID.ToString(),
-                        PrID = "未設定",
-                        Flag = false,
-                        Quantity = Quantity,
-                        DelFlag = false
-
-                    };
-                    context.NyuukoCheckers.Add(checker);
-                    context.SaveChanges();
-                    MessageBox.Show(checker.JyutyuID.ToString());
-                    MessageBox.Show("チェッカー処理確定");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message + "内部のやつ" + ex.InnerException.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void Checker2(int OrID, int SyID)
-        {
-            MessageBox.Show("チェッカー２処理");
-            try
-            {
-                using (var context = new SalesManagementContext())
-                {
-                    // OrIDをStringに変換して比較
-                    var checkers = context.NyuukoCheckers
-                                          .Where(c => c.JyutyuID == OrID.ToString())
-                                          .ToList();
-
-                    if (checkers.Any()) // レコードが1件以上見つかった場合
-                    {
-                        foreach (var checker in checkers)
-                        {
-                            // SyukkoIDをSyIDで更新
-                            checker.SyukkoID = SyID.ToString();
-                        }
-
-                        // 変更を保存
-                        context.SaveChanges();
-
-                        // 確定後のチェッカーデータをメッセージボックスで表示
-                        string checkerData = "チェッカー２時点のデータ:\n";
-                        foreach (var checker in checkers)
-                        {
-                            checkerData += $"Checker ID: {checker.ID}\n" +
-                                           $"SyukkoID: {checker.SyukkoID}\n" +
-                                           $"JyutyuID: {checker.JyutyuID}\n" +
-                                           $"PrID: {checker.PrID}\n" +
-                                           $"Flag: {checker.Flag}\n" +
-                                           $"Quantity: {checker.Quantity}\n" +
-                                           $"DelFlag: {checker.DelFlag}\n\n";
-                        }
-
-                        MessageBox.Show(checkerData, "チェッカー２確定後のデータ");
-                    }
-                    else
-                    {
-                        MessageBox.Show("指定されたOrIDに一致するレコードが見つかりませんでした。");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void Checker3(int SyID, int PrID)
-        {
-            MessageBox.Show("チェッカー３処理");
-            try
-            {
-                using (var context = new SalesManagementContext())
-                {
-                    // SyukkoIDをStringに変換して比較
-                    var checkers = context.NyuukoCheckers
-                                          .Where(c => c.SyukkoID == SyID.ToString())
-                                          .ToList();
-
-                    if (checkers.Any()) // レコードが1件以上見つかった場合
-                    {
-                        foreach (var checker in checkers)
-                        {
-                            // PrIDを更新
-                            checker.PrID = PrID.ToString();
-                        }
-
-                        // 変更を保存
-                        context.SaveChanges();
-
-                        // 確定後のチェッカーデータをメッセージボックスで表示
-                        string checkerData = "チェッカー３時点のデータ:\n";
-                        foreach (var checker in checkers)
-                        {
-                            checkerData += $"ID: {checker.ID}\n" +
-                                           $"SyukkoID: {checker.SyukkoID}\n" +
-                                           $"JyutyuID: {checker.JyutyuID}\n" +
-                                           $"PrID: {checker.PrID}\n" +
-                                           $"Flag: {checker.Flag}\n" +
-                                           $"Quantity: {checker.Quantity}\n" +
-                                           $"DelFlag: {checker.DelFlag}\n\n";
-                        }
-
-                        MessageBox.Show(checkerData, "チェッカー３確定後のデータ");
-                    }
-                    else
-                    {
-                        MessageBox.Show("指定されたSyukkoIDに一致するレコードが見つかりませんでした。");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("予期しないエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)
         {
@@ -1777,7 +1680,37 @@ namespace SalesManagement_SysDev
             isProgrammaticChange = false;
         }
 
+        private void checker(int SyID, int OrID, int PrID, int Quantity)
+        {
+            MessageBox.Show("不足分チェッカー作成");
+            string syid = SyID.ToString();
+            string orid = OrID.ToString();
+            string prid = PrID.ToString();
+            int quantity = Quantity;
+            using (var context = new SalesManagementContext())
+            {
+                var Checker = new NyuukoChecker()
+                {
+                    SyukkoID = syid,
+                    JyutyuID = orid,
+                    PrID = prid,
+                    Quantity = quantity,
+                    DelFlag = false
+                };
+                context.NyuukoCheckers.Add(Checker);
+                context.SaveChanges();
 
+                // 登録内容をメッセージボックスで表示
+                string message = $"チェッカー登録内容:\n" +
+                                 $"ID: {Checker.ID}\n" +
+                                 $"出庫ID: {Checker.SyukkoID}\n" +
+                                 $"受注ID: {Checker.JyutyuID}\n" +
+                                 $"商品ID: {Checker.PrID}\n" +
+                                 $"数量: {Checker.Quantity}\n" +
+                                 $"削除フラグ: {Checker.DelFlag}";
+                MessageBox.Show(message, "チェッカー登録完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
 
