@@ -1156,7 +1156,12 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("注文IDが見つかりません。");
                 }
-
+                bool isDuplicate = context.TSyukkos.Any(c => c.OrID == JyutyuID);
+                if (isDuplicate)
+                {
+                    MessageBox.Show($"この受注ID ({JyutyuID}) はすでに登録されています。登録を中止します。");
+                    return;
+                }
                 // 出庫情報をTSyukkoに追加 
                 var newSyukko = new TSyukko
                 {
@@ -1186,11 +1191,6 @@ namespace SalesManagement_SysDev
                     throw new Exception("TSyukkoへの登録に失敗しました: " + ex.Message);
                 }
 
-                var orderDetail = context.TOrderDetails.FirstOrDefault(o => o.OrID == order.OrID);
-                if (orderDetail == null)
-                {
-                    throw new Exception("注文詳細が見つかりません。");
-                }
 
                 // 注文詳細をすべて取得
                 var orderDetails = context.TOrderDetails.Where(o => o.OrID == order.OrID).ToList();
