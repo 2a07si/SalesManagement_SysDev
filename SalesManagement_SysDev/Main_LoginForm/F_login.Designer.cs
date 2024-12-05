@@ -45,7 +45,6 @@
             button2 = new Button();
             button3 = new Button();
             passwordchange = new Button();
-            close = new Button();
             SuspendLayout();
             // 
             // btn_CleateDabase
@@ -214,22 +213,11 @@
             passwordchange.UseVisualStyleBackColor = true;
             passwordchange.Click += passwordchange_Click;
             // 
-            // close
-            // 
-            close.Location = new Point(1372, 12);
-            close.Name = "close";
-            close.Size = new Size(173, 48);
-            close.TabIndex = 15;
-            close.Text = "終了";
-            close.UseVisualStyleBackColor = true;
-            close.Click += close_Click;
-            // 
             // F_login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1578, 844);
-            Controls.Add(close);
             Controls.Add(passwordchange);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -272,6 +260,5 @@
         private Button button2;
         private Button button3;
         private Button passwordchange;
-        private Button close;
     }
 }
