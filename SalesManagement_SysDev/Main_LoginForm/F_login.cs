@@ -775,7 +775,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                
+
 
                 if (!InputValidator.IsNotEmpty(tb_Pass.Text))
                 {

@@ -73,7 +73,6 @@ namespace SalesManagement_SysDev
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
             UpdateStatus();
-            HattyuFlag.Enabled = false;
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -281,7 +280,20 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (date.Value > DateTime.Now)
+            {
+                var result = MessageBox.Show(
+                    "売上日が未来を指していますが、よろしいですか？",
+                    "確認",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
+                if (result == DialogResult.No)
+                {
+                    return; // 処理を中断
+                }
+            }
 
             using (var context = new SalesManagementContext())
             {
@@ -346,7 +358,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         DisplayHattyus(); // 更新後に発注情報を再表示
                         DisplayHattyuDetails();
-
+                        ResetYellowBackgrounds(this);
                         Log_Horder(hattyu.HaID);
                     }
                     catch (DbUpdateException ex)
@@ -419,7 +431,20 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (date.Value > DateTime.Now)
+                {
+                    var result = MessageBox.Show(
+                        "売上日が未来を指していますが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
 
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理を中断
+                    }
+                }
                 // 新しい発注情報を作成
                 var newHattyu = new THattyu
                 {
@@ -440,7 +465,7 @@ namespace SalesManagement_SysDev
                 // 登録成功メッセージ
                 MessageBox.Show("登録が成功しました。");
                 DisplayHattyus(); // 新規登録後の発注情報を再表示
-
+                ResetYellowBackgrounds(this);
                 // 入庫フラグがチェックされている場合、発注詳細の確認を行う
                 if (nyuukoFlag)
                 {
@@ -620,6 +645,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("発注詳細の更新が成功しました。");
                     DisplayHattyuDetails();
                     Log_Horder(orderDetail.HaDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -703,6 +729,7 @@ namespace SalesManagement_SysDev
 
                 DisplayHattyuDetails();
                 Log_Horder(newOrderDetail.HaDetailID);
+                ResetYellowBackgrounds(this);
                 DialogResult result = MessageBox.Show("発注詳細の登録が完了しました。\n発注処理を確定させますか？",
                                      "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -1298,7 +1325,23 @@ namespace SalesManagement_SysDev
             countFlag();
             FlagCount();
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
 
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
     }
 
 }

@@ -317,7 +317,7 @@ namespace SalesManagement_SysDev
                 TBShainID.Focus();
                 return;
             }
-            if (date.Value > DateTime.Today)
+            if (date.Value > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "売上日が未来を指していますが、よろしいですか？",
@@ -396,6 +396,7 @@ namespace SalesManagement_SysDev
                     DisplaySales();
                     DisplaySaleDetails();
                     Log_Sale(sales.SaID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -490,7 +491,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("受注IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if (date.Value > DateTime.Today)
+                    if (date.Value > DateTime.Now)
                     {
                         var result = MessageBox.Show(
                             "売上日が未来を指していますが、よろしいですか？",
@@ -521,6 +522,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplaySales();
                     Log_Sale(newSale.SaID);
+                    ResetYellowBackgrounds(this);
                 }
             }
             catch (FormatException)
@@ -708,6 +710,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("売上詳細の更新が成功しました。");
                     DisplaySaleDetails();
                     Log_Sale(saleDetail.SaDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -816,6 +819,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("売上詳細の登録が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisplaySaleDetails();
                     Log_Sale(newSaleDetail.SaDetailID);
+                    ResetYellowBackgrounds(this);
 
                     // DisplaySaleDetailsの呼び出し
                     try
@@ -1389,7 +1393,23 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
 
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
     }
 
 

@@ -251,6 +251,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("更新が成功しました。");
                     DisplayEmployee();
                     Log_Employee(employee.EmID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -358,6 +359,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("登録が成功しました。");
                 DisplayEmployee();
                 Log_Employee(newEmployee.EmID);
+                ResetYellowBackgrounds(this);
             }
         }
 
@@ -643,7 +645,23 @@ namespace SalesManagement_SysDev
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
 
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
     }
 }
 

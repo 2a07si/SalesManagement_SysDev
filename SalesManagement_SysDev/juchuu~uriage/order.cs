@@ -147,7 +147,6 @@ namespace SalesManagement_SysDev
         {
             ListStatus();
             tbtrue();
-            TyumonFlag.Enabled = false;
         }
         private void ListStatus()
         {
@@ -310,7 +309,7 @@ namespace SalesManagement_SysDev
                 TBShainID.Focus();
                 return;
             }
-            if (date.Value > DateTime.Today)
+            if (date.Value > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "注文" +
@@ -489,7 +488,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("注文更新が成功しました。");
                             DisplayOrders();
                             DisplayOrderDetails();
-
+                            ResetYellowBackgrounds(this);
                             Log_Order(order.OrID);
                         }
                         catch (Exception ex)
@@ -597,7 +596,7 @@ namespace SalesManagement_SysDev
                     TBShainID.Focus();
                     return;
                 }
-                if (date.Value > DateTime.Today)
+                if (date.Value > DateTime.Now)
                 {
                     var result = MessageBox.Show(
                         "受注年月日が未来を指していますが、よろしいですか？",
@@ -700,6 +699,7 @@ namespace SalesManagement_SysDev
 
                         DisplayOrders();
                         DisplayOrderDetails();
+                        ResetYellowBackgrounds(this);
                     }
                     catch (Exception ex)
                     {
@@ -911,6 +911,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("注文詳細の更新が成功しました。");
                     DisplayOrderDetails();
                     Log_Order(orderDetail.ChDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -987,6 +988,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("注文詳細の登録が成功しました。");
                 DisplayOrderDetails();
                 Log_Order(newOrderDetail.ChDetailID);
+                ResetYellowBackgrounds(this);
             }
         }
 
@@ -1289,8 +1291,9 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
-                    int prID = orderDetail.PrID;
+                    foreach (var orderDetails in orderDetail)
+                    {
+                        int prID = orderDetails.PrID;
 
                     // 商品データの取得 
                     var product = context.MProducts.FirstOrDefault(p => p.PrID == prID);
@@ -1312,16 +1315,16 @@ namespace SalesManagement_SysDev
                     context.THattyus.Add(newHattyu);
                     context.SaveChanges();
 
-                    // 新しい発注詳細情報の登録 
-                    var newHattyuDetail = new THattyuDetail
-                    {
-                        HaID = newHattyu.HaID,
-                        PrID = orderDetail.PrID,
-                        HaQuantity = shortageQuantity,
-                    };
+                        // 新しい発注詳細情報の登録 
+                        var newHattyuDetail = new THattyuDetail
+                        {
+                            HaID = newHattyu.HaID,
+                            PrID = orderDetails.PrID,
+                            HaQuantity = shortageQuantity,
+                        };
 
-                    context.THattyuDetails.Add(newHattyuDetail);
-                    context.SaveChanges();
+                        context.THattyuDetails.Add(newHattyuDetail);
+                        context.SaveChanges();
 
                     MessageBox.Show("発注登録が完了しました");
                     

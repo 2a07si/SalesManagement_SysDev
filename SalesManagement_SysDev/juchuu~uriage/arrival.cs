@@ -308,7 +308,7 @@ namespace SalesManagement_SysDev
                 TBShainID.Focus();
                 return;
             }
-            if (date.Value > DateTime.Today)
+            if (date.Value > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "入荷日が未来を指していますが、よろしいですか？",
@@ -417,6 +417,7 @@ namespace SalesManagement_SysDev
                         Log_Arrival(arrival.ArID);
                         DisplayArrivals();
                         DisplayArrivalDetails();
+                        ResetYellowBackgrounds(this);
                     }
                     catch (DbUpdateException ex)
                     {
@@ -538,7 +539,7 @@ namespace SalesManagement_SysDev
                     TBShainID.Focus();
                     return;
                 }
-                if (date.Value > DateTime.Today)
+                if (date.Value > DateTime.Now)
                 {
                     var result = MessageBox.Show(
                         "入荷日が未来を指していますが、よろしいですか？",
@@ -599,6 +600,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("登録が成功しました。");
                         Log_Arrival(newArrival.ArID);
                         DisplayArrivals(); // 入荷情報を再表示
+                        ResetYellowBackgrounds(this);
                     }
                     catch (DbUpdateException ex)
                     {
@@ -830,6 +832,7 @@ namespace SalesManagement_SysDev
                     Log_Arrival(arrivalDetail.ArDetailID);
                     DisplayArrivalDetails();
                     countFlag();
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -909,6 +912,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("入荷詳細の登録が成功しました。");
                 Log_Arrival(newArrivalDetail.ArDetailID);
                 DisplayArrivalDetails();
+                ResetYellowBackgrounds(this);
             }
         }
 
@@ -1542,7 +1546,23 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
 
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
     }
 }
 

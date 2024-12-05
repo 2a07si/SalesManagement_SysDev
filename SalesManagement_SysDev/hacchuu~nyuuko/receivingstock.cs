@@ -274,7 +274,20 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (date.Value > DateTime.Now)
+            {
+                var result = MessageBox.Show(
+                    "売上日が未来を指していますが、よろしいですか？",
+                    "確認",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
+                if (result == DialogResult.No)
+                {
+                    return; // 処理を中断
+                }
+            }
             using (var context = new SalesManagementContext())
             {
                 int nyuuko;
@@ -349,7 +362,7 @@ namespace SalesManagement_SysDev
                         DisplayReceivingStocks(); // 更新後に入庫情報を再表示
                         DisplayReceivingStockDetails();
                         Log_Receive(receivingStock.WaID);
-
+                        ResetYellowBackgrounds(this);
 
 
                     }
@@ -420,7 +433,20 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (date.Value > DateTime.Now)
+                {
+                    var result = MessageBox.Show(
+                        "売上日が未来を指していますが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
 
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理を中断
+                    }
+                }
                 var newReceivingStock = new TWarehousing
                 {
                     HaID = hattyuID, // 発注IDを適切に設定
@@ -439,6 +465,7 @@ namespace SalesManagement_SysDev
                     DisplayReceivingStocks();
                     DisplayReceivingStockDetails();
                     Log_Receive(newReceivingStock.WaID);
+                    ResetYellowBackgrounds(this);
                 }
                 catch (DbUpdateException ex)
                 {
@@ -614,6 +641,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("入庫詳細の更新が成功しました。");
                     DisplayReceivingStockDetails();
                     Log_Receive(receivingStockDetail.WaDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -700,6 +728,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("入庫詳細の登録が成功しました。");
                     DisplayReceivingStockDetails();
                     Log_Receive(newReceivingStockDetail.WaDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 catch (DbUpdateException ex)
                 {
@@ -1239,7 +1268,23 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
 
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
 
     }
 }

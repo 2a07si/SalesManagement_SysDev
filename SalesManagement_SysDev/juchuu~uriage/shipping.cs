@@ -410,7 +410,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         DisplayShipping(); // 更新後に出荷情報を再表示
                         DisplayShippingDetails();
-
+                        ResetYellowBackgrounds(this);
                         Log_Shipping(shipping.SoID);
                     }
                     catch (DbUpdateException ex)
@@ -571,6 +571,7 @@ namespace SalesManagement_SysDev
                         context.SaveChanges();
                         MessageBox.Show("登録が成功しました。");
                         Log_Shipping(newShipping.ShID);
+                        ResetYellowBackgrounds(this);
 
                         // 出荷情報が登録されたら、出荷確認を行う
                         if (shipFlag)
@@ -793,6 +794,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("出荷詳細の更新が成功しました。");
                     DisplayShippingDetails();
                     Log_Shipping(shippingDetail.ShDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -867,6 +869,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("出荷詳細の登録が成功しました。");
                 DisplayShippingDetails();
                 Log_Shipping(newShippingDetail.ShDetailID);
+                ResetYellowBackgrounds(this);
             }
         }
 
@@ -1481,7 +1484,23 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
 
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
     }
 
 
