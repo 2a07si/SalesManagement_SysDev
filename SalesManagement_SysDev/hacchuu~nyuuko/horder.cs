@@ -74,6 +74,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.UpDateStatus(label2);
             UpdateStatus();
             b_reg.Enabled = false;
+            b_reg.BackColor = Color.Gray;
         }
 
         private void clear_Click(object sender, EventArgs e)
