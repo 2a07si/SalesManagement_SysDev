@@ -281,7 +281,20 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (date.Value > DateTime.Now)
+            {
+                var result = MessageBox.Show(
+                    "売上日が未来を指していますが、よろしいですか？",
+                    "確認",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
+                if (result == DialogResult.No)
+                {
+                    return; // 処理を中断
+                }
+            }
 
             using (var context = new SalesManagementContext())
             {
@@ -419,7 +432,20 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (date.Value > DateTime.Now)
+                {
+                    var result = MessageBox.Show(
+                        "売上日が未来を指していますが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
 
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理を中断
+                    }
+                }
                 // 新しい発注情報を作成
                 var newHattyu = new THattyu
                 {

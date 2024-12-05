@@ -433,6 +433,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             DisplayOrders();
                             DisplayOrderDetails();
+                            ResetYellowBackgrounds(this);
                         }
                         catch (Exception ex)
                         {
@@ -775,6 +776,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("受注詳細の更新が成功しました。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayOrderDetails();
                         Log_Accept(orderDetail.OrDetailID);
+                        ResetYellowBackgrounds(this);
 
                         MessageBox.Show("ログ登録完了");
                     }
@@ -893,6 +895,7 @@ namespace SalesManagement_SysDev
                         // Yesが選ばれた場合の処理（受注処理確定）
                         UpdateOrderAccept(jyutyuID);
                     }
+                    ResetYellowBackgrounds(this);
 
                 }
             }

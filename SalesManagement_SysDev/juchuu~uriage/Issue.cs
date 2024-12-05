@@ -320,7 +320,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (date.Value > DateTime.Today)
+            if (date.Value > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "出庫日が未来を指していますが、よろしいですか？",
@@ -547,7 +547,7 @@ namespace SalesManagement_SysDev
                     TBShainID.Focus();
                     return;
                 }
-                if (date.Value > DateTime.Today)
+                if (date.Value > DateTime.Now)
                 {
                     var result = MessageBox.Show(
                         "出庫日が未来を指していますが、よろしいですか？",

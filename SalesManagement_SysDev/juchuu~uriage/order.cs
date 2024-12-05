@@ -457,7 +457,7 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("注文更新が成功しました。");
                             DisplayOrders();
                             DisplayOrderDetails();
-
+                            ResetYellowBackgrounds(this);
                             Log_Order(order.OrID);
                         }
                         catch (Exception ex)
@@ -668,6 +668,7 @@ namespace SalesManagement_SysDev
 
                         DisplayOrders();
                         DisplayOrderDetails();
+                        ResetYellowBackgrounds(this);
                     }
                     catch (Exception ex)
                     {
@@ -879,6 +880,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("注文詳細の更新が成功しました。");
                     DisplayOrderDetails();
                     Log_Order(orderDetail.ChDetailID);
+                    ResetYellowBackgrounds(this);
                 }
                 else
                 {
@@ -955,6 +957,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("注文詳細の登録が成功しました。");
                 DisplayOrderDetails();
                 Log_Order(newOrderDetail.ChDetailID);
+                ResetYellowBackgrounds(this);
             }
         }
 
@@ -1773,7 +1776,23 @@ namespace SalesManagement_SysDev
             isProgrammaticChange = false;
         }
 
+        private void ResetYellowBackgrounds(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // テキストボックスかつ背景色が黄色かを判定
+                if (control is TextBox textBox && textBox.BackColor == Color.Yellow)
+                {
+                    textBox.BackColor = SystemColors.Window; // 元の背景色に戻す
+                }
 
+                // 再帰的に子コントロールをチェック
+                if (control.HasChildren)
+                {
+                    ResetYellowBackgrounds(control);
+                }
+            }
+        }
     }
 }
 

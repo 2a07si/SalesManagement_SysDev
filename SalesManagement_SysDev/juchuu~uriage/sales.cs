@@ -317,7 +317,7 @@ namespace SalesManagement_SysDev
                 TBShainID.Focus();
                 return;
             }
-            if (date.Value > DateTime.Today)
+            if (date.Value > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "売上日が未来を指していますが、よろしいですか？",
@@ -491,7 +491,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("受注IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if (date.Value > DateTime.Today)
+                    if (date.Value > DateTime.Now)
                     {
                         var result = MessageBox.Show(
                             "売上日が未来を指していますが、よろしいですか？",
