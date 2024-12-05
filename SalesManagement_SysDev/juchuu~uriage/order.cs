@@ -1287,11 +1287,13 @@ namespace SalesManagement_SysDev
 
                     // 注文詳細データの取得 
                     var orderDetail = context.TChumonDetails.Where(o => o.ChID == ChID).ToList();
-                    if (orderDetail == null)
+                    if (orderDetail == null || orderDetail.Count == 0)
                     {
                         MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
+
 
                     foreach (var orderDetails in orderDetail)
                     {
