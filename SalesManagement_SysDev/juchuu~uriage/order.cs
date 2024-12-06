@@ -424,7 +424,7 @@ namespace SalesManagement_SysDev
                                 totalShortage += shortageQuantity; // 総不足数に加算
 
                                 // 発注処理
-                                ProductOrder(int.Parse(OrderID), detail.ChID, shortageQuantity);
+                                ProductOrder(int.Parse(OrderID), detail.ChID, shortageQuantity, detail.PrID);
 
                                 MessageBox.Show($"商品ID: {detail.PrID}の在庫が不足しているため発注処理を行いました。");
                             }
@@ -498,6 +498,7 @@ namespace SalesManagement_SysDev
                     }
 
                     DisplayOrders(); // 注文情報を表示 
+                    DisplayOrderDetails();
                 }
                 else
                 {
@@ -666,7 +667,7 @@ namespace SalesManagement_SysDev
                                 {
                                     // 在庫不足時
                                     int shortageQuantity = Math.Abs(remainingStock); // 足りない数量
-                                    ProductOrder(newOrder.OrID, detail.ChID, shortageQuantity); // 不足分を発注
+                                    ProductOrder(newOrder.OrID, detail.ChID, shortageQuantity, detail.PrID); // 不足分を発注
                                     MessageBox.Show($"商品ID: {detail.PrID} の在庫が {shortageQuantity} 個不足しています。発注処理を行いました。");
 
                                     // 全体の状態を在庫不足に設定
@@ -1268,16 +1269,15 @@ namespace SalesManagement_SysDev
                 }
                 
             }
-        }
-        // 発注処理
-        private void ProductOrder(int OrID, int ChID, int shortageQuantity)
+        }// 発注処理
+        private void ProductOrder(int OrID, int ChID, int shortageQuantity, int PrID)
         {
             MessageBox.Show("発注登録を開始します");
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // 注文データの取得 
+                    // 注文データの取得  
                     var order = context.TChumons.FirstOrDefault(o => o.ChID == ChID);
                     if (order == null)
                     {
@@ -1285,53 +1285,46 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    // 注文詳細データの取得 
-                    var orderDetail = context.TChumonDetails.Where(o => o.ChID == ChID).ToList();
-                    if (orderDetail == null || orderDetail.Count == 0)
+                    // 該当する注文詳細データの取得  
+                    var orderDetail = context.TChumonDetails.FirstOrDefault(o => o.ChID == ChID && o.PrID == PrID);
+                    if (orderDetail == null)
                     {
-                        MessageBox.Show("注文詳細情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"指定された商品ID: {PrID} に一致する注文詳細が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-
-
-                    foreach (var orderDetails in orderDetail)
+                    // 商品データの取得  
+                    var product = context.MProducts.FirstOrDefault(p => p.PrID == PrID);
+                    if (product == null)
                     {
-                        int prID = orderDetails.PrID;
-
-                        // 商品データの取得 
-                        var product = context.MProducts.FirstOrDefault(p => p.PrID == prID);
-                        if (product == null)
-                        {
-                            MessageBox.Show("指定された商品情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-
-
-                        // 新しい発注情報の登録 
-                        var newHattyu = new THattyu
-                        {
-                            MaID = product.MaID,
-                            EmID = int.Parse(order.EmID.ToString()),
-                            HaDate = order.ChDate ?? DateTime.Now, // 日付が空なら現在日時 
-                            WaWarehouseFlag = 0,
-                            HaFlag = 0,
-                            HaHidden = null
-                        };
-                        context.THattyus.Add(newHattyu);
-                        context.SaveChanges();
-                        // 新しい発注詳細情報の登録 
-                        var newHattyuDetail = new THattyuDetail
-                        {
-                            HaID = newHattyu.HaID,
-                            PrID = orderDetails.PrID,
-                            HaQuantity = shortageQuantity,
-                        };
-
-                        context.THattyuDetails.Add(newHattyuDetail);
-                        context.SaveChanges();
-                        MessageBox.Show("発注登録が完了しました");
+                        MessageBox.Show($"指定された商品ID: {PrID} の商品情報が見つかりません。発注処理を中止します。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
+
+                    // 新しい発注情報の登録  
+                    var newHattyu = new THattyu
+                    {
+                        MaID = product.MaID,
+                        EmID = int.Parse(order.EmID.ToString()),
+                        HaDate = order.ChDate ?? DateTime.Now, // 日付が空なら現在日時  
+                        WaWarehouseFlag = 0,
+                        HaFlag = 0,
+                        HaHidden = null
+                    };
+                    context.THattyus.Add(newHattyu);
+                    context.SaveChanges();
+
+                    // 新しい発注詳細情報の登録  
+                    var newHattyuDetail = new THattyuDetail
+                    {
+                        HaID = newHattyu.HaID,
+                        PrID = orderDetail.PrID,
+                        HaQuantity = shortageQuantity,
+                    };
+                    context.THattyuDetails.Add(newHattyuDetail);
+                    context.SaveChanges();
+
+                    MessageBox.Show($"商品ID: {PrID} の発注登録が完了しました");
                 }
             }
             catch (InvalidOperationException ex)
@@ -1344,7 +1337,6 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                // エラーメッセージを一か所で組み立て
                 string errorMessage = "予期しないエラーが発生しました:\n" +
                                       ex.Message +
                                       (ex.InnerException != null ?
@@ -1352,8 +1344,8 @@ namespace SalesManagement_SysDev
 
                 MessageBox.Show(errorMessage, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
+
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)
         {
