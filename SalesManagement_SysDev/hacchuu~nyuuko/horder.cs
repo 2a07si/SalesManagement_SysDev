@@ -86,7 +86,6 @@ namespace SalesManagement_SysDev
         {
             TBHattyuuID.Text = "";
             TBMakerID.Text = "";
-            TBShainID.Text = "";
             HattyuFlag.Checked = false;
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
@@ -102,6 +101,10 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
+            if (checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
         }
 
 

@@ -119,7 +119,10 @@ namespace SalesManagement_SysDev
             dateCheckBox.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
-            UpdateTextBoxState(checkBoxSyain.Checked);
+            if (checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
         }
         private void b_ser_Click(object sender, EventArgs e)
         {
