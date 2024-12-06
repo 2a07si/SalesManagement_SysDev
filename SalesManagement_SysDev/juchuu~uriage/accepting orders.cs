@@ -887,7 +887,7 @@ namespace SalesManagement_SysDev
                     Log_Accept(newOrderDetail.OrDetailID);
                     DisplayOrderDetails();
                     DialogResult result = MessageBox.Show("受注詳細の登録が完了しました。\n受注処理を確定させますか？",
-                                      "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                      "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
                     // Yes/Noでの分岐処理
                     if (result == DialogResult.Yes)
