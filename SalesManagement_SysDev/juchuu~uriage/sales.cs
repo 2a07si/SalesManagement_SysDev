@@ -419,7 +419,7 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     int shop;
-                    if (TBShopID.Text == null)
+                    if (TBShopID.Text == "")
                     {
                         TBaaaaaID.BackColor = Color.Yellow;
                         TBaaaaaID.Focus();
@@ -427,7 +427,7 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    if (TBShainID.Text == null)
+                    if (TBShainID.Text == "")
                     {
                         TBShainID.BackColor = Color.Yellow;
                         TBShainID.Focus();
@@ -435,7 +435,7 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    if (TBKokyakuID.Text == null)
+                    if (TBKokyakuID.Text == "")
                     {
                         TBKokyakuID.BackColor = Color.Yellow;
                         TBKokyakuID.Focus();
@@ -443,7 +443,7 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-                    if (TBJyutyuID.Text == null)
+                    if (TBJyutyuID.Text == "")
                     {
                         TBJyutyuID.BackColor = Color.Yellow;
                         TBJyutyuID.Focus();
@@ -1047,14 +1047,13 @@ namespace SalesManagement_SysDev
                     else
                     {
                         TBUriageSyosaiID.Text = row.Cells["売上詳細ID"].Value.ToString();
-                        TBTotal.Text = row.Cells["合計金額"].Value.ToString();
+                        TBTotal.Text = "";
                     }
                     // 各テキストボックスにデータを入力
                     TBUriageSyosaiID.Text = row.Cells["売上詳細ID"].Value.ToString();
                     TBUriageIDS.Text = row.Cells["売上ID"].Value.ToString();
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     TBSuryou.Text = row.Cells["数量"].Value.ToString();
-                    TBTotal.Text = row.Cells["合計金額"].Value.ToString();
                 }
             }
             catch (Exception ex)
