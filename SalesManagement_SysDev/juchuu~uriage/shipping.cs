@@ -688,7 +688,7 @@ namespace SalesManagement_SysDev
                 }
 
                 // 出荷フラグ(SyukkoFlag)の検索条件を追加   
-                if (SyukkoFlag.Checked)
+                if (SyukkaFlag.Checked)
                 {
                     query = query.Where(sh => sh.ShStateFlag == 1); // 出荷済み
                 }
@@ -698,7 +698,7 @@ namespace SalesManagement_SysDev
                 }
 
                 // 削除フラグ(DelFlag)の検索条件を追加   
-                if (DelFlag.Checked)
+                if (KanriFlag.Checked)
                 {
                     query = query.Where(sh => sh.ShFlag == 1); // 削除済み
                 }

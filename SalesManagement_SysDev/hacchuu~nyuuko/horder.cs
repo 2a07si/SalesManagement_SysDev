@@ -557,11 +557,11 @@ namespace SalesManagement_SysDev
                 // 発注状態フラグ(HattyuFlag)を検索条件に追加
                 if (HattyuFlag.Checked)
                 {
-                    query = query.Where(h => h.HaStateFlag == 2); // 完了状態
+                    query = query.Where(h => h.WaWarehouseFlag == 2); // 完了状態
                 }
                 else
                 {
-                    query = query.Where(h => h.HaStateFlag == 1); // 未完了状態
+                    query = query.Where(h => h.WaWarehouseFlag == 1); // 未完了状態
                 }
 
                 // 削除フラグ(DelFlag)を検索条件に追加
@@ -593,7 +593,7 @@ namespace SalesManagement_SysDev
                         メーカID = h.MaID,
                         社員ID = h.EmID,
                         発注年月日 = h.HaDate,
-                        発注状態 = h.HaStateFlag,        // 発注フラグの表示
+                        発注状態 = h.WaWarehouseFlag,        // 発注フラグの表示
                         削除フラグ = h.HaFlag,           // 管理フラグ
                         理由 = h.HaHidden               // 非表示理由
                     }).ToList();
