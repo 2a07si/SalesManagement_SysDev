@@ -83,7 +83,10 @@ namespace SalesManagement_SysDev
         {
             TBJyutyuID.Text = "";
             TBShopID.Text = "";
-           
+            if(checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
             TBKokyakuID.Text = "";
             TBTantoName.Text = "";
             TyumonFlag.Checked = false;
