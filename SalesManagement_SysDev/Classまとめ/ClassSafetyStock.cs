@@ -81,8 +81,6 @@ namespace SalesManagement_SysDev.Classまとめ
         // 在庫数と安全在庫数を比較し、発注が必要かどうかを判定
         public static void CompareStock(int productId,int st)
         {
-            MessageBox.Show("あんぱんまん");
-            // TStockから指定された商品IDの在庫数を取得
             
             // 安全在庫数を取得
             int safetyStock = GetSafetyStock(productId);
@@ -95,7 +93,7 @@ namespace SalesManagement_SysDev.Classまとめ
             // 比較して結果を表示
             if (st < safetyStock)
             {
-                int orderQuantity = safetyStock - st + 10; // 余裕を持たせた発注量
+                int orderQuantity = safetyStock - st + 100; // 余裕を持たせた発注量
                 AutoOrder(productId, orderQuantity);
                 MessageBox.Show($"商品ID {productId} の在庫が不足しています。自動発注を行います。");
                 MessageBox.Show($"現在の在庫数: {st}, 安全在庫数: {safetyStock}");
