@@ -69,8 +69,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
             DisplayLoginLog();
             DisplayRogDetail();
-
-
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -115,6 +113,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
             DisplayLoginLog();
             DisplayRogDetail();
         }
+
+
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {

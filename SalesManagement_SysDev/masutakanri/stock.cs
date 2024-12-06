@@ -160,7 +160,7 @@ namespace SalesManagement_SysDev
             bool stflag = StFlag.Checked;
 
 
-            if (TBZaikoID.Text == null)
+            if (TBZaikoID.Text == "")
             {
                 TBZaikoID.BackColor = Color.Yellow;
                 TBZaikoID.Focus();

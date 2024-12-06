@@ -842,7 +842,7 @@ namespace SalesManagement_SysDev
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
-            if (TBTyumonSyosaiID.Text == null)
+            if (TBTyumonSyosaiID.Text == "")
             {
                 TBTyumonSyosaiID.BackColor = Color.Yellow;
                 TBTyumonSyosaiID.Focus();
@@ -850,7 +850,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBTyumonIDS.Text == null)
+            if (TBTyumonIDS.Text == "")
             {
                 TBTyumonIDS.BackColor = Color.Yellow;
                 TBTyumonIDS.Focus();
@@ -859,7 +859,7 @@ namespace SalesManagement_SysDev
             }
 
 
-            if (TBSyohinID.Text == null)
+            if (TBSyohinID.Text == "")
             {
                 TBSyohinID.BackColor = Color.Yellow;
                 TBSyohinID.Focus();
@@ -867,7 +867,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (TBSuryou.Text == null)
+            if (TBSuryou.Text == "")
             {
                 TBSuryou.BackColor = Color.Yellow;
                 TBSyohinID.Focus();
@@ -933,7 +933,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int tyuumon;
-                if (TBTyumonIDS.Text == null)
+                if (TBTyumonIDS.Text == "")
                 {
                     TBTyumonIDS.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
@@ -941,7 +941,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBSyohinID.Text == null)
+                if (TBSyohinID.Text == "")
                 {
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
@@ -949,7 +949,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBSuryou.Text == null)
+                if (TBSuryou.Text == "")
                 {
                     TBSuryou.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
