@@ -612,67 +612,93 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void SearchOrders()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // 各テキストボックスの値を取得  
-                    var jyutyuID = TBJyutyuID.Text.Trim();       // 受注ID  
-                    var shopID = TBShopID.Text.Trim();           // 営業所ID  
-                    var shainID = TBShainID.Text.Trim();         // 社員ID  
-                    var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID  
-                    var tantoName = TBTantoName.Text.Trim();     // 担当者  
+                    // 各テキストボックスの値を取得   
+                    var jyutyuID = TBJyutyuID.Text.Trim();       // 受注ID   
+                    var shopID = TBShopID.Text.Trim();           // 営業所ID   
+                    var shainID = TBShainID.Text.Trim();         // 社員ID   
+                    var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID   
+                    var tantoName = TBTantoName.Text.Trim();     // 担当者   
+                    var riyuu =  TBRiyuu.Text.Trim();            // 理由
 
-
-                    // 基本的なクエリ  
+                    // 基本的なクエリ   
                     var query = context.TOrders.AsQueryable();
 
-                    // 受注IDを検索条件に追加  
+                    // 受注IDを検索条件に追加   
                     if (!string.IsNullOrEmpty(jyutyuID) && int.TryParse(jyutyuID, out int parsedJyutyuID))
                     {
                         query = query.Where(o => o.OrID == parsedJyutyuID);
                     }
 
-                    // 営業所IDを検索条件に追加  
+                    // 営業所IDを検索条件に追加   
                     if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
                     {
                         query = query.Where(o => o.SoID == parsedShopID);
                     }
 
-                    // 社員IDを検索条件に追加  
+                    // 社員IDを検索条件に追加   
                     if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
                     {
                         query = query.Where(o => o.EmID == parsedShainID);
                     }
 
-                    // 顧客IDを検索条件に追加  
+                    // 顧客IDを検索条件に追加   
                     if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedKokyakuID))
                     {
                         query = query.Where(o => o.ClID == parsedKokyakuID);
                     }
 
-                    // 担当者名を検索条件に追加  
+                    // 担当者名を検索条件に追加   
                     if (!string.IsNullOrEmpty(tantoName))
                     {
                         query = query.Where(o => o.ClCharge.Contains(tantoName));
                     }
 
-                    // 受注日を検索条件に追加（チェックボックスがチェックされている場合）  
+                    // 理由を検索条件に追加   
+                    if (!string.IsNullOrEmpty(riyuu))
+                    {
+                        query = query.Where(o => o.OrHidden.Contains(riyuu)); // Reasonは仮のカラム名
+                    }
+
+                    // TyumonFlag(チェックボックス)がチェックされている場合の条件
+                    if (TyumonFlag.Checked)
+                    {
+                        query = query.Where(o => o.OrStateFlag == 2);
+                    }
+                    else
+                    {
+                        query = query.Where(o => o.OrStateFlag == 0);
+                    }
+
+                    // DelFlag(チェックボックス)がチェックされている場合の条件
+                    if (DelFlag.Checked)
+                    {
+                        query = query.Where(o => o.OrFlag == 1);
+                    }
+                    else
+                    {
+                        query = query.Where(o => o.OrFlag == 0);
+                    }
+
+                    // 受注日を検索条件に追加（チェックボックスがチェックされている場合）   
                     if (checkBoxDateFilter.Checked)
                     {
-                        DateTime jyutyuDate = date.Value; // DateTimePickerからの値 
+                        DateTime jyutyuDate = date.Value; // DateTimePickerからの値  
                         query = query.Where(o => o.OrDate.Date == jyutyuDate.Date);
                     }
 
-                    // 結果を取得  
+
+                    // 結果を取得   
                     var orders = query.ToList();
 
                     if (orders.Any())
                     {
-                        // dataGridView1 に結果を表示  
+                        // dataGridView1 に結果を表示   
                         dataGridView1.DataSource = orders.Select(order => new
                         {
                             受注ID = order.OrID,
@@ -688,7 +714,7 @@ namespace SalesManagement_SysDev
                     else
                     {
                         MessageBox.Show("該当する受注が見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア  
+                        dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア   
                     }
                 }
             }

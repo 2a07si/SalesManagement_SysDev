@@ -672,21 +672,21 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 // 各テキストボックスの値を取得
-                string nyuukaID = TBSyukkoID.Text;
+                string syukkoID = TBSyukkoID.Text;
                 string shopID = TBShopID.Text;
                 string shainID = TBShainID.Text;
                 string kokyakuID = TBKokyakuID.Text;
                 string JyutyuID = TBJyutyuID.Text;
-                DateTime? nyuukodate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
+                DateTime? syukkoDate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
 
                 // 基本的なクエリ
                 var query = context.TSyukkos.AsQueryable();
 
                 // 出庫IDを検索条件に追加
-                if (!string.IsNullOrEmpty(nyuukaID))
+                if (!string.IsNullOrEmpty(syukkoID))
                 {
-                    int arID = int.Parse(nyuukaID);
-                    query = query.Where(issue => issue.SyID == arID);
+                    int syID = int.Parse(syukkoID);
+                    query = query.Where(issue => issue.SyID == syID);
                 }
 
                 // 店舗IDを検索条件に追加
@@ -718,9 +718,29 @@ namespace SalesManagement_SysDev
                 }
 
                 // 出庫日を検索条件に追加（チェックボックスがチェックされている場合）
-                if (nyuukodate.HasValue)
+                if (syukkoDate.HasValue)
                 {
-                    query = query.Where(issue => issue.SyDate == nyuukodate.Value);
+                    query = query.Where(issue => issue.SyDate == syukkoDate.Value);
+                }
+
+                // 出庫フラグ(SyukkoFlag)の検索条件を追加
+                if (SyukkoFlag.Checked)
+                {
+                    query = query.Where(issue => issue.SyStateFlag == 2);
+                }
+                else
+                {
+                    query = query.Where(issue => issue.SyStateFlag == 0);
+                }
+
+                // 削除フラグ(DelFlag)の検索条件を追加
+                if (DelFlag.Checked)
+                {
+                    query = query.Where(issue => issue.SyFlag == 1);
+                }
+                else
+                {
+                    query = query.Where(issue => issue.SyFlag == 0);
                 }
 
                 // 結果を取得
@@ -732,14 +752,14 @@ namespace SalesManagement_SysDev
                     dataGridView1.DataSource = issues.Select(issue => new
                     {
                         出庫ID = issue.SyID,         // 出庫ID
-                        営業所ID = issue.SoID,           // 店舗ID
-                        社員ID = issue.EmID,        // 社員ID
-                        顧客ID = issue.ClID,          // クライアントID
-                        受注ID = issue.OrID,           // 受注ID
-                        出庫年月日 = issue.SyDate,     // 出庫日
-                        状態フラグ = issue.SyStateFlag,  // 出庫状態フラグ
-                        非表示フラグ = issue.SyFlag,      // 削除フラグ
-                        非表示理由 = issue.SyHidden         // 理由
+                        営業所ID = issue.SoID,       // 店舗ID
+                        社員ID = issue.EmID,         // 社員ID
+                        顧客ID = issue.ClID,         // クライアントID
+                        受注ID = issue.OrID,         // 受注ID
+                        出庫年月日 = issue.SyDate,   // 出庫日
+                        状態フラグ = issue.SyStateFlag, // 出庫状態フラグ
+                        非表示フラグ = issue.SyFlag,    // 削除フラグ
+                        非表示理由 = issue.SyHidden     // 理由
                     }).ToList();
                 }
                 else
@@ -749,9 +769,6 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-
-
-
 
         private void UpdateIssueDetails()
         {

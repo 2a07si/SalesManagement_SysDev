@@ -517,36 +517,69 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void SearchReceivingStocks()
         {
             using (var context = new SalesManagementContext())
             {
-                var nyuukoID = TBNyukoID.Text.Trim();
-                var haID = TBHattyuuID.Text.Trim();
-                var shainID = TBShainID.Text.Trim();
+                // 各テキストボックスの値を取得
+                var nyuukoID = TBNyukoID.Text.Trim();    // 入庫ID
+                var haID = TBHattyuuID.Text.Trim();     // 発注ID
+                var shainID = TBShainID.Text.Trim();    // 社員ID
+                var riyuu = TBRiyuu.Text.Trim();        // 理由
 
+                // 基本的なクエリ
                 var query = context.TWarehousings.AsQueryable();
 
+                // 入庫IDを検索条件に追加
                 if (!string.IsNullOrEmpty(nyuukoID) && int.TryParse(nyuukoID, out int parsedNyuukoID))
                 {
                     query = query.Where(ws => ws.WaID == parsedNyuukoID);
                 }
 
+                // 発注IDを検索条件に追加
                 if (!string.IsNullOrEmpty(haID) && int.TryParse(haID, out int parsedHaID))
                 {
                     query = query.Where(ws => ws.HaID == parsedHaID);
                 }
 
+                // 社員IDを検索条件に追加
                 if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
                 {
                     query = query.Where(ws => ws.EmID == parsedShainID);
                 }
 
+                // 理由を検索条件に追加
+                if (!string.IsNullOrEmpty(riyuu))
+                {
+                    query = query.Where(ws => ws.WaHidden.Contains(riyuu));
+                }
+
+                // 入庫済フラグ(NyuukoFlag)を検索条件に追加
+                if (NyuukoFlag.Checked)
+                {
+                    query = query.Where(ws => ws.WaFlag == 1); // 入庫済み
+                }
+                else
+                {
+                    query = query.Where(ws => ws.WaFlag == 0); // 未入庫
+                }
+
+                // 削除フラグ(DelFlag)を検索条件に追加
+                if (DelFlag.Checked)
+                {
+                    query = query.Where(ws => ws.WaShelfFlag == 1); // 削除済み
+                }
+                else
+                {
+                    query = query.Where(ws => ws.WaShelfFlag == 0); // 有効
+                }
+
+                // 結果を取得
                 var receivingStocks = query.ToList();
 
                 if (receivingStocks.Any())
                 {
+                    // dataGridView1 に結果を表示
                     dataGridView1.DataSource = receivingStocks.Select(ws => new
                     {
                         入庫ID = ws.WaID,
@@ -554,13 +587,14 @@ namespace SalesManagement_SysDev
                         社員ID = ws.EmID,
                         入庫年月日 = ws.WaDate,
                         入庫済フラグ = ws.WaFlag,
-                        非表示フラグ = ws.WaHidden
+                        削除フラグ = ws.WaShelfFlag,
+                        理由 = ws.WaHidden
                     }).ToList();
                 }
                 else
                 {
                     MessageBox.Show("該当する入庫情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
                 }
             }
         }

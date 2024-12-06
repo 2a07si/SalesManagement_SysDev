@@ -37,7 +37,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             LoadEmployeeName(); // 従業員名をデータベースから取得して表示 
             SetButtonPermissions(); // ボタンの権限を設定
             GlobalEmp.EmployeeName = label_ename.Text;
-            LoadLogData();
+            LoadLogData(Global.EmployeePermission);
             listViewLog.Scrollable = false;
 
 
@@ -498,7 +498,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             HandleNavigationError(() => changeForm.ranking()); // 従業員フォームに遷移
         }
 
-        private void LoadLogData()
+        private void LoadLogData(int authorityLevel)
         {
             // ListViewの初期化
             listViewLog.Items.Clear();
@@ -516,13 +516,34 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // Processが「自動発注」または「ログアウト」以外のものをフィルタリング
+                    // 権限ごとに非表示にするプロセスと表示内容の設定
+                    List<string> excludedProcesses = new List<string>();
+                    List<string> excludedDisplays = new List<string>();
+
+                    if (authorityLevel == 1)
+                    {
+                        excludedProcesses = new List<string> { "自動発注", "ログアウト" }; // 権限1で非表示にするプロセス
+                        excludedDisplays = new List<string> { }; // 権限1で非表示にするDisplay（空の場合はフィルタリングなし）
+                    }
+                    else if (authorityLevel == 2)
+                    {
+                        excludedProcesses = new List<string> { "自動発注", "ログアウト" }; // 権限2で非表示にするプロセス
+                        excludedDisplays = new List<string> { "出庫", "発注", "入庫", "商品", "社員", "在庫" }; // 権限2で非表示にするDisplay
+                    }
+                    else if (authorityLevel == 3)
+                    {
+                        excludedProcesses = new List<string> { "自動発注", "ログアウト" }; // 権限3で非表示にするプロセス
+                        excludedDisplays = new List<string> { "受注", "注文", "入荷", "出荷", "売上", "社員", "顧客" }; // 権限3で非表示にするDisplay
+                    }
+
+                    // ログデータの取得
                     var logs = (from log in context.LoginHistoryLogs
                                 join detail in context.LoginHistoryLogDetails
                                     on log.ID equals detail.ID
                                 join employee in context.MEmployees
                                     on log.LoginID equals employee.EmID.ToString()
-                                where !(detail.Process == "自動発注" || detail.Process == "ログアウト") // Processが「自動発注」または「ログアウト」ではない
+                                where !excludedProcesses.Contains(detail.Process) // Processのフィルタリング
+                                      && !excludedDisplays.Contains(detail.Display) // Displayのフィルタリング
                                 orderby detail.AcceptDateTime descending
                                 select new
                                 {
@@ -553,6 +574,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 MessageBox.Show("エラーが発生しました: " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
         private void listViewLog_MouseClick(object sender, MouseEventArgs e)
         {
             // クリックした位置を取得
@@ -574,6 +597,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     "売上", "発注", "入庫", "顧客", "社員",
                     "商品", "在庫"
                 };
+
                 // 抽出した文字を格納するリスト
                 List<string> extractedStrings = new List<string>();
 
@@ -586,11 +610,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     }
                 }
 
-                // リストの内容を確認
-                foreach (var extracted in extractedStrings)
-                {
-                    MessageBox.Show("リストに追加された文字: " + extracted);
-                }
 
                 // 「受注」がリストに含まれている場合の処理
                 if (extractedStrings.Contains("受注"))
@@ -754,6 +773,9 @@ namespace SalesManagement_SysDev.Main_LoginForm
             }
         }
 
+        private void listViewLog_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }
