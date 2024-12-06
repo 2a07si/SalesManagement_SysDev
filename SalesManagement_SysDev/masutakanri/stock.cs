@@ -308,12 +308,13 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // checkBox_2 がチェックされている場合、全ての在庫情報を表示
+                    // checkBox_2 がチェックされている場合、全ての在庫情報を取得して並べ替え
                     var stock = checkBox_2.Checked
-                        ? context.TStocks.ToList()
-                        // チェックされていなければ、StFlagが1のものを除外
-                        : context.TStocks.Where(s => s.StFlag != 1).ToList();
+                        ? context.TStocks.OrderBy(s => s.PrID).ToList()
+                        // チェックされていなければ、StFlagが1のものを除外して並べ替え
+                        : context.TStocks.Where(s => s.StFlag != 1).OrderBy(s => s.PrID).ToList();
 
+                    // DataGridView にデータをバインド
                     dataGridView1.DataSource = stock.Select(s => new
                     {
                         在庫ID = s.StID,
@@ -322,6 +323,7 @@ namespace SalesManagement_SysDev
                         管理フラグ = s.StFlag
                     }).ToList();
                 }
+
             }
             catch (Exception ex)
             {
