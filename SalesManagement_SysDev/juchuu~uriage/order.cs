@@ -66,6 +66,8 @@ namespace SalesManagement_SysDev
             b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
+
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
             UpdateTextBoxState(checkBoxSyain.Checked);
 
         }
