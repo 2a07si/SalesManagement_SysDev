@@ -564,7 +564,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    query = query.Where(h => h.WaWarehouseFlag == 1); // 未完了状態
+                    query = query.Where(h => h.WaWarehouseFlag == 0); // 未完了状態
                 }
 
                 // 削除フラグ(DelFlag)を検索条件に追加
