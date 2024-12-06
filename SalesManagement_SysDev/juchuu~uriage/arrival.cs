@@ -664,7 +664,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void SearchArrivals()
         {
             using (var context = new SalesManagementContext())
@@ -675,6 +674,7 @@ namespace SalesManagement_SysDev
                 string shainID = TBShainID.Text;
                 string kokyakuID = TBKokyakuID.Text;
                 string JyutyuID = TBJyutyuID.Text;
+                string riyuu = TBRiyuu.Text.Trim(); // 理由テキストボックスの値を取得
                 DateTime? nyuukodate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
 
                 // 基本的なクエリ
@@ -721,6 +721,32 @@ namespace SalesManagement_SysDev
                     query = query.Where(arrival => arrival.ArDate == nyuukodate.Value);
                 }
 
+                // 入荷フラグ(NyuukaFlag)の検索条件を追加
+                if (NyuukaFlag.Checked)
+                {
+                    query = query.Where(arrival => arrival.ArStateFlag == 2);
+                }
+                else
+                {
+                    query = query.Where(arrival => arrival.ArStateFlag == 0);
+                }
+
+                // 削除フラグ(DelFlag)の検索条件を追加
+                if (DelFlag.Checked)
+                {
+                    query = query.Where(arrival => arrival.ArFlag == 1);
+                }
+                else
+                {
+                    query = query.Where(arrival => arrival.ArFlag == 0);
+                }
+
+                // 理由(TBRiyuu)の検索条件を追加
+                if (!string.IsNullOrEmpty(riyuu))
+                {
+                    query = query.Where(arrival => arrival.ArHidden.Contains(riyuu));
+                }
+
                 // 結果を取得
                 var arrivals = query.ToList();
 
@@ -730,14 +756,14 @@ namespace SalesManagement_SysDev
                     dataGridView1.DataSource = arrivals.Select(o => new
                     {
                         入荷ID = o.ArID,            // 入荷ID
-                        営業所ID = o.SoID,              // 店舗ID
+                        営業所ID = o.SoID,          // 店舗ID
                         社員ID = o.EmID,           // 社員ID
-                        顧客ID = o.ClID,             // クライアントID
-                        受注ID = o.OrID,              // 受注ID
-                        入荷日 = o.ArDate,        // 入荷日
-                        状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
-                        非表示フラグ = o.ArFlag,         // 削除フラグ
-                        非表示理由 = o.ArHidden            // 理由
+                        顧客ID = o.ClID,           // クライアントID
+                        受注ID = o.OrID,           // 受注ID
+                        入荷日 = o.ArDate,         // 入荷日
+                        状態フラグ = o.ArStateFlag, // 入荷状態フラグ
+                        非表示フラグ = o.ArFlag,   // 削除フラグ
+                        非表示理由 = o.ArHidden    // 理由
                     }).ToList();
                 }
                 else

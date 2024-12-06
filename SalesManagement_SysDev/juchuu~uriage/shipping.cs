@@ -640,61 +640,86 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                // 各テキストボックスの値を取得  
-                var JyutyuID = TBJyutyuID.Text.Trim();       // 受注ID  
-                var shopID = TBShopID.Text.Trim();           // 営業所ID  
-                var shainID = TBShainID.Text.Trim();         // 社員ID  
-                var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID  
-                var shukkaID = TBSyukkaID.Text.Trim();       // 出荷ID 
+                // 各テキストボックスの値を取得   
+                var JyutyuID = TBJyutyuID.Text.Trim();       // 受注ID   
+                var shopID = TBShopID.Text.Trim();           // 営業所ID   
+                var shainID = TBShainID.Text.Trim();         // 社員ID   
+                var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID   
+                var shukkaID = TBSyukkaID.Text.Trim();       // 出荷ID  
+                var riyuu = TBRiyuu.Text.Trim();             // 理由
 
-                var riyuu = TBRiyuu;
-
-                // 基本的なクエリ  
+                // 基本的なクエリ   
                 var query = context.TShipments.AsQueryable();
 
-                // 受注IDを検索条件に追加  
+                // 受注IDを検索条件に追加   
                 if (!string.IsNullOrEmpty(JyutyuID) && int.TryParse(JyutyuID, out int parsedJyutyuID))
                 {
                     query = query.Where(sh => sh.OrID == parsedJyutyuID);
                 }
 
-                // 営業所IDを検索条件に追加  
+                // 営業所IDを検索条件に追加   
                 if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
                 {
                     query = query.Where(sh => sh.SoID == parsedShopID);
                 }
 
-                // 社員IDを検索条件に追加  
+                // 社員IDを検索条件に追加   
                 if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
                 {
                     query = query.Where(sh => sh.EmID == parsedShainID);
                 }
 
-                // 顧客IDを検索条件に追加  
+                // 顧客IDを検索条件に追加   
                 if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
                     query = query.Where(sh => sh.ClID == parsedKokyakuID);
                 }
 
-                // 出荷IDを検索条件に追加  
+                // 出荷IDを検索条件に追加   
                 if (!string.IsNullOrEmpty(shukkaID) && int.TryParse(shukkaID, out int parsedShukkaID))
                 {
                     query = query.Where(sh => sh.ShID == parsedShukkaID);
                 }
 
-                // 受注日を検索条件に追加（チェックボックスがチェックされている場合）  
+                // 理由を検索条件に追加   
+                if (!string.IsNullOrEmpty(riyuu))
+                {
+                    query = query.Where(sh => sh.ShHidden.Contains(riyuu));
+                }
+
+                // 出荷フラグ(SyukkoFlag)の検索条件を追加   
+                if (SyukkoFlag.Checked)
+                {
+                    query = query.Where(sh => sh.ShStateFlag == 1); // 出荷済み
+                }
+                else
+                {
+                    query = query.Where(sh => sh.ShStateFlag == 0); // 出荷未完了
+                }
+
+                // 削除フラグ(DelFlag)の検索条件を追加   
+                if (DelFlag.Checked)
+                {
+                    query = query.Where(sh => sh.ShFlag == 1); // 削除済み
+                }
+                else
+                {
+                    query = query.Where(sh => sh.ShFlag == 0); // 有効
+                }
+
+                // 受注日を検索条件に追加（チェックボックスがチェックされている場合）   
                 if (checkBoxDateFilter.Checked)
                 {
-                    DateTime shukkaDate = date.Value; // DateTimePickerからの値 
+                    DateTime shukkaDate = date.Value; // DateTimePickerからの値  
                     query = query.Where(sh => sh.ShFinishDate == shukkaDate.Date);
                 }
 
-                // 結果を取得  
+                // 結果を取得   
                 var shipping = query.ToList();
 
                 if (shipping.Any())
                 {
-                    // dataGridView1 に結果を表示  
+                    // dataGridView1 に結果を表示   
                     dataGridView1.DataSource = shipping.Select(sh => new
                     {
                         出荷ID = sh.ShID,
@@ -703,16 +728,15 @@ namespace SalesManagement_SysDev
                         営業所ID = sh.SoID,
                         受注ID = sh.OrID,
                         出荷終了日 = sh.ShFinishDate,
-                        状態フラグ = sh.ShStateFlag,  // 出荷フラグの表示
-                        管理フラグ = sh.ShFlag,
-                        非表示理由 = sh.ShHidden
-
+                        出荷フラグ = sh.ShStateFlag,  // 出荷フラグの表示 
+                        削除フラグ = sh.ShFlag,       // 管理フラグ
+                        理由 = sh.ShHidden           // 非表示理由
                     }).ToList();
                 }
                 else
                 {
                     MessageBox.Show("該当する出荷情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア  
+                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア   
                 }
             }
         }

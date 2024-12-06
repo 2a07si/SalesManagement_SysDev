@@ -563,64 +563,80 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void SearchSales()
         {
             using (var context = new SalesManagementContext())
             {
-                // 各テキストボックスの値を取得 
-                var JyutyuID = TBJyutyuID.Text.Trim();       // 受注ID 
-                var shopID = TBShopID.Text.Trim();           // 営業所ID 
-                var shainID = TBShainID.Text.Trim();         // 社員ID 
-                var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID 
-                var salesID = TBSalesID.Text.Trim();     // 担当者 
+                // 各テキストボックスの値を取得  
+                var JyutyuID = TBJyutyuID.Text.Trim();       // 受注ID  
+                var shopID = TBShopID.Text.Trim();           // 営業所ID  
+                var shainID = TBShainID.Text.Trim();         // 社員ID  
+                var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID  
+                var salesID = TBSalesID.Text.Trim();         // 担当者  
+                var riyuu = TBRiyuu.Text.Trim();             // 理由
 
-                // 基本的なクエリ 
+                // 基本的なクエリ  
                 var query = context.TSales.AsQueryable();
 
-                // 受注IDを検索条件に追加 
+                // 受注IDを検索条件に追加  
                 if (!string.IsNullOrEmpty(JyutyuID) && int.TryParse(JyutyuID, out int parsedJyutyuID))
                 {
                     query = query.Where(s => s.OrID == parsedJyutyuID);
                 }
 
-                // 営業所IDを検索条件に追加 
+                // 営業所IDを検索条件に追加  
                 if (!string.IsNullOrEmpty(shopID) && int.TryParse(shopID, out int parsedShopID))
                 {
                     query = query.Where(s => s.SoID == parsedShopID);
                 }
 
-                // 社員IDを検索条件に追加 
+                // 社員IDを検索条件に追加  
                 if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
                 {
                     query = query.Where(s => s.EmID == parsedShainID);
                 }
 
-                // 顧客IDを検索条件に追加 
+                // 顧客IDを検索条件に追加  
                 if (!string.IsNullOrEmpty(kokyakuID) && int.TryParse(kokyakuID, out int parsedKokyakuID))
                 {
                     query = query.Where(s => s.ClID == parsedKokyakuID);
                 }
 
-                // 担当者名を検索条件に追加 
-                if (!string.IsNullOrEmpty(salesID) && int.TryParse(shainID, out int parsedsalesID))
+                // 担当者名を検索条件に追加  
+                if (!string.IsNullOrEmpty(salesID) && int.TryParse(salesID, out int parsedSalesID))
                 {
-                    query = query.Where(s => s.SaID == parsedsalesID);
+                    query = query.Where(s => s.SaID == parsedSalesID);
                 }
 
-                // 受注日を検索条件に追加（チェックボックスがチェックされている場合） 
+                // 理由を検索条件に追加  
+                if (!string.IsNullOrEmpty(riyuu))
+                {
+                    query = query.Where(s => s.SaHidden.Contains(riyuu));
+                }
+
+                // 売上フラグ(SaleFlag)の検索条件を追加  
+                if (DelFlag.Checked)
+                {
+                    query = query.Where(s => s.SaFlag == 1); // 削除済みの売上
+                }
+                else
+                {
+                    query = query.Where(s => s.SaFlag == 0); // 有効な売上
+                }
+
+                // 受注日を検索条件に追加（チェックボックスがチェックされている場合）  
                 if (checkBoxDateFilter.Checked)
                 {
-                    DateTime jyutyuDate = date.Value; // DateTimePickerからの値
+                    DateTime jyutyuDate = date.Value; // DateTimePickerからの値 
                     query = query.Where(s => s.SaDate.Date == jyutyuDate.Date);
                 }
 
-                // 結果を取得 
+                // 結果を取得  
                 var sales = query.ToList();
 
                 if (sales.Any())
                 {
-                    // dataGridView1 に結果を表示 
+                    // dataGridView1 に結果を表示  
                     dataGridView1.DataSource = sales.Select(sale => new
                     {
                         売上ID = sale.SaID,
@@ -629,13 +645,14 @@ namespace SalesManagement_SysDev
                         社員ID = sale.EmID,
                         受注ID = sale.OrID,
                         受注日 = sale.SaDate,
-                        削除フラグ = DelFlag.Checked ? 1 : 0
+                        削除フラグ = sale.SaFlag,
+                        理由 = sale.SaHidden
                     }).ToList();
                 }
                 else
                 {
                     MessageBox.Show("該当する売上情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
+                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア  
                 }
             }
         }

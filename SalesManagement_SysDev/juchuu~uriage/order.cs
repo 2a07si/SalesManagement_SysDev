@@ -751,7 +751,6 @@ namespace SalesManagement_SysDev
             }
 
         }
-
         private void SearchOrders()
         {
             using (var context = new SalesManagementContext())
@@ -762,7 +761,7 @@ namespace SalesManagement_SysDev
                 string shainID = TBShainID.Text;
                 string kokyakuID = TBKokyakuID.Text;
                 string JyutyuID = TBJyutyuID.Text;
-                DateTime? nyuukodate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
+                DateTime? chumonDate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
 
                 // 基本的なクエリ
                 var query = context.TChumons.AsQueryable();
@@ -803,9 +802,29 @@ namespace SalesManagement_SysDev
                 }
 
                 // 注文日を検索条件に追加（チェックボックスがチェックされている場合）
-                if (nyuukodate.HasValue)
+                if (chumonDate.HasValue)
                 {
-                    query = query.Where(order => order.ChDate == nyuukodate.Value);
+                    query = query.Where(order => order.ChDate == chumonDate.Value);
+                }
+
+                // 注文フラグ(ChumonFlag)の検索条件を追加
+                if (TyumonFlag.Checked)
+                {
+                    query = query.Where(order => order.ChStateFlag == 2); // フラグが2の注文を検索
+                }
+                else
+                {
+                    query = query.Where(order => order.ChStateFlag == 0); // フラグが0の注文を検索
+                }
+
+                // 削除フラグ(DelFlag)の検索条件を追加
+                if (DelFlag.Checked)
+                {
+                    query = query.Where(order => order.ChFlag == 1); // 削除済みの注文
+                }
+                else
+                {
+                    query = query.Where(order => order.ChFlag == 0); // 有効な注文
                 }
 
                 // 結果を取得
@@ -817,14 +836,14 @@ namespace SalesManagement_SysDev
                     dataGridView1.DataSource = orders.Select(o => new
                     {
                         注文ID = o.ChID,            // 注文ID
-                        営業所ID = o.SoID,              // 店舗ID
+                        営業所ID = o.SoID,         // 店舗ID
                         社員ID = o.EmID,           // 社員ID
-                        顧客ID = o.ClID,             // クライアントID
-                        受注ID = o.OrID,              // 受注ID
-                        注文日 = o.ChDate,        // 注文日
-                        状態フラグ = o.ChStateFlag,     // 注文状態フラグ
-                        非表示フラグ = o.ChFlag,         // 削除フラグ
-                        非表示理由 = o.ChHidden            // 理由
+                        顧客ID = o.ClID,           // クライアントID
+                        受注ID = o.OrID,           // 受注ID
+                        注文日 = o.ChDate,         // 注文日
+                        状態フラグ = o.ChStateFlag, // 注文状態フラグ
+                        非表示フラグ = o.ChFlag,   // 削除フラグ
+                        非表示理由 = o.ChHidden    // 理由
                     }).ToList();
                 }
                 else

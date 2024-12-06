@@ -574,6 +574,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     "売上", "発注", "入庫", "顧客", "社員",
                     "商品", "在庫"
                 };
+                
                 // 抽出した文字を格納するリスト
                 List<string> extractedStrings = new List<string>();
 
@@ -586,12 +587,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     }
                 }
 
-                // リストの内容を確認
-                foreach (var extracted in extractedStrings)
-                {
-                    MessageBox.Show("リストに追加された文字: " + extracted);
-                }
-
+                
                 // 「受注」がリストに含まれている場合の処理
                 if (extractedStrings.Contains("受注"))
                 {

@@ -517,56 +517,91 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void SearchHattyus()
         {
             using (var context = new SalesManagementContext())
             {
-                var hattyuuID = TBHattyuuID.Text.Trim();       // 発注ID  
-                var makerID = TBMakerID.Text.Trim();           // メーカID  
-                var shainID = TBShainID.Text.Trim();           // 社員ID  
+                // 各テキストボックスの値を取得
+                var hattyuuID = TBHattyuuID.Text.Trim();    // 発注ID
+                var makerID = TBMakerID.Text.Trim();        // メーカID
+                var shainID = TBShainID.Text.Trim();        // 社員ID
+                var riyuu = TBRiyuu.Text.Trim();            // 理由
 
+                // 基本的なクエリ
                 var query = context.THattyus.AsQueryable();
 
+                // 発注IDを検索条件に追加
                 if (!string.IsNullOrEmpty(hattyuuID) && int.TryParse(hattyuuID, out int parsedHattyuuID))
                 {
                     query = query.Where(h => h.HaID == parsedHattyuuID);
                 }
 
+                // メーカIDを検索条件に追加
                 if (!string.IsNullOrEmpty(makerID) && int.TryParse(makerID, out int parsedMakerID))
                 {
                     query = query.Where(h => h.MaID == parsedMakerID);
                 }
 
+                // 社員IDを検索条件に追加
                 if (!string.IsNullOrEmpty(shainID) && int.TryParse(shainID, out int parsedShainID))
                 {
                     query = query.Where(h => h.EmID == parsedShainID);
                 }
 
+                // 理由を検索条件に追加
+                if (!string.IsNullOrEmpty(riyuu))
+                {
+                    query = query.Where(h => h.HaHidden.Contains(riyuu));
+                }
+
+                // 発注状態フラグ(HattyuFlag)を検索条件に追加
+                if (HattyuFlag.Checked)
+                {
+                    query = query.Where(h => h.HaStateFlag == 2); // 完了状態
+                }
+                else
+                {
+                    query = query.Where(h => h.HaStateFlag == 1); // 未完了状態
+                }
+
+                // 削除フラグ(DelFlag)を検索条件に追加
+                if (DelFlag.Checked)
+                {
+                    query = query.Where(h => h.HaFlag == 1); // 削除済み
+                }
+                else
+                {
+                    query = query.Where(h => h.HaFlag == 0); // 有効
+                }
+
+                // 発注日を検索条件に追加（チェックボックスがチェックされている場合）
                 if (checkBoxDateFilter.Checked)
                 {
-                    DateTime hattyuuDate = date.Value;
+                    DateTime hattyuuDate = date.Value; // DateTimePickerからの値
                     query = query.Where(h => h.HaDate.Date == hattyuuDate.Date);
                 }
 
+                // 結果を取得
                 var hattyus = query.ToList();
 
                 if (hattyus.Any())
                 {
+                    // dataGridView1 に結果を表示
                     dataGridView1.DataSource = hattyus.Select(h => new
                     {
                         発注ID = h.HaID,
                         メーカID = h.MaID,
                         社員ID = h.EmID,
                         発注年月日 = h.HaDate,
-                        発注状態 = HattyuFlag.Checked ? 2 : 1,
-                        非表示フラグ = DelFlag.Checked ? 1 : 0
+                        発注状態 = h.HaStateFlag,        // 発注フラグの表示
+                        削除フラグ = h.HaFlag,           // 管理フラグ
+                        理由 = h.HaHidden               // 非表示理由
                     }).ToList();
                 }
                 else
                 {
                     MessageBox.Show("該当する発注情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
                 }
             }
         }
