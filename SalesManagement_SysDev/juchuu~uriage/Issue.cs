@@ -102,7 +102,6 @@ namespace SalesManagement_SysDev
         {
             TBSyukkoID.Text = "";
             TBShopID.Text = "";
-            TBShainID.Text = "";
             TBKokyakuID.Text = "";
             TBJyutyuID.Text = "";
             SyukkoFlag.Checked = false;
@@ -120,6 +119,7 @@ namespace SalesManagement_SysDev
             dateCheckBox.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
+            UpdateTextBoxState(checkBoxSyain.Checked);
         }
         private void b_ser_Click(object sender, EventArgs e)
         {

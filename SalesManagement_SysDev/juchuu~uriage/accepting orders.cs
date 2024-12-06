@@ -83,7 +83,7 @@ namespace SalesManagement_SysDev
         {
             TBJyutyuID.Text = "";
             TBShopID.Text = "";
-            TBShainID.Text = "";
+           
             TBKokyakuID.Text = "";
             TBTantoName.Text = "";
             TyumonFlag.Checked = false;
@@ -102,6 +102,7 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
+            UpdateTextBoxState(checkBoxSyain.Checked);
         }
 
         private void b_ser_Click(object sender, EventArgs e)
