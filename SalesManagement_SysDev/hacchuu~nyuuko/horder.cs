@@ -304,7 +304,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int hor;
-                if (!int.TryParse(makerID, out hor) || !context.THattyus.Any(m => m.HaID == hor))
+                if (!int.TryParse(hattyuuID, out hor) || !context.THattyus.Any(m => m.HaID == hor))
                 {
                     MessageBox.Show("発注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
