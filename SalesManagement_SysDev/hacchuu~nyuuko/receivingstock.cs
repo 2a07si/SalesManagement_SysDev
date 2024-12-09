@@ -294,7 +294,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int nyuuko;
-                if (!int.TryParse(haID, out nyuuko) || !context.TWarehousings.Any(h => h.WaID == nyuuko))
+                if (!int.TryParse(nyuukoID, out nyuuko) || !context.TWarehousings.Any(h => h.WaID == nyuuko))
                 {
                     MessageBox.Show("入庫IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -1235,7 +1235,6 @@ namespace SalesManagement_SysDev
         }
         private void UpdateNyuukoCheckerFlag(int PrID, int Quantity)
         {
-            MessageBox.Show("upd実行");
             try
             {
                 using (var context = new SalesManagementContext())

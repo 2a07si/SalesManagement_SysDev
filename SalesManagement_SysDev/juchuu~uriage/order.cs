@@ -20,7 +20,7 @@ namespace SalesManagement_SysDev
         string empID = GlobalEmp.EmployeeID;
         private bool isOrderSelected = true; // 初期状態を注文(TOrder)に設定
         private string orderFlag = "←通常"; // 初期状態を「注文」に設定
-
+        private List<int> shortageProducts = new List<int>();
         private ClassDataGridViewClearer dgvClearer;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
@@ -407,13 +407,15 @@ namespace SalesManagement_SysDev
                             MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        // 対応するすべての注文詳細を取得
+                        // 対応するすべての注文詳細を取得 
                         var details = context.TChumonDetails.Where(d => d.ChID == int.Parse(ChumonID)).ToList();
                         bool hasShortage = false; // 在庫不足が1つでもあれば true にする
                         string hiddenReason = null; // 非表示理由
                         int hiddenFlag = 0; // 非表示フラグ
                         int totalShortage = 0; // 総不足数
 
+                        // 在庫不足商品のIDリスト
+                        
                         foreach (var detail in details)
                         {
                             var stock = context.TStocks.FirstOrDefault(s => s.PrID == detail.PrID);
@@ -425,11 +427,17 @@ namespace SalesManagement_SysDev
 
                                 // 在庫不足処理
                                 var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
-                                stock.StQuantity -= (stock?.StQuantity ?? 0); // 在庫を可能な範囲で減らす
+                                if (stock != null)
+                                {
+                                    stock.StQuantity -= stock.StQuantity; // 在庫を可能な範囲で減らす
+                                }
                                 totalShortage += shortageQuantity; // 総不足数に加算
 
                                 // 発注処理
                                 ProductOrder(int.Parse(OrderID), detail.ChID, shortageQuantity, detail.PrID);
+
+                                // 不足商品のIDをリストに追加
+                                shortageProducts.Add(detail.PrID);
 
                                 MessageBox.Show($"商品ID: {detail.PrID}の在庫が不足しているため発注処理を行いました。");
                             }
@@ -449,6 +457,10 @@ namespace SalesManagement_SysDev
                         {
                             // 在庫不足があった場合の OrdersConfirm
                             OrdersConfirm(int.Parse(OrderID), int.Parse(ChumonID), hiddenFlag, hiddenReason, 1, totalShortage);
+
+                            // 不足商品の一覧をメッセージで表示
+                            var shortageMessage = $"在庫不足の商品ID一覧: {string.Join(", ", shortageProducts)}";
+                            MessageBox.Show(shortageMessage);
                         }
                         else
                         {
@@ -1204,7 +1216,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void OrdersConfirm(int JyutyuID, int ChID, int SyFlag, string SyHidden, int fla, int shortagequantity)
+        private void OrdersConfirm(int JyutyuID, int ChID, int SyFlag, string SyHidden, int fla, int shortageQuantity)
         {
             MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
@@ -1215,12 +1227,14 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("注文IDが見つかりません。");
                 }
+
                 bool isDuplicate = context.TSyukkos.Any(c => c.OrID == JyutyuID);
                 if (isDuplicate)
                 {
                     MessageBox.Show($"この受注ID ({JyutyuID}) はすでに登録されています。登録を中止します。");
                     return;
                 }
+
                 // 出庫情報をTSyukkoに追加 
                 var newSyukko = new TSyukko
                 {
@@ -1233,6 +1247,7 @@ namespace SalesManagement_SysDev
                     SyDate = null,
                     SyStateFlag = 0
                 };
+
                 try
                 {
                     // データが正しいか事前にチェック 
@@ -1240,16 +1255,15 @@ namespace SalesManagement_SysDev
                     {
                         throw new Exception("出庫情報に必要なデータが不足しています。");
                     }
+
                     context.TSyukkos.Add(newSyukko);
                     context.SaveChanges();
                     MessageBox.Show("出庫登録が完了しました。"); // ここでメッセージが表示されることを確認 
-                    
                 }
                 catch (Exception ex)
                 {
                     throw new Exception("TSyukkoへの登録に失敗しました: " + ex.Message);
                 }
-
 
                 // 注文詳細をすべて取得
                 var orderDetails = context.TOrderDetails.Where(o => o.OrID == order.OrID).ToList();
@@ -1259,6 +1273,13 @@ namespace SalesManagement_SysDev
                 {
                     throw new Exception("注文詳細が見つかりません。");
                 }
+
+                // 不足商品のリストを取得
+                var shortageProducts = context.TChumonDetails
+                    .Where(cd => cd.ChID == ChID)
+                    .Where(cd => context.TStocks.Any(stock => stock.PrID == cd.PrID && stock.StQuantity < cd.ChQuantity))
+                    .Select(cd => cd.PrID)
+                    .ToList();
 
                 // 各注文詳細に対して処理を実行
                 foreach (var detail in orderDetails)
@@ -1279,10 +1300,14 @@ namespace SalesManagement_SysDev
 
                     try
                     {
-                        if (fla == 1)
+                        // 不足商品のみcheckerを呼び出す
+                        if (fla == 1 && shortageProducts.Contains(newSyukkoDetail.PrID))
                         {
-                            checker(newSyukko.SyID, newSyukko.OrID, newSyukkoDetail.PrID, shortagequantity);
+                            checker(newSyukko.SyID, newSyukko.OrID, newSyukkoDetail.PrID, shortageQuantity);
+                            // shortageProductsの要素削除
+                            shortageProducts.Remove(newSyukkoDetail.PrID); // 要素を削除
                         }
+                        //shortageProductsの要素削除
                         context.TSyukkoDetails.Add(newSyukkoDetail);
                         context.SaveChanges();
                     }
@@ -1291,9 +1316,10 @@ namespace SalesManagement_SysDev
                         throw new Exception($"TSyukkoDetailへの登録に失敗しました: {ex.Message}");
                     }
                 }
-                
             }
-        }// 発注処理
+        }
+
+        // 発注処理
         private void ProductOrder(int OrID, int ChID, int shortageQuantity, int PrID)
         {
             MessageBox.Show("発注登録を開始します");
@@ -1723,6 +1749,7 @@ namespace SalesManagement_SysDev
                     SyukkoID = syid,
                     JyutyuID = orid,
                     PrID = prid,
+                    Flag = false,
                     Quantity = quantity,
                     DelFlag = false
                 };
