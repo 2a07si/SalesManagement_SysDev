@@ -411,6 +411,7 @@ namespace SalesManagement_SysDev
                 var shou = TBSyoubunrui.Text.Trim();
                 var Model = TBModel.Text.Trim();     // かたばｊｎ 
                 var color = TBColor.Text.Trim();
+                DateTime? Date = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
 
 
                 // 基本的なクエリ 
@@ -459,6 +460,11 @@ namespace SalesManagement_SysDev
                 if (!string.IsNullOrEmpty(color))
                 {
                     query = query.Where(m => m.PrColor.Contains(color));
+                }
+                // 注文日を検索条件に追加（チェックボックスがチェックされている場合）
+                if (Date.HasValue)
+                {
+                    query = query.Where(order => order.PrReleaseDate == Date.Value);
                 }
 
 

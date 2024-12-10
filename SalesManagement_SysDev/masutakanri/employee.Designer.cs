@@ -67,6 +67,7 @@
             label2 = new Label();
             label1 = new Label();
             checkBox_2 = new CheckBox();
+            dateCheckBox = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -480,6 +481,16 @@
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
+            // dateCheckBox
+            // 
+            dateCheckBox.AutoSize = true;
+            dateCheckBox.Location = new Point(975, 12);
+            dateCheckBox.Name = "dateCheckBox";
+            dateCheckBox.Size = new Size(225, 29);
+            dateCheckBox.TabIndex = 295;
+            dateCheckBox.Text = "入社年月日を検索に含む";
+            dateCheckBox.UseVisualStyleBackColor = true;
+            // 
             // employee
             // 
             AcceptButton = b_kakutei;
@@ -488,6 +499,7 @@
             AutoScroll = true;
             CancelButton = close;
             ClientSize = new Size(1578, 844);
+            Controls.Add(dateCheckBox);
             Controls.Add(checkBox_2);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -564,5 +576,6 @@
         private TextBox TBPass;
         private Label label9;
         private CheckBox checkBox_2;
+        private CheckBox dateCheckBox;
     }
 }

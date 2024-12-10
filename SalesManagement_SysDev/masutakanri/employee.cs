@@ -411,6 +411,7 @@ namespace SalesManagement_SysDev
                 var ShopID = TBShopID.Text.Trim();         // 店あいデー
                 var JobID = TBJobID.Text.Trim();     // 役職
                 var TelNo = TBTellNo.Text.Trim();     // でんわ 
+                DateTime? nyuushaDate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
 
                 // 基本的なクエリ 
                 var query = context.MEmployees.AsQueryable();
@@ -445,6 +446,11 @@ namespace SalesManagement_SysDev
                     query = query.Where(e => e.EmPhone.Contains(TelNo));
                 }
 
+                // 注文日を検索条件に追加（チェックボックスがチェックされている場合）
+                if (nyuushaDate.HasValue)
+                {
+                    query = query.Where(order => order.EmHiredate == nyuushaDate.Value);
+                }
 
 
 
