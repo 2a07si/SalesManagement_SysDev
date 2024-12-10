@@ -426,6 +426,7 @@ namespace SalesManagement_SysDev
                             issue.SyHidden = "出庫確定処理済";
                             // 出庫詳細が存在する場合、出庫確認処理を実行
                             IssueConfirm(int.Parse(JyutyuID), issue.SyID);
+
                         }
 
 
@@ -1179,7 +1180,8 @@ namespace SalesManagement_SysDev
                             if (stockCompare(syukkoDetail.PrID, syukkoDetail.SyQuantity))
                             {
                                 stock.StQuantity -= syukkoDetail.SyQuantity;
-                                
+
+                                StockManager.CompareStock(syukkoDetail.PrID,stock.StQuantity);
                             }
                             else
                             {

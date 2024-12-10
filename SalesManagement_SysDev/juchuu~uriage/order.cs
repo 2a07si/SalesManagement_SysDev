@@ -429,7 +429,7 @@ namespace SalesManagement_SysDev
                                 var shortageQuantity = detail.ChQuantity - (stock?.StQuantity ?? 0);
                                 if (stock != null)
                                 {
-                                    //stock.StQuantity -= stock.StQuantity; // 在庫を可能な範囲で減らす
+                                    stock.StQuantity -= stock.StQuantity; // 在庫を可能な範囲で減らす
                                 }
                                 totalShortage += shortageQuantity; // 総不足数に加算
 
@@ -444,7 +444,7 @@ namespace SalesManagement_SysDev
                             else
                             {
                                 // 在庫充足処理
-                                
+                                //stock.StQuantity -= detail.ChQuantity; // 在庫を減らす
                                 //MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
 
                             }
