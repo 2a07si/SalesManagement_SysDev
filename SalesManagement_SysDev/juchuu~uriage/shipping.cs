@@ -142,7 +142,6 @@ namespace SalesManagement_SysDev
         {
             TBSyukkaID.Text = "";
             TBKokyakuID.Text = "";
-            TBShainID.Text = "";
             TBShopID.Text = "";
             TBJyutyuID.Text = "";
             SyukkaFlag.Checked = false;
@@ -160,6 +159,10 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
+            if (checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
         }
 
         private void tbfalse()
@@ -309,7 +312,7 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            if (date.Value > DateTime.Today)
+            if (date.Value > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "出庫日が未来を指していますが、よろしいですか？",
@@ -519,7 +522,7 @@ namespace SalesManagement_SysDev
                     TBShainID.Focus();
                     return;
                 }
-                if (date.Value > DateTime.Today)
+                if (date.Value > DateTime.Now)
                 {
                     var result = MessageBox.Show(
                         "出庫日が未来を指していますが、よろしいですか？",

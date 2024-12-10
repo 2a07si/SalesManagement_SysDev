@@ -102,7 +102,6 @@ namespace SalesManagement_SysDev
         {
             TBSyukkoID.Text = "";
             TBShopID.Text = "";
-            TBShainID.Text = "";
             TBKokyakuID.Text = "";
             TBJyutyuID.Text = "";
             SyukkoFlag.Checked = false;
@@ -120,6 +119,10 @@ namespace SalesManagement_SysDev
             dateCheckBox.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
+            if (checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
         }
         private void b_ser_Click(object sender, EventArgs e)
         {
@@ -653,7 +656,7 @@ namespace SalesManagement_SysDev
                         顧客ID = o.ClID,             // クライアントID
                         営業所ID = o.SoID,              // 店舗ID
                         受注ID = o.OrID,              // 受注ID
-                        出庫年月日 = o.SyDate,        // 出庫日
+                        出庫日 = o.SyDate,        // 出庫日
                         状態フラグ = o.SyStateFlag,     // 出庫状態フラグ
                         非表示フラグ = o.SyFlag,         // 削除フラグ
                         非表示理由 = o.SyHidden            // 理由
@@ -756,7 +759,7 @@ namespace SalesManagement_SysDev
                         社員ID = issue.EmID,         // 社員ID
                         顧客ID = issue.ClID,         // クライアントID
                         受注ID = issue.OrID,         // 受注ID
-                        出庫年月日 = issue.SyDate,   // 出庫日
+                        出庫日 = issue.SyDate,   // 出庫日
                         状態フラグ = issue.SyStateFlag, // 出庫状態フラグ
                         非表示フラグ = issue.SyFlag,    // 削除フラグ
                         非表示理由 = issue.SyHidden     // 理由
@@ -1080,8 +1083,8 @@ namespace SalesManagement_SysDev
                     TBShainID.Text = row.Cells["社員ID"].Value?.ToString() ?? string.Empty;
                     TBKokyakuID.Text = row.Cells["顧客ID"].Value?.ToString() ?? string.Empty;
                     TBJyutyuID.Text = row.Cells["受注ID"].Value?.ToString() ?? string.Empty;
-                    date.Value = row.Cells["出庫年月日"].Value != null
-                                 ? Convert.ToDateTime(row.Cells["出庫年月日"].Value)
+                    date.Value = row.Cells["出庫日"].Value != null
+                                 ? Convert.ToDateTime(row.Cells["出庫日"].Value)
                                  : DateTime.Now; // nullの場合は現在の日付を設定
                     UpdateTextBoxState(checkBoxSyain.Checked);
 

@@ -81,7 +81,6 @@ namespace SalesManagement_SysDev
         {
             TBNyukoID.Text = "";
             TBHattyuuID.Text = "";
-            TBShainID.Text = "";
             NyuukoFlag.Checked = false;
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
@@ -97,6 +96,10 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
+            if (checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
         }
 
         private void b_ser_Click(object sender, EventArgs e)
@@ -291,7 +294,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int nyuuko;
-                if (!int.TryParse(haID, out nyuuko) || !context.TWarehousings.Any(h => h.WaID == nyuuko))
+                if (!int.TryParse(nyuukoID, out nyuuko) || !context.TWarehousings.Any(h => h.WaID == nyuuko))
                 {
                     MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -1232,7 +1235,6 @@ namespace SalesManagement_SysDev
         }
         private void UpdateNyuukoCheckerFlag(int PrID, int Quantity)
         {
-            MessageBox.Show("upd実行");
             try
             {
                 using (var context = new SalesManagementContext())
@@ -1297,6 +1299,7 @@ namespace SalesManagement_SysDev
             else
             {
                 TBShainID.Enabled = true; // 有効化
+                TBShainID.Text = "";
             }
 
             // フラグをオフに戻す

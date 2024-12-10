@@ -12,6 +12,7 @@ using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using static SalesManagement_SysDev.Classまとめ.GlobalBadge;
 using SalesManagement_SysDev.Entity;
 using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SalesManagement_SysDev
 {
@@ -83,7 +84,10 @@ namespace SalesManagement_SysDev
         {
             TBJyutyuID.Text = "";
             TBShopID.Text = "";
-            TBShainID.Text = "";
+            if(checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
             TBKokyakuID.Text = "";
             TBTantoName.Text = "";
             TyumonFlag.Checked = false;
@@ -790,6 +794,15 @@ namespace SalesManagement_SysDev
                         MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+                    // 他のレコードに同一の受注IDと商品IDが存在するかチェック（現在のレコードを除く）
+                    if (context.TOrderDetails.Any(od => od.OrID == jyutyu && od.PrID == syohin && od.OrDetailID != int.Parse(jyutyuSyosaiID)))
+                    {
+                        MessageBox.Show("同一受注ID内に同じ商品IDがすでに登録されています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBSyohinID.BackColor = Color.Yellow;
+                        TBSyohinID.Focus();
+                        return;
+                    }
+
 
                     var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailID.ToString() == jyutyuSyosaiID);
                     if (orderDetail != null)
@@ -874,9 +887,14 @@ namespace SalesManagement_SysDev
                         MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
-
-
+                    // 同一受注ID内に同じ商品IDが含まれるかチェック
+                    if (context.TOrderDetails.Any(od => od.OrID == jyutyu && od.PrID == syohin))
+                    {
+                        MessageBox.Show("同一受注ID内に同じ商品IDが登録されています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBSyohinID.BackColor = Color.Yellow;
+                        TBSyohinID.Focus();
+                        return;
+                    }
 
                     var newOrderDetail = new TOrderDetail
                     {
@@ -1714,6 +1732,7 @@ namespace SalesManagement_SysDev
             else
             {
                 TBShainID.Enabled = true; // 有効化
+                TBShainID.Text = "";
             }
 
             // フラグをオフに戻す

@@ -42,6 +42,8 @@ namespace SalesManagement_SysDev
             DisplayCustomer();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.RegistrationStatus(label2);
+            b_reg.Enabled = false;
+            b_reg.BackColor = Color.Gray;
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -183,18 +185,19 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("顧客名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TBJyusyo.Text == "")
-            {
-                TBJyusyo.BackColor = Color.Yellow;
-                TBJyusyo.Focus();
-                MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+
             if (TBYuubinNo.Text == "")
             {
                 TBYuubinNo.BackColor = Color.Yellow;
                 TBYuubinNo.Focus();
                 MessageBox.Show("郵便番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (TBJyusyo.Text == "")
+            {
+                TBJyusyo.BackColor = Color.Yellow;
+                TBJyusyo.Focus();
+                MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBTellNo.Text == "")
@@ -272,18 +275,19 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("顧客名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (TBJyusyo.Text == "")
-                {
-                    TBJyusyo.BackColor = Color.Yellow;
-                    TBJyusyo.Focus();
-                    MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+
                 if (TBYuubinNo.Text == "")
                 {
                     TBYuubinNo.BackColor = Color.Yellow;
                     TBYuubinNo.Focus();
                     MessageBox.Show("郵便番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (TBJyusyo.Text == "")
+                {
+                    TBJyusyo.BackColor = Color.Yellow;
+                    TBJyusyo.Focus();
+                    MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBTellNo.Text == "")

@@ -150,7 +150,6 @@ namespace SalesManagement_SysDev
             TBSalesID.Text = "";
             TBKokyakuID.Text = "";
             TBShopID.Text = "";
-            TBShainID.Text = "";
             TBJyutyuID.Text = "";
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
@@ -167,6 +166,10 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
+            if (checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
         }
 
         private void tbfalse()

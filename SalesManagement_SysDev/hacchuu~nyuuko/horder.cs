@@ -86,7 +86,6 @@ namespace SalesManagement_SysDev
         {
             TBHattyuuID.Text = "";
             TBMakerID.Text = "";
-            TBShainID.Text = "";
             HattyuFlag.Checked = false;
             DelFlag.Checked = false;
             TBRiyuu.Text = "";
@@ -102,6 +101,10 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
+            if (checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
         }
 
 
@@ -301,7 +304,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 int hor;
-                if (!int.TryParse(makerID, out hor) || !context.THattyus.Any(m => m.HaID == hor))
+                if (!int.TryParse(hattyuuID, out hor) || !context.THattyus.Any(m => m.HaID == hor))
                 {
                     MessageBox.Show(":204\n項目が存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -561,7 +564,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    query = query.Where(h => h.WaWarehouseFlag == 1); // 未完了状態
+                    query = query.Where(h => h.WaWarehouseFlag == 0); // 未完了状態
                 }
 
                 // 削除フラグ(DelFlag)を検索条件に追加
