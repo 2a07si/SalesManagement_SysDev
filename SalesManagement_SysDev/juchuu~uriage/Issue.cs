@@ -10,6 +10,7 @@ using SalesManagement_SysDev.juchuu_uriage;
 using static SalesManagement_SysDev.Classまとめ.GlobalEmpNo;
 using Microsoft.EntityFrameworkCore;
 using SalesManagement_SysDev.Entity;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SalesManagement_SysDev
 {
@@ -396,20 +397,22 @@ namespace SalesManagement_SysDev
                     issue.SyStateFlag = SyukkoFlg ? 2 : 0;            // 出庫状態フラグ
                     issue.SyFlag = DelFlg ? 1 : 0;                    // 削除フラグ
                     issue.SyHidden = Riyuu;                           // 理由
-
-                    // SyukkoFlgがチェックされている場合、出庫詳細の確認を行う
-                    if (SyukkoFlg)
+                                                                      // 更新を保存
+                    try
                     {
-                        // 受注IDの重複チェック
-                        bool isDuplicate = context.TArrivals.Any(c => c.OrID == issue.OrID);
-                        if (isDuplicate)
+                        // SyukkoFlgがチェックされている場合、出庫詳細の確認を行う
+                        if (SyukkoFlg)
                         {
-                            MessageBox.Show($"この受注ID ({issue.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return; // 更新処理を中止
-                        }
-                        // 出庫詳細が存在するか確認
-                        var issueDetailsExist = context.TSyukkoDetails
-                            .Any(sd => sd.SyID == issue.SyID); // SyID が一致する出庫詳細が存在するか確認
+                            // 受注IDの重複チェック
+                            bool isDuplicate = context.TArrivals.Any(c => c.OrID == issue.OrID);
+                            if (isDuplicate)
+                            {
+                                MessageBox.Show($"この受注ID ({issue.OrID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return; // 更新処理を中止
+                            }
+                            // 出庫詳細が存在するか確認
+                            var issueDetailsExist = context.TSyukkoDetails
+                                .Any(sd => sd.SyID == issue.SyID); // SyID が一致する出庫詳細が存在するか確認
 
                         if (!issueDetailsExist)
                         {
@@ -419,15 +422,14 @@ namespace SalesManagement_SysDev
                         }
 
 
-                        issue.SyFlag = 1;
-                        issue.SyHidden = "出庫確定処理済";
-                        // 出庫詳細が存在する場合、出庫確認処理を実行
-                        IssueConfirm(int.Parse(JyutyuID), issue.SyID);
-                    }
+                            issue.SyFlag = 1;
+                            issue.SyHidden = "出庫確定処理済";
+                            // 出庫詳細が存在する場合、出庫確認処理を実行
+                            IssueConfirm(int.Parse(JyutyuID), issue.SyID);
 
-                    // 更新を保存
-                    try
-                    {
+                        }
+
+
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         Log_Issue(issue.SyID);
@@ -1132,27 +1134,32 @@ namespace SalesManagement_SysDev
         private void IssueConfirm(int orderID, int SyID)
         {
             MessageBox.Show("登録開始します");
+
             using (var context = new SalesManagementContext())
             {
-                // 引き継ぐ情報を宣言 
-                var syukko = context.TSyukkos.SingleOrDefault(o => o.SyID == SyID);
-
-                if (syukko == null)
+                using (var transaction = context.Database.BeginTransaction()) // トランザクションの開始
                 {
-                    throw new Exception("出庫IDが見つかりません。");
-                }
-                // 注文情報をTChumonに追加
-                var newArrival = new TArrival
-                {
+                    try
+                    {
+                        // 引き継ぐ情報を宣言 
+                        var syukko = context.TSyukkos.SingleOrDefault(o => o.SyID == SyID);
 
-                    EmID = null,  // 社員ID
-                    SoID = syukko.SoID,  // 営業所ID    
-                    ClID = syukko.ClID,  // 顧客ID    
-                    OrID = syukko.OrID,  // 受注ID 
-                    ArDate = null, // 注文日    
-                    ArStateFlag = 0,
-                    ArFlag = 0
-                };
+                        if (syukko == null)
+                        {
+                            throw new Exception("出庫IDが見つかりません。");
+                        }
+
+                        // 注文情報をTChumonに追加
+                        var newArrival = new TArrival
+                        {
+                            EmID = null,  // 社員ID
+                            SoID = syukko.SoID,  // 営業所ID    
+                            ClID = syukko.ClID,  // 顧客ID    
+                            OrID = syukko.OrID,  // 受注ID 
+                            ArDate = null, // 注文日    
+                            ArStateFlag = 0,
+                            ArFlag = 0
+                        };
 
                 try
                 {
@@ -1171,41 +1178,46 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                // 複数の出庫詳細を全て引き継ぐ
-                foreach (var syukkoDetail in syukkoDetails)
-                {
-                    // 新しい到着詳細の登録  
-                    var newArrivalDetail = new TArrivalDetail
-                    {
-                        ArID = newArrival.ArID,
-                        PrID = syukkoDetail.PrID,  // 出庫詳細から商品IDを取得
-                        ArQuantity = syukkoDetail.SyQuantity  // 出庫数量を到着数量として登録
-                    };
+                        // 複数の出庫詳細を全て引き継ぐ
+                        foreach (var syukkoDetail in syukkoDetails)
+                        {
+                            var stock = context.TStocks.FirstOrDefault(s => s.PrID == syukkoDetail.PrID);
+                            if (stockCompare(syukkoDetail.PrID, syukkoDetail.SyQuantity))
+                            {
+                                stock.StQuantity -= syukkoDetail.SyQuantity;
 
-                    try
-                    {
-                        context.TArrivalDetails.Add(newArrivalDetail);
+                                StockManager.CompareStock(syukkoDetail.PrID,stock.StQuantity);
+                            }
+                            else
+                            {
+                                throw new Exception("在庫が不足しています。"); // 処理を強制終了
+                            }
+                            // 新しい到着詳細の登録  
+                            var newArrivalDetail = new TArrivalDetail
+                            {
+                                ArID = newArrival.ArID,
+                                PrID = syukkoDetail.PrID,  // 出庫詳細から商品IDを取得
+                                ArQuantity = syukkoDetail.SyQuantity  // 出庫数量を到着数量として登録
+                            };
+
+                            context.TArrivalDetails.Add(newArrivalDetail);
+                        }
+
+                        // すべての到着詳細をデータベースに保存
+                        context.SaveChanges();
+                        transaction.Commit(); // 正常終了ならトランザクションをコミット
+                        MessageBox.Show("すべての到着詳細が登録されました。");
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception("TArrivalDetailへの登録に失敗しました: " + ex.Message);
+                        transaction.Rollback(); // エラー時にロールバック
+                        MessageBox.Show($"エラーが発生しました: {ex.Message}");
+                        throw;
                     }
                 }
-
-                // すべての到着詳細をデータベースに保存
-                try
-                {
-                    context.SaveChanges();
-                    MessageBox.Show("すべての到着詳細が登録されました。");
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("データベースへの保存に失敗しました: " + ex.Message);
-                }
-
             }
-
         }
+
 
 
         // パネル内のすべてのコントロールにEnterイベントを追加
@@ -1644,6 +1656,28 @@ namespace SalesManagement_SysDev
                     ResetYellowBackgrounds(control);
                 }
             }
+        }
+
+        private bool stockCompare(int PrID, int Quantity)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                var stock = context.TStocks.FirstOrDefault(o => o.PrID == PrID);
+
+                if (stock.StQuantity >= Quantity)
+                {
+                    //stock.StQuantity -= Quantity;
+                    //context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                    //throw new Exception("在庫が不足しています。"); // 処理を強制終了
+                }
+
+            }
+
         }
 
     }

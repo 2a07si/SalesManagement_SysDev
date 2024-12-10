@@ -444,11 +444,9 @@ namespace SalesManagement_SysDev
                             else
                             {
                                 // 在庫充足処理
-                                stock.StQuantity -= detail.ChQuantity; // 在庫を減らす
-                                MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
+                                //stock.StQuantity -= detail.ChQuantity; // 在庫を減らす
+                                //MessageBox.Show($"商品ID: {detail.PrID}、残り在庫: {stock.StQuantity}");
 
-                                // 在庫比較（必要なら実行）
-                                StockManager.CompareStock(detail.PrID, stock.StQuantity);
                             }
                         }
 

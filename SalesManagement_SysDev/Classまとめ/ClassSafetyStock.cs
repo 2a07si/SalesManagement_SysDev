@@ -144,7 +144,7 @@ namespace SalesManagement_SysDev.Classまとめ
                     };
 
                     context.THattyuDetails.Add(newHattyuDetail);
-                    context.SaveChanges();
+                    //context.SaveChanges();
                     Log_AutoOrder(newHattyu.HaID);
 
                 }
@@ -187,7 +187,7 @@ namespace SalesManagement_SysDev.Classまとめ
                             };
 
                             context.LoginHistoryLogDetails.Add(LogDet);  // 新しいログ履歴を登録
-                            context.SaveChanges();
+                            //context.SaveChanges();
                         }
                         else
                         {
