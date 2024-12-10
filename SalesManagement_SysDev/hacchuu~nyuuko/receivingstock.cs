@@ -96,7 +96,10 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
-            UpdateTextBoxState(checkBoxSyain.Checked);
+            if (checkBoxSyain.Checked == false)
+            {
+                TBShainID.Text = "";
+            }
         }
 
         private void b_ser_Click(object sender, EventArgs e)
@@ -1296,6 +1299,7 @@ namespace SalesManagement_SysDev
             else
             {
                 TBShainID.Enabled = true; // 有効化
+                TBShainID.Text = "";
             }
 
             // フラグをオフに戻す
