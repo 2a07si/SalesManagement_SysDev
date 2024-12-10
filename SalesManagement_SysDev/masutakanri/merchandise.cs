@@ -328,7 +328,7 @@ namespace SalesManagement_SysDev
                 }
                 if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaID == maker))
                 {
-                    MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("メーカーIDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -336,7 +336,7 @@ namespace SalesManagement_SysDev
                 int shoubunrui;
                 if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScID == shoubunrui))
                 {
-                    MessageBox.Show("小分類IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("小分類IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -356,6 +356,19 @@ namespace SalesManagement_SysDev
 
                 context.MProducts.Add(newProducts);
                 context.SaveChanges();
+                //在庫0で在庫にも登録
+                var newStock = new TStock
+                {
+                    PrID = newProducts.PrID, // 登録された商品のIDを取得
+                    StQuantity = 0,         // 初期在庫数は0
+                    StFlag = 0              // 必要に応じて初期値を設定
+                };
+
+                context.TStocks.Add(newStock);
+                context.SaveChanges(); // 在庫テーブルの登録を保存
+
+                //ついでに発注もすませてしまう
+                StockManager.CompareStock(newProducts.PrID, newStock.StQuantity);
 
                 MessageBox.Show("登録が成功しました。");
                 Displaymerchandise();

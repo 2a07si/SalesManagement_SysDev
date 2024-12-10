@@ -201,13 +201,13 @@ namespace SalesManagement_SysDev
                         HandleOrderDetailOperation();
                         break;
                     default:
-                        MessageBox.Show("現在のモードは無効です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(":100\n無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message + "\n\nスタックトレース:\n" + ex.StackTrace, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message + "\n\nスタックトレース:\n" + ex.StackTrace, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -228,7 +228,7 @@ namespace SalesManagement_SysDev
                     SearchOrders();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -250,7 +250,7 @@ namespace SalesManagement_SysDev
                     SearchOrderDetails();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -272,7 +272,7 @@ namespace SalesManagement_SysDev
             {
                 TBTyumonID.BackColor = Color.Yellow;
                 TBTyumonID.Focus();
-                MessageBox.Show("注文IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -280,7 +280,7 @@ namespace SalesManagement_SysDev
             {
                 TBShopID.BackColor = Color.Yellow;
                 TBShopID.Focus();
-                MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -288,7 +288,7 @@ namespace SalesManagement_SysDev
             {
                 TBShainID.BackColor = Color.Yellow;
                 TBShainID.Focus();
-                MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -296,7 +296,7 @@ namespace SalesManagement_SysDev
             {
                 TBKokyakuID.BackColor = Color.Yellow;
                 TBKokyakuID.Focus();
-                MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -304,7 +304,7 @@ namespace SalesManagement_SysDev
             {
                 TBJyutyuID.BackColor = Color.Yellow;
                 TBJyutyuID.Focus();
-                MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBShainID.Text != empID)
@@ -337,7 +337,7 @@ namespace SalesManagement_SysDev
                 {
                     TBTyumonID.BackColor = Color.Yellow;
                     TBTyumonID.Focus();
-                    MessageBox.Show("注文IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -346,7 +346,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
-                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -355,7 +355,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
-                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -364,7 +364,7 @@ namespace SalesManagement_SysDev
                 {
                     TBKokyakuID.BackColor = Color.Yellow;
                     TBKokyakuID.Focus();
-                    MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -373,7 +373,7 @@ namespace SalesManagement_SysDev
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
-                    MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -404,7 +404,7 @@ namespace SalesManagement_SysDev
                         var orderDetailExists = context.TChumonDetails.Any(d => d.ChID == int.Parse(ChumonID));
                         if (!orderDetailExists)
                         {
-                            MessageBox.Show("注文詳細が登録されていません。出庫処理を実行できません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(":104\n詳細が登録されていません。\n出庫処理を実行できません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                         // 対応するすべての注文詳細を取得 
@@ -476,7 +476,7 @@ namespace SalesManagement_SysDev
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("処理の保存に失敗しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(":201\n登録操作が失敗しました " + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                         var orders = context.TChumons;
@@ -492,7 +492,7 @@ namespace SalesManagement_SysDev
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("出庫処理の保存に失敗しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("出庫処理の保存に失敗しました\n: " + ex.Message, "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
@@ -508,7 +508,7 @@ namespace SalesManagement_SysDev
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("更新処理に失敗しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(":202\n更新操作が失敗しました\n: " + ex.Message, "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -517,7 +517,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する注文情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             countFlag();
@@ -542,7 +542,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
-                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -550,7 +550,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
-                    MessageBox.Show("社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -558,7 +558,7 @@ namespace SalesManagement_SysDev
                 {
                     TBKokyakuID.BackColor = Color.Yellow;
                     TBKokyakuID.Focus();
-                    MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -566,14 +566,14 @@ namespace SalesManagement_SysDev
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
-                    MessageBox.Show("受注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
-                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -582,7 +582,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
-                    MessageBox.Show("社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -591,7 +591,7 @@ namespace SalesManagement_SysDev
                 {
                     TBKokyakuID.BackColor = Color.Yellow;
                     TBKokyakuID.Focus();
-                    MessageBox.Show("顧客IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -600,7 +600,7 @@ namespace SalesManagement_SysDev
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
-                    MessageBox.Show("受注IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -658,7 +658,7 @@ namespace SalesManagement_SysDev
                             var orderDetailExists = context.TChumonDetails.Any(d => d.ChID == newChID);
                             if (!orderDetailExists)
                             {
-                                MessageBox.Show("注文詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(":104\n詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                             var details = context.TChumonDetails.Where(d => d.ChID == newChID).ToList();
@@ -672,7 +672,7 @@ namespace SalesManagement_SysDev
                                 {
                                     TBSyohinID.BackColor = Color.White;
                                     TBSyohinID.Focus();
-                                    MessageBox.Show($"商品ID: {detail.PrID} が存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(":204\n該当の商品ID: {detail.PrID} が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     return;
                                 }
 
@@ -721,13 +721,13 @@ namespace SalesManagement_SysDev
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("エラー: " + ex.Message + "\n\nスタックトレース:\n" + ex.StackTrace, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message + "\n\nスタックトレース:\n" + ex.StackTrace, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("既に注文情報が存在しています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":203\n既存データとの重複が発生しました。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -762,7 +762,7 @@ namespace SalesManagement_SysDev
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message + "\n\nスタックトレース:\n" + ex.StackTrace, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message + "\n\nスタックトレース:\n" + ex.StackTrace, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -863,7 +863,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する注文情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
                 }
             }
@@ -880,7 +880,7 @@ namespace SalesManagement_SysDev
             {
                 TBTyumonSyosaiID.BackColor = Color.Yellow;
                 TBTyumonSyosaiID.Focus();
-                MessageBox.Show("注文詳細IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -888,7 +888,7 @@ namespace SalesManagement_SysDev
             {
                 TBTyumonIDS.BackColor = Color.Yellow;
                 TBTyumonIDS.Focus();
-                MessageBox.Show("注文IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -897,7 +897,7 @@ namespace SalesManagement_SysDev
             {
                 TBSyohinID.BackColor = Color.Yellow;
                 TBSyohinID.Focus();
-                MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -905,7 +905,7 @@ namespace SalesManagement_SysDev
             {
                 TBSuryou.BackColor = Color.Yellow;
                 TBSyohinID.Focus();
-                MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -916,7 +916,7 @@ namespace SalesManagement_SysDev
                 {
                     TBTyumonSyosaiID.BackColor = Color.Yellow;
                     TBTyumonSyosaiID.Focus();
-                    MessageBox.Show("注文IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 int tyuumon;
@@ -924,7 +924,7 @@ namespace SalesManagement_SysDev
                 {
                     TBTyumonIDS.BackColor = Color.Yellow;
                     TBTyumonIDS.Focus();
-                    MessageBox.Show("注文IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 int shouhin;
@@ -932,7 +932,7 @@ namespace SalesManagement_SysDev
                 {
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
-                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -971,7 +971,7 @@ namespace SalesManagement_SysDev
                 {
                     TBTyumonIDS.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
-                    MessageBox.Show("注文IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -979,7 +979,7 @@ namespace SalesManagement_SysDev
                 {
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
-                    MessageBox.Show("商品IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -987,14 +987,14 @@ namespace SalesManagement_SysDev
                 {
                     TBSuryou.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
-                    MessageBox.Show("数量を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (!int.TryParse(chuumon, out tyuumon) || !context.TChumons.Any(s => s.ChID == tyuumon))
                 {
                     TBTyumonIDS.BackColor = Color.Yellow;
                     TBTyumonIDS.Focus();
-                    MessageBox.Show("注文IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 int shouhin;
@@ -1002,7 +1002,7 @@ namespace SalesManagement_SysDev
                 {
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
-                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 

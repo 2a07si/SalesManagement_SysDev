@@ -187,7 +187,7 @@ namespace SalesManagement_SysDev
                 var product = context.MProducts.FirstOrDefault(p => p.PrID == int.Parse(syohinID));
                 if (product == null)
                 {
-                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("商品IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -241,13 +241,13 @@ namespace SalesManagement_SysDev
                 }
                 if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                 {
-                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("商品IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var product = context.MProducts.FirstOrDefault(p => p.PrID == shouhin);
                 if (product == null)
                 {
-                    MessageBox.Show("商品IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("商品IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 // 安全在庫数チェック

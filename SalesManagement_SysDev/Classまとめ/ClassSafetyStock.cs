@@ -144,7 +144,7 @@ namespace SalesManagement_SysDev.Classまとめ
                     };
 
                     context.THattyuDetails.Add(newHattyuDetail);
-                    //context.SaveChanges();
+                    context.SaveChanges();
                     Log_AutoOrder(newHattyu.HaID);
 
                 }
