@@ -209,9 +209,9 @@
             label6.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
             label6.Location = new Point(508, 38);
             label6.Name = "label6";
-            label6.Size = new Size(30, 25);
+            label6.Size = new Size(66, 25);
             label6.TabIndex = 257;
-            label6.Text = "ID";
+            label6.Text = "受注ID";
             // 
             // TB_ID
             // 
