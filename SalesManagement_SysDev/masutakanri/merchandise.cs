@@ -356,6 +356,19 @@ namespace SalesManagement_SysDev
 
                 context.MProducts.Add(newProducts);
                 context.SaveChanges();
+                //在庫0で在庫にも登録
+                var newStock = new TStock
+                {
+                    PrID = newProducts.PrID, // 登録された商品のIDを取得
+                    StQuantity = 0,         // 初期在庫数は0
+                    StFlag = 0              // 必要に応じて初期値を設定
+                };
+
+                context.TStocks.Add(newStock);
+                context.SaveChanges(); // 在庫テーブルの登録を保存
+
+                //ついでに発注もすませてしまう
+                StockManager.CompareStock(newProducts.PrID, newStock.StQuantity);
 
                 MessageBox.Show("登録が成功しました。");
                 Displaymerchandise();
