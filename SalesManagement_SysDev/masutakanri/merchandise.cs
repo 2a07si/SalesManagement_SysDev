@@ -328,7 +328,7 @@ namespace SalesManagement_SysDev
                 }
                 if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaID == maker))
                 {
-                    MessageBox.Show("メーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("メーカーIDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -336,7 +336,7 @@ namespace SalesManagement_SysDev
                 int shoubunrui;
                 if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScID == shoubunrui))
                 {
-                    MessageBox.Show("小分類IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("小分類IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 

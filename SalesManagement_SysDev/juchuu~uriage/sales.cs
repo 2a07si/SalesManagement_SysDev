@@ -342,7 +342,7 @@ namespace SalesManagement_SysDev
                 {
                     TBSalesID.BackColor = Color.Yellow;
                     TBSalesID.Focus();
-                    MessageBox.Show("売上IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("売上IDが見つかりません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -351,7 +351,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
-                    MessageBox.Show("営業所IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("営業所IDが見つかりません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -360,7 +360,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
-                    MessageBox.Show("社員IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("社員IDが見つかりません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -369,7 +369,7 @@ namespace SalesManagement_SysDev
                 {
                     TBKokyakuID.BackColor = Color.Yellow;
                     TBKokyakuID.Focus();
-                    MessageBox.Show("顧客IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("顧客IDが見つかりません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -378,7 +378,7 @@ namespace SalesManagement_SysDev
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
-                    MessageBox.Show("受注IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("受注IDが見つかりません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -464,7 +464,7 @@ namespace SalesManagement_SysDev
                     {
                         TBShopID.BackColor = Color.Yellow;
                         TBShopID.Focus();
-                        MessageBox.Show("営業所IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("営業所IDが見つかりません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -473,7 +473,7 @@ namespace SalesManagement_SysDev
                     {
                         TBShainID.BackColor = Color.Yellow;
                         TBShainID.Focus();
-                        MessageBox.Show("社員IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("社員IDが見つかりません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -482,7 +482,7 @@ namespace SalesManagement_SysDev
                     {
                         TBKokyakuID.BackColor = Color.Yellow;
                         TBKokyakuID.Focus();
-                        MessageBox.Show("顧客IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("顧客IDが見つかりません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -491,7 +491,7 @@ namespace SalesManagement_SysDev
                     {
                         TBJyutyuID.BackColor = Color.Yellow;
                         TBJyutyuID.Focus();
-                        MessageBox.Show("受注IDが存在しません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("受注IDが見つかりません。", "データエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     if (date.Value > DateTime.Now)
@@ -701,19 +701,19 @@ namespace SalesManagement_SysDev
             {
                 if (!int.TryParse(UriageSyosaiID, out int syosai) || !context.TSaleDetails.Any(s => s.SaDetailID == syosai))
                 {
-                    MessageBox.Show("売上詳細IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("売上詳細IDが見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (!int.TryParse(uriageID, out int uriage) || !context.TSales.Any(s => s.SaID == uriage))
                 {
-                    MessageBox.Show("売上IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("売上IDが見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // 商品IDの検証
                 if (!int.TryParse(syohinID, out int shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                 {
-                    MessageBox.Show("商品IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("商品IDが見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -776,14 +776,14 @@ namespace SalesManagement_SysDev
                     // 売上IDの検証
                     if (!int.TryParse(uriageID, out int uriage) || !context.TSales.Any(s => s.SaID == uriage))
                     {
-                        MessageBox.Show("売上IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("売上IDが見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     // 商品IDの検証
                     if (!int.TryParse(syohinID, out int shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                     {
-                        MessageBox.Show("商品IDが存在しません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("商品IDが見つかりません。", "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
