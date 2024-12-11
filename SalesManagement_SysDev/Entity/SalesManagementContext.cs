@@ -74,7 +74,6 @@ public partial class SalesManagementContext : DbContext
 
     public virtual DbSet<TWarehousingDetail> TWarehousingDetails { get; set; }
 
-    public virtual DbSet<NyuukoChecker> NyuukoCheckers { get; set; }
 
     public DbSet<RankTable> RankTables { get; set; }
 
@@ -97,9 +96,7 @@ public partial class SalesManagementContext : DbContext
         });
 
         // 必要に応じてエンティティの設定を行う
-        modelBuilder.Entity<NyuukoChecker>()
-            .HasKey(n => n.ID); // IDを主キーとして設定
-
+        
         modelBuilder.Entity<LoginHistroyLog2>(entity =>
         {
             entity.HasKey(e => e.ID).HasName("PK_LoginHistroyLog2");

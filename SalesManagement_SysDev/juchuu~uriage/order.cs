@@ -1298,9 +1298,9 @@ namespace SalesManagement_SysDev
 
                     try
                     {
-                        // 不足商品のみcheckerを呼び出す
                         if (fla == 1 && shortageProducts.Contains(newSyukkoDetail.PrID))
                         {
+                            //不足商品リストを初期化
                             shortageProducts.Remove(newSyukkoDetail.PrID); // 要素を削除
                         }
                         //shortageProductsの要素削除
