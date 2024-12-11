@@ -778,11 +778,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         }
 
-        private void dev_checker_Click(object sender, EventArgs e)
-        {
-            Form checker = new checkergamen();
-            checker.Show();
-        }
 
         private void zaiko_Click(object sender, EventArgs e)
         {

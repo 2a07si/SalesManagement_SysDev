@@ -45,7 +45,6 @@ namespace SalesManagement_SysDev
 
         private void issue_Load(object sender, EventArgs e)
         {
-            UpdateNyuukoFlags();
             GlobalUtility.UpdateLabels(label_id, label_ename);
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
