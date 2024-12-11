@@ -1301,8 +1301,6 @@ namespace SalesManagement_SysDev
                         // 不足商品のみcheckerを呼び出す
                         if (fla == 1 && shortageProducts.Contains(newSyukkoDetail.PrID))
                         {
-                            checker(newSyukko.SyID, newSyukko.OrID, newSyukkoDetail.PrID, shortageQuantity);
-                            // shortageProductsの要素削除
                             shortageProducts.Remove(newSyukkoDetail.PrID); // 要素を削除
                         }
                         //shortageProductsの要素削除
@@ -1733,39 +1731,7 @@ namespace SalesManagement_SysDev
             isProgrammaticChange = false;
         }
 
-        private void checker(int SyID, int OrID, int PrID, int Quantity)
-        {
-            MessageBox.Show("不足分チェッカー作成");
-            string syid = SyID.ToString();
-            string orid = OrID.ToString();
-            string prid = PrID.ToString();
-            int quantity = Quantity;
-            using (var context = new SalesManagementContext())
-            {
-                var Checker = new NyuukoChecker()
-                {
-                    SyukkoID = syid,
-                    JyutyuID = orid,
-                    PrID = prid,
-                    Flag = false,
-                    Quantity = quantity,
-                    DelFlag = false
-                };
-                context.NyuukoCheckers.Add(Checker);
-                context.SaveChanges();
-
-                // 登録内容をメッセージボックスで表示
-                string message = $"チェッカー登録内容:\n" +
-                                 $"ID: {Checker.ID}\n" +
-                                 $"出庫ID: {Checker.SyukkoID}\n" +
-                                 $"受注ID: {Checker.JyutyuID}\n" +
-                                 $"商品ID: {Checker.PrID}\n" +
-                                 $"数量: {Checker.Quantity}\n" +
-                                 $"削除フラグ: {Checker.DelFlag}";
-                MessageBox.Show(message, "チェッカー登録完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
+        
         private void ResetYellowBackgrounds(Control parent)
         {
             foreach (Control control in parent.Controls)
