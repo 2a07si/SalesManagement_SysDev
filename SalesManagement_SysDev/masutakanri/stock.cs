@@ -240,12 +240,16 @@ namespace SalesManagement_SysDev
                 }
                 if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                 {
+                    TBSyohinID.BackColor= Color.Yellow;
+                    TBSyohinID.Focus();
                     MessageBox.Show("商品IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var product = context.MProducts.FirstOrDefault(p => p.PrID == shouhin);
                 if (product == null)
                 {
+                    TBSyohinID.BackColor= Color.Yellow;
+                    TBSyohinID.Focus();
                     MessageBox.Show("商品IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
