@@ -358,7 +358,7 @@ namespace SalesManagement_SysDev
                         hattyu.HaFlag = 1;
                         hattyu.HaHidden = "発注確定処理済";
 
-                        bool isDuplicate = context.THattyus.Any(c => c.HaID == hattyu.HaID);
+                        bool isDuplicate = context.TWarehousings.Any(c => c.HaID == hattyu.HaID);
                         if (isDuplicate)
                         {
                             MessageBox.Show(":203\n既存データとの重複が発生しました", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);

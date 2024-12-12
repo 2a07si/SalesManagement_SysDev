@@ -74,8 +74,7 @@ namespace SalesManagement_SysDev
             DisplayEmployee();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.RegistrationStatus(label2);
-            TBSyainID.Enabled = false;
-            TBSyainID.BackColor = Color.Gray;
+           
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -108,6 +107,7 @@ namespace SalesManagement_SysDev
         {
             CurrentStatus.RegistrationStatus(label2);
             labelStatus.labelstatus(label2, b_kakutei);
+
         }
 
         private void b_upd_Click(object sender, EventArgs e)

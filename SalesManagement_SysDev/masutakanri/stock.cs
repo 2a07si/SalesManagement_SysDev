@@ -68,9 +68,6 @@ namespace SalesManagement_SysDev
             DisplayStock();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
-            TBZaikoID.Enabled = false;
-            TBZaikoID.BackColor = Color.Gray;
-            TBZaikoID.Text = "";
             b_reg.Enabled = false;
             b_reg.BackColor = Color.Gray;
         }
