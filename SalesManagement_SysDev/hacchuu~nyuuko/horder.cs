@@ -398,7 +398,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show(":204\n該当の項目が存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
@@ -614,7 +614,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show(":204\n該当の項目が存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア
                 }
             }
@@ -667,14 +667,14 @@ namespace SalesManagement_SysDev
                 int syousai;
                 if (!int.TryParse(hattyuuID, out syousai) || !context.THattyuDetails.Any(h => h.HaDetailID == syousai))
                 {
-                    MessageBox.Show(":204\n項目が存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int hattyuID;
                 if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    MessageBox.Show(":204\n項目が存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -682,7 +682,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    MessageBox.Show(":204\n項目が存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -884,7 +884,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show(":204\n項目が存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1269,7 +1269,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        MessageBox.Show(":204\n該当の項目が存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -1322,7 +1322,7 @@ namespace SalesManagement_SysDev
                     var hattyu = context.THattyus.SingleOrDefault(o => o.HaID.ToString() == hattyuID);
                     if (!int.TryParse(hattyuID, out int hattyus) || !context.THattyus.Any(s => s.HaID == hattyus))
                     {
-                        MessageBox.Show(":204\n該当の項目が存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         TBHattyuuID.BackColor = Color.Yellow;
                         TBHattyuuID.Focus();
                         return;
@@ -1362,7 +1362,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        MessageBox.Show(":204\n該当の項目が存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

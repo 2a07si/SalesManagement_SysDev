@@ -116,7 +116,7 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(16, 144);
             dataGridView1.MultiSelect = false;
@@ -209,9 +209,9 @@
             label6.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
             label6.Location = new Point(508, 38);
             label6.Name = "label6";
-            label6.Size = new Size(66, 25);
+            label6.Size = new Size(30, 25);
             label6.TabIndex = 257;
-            label6.Text = "受注ID";
+            label6.Text = "ID";
             // 
             // TB_ID
             // 
@@ -236,7 +236,7 @@
             // 
             // dataGridView2
             // 
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(19, 144);
             dataGridView2.MultiSelect = false;

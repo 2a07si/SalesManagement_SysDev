@@ -71,6 +71,7 @@
             label2 = new Label();
             label1 = new Label();
             checkBox_2 = new CheckBox();
+            dateCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -526,6 +527,16 @@
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
+            // dateCheckBox
+            // 
+            dateCheckBox.AutoSize = true;
+            dateCheckBox.Location = new Point(950, 12);
+            dateCheckBox.Name = "dateCheckBox";
+            dateCheckBox.Size = new Size(189, 29);
+            dateCheckBox.TabIndex = 296;
+            dateCheckBox.Text = "発売日を検索に含む";
+            dateCheckBox.UseVisualStyleBackColor = true;
+            // 
             // merchandise
             // 
             AcceptButton = b_kakutei;
@@ -534,6 +545,7 @@
             AutoScroll = true;
             CancelButton = close;
             ClientSize = new Size(1578, 844);
+            Controls.Add(dateCheckBox);
             Controls.Add(checkBox_2);
             Controls.Add(label1);
             Controls.Add(label2);
@@ -614,5 +626,6 @@
         private TextBox TBColor;
         private CheckBox checkBox_2;
         private DateTimePicker date;
+        private CheckBox dateCheckBox;
     }
 }

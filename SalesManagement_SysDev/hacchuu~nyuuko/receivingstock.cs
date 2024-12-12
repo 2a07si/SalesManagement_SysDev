@@ -1004,7 +1004,6 @@ namespace SalesManagement_SysDev
                     {
                         context.TStocks.Add(newStock);
                         context.SaveChanges();
-                        UpdateNyuukoCheckerFlag(receive.PrID, receive.WaQuantity);
                     }
                     catch (Exception ex)
                     {
@@ -1017,7 +1016,6 @@ namespace SalesManagement_SysDev
                     existingStock.StQuantity += receive.WaQuantity;
                     try
                     {
-                        UpdateNyuukoCheckerFlag(receive.PrID, receive.WaQuantity);
                         context.SaveChanges();
                     }
                     catch (Exception ex)
@@ -1248,49 +1246,8 @@ namespace SalesManagement_SysDev
                 throw new Exception("Logへの登録に失敗しました:" + ex.Message);
             }
         }
-        private void UpdateNyuukoCheckerFlag(int PrID, int Quantity)
-        {
-            try
-            {
-                using (var context = new SalesManagementContext())
-                {
-                    // 商品IDと数量でレコードを絞り込み
-                    var itemsToUpdate = context.NyuukoCheckers
-                        .Where(n => n.PrID == PrID.ToString() && n.Quantity <= Quantity && n.Flag == false)
-                        .ToList();
 
-                    if (itemsToUpdate.Any())
-                    {
-                        // デバッグ用メッセージを準備
-                        var debugMessage = "更新されたレコード:\n";
-
-                        // 条件に一致するレコードのフラグを更新
-                        itemsToUpdate.ForEach(item =>
-                        {
-                            item.Flag = true;
-
-                            // デバッグ用にレコード内容を収集
-                            debugMessage += $"ID: {item.ID},SyukkoID: {item.SyukkoID}, JyutyuID: {item.JyutyuID}, PrID: {item.PrID},  Quantity: {item.Quantity}, Flag: {item.Flag}\n";
-                        });
-
-                        // 変更をデータベースに保存
-                        context.SaveChanges();
-
-                        // 更新内容を表示
-                        MessageBox.Show(debugMessage, "デバッグ情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("該当する商品IDと数量に一致するレコードが見つかりませんでした。");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // エラーハンドリング
-                MessageBox.Show(":500\n不明なエラーが発生しました。\n" + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
         // フラグを定義して、干渉を防ぐ
         private bool isProgrammaticChange = false;
 

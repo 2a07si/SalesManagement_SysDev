@@ -1203,7 +1203,7 @@ namespace SalesManagement_SysDev
 
                 if (order == null)
                 {
-                    throw new Exception(":204\n該当の項目が存在しません。");
+                    throw new Exception(":204\n該当の項目が見つかりません。");
                 }
 
                 // TChumon テーブル内で OrID が既に存在するか確認
@@ -1241,7 +1241,7 @@ namespace SalesManagement_SysDev
 
                 if (!orderDetails.Any())
                 {
-                    throw new Exception(":204\n該当の項目が存在しません。");
+                    throw new Exception(":204\n該当の項目が見つかりません。");
                 }
 
                 foreach (var detail in orderDetails)

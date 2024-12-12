@@ -54,7 +54,6 @@
             b_hor = new Button();
             b_rank = new Button();
             listViewLog = new ListView();
-            dev_checker = new Button();
             zaiko = new Button();
             JU.SuspendLayout();
             mas.SuspendLayout();
@@ -374,17 +373,6 @@
             listViewLog.SelectedIndexChanged += listViewLog_SelectedIndexChanged;
             listViewLog.MouseClick += listViewLog_MouseClick;
             // 
-            // dev_checker
-            // 
-            dev_checker.Location = new Point(27, 265);
-            dev_checker.Name = "dev_checker";
-            dev_checker.Size = new Size(129, 45);
-            dev_checker.TabIndex = 1003;
-            dev_checker.TabStop = false;
-            dev_checker.Text = "checker";
-            dev_checker.UseVisualStyleBackColor = true;
-            dev_checker.Click += dev_checker_Click;
-            // 
             // zaiko
             // 
             zaiko.Location = new Point(27, 340);
@@ -404,7 +392,6 @@
             CancelButton = b_logout;
             ClientSize = new Size(1578, 844);
             Controls.Add(zaiko);
-            Controls.Add(dev_checker);
             Controls.Add(listViewLog);
             Controls.Add(b_rank);
             Controls.Add(Loginkanri);
@@ -459,7 +446,6 @@
         private Button b_hor;
         private Button b_rank;
         private ListView listViewLog;
-        private Button dev_checker;
         private Button zaiko;
     }
 }

@@ -345,14 +345,14 @@ namespace SalesManagement_SysDev
                 int shop;
                 if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("営業所IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
                 {
-                    MessageBox.Show("役職IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("役職IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -424,6 +424,7 @@ namespace SalesManagement_SysDev
                 var ShopID = TBShopID.Text.Trim();         // 店あいデー
                 var JobID = TBJobID.Text.Trim();     // 役職
                 var TelNo = TBTellNo.Text.Trim();     // でんわ 
+                DateTime? nyuushaDate = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
 
                 // 基本的なクエリ 
                 var query = context.MEmployees.AsQueryable();
@@ -458,6 +459,11 @@ namespace SalesManagement_SysDev
                     query = query.Where(e => e.EmPhone.Contains(TelNo));
                 }
 
+                // 注文日を検索条件に追加（チェックボックスがチェックされている場合）
+                if (nyuushaDate.HasValue)
+                {
+                    query = query.Where(order => order.EmHiredate == nyuushaDate.Value);
+                }
 
 
 
