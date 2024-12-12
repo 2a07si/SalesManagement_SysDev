@@ -124,6 +124,7 @@ namespace SalesManagement_SysDev
             {
                 TBShainID.Text = "";
             }
+            ResetYellowBackgrounds(this);
         }
         private void b_ser_Click(object sender, EventArgs e)
         {

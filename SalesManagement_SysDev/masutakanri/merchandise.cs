@@ -101,6 +101,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             TBSyohinID.BackColor = Color.White;
             colorReset();
+            ResetYellowBackgrounds(this);
         }
 
         private void b_reg_Click(object sender, EventArgs e)
