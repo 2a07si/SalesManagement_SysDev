@@ -377,8 +377,15 @@ namespace SalesManagement_SysDev
 
                 MessageBox.Show("在庫テーブルへの登録が完了しました。");
 
-                //ついでに発注もすませてしまう
-                StockManager.CompareStock(newProducts.PrID, newStock.StQuantity);
+                DialogResult result = MessageBox.Show("自動発注処理を実行しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // 「はい」が選択された場合
+                if (result == DialogResult.Yes)
+                {
+
+                    //ついでに発注もすませてしまう
+                    StockManager.CompareStock(newProducts.PrID, newStock.StQuantity);
+                }
 
             }
         }
