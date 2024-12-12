@@ -1217,7 +1217,6 @@ namespace SalesManagement_SysDev
 
         private void OrdersConfirm(int JyutyuID, int ChID, int SyFlag, string SyHidden, int fla, int shortageQuantity)
         {
-            MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 var order = context.TChumons.FirstOrDefault(o => o.ChID == ChID);
@@ -1319,7 +1318,6 @@ namespace SalesManagement_SysDev
         // 発注処理
         private void ProductOrder(int OrID, int ChID, int shortageQuantity, int PrID)
         {
-            MessageBox.Show("発注登録を開始します");
             try
             {
                 using (var context = new SalesManagementContext())

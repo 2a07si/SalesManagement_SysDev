@@ -343,7 +343,6 @@ namespace SalesManagement_SysDev
                             return; // 処理を中断 
                         }
 
-                        MessageBox.Show("入庫確定処理");
                         // WaIDが一致し、かつWaStateFlagが2の場合に重複とみなす
                         bool isDuplicate = context.TWarehousings.Any(c => c.WaID == receivingStock.WaID && c.WaShelfFlag == 2);
                         if (isDuplicate)
@@ -983,7 +982,6 @@ namespace SalesManagement_SysDev
 
         private void ReceiveConfirm(int WaID)
         {
-            MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 入庫情報を取得

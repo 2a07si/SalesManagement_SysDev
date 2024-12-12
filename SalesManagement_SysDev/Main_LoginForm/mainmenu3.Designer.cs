@@ -382,6 +382,7 @@
             zaiko.TabStop = false;
             zaiko.Text = "zaiko";
             zaiko.UseVisualStyleBackColor = true;
+            zaiko.Visible = false;
             zaiko.Click += zaiko_Click;
             // 
             // mainmenu3

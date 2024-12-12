@@ -200,6 +200,7 @@
             button3.TabIndex = 13;
             button3.Text = "button3";
             button3.UseVisualStyleBackColor = true;
+            button3.Visible = false;
             button3.Click += button3_Click;
             // 
             // passwordchange

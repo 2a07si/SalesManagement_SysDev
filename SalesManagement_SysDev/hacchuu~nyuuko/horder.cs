@@ -1000,7 +1000,6 @@ namespace SalesManagement_SysDev
         }
         private void HorderConfirm(int HaID)
         {
-            MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
