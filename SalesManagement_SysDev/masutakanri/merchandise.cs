@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using SalesManagement_SysDev.Entity;
 using System.Diagnostics.Metrics;
+using System.Linq.Expressions;
 
 namespace SalesManagement_SysDev
 {
@@ -183,6 +184,40 @@ namespace SalesManagement_SysDev
             MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
                             "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        private bool TryAddSearchCondition<T>(ref IQueryable<MProduct> query, string input, Expression<Func<MProduct, T>> selector, out T parsedValue)
+        {
+            parsedValue = default;
+
+            // 入力値が空でない場合
+            if (string.IsNullOrEmpty(input)) return false;
+
+            // 型Tがintの場合
+            if (typeof(T) == typeof(int) && int.TryParse(input, out int parsedInt))
+            {
+                // プロパティ名を取得して動的にWhere句を作成
+                var memberExpression = selector.Body as MemberExpression;
+                if (memberExpression != null)
+                {
+                    string propertyName = memberExpression.Member.Name;
+                    query = query.Where(m => EF.Property<int>(m, propertyName) == parsedInt);
+                }
+
+                parsedValue = (T)(object)parsedInt;
+                return true;
+            }
+
+            // 型Tがstringの場合
+            if (typeof(T) == typeof(string))
+            {
+                query = query.Where(m => EF.Property<string>(m, ((MemberExpression)selector.Body).Member.Name).Contains(input));
+                parsedValue = (T)(object)input;
+                return true;
+            }
+
+            return false;
+        }
+
+
 
         private void Updatemerchandise()
         {
@@ -409,84 +444,41 @@ namespace SalesManagement_SysDev
 
         private void Searchmerchandise()
         {
-
             using (var context = new SalesManagementContext())
             {
-                // 各テキストボックスの値を取得 
-                var SyohinID = TBSyohinID.Text.Trim();       // 商品
-                var MakerID = TBMakerID.Text.Trim();           // めーかー 
-                var SyohinName = TBSyohinName.Text.Trim();         //商品名
-                var Sell = TBSell.Text.Trim();     // 値段
-                var safe = TBSafeNum.Text.Trim();
-                var shou = TBSyoubunrui.Text.Trim();
-                var Model = TBModel.Text.Trim();     // かたばｊｎ 
-                var color = TBColor.Text.Trim();
-                DateTime? Date = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
+                var SyohinID = TBSyohinID.Text.Trim();
+                var MakerID = TBMakerID.Text.Trim();
+                var SyohinName = TBSyohinName.Text.Trim();
+                var Sell = TBSell.Text.Trim();
+                var SafeNum = TBSafeNum.Text.Trim();
+                var Sclass = TBSyoubunrui.Text.Trim();
+                var Model = TBModel.Text.Trim();
+                var Color = TBColor.Text.Trim();
+                DateTime? Date = dateCheckBox.Checked ? date.Value : (DateTime?)null;
 
-
-                // 基本的なクエリ 
                 var query = context.MProducts.AsQueryable();
 
-                // 社員IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int parsedSyohinID))
+                // 各検索条件をTryAddSearchConditionで処理
+                if (TryAddSearchCondition<int>(ref query, SyohinID, m => m.PrID, out int parsedSyohinID)) return;
+                if (TryAddSearchCondition<int>(ref query, MakerID, m => m.MaID, out int parsedMakerID)) return;
+                if (TryAddSearchCondition<decimal>(ref query, Sell, m => m.Price, out decimal parsedSell)) return;
+                if (TryAddSearchCondition<int>(ref query, SafeNum, m => m.PrSafetyStock, out int parsedSafeNum)) return;
+                if (TryAddSearchCondition<int>(ref query, Sclass, m => m.ScID, out int parsedSclass)) return;
+
+                // 文字列に対して検索条件を追加
+                if (!string.IsNullOrEmpty(SyohinName)) query = query.Where(m => m.PrName.Contains(SyohinName));
+                if (!string.IsNullOrEmpty(Model)) query = query.Where(m => m.PrModelNumber.Contains(Model));
+                if (!string.IsNullOrEmpty(Color)) query = query.Where(m => m.PrColor.Contains(Color));
+
+                // 日付条件
+                if (Date.HasValue) query = query.Where(m => m.PrReleaseDate == Date.Value);
+
+                var result = query.ToList();
+
+                // 結果表示
+                if (result.Any())
                 {
-                    query = query.Where(m => m.PrID == parsedSyohinID);
-                }
-
-                // 商品名を検索条件に追加 
-                if (!string.IsNullOrEmpty(MakerID) && int.TryParse(MakerID, out int parsedMakerID))
-                {
-                    query = query.Where(m => m.MaID == parsedMakerID);
-                }
-
-                // 営業所IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(SyohinName))
-                {
-                    query = query.Where(m => m.PrName == SyohinName);
-                }
-
-                // 顧客IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(Sell) && int.TryParse(Sell, out int parsedSell))
-                {
-                    query = query.Where(m => m.Price == parsedSell);
-                }
-
-                if (!string.IsNullOrEmpty(safe) && int.TryParse(safe, out int parsedsafe))
-                {
-                    query = query.Where(m => m.PrSafetyStock == parsedsafe);
-                }
-
-                if (!string.IsNullOrEmpty(shou) && int.TryParse(shou, out int parsedshou))
-                {
-                    query = query.Where(m => m.ScID == parsedshou);
-                }
-
-                // 担当者名を検索条件に追加 
-                if (!string.IsNullOrEmpty(Model))
-                {
-                    query = query.Where(m => m.PrModelNumber.Contains(Model));
-                }
-
-                if (!string.IsNullOrEmpty(color))
-                {
-                    query = query.Where(m => m.PrColor.Contains(color));
-                }
-                // 注文日を検索条件に追加（チェックボックスがチェックされている場合）
-                if (Date.HasValue)
-                {
-                    query = query.Where(order => order.PrReleaseDate == Date.Value);
-                }
-
-
-
-
-                // 結果を取得 
-                var m = query.ToList();
-
-                if (m.Any())
-                {
-                    // dataGridView1 に結果を表示 
-                    dataGridView1.DataSource = m.Select(m => new
+                    dataGridView1.DataSource = result.Select(m => new
                     {
                         商品ID = m.PrID,
                         メーカーID = m.MaID,
@@ -505,10 +497,14 @@ namespace SalesManagement_SysDev
                 else
                 {
                     MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
+                    dataGridView1.DataSource = null;
                 }
             }
         }
+
+
+
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
