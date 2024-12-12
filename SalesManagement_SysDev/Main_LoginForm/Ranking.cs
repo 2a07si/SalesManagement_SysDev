@@ -118,7 +118,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     {
                         DateTime startDate = date.Value.Date;   // 開始日
                         DateTime endDate = date2.Value.Date;     // 終了日
-
+                        
+                        // 日付範囲が逆転している場合のチェック 
+                        if (startDate > endDate)
+                        {
+                            MessageBox.Show("開始日が終了日より後になっています。日付を正しく指定してください。",
+                                            "入力エラー",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Warning);
+                            return; // 処理を中断 
+                        }
                         // フィルタリング条件を追加
                         query = query.Where(x => x.売上日 >= startDate && x.売上日 <= endDate);
                     }
@@ -253,6 +262,18 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     {
                         DateTime startDate = date3.Value.Date;   // 開始日
                         DateTime endDate = date4.Value.Date;     // 終了日
+                        DateTime startDate1 = date3.Value.Date;   // 開始日 
+                        DateTime endDate1 = date4.Value.Date;   // 終了日 
+
+                        // 日付範囲が逆転している場合のチェック 
+                        if (startDate1 > endDate1)
+                        {
+                            MessageBox.Show("開始日が終了日より後になっています。日付を正しく指定してください。",
+                                            "入力エラー",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Warning);
+                            return; // 処理を中断 
+                        }
 
                         // フィルタリング条件を追加
                         query = query.Where(x => x.売上日 >= startDate && x.売上日 <= endDate);
