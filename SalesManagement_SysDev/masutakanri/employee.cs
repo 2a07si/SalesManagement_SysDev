@@ -134,7 +134,8 @@ namespace SalesManagement_SysDev
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
-            colorReset();
+            
+           colorReset();
             HandleOrderOperation();
         }
 
