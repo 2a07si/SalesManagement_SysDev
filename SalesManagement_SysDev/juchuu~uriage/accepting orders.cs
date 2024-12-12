@@ -33,12 +33,15 @@ namespace SalesManagement_SysDev
             InitializeComponent();
             formChanger = new ClassChangeForms(this);
             accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.AllowUserToResizeRows = false;
 
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel2, 2);  // パネル2の場合
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView2.AllowUserToResizeColumns = false;
+            dataGridView2.AllowUserToResizeRows = false;
+
 
         }
 

@@ -29,7 +29,9 @@ namespace SalesManagement_SysDev
             this.dateNamelabel = new ClassDateNamelabel(label_id, label_ename);
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
-
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            
         }
         private void customer_Load(object sender, EventArgs e)
         {
