@@ -41,6 +41,7 @@ namespace SalesManagement_SysDev
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel3, 2);  // パネル2の場合
+            StockCheck();
         }
 
         private void issue_Load(object sender, EventArgs e)
@@ -65,7 +66,7 @@ namespace SalesManagement_SysDev
             b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
 
             SetupNumericOnlyTextBoxes();
-            StockCheck();
+            
             // 在庫不足で非表示となった出庫情報に関するメッセージを取得
 
             // 在庫更新メッセージを取得
@@ -81,7 +82,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("特に在庫更新はありません。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             CurrentStatus.UpDateStatus(label2);
-
+            StockCheck();
         }
 
         // メインメニューに戻る 
@@ -231,6 +232,7 @@ namespace SalesManagement_SysDev
                     break;
                 case CurrentStatus.Status.一覧:
                     DisplayIssues();
+                    StockCheck();
                     break;
                 case CurrentStatus.Status.検索:
                     SearchIssues();
@@ -1619,57 +1621,58 @@ namespace SalesManagement_SysDev
         {
             using (var context = new SalesManagementContext())
             {
-                // 出庫情報を取得 (SyStateFlagが2以外のものを対象)
+                // 出庫情報を取得 (SyStateFlagが2以外のものを対象、または在庫不足状態ではないものも含む)
                 var syukkoList = context.TSyukkos
-                    .Where(s => s.SyStateFlag != 2 && s.SyHidden == "在庫不足のため非表示中")
+                    .Where(s => s.SyStateFlag != 2)
                     .ToList();
 
                 foreach (var syukko in syukkoList)
                 {
-                    // 出庫詳細情報を取得
+                    // 出庫詳細情報を取得 
                     var details = context.TSyukkoDetails
                         .Where(d => d.SyID == syukko.SyID)
                         .ToList();
 
-                    bool isHidden = false; // 初期値: 非表示にしない
+                    bool isHidden = false; // 初期値: 非表示にしない 
                     string hiddenReason = null;
 
                     foreach (var detail in details)
                     {
-                        // 在庫情報を取得
+                        // 在庫情報を取得 
                         var stock = context.TStocks
                             .FirstOrDefault(s => s.PrID == detail.PrID);
 
-                        // 在庫が足りない場合
+                        // 在庫が足りない場合 
                         if (stock == null || stock.StQuantity < detail.SyQuantity)
                         {
                             isHidden = true;
                             hiddenReason = "在庫不足のため非表示中";
-                            break; // 一つでも不足していれば以降の判定をスキップ
+                            break; // 一つでも不足していれば以降の判定をスキップ 
                         }
                     }
 
                     // 非表示状態の切り替え
+                    // SyStateFlagが0であっても在庫不足の場合は非表示にする
                     if (isHidden)
                     {
-                        syukko.SyFlag = 1; // 非表示
+                        syukko.SyFlag = 1; // 非表示 
                         syukko.SyHidden = hiddenReason;
                     }
                     else
                     {
-                        syukko.SyFlag = 0; // 表示
+                        syukko.SyFlag = 0; // 表示 
                         syukko.SyHidden = null;
                     }
 
-                    // データベースを更新
+                    // データベースを更新 
                     context.TSyukkos.Update(syukko);
                 }
 
-                // 変更を保存
+                // 変更を保存 
                 context.SaveChanges();
             }
-
         }
+
     }
 
 
