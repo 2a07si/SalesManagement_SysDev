@@ -344,12 +344,14 @@ namespace SalesManagement_SysDev
                         }
 
                         MessageBox.Show("入庫確定処理");
-                        bool isDuplicate = context.TWarehousings.Any(c => c.WaID == receivingStock.WaID);
+                        // WaIDが一致し、かつWaStateFlagが2の場合に重複とみなす
+                        bool isDuplicate = context.TWarehousings.Any(c => c.WaID == receivingStock.WaID && c.WaShelfFlag == 2);
                         if (isDuplicate)
                         {
-                            MessageBox.Show(":203\n既存データとの重複が発生しました", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(":203\n既存データがすでに確定済み状態です（WaStateFlag=2）", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return; // 更新処理を中止
                         }
+
                         // 入庫詳細が存在する場合、入庫確認処理を実行 
                         ReceiveConfirm(receivingStock.WaID);
 
