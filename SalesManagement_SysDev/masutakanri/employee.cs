@@ -74,8 +74,8 @@ namespace SalesManagement_SysDev
             DisplayEmployee();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.RegistrationStatus(label2);
-            b_reg.Enabled = false;
-            b_reg.BackColor = Color.Gray;
+            TBSyainID.Enabled = false;
+            TBSyainID.BackColor = Color.Gray;
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -226,6 +226,19 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int shop;
+                if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
+                {
+                    MessageBox.Show("営業所IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int job;
+                if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
+                {
+                    MessageBox.Show("役職IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 var employee = context.MEmployees.SingleOrDefault(e => e.EmID.ToString() == ShainID);
                 if (employee != null)
                 {

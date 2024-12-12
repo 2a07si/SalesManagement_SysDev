@@ -306,14 +306,16 @@ namespace SalesManagement_SysDev
                 int hor;
                 if (!int.TryParse(hattyuuID, out hor) || !context.THattyus.Any(m => m.HaID == hor))
                 {
-                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n発注IDが存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBHattyuuID.BackColor = Color.Yellow;
                     return;
                 }
 
                 int maker;
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
                 {
-                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\nメーカーIDが存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBMakerID.BackColor = Color.Yellow;
                     return;
                 }
 
@@ -321,7 +323,8 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n社員IDが存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShainID.BackColor = Color.Yellow;
                     return;
                 }
 
@@ -346,7 +349,7 @@ namespace SalesManagement_SysDev
                         {
                             // 発注詳細が存在しない場合はエラーメッセージを表示
 
-                            MessageBox.Show(":104\n詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(":104\n発注詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
 
@@ -354,12 +357,20 @@ namespace SalesManagement_SysDev
 
                         hattyu.HaFlag = 1;
                         hattyu.HaHidden = "発注確定処理済";
+
+                        bool isDuplicate = context.THattyus.Any(c => c.HaID == hattyu.HaID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show(":203\n既存データとの重複が発生しました", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
                         HorderConfirm(hattyu.HaID);
                     }
 
                     // 更新を保存
                     try
                     {
+                       
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayHattyus(); // 更新後に発注情報を再表示
@@ -412,7 +423,7 @@ namespace SalesManagement_SysDev
                 {
                     TBMakerID.BackColor = Color.Yellow;
                     TBMakerID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":101\nメーカーIDを入力して下さい", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -420,13 +431,13 @@ namespace SalesManagement_SysDev
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":101\n社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
                 {
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":101\nメーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -434,7 +445,7 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":101\n社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (date.Value > DateTime.Now)

@@ -258,7 +258,7 @@ namespace SalesManagement_SysDev
             {
                 TBHattyuuID.BackColor = Color.Yellow;
                 TBHattyuuID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":101\n発注IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -266,7 +266,7 @@ namespace SalesManagement_SysDev
             {
                 TBNyukoID.BackColor = Color.Yellow;
                 TBNyukoID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":101\n入庫IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -274,7 +274,7 @@ namespace SalesManagement_SysDev
             {
                 TBShainID.BackColor = Color.Yellow;
                 TBShainID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":101\n社員IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (date.Value > DateTime.Now)
@@ -296,14 +296,16 @@ namespace SalesManagement_SysDev
                 int nyuuko;
                 if (!int.TryParse(nyuukoID, out nyuuko) || !context.TWarehousings.Any(h => h.WaID == nyuuko))
                 {
-                    MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n入庫IDが存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBNyukoID.BackColor = Color.Yellow;
                     return;
                 }
 
                 int hattyuID;
                 if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    MessageBox.Show(":204\n該当の項目が存在しません","DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n発注IDが存在しません","DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBHattyuuID.BackColor = Color.Yellow;
                     return;
                 }
 
@@ -311,7 +313,8 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n社員IDが存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShainID.BackColor = Color.Yellow;
                     return;
                 }
 
@@ -340,6 +343,12 @@ namespace SalesManagement_SysDev
                         }
 
                         MessageBox.Show("入庫確定処理");
+                        bool isDuplicate = context.TWarehousings.Any(c => c.WaID == receivingStock.WaID);
+                        if (isDuplicate)
+                        {
+                            MessageBox.Show(":203\n既存データとの重複が発生しました", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // 更新処理を中止
+                        }
                         // 入庫詳細が存在する場合、入庫確認処理を実行 
                         ReceiveConfirm(receivingStock.WaID);
 
@@ -354,12 +363,15 @@ namespace SalesManagement_SysDev
                         receivingStock.WaFlag = 1;
                         receivingStock.WaHidden = "入庫確定処理済";
 
+                        
+
                     }
 
                     // 更新を保存 
                     // 更新を保存 
                     try
                     {
+                        
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayReceivingStocks(); // 更新後に入庫情報を再表示
@@ -409,10 +421,11 @@ namespace SalesManagement_SysDev
             {
                 // HaIDがTHattyuテーブルに存在するか確認
                 int hattyuID;
-                if (TBNyukoID.Text == "")
+                if (TBHattyuuID.Text == "")
                 {
-                    TBNyukoID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBHattyuuID.BackColor = Color.Yellow;
+                    TBHattyuuID.Focus();
+                    MessageBox.Show(":101\n発注IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -420,12 +433,13 @@ namespace SalesManagement_SysDev
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":101\n社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBHattyuuID.BackColor = Color.Yellow;
+                    MessageBox.Show(":101\n発注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -433,7 +447,8 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TBShainID.BackColor = Color.Yellow;
+                    MessageBox.Show(":101\n社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (date.Value > DateTime.Now)

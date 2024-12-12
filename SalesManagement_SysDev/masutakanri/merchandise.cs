@@ -75,6 +75,8 @@ namespace SalesManagement_SysDev
             Displaymerchandise();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.RegistrationStatus(label2);
+            TBSyohinID.Enabled = false;
+            TBSyohinID.BackColor = Color.Gray;
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -356,6 +358,12 @@ namespace SalesManagement_SysDev
 
                 context.MProducts.Add(newProducts);
                 context.SaveChanges();
+
+
+                MessageBox.Show("登録が成功しました。");
+                Displaymerchandise();
+                Log_Merchandise(newProducts.PrID);
+                ResetYellowBackgrounds(this);
                 //在庫0で在庫にも登録
                 var newStock = new TStock
                 {
@@ -367,13 +375,18 @@ namespace SalesManagement_SysDev
                 context.TStocks.Add(newStock);
                 context.SaveChanges(); // 在庫テーブルの登録を保存
 
-                //ついでに発注もすませてしまう
-                StockManager.CompareStock(newProducts.PrID, newStock.StQuantity);
+                MessageBox.Show("在庫テーブルへの登録が完了しました。");
 
-                MessageBox.Show("登録が成功しました。");
-                Displaymerchandise();
-                Log_Merchandise(newProducts.PrID);
-                ResetYellowBackgrounds(this);
+                DialogResult result = MessageBox.Show("自動発注処理を実行しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // 「はい」が選択された場合
+                if (result == DialogResult.Yes)
+                {
+
+                    //ついでに発注もすませてしまう
+                    StockManager.CompareStock(newProducts.PrID, newStock.StQuantity);
+                }
+
             }
         }
         private void Displaymerchandise()

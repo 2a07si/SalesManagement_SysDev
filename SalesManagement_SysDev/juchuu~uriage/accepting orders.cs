@@ -797,7 +797,7 @@ namespace SalesManagement_SysDev
                     // 他のレコードに同一の受注IDと商品IDが存在するかチェック（現在のレコードを除く）
                     if (context.TOrderDetails.Any(od => od.OrID == jyutyu && od.PrID == syohin && od.OrDetailID != int.Parse(jyutyuSyosaiID)))
                     {
-                        MessageBox.Show("同一受注ID内に同じ商品IDがすでに登録されています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(":203\n同一受注ID内に同じ商品IDがすでに登録されています。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         TBSyohinID.BackColor = Color.Yellow;
                         TBSyohinID.Focus();
                         return;
@@ -890,7 +890,7 @@ namespace SalesManagement_SysDev
                     // 同一受注ID内に同じ商品IDが含まれるかチェック
                     if (context.TOrderDetails.Any(od => od.OrID == jyutyu && od.PrID == syohin))
                     {
-                        MessageBox.Show("同一受注ID内に同じ商品IDが登録されています。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(":203\n同一受注ID内に同じ商品IDがすでに登録されています。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         TBSyohinID.BackColor = Color.Yellow;
                         TBSyohinID.Focus();
                         return;

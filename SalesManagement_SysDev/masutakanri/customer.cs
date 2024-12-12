@@ -42,8 +42,8 @@ namespace SalesManagement_SysDev
             DisplayCustomer();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.RegistrationStatus(label2);
-            b_reg.Enabled = false;
-            b_reg.BackColor = Color.Gray;
+            TBKokyakuID.Enabled = false;
+            TBKokyakuID.BackColor = Color.Gray;
         }
 
         private void close_Click(object sender, EventArgs e)
