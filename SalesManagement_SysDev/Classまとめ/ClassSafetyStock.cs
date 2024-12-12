@@ -94,10 +94,11 @@ namespace SalesManagement_SysDev.Classまとめ
             if (st < safetyStock)
             {
                 int orderQuantity = safetyStock - st + 100; // 余裕を持たせた発注量
-                AutoOrder(productId, orderQuantity);
+                
                 MessageBox.Show($"商品ID {productId} の在庫が不足しています。自動発注を行います。");
                 MessageBox.Show($"現在の在庫数: {st}, 安全在庫数: {safetyStock}");
                 MessageBox.Show($"発注数量: {orderQuantity} 個");
+                AutoOrder(productId, orderQuantity);
             }
             else
             {

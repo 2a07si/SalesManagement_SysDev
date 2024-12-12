@@ -74,8 +74,8 @@ namespace SalesManagement_SysDev
             DisplayEmployee();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.RegistrationStatus(label2);
-            b_reg.Enabled = false;
-            b_reg.BackColor = Color.Gray;
+            TBSyainID.Enabled = false;
+            TBSyainID.BackColor = Color.Gray;
         }
 
         private void clear_Click(object sender, EventArgs e)
