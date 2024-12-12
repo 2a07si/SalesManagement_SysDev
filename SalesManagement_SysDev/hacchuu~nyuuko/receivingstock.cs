@@ -38,6 +38,11 @@ namespace SalesManagement_SysDev
 
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel3, 2);  // パネル2の場合
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView2.AllowUserToResizeColumns = false;
+            dataGridView2.AllowUserToResizeRows = false;
+
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -343,7 +348,6 @@ namespace SalesManagement_SysDev
                             return; // 処理を中断 
                         }
 
-                        MessageBox.Show("入庫確定処理");
                         // WaIDが一致し、かつWaStateFlagが2の場合に重複とみなす
                         bool isDuplicate = context.TWarehousings.Any(c => c.WaID == receivingStock.WaID && c.WaShelfFlag == 2);
                         if (isDuplicate)
@@ -983,7 +987,6 @@ namespace SalesManagement_SysDev
 
         private void ReceiveConfirm(int WaID)
         {
-            MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 入庫情報を取得

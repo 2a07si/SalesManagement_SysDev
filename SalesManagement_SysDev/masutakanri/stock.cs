@@ -25,6 +25,9 @@ namespace SalesManagement_SysDev
             timer1.Start();
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
             this.formChanger = new ClassChangeForms(this);
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+
 
         }
 

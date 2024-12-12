@@ -44,6 +44,11 @@ namespace SalesManagement_SysDev
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel3, 2);  // パネル2の場合
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView2.AllowUserToResizeColumns = false;
+            dataGridView2.AllowUserToResizeRows = false;
+
         }
 
 
@@ -1217,7 +1222,6 @@ namespace SalesManagement_SysDev
 
         private void OrdersConfirm(int JyutyuID, int ChID, int SyFlag, string SyHidden, int fla, int shortageQuantity)
         {
-            MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 var order = context.TChumons.FirstOrDefault(o => o.ChID == ChID);
@@ -1319,7 +1323,6 @@ namespace SalesManagement_SysDev
         // 発注処理
         private void ProductOrder(int OrID, int ChID, int shortageQuantity, int PrID)
         {
-            MessageBox.Show("発注登録を開始します");
             try
             {
                 using (var context = new SalesManagementContext())

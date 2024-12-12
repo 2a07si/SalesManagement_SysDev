@@ -42,6 +42,11 @@ namespace SalesManagement_SysDev
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel3, 2);  // パネル2の場合
             StockCheck();
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView2.AllowUserToResizeColumns = false;
+            dataGridView2.AllowUserToResizeRows = false;
+
         }
 
         private void issue_Load(object sender, EventArgs e)
@@ -436,6 +441,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show("更新が成功しました。");
                         Log_Issue(issue.SyID);
                         DisplayIssues(); // 更新後に出庫情報を再表示
+                        DisplayIssueDetails();
                         ResetYellowBackgrounds(this);
                     }
                     catch (DbUpdateException ex)
@@ -1135,8 +1141,6 @@ namespace SalesManagement_SysDev
 
         private void IssueConfirm(int orderID, int SyID)
         {
-            MessageBox.Show("登録開始します");
-
             using (var context = new SalesManagementContext())
             {
                 using (var transaction = context.Database.BeginTransaction()) // トランザクションの開始
