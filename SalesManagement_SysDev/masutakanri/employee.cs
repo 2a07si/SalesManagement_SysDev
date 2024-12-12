@@ -96,6 +96,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             TBSyainID.BackColor = Color.White;
             colorReset();
+            ResetYellowBackgrounds(this);
         }
 
         private void date_ValueChanged(object sender, EventArgs e)
