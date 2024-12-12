@@ -188,7 +188,7 @@ namespace SalesManagement_SysDev.Classまとめ
                             };
 
                             context.LoginHistoryLogDetails.Add(LogDet);  // 新しいログ履歴を登録
-                            //context.SaveChanges();
+                            context.SaveChanges();
                         }
                         else
                         {

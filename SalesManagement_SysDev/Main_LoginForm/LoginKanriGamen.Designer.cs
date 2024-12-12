@@ -273,7 +273,7 @@
             // 
             ComboShori.Font = new Font("Yu Gothic UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
             ComboShori.FormattingEnabled = true;
-            ComboShori.Items.AddRange(new object[] { "未選択", "登録", "更新", "ログアウト" });
+            ComboShori.Items.AddRange(new object[] { "未選択", "登録", "更新", "自動発注", "ログアウト" });
             ComboShori.Location = new Point(345, 77);
             ComboShori.Name = "ComboShori";
             ComboShori.Size = new Size(150, 54);

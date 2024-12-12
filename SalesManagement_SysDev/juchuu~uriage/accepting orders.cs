@@ -106,6 +106,7 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Checked = false;
             checkBox_2.Checked = false;
             colorReset();
+            ResetYellowBackgrounds(this);
         }
 
         private void b_ser_Click(object sender, EventArgs e)

@@ -10,6 +10,7 @@ using SalesManagement_SysDev.juchuu_uriage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using SalesManagement_SysDev.Entity;
+using System.Diagnostics.Metrics;
 
 namespace SalesManagement_SysDev
 {
@@ -101,6 +102,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             TBSyohinID.BackColor = Color.White;
             colorReset();
+            ResetYellowBackgrounds(this);
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -236,6 +238,25 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
+                int maker;
+                if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaID == maker))
+                {
+                    TBMakerID.BackColor = Color.Yellow;
+                    TBMakerID.Focus();
+                    MessageBox.Show("メーカーIDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // EmIDがMEmployeeテーブルに存在するか確認
+                int shoubunrui;
+                if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScID == shoubunrui))
+                {
+                    TBSyoubunrui.BackColor = Color.Yellow;
+                    TBSyoubunrui.Focus();
+                    MessageBox.Show("小分類IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 var merchandise = context.MProducts.SingleOrDefault(e => e.PrID.ToString() == SyohinID);
                 if (merchandise != null)
                 {
@@ -331,6 +352,8 @@ namespace SalesManagement_SysDev
                 }
                 if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaID == maker))
                 {
+                    TBMakerID.BackColor = Color.Yellow;
+                    TBMakerID.Focus();
                     MessageBox.Show("メーカーIDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -339,6 +362,8 @@ namespace SalesManagement_SysDev
                 int shoubunrui;
                 if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScID == shoubunrui))
                 {
+                    TBSyoubunrui.BackColor = Color.Yellow;
+                    TBSyoubunrui.Focus();
                     MessageBox.Show("小分類IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -620,6 +645,14 @@ namespace SalesManagement_SysDev
             {
                 case CurrentStatus.Status.登録:
                     TBSyohinID.BackColor = Color.Gray;
+                    TBSyohinID.Enabled = false;
+                    TBMakerID.BackColor = SystemColors.Window;
+                    TBSyohinName.BackColor = SystemColors.Window;
+                    TBSell.BackColor = SystemColors.Window;
+                    TBSafeNum.BackColor = SystemColors.Window;
+                    TBSyoubunrui.BackColor = SystemColors.Window;
+                    TBModel.BackColor = SystemColors.Window;
+                    TBColor.BackColor = SystemColors.Window;
                     break;
                 default:
                     TBSyohinID.BackColor = SystemColors.Window;

@@ -86,6 +86,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             TBKokyakuID.BackColor = Color.White;
             colorReset();
+            ResetYellowBackgrounds(this);
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -306,6 +307,8 @@ namespace SalesManagement_SysDev
                 }
                 if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
+                    TBShopID.BackColor = Color.Yellow;
+                    TBShopID.Focus();
                     MessageBox.Show("営業所IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -557,6 +560,13 @@ namespace SalesManagement_SysDev
             {
                 case CurrentStatus.Status.登録:
                     TBKokyakuID.BackColor = Color.Gray;
+                    TBKokyakuID.Enabled = false;
+                    TBShopID.BackColor = SystemColors.Window;
+                    TBKokyakuName.BackColor = SystemColors.Window;
+                    TBYuubinNo.BackColor = SystemColors.Window;
+                    TBJyusyo.BackColor = SystemColors.Window;
+                    TBTellNo.BackColor = SystemColors.Window;
+                    TBFax.BackColor = SystemColors.Window;
                     break;
                 default:
                     TBKokyakuID.BackColor = SystemColors.Window;

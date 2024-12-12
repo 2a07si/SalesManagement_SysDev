@@ -68,9 +68,6 @@ namespace SalesManagement_SysDev
             DisplayStock();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.UpDateStatus(label2);
-            TBZaikoID.Enabled = false;
-            TBZaikoID.BackColor = Color.Gray;
-            TBZaikoID.Text = "";
             b_reg.Enabled = false;
             b_reg.BackColor = Color.Gray;
         }
@@ -89,6 +86,7 @@ namespace SalesManagement_SysDev
             CurrentStatus.ResetStatus(label2);
             TBZaikoID.BackColor = Color.White;
             colorReset();
+            ResetYellowBackgrounds(this);
         }
 
         private void b_reg_Click(object sender, EventArgs e)
@@ -243,12 +241,16 @@ namespace SalesManagement_SysDev
                 }
                 if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                 {
+                    TBSyohinID.BackColor= Color.Yellow;
+                    TBSyohinID.Focus();
                     MessageBox.Show("商品IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var product = context.MProducts.FirstOrDefault(p => p.PrID == shouhin);
                 if (product == null)
                 {
+                    TBSyohinID.BackColor= Color.Yellow;
+                    TBSyohinID.Focus();
                     MessageBox.Show("商品IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }

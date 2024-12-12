@@ -163,6 +163,7 @@ namespace SalesManagement_SysDev
             {
                 TBShainID.Text = "";
             }
+            ResetYellowBackgrounds(this);
         }
 
         private void tbfalse()
