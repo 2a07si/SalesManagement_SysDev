@@ -45,14 +45,14 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 
             // TBID
             // 
-            TBID.Location = new Point(400, 120);
+            TBID.Location = new Point(495, 196);
             TBID.Name = "TBID";
             TBID.Size = new Size(200, 31);
             TBID.TabIndex = 0;
             // 
             // TBold
             // 
-            TBold.Location = new Point(400, 220);
+            TBold.Location = new Point(495, 296);
             TBold.Name = "TBold";
             TBold.PasswordChar = '●';
             TBold.Size = new Size(200, 31);
@@ -60,7 +60,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 
             // TBnew
             // 
-            TBnew.Location = new Point(400, 320);
+            TBnew.Location = new Point(495, 396);
             TBnew.Name = "TBnew";
             TBnew.PasswordChar = '●';
             TBnew.Size = new Size(200, 31);
@@ -69,7 +69,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // user
             // 
             user.AutoSize = true;
-            user.Location = new Point(311, 126);
+            user.Location = new Point(406, 202);
             user.Name = "user";
             user.Size = new Size(66, 25);
             user.TabIndex = 1;
@@ -78,7 +78,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // old
             // 
             old.AutoSize = true;
-            old.Location = new Point(295, 223);
+            old.Location = new Point(390, 299);
             old.Name = "old";
             old.Size = new Size(97, 25);
             old.TabIndex = 1;
@@ -87,7 +87,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // ne
             // 
             ne.AutoSize = true;
-            ne.Location = new Point(295, 323);
+            ne.Location = new Point(390, 399);
             ne.Name = "ne";
             ne.Size = new Size(97, 25);
             ne.TabIndex = 1;
@@ -97,7 +97,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 
             kakutei.BackColor = Color.FromArgb(255, 192, 192);
             kakutei.Font = new Font("Yu Gothic UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            kakutei.Location = new Point(425, 400);
+            kakutei.Location = new Point(520, 476);
             kakutei.Name = "kakutei";
             kakutei.Size = new Size(150, 70);
             kakutei.TabIndex = 3;
@@ -108,7 +108,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(445, 30);
+            label1.Location = new Point(540, 106);
             label1.Name = "label1";
             label1.Size = new Size(115, 25);
             label1.TabIndex = 1;
@@ -117,7 +117,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 
             // B_return
             // 
-            B_return.Location = new Point(830, 25);
+            B_return.Location = new Point(1037, 26);
             B_return.Name = "B_return";
             B_return.Size = new Size(112, 34);
             B_return.TabIndex = 4;
@@ -127,7 +127,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 
             // b_pwHyouji
             // 
-            b_pwHyouji.Location = new Point(595, 217);
+            b_pwHyouji.Location = new Point(690, 293);
             b_pwHyouji.Name = "b_pwHyouji";
             b_pwHyouji.Size = new Size(35, 35);
             b_pwHyouji.TabIndex = 9;
@@ -137,7 +137,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 
             // b_newHyouji
             // 
-            b_newHyouji.Location = new Point(595, 318);
+            b_newHyouji.Location = new Point(690, 394);
             b_newHyouji.Name = "b_newHyouji";
             b_newHyouji.Size = new Size(35, 35);
             b_newHyouji.TabIndex = 10;
@@ -149,7 +149,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(978, 544);
+            ClientSize = new Size(1178, 644);
             Controls.Add(b_newHyouji);
             Controls.Add(b_pwHyouji);
             Controls.Add(B_return);
