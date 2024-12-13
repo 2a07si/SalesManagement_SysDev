@@ -184,13 +184,13 @@ namespace SalesManagement_SysDev
             bool flag           = DelFlag.Checked;
 
             // 必須項目のチェック
-            if (!CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID"))     return;
-            if (!CheckTBValue(TBShopID, shopID, "営業所ID"))         return;
-            if (!CheckTBValue(TBKokyakuName, kokyakuname, "顧客名")) return;
-            if (!CheckTBValue(TBYuubinNo, yuubinbangou, "郵便番号")) return;
-            if (!CheckTBValue(TBJyusyo, juusho, "住所"))             return;
-            if (!CheckTBValue(TBTellNo, tel, "電話番号"))            return;
-            if (!CheckTBValue(TBFax, fax, "FAX"))                    return;
+            if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID"))     return;
+            if (CheckTBValue(TBShopID, shopID, "営業所ID"))         return;
+            if (CheckTBValue(TBKokyakuName, kokyakuname, "顧客名")) return;
+            if (CheckTBValue(TBYuubinNo, yuubinbangou, "郵便番号")) return;
+            if (CheckTBValue(TBJyusyo, juusho, "住所"))             return;
+            if (CheckTBValue(TBTellNo, tel, "電話番号"))            return;
+            if (CheckTBValue(TBFax, fax, "FAX"))                    return;
 
             using (var context = new SalesManagementContext())
             {
@@ -233,12 +233,12 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
 
             // 必須項目のチェック
-            if (!CheckTBValue(TBShopID, shopID, "ID"))               return;
-            if (!CheckTBValue(TBKokyakuName, kokyakuname, "顧客名")) return;
-            if (!CheckTBValue(TBYuubinNo, yuubinbangou, "郵便番号")) return;
-            if (!CheckTBValue(TBJyusyo, juusho, "住所"))             return;
-            if (!CheckTBValue(TBTellNo, tel, "電話番号"))            return;
-            if (!CheckTBValue(TBFax, fax, "FAX"))                    return;
+            if (CheckTBValue(TBShopID, shopID, "営業所ID"))         return;
+            if (CheckTBValue(TBKokyakuName, kokyakuname, "顧客名")) return;
+            if (CheckTBValue(TBYuubinNo, yuubinbangou, "郵便番号")) return;
+            if (CheckTBValue(TBJyusyo, juusho, "住所"))             return;
+            if (CheckTBValue(TBTellNo, tel, "電話番号"))            return;
+            if (CheckTBValue(TBFax, fax, "FAX"))                    return;
 
             using (var context = new SalesManagementContext())
             {
