@@ -154,6 +154,19 @@ namespace SalesManagement_SysDev
             }
         }
 
+        // 入力チェックの共通化
+        private bool CheckRequiredField(TextBox textBox, string value, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                textBox.BackColor = Color.Yellow;
+                textBox.Focus();
+                MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
+            return true;
+        }
 
         private void UpdateStock()
         {
@@ -162,59 +175,55 @@ namespace SalesManagement_SysDev
             string zaiko = TBZaiko.Text;
             bool stflag = StFlag.Checked;
 
-
-            if (TBZaikoID.Text == "")
-            {
-                TBZaikoID.BackColor = Color.Yellow;
-                TBZaikoID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {zaikoID}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBSyohinID.Text == "")
-            {
-                TBSyohinID.BackColor = Color.Yellow;
-                TBSyohinID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {syohinID}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBZaiko.Text == "")
-            {
-                TBZaiko.BackColor = Color.Yellow;
-                TBZaiko.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {zaiko}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // 共通の入力チェックメソッド
+            if (!CheckRequiredField(TBZaikoID, zaikoID, "在庫ID")) return;
+            if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID")) return;
+            if (!CheckRequiredField(TBZaiko, zaiko, "在庫数量")) return;
 
             using (var context = new SalesManagementContext())
             {
-                var product = context.MProducts.FirstOrDefault(p => p.PrID == int.Parse(syohinID));
-                if (product == null)
+                try
                 {
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    var product = context.MProducts.FirstOrDefault(p => p.PrID == int.Parse(syohinID));
+                    if (product == null)
+                    {
+                        MessageBox.Show($":204\n該当の商品が見つかりません。（商品ID: {syohinID}）", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    var stock = context.TStocks.SingleOrDefault(s => s.StID.ToString() == zaikoID);
+                    if (stock != null)
+                    {
+                        // 在庫情報の更新
+                        stock.StID = int.Parse(zaikoID);
+                        stock.PrID = int.Parse(syohinID);
+                        stock.StQuantity = int.Parse(zaiko);
+                        stock.StFlag = stflag ? 1 : 0;
+
+                        context.SaveChanges();
+
+                        MessageBox.Show("更新が成功しました。");
+                        DisplayStock();
+                        Log_Stock(stock.StID);
+                        ResetYellowBackgrounds(this); // 背景色リセット
+                    }
+                    else
+                    {
+                        MessageBox.Show($":204\n該当の在庫が見つかりません。（在庫ID: {zaikoID}）", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-
-                var stock = context.TStocks.SingleOrDefault(s => s.StID.ToString() == zaikoID);
-                if (stock != null)
+                catch (FormatException)
                 {
-                    stock.StID = int.Parse(zaikoID);
-                    stock.PrID = int.Parse(syohinID);
-                    stock.StQuantity = int.Parse(zaiko);
-                    stock.StFlag = stflag ? 1 : 0;
-
-
-                    context.SaveChanges();
-                    MessageBox.Show("更新が成功しました。");
-                    DisplayStock();
-                    Log_Stock(stock.StID);
-                    ResetYellowBackgrounds(this);
+                    MessageBox.Show(":102\n数値の形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($":500\n予期しないエラーが発生しました。\n{ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
+
 
         private void RegisterStock()
         {
@@ -223,91 +232,90 @@ namespace SalesManagement_SysDev
             string zaiko = TBZaiko.Text;
             bool stflag = StFlag.Checked;
 
+            // 入力チェックを共通メソッドで実施
+            if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID")) return;
+            if (!CheckRequiredField(TBZaiko, zaiko, "在庫数量")) return;
 
             using (var context = new SalesManagementContext())
             {
-                int shouhin;
-
-                if (TBSyohinID.Text == "")
-                {
-                    TBSyohinID.BackColor = Color.Yellow;
-                    TBSyohinID.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBZaiko.Text == "")
-                {
-                    TBZaiko.BackColor = Color.Yellow;
-                    TBZaiko.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
-                {
-                    TBSyohinID.BackColor = Color.Yellow;
-                    TBSyohinID.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                var product = context.MProducts.FirstOrDefault(p => p.PrID == shouhin);
-                if (product == null)
-                {
-                    TBSyohinID.BackColor = Color.Yellow;
-                    TBSyohinID.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                // 安全在庫数チェック
-                int inputZaiko = int.Parse(zaiko); // 半角数字として入力される前提で直接変換
-
-                if (inputZaiko < product.PrSafetyStock)
-                {
-                    var result = MessageBox.Show(
-                        "安全在庫数を下回る在庫数ですが、よろしいですか？",
-                        "確認",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning
-                    );
-
-                    if (result == DialogResult.No)
-                    {
-                        return; // 処理中断
-                    }
-                }
-                var newstock = new TStock
-                {
-                    PrID = int.Parse(syohinID),
-                    StQuantity = int.Parse(zaiko),
-                    StFlag = stflag ? 1 : 0,
-                };
-
-                context.TStocks.Add(newstock);
                 try
                 {
-                    context.SaveChanges(); MessageBox.Show("登録が成功しました。");
+                    // 商品IDの存在確認
+                    if (!int.TryParse(syohinID, out int parsedSyohinID))
+                    {
+                        MessageBox.Show($":102\n数値の形式が正しくありません。（商品ID: {syohinID}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBSyohinID.BackColor = Color.Yellow;
+                        TBSyohinID.Focus();
+                        return;
+                    }
+
+                    var product = context.MProducts.FirstOrDefault(p => p.PrID == parsedSyohinID);
+                    if (product == null)
+                    {
+                        MessageBox.Show($":204\n該当の商品が見つかりません。（商品ID: {syohinID}）", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBSyohinID.BackColor = Color.Yellow;
+                        TBSyohinID.Focus();
+                        return;
+                    }
+
+                    // 在庫数の数値変換と安全在庫数チェック
+                    if (!int.TryParse(zaiko, out int inputZaiko))
+                    {
+                        MessageBox.Show($":102\n数値の形式が正しくありません。（在庫数量: {zaiko}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        TBZaiko.BackColor = Color.Yellow;
+                        TBZaiko.Focus();
+                        return;
+                    }
+
+                    if (inputZaiko < product.PrSafetyStock)
+                    {
+                        var result = MessageBox.Show(
+                            "安全在庫数を下回る在庫数ですが、よろしいですか？",
+                            "確認",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning
+                        );
+
+                        if (result == DialogResult.No)
+                        {
+                            return; // 処理中断
+                        }
+                    }
+
+                    // 新しい在庫情報の登録
+                    var newStock = new TStock
+                    {
+                        PrID = parsedSyohinID,
+                        StQuantity = inputZaiko,
+                        StFlag = stflag ? 1 : 0,
+                    };
+
+                    context.TStocks.Add(newStock);
+                    context.SaveChanges();
+
+                    MessageBox.Show("登録が成功しました。");
                     DisplayStock();
-                    Log_Stock(newstock.StID);
-                    ResetYellowBackgrounds(this);
+                    Log_Stock(newStock.StID);
+                    ResetYellowBackgrounds(this); // 背景色リセット
                 }
                 catch (DbUpdateException ex)
                 {
-                    // inner exception の詳細を表示する
                     if (ex.InnerException != null)
                     {
-                        MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        MessageBox.Show($":201\n登録操作が失敗しました。\nエラーの詳細: {ex.InnerException.Message}", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        MessageBox.Show(":201\n登録操作が失敗しました。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($":201\n登録操作が失敗しました。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    // その他のエラーに対処する
-                    MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($":500\n不明なエラーが発生しました。\n詳細: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
 
         private void DisplayStock()
         {

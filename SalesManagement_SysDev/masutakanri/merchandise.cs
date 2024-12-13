@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using SalesManagement_SysDev.Entity;
 using System.Diagnostics.Metrics;
+using System.Linq.Expressions;
 
 namespace SalesManagement_SysDev
 {
@@ -169,256 +170,248 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+        private bool CheckRequiredField(TextBox textBox, string value, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                textBox.BackColor = Color.Yellow;
+                textBox.Focus();
+                MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
+            return true;
+        }
+        private void ShowNotFoundMessage(string itemName, string itemId)
+        {
+            MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
+                            "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private bool TryAddSearchCondition<T>(ref IQueryable<MProduct> query, string input, Expression<Func<MProduct, T>> selector, out T parsedValue)
+        {
+            parsedValue = default;
+
+            // 入力値が空でない場合
+            if (string.IsNullOrEmpty(input)) return false;
+
+            // 型Tがintの場合
+            if (typeof(T) == typeof(int) && int.TryParse(input, out int parsedInt))
+            {
+                // プロパティ名を取得して動的にWhere句を作成
+                var memberExpression = selector.Body as MemberExpression;
+                if (memberExpression != null)
+                {
+                    string propertyName = memberExpression.Member.Name;
+                    query = query.Where(m => EF.Property<int>(m, propertyName) == parsedInt);
+                }
+
+                parsedValue = (T)(object)parsedInt;
+                return true;
+            }
+
+            // 型Tがstringの場合
+            if (typeof(T) == typeof(string))
+            {
+                query = query.Where(m => EF.Property<string>(m, ((MemberExpression)selector.Body).Member.Name).Contains(input));
+                parsedValue = (T)(object)input;
+                return true;
+            }
+
+            return false;
+        }
+
+
+
         private void Updatemerchandise()
         {
-            string SyohinID = TBSyohinID.Text;
-            string MakerID = TBMakerID.Text;
-            string SyohinName = TBSyohinName.Text;
-            string Sell = TBSell.Text;
-            string SafeNum = TBSafeNum.Text;
-            string Sclass = TBSyoubunrui.Text;
-            string TModel = TBModel.Text;
-            string TColor = TBColor.Text;
-            DateTime SyohinDate = date.Value;
+            string syohinID = TBSyohinID.Text;
+            string makerID = TBMakerID.Text;
+            string syohinName = TBSyohinName.Text;
+            string sell = TBSell.Text;
+            string safeNum = TBSafeNum.Text;
+            string sclass = TBSyoubunrui.Text;
+            string tModel = TBModel.Text;
+            string tColor = TBColor.Text;
+            DateTime syohinDate = date.Value;
             bool delFlag = DelFlag.Checked;
 
-            if (TBSyohinID.Text == "")
-            {
-                TBSyohinID.BackColor = Color.Yellow;
-                TBSyohinID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBMakerID.Text == "")
-            {
-                TBMakerID.BackColor = Color.Yellow;
-                TBMakerID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBSyohinName.Text == "")
-            {
-                TBSyohinName.BackColor = Color.Yellow;
-                TBSyohinName.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBSell.Text == "")
-            {
-                TBSell.BackColor = Color.Yellow;
-                TBSell.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBSafeNum.Text == "")
-            {
-                TBSafeNum.BackColor = Color.Yellow;
-                TBSafeNum.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBSyoubunrui.Text == "")
-            {
-                TBSyoubunrui.BackColor = Color.Yellow;
-                TBSyoubunrui.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBModel.Text == "")
-            {
-                TBModel.BackColor = Color.Yellow;
-                TBModel.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBColor.Text == "")
-            {
-                TBColor.BackColor = Color.Yellow;
-                TBColor.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // 入力チェックを共通メソッドで実施
+            if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID")) return;
+            if (!CheckRequiredField(TBMakerID, makerID, "メーカーID")) return;
+            if (!CheckRequiredField(TBSyohinName, syohinName, "商品名")) return;
+            if (!CheckRequiredField(TBSell, sell, "販売価格")) return;
+            if (!CheckRequiredField(TBSafeNum, safeNum, "安全在庫数")) return;
+            if (!CheckRequiredField(TBSyoubunrui, sclass, "小分類")) return;
+            if (!CheckRequiredField(TBModel, tModel, "モデル番号")) return;
+            if (!CheckRequiredField(TBColor, tColor, "色")) return;
 
             using (var context = new SalesManagementContext())
             {
-                int maker;
-                if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaID == maker))
+                try
                 {
-                    TBMakerID.BackColor = Color.Yellow;
-                    TBMakerID.Focus();
-                    MessageBox.Show("メーカーIDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    // メーカーIDの存在確認
+                    if (!int.TryParse(makerID, out int parsedMakerID) ||
+                        !context.MMakers.Any(m => m.MaID == parsedMakerID))
+                    {
+                        ShowNotFoundMessage("メーカー", makerID);
+                        TBMakerID.BackColor = Color.Yellow;
+                        TBMakerID.Focus();
+                        return;
+                    }
 
-                // EmIDがMEmployeeテーブルに存在するか確認
-                int shoubunrui;
-                if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScID == shoubunrui))
-                {
-                    TBSyoubunrui.BackColor = Color.Yellow;
-                    TBSyoubunrui.Focus();
-                    MessageBox.Show("小分類IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    // 小分類IDの存在確認
+                    if (!int.TryParse(sclass, out int parsedSClassID) ||
+                        !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
+                    {
+                        ShowNotFoundMessage("小分類", sclass);
+                        TBSyoubunrui.BackColor = Color.Yellow;
+                        TBSyoubunrui.Focus();
+                        return;
+                    }
 
-                var merchandise = context.MProducts.SingleOrDefault(e => e.PrID.ToString() == SyohinID);
-                if (merchandise != null)
-                {
-                    merchandise.PrID = int.Parse(SyohinID);
-                    merchandise.MaID = int.Parse(MakerID);
-                    merchandise.PrName = SyohinName;
-                    merchandise.Price = int.Parse(Sell);
-                    merchandise.PrSafetyStock = int.Parse(SafeNum);
-                    merchandise.ScID = int.Parse(Sclass);
-                    merchandise.PrReleaseDate = SyohinDate;
-                    merchandise.PrModelNumber = TModel;
-                    merchandise.PrColor = TColor;
-                    merchandise.PrFlag = int.Parse(delFlag ? "1" : "0");
+                    // 商品IDの存在確認
+                    var merchandise = context.MProducts.SingleOrDefault(p => p.PrID.ToString() == syohinID);
+                    if (merchandise != null)
+                    {
+                        // 商品情報の更新
+                        merchandise.MaID = parsedMakerID;
+                        merchandise.PrName = syohinName;
+                        merchandise.Price = int.Parse(sell);
+                        merchandise.PrSafetyStock = int.Parse(safeNum);
+                        merchandise.ScID = parsedSClassID;
+                        merchandise.PrReleaseDate = syohinDate;
+                        merchandise.PrModelNumber = tModel;
+                        merchandise.PrColor = tColor;
+                        merchandise.PrFlag = delFlag ? 1 : 0;
 
-                    context.SaveChanges();
-                    MessageBox.Show("更新が成功しました。");
-                    Displaymerchandise();
-                    Log_Merchandise(merchandise.PrID);
-                    ResetYellowBackgrounds(this);
+                        context.SaveChanges();
+                        MessageBox.Show("更新が成功しました。");
+                        Displaymerchandise();
+                        Log_Merchandise(merchandise.PrID);
+                        ResetYellowBackgrounds(this);
+                    }
+                    else
+                    {
+                        ShowNotFoundMessage("商品", syohinID);
+                    }
                 }
-                else
+                catch (FormatException ex)
                 {
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($":102\n入力形式が正しくありません。\n詳細: {ex.Message}",
+                                    "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($":500\n予期しないエラーが発生しました。\n詳細: {ex.Message}",
+                                    "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
         private void Registermerchandise()
         {
-            string SyohinID = TBSyohinID.Text;
-            string MakerID = TBMakerID.Text;
-            string SyohinName = TBSyohinName.Text;
-            string Sell = TBSell.Text;
-            string SafeNum = TBSafeNum.Text;
-            string Sclass = TBSyoubunrui.Text;
-            string TModel = TBModel.Text;
-            string TColor = TBColor.Text;
-            DateTime SyohinDate = date.Value;
+            string syohinID = TBSyohinID.Text;
+            string makerID = TBMakerID.Text;
+            string syohinName = TBSyohinName.Text;
+            string sell = TBSell.Text;
+            string safeNum = TBSafeNum.Text;
+            string sclass = TBSyoubunrui.Text;
+            string tModel = TBModel.Text;
+            string tColor = TBColor.Text;
+            DateTime syohinDate = date.Value;
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
+            // 入力チェックを共通メソッドで実施
+            if (!CheckRequiredField(TBMakerID, makerID, "メーカーID")) return;
+            if (!CheckRequiredField(TBSyohinName, syohinName, "商品名")) return;
+            if (!CheckRequiredField(TBSell, sell, "販売価格")) return;
+            if (!CheckRequiredField(TBSafeNum, safeNum, "安全在庫数")) return;
+            if (!CheckRequiredField(TBSyoubunrui, sclass, "小分類")) return;
+            if (!CheckRequiredField(TBModel, tModel, "モデル番号")) return;
+            if (!CheckRequiredField(TBColor, tColor, "色")) return;
+
             using (var context = new SalesManagementContext())
             {
-                int maker;
-                if (TBMakerID.Text == "")
+                try
                 {
-                    TBMakerID.BackColor = Color.Yellow;
-                    TBMakerID.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    // メーカーIDの存在確認
+                    if (!int.TryParse(makerID, out int parsedMakerID) ||
+                        !context.MMakers.Any(m => m.MaID == parsedMakerID))
+                    {
+                        ShowNotFoundMessage("メーカー", makerID);
+                        TBMakerID.BackColor = Color.Yellow;
+                        TBMakerID.Focus();
+                        return;
+                    }
+
+                    // 小分類IDの存在確認
+                    if (!int.TryParse(sclass, out int parsedSClassID) ||
+                        !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
+                    {
+                        ShowNotFoundMessage("小分類", sclass);
+                        TBSyoubunrui.BackColor = Color.Yellow;
+                        TBSyoubunrui.Focus();
+                        return;
+                    }
+
+                    // 商品情報の登録
+                    var newProduct = new MProduct
+                    {
+                        MaID = parsedMakerID,
+                        PrName = syohinName,
+                        Price = int.Parse(sell),
+                        PrSafetyStock = int.Parse(safeNum),
+                        ScID = parsedSClassID,
+                        PrReleaseDate = syohinDate,
+                        PrModelNumber = tModel,
+                        PrColor = tColor,
+                        PrFlag = delFlag ? 1 : 0,
+                        PrHidden = riyuu
+                    };
+
+                    context.MProducts.Add(newProduct);
+                    context.SaveChanges();
+
+                    MessageBox.Show("登録が成功しました。");
+                    Displaymerchandise();
+                    Log_Merchandise(newProduct.PrID);
+                    ResetYellowBackgrounds(this);
+
+                    // 在庫0で在庫にも登録
+                    var newStock = new TStock
+                    {
+                        PrID = newProduct.PrID, // 登録された商品のIDを取得
+                        StQuantity = 0,         // 初期在庫数は0
+                        StFlag = 0              // 必要に応じて初期値を設定
+                    };
+
+                    context.TStocks.Add(newStock);
+                    context.SaveChanges(); // 在庫テーブルの登録を保存
+
+                    MessageBox.Show("在庫テーブルへの登録が完了しました。");
+
+                    DialogResult result = MessageBox.Show("自動発注処理を実行しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    // 「はい」が選択された場合
+                    if (result == DialogResult.Yes)
+                    {
+                        // ついでに発注もすませてしまう
+                        StockManager.CompareStock(newProduct.PrID, newStock.StQuantity);
+                    }
                 }
-                if (TBSyohinName.Text == "")
+                catch (FormatException ex)
                 {
-                    TBSyohinName.BackColor = Color.Yellow;
-                    TBSyohinName.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    MessageBox.Show($":102\n入力形式が正しくありません。\n詳細: {ex.Message}",
+                                    "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                if (TBSell.Text == "")
+                catch (Exception ex)
                 {
-                    TBSell.BackColor = Color.Yellow;
-                    TBSell.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    MessageBox.Show($":500\n予期しないエラーが発生しました。\n詳細: {ex.Message}",
+                                    "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                if (TBSafeNum.Text == "")
-                {
-                    TBSafeNum.BackColor = Color.Yellow;
-                    TBSafeNum.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBSyoubunrui.Text == "")
-                {
-                    TBSyoubunrui.BackColor = Color.Yellow;
-                    TBSyoubunrui.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBModel.Text == "")
-                {
-                    TBModel.BackColor = Color.Yellow;
-                    TBModel.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBColor.Text == "")
-                {
-                    TBColor.BackColor = Color.Yellow;
-                    TBColor.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (!int.TryParse(MakerID, out maker) || !context.MMakers.Any(s => s.MaID == maker))
-                {
-                    TBMakerID.BackColor = Color.Yellow;
-                    TBMakerID.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // EmIDがMEmployeeテーブルに存在するか確認
-                int shoubunrui;
-                if (!int.TryParse(Sclass, out shoubunrui) || !context.MSmallClassifications.Any(e => e.ScID == shoubunrui))
-                {
-                    TBSyoubunrui.BackColor = Color.Yellow;
-                    TBSyoubunrui.Focus();
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                var newProducts = new MProduct
-                {
-                    MaID = int.Parse(MakerID),
-                    PrName = SyohinName,
-                    Price = int.Parse(Sell),
-                    PrSafetyStock = int.Parse(SafeNum),
-                    ScID = int.Parse(Sclass),
-                    PrReleaseDate = SyohinDate,
-                    PrModelNumber = TModel,
-                    PrColor = TColor,
-                    PrFlag = int.Parse(delFlag ? "1" : "0"),
-                    PrHidden = riyuu
-                };
-
-                context.MProducts.Add(newProducts);
-                context.SaveChanges();
-
-
-                MessageBox.Show("登録が成功しました。");
-                Displaymerchandise();
-                Log_Merchandise(newProducts.PrID);
-                ResetYellowBackgrounds(this);
-                //在庫0で在庫にも登録
-                var newStock = new TStock
-                {
-                    PrID = newProducts.PrID, // 登録された商品のIDを取得
-                    StQuantity = 0,         // 初期在庫数は0
-                    StFlag = 0              // 必要に応じて初期値を設定
-                };
-
-                context.TStocks.Add(newStock);
-                context.SaveChanges(); // 在庫テーブルの登録を保存
-
-                MessageBox.Show("在庫テーブルへの登録が完了しました。");
-
-                DialogResult result = MessageBox.Show("自動発注処理を実行しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                // 「はい」が選択された場合
-                if (result == DialogResult.Yes)
-                {
-
-                    //ついでに発注もすませてしまう
-                    StockManager.CompareStock(newProducts.PrID, newStock.StQuantity);
-                }
-
             }
         }
-        private void Displaymerchandise()
+        private void Displaymerchandise()//;/;//
         {
             try
             {
@@ -454,84 +447,41 @@ namespace SalesManagement_SysDev
 
         private void Searchmerchandise()
         {
-
             using (var context = new SalesManagementContext())
             {
-                // 各テキストボックスの値を取得 
-                var SyohinID = TBSyohinID.Text.Trim();       // 商品
-                var MakerID = TBMakerID.Text.Trim();           // めーかー 
-                var SyohinName = TBSyohinName.Text.Trim();         //商品名
-                var Sell = TBSell.Text.Trim();     // 値段
-                var safe = TBSafeNum.Text.Trim();
-                var shou = TBSyoubunrui.Text.Trim();
-                var Model = TBModel.Text.Trim();     // かたばｊｎ 
-                var color = TBColor.Text.Trim();
-                DateTime? Date = dateCheckBox.Checked ? date.Value : (DateTime?)null; // チェックボックスで日付検索を制御
+                var SyohinID = TBSyohinID.Text.Trim();
+                var MakerID = TBMakerID.Text.Trim();
+                var SyohinName = TBSyohinName.Text.Trim();
+                var Sell = TBSell.Text.Trim();
+                var SafeNum = TBSafeNum.Text.Trim();
+                var Sclass = TBSyoubunrui.Text.Trim();
+                var Model = TBModel.Text.Trim();
+                var Color = TBColor.Text.Trim();
+                DateTime? Date = dateCheckBox.Checked ? date.Value : (DateTime?)null;
 
-
-                // 基本的なクエリ 
                 var query = context.MProducts.AsQueryable();
 
-                // 社員IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(SyohinID) && int.TryParse(SyohinID, out int parsedSyohinID))
+                // 各検索条件をTryAddSearchConditionで処理
+                if (TryAddSearchCondition<int>(ref query, SyohinID, m => m.PrID, out int parsedSyohinID)) return;
+                if (TryAddSearchCondition<int>(ref query, MakerID, m => m.MaID, out int parsedMakerID)) return;
+                if (TryAddSearchCondition<decimal>(ref query, Sell, m => m.Price, out decimal parsedSell)) return;
+                if (TryAddSearchCondition<int>(ref query, SafeNum, m => m.PrSafetyStock, out int parsedSafeNum)) return;
+                if (TryAddSearchCondition<int>(ref query, Sclass, m => m.ScID, out int parsedSclass)) return;
+
+                // 文字列に対して検索条件を追加
+                if (!string.IsNullOrEmpty(SyohinName)) query = query.Where(m => m.PrName.Contains(SyohinName));
+                if (!string.IsNullOrEmpty(Model)) query = query.Where(m => m.PrModelNumber.Contains(Model));
+                if (!string.IsNullOrEmpty(Color)) query = query.Where(m => m.PrColor.Contains(Color));
+
+                // 日付条件
+                if (Date.HasValue) query = query.Where(m => m.PrReleaseDate == Date.Value);
+
+                var result = query.ToList();
+
+                // 結果表示
+                if (result.Any())
                 {
-                    query = query.Where(m => m.PrID == parsedSyohinID);
-                }
-
-                // 商品名を検索条件に追加 
-                if (!string.IsNullOrEmpty(MakerID) && int.TryParse(MakerID, out int parsedMakerID))
-                {
-                    query = query.Where(m => m.MaID == parsedMakerID);
-                }
-
-                // 営業所IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(SyohinName))
-                {
-                    query = query.Where(m => m.PrName == SyohinName);
-                }
-
-                // 顧客IDを検索条件に追加 
-                if (!string.IsNullOrEmpty(Sell) && int.TryParse(Sell, out int parsedSell))
-                {
-                    query = query.Where(m => m.Price == parsedSell);
-                }
-
-                if (!string.IsNullOrEmpty(safe) && int.TryParse(safe, out int parsedsafe))
-                {
-                    query = query.Where(m => m.PrSafetyStock == parsedsafe);
-                }
-
-                if (!string.IsNullOrEmpty(shou) && int.TryParse(shou, out int parsedshou))
-                {
-                    query = query.Where(m => m.ScID == parsedshou);
-                }
-
-                // 担当者名を検索条件に追加 
-                if (!string.IsNullOrEmpty(Model))
-                {
-                    query = query.Where(m => m.PrModelNumber.Contains(Model));
-                }
-
-                if (!string.IsNullOrEmpty(color))
-                {
-                    query = query.Where(m => m.PrColor.Contains(color));
-                }
-                // 注文日を検索条件に追加（チェックボックスがチェックされている場合）
-                if (Date.HasValue)
-                {
-                    query = query.Where(order => order.PrReleaseDate == Date.Value);
-                }
-
-
-
-
-                // 結果を取得 
-                var m = query.ToList();
-
-                if (m.Any())
-                {
-                    // dataGridView1 に結果を表示 
-                    dataGridView1.DataSource = m.Select(m => new
+                    dataGridView1.DataSource = result.Select(m => new
                     {
                         商品ID = m.PrID,
                         メーカーID = m.MaID,
@@ -550,10 +500,14 @@ namespace SalesManagement_SysDev
                 else
                 {
                     MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
+                    dataGridView1.DataSource = null;
                 }
             }
         }
+
+
+
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
