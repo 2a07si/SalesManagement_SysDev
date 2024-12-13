@@ -177,10 +177,10 @@ namespace SalesManagement_SysDev
                 textBox.BackColor = Color.Yellow;
                 textBox.Focus();
                 MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                return true;
             }
             textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
-            return true;
+            return false;
         }
         private void NotFound(string itemName, string itemId)
         {
@@ -202,14 +202,14 @@ namespace SalesManagement_SysDev
             DateTime syohinDate = date.Value;
 
             // 入力チェックを共通メソッドで実施
-            if (!CheckTBValue(TBSyohinID, syohinID, "商品ID"))     return;
-            if (!CheckTBValue(TBMakerID, makerID, "メーカーID"))   return;
-            if (!CheckTBValue(TBSyohinName, syohinName, "商品名")) return;
-            if (!CheckTBValue(TBSell, sell, "販売価格"))           return;
-            if (!CheckTBValue(TBSafeNum, safeNum, "安全在庫数"))   return;
-            if (!CheckTBValue(TBSyoubunrui, sclass, "小分類"))     return;
-            if (!CheckTBValue(TBModel, tModel, "モデル番号"))      return;
-            if (!CheckTBValue(TBColor, tColor, "色"))              return;
+            if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))     return;
+            if (CheckTBValue(TBMakerID, makerID, "メーカーID"))   return;
+            if (CheckTBValue(TBSyohinName, syohinName, "商品名")) return;
+            if (CheckTBValue(TBSell, sell, "販売価格"))           return;
+            if (CheckTBValue(TBSafeNum, safeNum, "安全在庫数"))   return;
+            if (CheckTBValue(TBSyoubunrui, sclass, "小分類"))     return;
+            if (CheckTBValue(TBModel, tModel, "モデル番号"))      return;
+            if (CheckTBValue(TBColor, tColor, "色"))              return;
 
             using (var context = new SalesManagementContext())
             {
@@ -288,13 +288,13 @@ namespace SalesManagement_SysDev
             string riyuu = TBRiyuu.Text;
 
             // 入力チェックを共通メソッドで実施
-            if (!CheckTBValue(TBMakerID, makerID, "メーカーID")) return;
-            if (!CheckTBValue(TBSyohinName, syohinName, "商品名")) return;
-            if (!CheckTBValue(TBSell, sell, "販売価格")) return;
-            if (!CheckTBValue(TBSafeNum, safeNum, "安全在庫数")) return;
-            if (!CheckTBValue(TBSyoubunrui, sclass, "小分類")) return;
-            if (!CheckTBValue(TBModel, tModel, "モデル番号")) return;
-            if (!CheckTBValue(TBColor, tColor, "色")) return;
+            if (CheckTBValue(TBMakerID, makerID, "メーカーID")) return;
+            if (CheckTBValue(TBSyohinName, syohinName, "商品名")) return;
+            if (CheckTBValue(TBSell, sell, "販売価格")) return;
+            if (CheckTBValue(TBSafeNum, safeNum, "安全在庫数")) return;
+            if (CheckTBValue(TBSyoubunrui, sclass, "小分類")) return;
+            if (CheckTBValue(TBModel, tModel, "モデル番号")) return;
+            if (CheckTBValue(TBColor, tColor, "色")) return;
 
             using (var context = new SalesManagementContext())
             {

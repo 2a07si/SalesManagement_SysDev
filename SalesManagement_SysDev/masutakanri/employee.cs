@@ -170,10 +170,10 @@ namespace SalesManagement_SysDev
                 textBox.BackColor = Color.Yellow;
                 textBox.Focus();
                 MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                return true;
             }
             textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
-            return true;
+            return false;
         }
 
         private void NotFound(string itemName, string itemId)
@@ -206,12 +206,12 @@ namespace SalesManagement_SysDev
             string riyuu = TBRiyuu.Text;
 
             // 必須項目のチェック
-            if (!CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
-            if (!CheckTBValue(TBSyainName, ShainName, "社員名")) return;
-            if (!CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
-            if (!CheckTBValue(TBJobID, JobID, "職位ID"))         return;
-            if (!CheckTBValue(TBPass, Pass, "パスワード"))       return;
-            if (!CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
+            if (CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
+            if (CheckTBValue(TBSyainName, ShainName, "社員名")) return;
+            if (CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
+            if (CheckTBValue(TBJobID, JobID, "職位ID"))         return;
+            if (CheckTBValue(TBPass, Pass, "パスワード"))       return;
+            if (CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
 
             using (var context = new SalesManagementContext())
             {
@@ -282,12 +282,12 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
 
             // 必須項目のチェック
-            if (!CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
-            if (!CheckTBValue(TBSyainName, ShainName, "社員名")) return;
-            if (!CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
-            if (!CheckTBValue(TBJobID, JobID, "職位ID"))         return;
-            if (!CheckTBValue(TBPass, Pass, "パスワード"))       return;
-            if (!CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
+            if (CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
+            if (CheckTBValue(TBSyainName, ShainName, "社員名")) return;
+            if (CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
+            if (CheckTBValue(TBJobID, JobID, "職位ID"))         return;
+            if (CheckTBValue(TBPass, Pass, "パスワード"))       return;
+            if (CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
 
             using (var context = new SalesManagementContext())
             {

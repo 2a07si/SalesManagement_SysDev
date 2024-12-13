@@ -162,10 +162,10 @@ namespace SalesManagement_SysDev
                 textBox.BackColor = Color.Yellow;
                 textBox.Focus();
                 MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                return true;
             }
             textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
-            return true;
+            return false;
         }
 
         private void UpdateStock()

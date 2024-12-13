@@ -249,6 +249,24 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+        private bool CheckTBValue(TextBox textBox, string value, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                textBox.BackColor = Color.Yellow;
+                textBox.Focus();
+                MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
+            return false;
+        }
+
+        private void NotFound(string itemName, string itemId)
+        {
+            MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
+                            "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         private void UpdateReceivingStock()
         {
@@ -260,30 +278,13 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            if (TBHattyuuID.Text == "")
-            {
-                TBHattyuuID.BackColor = Color.Yellow;
-                TBHattyuuID.Focus();
-                MessageBox.Show(":101\n発注IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // 各TextBoxの入力値をチェック
+            if (CheckTBValue(TBNyukoID, nyuukoID, "入庫ID")) return;
+            if (CheckTBValue(TBHattyuuID, haID, "発注ID"))   return;
+            if (CheckTBValue(TBShainID, shainID, "社員ID"))  return;
 
-            if (TBNyukoID.Text == "")
-            {
-                TBNyukoID.BackColor = Color.Yellow;
-                TBNyukoID.Focus();
-                MessageBox.Show(":101\n入庫IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBShainID.Text == "")
-            {
-                TBShainID.BackColor = Color.Yellow;
-                TBShainID.Focus();
-                MessageBox.Show(":101\n社員IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (date.Value > DateTime.Now)
+            // 売上日が未来を指している場合の確認
+            if (nyuukoDate > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "売上日が未来を指していますが、よろしいですか？",
@@ -297,55 +298,54 @@ namespace SalesManagement_SysDev
                     return; // 処理を中断
                 }
             }
+
             using (var context = new SalesManagementContext())
             {
+                // 入庫IDが存在するか確認
                 int nyuuko;
                 if (!int.TryParse(nyuukoID, out nyuuko) || !context.TWarehousings.Any(h => h.WaID == nyuuko))
                 {
-                    MessageBox.Show(":204\n入庫IDが存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBNyukoID.BackColor = Color.Yellow;
+                    NotFound("入庫ID", nyuukoID); // NotFound メソッドを使用
                     return;
                 }
 
+                // 発注IDが存在するか確認
                 int hattyuID;
                 if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    MessageBox.Show(":204\n発注IDが存在しません","DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBHattyuuID.BackColor = Color.Yellow;
+                    NotFound("発注ID", haID); // NotFound メソッドを使用
                     return;
                 }
 
-                // EmIDがMEmployeeテーブルに存在するか確認
+                // 社員IDが存在するか確認
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    MessageBox.Show(":204\n社員IDが存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShainID.BackColor = Color.Yellow;
+                    NotFound("社員ID", shainID); // NotFound メソッドを使用
                     return;
                 }
 
                 var receivingStock = context.TWarehousings.SingleOrDefault(ws => ws.WaID.ToString() == nyuukoID);
                 if (receivingStock != null)
                 {
-                    receivingStock.HaID = int.Parse(haID);                 // 発注ID 
-                    receivingStock.EmID = int.Parse(shainID);              // 社員ID 
-                    receivingStock.WaDate = nyuukoDate;                    // 入庫日 
-                    receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;       // 入庫棚フラグ 
-                    receivingStock.WaFlag = delFlag ? 1 : 0;               // 削除フラグ 
-                    receivingStock.WaHidden = riyuu;                       // 理由 
+                    receivingStock.HaID = int.Parse(haID);  // 発注ID
+                    receivingStock.EmID = int.Parse(shainID);  // 社員ID
+                    receivingStock.WaDate = nyuukoDate;  // 入庫日
+                    receivingStock.WaShelfFlag = nyuukoFlag ? 2 : 0;  // 入庫棚フラグ
+                    receivingStock.WaFlag = delFlag ? 1 : 0;  // 削除フラグ
+                    receivingStock.WaHidden = riyuu;  // 理由
 
-                    // NyuukoFlagがチェックされている場合、入庫詳細の確認を行う 
+                    // NyuukoFlagがチェックされている場合、入庫詳細の確認を行う
                     if (nyuukoFlag)
                     {
-                        // 入庫詳細が存在するか確認 
+                        // 入庫詳細が存在するか確認
                         var receivingDetailsExist = context.TWarehousingDetails
-                            .Any(wd => wd.WaID == receivingStock.WaID); // WaID が一致する入庫詳細が存在するか確認 
+                            .Any(wd => wd.WaID == receivingStock.WaID); // WaID が一致する入庫詳細が存在するか確認
 
                         if (!receivingDetailsExist)
                         {
-                            // 入庫詳細が存在しない場合はエラーメッセージを表示 
                             MessageBox.Show(":104\n詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return; // 処理を中断 
+                            return; // 処理を中断
                         }
 
                         // WaIDが一致し、かつWaStateFlagが2の場合に重複とみなす
@@ -356,7 +356,7 @@ namespace SalesManagement_SysDev
                             return; // 更新処理を中止
                         }
 
-                        // 入庫詳細が存在する場合、入庫確認処理を実行 
+                        // 入庫詳細が存在する場合、入庫確認処理を実行
                         ReceiveConfirm(receivingStock.WaID);
 
                         // 在庫更新メッセージを保存
@@ -367,30 +367,24 @@ namespace SalesManagement_SysDev
                         {
                             Global.AddStockUpdateMessage(detail.PrID, detail.WaQuantity); // メッセージ追加
                         }
+
                         receivingStock.WaFlag = 1;
                         receivingStock.WaHidden = "入庫確定処理済";
-
-                        
-
                     }
 
-                    // 更新を保存 
-                    // 更新を保存 
+                    // 更新を保存
                     try
                     {
-                        
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayReceivingStocks(); // 更新後に入庫情報を再表示
                         DisplayReceivingStockDetails();
                         Log_Receive(receivingStock.WaID);
                         ResetYellowBackgrounds(this);
-
-
                     }
                     catch (DbUpdateException ex)
                     {
-                        // inner exception の詳細を表示 
+                        // inner exception の詳細を表示
                         if (ex.InnerException != null)
                         {
                             MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
@@ -402,7 +396,7 @@ namespace SalesManagement_SysDev
                     }
                     catch (Exception ex)
                     {
-                        // その他のエラーに対処する 
+                        // その他のエラーに対処する
                         MessageBox.Show(":500\n不明なエラーが発生しました。\n" + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -411,6 +405,7 @@ namespace SalesManagement_SysDev
                     MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
             countFlag();
             FlagCount();
         }
@@ -426,39 +421,27 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                // HaIDがTHattyuテーブルに存在するか確認
-                int hattyuID;
-                if (TBHattyuuID.Text == "")
-                {
-                    TBHattyuuID.BackColor = Color.Yellow;
-                    TBHattyuuID.Focus();
-                    MessageBox.Show(":101\n発注IDを入力してください。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                if (CheckTBValue(TBHattyuuID, haID, "発注ID"))  return;
+                if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
 
-                if (TBShainID.Text == "")
-                {
-                    TBShainID.BackColor = Color.Yellow;
-                    TBShainID.Focus();
-                    MessageBox.Show(":101\n社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                // 発注IDがTHattyuテーブルに存在するか確認
+                int hattyuID;
                 if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    TBHattyuuID.BackColor = Color.Yellow;
-                    MessageBox.Show(":101\n発注IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("発注ID", haID);  // NotFound メソッドを使用
                     return;
                 }
 
-                // EmIDがMEmployeeテーブルに存在するか確認
+                // 社員IDがMEmployeeテーブルに存在するか確認
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    TBShainID.BackColor = Color.Yellow;
-                    MessageBox.Show(":101\n社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("社員ID", shainID);  // NotFound メソッドを使用
                     return;
                 }
-                if (date.Value > DateTime.Now)
+
+                // 売上日が未来を指している場合の確認
+                if (nyuukoDate > DateTime.Now)
                 {
                     var result = MessageBox.Show(
                         "売上日が未来を指していますが、よろしいですか？",
@@ -472,14 +455,15 @@ namespace SalesManagement_SysDev
                         return; // 処理を中断
                     }
                 }
+
                 var newReceivingStock = new TWarehousing
                 {
-                    HaID = hattyuID, // 発注IDを適切に設定
-                    EmID = employeeID, // 社員IDを適切に設定
-                    WaDate = nyuukoDate,
-                    WaShelfFlag = nyuukoFlag ? 2 : 0,
-                    WaFlag = nyuukoFlag ? 1 : 0,
-                    WaHidden = riyuu
+                    HaID = hattyuID,  // 発注ID
+                    EmID = employeeID,  // 社員ID
+                    WaDate = nyuukoDate,  // 入庫日
+                    WaShelfFlag = nyuukoFlag ? 2 : 0,  // 入庫棚フラグ
+                    WaFlag = nyuukoFlag ? 1 : 0,  // 入庫フラグ
+                    WaHidden = riyuu  // 理由
                 };
 
                 context.TWarehousings.Add(newReceivingStock);
@@ -487,14 +471,14 @@ namespace SalesManagement_SysDev
                 {
                     context.SaveChanges();
                     MessageBox.Show("登録が成功しました。");
-                    DisplayReceivingStocks();
+                    DisplayReceivingStocks();  // 登録後に入庫情報を再表示
                     DisplayReceivingStockDetails();
                     Log_Receive(newReceivingStock.WaID);
                     ResetYellowBackgrounds(this);
                 }
                 catch (DbUpdateException ex)
                 {
-                    // inner exception の詳細を表示する
+                    // inner exception の詳細を表示
                     if (ex.InnerException != null)
                     {
                         MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
@@ -631,83 +615,79 @@ namespace SalesManagement_SysDev
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
-            if (TBNyuukoSyosaiID.Text == "")
-            {
-                TBNyuukoSyosaiID.BackColor = Color.Yellow;
-                TBNyuukoSyosaiID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBNyuukoIDS.Text == "")
-            {
-                TBNyuukoIDS.BackColor = Color.Yellow;
-                TBNyuukoIDS.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-            if (TBSyohinID.Text == "")
-            {
-                TBSyohinID.BackColor = Color.Yellow;
-                TBSyohinID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBSuryou.Text == "")
-            {
-                TBSuryou.BackColor = Color.Yellow;
-                TBSuryou.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
+            // 入力チェック
+            if (CheckTBValue(TBNyuukoSyosaiID, nyuukoDetailID, "入庫詳細ID")) return;
+            if (CheckTBValue(TBNyuukoIDS, nyuukoID, "入庫ID"))                return;
+            if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))                 return;
+            if (CheckTBValue(TBSuryou, suryou, "数量"))                       return;
 
             using (var context = new SalesManagementContext())
             {
-                int syousai;
-                if (!int.TryParse(nyuukoID, out syousai) || !context.TWarehousingDetails.Any(w => w.WaDetailID == syousai))
+                // 入庫詳細IDの確認
+                int warehousingDetailID;
+                if (!int.TryParse(nyuukoDetailID, out warehousingDetailID) || !context.TWarehousingDetails.Any(w => w.WaDetailID == warehousingDetailID))
                 {
-                    MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("入庫詳細ID", nyuukoDetailID);  // NotFound メソッドを使用
                     return;
                 }
 
+                // 入庫IDの確認
                 int warehousingID;
                 if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
                 {
-                    MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("入庫ID", nyuukoID);  // NotFound メソッドを使用
                     return;
                 }
 
-                // PrIDがTProductテーブルに存在するか確認
+                // 商品IDの確認
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("商品ID", syohinID);  // NotFound メソッドを使用
                     return;
                 }
 
-                var receivingStockDetail = context.TWarehousingDetails.SingleOrDefault(ws => ws.WaDetailID.ToString() == nyuukoDetailID);
+                // 入庫詳細の取得と更新
+                var receivingStockDetail = context.TWarehousingDetails.SingleOrDefault(ws => ws.WaDetailID == warehousingDetailID);
                 if (receivingStockDetail != null)
                 {
-                    receivingStockDetail.WaID = int.Parse(nyuukoID);
-                    receivingStockDetail.PrID = int.Parse(syohinID);
-                    receivingStockDetail.WaQuantity = int.Parse(suryou);
+                    receivingStockDetail.WaID = warehousingID;  // 入庫IDの設定
+                    receivingStockDetail.PrID = productID;  // 商品IDの設定
+                    receivingStockDetail.WaQuantity = int.Parse(suryou);  // 数量の設定
 
-                    context.SaveChanges();
-                    MessageBox.Show("入庫詳細の更新が成功しました。");
-                    DisplayReceivingStockDetails();
-                    Log_Receive(receivingStockDetail.WaDetailID);
-                    ResetYellowBackgrounds(this);
+                    try
+                    {
+                        context.SaveChanges();
+                        MessageBox.Show("入庫詳細の更新が成功しました。");
+                        DisplayReceivingStockDetails();  // 入庫詳細を再表示
+                        Log_Receive(receivingStockDetail.WaDetailID);
+                        ResetYellowBackgrounds(this);
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        // inner exception の詳細を表示
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
+                        }
+                        else
+                        {
+                            MessageBox.Show(":201\n更新操作が失敗しました。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // その他のエラーに対処する
+                        MessageBox.Show(":500\n不明なエラーが発生しました。\n" + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("入庫詳細", nyuukoDetailID);  // NotFound メソッドを使用
                 }
             }
         }
+
 
         private void RegisterReceivingStockDetails()
         {
@@ -717,46 +697,27 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                // WaIDがTWarehousingテーブルに存在するか確認
+                if (CheckTBValue(TBNyuukoIDS, nyuukoID, "入庫ID")) return;
+                if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))  return;
+                if (CheckTBValue(TBSuryou, suryou, "数量"))        return;
+
+                // 入庫IDがTWarehousingテーブルに存在するか確認
                 int warehousingID;
-                if (TBNyuukoIDS.Text == "")
-                {
-                    TBNyuukoIDS.BackColor = Color.Yellow;
-                    TBNyuukoIDS.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
-                if (TBSyohinID.Text == "")
-                {
-                    TBSyohinID.BackColor = Color.Yellow;
-                    TBSyohinID.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (TBSuryou.Text == "")
-                {
-                    TBSuryou.BackColor = Color.Yellow;
-                    TBSuryou.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
                 if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
                 {
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("入庫ID", nyuukoID);  // NotFound メソッドを使用
                     return;
                 }
 
-                // PrIDがTProductテーブルに存在するか確認
+                // 商品IDがMProductsテーブルに存在するか確認
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("商品ID", syohinID);  // NotFound メソッドを使用
                     return;
                 }
 
+                // 数量が正の整数であるか確認
                 int quantity;
                 if (!int.TryParse(suryou, out quantity) || quantity <= 0)
                 {
@@ -766,17 +727,19 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
+                // 既存の入庫詳細が存在しないか確認
                 var existingOrderDetail = context.TWarehousingDetails.FirstOrDefault(o => o.WaID == warehousingID);
                 if (existingOrderDetail != null)
                 {
                     MessageBox.Show(":203\n既存データとの重複が発生しました。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return; // 処理を終了
                 }
+
                 var newReceivingStockDetail = new TWarehousingDetail
                 {
-                    WaID = warehousingID, // 入庫IDを適切に設定
-                    PrID = productID, // 商品IDを適切に設定
-                    WaQuantity = quantity // 数量を適切に設定
+                    WaID = warehousingID,  // 入庫ID
+                    PrID = productID,  // 商品ID
+                    WaQuantity = quantity  // 数量
                 };
 
                 context.TWarehousingDetails.Add(newReceivingStockDetail);
@@ -785,13 +748,13 @@ namespace SalesManagement_SysDev
                 {
                     context.SaveChanges();
                     MessageBox.Show("入庫詳細の登録が成功しました。");
-                    DisplayReceivingStockDetails();
+                    DisplayReceivingStockDetails();  // 入庫詳細を再表示
                     Log_Receive(newReceivingStockDetail.WaDetailID);
                     ResetYellowBackgrounds(this);
                 }
                 catch (DbUpdateException ex)
                 {
-                    // inner exception の詳細を表示する
+                    // inner exception の詳細を表示
                     if (ex.InnerException != null)
                     {
                         MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
@@ -808,6 +771,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
 
 
         private void DisplayReceivingStockDetails()
