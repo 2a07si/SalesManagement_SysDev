@@ -86,6 +86,7 @@ namespace SalesManagement_SysDev
             b_acc = new Button();
             b_iss = new Button();
             checkBoxSyain = new CheckBox();
+            checkBox1 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -693,6 +694,17 @@ namespace SalesManagement_SysDev
             checkBoxSyain.UseVisualStyleBackColor = true;
             checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged_1;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(1176, 17);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(110, 29);
+            checkBox1.TabIndex = 275;
+            checkBox1.Text = "降順切替";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // acceptingorders
             // 
             AcceptButton = b_kakutei;
@@ -701,6 +713,7 @@ namespace SalesManagement_SysDev
             AutoScroll = true;
             CancelButton = close;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBox1);
             Controls.Add(checkBoxSyain);
             Controls.Add(b_arr);
             Controls.Add(b_sal);
@@ -807,5 +820,6 @@ namespace SalesManagement_SysDev
         private Button b_acc;
         private Button b_iss;
         private CheckBox checkBoxSyain;
+        private CheckBox checkBox1;
     }
 }

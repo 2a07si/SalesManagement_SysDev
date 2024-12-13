@@ -595,7 +595,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(":500\n不明なエラーが発生しました。\n " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void DisplayOrders()
         {
             try
@@ -603,11 +602,19 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     var orders = checkBox_2.Checked
-                      ? context.TOrders.ToList()  // チェックされていれば全ての注文を表示
-                      : context.TOrders
-                         .Where(o => o.OrFlag != 1 && o.OrStateFlag != 2)
-                         .ToList();
-                    // OrFlag が "1" または OrStateFlag が "2" でないものを取得
+              ? (checkBox1.Checked
+        ? context.TOrders.OrderByDescending(o => o.OrID).ToList() // 降順 
+        : context.TOrders.OrderBy(o => o.OrID).ToList())          // 昇順 
+    : (checkBox1.Checked
+        ? context.TOrders
+            .Where(o => o.OrFlag != 1 && o.OrStateFlag != 2)
+            .OrderByDescending(o => o.OrID) // 条件に合致するものを降順で取得 
+            .ToList()
+        : context.TOrders
+            .Where(o => o.OrFlag != 1 && o.OrStateFlag != 2)
+            .OrderBy(o => o.OrID)          // 条件に合致するものを昇順で取得 
+            .ToList());
+
                     dataGridView1.DataSource = orders.Select(o => new
                     {
                         受注ID = o.OrID,
@@ -627,6 +634,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void SearchOrders()
         {
             try
@@ -974,12 +982,14 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
-                    // 受注詳細のリストを取得
-                    var OrderDetails = context.TOrderDetails.ToList();
+                    // 受注詳細のリストを取得（checkBox1の状態に応じて並べ替え）
+                    var OrderDetails = checkBox1.Checked
+                        ? context.TOrderDetails.OrderByDescending(od => od.OrID).ToList() // 降順
+                        : context.TOrderDetails.OrderBy(od => od.OrID).ToList();          // 昇順
 
                     // 受注詳細の表示条件を設定（OrFlagが1またはOrStateFlagが2の受注IDを持つ受注詳細は非表示）
                     var visibleOrderDetails = checkBox_2.Checked
-                        ? OrderDetails
+                        ? OrderDetails // チェックされていれば全て表示（並び替え済み）
                         : OrderDetails.Where(od =>
                         {
                             var Order = context.TOrders.FirstOrDefault(o => o.OrID == od.OrID);
@@ -1773,6 +1783,10 @@ namespace SalesManagement_SysDev
         private void checkBoxSyain_CheckedChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
         }
     }
 }
