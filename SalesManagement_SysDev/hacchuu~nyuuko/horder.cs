@@ -28,7 +28,7 @@ namespace SalesManagement_SysDev
         private ClassAccessManager accessManager; // アクセスマネージャのインスタンス
 
         private int lastFocusedPanelID = 1;
-
+        private DateTime timestamp = DateTime.Now;
 
         public horder()
         {
@@ -306,6 +306,8 @@ namespace SalesManagement_SysDev
                     return; // 処理を中断
                 }
             }
+            if (Kuraberu_kun.Kuraberu_chan("発注", "通常", "更新", int.Parse(hattyuuID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -619,6 +621,8 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBHattyuIDS, hattyuuID, "発注ID")) return;
             if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
             if (CheckTBValue(TBSuryou, suryou, "数量")) return;
+            if (Kuraberu_kun.Kuraberu_chan("発注", "詳細", "更新", int.Parse(hattyuuSyosaiID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {

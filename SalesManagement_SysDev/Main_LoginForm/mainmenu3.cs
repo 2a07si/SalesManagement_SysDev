@@ -40,9 +40,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
             LoadLogData(Global.EmployeePermission);
             listViewLog.Scrollable = false;
 
-
-
-
         }
         // 従業員名をデータベースから取得して表示するメソッド
         private void LoadEmployeeName()
@@ -150,6 +147,9 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 Global.EmployeeName = string.Empty;
                 Global.PositionName = string.Empty;
                 Global.EmployeePermission = 0;
+                GlobalEmp.EmployeeID = null;
+                GlobalEmp.EmployeeName = string.Empty;
+                
                 this.Close(); // 現在のフォームを閉じる 
                 Log_Out();
                 F_login loginForm = new F_login(); // ログインフォームを作成 

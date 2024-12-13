@@ -22,7 +22,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager;
-
+        private DateTime timestamp = DateTime.Now;
         private int lastFocusedPanelID = 1;
         public sales()
         {
@@ -340,6 +340,8 @@ namespace SalesManagement_SysDev
                     return; // 処理を中断
                 }
             }
+            if (Kuraberu_kun.Kuraberu_chan("売上", "通常", "更新", int.Parse(salesID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -702,6 +704,8 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (Kuraberu_kun.Kuraberu_chan("売上", "詳細", "更新", int.Parse(UriageSyosaiID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {

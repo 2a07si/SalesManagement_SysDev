@@ -22,6 +22,7 @@ namespace SalesManagement_SysDev
         private ClassDateNamelabel dateNamelabel;
         private ClassTimerManager timerManager;
         private ClassAccessManager accessManager;
+        private DateTime timestamp = DateTime.Now;
         public merchandise()
         {
             InitializeComponent();
@@ -66,8 +67,6 @@ namespace SalesManagement_SysDev
         {
             formChanger.NavigateToCustomerForm();
         }
-
-
 
         private void merchandise_Load(object sender, EventArgs e)
         {
@@ -210,6 +209,8 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBSyoubunrui, sclass, "小分類"))     return;
             if (CheckTBValue(TBModel, tModel, "モデル番号"))      return;
             if (CheckTBValue(TBColor, tColor, "色"))              return;
+            if (Kuraberu_kun.Kuraberu_chan("商品", null, "更新", int.Parse(syohinID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -536,7 +537,7 @@ namespace SalesManagement_SysDev
                     // 各テキストボックスにデータを入力
                     TBMakerID.Text = row.Cells["メーカーID"].Value.ToString();
                     TBSyohinName.Text = row.Cells["商品名"].Value.ToString();
-                    TBSell.Text = row.Cells["値段"].Value.ToString();
+                    TBSell.Text = row.Cells["値段"].Value.ToString().Replace(",", "").Trim();
                     date.Value = Convert.ToDateTime(row.Cells["発売日"].Value);
                     TBSafeNum.Text = row.Cells["安全在庫数"].Value.ToString();
                     TBSyoubunrui.Text = row.Cells["小分類ID"].Value.ToString();

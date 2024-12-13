@@ -18,7 +18,7 @@ namespace SalesManagement_SysDev
 {
     public partial class acceptingorders : Form
     {
-        static string empID = GlobalEmp.EmployeeID;　//ログイン時の社員ＩＤが処理画面の社員ＩＤのテキストボックスに自動的に反映される
+        static int empID = Global.EmployeeID;　//ログイン時の社員ＩＤが処理画面の社員ＩＤのテキストボックスに自動的に反映される
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
         private string orderFlag = "←通常"; // 初期状態を「注文」に設定
         private ClassDataGridViewClearer dgvClearer;
@@ -41,12 +41,12 @@ namespace SalesManagement_SysDev
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView2.AllowUserToResizeColumns = false;
             dataGridView2.AllowUserToResizeRows = false;
-            
+
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
-             GlobalUtility.UpdateLabels(label_id, label_ename);
+            GlobalUtility.UpdateLabels(label_id, label_ename);
             // CBアクセス制御を設定
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
@@ -55,7 +55,7 @@ namespace SalesManagement_SysDev
                 b_sal,
                 b_iss
             });
-            
+            TBShainID.Text = Global.EmployeeID.ToString();
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
@@ -91,7 +91,7 @@ namespace SalesManagement_SysDev
         {
             TBJyutyuID.Text = "";
             TBShopID.Text = "";
-            if(checkBoxSyain.Checked == false)
+            if (checkBoxSyain.Checked == false)
             {
                 TBShainID.Text = "";
             }
@@ -251,7 +251,7 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show(":500\n不明なエラーが発生しました。\n " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void HandleOrderDetailOperation()
@@ -334,7 +334,7 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
-                if (TBShainID.Text != empID)
+                if (TBShainID.Text != empID.ToString())
                 {
                     MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
                     TBShainID.BackColor = Color.Yellow;
@@ -355,7 +355,7 @@ namespace SalesManagement_SysDev
                         return; // 処理を中断
                     }
                 }
-                if (Kuraberu_kun.Kuraberu_chan("受注", "通常", "登録", int.Parse(jyutyuID), timestamp) == false)
+                if (Kuraberu_kun.Kuraberu_chan("受注", "通常", "更新", int.Parse(jyutyuID), timestamp) == false)
                 { return; }
 
                 using (var context = new SalesManagementContext())
@@ -389,7 +389,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    
+
                     if (order != null)
                     {
                         order.SoID = int.Parse(shopID);
@@ -426,7 +426,7 @@ namespace SalesManagement_SysDev
                                 MessageBox.Show(":203\n既存データとの重複が発生しました", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return; // 更新処理を中止
                             }
-                            
+
 
                             context.SaveChanges();
 
@@ -639,7 +639,7 @@ namespace SalesManagement_SysDev
                     var shainID = TBShainID.Text.Trim();         // 社員ID   
                     var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID   
                     var tantoName = TBTantoName.Text.Trim();     // 担当者   
-                    var riyuu =  TBRiyuu.Text.Trim();            // 理由
+                    var riyuu = TBRiyuu.Text.Trim();            // 理由
 
                     // 基本的なクエリ   
                     var query = context.TOrders.AsQueryable();
@@ -781,6 +781,9 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                if (Kuraberu_kun.Kuraberu_chan("受注", "詳細", "更新", int.Parse(jyutyuSyosaiID), timestamp) == false)
+                { return; }
 
                 using (var context = new SalesManagementContext())
                 {
@@ -1736,7 +1739,7 @@ namespace SalesManagement_SysDev
 
             if (isChecked)
             {
-                TBShainID.Text = empID;  // テキストを設定
+                TBShainID.Text = GlobalEmp.EmployeeID;  // テキストを設定
                 TBShainID.Enabled = false; // 無効化
             }
             else
@@ -1763,6 +1766,11 @@ namespace SalesManagement_SysDev
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void checkBoxSyain_CheckedChanged_1(object sender, EventArgs e)
         {
 
         }

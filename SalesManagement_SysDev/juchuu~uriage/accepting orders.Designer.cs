@@ -691,6 +691,7 @@ namespace SalesManagement_SysDev
             checkBoxSyain.TabIndex = 274;
             checkBoxSyain.Text = "社員IDを自動入力";
             checkBoxSyain.UseVisualStyleBackColor = true;
+            checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged_1;
             // 
             // acceptingorders
             // 

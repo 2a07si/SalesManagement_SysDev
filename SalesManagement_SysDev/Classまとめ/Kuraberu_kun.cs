@@ -26,133 +26,150 @@ namespace SalesManagement_SysDev.Classまとめ
                 case "受注":
                     {
                         if(Mode == "通常")
-                            Accepting(LogID, data);
+                            data = Accepting(LogID, data);
                         else if(Mode == "詳細")
-                            AcceptingDetail(LogID, data);
+                            data = AcceptingDetail(LogID, data);
                     }
                     break;
                 case "注文":
                     {
                         if(Mode =="通常")
-                            Order(LogID, data);
+                            data = Order(LogID, data);
                         else if (Mode == "詳細")
-                            OrderDetail(LogID, data);
+                            data = OrderDetail(LogID, data);
                     }
                     break;
                 case "出庫":
                     {
                         if(Mode =="通常")
-                            Syukko(LogID, data);
+                            data = Syukko(LogID, data);
                        else if (Mode == "詳細")
-                            SyukkoDetail(LogID, data);
+                            data = SyukkoDetail(LogID, data);
                     }
                     break;
 
                 case "入荷":
                     {
                         if (Mode == "通常")
-                            Arrival(LogID, data);
+                            data = Arrival(LogID, data);
                        else if (Mode == "詳細")
-                            ArrivalDetail(LogID, data);
+                            data = ArrivalDetail(LogID, data);
                     }
                     break;
 
                 case "出荷":
                     {
                         if (Mode == "通常")
-                            Shipment(LogID, data);
+                            data = Shipment(LogID, data);
                        else if (Mode == "詳細")
-                            ShipmentDetail(LogID, data);
+                            data = ShipmentDetail(LogID, data);
                     }
                     break;
 
                 case "売上":
                     {
                         if (Mode == "通常")
-                            Sale(LogID, data);
+                            data = Sale(LogID, data);
                        else if (Mode == "詳細")
-                            SaleDetail(LogID, data);
+                            data = SaleDetail(LogID, data);
                     }
                     break;
                 case "発注":
                     {
                         if (Mode == "通常")
-                          Hattyu(LogID, data);  
+                            data = Hattyu(LogID, data);  
                         else if (Mode == "詳細")
-                            HattyuDetail(LogID, data);
+                            data = HattyuDetail(LogID, data);
                     }
                     break;
 
                 case "入庫":
                     {
                         if (Mode == "通常")
-                            Warehousing(LogID, data);
+                            data = Warehousing(LogID, data);
                         else if (Mode == "詳細")
-                            WarehousingDetail(LogID, data);
+                            data = WarehousingDetail(LogID, data);
                     }
                     break;
                 case "商品":
                     {
-                        Product(LogID, data);
+                        data = Product(LogID, data);
                     }
                     break;
                 case "社員":
                     {
-                        Employee(LogID, data);
+                        data = Employee(LogID, data);
                     }
                     break;
                 case "顧客":
                     {
-                        Client(LogID, data);
+                        data = Client(LogID, data);
                     }
                     break;
                 case "在庫":
                     {
-                        Stock(LogID, data);
+                        data = Stock(LogID, data);
                     }
                     break;
             }
-            using (var context = new SalesManagementContext())
+            try
             {
-                var latestLog = context.LoginHistoryLogDetails
-                    .Where(log => log.Display == Display
-                               && log.Mode == Mode
-                               && log.Process == Process
-                               && log.LogID == LogID)
-                    .OrderByDescending(log => log.AcceptDateTime) // Dateで降順に並べる
-                    .FirstOrDefault(); // 最初のレコードを取得（最も遅いもの）
-
-                if(latestLog.AcceptDateTime > timestamp)
+                MessageBox.Show(data);
+                using (var context = new SalesManagementContext())
                 {
-                    DialogResult result = MessageBox.Show(
-                        "このデータには最新の情報が存在します。上書き保存しますか？\n" + data,
-                        "確認",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question
-                    );
+                    var latestLog = context.LoginHistoryLogDetails
+                        .Where(log => log.Display == Display
+                                   && log.Mode == Mode
+                                   && log.Process == Process
+                                   && log.LogID == LogID)
+                        .OrderByDescending(log => log.AcceptDateTime) // Dateで降順に並べる
+                        .FirstOrDefault(); // 最初のレコードを取得（最も遅いもの）
 
-                    if (result == DialogResult.Yes)
+                    if (latestLog == null)
                     {
-                        // ユーザーが「はい」を選択した場合の処理 
-                        Console.WriteLine("データを上書き保存します。");
-                        return true;
+                        // latestLog が null の場合の処理
+                        MessageBox.Show("一致するログが見つかりませんでした。");
+                        return true; // 処理を継続
+                    }
+
+                    if (latestLog.AcceptDateTime > timestamp)
+                    {
+                        DialogResult result = MessageBox.Show(
+                            "このデータには最新の情報が存在します。上書き保存しますか？\n" + data,
+                            "確認",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question
+                        );
+
+                        if (result == DialogResult.Yes)
+                        {
+                            // ユーザーが「はい」を選択した場合の処理
+                            Console.WriteLine("データを上書き保存します。");
+                            return true;
+                        }
+                        else
+                        {
+                            // ユーザーが「いいえ」を選択した場合の処理
+                            Console.WriteLine("操作をキャンセルしました。");
+                            return false;
+                        }
                     }
                     else
                     {
-                        // ユーザーが「いいえ」を選択した場合の処理 
-                        Console.WriteLine("操作をキャンセルしました。");
-                        return false;
+                        // 条件が一致しない場合の処理
+                        MessageBox.Show("条件に一致するログが見つかりませんでした。");
+                        return true; // 処理を継続
                     }
-
-                }
-                else
-                {
-                    // 一致するログが見つからない場合の処理 
-                    MessageBox.Show("条件に一致するログが見つかりませんでした。");
-                    return true;
                 }
             }
-        
+            catch (Exception ex)
+            {
+                // 例外が発生した場合の処理
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false; // 処理を中断
+            }
+
+
         }
         public static string Accepting(int id, string data)
         {

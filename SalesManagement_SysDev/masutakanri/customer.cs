@@ -15,12 +15,11 @@ namespace SalesManagement_SysDev
 {
     public partial class customer : Form
     {
-
-
         private Form mainForm;
         private ClassChangeForms formChanger;
         private ClassDateNamelabel dateNamelabel;
         private ClassAccessManager accessManager;
+        private DateTime timestamp = DateTime.Now;
         public customer()
         {
             InitializeComponent();
@@ -191,6 +190,8 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBJyusyo, juusho, "住所"))             return;
             if (CheckTBValue(TBTellNo, tel, "電話番号"))            return;
             if (CheckTBValue(TBFax, fax, "FAX"))                    return;
+            if (Kuraberu_kun.Kuraberu_chan("顧客", null, "更新", int.Parse(kokyakuID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
