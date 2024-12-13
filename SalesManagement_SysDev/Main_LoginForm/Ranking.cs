@@ -25,6 +25,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
         }
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
+        private bool isRankSelected = true;
         private string orderFlag = "←商品"; // 初期状態を「注文」に設定
         private string buttonFlag = "ランキング";
         private int lastFocusedPanelID = 1;
@@ -33,6 +34,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             AddControlEventHandlers(RankingProduct, 1);  // パネル1の場合
             AddControlEventHandlers(RankingCustomer, 2);  // パネル2の場合
+            AddControlEventHandlers(SaleProduct, 3);
+            AddControlEventHandlers(SaleCustomer, 4);
 
 
             GlobalUtility.UpdateLabels(label_id, label_ename);
@@ -554,11 +557,11 @@ namespace SalesManagement_SysDev.Main_LoginForm
 
         private void RankSelection()
         {
-            isOrderSelected = !isOrderSelected;
-            buttonFlag = isOrderSelected ? "ランキング" : "セール";
+            isRankSelected = !isRankSelected;
+            buttonFlag = isRankSelected ? "ランキング" : "セール";
 
             // CurrentStatusのモードを切り替える 
-            CurrentStatus.RankingSale(isOrderSelected ? RankSale.ランキング : RankSale.セール);
+            CurrentStatus.RankingSale(isRankSelected ? RankSale.ランキング : RankSale.セール);
 
             if (buttonFlag == "ランキング")
             {
@@ -734,11 +737,16 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             try
             {
+
+                CurrentStatus.RankingMode(ItemType.商品);
+                b_FormSelector.Text = "←商品";
                 // 状態を切り替える処理 
                 RankSelection();
 
                 // b_FormSelectorのテキストを現在の状態に更新 
                 buttonChange();
+
+                
 
 
             }
@@ -757,6 +765,8 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             try
             {
+                CurrentStatus.RankingMode(ItemType.商品);
+                b_FormSelector.Text = "←商品";
                 // 状態を切り替える処理 
                 RankSelection();
 

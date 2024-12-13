@@ -1199,10 +1199,10 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(b_kakutei);
-            Controls.Add(SaleProduct);
             Controls.Add(SaleCustomer);
             Controls.Add(RankingProduct);
             Controls.Add(RankingCustomer);
+            Controls.Add(SaleProduct);
             Name = "Ranking";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ranking";
