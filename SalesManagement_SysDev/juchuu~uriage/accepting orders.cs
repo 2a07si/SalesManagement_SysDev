@@ -47,7 +47,7 @@ namespace SalesManagement_SysDev
 
         private void acceptingorders_Load(object sender, EventArgs e)
         {
-            GlobalUtility.UpdateLabels(label_id, label_ename);
+             GlobalUtility.UpdateLabels(label_id, label_ename);
             // CBアクセス制御を設定
             accessManager.SetButtonAccess(new Control[] {
                 b_ord,
