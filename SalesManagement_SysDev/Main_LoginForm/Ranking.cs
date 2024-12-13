@@ -42,12 +42,18 @@ namespace SalesManagement_SysDev.Main_LoginForm
             ListBoxInitialize4();
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
+            comboBox3.SelectedIndex = 0;
+            comboBox5.SelectedIndex = 0;
             b_FormSelector.Text = "←商品";
             RankChange.Text = "ランキング";
-            CurrentStatus.RankingMode(ItemType.商品);
-            CurrentStatus.RankingSale(RankSale.ランキング);
             DisplayRankingProduct();
             DisplayCustomerRanking();
+            CurrentStatus.RankingMode(ItemType.商品);
+            CurrentStatus.RankingSale(RankSale.ランキング);
+            RankingCustomer.Visible = true;
+            RankingProduct.Visible = true;
+            SaleCustomer.Visible = false;
+            SaleProduct.Visible = false;
         }
 
         private void b_kakutei_Click(object sender, EventArgs e)
