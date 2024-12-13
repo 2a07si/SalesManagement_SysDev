@@ -1,4 +1,5 @@
 ﻿using SalesManagement_SysDev.Classまとめ;
+using SalesManagement_SysDev.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,20 +26,26 @@ namespace SalesManagement_SysDev.Main_LoginForm
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
         private string orderFlag = "←商品"; // 初期状態を「注文」に設定
+        private string buttonFlag = "ランキング";
         private int lastFocusedPanelID = 1;
 
         private void Ranking_Load(object sender, EventArgs e)
         {
-            AddControlEventHandlers(panel1, 1);  // パネル1の場合
-            AddControlEventHandlers(panel2, 2);  // パネル2の場合
+            AddControlEventHandlers(RankingProduct, 1);  // パネル1の場合
+            AddControlEventHandlers(RankingCustomer, 2);  // パネル2の場合
+
 
             GlobalUtility.UpdateLabels(label_id, label_ename);
             ListBoxInitialize1();
             ListBoxInitialize2();
+            ListBoxInitialize3();
+            ListBoxInitialize4();
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
             b_FormSelector.Text = "←商品";
+            RankChange.Text = "ランキング";
             CurrentStatus.RankingMode(ItemType.商品);
+            CurrentStatus.RankingSale(RankSale.ランキング);
             DisplayRankingProduct();
             DisplayCustomerRanking();
         }
@@ -118,7 +125,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     {
                         DateTime startDate = date.Value.Date;   // 開始日
                         DateTime endDate = date2.Value.Date;     // 終了日
-                        
+
                         // 日付範囲が逆転している場合のチェック 
                         if (startDate > endDate)
                         {
@@ -431,6 +438,66 @@ namespace SalesManagement_SysDev.Main_LoginForm
             }
         }
 
+        private void ListBoxInitialize3()
+        {
+            try
+            {
+                // データベースのコンテキストを使用
+                using (var context = new SalesManagementContext())
+                {
+                    // MProductsテーブルから商品ID（PrID）と商品名（PrName）を取得
+                    var products = context.MProducts
+                        .Select(p => new { p.PrID, p.PrName }) // 商品IDと商品名を取得
+                        .ToList();
+
+                    // CheckedListBoxをクリア
+                    checkedListBox3.Items.Clear();
+
+                    // 取得した商品をCheckedListBoxに追加
+                    foreach (var product in products)
+                    {
+                        // 商品ID: 商品名 の形式で表示
+                        checkedListBox3.Items.Add($"{product.PrID}: {product.PrName}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリング
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ListBoxInitialize4()
+        {
+            try
+            {
+                // データベースのコンテキストを使用
+                using (var context = new SalesManagementContext())
+                {
+                    // MProductsテーブルから商品ID（PrID）と商品名（PrName）を取得
+                    var clients = context.MClients
+                         .Select(c => new { c.ClID, c.ClName }) // 顧客IDと顧客名を取得
+                         .ToList();
+
+                    // CheckedListBoxをクリア
+                    checkedListBox5.Items.Clear();
+
+                    // 取得した商品をCheckedListBoxに追加
+                    foreach (var client in clients)
+                    {
+                        // 商品ID: 商品名 の形式で表示
+                        checkedListBox5.Items.Add($"{client.ClID}: {client.ClName}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーハンドリング
+                MessageBox.Show($"エラーが発生しました: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         // 上位行を強調表示するメソッド
         private void HighlightTopRows(int rowCount)
         {
@@ -479,6 +546,30 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 lastFocusedPanelID = 2;
         }
 
+        private void RankSelection()
+        {
+            isOrderSelected = !isOrderSelected;
+            buttonFlag = isOrderSelected ? "ランキング" : "セール";
+
+            // CurrentStatusのモードを切り替える 
+            CurrentStatus.RankingSale(isOrderSelected ? RankSale.ランキング : RankSale.セール);
+
+            if (buttonFlag == "ランキング")
+            {
+                RankingCustomer.Visible = true;
+                RankingProduct.Visible = true;
+                SaleCustomer.Visible = false;
+                SaleProduct.Visible = false;
+            }
+            else if (buttonFlag == "セール")
+            {
+                RankingCustomer.Visible = false;
+                RankingProduct.Visible = false;
+                SaleCustomer.Visible = true;
+                SaleProduct.Visible = true;
+            }
+        }
+
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
             try
@@ -503,6 +594,19 @@ namespace SalesManagement_SysDev.Main_LoginForm
             {
                 // b_FlagSelectorのテキストを現在の状態に合わせる 
                 b_FormSelector.Text = orderFlag;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("フラグボタンのテキスト更新中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonChange()
+        {
+            try
+            {
+                // b_FlagSelectorのテキストを現在の状態に合わせる 
+                RankChange.Text = buttonFlag;
             }
             catch (Exception ex)
             {
@@ -558,6 +662,106 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 ToggleOrderSelection();
                 UpdateFlagButtonText();
                 lastFocusedPanelID = panelID; // 現在のパネルIDを更新
+            }
+        }
+
+        private void ProductPrice(RankTable ProductRank)
+        {
+            // 割引率（10%）
+            decimal discountRate = 0.10m;
+
+            // 新しい注文がランキングに追加されたタイミングでの処理
+            if (ProductRank.Quantity >= 2000)
+            {
+                using (var context = new SalesManagementContext())
+                {
+                    // すでに2000以上だった場合は割引を適用しない
+                    var existingOrder = context.TSaleDetails.SingleOrDefault(o => o.PrID == ProductRank.ProductID);
+
+                    // 新しい注文または数量が2000を超えた場合のみ割引を適用
+                    if (existingOrder == null || existingOrder.SaQuantity < 2000)
+                    {
+                        var ptable = context.MProducts.ToList();
+                        foreach (var product in ptable)
+                        {
+                            // Price（元の単価）に対して10%割引を適用して UniPrice（割引後単価）を更新
+                            product.Price = product.Price * (1 - discountRate);
+
+                            // ここでログなども表示可能
+                            MessageBox.Show($"商品ID: {ProductRank.ProductID}の値段が10％オフの {product.Price}円になりました。");
+                        }
+
+                    }
+                    context.SaveChanges();
+                }
+
+            }
+        }
+        private void UpdatePrice(RankTable productRank)
+        {
+            using (var context = new SalesManagementContext())
+            {
+                // RankTable の ProductID を使って MProduct から PrID を取得
+                var matchingProduct = context.MProducts.SingleOrDefault(p => p.PrID == productRank.ProductID);
+
+                // 一致する MProduct が見つかった場合、単価を更新
+                if (matchingProduct != null)
+                {
+                    // MProduct の Price を RankTable の UnitPrice に設定
+                    //productRank.Price = matchingProduct.Price;
+
+                    // ログに表示（任意）
+                    //MessageBox.Show($"Updated ProductID: {productRank.ProductID}, New UnitPrice: {productRank.UnitPrice}");
+
+                    // データベースに変更を保存
+                    context.SaveChanges();
+                }
+                else
+                {
+                    // 一致する商品が見つからない場合の処理
+                    Console.WriteLine($"ProductID: {productRank.ProductID} was not found in MProducts.");
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 状態を切り替える処理 
+                RankSelection();
+
+                // b_FormSelectorのテキストを現在の状態に更新 
+                buttonChange();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ボタンのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RankingCustomer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void RankChange_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 状態を切り替える処理 
+                RankSelection();
+
+                // b_FormSelectorのテキストを現在の状態に更新 
+                buttonChange();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ボタンのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

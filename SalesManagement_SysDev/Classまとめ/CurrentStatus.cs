@@ -28,6 +28,12 @@ namespace SalesManagement_SysDev.Classまとめ
             顧客
         }
 
+        public enum RankSale
+        {
+            ランキング,
+            セール
+        }
+
         // グローバル変数としての現在の状態を保持
         public static Status CurrentStatusValue { get; private set; } = Status.未設定;
 
@@ -35,6 +41,8 @@ namespace SalesManagement_SysDev.Classまとめ
         public static Mode CurrentMode { get; private set; } = Mode.通常;
 
         public static ItemType CurrentRanking { get; private set; } = ItemType.商品;
+
+        public static RankSale CurrentRankSale { get; private set; } = RankSale.ランキング;
 
         // 状態の変更とラベルの更新
         public static void RegistrationStatus(Label label2)
@@ -76,6 +84,11 @@ namespace SalesManagement_SysDev.Classまとめ
         public static void RankingMode(ItemType mm)
         {
             CurrentRanking = mm;
+        }
+
+        public static void RankingSale(RankSale rs)
+        {
+            CurrentRankSale = rs;
         }
     }
 }
