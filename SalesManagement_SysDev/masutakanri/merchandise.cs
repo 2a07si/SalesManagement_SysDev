@@ -170,7 +170,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
-        private bool CheckRequiredField(TextBox textBox, string value, string fieldName)
+        private bool CheckTBValue(TextBox textBox, string value, string fieldName)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -182,7 +182,7 @@ namespace SalesManagement_SysDev
             textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
             return true;
         }
-        private void ShowNotFoundMessage(string itemName, string itemId)
+        private void NotFound(string itemName, string itemId)
         {
             MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
                             "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -190,26 +190,26 @@ namespace SalesManagement_SysDev
         
         private void Updatemerchandise()
         {
-            string syohinID = TBSyohinID.Text;
-            string makerID = TBMakerID.Text;
+            string syohinID   = TBSyohinID.Text;
+            string makerID    = TBMakerID.Text;
             string syohinName = TBSyohinName.Text;
-            string sell = TBSell.Text;
-            string safeNum = TBSafeNum.Text;
-            string sclass = TBSyoubunrui.Text;
-            string tModel = TBModel.Text;
-            string tColor = TBColor.Text;
+            string sell       = TBSell.Text;
+            string safeNum    = TBSafeNum.Text;
+            string sclass     = TBSyoubunrui.Text;
+            string tModel     = TBModel.Text;
+            string tColor     = TBColor.Text;
+            bool delFlag      = DelFlag.Checked;
             DateTime syohinDate = date.Value;
-            bool delFlag = DelFlag.Checked;
 
             // 入力チェックを共通メソッドで実施
-            if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID")) return;
-            if (!CheckRequiredField(TBMakerID, makerID, "メーカーID")) return;
-            if (!CheckRequiredField(TBSyohinName, syohinName, "商品名")) return;
-            if (!CheckRequiredField(TBSell, sell, "販売価格")) return;
-            if (!CheckRequiredField(TBSafeNum, safeNum, "安全在庫数")) return;
-            if (!CheckRequiredField(TBSyoubunrui, sclass, "小分類")) return;
-            if (!CheckRequiredField(TBModel, tModel, "モデル番号")) return;
-            if (!CheckRequiredField(TBColor, tColor, "色")) return;
+            if (!CheckTBValue(TBSyohinID, syohinID, "商品ID"))     return;
+            if (!CheckTBValue(TBMakerID, makerID, "メーカーID"))   return;
+            if (!CheckTBValue(TBSyohinName, syohinName, "商品名")) return;
+            if (!CheckTBValue(TBSell, sell, "販売価格"))           return;
+            if (!CheckTBValue(TBSafeNum, safeNum, "安全在庫数"))   return;
+            if (!CheckTBValue(TBSyoubunrui, sclass, "小分類"))     return;
+            if (!CheckTBValue(TBModel, tModel, "モデル番号"))      return;
+            if (!CheckTBValue(TBColor, tColor, "色"))              return;
 
             using (var context = new SalesManagementContext())
             {
@@ -219,7 +219,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(makerID, out int parsedMakerID) ||
                         !context.MMakers.Any(m => m.MaID == parsedMakerID))
                     {
-                        ShowNotFoundMessage("メーカー", makerID);
+                        NotFound("メーカー", makerID);
                         TBMakerID.BackColor = Color.Yellow;
                         TBMakerID.Focus();
                         return;
@@ -229,7 +229,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(sclass, out int parsedSClassID) ||
                         !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
                     {
-                        ShowNotFoundMessage("小分類", sclass);
+                        NotFound("小分類", sclass);
                         TBSyoubunrui.BackColor = Color.Yellow;
                         TBSyoubunrui.Focus();
                         return;
@@ -258,7 +258,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        ShowNotFoundMessage("商品", syohinID);
+                        NotFound("商品", syohinID);
                     }
                 }
                 catch (FormatException ex)
@@ -288,13 +288,13 @@ namespace SalesManagement_SysDev
             string riyuu = TBRiyuu.Text;
 
             // 入力チェックを共通メソッドで実施
-            if (!CheckRequiredField(TBMakerID, makerID, "メーカーID")) return;
-            if (!CheckRequiredField(TBSyohinName, syohinName, "商品名")) return;
-            if (!CheckRequiredField(TBSell, sell, "販売価格")) return;
-            if (!CheckRequiredField(TBSafeNum, safeNum, "安全在庫数")) return;
-            if (!CheckRequiredField(TBSyoubunrui, sclass, "小分類")) return;
-            if (!CheckRequiredField(TBModel, tModel, "モデル番号")) return;
-            if (!CheckRequiredField(TBColor, tColor, "色")) return;
+            if (!CheckTBValue(TBMakerID, makerID, "メーカーID")) return;
+            if (!CheckTBValue(TBSyohinName, syohinName, "商品名")) return;
+            if (!CheckTBValue(TBSell, sell, "販売価格")) return;
+            if (!CheckTBValue(TBSafeNum, safeNum, "安全在庫数")) return;
+            if (!CheckTBValue(TBSyoubunrui, sclass, "小分類")) return;
+            if (!CheckTBValue(TBModel, tModel, "モデル番号")) return;
+            if (!CheckTBValue(TBColor, tColor, "色")) return;
 
             using (var context = new SalesManagementContext())
             {
@@ -304,7 +304,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(makerID, out int parsedMakerID) ||
                         !context.MMakers.Any(m => m.MaID == parsedMakerID))
                     {
-                        ShowNotFoundMessage("メーカー", makerID);
+                        NotFound("メーカー", makerID);
                         TBMakerID.BackColor = Color.Yellow;
                         TBMakerID.Focus();
                         return;
@@ -314,7 +314,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(sclass, out int parsedSClassID) ||
                         !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
                     {
-                        ShowNotFoundMessage("小分類", sclass);
+                        NotFound("小分類", sclass);
                         TBSyoubunrui.BackColor = Color.Yellow;
                         TBSyoubunrui.Focus();
                         return;
