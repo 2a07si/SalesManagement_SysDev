@@ -442,7 +442,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 foreach (DataGridViewCell cell in dataGridView1.Rows[i].Cells)
                 {
                     cell.Style.BackColor = Color.Yellow;  // 背景色を黄色に設定
-                    cell.Style.ForeColor = Color.Red;     // テキスト色を赤に設定
+                    //cell.Style.ForeColor = Color.Red;     // テキスト色を赤に設定
                 }
             }
 
@@ -458,7 +458,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 foreach (DataGridViewCell cell in dataGridView2.Rows[i].Cells)
                 {
                     cell.Style.BackColor = Color.Yellow;  // 背景色を黄色に設定
-                    cell.Style.ForeColor = Color.Red;     // テキスト色を赤に設定
+                    //cell.Style.ForeColor = Color.Red;     // テキスト色を赤に設定
                 }
             }
         }
