@@ -23,11 +23,11 @@ namespace SalesManagement_SysDev
         private string orderFlag = "←通常"; // 初期状態を「注文」に設定
         private ClassDataGridViewClearer dgvClearer;
         private GlobalBadge globalBadge;
-
+        private Kuraberu_kun kuraberukun;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
         private int lastFocusedPanelID = 1;
-
+        private DateTime timestamp = DateTime.Now;
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
@@ -41,8 +41,7 @@ namespace SalesManagement_SysDev
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView2.AllowUserToResizeColumns = false;
             dataGridView2.AllowUserToResizeRows = false;
-
-
+            
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
@@ -56,7 +55,7 @@ namespace SalesManagement_SysDev
                 b_sal,
                 b_iss
             });
-
+            
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
@@ -70,7 +69,10 @@ namespace SalesManagement_SysDev
             checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
             UpdateTextBoxState(checkBoxSyain.Checked);
             TyumonFlag.Enabled = false;
+            DateTime timestamp = DateTime.Now;
+
         }
+
 
         // メインメニューに戻る
         private void close_Click(object sender, EventArgs e)
@@ -353,6 +355,8 @@ namespace SalesManagement_SysDev
                         return; // 処理を中断
                     }
                 }
+                if (Kuraberu_kun.Kuraberu_chan("受注", "通常", "登録", int.Parse(jyutyuID), timestamp) == false)
+                { return; }
 
                 using (var context = new SalesManagementContext())
                 {
@@ -385,7 +389,7 @@ namespace SalesManagement_SysDev
                         MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
+                    
                     if (order != null)
                     {
                         order.SoID = int.Parse(shopID);
@@ -422,6 +426,7 @@ namespace SalesManagement_SysDev
                                 MessageBox.Show(":203\n既存データとの重複が発生しました", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return; // 更新処理を中止
                             }
+                            
 
                             context.SaveChanges();
 

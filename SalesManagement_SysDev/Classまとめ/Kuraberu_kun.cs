@@ -17,8 +17,9 @@ namespace SalesManagement_SysDev.Classまとめ
             DateTime Timestamp = DateTime.Now;   
         }
 
-        public static void Kuraberu_chan(string Display, string Mode, string Process, int LogID, DateTime timestamp)
+        public static bool Kuraberu_chan(string Display, string Mode, string Process, int LogID, DateTime timestamp)
         {
+            MessageBox.Show("くらべるちゃん起動！");
             string data = null;
             switch(Display)
             {
@@ -124,7 +125,7 @@ namespace SalesManagement_SysDev.Classまとめ
                 if(latestLog.AcceptDateTime > timestamp)
                 {
                     DialogResult result = MessageBox.Show(
-                        "このデータには最新の情報が存在します。上書き保存しますか？",
+                        "このデータには最新の情報が存在します。上書き保存しますか？\n" + data,
                         "確認",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question
@@ -134,11 +135,13 @@ namespace SalesManagement_SysDev.Classまとめ
                     {
                         // ユーザーが「はい」を選択した場合の処理 
                         Console.WriteLine("データを上書き保存します。");
+                        return true;
                     }
                     else
                     {
                         // ユーザーが「いいえ」を選択した場合の処理 
                         Console.WriteLine("操作をキャンセルしました。");
+                        return false;
                     }
 
                 }
@@ -146,6 +149,7 @@ namespace SalesManagement_SysDev.Classまとめ
                 {
                     // 一致するログが見つからない場合の処理 
                     MessageBox.Show("条件に一致するログが見つかりませんでした。");
+                    return true;
                 }
             }
         

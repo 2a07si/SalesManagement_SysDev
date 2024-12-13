@@ -130,7 +130,7 @@ namespace SalesManagement_SysDev.Classまとめ
                         HaDate = DateTime.Now, // 日付が空なら現在日時 
                         WaWarehouseFlag = 0,
                         HaFlag = 0,
-                        HaHidden = null
+                        HaHidden = "自動発注"
                     };
 
                     context.THattyus.Add(newHattyu);
