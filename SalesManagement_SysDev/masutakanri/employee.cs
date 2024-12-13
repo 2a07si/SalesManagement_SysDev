@@ -163,6 +163,25 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+        private bool CheckTBValue(TextBox textBox, string value, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                textBox.BackColor = Color.Yellow;
+                textBox.Focus();
+                MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
+            return true;
+        }
+
+        private void NotFound(string itemName, string itemId)
+        {
+            MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
+                            "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
 
         /*private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -186,48 +205,13 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            if (TBSyainID.Text == "")
-            {
-                TBSyainID.BackColor = Color.Yellow;
-                TBSyainID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBSyainName.Text == "")
-            {
-                TBSyainName.BackColor = Color.Yellow;
-                TBSyainName.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBShopID.Text == "")
-            {
-                TBShopID.BackColor = Color.Yellow;
-                TBShopID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBJobID.Text == "")
-            {
-                TBJobID.BackColor = Color.Yellow;
-                TBJobID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBPass.Text == "")
-            {
-                TBPass.BackColor = Color.Yellow;
-                TBPass.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBTellNo.Text == "")
-            {
-                TBTellNo.BackColor = Color.Yellow;
-                TBTellNo.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // 必須項目のチェック
+            if (!CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
+            if (!CheckTBValue(TBSyainName, ShainName, "社員名")) return;
+            if (!CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
+            if (!CheckTBValue(TBJobID, JobID, "職位ID"))         return;
+            if (!CheckTBValue(TBPass, Pass, "パスワード"))       return;
+            if (!CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
 
             using (var context = new SalesManagementContext())
             {
@@ -236,7 +220,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("店舗", ShopID);
                     return;
                 }
 
@@ -245,9 +229,10 @@ namespace SalesManagement_SysDev
                 {
                     TBJobID.BackColor = Color.Yellow;
                     TBJobID.Focus();
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("職位", JobID);
                     return;
                 }
+
                 var employee = context.MEmployees.SingleOrDefault(e => e.EmID.ToString() == ShainID);
                 if (employee != null)
                 {
@@ -279,11 +264,11 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("社員", ShainID);
                 }
             }
-
         }
+
 
         private void RegisterEmployee()
         {
@@ -296,48 +281,13 @@ namespace SalesManagement_SysDev
             string TelNo = TBTellNo.Text;
             bool delFlag = DelFlag.Checked;
 
-            if (TBSyainID.Text == "")
-            {
-                TBSyainID.BackColor = Color.Yellow;
-                TBSyainID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBSyainName.Text == "")
-            {
-                TBSyainName.BackColor = Color.Yellow;
-                TBSyainName.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBShopID.Text == "")
-            {
-                TBShopID.BackColor = Color.Yellow;
-                TBShopID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBJobID.Text == "")
-            {
-                TBJobID.BackColor = Color.Yellow;
-                TBJobID.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBPass.Text == "")
-            {
-                TBPass.BackColor = Color.Yellow;
-                TBPass.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBTellNo.Text == "")
-            {
-                TBTellNo.BackColor = Color.Yellow;
-                TBTellNo.Focus();
-                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // 必須項目のチェック
+            if (!CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
+            if (!CheckTBValue(TBSyainName, ShainName, "社員名")) return;
+            if (!CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
+            if (!CheckTBValue(TBJobID, JobID, "職位ID"))         return;
+            if (!CheckTBValue(TBPass, Pass, "パスワード"))       return;
+            if (!CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
 
             using (var context = new SalesManagementContext())
             {
@@ -354,14 +304,14 @@ namespace SalesManagement_SysDev
                 int shop;
                 if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("店舗", ShopID);
                     return;
                 }
 
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
                 {
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound("職位", JobID);
                     return;
                 }
 
@@ -386,6 +336,7 @@ namespace SalesManagement_SysDev
                 ResetYellowBackgrounds(this);
             }
         }
+
 
         // DataGridViewのCellFormattingイベントを使用
 
