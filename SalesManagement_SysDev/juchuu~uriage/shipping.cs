@@ -1143,6 +1143,7 @@ namespace SalesManagement_SysDev
                     SaDate = shipment.ShFinishDate ?? DateTime.MinValue,
                     SaFlag = 0
 
+
                 };
 
                 try
@@ -1172,14 +1173,13 @@ namespace SalesManagement_SysDev
                         MessageBox.Show(":204\n該当の項目が見つかりません。発注処理を中止します。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    var order = context.TOrders.FirstOrDefault(o => o.OrID == shipment.OrID);
-                    var orderDetail = context.TSaleDetails.FirstOrDefault(o => o.PrID == shipmentDetail.PrID);
+
                     var newSaleDetail = new TSaleDetail
                     {
                         SaID = newSales.SaID,
                         PrID = shipmentDetail.PrID,  // null の場合、0 を代入
                         SaQuantity = shipmentDetail.ShQuantity,  // null の場合、0 を代入
-                        SaPrTotalPrice = orderDetail.SaPrTotalPrice
+                        SaPrTotalPrice = shipmentDetail.ShQuantity * product.Price
                     };
                     try
                     {
@@ -1202,6 +1202,7 @@ namespace SalesManagement_SysDev
             }
         }
 
+        // パネル内のすべてのコントロールにEnterイベントを追加
         // パネル内のすべてのコントロールにEnterイベントを追加
         private void AddControlEventHandlers(Control panel, int panelID)
         {
