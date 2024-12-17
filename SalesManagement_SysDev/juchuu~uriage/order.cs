@@ -24,7 +24,7 @@ namespace SalesManagement_SysDev
         private ClassDataGridViewClearer dgvClearer;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
-
+        private DateTime timestamp = DateTime.Now;
 
         private int lastFocusedPanelID = 1;
         public order()
@@ -335,6 +335,9 @@ namespace SalesManagement_SysDev
                     return; // 処理を中断
                 }
             }
+
+            if (Kuraberu_kun.Kuraberu_chan("注文", "通常", "更新", int.Parse(ChumonID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -914,6 +917,9 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(":100\n無効な操作です", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (Kuraberu_kun.Kuraberu_chan("注文", "詳細", "更新", int.Parse(TyumonSyosaiID), timestamp) == false)
+            { return; }
+
 
             using (var context = new SalesManagementContext())
             {

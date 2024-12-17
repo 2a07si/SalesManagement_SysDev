@@ -28,7 +28,7 @@ namespace SalesManagement_SysDev
         private ClassAccessManager accessManager;
 
         private int lastFocusedPanelID = 1;
-
+        private DateTime timestamp = DateTime.Now;
         public receivingstock()
         {
             InitializeComponent();
@@ -298,6 +298,8 @@ namespace SalesManagement_SysDev
                     return; // 処理を中断
                 }
             }
+            if (Kuraberu_kun.Kuraberu_chan("入庫", "通常", "更新", int.Parse(nyuukoID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -646,6 +648,8 @@ namespace SalesManagement_SysDev
                     NotFound("商品ID", syohinID);  
                     return;
                 }
+                if (Kuraberu_kun.Kuraberu_chan("入庫", "詳細", "更新", int.Parse(nyuukoDetailID), timestamp) == false)
+                { return; }
 
                 // 入庫詳細の取得と更新
                 var receivingStockDetail = context.TWarehousingDetails.SingleOrDefault(ws => ws.WaDetailID == warehousingDetailID);

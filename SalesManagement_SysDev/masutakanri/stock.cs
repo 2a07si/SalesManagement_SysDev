@@ -18,6 +18,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger;
         private ClassTimerManager timerManager;
         private ClassAccessManager accessManager;
+        private DateTime timestamp = DateTime.Now;
         public stock()
         {
             InitializeComponent();
@@ -179,6 +180,8 @@ namespace SalesManagement_SysDev
             if (!CheckRequiredField(TBZaikoID, zaikoID, "在庫ID")) return;
             if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID")) return;
             if (!CheckRequiredField(TBZaiko, zaiko, "在庫数量")) return;
+            if (Kuraberu_kun.Kuraberu_chan("在庫", null, "更新", int.Parse(zaikoID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {

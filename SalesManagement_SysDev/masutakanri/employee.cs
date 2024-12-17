@@ -21,6 +21,7 @@ namespace SalesManagement_SysDev
         ///private ClassDateNamelabel dateNamelabel;
         private ClassTimerManager timerManager;
         private ClassAccessManager accessManager;
+        private DateTime timestamp = DateTime.Now;
         public employee()
         {
             InitializeComponent();
@@ -212,6 +213,8 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBJobID, JobID, "役職ID"))         return;
             if (CheckTBValue(TBPass, Pass, "パスワード"))       return;
             if (CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
+            if (Kuraberu_kun.Kuraberu_chan("社員", null, "更新", int.Parse(ShainID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {

@@ -24,7 +24,7 @@ namespace SalesManagement_SysDev
         private ClassAccessManager accessManager;
 
         private int lastFocusedPanelID = 1;
-
+        private DateTime timestamp = DateTime.Now;
         // コンストラクターでmainFormを引数として受け取る 
         public shipping(Form mainForm)
         {
@@ -333,6 +333,8 @@ namespace SalesManagement_SysDev
                     return; // 処理を中断
                 }
             }
+            if (Kuraberu_kun.Kuraberu_chan("出荷", "通常", "更新", int.Parse(SyukkaID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -801,6 +803,8 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (Kuraberu_kun.Kuraberu_chan("出荷", "詳細", "更新", int.Parse(shukkasyosaiID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {

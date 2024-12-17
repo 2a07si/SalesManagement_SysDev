@@ -18,16 +18,16 @@ namespace SalesManagement_SysDev
 {
     public partial class acceptingorders : Form
     {
-        static string empID = GlobalEmp.EmployeeID;　//ログイン時の社員ＩＤが処理画面の社員ＩＤのテキストボックスに自動的に反映される
+        static int empID = Global.EmployeeID;　//ログイン時の社員ＩＤが処理画面の社員ＩＤのテキストボックスに自動的に反映される
         private bool isOrderSelected = true; // 初期状態を受注(TOrder)に設定
         private string orderFlag = "←通常"; // 初期状態を「注文」に設定
         private ClassDataGridViewClearer dgvClearer;
         private GlobalBadge globalBadge;
-
+        private Kuraberu_kun kuraberukun;
         private ClassChangeForms formChanger; // 画面遷移管理クラス
         private ClassAccessManager accessManager; // 権限管理クラス
         private int lastFocusedPanelID = 1;
-
+        private DateTime timestamp = DateTime.Now;
         public acceptingorders(Form mainForm)
         {
             InitializeComponent();
@@ -42,7 +42,6 @@ namespace SalesManagement_SysDev
             dataGridView2.AllowUserToResizeColumns = false;
             dataGridView2.AllowUserToResizeRows = false;
 
-
         }
 
         private void acceptingorders_Load(object sender, EventArgs e)
@@ -56,7 +55,7 @@ namespace SalesManagement_SysDev
                 b_sal,
                 b_iss
             });
-
+            TBShainID.Text = Global.EmployeeID.ToString();
             b_FormSelector.Text = "←通常";
             CurrentStatus.SetMode(Mode.通常);
             DisplayOrders();
@@ -70,7 +69,10 @@ namespace SalesManagement_SysDev
             checkBoxSyain.CheckedChanged += checkBoxSyain_CheckedChanged;
             UpdateTextBoxState(checkBoxSyain.Checked);
             TyumonFlag.Enabled = false;
+            DateTime timestamp = DateTime.Now;
+
         }
+
 
         // メインメニューに戻る
         private void close_Click(object sender, EventArgs e)
@@ -89,7 +91,7 @@ namespace SalesManagement_SysDev
         {
             TBJyutyuID.Text = "";
             TBShopID.Text = "";
-            if(checkBoxSyain.Checked == false)
+            if (checkBoxSyain.Checked == false)
             {
                 TBShainID.Text = "";
             }
@@ -249,7 +251,7 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show(":500\n不明なエラーが発生しました。\n " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void HandleOrderDetailOperation()
@@ -346,6 +348,8 @@ namespace SalesManagement_SysDev
                         return; // 処理を中断
                     }
                 }
+                if (Kuraberu_kun.Kuraberu_chan("受注", "通常", "更新", int.Parse(jyutyuID), timestamp) == false)
+                { return; }
 
                 using (var context = new SalesManagementContext())
                 {
@@ -416,6 +420,7 @@ namespace SalesManagement_SysDev
                                 MessageBox.Show(":203\n既存データとの重複が発生しました", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return; // 更新処理を中止
                             }
+
 
                             context.SaveChanges();
 
@@ -571,7 +576,6 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(":500\n不明なエラーが発生しました。\n " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void DisplayOrders()
         {
             try
@@ -579,11 +583,19 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     var orders = checkBox_2.Checked
-                      ? context.TOrders.ToList()  // チェックされていれば全ての注文を表示
-                      : context.TOrders
-                         .Where(o => o.OrFlag != 1 && o.OrStateFlag != 2)
-                         .ToList();
-                    // OrFlag が "1" または OrStateFlag が "2" でないものを取得
+              ? (checkBox1.Checked
+        ? context.TOrders.OrderByDescending(o => o.OrID).ToList() // 降順 
+        : context.TOrders.OrderBy(o => o.OrID).ToList())          // 昇順 
+    : (checkBox1.Checked
+        ? context.TOrders
+            .Where(o => o.OrFlag != 1 && o.OrStateFlag != 2)
+            .OrderByDescending(o => o.OrID) // 条件に合致するものを降順で取得 
+            .ToList()
+        : context.TOrders
+            .Where(o => o.OrFlag != 1 && o.OrStateFlag != 2)
+            .OrderBy(o => o.OrID)          // 条件に合致するものを昇順で取得 
+            .ToList());
+
                     dataGridView1.DataSource = orders.Select(o => new
                     {
                         受注ID = o.OrID,
@@ -603,6 +615,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void SearchOrders()
         {
             try
@@ -615,7 +628,7 @@ namespace SalesManagement_SysDev
                     var shainID = TBShainID.Text.Trim();         // 社員ID   
                     var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID   
                     var tantoName = TBTantoName.Text.Trim();     // 担当者   
-                    var riyuu =  TBRiyuu.Text.Trim();            // 理由
+                    var riyuu = TBRiyuu.Text.Trim();            // 理由
 
                     // 基本的なクエリ   
                     var query = context.TOrders.AsQueryable();
@@ -757,6 +770,9 @@ namespace SalesManagement_SysDev
                     MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                if (Kuraberu_kun.Kuraberu_chan("受注", "詳細", "更新", int.Parse(jyutyuSyosaiID), timestamp) == false)
+                { return; }
 
                 using (var context = new SalesManagementContext())
                 {
@@ -947,12 +963,14 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
-                    // 受注詳細のリストを取得
-                    var OrderDetails = context.TOrderDetails.ToList();
+                    // 受注詳細のリストを取得（checkBox1の状態に応じて並べ替え）
+                    var OrderDetails = checkBox1.Checked
+                        ? context.TOrderDetails.OrderByDescending(od => od.OrID).ToList() // 降順
+                        : context.TOrderDetails.OrderBy(od => od.OrID).ToList();          // 昇順
 
                     // 受注詳細の表示条件を設定（OrFlagが1またはOrStateFlagが2の受注IDを持つ受注詳細は非表示）
                     var visibleOrderDetails = checkBox_2.Checked
-                        ? OrderDetails
+                        ? OrderDetails // チェックされていれば全て表示（並び替え済み）
                         : OrderDetails.Where(od =>
                         {
                             var Order = context.TOrders.FirstOrDefault(o => o.OrID == od.OrID);
@@ -1712,7 +1730,7 @@ namespace SalesManagement_SysDev
 
             if (isChecked)
             {
-                TBShainID.Text = empID;  // テキストを設定
+                TBShainID.Text = GlobalEmp.EmployeeID;  // テキストを設定
                 TBShainID.Enabled = false; // 無効化
             }
             else
@@ -1741,6 +1759,15 @@ namespace SalesManagement_SysDev
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void checkBoxSyain_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
         }
     }
 }
