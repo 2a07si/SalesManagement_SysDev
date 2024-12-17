@@ -271,7 +271,7 @@ namespace SalesManagement_SysDev
             return false;
         }
 
-        private void NotFound(string itemName, string itemId)
+        private void NotFound(TextBox textBox, string itemName, string itemId)
         {
             MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
                             "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -324,7 +324,7 @@ namespace SalesManagement_SysDev
                 int maker;
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
                 {
-                    NotFound("メーカーID", makerID);
+                    NotFound(TBMakerID, "メーカーID", makerID);
                     return;
                 }
 
@@ -332,7 +332,7 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    NotFound("社員ID", shainID);
+                    NotFound(TBShainID, "社員ID", shainID);
                     return;
                 }
 
@@ -421,7 +421,7 @@ namespace SalesManagement_SysDev
                 int maker;
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
                 {
-                    NotFound("メーカーID", makerID); // メーカーが見つからない場合
+                    NotFound(TBMakerID, "メーカーID", makerID); // メーカーが見つからない場合
                     return;
                 }
 
@@ -429,7 +429,7 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    NotFound("社員ID", shainID); // 社員が見つからない場合
+                    NotFound(TBShainID, "社員ID", shainID); // 社員が見つからない場合
                     return;
                 }
 
@@ -630,7 +630,7 @@ namespace SalesManagement_SysDev
                 int syousai;
                 if (!int.TryParse(hattyuuID, out syousai) || !context.THattyuDetails.Any(h => h.HaDetailID == syousai))
                 {
-                    NotFound("発注詳細ID", hattyuuID); 
+                    NotFound(TBHattyuuSyosaiID, "発注詳細ID", hattyuuID); 
                     return;
                 }
 
@@ -638,7 +638,7 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    NotFound("発注ID", hattyuuID); 
+                    NotFound(TBHattyuIDS, "発注ID", hattyuuID); 
                     return;
                 }
 
@@ -646,7 +646,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID); 
+                    NotFound(TBSyohinID, "商品ID", syohinID); 
                     return;
                 }
 
@@ -689,7 +689,7 @@ namespace SalesManagement_SysDev
                 int hattyuIDInt;
                 if (!int.TryParse(hattyuuID, out hattyuIDInt) || !context.THattyus.Any(h => h.HaID == hattyuIDInt))
                 {
-                    NotFound("発注ID", hattyuuID); 
+                    NotFound(TBHattyuIDS, "発注ID", hattyuuID); 
                     return;
                 }
 
@@ -697,7 +697,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID); 
+                    NotFound(TBSyohinID, "商品ID", syohinID); 
                     return;
                 }
 

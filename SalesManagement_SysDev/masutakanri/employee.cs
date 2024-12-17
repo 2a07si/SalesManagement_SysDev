@@ -177,8 +177,10 @@ namespace SalesManagement_SysDev
             return false;
         }
 
-        private void NotFound(string itemName, string itemId)
+        private void NotFound(TextBox textBox, string itemName, string itemId)
         {
+            textBox.BackColor = Color.Yellow;
+            textBox.Focus();
             MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
                             "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -209,7 +211,7 @@ namespace SalesManagement_SysDev
             // 必須項目のチェック
             if (CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
             if (CheckTBValue(TBSyainName, ShainName, "社員名")) return;
-            if (CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
+            if (CheckTBValue(TBShopID, ShopID, "営業所ID"))       return;
             if (CheckTBValue(TBJobID, JobID, "役職ID"))         return;
             if (CheckTBValue(TBPass, Pass, "パスワード"))       return;
             if (CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
@@ -221,18 +223,14 @@ namespace SalesManagement_SysDev
                 int shop;
                 if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    TBShopID.BackColor = Color.Yellow;
-                    TBShopID.Focus();
-                    NotFound("店舗ID", ShopID);
+                    NotFound(TBShopID, "営業所ID", ShopID);
                     return;
                 }
 
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
                 {
-                    TBJobID.BackColor = Color.Yellow;
-                    TBJobID.Focus();
-                    NotFound("役職ID", JobID);
+                    NotFound(TBJobID, "役職ID", JobID);
                     return;
                 }
 
@@ -267,7 +265,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    NotFound("社員ID", ShainID);
+                    NotFound(TBSyainID, "社員ID", ShainID);
                 }
             }
         }
@@ -287,7 +285,7 @@ namespace SalesManagement_SysDev
             // 必須項目のチェック
             if (CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
             if (CheckTBValue(TBSyainName, ShainName, "社員名")) return;
-            if (CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
+            if (CheckTBValue(TBShopID, ShopID, "営業所ID"))       return;
             if (CheckTBValue(TBJobID, JobID, "役職ID"))         return;
             if (CheckTBValue(TBPass, Pass, "パスワード"))       return;
             if (CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
@@ -307,14 +305,14 @@ namespace SalesManagement_SysDev
                 int shop;
                 if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    NotFound("店舗ID", ShopID);
+                    NotFound(TBShopID,"営業所ID", ShopID);
                     return;
                 }
 
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
                 {
-                    NotFound("役職ID", JobID);
+                    NotFound(TBJobID,"役職ID", JobID);
                     return;
                 }
 

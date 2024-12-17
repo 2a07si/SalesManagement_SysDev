@@ -296,9 +296,11 @@ namespace SalesManagement_SysDev
             return false;
         }
 
-        private void NotFound(string itemName, string itemId)
+        private void NotFound(TextBox textBox, string itemName, string itemId)
         {
-            MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
+            textBox.BackColor = Color.Yellow;
+            textBox.Focus();
+            MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}: {itemId}）",
                             "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void UpdateOrder()
@@ -317,15 +319,13 @@ namespace SalesManagement_SysDev
 
                 // 条件精査（CheckTBValueメソッドを使用）
                 if(CheckTBValue(TBJyutyuID, jyutyuID, "受注ID"))    return;
-                if (CheckTBValue(TBShopID, shopID, "店舗ID"))       return;
+                if (CheckTBValue(TBShopID, shopID, "営業所ID"))       return;
                 if (CheckTBValue(TBShainID, shainID, "社員ID"))     return; 
                 if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
-                {
-                    return; // 必要な入力がない場合、処理を中断
-                }
+
 
                 // 社員IDが一致しない場合の処理
-                if (shainID != empID)
+                if (shainID != GlobalEmp.EmployeeID)
                 {
                     MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
                     TBShainID.BackColor = Color.Yellow;
@@ -349,38 +349,30 @@ namespace SalesManagement_SysDev
                     }
                 }
                 if (Kuraberu_kun.Kuraberu_chan("受注", "通常", "更新", int.Parse(jyutyuID), timestamp) == false)
-                { return; }
+                {  }
 
                 using (var context = new SalesManagementContext())
                 {
                     var order = context.TOrders.SingleOrDefault(o => o.OrID.ToString() == jyutyuID);
                     if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrders.Any(s => s.OrID == jyutyu))
                     {
-                        NotFound("受注ID", jyutyuID);
-                        TBJyutyuID.BackColor = Color.Yellow;
-                        TBJyutyuID.Focus();
+                        NotFound(TBJyutyuID, "受注ID", jyutyuID);
                         return;
                     }
 
                     if (!int.TryParse(shopID, out int eigyou) || !context.TOrders.Any(s => s.SoID == eigyou))
                     {
-                        NotFound("店舗ID", shopID);
-                        TBShopID.BackColor = Color.Yellow;
-                        TBShopID.Focus();
+                        NotFound(TBShopID,"営業所ID", shopID);
                         return;
                     }
                     if (!int.TryParse(shainID, out int shain) || !context.TOrders.Any(s => s.EmID == shain))
                     {
-                        NotFound("社員ID", shainID);
-                        TBShainID.BackColor = Color.Yellow;
-                        TBShainID.Focus();
+                        NotFound(TBShainID,"社員ID", shainID);
                         return;
                     }
                     if (!int.TryParse(kokyakuID, out int kokyaku) || !context.TOrders.Any(s => s.ClID == kokyaku))
                     {
-                        NotFound("顧客ID", kokyakuID);
-                        TBKokyakuID.BackColor = Color.Yellow;
-                        TBKokyakuID.Focus();
+                        NotFound(TBKokyakuID,"顧客ID", kokyakuID);
                         return;
                     }
 
@@ -404,7 +396,7 @@ namespace SalesManagement_SysDev
                             var orderDetailsExist = context.TOrderDetails.Any(od => od.OrID == order.OrID);
                             if (!orderDetailsExist)
                             {
-                                NotFound("受注詳細ID", order.OrID.ToString());
+                                NotFound(TBJyutyuID,"受注詳細ID", order.OrID.ToString());
                                 return;
                             }
                             order.OrFlag = 1;
@@ -455,7 +447,9 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        NotFound("受注ID", jyutyuID);
+                        NotFound(TBJyutyuID,"受注ID", jyutyuID);
+                        TBJyutyuID.BackColor = Color.Yellow;
+                        TBJyutyuID.Focus();
                     }
 
                 }
@@ -485,7 +479,7 @@ namespace SalesManagement_SysDev
                 bool tyumonFlag = TyumonFlag.Checked;
                 bool delFlag = DelFlag.Checked;
 
-                if (CheckTBValue(TBShopID, shopID, "店舗ID"))       return;
+                if (CheckTBValue(TBShopID, shopID, "営業所ID"))       return;
                 if (CheckTBValue(TBShainID, shainID, "社員ID"))     return;
                 if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
 
@@ -518,16 +512,12 @@ namespace SalesManagement_SysDev
                 {
                     if (!int.TryParse(shopID, out int eigyou) || !context.TOrders.Any(s => s.SoID == eigyou))
                     {
-                        NotFound("店舗ID", shopID);
-                        TBShopID.BackColor = Color.Yellow;
-                        TBShopID.Focus();
+                        NotFound(TBShopID,"営業所ID", shopID);
                         return;
                     }
-                    if (!int.TryParse(shainID, out int shain) || !context.TOrders.Any(s => s.EmID == shain))
+                    if (!int.TryParse(shainID, out int shain) || !context.MEmployees.Any(e => e.EmID == shain))
                     {
-                        NotFound("社員ID", shainID);
-                        TBShainID.BackColor = Color.Yellow;
-                        TBShainID.Focus();
+                        NotFound(TBShainID,"社員ID", shainID);
                         return;
                     }
 
@@ -737,68 +727,38 @@ namespace SalesManagement_SysDev
                 string syohinID = TBSyohinID.Text;
                 string suryou = TBSuryou.Text;
 
+                // 必須入力チェック
+                if (CheckTBValue(TBJyutyuSyosaiID, jyutyuSyosaiID, "受注詳細ID")) return;
+                if (CheckTBValue(TBJyutyuIDS, jyutyuID, "受注ID")) return;
+                if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+                if (CheckTBValue(TBSuryou, suryou, "数量")) return;
 
-                if (TBJyutyuSyosaiID.Text == "")
-                {
-                    TBJyutyuSyosaiID.BackColor = Color.Yellow;
-                    TBJyutyuSyosaiID.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!Kuraberu_kun.Kuraberu_chan("受注", "詳細", "更新", int.Parse(jyutyuSyosaiID), timestamp))
                     return;
-                }
-
-                if (TBJyutyuIDS.Text == "")
-                {
-                    TBJyutyuID.BackColor = Color.Yellow;
-                    TBJyutyuID.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
-                if (TBSyohinID.Text == "")
-                {
-                    TBSyohinID.BackColor = Color.Yellow;
-                    TBSyohinID.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (TBSuryou.Text == "")
-                {
-                    TBSuryou.BackColor = Color.Yellow;
-                    TBSuryou.Focus();
-                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (Kuraberu_kun.Kuraberu_chan("受注", "詳細", "更新", int.Parse(jyutyuSyosaiID), timestamp) == false)
-                { return; }
 
                 using (var context = new SalesManagementContext())
                 {
-                    if (!int.TryParse(jyutyuID, out int syosai) || !context.TOrderDetails.Any(s => s.OrDetailID == syosai))
+                    // データベース項目の存在確認
+                    if (!int.TryParse(jyutyuSyosaiID, out int detailId) || !context.TOrderDetails.Any(s => s.OrDetailID == detailId))
                     {
-                        MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBJyutyuSyosaiID.BackColor = Color.Yellow;
-                        TBJyutyuSyosaiID.Focus();
+                        NotFound(TBJyutyuSyosaiID, "受注詳細ID", jyutyuSyosaiID);
                         return;
                     }
+
                     if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrders.Any(s => s.OrID == jyutyu))
                     {
-                        MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBJyutyuIDS.BackColor = Color.Yellow;
-                        TBJyutyuIDS.Focus();
+                        NotFound(TBJyutyuIDS, "受注ID", jyutyuID);
                         return;
                     }
+
                     if (!int.TryParse(syohinID, out int syohin) || !context.MProducts.Any(s => s.PrID == syohin))
                     {
-                        TBSyohinID.BackColor = Color.Yellow;
-                        TBSyohinID.Focus();
-                        MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        NotFound(TBSyohinID, "商品ID", syohinID);
                         return;
                     }
+
                     // 他のレコードに同一の受注IDと商品IDが存在するかチェック（現在のレコードを除く）
-                    if (context.TOrderDetails.Any(od => od.OrID == jyutyu && od.PrID == syohin && od.OrDetailID != int.Parse(jyutyuSyosaiID)))
+                    if (context.TOrderDetails.Any(od => od.OrID == jyutyu && od.PrID == syohin && od.OrDetailID != detailId))
                     {
                         MessageBox.Show(":203\n同一受注ID内に同じ商品IDがすでに登録されています。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         TBSyohinID.BackColor = Color.Yellow;
@@ -806,12 +766,12 @@ namespace SalesManagement_SysDev
                         return;
                     }
 
-
-                    var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailID.ToString() == jyutyuSyosaiID);
+                    // データ更新処理
+                    var orderDetail = context.TOrderDetails.SingleOrDefault(od => od.OrDetailID == detailId);
                     if (orderDetail != null)
                     {
-                        orderDetail.OrID = int.Parse(jyutyuID);
-                        orderDetail.PrID = int.Parse(syohinID);
+                        orderDetail.OrID = jyutyu;
+                        orderDetail.PrID = syohin;
                         orderDetail.OrQuantity = int.Parse(suryou);
 
                         context.SaveChanges();
@@ -819,7 +779,6 @@ namespace SalesManagement_SysDev
                         DisplayOrderDetails();
                         Log_Accept(orderDetail.OrDetailID);
                         ResetYellowBackgrounds(this);
-
                         MessageBox.Show("ログ登録完了");
                     }
                     else
@@ -838,6 +797,7 @@ namespace SalesManagement_SysDev
             }
         }
 
+
         private void RegisterOrderDetails()
         {
             try
@@ -847,49 +807,26 @@ namespace SalesManagement_SysDev
                 string suryou = TBSuryou.Text;
                 string goukeiKingaku = TBGoukeiKingaku.Text;
 
-                if ((string.IsNullOrWhiteSpace(TBJyutyuIDS.Text)))
-                {
-                    TBJyutyuIDS.BackColor = Color.Yellow;
-                    TBJyutyuIDS.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
-                if (TBSyohinID.Text == "")
-                {
-                    TBSyohinID.BackColor = Color.Yellow;
-                    TBSyohinID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (TBSuryou.Text == "")
-                {
-                    TBSuryou.BackColor = Color.Yellow;
-                    TBSuryou.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
+                // 必須入力チェック
+                if (CheckTBValue(TBJyutyuIDS, jyutyuID, "受注ID")) return;
+                if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+                if (CheckTBValue(TBSuryou, suryou, "数量")) return;
 
                 using (var context = new SalesManagementContext())
                 {
+                    // データベース項目の存在確認
                     if (!int.TryParse(jyutyuID, out int jyutyu) || !context.TOrders.Any(s => s.OrID == jyutyu))
                     {
-                        MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        TBJyutyuIDS.BackColor = Color.Yellow;
-                        TBJyutyuIDS.Focus();
+                        NotFound(TBJyutyuIDS, "受注ID", jyutyuID);
                         return;
                     }
+
                     if (!int.TryParse(syohinID, out int syohin) || !context.MProducts.Any(s => s.PrID == syohin))
                     {
-                        TBSyohinID.BackColor = Color.Yellow;
-                        TBSyohinID.Focus();
-                        MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        NotFound(TBSyohinID, "商品ID", syohinID);
                         return;
                     }
+
                     // 同一受注ID内に同じ商品IDが含まれるかチェック
                     if (context.TOrderDetails.Any(od => od.OrID == jyutyu && od.PrID == syohin))
                     {
@@ -901,49 +838,50 @@ namespace SalesManagement_SysDev
 
                     var newOrderDetail = new TOrderDetail
                     {
-                        OrID = int.Parse(jyutyuID),
-                        PrID = int.Parse(syohinID),
+                        OrID = jyutyu,
+                        PrID = syohin,
                         OrQuantity = int.Parse(suryou)
                     };
 
-                    // 合計金額が入力されていない場合は自動で計算する
-                    if (string.IsNullOrEmpty(goukeiKingaku))
+                    // 合計金額の計算
+                    if (string.IsNullOrWhiteSpace(goukeiKingaku))
                     {
-                        // 商品の価格をMProductsから取得
                         var product = context.MProducts.SingleOrDefault(p => p.PrID == newOrderDetail.PrID);
                         if (product != null)
                         {
-                            // 合計金額を計算
                             newOrderDetail.OrTotalPrice = product.Price * newOrderDetail.OrQuantity;
                         }
                         else
                         {
-                            // 商品が見つからない場合の処理（適宜変更可能）
-                            MessageBox.Show(":204\n該当の項目が存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;  // エラーが発生したため、処理を終了
+                            NotFound(TBSyohinID,"商品ID", syohinID);
+                            return;
                         }
                     }
                     else
                     {
-                        // 入力された金額がある場合は、それを使用
                         newOrderDetail.OrTotalPrice = decimal.Parse(goukeiKingaku);
                     }
 
+                    // 新しい注文詳細の追加
                     context.TOrderDetails.Add(newOrderDetail);
                     context.SaveChanges();
+
+                    // ログ登録と詳細表示
                     Log_Accept(newOrderDetail.OrDetailID);
                     DisplayOrderDetails();
-                    DialogResult result = MessageBox.Show("受注詳細の登録が完了しました。\n受注処理を確定させますか？",
-                                      "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
-                    // Yes/Noでの分岐処理
+                    // 確認メッセージ
+                    DialogResult result = MessageBox.Show("受注詳細の登録が完了しました。\n受注処理を確定させますか？",
+                                                          "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                    // Yes/Noの処理分岐
                     if (result == DialogResult.Yes)
                     {
-                        // Yesが選ばれた場合の処理（受注処理確定）
                         UpdateOrderAccept(jyutyuID);
                     }
-                    ResetYellowBackgrounds(this);
 
+                    // 入力フィールドの背景色をリセット
+                    ResetYellowBackgrounds(this);
                 }
             }
             catch (FormatException)
