@@ -551,10 +551,20 @@ namespace SalesManagement_SysDev
             try
             {
                 using (var context = new SalesManagementContext())
-                {
+                {// checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての売上を表示
                     var sales = checkBox_2.Checked
-                        ? context.TSales.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TSales.Where(s => s.SaFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        ? (checkBox1.Checked
+                            ? context.TSales.OrderByDescending(s => s.SaID).ToList() // 降順
+                            : context.TSales.OrderBy(s => s.SaID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.TSales
+                                .Where(s => s.SaFlag != 1)
+                                .OrderByDescending(s => s.SaID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.TSales
+                                .Where(s => s.SaFlag != 1)
+                                .OrderBy(s => s.SaID)          // 条件に合致するものを昇順で取得
+                                .ToList());
 
                     dataGridView1.DataSource = sales.Select(s => new
                     {
@@ -878,13 +888,17 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var saleDetails = context.TSaleDetails.ToList();
+                    // 売上詳細のリストを取得（checkBox1の状態に応じて並べ替え）
+                    var saleDetails = checkBox1.Checked
+                        ? context.TSaleDetails.OrderByDescending(sd => sd.SaID).ToList() // 降順
+                        : context.TSaleDetails.OrderBy(sd => sd.SaID).ToList();          // 昇順
 
+                    // checkBox_2がチェックされている場合、フィルタリングを無視してすべての詳細を表示
                     var visibleUriageDetails = checkBox_2.Checked
-                        ? saleDetails
-                        : saleDetails.Where(od =>
+                        ? saleDetails // チェックされていれば全て表示（並び替え済み）
+                        : saleDetails.Where(sd =>
                         {
-                            var Sale = context.TSales.FirstOrDefault(o => o.SaID == od.SaID);
+                            var Sale = context.TSales.FirstOrDefault(s => s.SaID == sd.SaID);
                             return Sale == null || (Sale.SaFlag != 1);
                         }).ToList();
 

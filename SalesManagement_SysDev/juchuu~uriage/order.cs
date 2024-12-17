@@ -387,7 +387,7 @@ namespace SalesManagement_SysDev
                 }
 
                 var order = context.TChumons.FirstOrDefault(o => o.ChID.ToString() == ChumonID);
-                
+
                 if (order != null)
                 {
                     order.SoID = int.Parse(ShopID);
@@ -424,7 +424,7 @@ namespace SalesManagement_SysDev
                         int totalShortage = 0; // 総不足数
 
                         // 在庫不足商品のIDリスト
-                        
+
                         foreach (var detail in details)
                         {
                             var stock = context.TStocks.FirstOrDefault(s => s.PrID == detail.PrID);
@@ -747,12 +747,21 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示 
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての注文を表示
                     var chumons = checkBox_2.Checked
-                        ? context.TChumons.ToList()  // チェックされていれば全ての注文を表示 
-                        : context.TChumons
-                            .Where(o => o.ChFlag != 1 && o.ChStateFlag != 2)
-                            .ToList();
+                        ? (checkBox1.Checked
+                            ? context.TChumons.OrderByDescending(c => c.ChID).ToList() // 降順
+                            : context.TChumons.OrderBy(c => c.ChID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.TChumons
+                                .Where(c => c.ChFlag != 1 && c.ChStateFlag != 2)
+                                .OrderByDescending(c => c.ChID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.TChumons
+                                .Where(c => c.ChFlag != 1 && c.ChStateFlag != 2)
+                                .OrderBy(c => c.ChID)          // 条件に合致するものを昇順で取得
+                                .ToList());
+
 
                     // データを選択してDataGridViewに表示 
                     dataGridView1.DataSource = chumons.Select(o => new
@@ -1047,14 +1056,17 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var ChumonDetails = context.TChumonDetails.ToList();
+                    // 注文詳細のリストを取得（checkBox1の状態に応じて並べ替え）
+                    var ChumonDetails = checkBox1.Checked
+                        ? context.TChumonDetails.OrderByDescending(cd => cd.ChID).ToList() // 降順
+                        : context.TChumonDetails.OrderBy(cd => cd.ChID).ToList();          // 昇順
 
                     // checkBox_2がチェックされている場合、フィルタリングを無視してすべての詳細を表示
                     var visibleChumonDetails = checkBox_2.Checked
-                        ? ChumonDetails
-                        : ChumonDetails.Where(od =>
+                        ? ChumonDetails // チェックされていれば全て表示（並び替え済み）
+                        : ChumonDetails.Where(cd =>
                         {
-                            var Chumon = context.TChumons.FirstOrDefault(o => o.ChID == od.ChID);
+                            var Chumon = context.TChumons.FirstOrDefault(c => c.ChID == cd.ChID);
 
                             return Chumon == null || (Chumon.ChFlag != 1 && Chumon.ChStateFlag != 2);
                         }).ToList();
@@ -1741,7 +1753,7 @@ namespace SalesManagement_SysDev
             isProgrammaticChange = false;
         }
 
-        
+
         private void ResetYellowBackgrounds(Control parent)
         {
             foreach (Control control in parent.Controls)
@@ -1759,7 +1771,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-    
+
     }
 }
 

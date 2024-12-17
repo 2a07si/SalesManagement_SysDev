@@ -634,11 +634,21 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての出荷を表示
                     var shipping = checkBox_2.Checked
-                        ? context.TShipments.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TShipments.Where(o => o.ShFlag != 1 && o.ShStateFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        ? (checkBox1.Checked
+                            ? context.TShipments.OrderByDescending(s => s.ShID).ToList() // 降順
+                            : context.TShipments.OrderBy(s => s.ShID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.TShipments
+                                .Where(s => s.ShFlag != 1 && s.ShStateFlag != 2)
+                                .OrderByDescending(s => s.ShID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.TShipments
+                                .Where(s => s.ShFlag != 1 && s.ShStateFlag != 2)
+                                .OrderBy(s => s.ShID)          // 条件に合致するものを昇順で取得
+                                .ToList());
+
                     dataGridView1.DataSource = shipping.Select(sh => new
                     {
                         出荷ID = sh.ShID,
@@ -926,13 +936,17 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var ShipmentDetails = context.TShipmentDetails.ToList();
+                    // 出荷詳細のリストを取得（checkBox1の状態に応じて並べ替え）
+                    var ShipmentDetails = checkBox1.Checked
+                        ? context.TShipmentDetails.OrderByDescending(sd => sd.ShID).ToList() // 降順
+                        : context.TShipmentDetails.OrderBy(sd => sd.ShID).ToList();          // 昇順
 
+                    // checkBox_2がチェックされている場合、フィルタリングを無視してすべての詳細を表示
                     var visibleShipmentDetails = checkBox_2.Checked
-                        ? ShipmentDetails
-                        : ShipmentDetails.Where(od =>
+                        ? ShipmentDetails // チェックされていれば全て表示（並び替え済み）
+                        : ShipmentDetails.Where(sd =>
                         {
-                            var Shipment = context.TShipments.FirstOrDefault(o => o.ShID == od.ShID);
+                            var Shipment = context.TShipments.FirstOrDefault(s => s.ShID == sd.ShID);
 
                             return Shipment == null || (Shipment.ShFlag != 1 && Shipment.ShStateFlag != 2);
                         }).ToList();
