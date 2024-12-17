@@ -954,9 +954,10 @@ namespace SalesManagement_SysDev
                     dataGridView2.DataSource = visibleShipmentDetails.Select(sh => new
                     {
                         出荷詳細ID = sh.ShDetailID,
+                        出荷ID = sh.ShID,
                         商品ID = sh.PrID,
-                        数量 = sh.ShQuantity.ToString("N0"),
-                        出荷ID = sh.ShID
+                        数量 = sh.ShQuantity.ToString("N0")
+                        
                     }).ToList();
                 }
             }
