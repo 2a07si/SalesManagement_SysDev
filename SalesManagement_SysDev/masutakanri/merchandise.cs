@@ -219,7 +219,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(makerID, out int parsedMakerID) ||
                         !context.MMakers.Any(m => m.MaID == parsedMakerID))
                     {
-                        NotFound("メーカー", makerID);
+                        NotFound("メーカーID", makerID);
                         TBMakerID.BackColor = Color.Yellow;
                         TBMakerID.Focus();
                         return;
@@ -229,7 +229,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(sclass, out int parsedSClassID) ||
                         !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
                     {
-                        NotFound("小分類", sclass);
+                        NotFound("小分類ID", sclass);
                         TBSyoubunrui.BackColor = Color.Yellow;
                         TBSyoubunrui.Focus();
                         return;
@@ -258,7 +258,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        NotFound("商品", syohinID);
+                        NotFound("商品ID", syohinID);
                     }
                 }
                 catch (FormatException ex)
@@ -304,7 +304,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(makerID, out int parsedMakerID) ||
                         !context.MMakers.Any(m => m.MaID == parsedMakerID))
                     {
-                        NotFound("メーカー", makerID);
+                        NotFound("メーカーID", makerID);
                         TBMakerID.BackColor = Color.Yellow;
                         TBMakerID.Focus();
                         return;
@@ -314,7 +314,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(sclass, out int parsedSClassID) ||
                         !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
                     {
-                        NotFound("小分類", sclass);
+                        NotFound("小分類ID", sclass);
                         TBSyoubunrui.BackColor = Color.Yellow;
                         TBSyoubunrui.Focus();
                         return;

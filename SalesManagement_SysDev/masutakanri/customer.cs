@@ -215,7 +215,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    NotFound("顧客", kokyakuID);
+                    NotFound("顧客ID", kokyakuID);
                 }
             }
         }
@@ -248,7 +248,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
-                    NotFound("店舗", shopID);
+                    NotFound("店舗ID", shopID);
                     return;
                 }
 
