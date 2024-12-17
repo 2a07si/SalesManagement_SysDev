@@ -80,7 +80,7 @@
             b_emp.Location = new Point(15, 150);
             b_emp.Name = "b_emp";
             b_emp.Size = new Size(120, 70);
-            b_emp.TabIndex = 8;
+            b_emp.TabIndex = 7;
             b_emp.Text = "社員";
             b_emp.UseVisualStyleBackColor = false;
             b_emp.Click += b_emp_Click;
@@ -93,7 +93,7 @@
             b_mer.Location = new Point(15, 230);
             b_mer.Name = "b_mer";
             b_mer.Size = new Size(120, 70);
-            b_mer.TabIndex = 9;
+            b_mer.TabIndex = 8;
             b_mer.Text = "商品";
             b_mer.UseVisualStyleBackColor = false;
             b_mer.Click += b_mer_Click;
@@ -106,7 +106,7 @@
             b_cus.Location = new Point(15, 390);
             b_cus.Name = "b_cus";
             b_cus.Size = new Size(120, 90);
-            b_cus.TabIndex = 11;
+            b_cus.TabIndex = 10;
             b_cus.TabStop = false;
             b_cus.Text = "顧客";
             b_cus.UseVisualStyleBackColor = false;
@@ -119,7 +119,7 @@
             b_sto.Location = new Point(15, 310);
             b_sto.Name = "b_sto";
             b_sto.Size = new Size(120, 70);
-            b_sto.TabIndex = 10;
+            b_sto.TabIndex = 9;
             b_sto.Text = "在庫";
             b_sto.UseVisualStyleBackColor = false;
             b_sto.Click += b_sto_Click;
@@ -436,7 +436,7 @@
             clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
-            clear.TabIndex = 7;
+            clear.TabIndex = 11;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             clear.Click += clear_Click;
@@ -489,7 +489,7 @@
             checkBox_2.Location = new Point(585, 10);
             checkBox_2.Name = "checkBox_2";
             checkBox_2.Size = new Size(225, 29);
-            checkBox_2.TabIndex = 272;
+            checkBox_2.TabIndex = 5;
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 

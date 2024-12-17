@@ -66,7 +66,7 @@ namespace SalesManagement_SysDev
             b_reg.BackColor = SystemColors.ControlDark; // 灰色に設定
 
             SetupNumericOnlyTextBoxes();
-            
+
             // 在庫不足で非表示となった出庫情報に関するメッセージを取得
 
             // 在庫更新メッセージを取得
@@ -416,12 +416,12 @@ namespace SalesManagement_SysDev
                             var issueDetailsExist = context.TSyukkoDetails
                                 .Any(sd => sd.SyID == issue.SyID); // SyID が一致する出庫詳細が存在するか確認
 
-                        if (!issueDetailsExist)
-                        {
-                            // 出庫詳細が存在しない場合はエラーメッセージを表示
-                            MessageBox.Show(":104\n詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return; // 処理を中断
-                        }
+                            if (!issueDetailsExist)
+                            {
+                                // 出庫詳細が存在しない場合はエラーメッセージを表示
+                                MessageBox.Show(":104\n詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return; // 処理を中断
+                            }
 
 
                             issue.SyFlag = 1;
@@ -1163,22 +1163,22 @@ namespace SalesManagement_SysDev
                             ArFlag = 0
                         };
 
-                try
-                {
-                    context.TArrivals.Add(newArrival);
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("TArrivalへの登録に失敗しました: " + ex.Message);
-                }
-                // TSyukkoDetailsの取得  
-                var syukkoDetails = context.TSyukkoDetails.Where(o => o.SyID == syukko.SyID).ToList();
-                if (!syukkoDetails.Any())
-                {
-                    MessageBox.Show(":204\\n該当の項目が存在しません。\r\n処理を中止します。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                        try
+                        {
+                            context.TArrivals.Add(newArrival);
+                            context.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("TArrivalへの登録に失敗しました: " + ex.Message);
+                        }
+                        // TSyukkoDetailsの取得  
+                        var syukkoDetails = context.TSyukkoDetails.Where(o => o.SyID == syukko.SyID).ToList();
+                        if (!syukkoDetails.Any())
+                        {
+                            MessageBox.Show(":204\\n該当の項目が存在しません。\r\n処理を中止します。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
 
                         // 複数の出庫詳細を全て引き継ぐ
                         foreach (var syukkoDetail in syukkoDetails)
@@ -1187,8 +1187,8 @@ namespace SalesManagement_SysDev
                             if (stockCompare(syukkoDetail.PrID, syukkoDetail.SyQuantity))
                             {
                                 stock.StQuantity -= syukkoDetail.SyQuantity;
-                                
-                                StockManager.CompareStock(syukkoDetail.PrID,stock.StQuantity);
+
+                                StockManager.CompareStock(syukkoDetail.PrID, stock.StQuantity);
                             }
                             else
                             {

@@ -74,7 +74,7 @@ namespace SalesManagement_SysDev
             DisplayEmployee();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.RegistrationStatus(label2);
-           
+
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -134,8 +134,8 @@ namespace SalesManagement_SysDev
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
-            
-           colorReset();
+
+            colorReset();
             HandleOrderOperation();
         }
 

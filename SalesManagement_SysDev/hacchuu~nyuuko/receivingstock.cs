@@ -305,7 +305,7 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    MessageBox.Show(":204\n発注IDが存在しません","DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n発注IDが存在しません", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     TBHattyuuID.BackColor = Color.Yellow;
                     return;
                 }
@@ -364,7 +364,7 @@ namespace SalesManagement_SysDev
                         receivingStock.WaFlag = 1;
                         receivingStock.WaHidden = "入庫確定処理済";
 
-                        
+
 
                     }
 
@@ -372,7 +372,7 @@ namespace SalesManagement_SysDev
                     // 更新を保存 
                     try
                     {
-                        
+
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayReceivingStocks(); // 更新後に入庫情報を再表示
@@ -1248,7 +1248,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        
+
         // フラグを定義して、干渉を防ぐ
         private bool isProgrammaticChange = false;
 

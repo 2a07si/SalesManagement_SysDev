@@ -371,7 +371,7 @@ namespace SalesManagement_SysDev
                     // 更新を保存
                     try
                     {
-                       
+
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayHattyus(); // 更新後に発注情報を再表示
@@ -388,7 +388,7 @@ namespace SalesManagement_SysDev
                         }
                         else
                         {
-                            MessageBox.Show(":500\n不明なエラーが発生しました。\n" + ex.Message, "例外エラー" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(":500\n不明なエラーが発生しました。\n" + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
@@ -1358,7 +1358,7 @@ namespace SalesManagement_SysDev
                         {
                             context.SaveChanges(); // 元の状態に戻す変更を保存
 
-                            MessageBox.Show($":202\n更新操作が失敗しました。\n "+ex.Message,"DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($":202\n更新操作が失敗しました。\n " + ex.Message, "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else

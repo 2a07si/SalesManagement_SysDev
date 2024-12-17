@@ -379,7 +379,7 @@ namespace SalesManagement_SysDev
                 }
 
                 var order = context.TChumons.FirstOrDefault(o => o.ChID.ToString() == ChumonID);
-                
+
                 if (order != null)
                 {
                     order.SoID = int.Parse(ShopID);
@@ -416,7 +416,7 @@ namespace SalesManagement_SysDev
                         int totalShortage = 0; // 総不足数
 
                         // 在庫不足商品のIDリスト
-                        
+
                         foreach (var detail in details)
                         {
                             var stock = context.TStocks.FirstOrDefault(s => s.PrID == detail.PrID);
@@ -1732,7 +1732,7 @@ namespace SalesManagement_SysDev
             isProgrammaticChange = false;
         }
 
-        
+
         private void ResetYellowBackgrounds(Control parent)
         {
             foreach (Control control in parent.Controls)
@@ -1750,7 +1750,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-    
+
     }
 }
 

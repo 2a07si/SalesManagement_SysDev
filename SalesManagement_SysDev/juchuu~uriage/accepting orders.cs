@@ -84,7 +84,7 @@ namespace SalesManagement_SysDev
         {
             TBJyutyuID.Text = "";
             TBShopID.Text = "";
-            if(checkBoxSyain.Checked == false)
+            if (checkBoxSyain.Checked == false)
             {
                 TBShainID.Text = "";
             }
@@ -244,7 +244,7 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show(":500\n不明なエラーが発生しました。\n " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void HandleOrderDetailOperation()
@@ -629,7 +629,7 @@ namespace SalesManagement_SysDev
                     var shainID = TBShainID.Text.Trim();         // 社員ID   
                     var kokyakuID = TBKokyakuID.Text.Trim();     // 顧客ID   
                     var tantoName = TBTantoName.Text.Trim();     // 担当者   
-                    var riyuu =  TBRiyuu.Text.Trim();            // 理由
+                    var riyuu = TBRiyuu.Text.Trim();            // 理由
 
                     // 基本的なクエリ   
                     var query = context.TOrders.AsQueryable();

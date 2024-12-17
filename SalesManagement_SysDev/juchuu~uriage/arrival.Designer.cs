@@ -365,7 +365,7 @@
             b_kakutei.Location = new Point(1200, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
-            b_kakutei.TabIndex = 6;
+            b_kakutei.TabIndex = 9;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
             b_kakutei.Click += b_kakutei_Click;
@@ -376,7 +376,7 @@
             clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
-            clear.TabIndex = 7;
+            clear.TabIndex = 17;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             clear.Click += clear_Click;
@@ -386,7 +386,7 @@
             close.Location = new Point(1460, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
-            close.TabIndex = 14;
+            close.TabIndex = 18;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
@@ -551,7 +551,7 @@
             dateCheckBox.Location = new Point(967, 17);
             dateCheckBox.Name = "dateCheckBox";
             dateCheckBox.Size = new Size(189, 29);
-            dateCheckBox.TabIndex = 267;
+            dateCheckBox.TabIndex = 6;
             dateCheckBox.Text = "入荷日を検索に含む";
             dateCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -561,7 +561,7 @@
             checkBox_2.Location = new Point(680, 17);
             checkBox_2.Name = "checkBox_2";
             checkBox_2.Size = new Size(225, 29);
-            checkBox_2.TabIndex = 268;
+            checkBox_2.TabIndex = 7;
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
@@ -573,7 +573,7 @@
             b_iss.Location = new Point(15, 310);
             b_iss.Name = "b_iss";
             b_iss.Size = new Size(120, 70);
-            b_iss.TabIndex = 10;
+            b_iss.TabIndex = 12;
             b_iss.Text = "出庫";
             b_iss.UseVisualStyleBackColor = false;
             b_iss.Click += b_iss_Click;
@@ -587,7 +587,7 @@
             b_arr.Location = new Point(15, 390);
             b_arr.Name = "b_arr";
             b_arr.Size = new Size(120, 90);
-            b_arr.TabIndex = 11;
+            b_arr.TabIndex = 13;
             b_arr.TabStop = false;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
@@ -600,7 +600,7 @@
             b_shi.Location = new Point(15, 490);
             b_shi.Name = "b_shi";
             b_shi.Size = new Size(120, 70);
-            b_shi.TabIndex = 12;
+            b_shi.TabIndex = 14;
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
             b_shi.Click += b_shi_Click;
@@ -613,7 +613,7 @@
             b_ord.Location = new Point(15, 230);
             b_ord.Name = "b_ord";
             b_ord.Size = new Size(120, 70);
-            b_ord.TabIndex = 9;
+            b_ord.TabIndex = 11;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
             b_ord.Click += b_ord_Click;
@@ -627,7 +627,7 @@
             b_sal.Location = new Point(15, 570);
             b_sal.Name = "b_sal";
             b_sal.Size = new Size(120, 70);
-            b_sal.TabIndex = 13;
+            b_sal.TabIndex = 15;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
             b_sal.Click += b_sal_Click;
@@ -640,7 +640,7 @@
             b_acc.Location = new Point(15, 150);
             b_acc.Name = "b_acc";
             b_acc.Size = new Size(120, 70);
-            b_acc.TabIndex = 8;
+            b_acc.TabIndex = 10;
             b_acc.Text = "受注";
             b_acc.UseVisualStyleBackColor = false;
             b_acc.Click += b_acc_Click;
@@ -654,7 +654,7 @@
             checkBoxSyain.Location = new Point(426, 17);
             checkBoxSyain.Name = "checkBoxSyain";
             checkBoxSyain.Size = new Size(178, 29);
-            checkBoxSyain.TabIndex = 275;
+            checkBoxSyain.TabIndex = 8;
             checkBoxSyain.Text = "社員IDを自動入力";
             checkBoxSyain.UseVisualStyleBackColor = true;
             // 

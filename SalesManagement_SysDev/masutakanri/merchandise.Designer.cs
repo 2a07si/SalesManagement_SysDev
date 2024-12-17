@@ -466,7 +466,7 @@
             clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
-            clear.TabIndex = 7;
+            clear.TabIndex = 13;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             clear.Click += clear_Click;
@@ -476,7 +476,7 @@
             close.Location = new Point(1450, 17);
             close.Name = "close";
             close.Size = new Size(100, 40);
-            close.TabIndex = 13;
+            close.TabIndex = 14;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
@@ -523,7 +523,7 @@
             checkBox_2.Location = new Point(675, 12);
             checkBox_2.Name = "checkBox_2";
             checkBox_2.Size = new Size(225, 29);
-            checkBox_2.TabIndex = 273;
+            checkBox_2.TabIndex = 8;
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
@@ -533,7 +533,7 @@
             dateCheckBox.Location = new Point(950, 12);
             dateCheckBox.Name = "dateCheckBox";
             dateCheckBox.Size = new Size(189, 29);
-            dateCheckBox.TabIndex = 296;
+            dateCheckBox.TabIndex = 7;
             dateCheckBox.Text = "発売日を検索に含む";
             dateCheckBox.UseVisualStyleBackColor = true;
             // 

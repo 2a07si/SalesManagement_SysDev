@@ -159,7 +159,7 @@
             b_rec.Location = new Point(15, 230);
             b_rec.Name = "b_rec";
             b_rec.Size = new Size(120, 90);
-            b_rec.TabIndex = 9;
+            b_rec.TabIndex = 12;
             b_rec.TabStop = false;
             b_rec.Text = "入庫";
             b_rec.UseVisualStyleBackColor = false;
@@ -173,7 +173,7 @@
             b_hor.Location = new Point(15, 150);
             b_hor.Name = "b_hor";
             b_hor.Size = new Size(120, 70);
-            b_hor.TabIndex = 8;
+            b_hor.TabIndex = 11;
             b_hor.Text = "発注";
             b_hor.UseVisualStyleBackColor = false;
             b_hor.Click += b_hor_Click;
@@ -342,7 +342,7 @@
             b_kakutei.Location = new Point(1200, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
-            b_kakutei.TabIndex = 6;
+            b_kakutei.TabIndex = 10;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
             b_kakutei.Click += kakutei_Click;
@@ -353,7 +353,7 @@
             clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(130, 70);
-            clear.TabIndex = 7;
+            clear.TabIndex = 14;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             clear.Click += clear_Click;
@@ -363,7 +363,7 @@
             close.Location = new Point(1460, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
-            close.TabIndex = 10;
+            close.TabIndex = 15;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
@@ -515,7 +515,7 @@
             b_FormSelector.Location = new Point(900, 70);
             b_FormSelector.Name = "b_FormSelector";
             b_FormSelector.Size = new Size(150, 70);
-            b_FormSelector.TabIndex = 12;
+            b_FormSelector.TabIndex = 13;
             b_FormSelector.Text = "button1";
             b_FormSelector.UseVisualStyleBackColor = true;
             b_FormSelector.Click += b_FormSelector_Click;
@@ -526,7 +526,7 @@
             checkBox_2.Location = new Point(680, 17);
             checkBox_2.Name = "checkBox_2";
             checkBox_2.Size = new Size(225, 29);
-            checkBox_2.TabIndex = 268;
+            checkBox_2.TabIndex = 8;
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
@@ -536,7 +536,7 @@
             checkBoxDateFilter.Location = new Point(967, 17);
             checkBoxDateFilter.Name = "checkBoxDateFilter";
             checkBoxDateFilter.Size = new Size(225, 29);
-            checkBoxDateFilter.TabIndex = 276;
+            checkBoxDateFilter.TabIndex = 7;
             checkBoxDateFilter.Text = "入庫年月日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             // 
@@ -548,7 +548,7 @@
             checkBoxSyain.Location = new Point(418, 17);
             checkBoxSyain.Name = "checkBoxSyain";
             checkBoxSyain.Size = new Size(178, 29);
-            checkBoxSyain.TabIndex = 277;
+            checkBoxSyain.TabIndex = 9;
             checkBoxSyain.Text = "社員IDを自動入力";
             checkBoxSyain.UseVisualStyleBackColor = true;
             // 

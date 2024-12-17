@@ -138,7 +138,7 @@ namespace SalesManagement_SysDev
             TBJyutyuID.Location = new Point(90, 20);
             TBJyutyuID.Name = "TBJyutyuID";
             TBJyutyuID.Size = new Size(100, 31);
-            TBJyutyuID.TabIndex = 1;
+            TBJyutyuID.TabIndex = 0;
             TBJyutyuID.TextChanged += TBJyutyuID_TextChanged;
             // 
             // TBShopID
@@ -146,7 +146,7 @@ namespace SalesManagement_SysDev
             TBShopID.Location = new Point(290, 20);
             TBShopID.Name = "TBShopID";
             TBShopID.Size = new Size(40, 31);
-            TBShopID.TabIndex = 3;
+            TBShopID.TabIndex = 1;
             TBShopID.TextChanged += TBShopID_TextChanged;
             // 
             // TBShainID
@@ -154,7 +154,7 @@ namespace SalesManagement_SysDev
             TBShainID.Location = new Point(410, 20);
             TBShainID.Name = "TBShainID";
             TBShainID.Size = new Size(100, 31);
-            TBShainID.TabIndex = 5;
+            TBShainID.TabIndex = 2;
             TBShainID.TextChanged += TBShainID_TextChanged;
             // 
             // label17
@@ -165,7 +165,7 @@ namespace SalesManagement_SysDev
             label17.Location = new Point(120, 120);
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
-            label17.TabIndex = 14;
+            label17.TabIndex = 8;
             label17.Text = "非表示理由";
             // 
             // TBRiyuu
@@ -173,7 +173,7 @@ namespace SalesManagement_SysDev
             TBRiyuu.Location = new Point(230, 120);
             TBRiyuu.Name = "TBRiyuu";
             TBRiyuu.Size = new Size(325, 31);
-            TBRiyuu.TabIndex = 15;
+            TBRiyuu.TabIndex = 9;
             // 
             // label18
             // 
@@ -192,7 +192,7 @@ namespace SalesManagement_SysDev
             date.Location = new Point(360, 70);
             date.Name = "date";
             date.Size = new Size(185, 31);
-            date.TabIndex = 11;
+            date.TabIndex = 5;
             // 
             // label5
             // 
@@ -210,7 +210,7 @@ namespace SalesManagement_SysDev
             TBKokyakuID.Location = new Point(590, 20);
             TBKokyakuID.Name = "TBKokyakuID";
             TBKokyakuID.Size = new Size(100, 31);
-            TBKokyakuID.TabIndex = 7;
+            TBKokyakuID.TabIndex = 3;
             TBKokyakuID.TextChanged += TBKokyakuID_TextChanged;
             // 
             // DelFlag
@@ -221,7 +221,7 @@ namespace SalesManagement_SysDev
             DelFlag.Location = new Point(20, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
-            DelFlag.TabIndex = 13;
+            DelFlag.TabIndex = 7;
             DelFlag.Text = "非表示";
             DelFlag.UseVisualStyleBackColor = true;
             // 
@@ -233,7 +233,7 @@ namespace SalesManagement_SysDev
             TyumonFlag.Location = new Point(560, 70);
             TyumonFlag.Name = "TyumonFlag";
             TyumonFlag.Size = new Size(110, 29);
-            TyumonFlag.TabIndex = 12;
+            TyumonFlag.TabIndex = 6;
             TyumonFlag.Text = "受注状態";
             TyumonFlag.UseVisualStyleBackColor = true;
             // 
@@ -242,7 +242,7 @@ namespace SalesManagement_SysDev
             TBTantoName.Location = new Point(130, 70);
             TBTantoName.Name = "TBTantoName";
             TBTantoName.Size = new Size(140, 31);
-            TBTantoName.TabIndex = 9;
+            TBTantoName.TabIndex = 4;
             TBTantoName.TextChanged += TBTantoName_TextChanged;
             // 
             // dataGridView1
@@ -377,7 +377,7 @@ namespace SalesManagement_SysDev
             close.Location = new Point(1460, 10);
             close.Name = "close";
             close.Size = new Size(100, 40);
-            close.TabIndex = 15;
+            close.TabIndex = 19;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
@@ -388,7 +388,7 @@ namespace SalesManagement_SysDev
             clear.Location = new Point(1400, 70);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
-            clear.TabIndex = 8;
+            clear.TabIndex = 18;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             clear.Click += clear_Click;
@@ -400,7 +400,7 @@ namespace SalesManagement_SysDev
             b_kakutei.Location = new Point(1200, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
-            b_kakutei.TabIndex = 0;
+            b_kakutei.TabIndex = 9;
             b_kakutei.Text = "確定";
             b_kakutei.UseVisualStyleBackColor = false;
             b_kakutei.Click += b_kakutei_Click;
@@ -422,7 +422,7 @@ namespace SalesManagement_SysDev
             TBJyutyuIDS.Location = new Point(310, 20);
             TBJyutyuIDS.Name = "TBJyutyuIDS";
             TBJyutyuIDS.Size = new Size(100, 31);
-            TBJyutyuIDS.TabIndex = 2;
+            TBJyutyuIDS.TabIndex = 3;
             TBJyutyuIDS.TextChanged += TBJyutyuIDS_TextChanged;
             // 
             // label10
@@ -433,7 +433,7 @@ namespace SalesManagement_SysDev
             label10.Location = new Point(420, 20);
             label10.Name = "label10";
             label10.Size = new Size(66, 25);
-            label10.TabIndex = 3;
+            label10.TabIndex = 4;
             label10.Text = "商品ID";
             // 
             // TBSyohinID
@@ -441,7 +441,7 @@ namespace SalesManagement_SysDev
             TBSyohinID.Location = new Point(490, 20);
             TBSyohinID.Name = "TBSyohinID";
             TBSyohinID.Size = new Size(100, 31);
-            TBSyohinID.TabIndex = 4;
+            TBSyohinID.TabIndex = 5;
             TBSyohinID.TextChanged += TBSyohinID_TextChanged;
             // 
             // label13
@@ -463,7 +463,7 @@ namespace SalesManagement_SysDev
             label9.Location = new Point(20, 70);
             label9.Name = "label9";
             label9.Size = new Size(48, 25);
-            label9.TabIndex = 5;
+            label9.TabIndex = 6;
             label9.Text = "数量";
             // 
             // label15
@@ -474,7 +474,7 @@ namespace SalesManagement_SysDev
             label15.Location = new Point(240, 20);
             label15.Name = "label15";
             label15.Size = new Size(66, 25);
-            label15.TabIndex = 1;
+            label15.TabIndex = 2;
             label15.Text = "受注ID";
             // 
             // TBSuryou
@@ -498,7 +498,7 @@ namespace SalesManagement_SysDev
             dataGridView2.RowTemplate.Height = 33;
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(580, 490);
-            dataGridView2.TabIndex = 9;
+            dataGridView2.TabIndex = 10;
             dataGridView2.TabStop = false;
             dataGridView2.CellClick += dataGridView2_CellClick;
             // 
@@ -507,7 +507,7 @@ namespace SalesManagement_SysDev
             TBJyutyuSyosaiID.Location = new Point(130, 20);
             TBJyutyuSyosaiID.Name = "TBJyutyuSyosaiID";
             TBJyutyuSyosaiID.Size = new Size(100, 31);
-            TBJyutyuSyosaiID.TabIndex = 0;
+            TBJyutyuSyosaiID.TabIndex = 1;
             TBJyutyuSyosaiID.TextChanged += TBJyutyuSyosaiID_TextChanged;
             // 
             // label11
@@ -518,7 +518,7 @@ namespace SalesManagement_SysDev
             label11.Location = new Point(190, 70);
             label11.Name = "label11";
             label11.Size = new Size(84, 25);
-            label11.TabIndex = 7;
+            label11.TabIndex = 8;
             label11.Text = "合計金額";
             // 
             // TBGoukeiKingaku
@@ -526,7 +526,7 @@ namespace SalesManagement_SysDev
             TBGoukeiKingaku.Location = new Point(280, 70);
             TBGoukeiKingaku.Name = "TBGoukeiKingaku";
             TBGoukeiKingaku.Size = new Size(100, 31);
-            TBGoukeiKingaku.TabIndex = 8;
+            TBGoukeiKingaku.TabIndex = 7;
             TBGoukeiKingaku.TextChanged += TBGoukeiKingaku_TextChanged;
             // 
             // panel2
@@ -546,7 +546,7 @@ namespace SalesManagement_SysDev
             panel2.Location = new Point(970, 145);
             panel2.Name = "panel2";
             panel2.Size = new Size(600, 690);
-            panel2.TabIndex = 6;
+            panel2.TabIndex = 5;
             // 
             // label1
             // 
@@ -585,7 +585,7 @@ namespace SalesManagement_SysDev
             checkBoxDateFilter.Location = new Point(967, 17);
             checkBoxDateFilter.Name = "checkBoxDateFilter";
             checkBoxDateFilter.Size = new Size(189, 29);
-            checkBoxDateFilter.TabIndex = 266;
+            checkBoxDateFilter.TabIndex = 6;
             checkBoxDateFilter.Text = "受注日を検索に含む";
             checkBoxDateFilter.UseVisualStyleBackColor = true;
             // 
@@ -595,7 +595,7 @@ namespace SalesManagement_SysDev
             checkBox_2.Location = new Point(680, 17);
             checkBox_2.Name = "checkBox_2";
             checkBox_2.Size = new Size(225, 29);
-            checkBox_2.TabIndex = 267;
+            checkBox_2.TabIndex = 7;
             checkBox_2.Text = "一覧表示に非表示も含む";
             checkBox_2.UseVisualStyleBackColor = true;
             // 
@@ -607,7 +607,7 @@ namespace SalesManagement_SysDev
             b_arr.Location = new Point(15, 405);
             b_arr.Name = "b_arr";
             b_arr.Size = new Size(120, 70);
-            b_arr.TabIndex = 268;
+            b_arr.TabIndex = 14;
             b_arr.Text = "入荷";
             b_arr.UseVisualStyleBackColor = false;
             b_arr.Click += b_arr_Click;
@@ -621,7 +621,7 @@ namespace SalesManagement_SysDev
             b_sal.Location = new Point(15, 565);
             b_sal.Name = "b_sal";
             b_sal.Size = new Size(120, 70);
-            b_sal.TabIndex = 273;
+            b_sal.TabIndex = 16;
             b_sal.Text = "売上";
             b_sal.UseVisualStyleBackColor = false;
             b_sal.Click += b_sal_Click;
@@ -633,7 +633,7 @@ namespace SalesManagement_SysDev
             b_ord.Location = new Point(15, 245);
             b_ord.Name = "b_ord";
             b_ord.Size = new Size(120, 70);
-            b_ord.TabIndex = 269;
+            b_ord.TabIndex = 12;
             b_ord.Text = "注文";
             b_ord.UseVisualStyleBackColor = false;
             b_ord.Click += b_ord_Click;
@@ -646,7 +646,7 @@ namespace SalesManagement_SysDev
             b_shi.Location = new Point(15, 485);
             b_shi.Name = "b_shi";
             b_shi.Size = new Size(120, 70);
-            b_shi.TabIndex = 272;
+            b_shi.TabIndex = 15;
             b_shi.Text = "出荷";
             b_shi.UseVisualStyleBackColor = false;
             b_shi.Click += b_shi_Click;
@@ -660,7 +660,7 @@ namespace SalesManagement_SysDev
             b_acc.Location = new Point(15, 145);
             b_acc.Name = "b_acc";
             b_acc.Size = new Size(120, 90);
-            b_acc.TabIndex = 271;
+            b_acc.TabIndex = 11;
             b_acc.TabStop = false;
             b_acc.Text = "受注";
             b_acc.UseVisualStyleBackColor = false;
@@ -674,7 +674,7 @@ namespace SalesManagement_SysDev
             b_iss.Location = new Point(15, 325);
             b_iss.Name = "b_iss";
             b_iss.Size = new Size(120, 70);
-            b_iss.TabIndex = 270;
+            b_iss.TabIndex = 13;
             b_iss.Text = "出庫";
             b_iss.UseVisualStyleBackColor = false;
             b_iss.Click += b_iss_Click;
@@ -688,7 +688,7 @@ namespace SalesManagement_SysDev
             checkBoxSyain.Location = new Point(412, 17);
             checkBoxSyain.Name = "checkBoxSyain";
             checkBoxSyain.Size = new Size(178, 29);
-            checkBoxSyain.TabIndex = 274;
+            checkBoxSyain.TabIndex = 8;
             checkBoxSyain.Text = "社員IDを自動入力";
             checkBoxSyain.UseVisualStyleBackColor = true;
             // 
