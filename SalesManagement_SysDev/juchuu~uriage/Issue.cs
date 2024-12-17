@@ -396,13 +396,6 @@ namespace SalesManagement_SysDev
                                 MessageBox.Show($"この受注ID ({juchuID}) は既に登録されています。更新を中止します。", "重複エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
-
-                            if (!issueDetailsExist)
-                            {
-                                // 出庫詳細が存在しない場合はエラーメッセージを表示
-                                MessageBox.Show(":104\n詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return; // 処理を中断
-                            }
                             if (!context.TSyukkoDetails.Any(sd => sd.SyID == syukkoID))
                             {
                                 MessageBox.Show(":104\n詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
