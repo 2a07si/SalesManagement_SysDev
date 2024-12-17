@@ -325,7 +325,7 @@ namespace SalesManagement_SysDev
                 }
 
                 // 社員IDが一致しない場合の処理
-                if (shainID != empID)
+                if (int.Parse(shainID) != empID)
                 {
                     MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
                     TBShainID.BackColor = Color.Yellow;
