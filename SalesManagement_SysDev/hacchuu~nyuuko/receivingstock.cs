@@ -280,8 +280,8 @@ namespace SalesManagement_SysDev
 
             // 各TextBoxの入力値をチェック
             if (CheckTBValue(TBNyukoID, nyuukoID, "入庫ID")) return;
-            if (CheckTBValue(TBHattyuuID, haID, "発注ID"))   return;
-            if (CheckTBValue(TBShainID, shainID, "社員ID"))  return;
+            if (CheckTBValue(TBHattyuuID, haID, "発注ID")) return;
+            if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
 
             // 売上日が未来を指している場合の確認
             if (nyuukoDate > DateTime.Now)
@@ -307,7 +307,7 @@ namespace SalesManagement_SysDev
                 int nyuuko;
                 if (!int.TryParse(nyuukoID, out nyuuko) || !context.TWarehousings.Any(h => h.WaID == nyuuko))
                 {
-                    NotFound("入庫ID", nyuukoID); // NotFound メソッドを使用
+                    NotFound("入庫ID", nyuukoID); 
                     return;
                 }
 
@@ -315,7 +315,7 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    NotFound("発注ID", haID); // NotFound メソッドを使用
+                    NotFound("発注ID", haID); 
                     return;
                 }
 
@@ -323,7 +323,7 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    NotFound("社員ID", shainID); // NotFound メソッドを使用
+                    NotFound("社員ID", shainID); 
                     return;
                 }
 
@@ -423,14 +423,14 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                if (CheckTBValue(TBHattyuuID, haID, "発注ID"))  return;
+                if (CheckTBValue(TBHattyuuID, haID, "発注ID")) return;
                 if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
 
                 // 発注IDがTHattyuテーブルに存在するか確認
                 int hattyuID;
                 if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    NotFound("発注ID", haID);  // NotFound メソッドを使用
+                    NotFound("発注ID", haID);  
                     return;
                 }
 
@@ -438,7 +438,7 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    NotFound("社員ID", shainID);  // NotFound メソッドを使用
+                    NotFound("社員ID", shainID);  
                     return;
                 }
 
@@ -505,6 +505,10 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
+
+                    var OrderDetails = checkBox1.Checked
+                      ? context.TWarehousings.OrderByDescending(od => od.WaID).ToList() // 降順
+                      : context.TWarehousings.OrderBy(od => od.WaID).ToList();          // 昇順
 
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var receivingStocks = checkBox_2.Checked
@@ -619,9 +623,9 @@ namespace SalesManagement_SysDev
 
             // 入力チェック
             if (CheckTBValue(TBNyuukoSyosaiID, nyuukoDetailID, "入庫詳細ID")) return;
-            if (CheckTBValue(TBNyuukoIDS, nyuukoID, "入庫ID"))                return;
-            if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))                 return;
-            if (CheckTBValue(TBSuryou, suryou, "数量"))                       return;
+            if (CheckTBValue(TBNyuukoIDS, nyuukoID, "入庫ID")) return;
+            if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+            if (CheckTBValue(TBSuryou, suryou, "数量")) return;
 
             using (var context = new SalesManagementContext())
             {
@@ -629,7 +633,7 @@ namespace SalesManagement_SysDev
                 int warehousingDetailID;
                 if (!int.TryParse(nyuukoDetailID, out warehousingDetailID) || !context.TWarehousingDetails.Any(w => w.WaDetailID == warehousingDetailID))
                 {
-                    NotFound("入庫詳細ID", nyuukoDetailID);  // NotFound メソッドを使用
+                    NotFound("入庫詳細ID", nyuukoDetailID);  
                     return;
                 }
 
@@ -637,7 +641,7 @@ namespace SalesManagement_SysDev
                 int warehousingID;
                 if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
                 {
-                    NotFound("入庫ID", nyuukoID);  // NotFound メソッドを使用
+                    NotFound("入庫ID", nyuukoID);  
                     return;
                 }
 
@@ -645,7 +649,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID);  // NotFound メソッドを使用
+                    NotFound("商品ID", syohinID);  
                     return;
                 }
                 if (Kuraberu_kun.Kuraberu_chan("入庫", "詳細", "更新", int.Parse(nyuukoDetailID), timestamp) == false)
@@ -687,7 +691,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    NotFound("入庫詳細", nyuukoDetailID);  // NotFound メソッドを使用
+                    NotFound("入庫詳細", nyuukoDetailID);  
                 }
             }
         }
@@ -702,14 +706,14 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 if (CheckTBValue(TBNyuukoIDS, nyuukoID, "入庫ID")) return;
-                if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))  return;
-                if (CheckTBValue(TBSuryou, suryou, "数量"))        return;
+                if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+                if (CheckTBValue(TBSuryou, suryou, "数量")) return;
 
                 // 入庫IDがTWarehousingテーブルに存在するか確認
                 int warehousingID;
                 if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
                 {
-                    NotFound("入庫ID", nyuukoID);  // NotFound メソッドを使用
+                    NotFound("入庫ID", nyuukoID);  
                     return;
                 }
 
@@ -717,7 +721,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID);  // NotFound メソッドを使用
+                    NotFound("商品ID", syohinID);  
                     return;
                 }
 
@@ -785,6 +789,10 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     var WarehousingDetails = context.TWarehousingDetails.ToList();
+
+                    var OrderDetails = checkBox1.Checked
+                       ? context.TWarehousingDetails.OrderByDescending(od => od.WaID).ToList() // 降順
+                       : context.TWarehousingDetails.OrderBy(od => od.WaID).ToList();          // 昇順
 
                     var visibleWarehousingDetails = checkBox_2.Checked
                         ? WarehousingDetails
@@ -1221,7 +1229,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        
+
         // フラグを定義して、干渉を防ぐ
         private bool isProgrammaticChange = false;
 

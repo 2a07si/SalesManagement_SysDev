@@ -73,6 +73,7 @@
             checkBox_2 = new CheckBox();
             checkBoxDateFilter = new CheckBox();
             checkBoxSyain = new CheckBox();
+            checkBox1 = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel3.SuspendLayout();
@@ -552,6 +553,16 @@
             checkBoxSyain.Text = "社員IDを自動入力";
             checkBoxSyain.UseVisualStyleBackColor = true;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(1240, 17);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(110, 29);
+            checkBox1.TabIndex = 279;
+            checkBox1.Text = "降順切替";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // receivingstock
             // 
             AcceptButton = b_kakutei;
@@ -560,6 +571,7 @@
             AutoScroll = true;
             CancelButton = close;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBox1);
             Controls.Add(checkBoxSyain);
             Controls.Add(checkBoxDateFilter);
             Controls.Add(checkBox_2);
@@ -644,5 +656,6 @@
         private CheckBox checkBox_2;
         private CheckBox checkBoxDateFilter;
         private CheckBox checkBoxSyain;
+        private CheckBox checkBox1;
     }
 }

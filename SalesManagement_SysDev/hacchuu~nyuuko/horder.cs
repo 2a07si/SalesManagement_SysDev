@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using SalesManagement_SysDev.Entity;
 using System.Text.RegularExpressions;
 using System.Diagnostics.Metrics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace SalesManagement_SysDev
 {
@@ -289,7 +290,7 @@ namespace SalesManagement_SysDev
             // 必須項目のチェック
             if (CheckTBValue(TBHattyuuID, hattyuuID, "発注ID")) return;
             if (CheckTBValue(TBMakerID, makerID, "メーカーID")) return;
-            if (CheckTBValue(TBShainID, shainID, "社員ID"))     return;
+            if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
 
             // 売上日が未来の場合の確認
             if (hattyuuDate > DateTime.Now)
@@ -415,7 +416,7 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 if (CheckTBValue(TBMakerID, makerID, "メーカーID")) return;
-                if (CheckTBValue(TBShainID, shainID, "社員ID"))     return;
+                if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
 
                 // メーカーIDが存在するか確認
                 int maker;
@@ -498,6 +499,10 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
+
+                    var OrderDetails = checkBox1.Checked
+                       ? context.THattyus.OrderByDescending(od => od.HaID).ToList() // 降順
+                       : context.THattyus.OrderBy(od => od.HaID).ToList();          // 昇順
 
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var hattyus = checkBox_2.Checked
@@ -630,7 +635,7 @@ namespace SalesManagement_SysDev
                 int syousai;
                 if (!int.TryParse(hattyuuID, out syousai) || !context.THattyuDetails.Any(h => h.HaDetailID == syousai))
                 {
-                    NotFound("発注詳細ID", hattyuuID); // NotFound メソッドを使用
+                    NotFound("発注詳細ID", hattyuuID); 
                     return;
                 }
 
@@ -638,7 +643,7 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    NotFound("発注ID", hattyuuID); // NotFound メソッドを使用
+                    NotFound("発注ID", hattyuuID); 
                     return;
                 }
 
@@ -646,7 +651,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID); // NotFound メソッドを使用
+                    NotFound("商品ID", syohinID); 
                     return;
                 }
 
@@ -689,7 +694,7 @@ namespace SalesManagement_SysDev
                 int hattyuIDInt;
                 if (!int.TryParse(hattyuuID, out hattyuIDInt) || !context.THattyus.Any(h => h.HaID == hattyuIDInt))
                 {
-                    NotFound("発注ID", hattyuuID); // NotFound メソッドを使用
+                    NotFound("発注ID", hattyuuID); 
                     return;
                 }
 
@@ -697,7 +702,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID); // NotFound メソッドを使用
+                    NotFound("商品ID", syohinID); 
                     return;
                 }
 
@@ -759,8 +764,12 @@ namespace SalesManagement_SysDev
                 {
                     var HattyuDetails = context.THattyuDetails.ToList();
 
+                    var OrderDetails = checkBox1.Checked
+                       ? context.THattyuDetails.OrderByDescending(od => od.HaID).ToList() // 降順
+                       : context.THattyuDetails.OrderBy(od => od.HaID).ToList();          // 昇順
+
                     var visibleHattyuDetails = checkBox_2.Checked
-                        ? HattyuDetails
+                        ? HattyuDetails.ToList()
                         : HattyuDetails.Where(od =>
                         {
                             var Hattyu = context.THattyus.FirstOrDefault(o => o.HaID == od.HaID);
@@ -1308,7 +1317,7 @@ namespace SalesManagement_SysDev
                         {
                             context.SaveChanges(); // 元の状態に戻す変更を保存
 
-                            MessageBox.Show($":202\n更新操作が失敗しました。\n "+ex.Message,"DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($":202\n更新操作が失敗しました。\n " + ex.Message, "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
