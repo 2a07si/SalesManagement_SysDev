@@ -859,7 +859,7 @@ namespace SalesManagement_SysDev
         // PoIDに基づいて権限を決定する関数  
         private int GetPermissionByPoID(int poID)
         {
-            // 職位IDに基づいて権限レベルを返す（例: 1, 2, 3）  
+            // 役職IDに基づいて権限レベルを返す（例: 1, 2, 3）  
             switch (poID)
             {
                 case 1: return 1; // 権限1  

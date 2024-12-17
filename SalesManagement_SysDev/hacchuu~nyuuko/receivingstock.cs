@@ -307,7 +307,7 @@ namespace SalesManagement_SysDev
                 int nyuuko;
                 if (!int.TryParse(nyuukoID, out nyuuko) || !context.TWarehousings.Any(h => h.WaID == nyuuko))
                 {
-                    NotFound("入庫ID", nyuukoID); // NotFound メソッドを使用
+                    NotFound("入庫ID", nyuukoID); 
                     return;
                 }
 
@@ -315,7 +315,7 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    NotFound("発注ID", haID); // NotFound メソッドを使用
+                    NotFound("発注ID", haID); 
                     return;
                 }
 
@@ -323,7 +323,7 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    NotFound("社員ID", shainID); // NotFound メソッドを使用
+                    NotFound("社員ID", shainID); 
                     return;
                 }
 
@@ -430,7 +430,7 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (!int.TryParse(haID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    NotFound("発注ID", haID);  // NotFound メソッドを使用
+                    NotFound("発注ID", haID);  
                     return;
                 }
 
@@ -438,7 +438,7 @@ namespace SalesManagement_SysDev
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    NotFound("社員ID", shainID);  // NotFound メソッドを使用
+                    NotFound("社員ID", shainID);  
                     return;
                 }
 
@@ -633,7 +633,7 @@ namespace SalesManagement_SysDev
                 int warehousingDetailID;
                 if (!int.TryParse(nyuukoDetailID, out warehousingDetailID) || !context.TWarehousingDetails.Any(w => w.WaDetailID == warehousingDetailID))
                 {
-                    NotFound("入庫詳細ID", nyuukoDetailID);  // NotFound メソッドを使用
+                    NotFound("入庫詳細ID", nyuukoDetailID);  
                     return;
                 }
 
@@ -641,7 +641,7 @@ namespace SalesManagement_SysDev
                 int warehousingID;
                 if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
                 {
-                    NotFound("入庫ID", nyuukoID);  // NotFound メソッドを使用
+                    NotFound("入庫ID", nyuukoID);  
                     return;
                 }
 
@@ -649,7 +649,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID);  // NotFound メソッドを使用
+                    NotFound("商品ID", syohinID);  
                     return;
                 }
                 if (Kuraberu_kun.Kuraberu_chan("入庫", "詳細", "更新", int.Parse(nyuukoDetailID), timestamp) == false)
@@ -691,7 +691,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    NotFound("入庫詳細", nyuukoDetailID);  // NotFound メソッドを使用
+                    NotFound("入庫詳細", nyuukoDetailID);  
                 }
             }
         }
@@ -713,7 +713,7 @@ namespace SalesManagement_SysDev
                 int warehousingID;
                 if (!int.TryParse(nyuukoID, out warehousingID) || !context.TWarehousings.Any(w => w.WaID == warehousingID))
                 {
-                    NotFound("入庫ID", nyuukoID);  // NotFound メソッドを使用
+                    NotFound("入庫ID", nyuukoID);  
                     return;
                 }
 
@@ -721,7 +721,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID);  // NotFound メソッドを使用
+                    NotFound("商品ID", syohinID);  
                     return;
                 }
 

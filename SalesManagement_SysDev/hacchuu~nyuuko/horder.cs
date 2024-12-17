@@ -635,7 +635,7 @@ namespace SalesManagement_SysDev
                 int syousai;
                 if (!int.TryParse(hattyuuID, out syousai) || !context.THattyuDetails.Any(h => h.HaDetailID == syousai))
                 {
-                    NotFound("発注詳細ID", hattyuuID); // NotFound メソッドを使用
+                    NotFound("発注詳細ID", hattyuuID); 
                     return;
                 }
 
@@ -643,7 +643,7 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    NotFound("発注ID", hattyuuID); // NotFound メソッドを使用
+                    NotFound("発注ID", hattyuuID); 
                     return;
                 }
 
@@ -651,7 +651,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID); // NotFound メソッドを使用
+                    NotFound("商品ID", syohinID); 
                     return;
                 }
 
@@ -694,7 +694,7 @@ namespace SalesManagement_SysDev
                 int hattyuIDInt;
                 if (!int.TryParse(hattyuuID, out hattyuIDInt) || !context.THattyus.Any(h => h.HaID == hattyuIDInt))
                 {
-                    NotFound("発注ID", hattyuuID); // NotFound メソッドを使用
+                    NotFound("発注ID", hattyuuID); 
                     return;
                 }
 
@@ -702,7 +702,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound("商品ID", syohinID); // NotFound メソッドを使用
+                    NotFound("商品ID", syohinID); 
                     return;
                 }
 

@@ -210,7 +210,7 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
             if (CheckTBValue(TBSyainName, ShainName, "社員名")) return;
             if (CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
-            if (CheckTBValue(TBJobID, JobID, "職位ID"))         return;
+            if (CheckTBValue(TBJobID, JobID, "役職ID"))         return;
             if (CheckTBValue(TBPass, Pass, "パスワード"))       return;
             if (CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
             if (Kuraberu_kun.Kuraberu_chan("社員", null, "更新", int.Parse(ShainID), timestamp) == false)
@@ -223,7 +223,7 @@ namespace SalesManagement_SysDev
                 {
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
-                    NotFound("店舗", ShopID);
+                    NotFound("店舗ID", ShopID);
                     return;
                 }
 
@@ -232,7 +232,7 @@ namespace SalesManagement_SysDev
                 {
                     TBJobID.BackColor = Color.Yellow;
                     TBJobID.Focus();
-                    NotFound("職位", JobID);
+                    NotFound("役職ID", JobID);
                     return;
                 }
 
@@ -267,7 +267,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    NotFound("社員", ShainID);
+                    NotFound("社員ID", ShainID);
                 }
             }
         }
@@ -288,7 +288,7 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
             if (CheckTBValue(TBSyainName, ShainName, "社員名")) return;
             if (CheckTBValue(TBShopID, ShopID, "店舗ID"))       return;
-            if (CheckTBValue(TBJobID, JobID, "職位ID"))         return;
+            if (CheckTBValue(TBJobID, JobID, "役職ID"))         return;
             if (CheckTBValue(TBPass, Pass, "パスワード"))       return;
             if (CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
 
@@ -307,14 +307,14 @@ namespace SalesManagement_SysDev
                 int shop;
                 if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    NotFound("店舗", ShopID);
+                    NotFound("店舗ID", ShopID);
                     return;
                 }
 
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
                 {
-                    NotFound("職位", JobID);
+                    NotFound("役職ID", JobID);
                     return;
                 }
 
