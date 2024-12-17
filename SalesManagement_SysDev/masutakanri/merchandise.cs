@@ -188,29 +188,29 @@ namespace SalesManagement_SysDev
             MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
                             "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        
+
         private void Updatemerchandise()
         {
-            string syohinID   = TBSyohinID.Text;
-            string makerID    = TBMakerID.Text;
+            string syohinID = TBSyohinID.Text;
+            string makerID = TBMakerID.Text;
             string syohinName = TBSyohinName.Text;
-            string sell       = TBSell.Text;
-            string safeNum    = TBSafeNum.Text;
-            string sclass     = TBSyoubunrui.Text;
-            string tModel     = TBModel.Text;
-            string tColor     = TBColor.Text;
-            bool delFlag      = DelFlag.Checked;
+            string sell = TBSell.Text;
+            string safeNum = TBSafeNum.Text;
+            string sclass = TBSyoubunrui.Text;
+            string tModel = TBModel.Text;
+            string tColor = TBColor.Text;
+            bool delFlag = DelFlag.Checked;
             DateTime syohinDate = date.Value;
 
             // 入力チェックを共通メソッドで実施
-            if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))     return;
-            if (CheckTBValue(TBMakerID, makerID, "メーカーID"))   return;
+            if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+            if (CheckTBValue(TBMakerID, makerID, "メーカーID")) return;
             if (CheckTBValue(TBSyohinName, syohinName, "商品名")) return;
-            if (CheckTBValue(TBSell, sell, "販売価格"))           return;
-            if (CheckTBValue(TBSafeNum, safeNum, "安全在庫数"))   return;
-            if (CheckTBValue(TBSyoubunrui, sclass, "小分類"))     return;
-            if (CheckTBValue(TBModel, tModel, "モデル番号"))      return;
-            if (CheckTBValue(TBColor, tColor, "色"))              return;
+            if (CheckTBValue(TBSell, sell, "販売価格")) return;
+            if (CheckTBValue(TBSafeNum, safeNum, "安全在庫数")) return;
+            if (CheckTBValue(TBSyoubunrui, sclass, "小分類")) return;
+            if (CheckTBValue(TBModel, tModel, "モデル番号")) return;
+            if (CheckTBValue(TBColor, tColor, "色")) return;
             if (Kuraberu_kun.Kuraberu_chan("商品", null, "更新", int.Parse(syohinID), timestamp) == false)
             { return; }
 
@@ -378,11 +378,21 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
+
                     // checkBox_2 がチェックされている場合、全ての商品を表示
                     var merchandises = checkBox_2.Checked
-                        ? context.MProducts.ToList()
-                        // チェックされていなければ、PrFlagが1のものを除外
-                        : context.MProducts.Where(m => m.PrFlag != 1).ToList();
+                        ? (checkBox1.Checked
+                            ? context.MProducts.OrderByDescending(m => m.PrID).ToList() // 降順
+                            : context.MProducts.OrderBy(m => m.PrID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.MProducts
+                                .Where(m => m.PrFlag != 1)
+                                .OrderByDescending(m => m.PrID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.MProducts
+                                .Where(m => m.PrFlag != 1)
+                                .OrderBy(m => m.PrID)          // 条件に合致するものを昇順で取得
+                                .ToList());
 
                     dataGridView1.DataSource = merchandises.Select(m => new
                     {

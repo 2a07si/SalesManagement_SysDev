@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             label_ename = new Label();
             label_id = new Label();
             b_ser = new Button();
@@ -63,7 +62,6 @@
             b_kakutei = new Button();
             clear = new Button();
             close = new Button();
-            timer1 = new System.Windows.Forms.Timer(components);
             B_iti = new Button();
             TBTyumonIDS = new TextBox();
             label10 = new Label();
@@ -81,6 +79,7 @@
             dateCheckBox = new CheckBox();
             checkBox_2 = new CheckBox();
             checkBoxSyain = new CheckBox();
+            checkBox1 = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -660,6 +659,16 @@
             checkBoxSyain.Text = "社員IDを自動入力";
             checkBoxSyain.UseVisualStyleBackColor = true;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(1176, 17);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(110, 29);
+            checkBox1.TabIndex = 276;
+            checkBox1.Text = "降順切替";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // order
             // 
             AcceptButton = b_kakutei;
@@ -668,6 +677,7 @@
             AutoScroll = true;
             CancelButton = close;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBox1);
             Controls.Add(checkBoxSyain);
             Controls.Add(checkBox_2);
             Controls.Add(dateCheckBox);
@@ -726,7 +736,6 @@
         private Button b_kakutei;
         private Button clear;
         private Button close;
-        private System.Windows.Forms.Timer timer1;
         private CheckBox TyumonFlag;
         private CheckBox DelFlag;
         private Label label6;
@@ -763,5 +772,6 @@
         private CheckBox dateCheckBox;
         private CheckBox checkBox_2;
         private CheckBox checkBoxSyain;
+        private CheckBox checkBox1;
     }
 }

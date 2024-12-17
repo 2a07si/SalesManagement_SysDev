@@ -570,14 +570,20 @@ namespace SalesManagement_SysDev
 
                 using (var context = new SalesManagementContext())
                 {
-
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
-
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての入庫を表示
                     var arrivals = checkBox_2.Checked
-                      ? context.TArrivals.ToList()  // チェックされていれば全ての注文を表示
-                      : context.TArrivals
-                         .Where(o => o.ArFlag != 1 && o.ArStateFlag != 2)
-                         .ToList();
+                        ? (checkBox1.Checked
+                            ? context.TArrivals.OrderByDescending(a => a.ArID).ToList() // 降順
+                            : context.TArrivals.OrderBy(a => a.ArID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.TArrivals
+                                .Where(a => a.ArFlag != 1 && a.ArStateFlag != 2)
+                                .OrderByDescending(a => a.ArID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.TArrivals
+                                .Where(a => a.ArFlag != 1 && a.ArStateFlag != 2)
+                                .OrderBy(a => a.ArID)          // 条件に合致するものを昇順で取得
+                                .ToList());
 
                     // データを選択してDataGridViewに表示
                     dataGridView1.DataSource = arrivals.Select(o => new
@@ -830,14 +836,18 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var ArrivalDetails = context.TArrivalDetails.ToList();
 
+                    // 入庫詳細のリストを取得（checkBox1の状態に応じて並べ替え）
+                    var ArrivalDetails = checkBox1.Checked
+                        ? context.TArrivalDetails.OrderByDescending(ad => ad.ArID).ToList() // 降順
+                        : context.TArrivalDetails.OrderBy(ad => ad.ArID).ToList();          // 昇順
+
+                    // checkBox_2がチェックされている場合、フィルタリングを無視してすべての詳細を表示
                     var visibleArrivalDetails = checkBox_2.Checked
-                        ? ArrivalDetails
-                        : ArrivalDetails.Where(od =>
+                        ? ArrivalDetails // チェックされていれば全て表示（並び替え済み）
+                        : ArrivalDetails.Where(ad =>
                         {
-                            var Arrival
-                            = context.TArrivals.FirstOrDefault(o => o.ArID == od.ArID);
+                            var Arrival = context.TArrivals.FirstOrDefault(a => a.ArID == ad.ArID);
 
                             return Arrival == null || (Arrival.ArFlag != 1 && Arrival.ArStateFlag != 2);
                         }).ToList();
