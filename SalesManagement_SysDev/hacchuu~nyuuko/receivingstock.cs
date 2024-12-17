@@ -280,8 +280,8 @@ namespace SalesManagement_SysDev
 
             // 各TextBoxの入力値をチェック
             if (CheckTBValue(TBNyukoID, nyuukoID, "入庫ID")) return;
-            if (CheckTBValue(TBHattyuuID, haID, "発注ID"))   return;
-            if (CheckTBValue(TBShainID, shainID, "社員ID"))  return;
+            if (CheckTBValue(TBHattyuuID, haID, "発注ID")) return;
+            if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
 
             // 売上日が未来を指している場合の確認
             if (nyuukoDate > DateTime.Now)
@@ -423,7 +423,7 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                if (CheckTBValue(TBHattyuuID, haID, "発注ID"))  return;
+                if (CheckTBValue(TBHattyuuID, haID, "発注ID")) return;
                 if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
 
                 // 発注IDがTHattyuテーブルに存在するか確認
@@ -505,6 +505,10 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
+
+                    var OrderDetails = checkBox1.Checked
+                      ? context.TWarehousings.OrderByDescending(od => od.WaID).ToList() // 降順
+                      : context.TWarehousings.OrderBy(od => od.WaID).ToList();          // 昇順
 
                     // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
                     var receivingStocks = checkBox_2.Checked
@@ -619,9 +623,9 @@ namespace SalesManagement_SysDev
 
             // 入力チェック
             if (CheckTBValue(TBNyuukoSyosaiID, nyuukoDetailID, "入庫詳細ID")) return;
-            if (CheckTBValue(TBNyuukoIDS, nyuukoID, "入庫ID"))                return;
-            if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))                 return;
-            if (CheckTBValue(TBSuryou, suryou, "数量"))                       return;
+            if (CheckTBValue(TBNyuukoIDS, nyuukoID, "入庫ID")) return;
+            if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+            if (CheckTBValue(TBSuryou, suryou, "数量")) return;
 
             using (var context = new SalesManagementContext())
             {
@@ -702,8 +706,8 @@ namespace SalesManagement_SysDev
             using (var context = new SalesManagementContext())
             {
                 if (CheckTBValue(TBNyuukoIDS, nyuukoID, "入庫ID")) return;
-                if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))  return;
-                if (CheckTBValue(TBSuryou, suryou, "数量"))        return;
+                if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+                if (CheckTBValue(TBSuryou, suryou, "数量")) return;
 
                 // 入庫IDがTWarehousingテーブルに存在するか確認
                 int warehousingID;
@@ -785,6 +789,10 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagementContext())
                 {
                     var WarehousingDetails = context.TWarehousingDetails.ToList();
+
+                    var OrderDetails = checkBox1.Checked
+                       ? context.TWarehousingDetails.OrderByDescending(od => od.WaID).ToList() // 降順
+                       : context.TWarehousingDetails.OrderBy(od => od.WaID).ToList();          // 昇順
 
                     var visibleWarehousingDetails = checkBox_2.Checked
                         ? WarehousingDetails
@@ -1221,7 +1229,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        
+
         // フラグを定義して、干渉を防ぐ
         private bool isProgrammaticChange = false;
 
