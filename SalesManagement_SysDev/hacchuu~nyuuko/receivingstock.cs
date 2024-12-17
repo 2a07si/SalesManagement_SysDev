@@ -505,15 +505,26 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-
+                    // checkBox1 がチェックされている場合、昇順・降順の切り替え
                     var OrderDetails = checkBox1.Checked
-                      ? context.TWarehousings.OrderByDescending(od => od.WaID).ToList() // 降順
-                      : context.TWarehousings.OrderBy(od => od.WaID).ToList();          // 昇順
+                        ? context.TWarehousings.OrderByDescending(od => od.WaID).ToList() // 降順
+                        : context.TWarehousings.OrderBy(od => od.WaID).ToList();          // 昇順
 
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示 
                     var receivingStocks = checkBox_2.Checked
-                        ? context.TWarehousings.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TWarehousings.Where(o => o.WaFlag != 1 && o.WaShelfFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        ? (checkBox1.Checked
+                            ? context.TWarehousings.OrderByDescending(o => o.WaID).ToList() // 降順
+                            : context.TWarehousings.OrderBy(o => o.WaID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.TWarehousings
+                                .Where(o => o.WaFlag != 1 && o.WaShelfFlag != 2)
+                                .OrderByDescending(o => o.WaID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.TWarehousings
+                                .Where(o => o.WaFlag != 1 && o.WaShelfFlag != 2)
+                                .OrderBy(o => o.WaID)          // 条件に合致するものを昇順で取得
+                                .ToList());
+
                     dataGridView1.DataSource = receivingStocks.Select(ws => new
                     {
                         入庫ID = ws.WaID,
@@ -791,12 +802,12 @@ namespace SalesManagement_SysDev
                     var WarehousingDetails = context.TWarehousingDetails.ToList();
 
                     var OrderDetails = checkBox1.Checked
-                       ? context.TWarehousingDetails.OrderByDescending(od => od.WaID).ToList() // 降順
-                       : context.TWarehousingDetails.OrderBy(od => od.WaID).ToList();          // 昇順
+                        ? context.TWarehousingDetails.OrderByDescending(od => od.WaID).ToList() // 降順 
+                        : context.TWarehousingDetails.OrderBy(od => od.WaID).ToList();          // 昇順 
 
                     var visibleWarehousingDetails = checkBox_2.Checked
-                        ? WarehousingDetails
-                        : WarehousingDetails.Where(od =>
+                        ? OrderDetails // チェックされていれば全て表示（並び替え済み）
+                        : OrderDetails.Where(od =>
                         {
                             var Warehousing = context.TWarehousings.FirstOrDefault(o => o.WaID == od.WaID);
 

@@ -499,15 +499,26 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-
+                    // checkBox1 がチェックされている場合、昇順・降順の切り替え
                     var OrderDetails = checkBox1.Checked
-                       ? context.THattyus.OrderByDescending(od => od.HaID).ToList() // 降順
-                       : context.THattyus.OrderBy(od => od.HaID).ToList();          // 昇順
+                        ? context.THattyus.OrderByDescending(od => od.HaID).ToList() // 降順 
+                        : context.THattyus.OrderBy(od => od.HaID).ToList();          // 昇順 
 
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての注文を表示 
                     var hattyus = checkBox_2.Checked
-                        ? context.THattyus.ToList()  // チェックされていれば全ての注文を表示
-                        : context.THattyus.Where(o => o.HaFlag != 1 && o.WaWarehouseFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        ? (checkBox1.Checked
+                            ? context.THattyus.OrderByDescending(o => o.HaID).ToList() // 降順
+                            : context.THattyus.OrderBy(o => o.HaID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.THattyus
+                                .Where(o => o.HaFlag != 1 && o.WaWarehouseFlag != 2)
+                                .OrderByDescending(o => o.HaID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.THattyus
+                                .Where(o => o.HaFlag != 1 && o.WaWarehouseFlag != 2)
+                                .OrderBy(o => o.HaID)          // 条件に合致するものを昇順で取得
+                                .ToList());
+
                     dataGridView1.DataSource = hattyus.Select(h => new
                     {
                         発注ID = h.HaID,
@@ -765,12 +776,12 @@ namespace SalesManagement_SysDev
                     var HattyuDetails = context.THattyuDetails.ToList();
 
                     var OrderDetails = checkBox1.Checked
-                       ? context.THattyuDetails.OrderByDescending(od => od.HaID).ToList() // 降順
-                       : context.THattyuDetails.OrderBy(od => od.HaID).ToList();          // 昇順
+                        ? context.THattyuDetails.OrderByDescending(od => od.HaID).ToList() // 降順 
+                        : context.THattyuDetails.OrderBy(od => od.HaID).ToList();          // 昇順 
 
                     var visibleHattyuDetails = checkBox_2.Checked
-                        ? HattyuDetails.ToList()
-                        : HattyuDetails.Where(od =>
+                        ? OrderDetails // チェックされていれば全て表示（並び替え済み）
+                        : OrderDetails.Where(od =>
                         {
                             var Hattyu = context.THattyus.FirstOrDefault(o => o.HaID == od.HaID);
 
