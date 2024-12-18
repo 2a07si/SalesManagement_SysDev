@@ -566,7 +566,7 @@ namespace SalesManagement_SysDev
                         // 新しい出荷情報を作成
                         var newShipping = new TShipment
                         {
-                            SoID = int.Parse(shopID),                  // 店舗ID
+                            SoID = int.Parse(shopID),                  // 営業所ID
                             EmID = int.Parse(shainID),                 // 社員ID
                             ClID = int.Parse(kokyakuID),               // 顧客ID
                             OrID = int.Parse(JyutyuID),                // 受注ID

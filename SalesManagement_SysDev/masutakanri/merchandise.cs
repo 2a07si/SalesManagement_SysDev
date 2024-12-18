@@ -181,8 +181,10 @@ namespace SalesManagement_SysDev
             textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
             return false;
         }
-        private void NotFound(string itemName, string itemId)
+        private void NotFound(TextBox textBox, string itemName, string itemId)
         {
+            textBox.BackColor = Color.Yellow;
+            textBox.Focus();
             MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
                             "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -220,9 +222,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(makerID, out int parsedMakerID) ||
                         !context.MMakers.Any(m => m.MaID == parsedMakerID))
                     {
-                        NotFound("メーカーID", makerID);
-                        TBMakerID.BackColor = Color.Yellow;
-                        TBMakerID.Focus();
+                        NotFound(TBMakerID,"メーカーID", makerID);
                         return;
                     }
 
@@ -230,9 +230,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(sclass, out int parsedSClassID) ||
                         !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
                     {
-                        NotFound("小分類ID", sclass);
-                        TBSyoubunrui.BackColor = Color.Yellow;
-                        TBSyoubunrui.Focus();
+                        NotFound(TBSyoubunrui,"小分類ID", sclass);
                         return;
                     }
 
@@ -259,7 +257,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        NotFound("商品ID", syohinID);
+                        NotFound(TBSyohinID,"商品ID", syohinID);
                     }
                 }
                 catch (FormatException ex)
@@ -305,9 +303,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(makerID, out int parsedMakerID) ||
                         !context.MMakers.Any(m => m.MaID == parsedMakerID))
                     {
-                        NotFound("メーカーID", makerID);
-                        TBMakerID.BackColor = Color.Yellow;
-                        TBMakerID.Focus();
+                        NotFound(TBMakerID, "メーカーID", makerID);
                         return;
                     }
 
@@ -315,9 +311,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(sclass, out int parsedSClassID) ||
                         !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
                     {
-                        NotFound("小分類ID", sclass);
-                        TBSyoubunrui.BackColor = Color.Yellow;
-                        TBSyoubunrui.Focus();
+                        NotFound(TBSyoubunrui, "小分類ID", sclass);
                         return;
                     }
 

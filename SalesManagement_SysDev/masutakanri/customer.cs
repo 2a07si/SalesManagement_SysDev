@@ -165,8 +165,10 @@ namespace SalesManagement_SysDev
             return true;
         }
 
-        private void NotFound(string itemName, string itemId)
+        private void NotFound(TextBox textBox, string itemName, string itemId)
         {
+            textBox.BackColor = Color.Yellow;
+            textBox.Focus();
             MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
                             "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -216,7 +218,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    NotFound("顧客ID", kokyakuID);
+                    NotFound(TBKokyakuID, "顧客ID", kokyakuID);
                 }
             }
         }
@@ -247,9 +249,7 @@ namespace SalesManagement_SysDev
 
                 if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    TBShopID.BackColor = Color.Yellow;
-                    TBShopID.Focus();
-                    NotFound("店舗ID", shopID);
+                    NotFound(TBShopID, "営業所ID", shopID);
                     return;
                 }
 
