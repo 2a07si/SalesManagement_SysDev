@@ -19,7 +19,7 @@ namespace SalesManagement_SysDev.Classまとめ
 
         public static bool Kuraberu_chan(string Display, string Mode, string Process, int LogID, DateTime timestamp)
         {
-            MessageBox.Show("くらべるちゃん起動！");
+            //MessageBox.Show("くらべるちゃん起動！");
             string data = null;
             switch(Display)
             {
@@ -114,7 +114,7 @@ namespace SalesManagement_SysDev.Classまとめ
             }
             try
             {
-                MessageBox.Show(data);
+                //MessageBox.Show(data);
                 using (var context = new SalesManagementContext())
                 {
                     var latestLog = context.LoginHistoryLogDetails
@@ -128,7 +128,7 @@ namespace SalesManagement_SysDev.Classまとめ
                     if (latestLog == null)
                     {
                         // latestLog が null の場合の処理
-                        MessageBox.Show("一致するログが見つかりませんでした。");
+                        //MessageBox.Show("一致するログが見つかりませんでした。");
                         return true; // 処理を継続
                     }
 
@@ -144,20 +144,20 @@ namespace SalesManagement_SysDev.Classまとめ
                         if (result == DialogResult.Yes)
                         {
                             // ユーザーが「はい」を選択した場合の処理
-                            Console.WriteLine("データを上書き保存します。");
+                            //Console.WriteLine("データを上書き保存します。");
                             return true;
                         }
                         else
                         {
                             // ユーザーが「いいえ」を選択した場合の処理
-                            Console.WriteLine("操作をキャンセルしました。");
+                            //Console.WriteLine("操作をキャンセルしました。");
                             return false;
                         }
                     }
                     else
                     {
                         // 条件が一致しない場合の処理
-                        MessageBox.Show("条件に一致するログが見つかりませんでした。");
+                        //MessageBox.Show("条件に一致するログが見つかりませんでした。");
                         return true; // 処理を継続
                     }
                 }
