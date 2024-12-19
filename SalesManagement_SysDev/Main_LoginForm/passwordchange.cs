@@ -27,6 +27,14 @@ namespace SalesManagement_SysDev.Main_LoginForm
         {
             passwordkakutei();
         }
+
+        private void NotFound(TextBox textBox, string itemName, string itemId)
+        {
+            textBox.BackColor = Color.Yellow;
+            textBox.Focus();
+            MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
+                            "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         private void passwordkakutei()
         {
             string ShainID = TBID.Text;
@@ -53,14 +61,17 @@ namespace SalesManagement_SysDev.Main_LoginForm
             if (!CheckNumeric(TBID.Text))
             {
                 MessageBox.Show("社員IDは半角数字のみです。");
+                return;
             }
             if (!CheckHalfAlphabetNumeric(TBold.Text))
             {
                 MessageBox.Show("現パスワードは半角英数字を入力してください。");
+                return;
             }
             if (!CheckHalfAlphabetNumeric(TBnew.Text))
             {
                 MessageBox.Show("新パスワードは半角英数字を入力してください。");
+                return;
             }
 
             using (var context = new SalesManagementContext())
@@ -88,7 +99,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 }
                 else
                 {
-                    MessageBox.Show("該当する社員情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBID, "社員ID", ShainID);
                 }
             }
         }
