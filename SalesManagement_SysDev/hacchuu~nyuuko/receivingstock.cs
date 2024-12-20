@@ -106,6 +106,8 @@ namespace SalesManagement_SysDev
                 TBShainID.Text = "";
             }
             ResetYellowBackgrounds(this);
+            UpdateClose_kun(orderFlag);
+            UpdateClose_Chan();
         }
 
         private void b_ser_Click(object sender, EventArgs e)
@@ -896,6 +898,7 @@ namespace SalesManagement_SysDev
 
             // b_FormSelectorのテキストを現在の状態に更新 
             UpdateFlagButtonText();
+            UpdateClose_kun(orderFlag);
         }
 
         private void UpdateFlagButtonText()
@@ -1039,6 +1042,7 @@ namespace SalesManagement_SysDev
                 ToggleOrderSelection();
                 UpdateFlagButtonText();
                 lastFocusedPanelID = panelID; // 現在のパネルIDを更新
+                UpdateClose_kun(orderFlag);
             }
         }
         //↓以下北島匙投げゾーン
@@ -1270,6 +1274,32 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
+
+        private void UpdateClose_kun(string orderFlag)
+        {
+            if (orderFlag == "詳細→")
+            {
+                b_upd.Enabled = false;
+                b_upd.BackColor = SystemColors.ControlDark; // 灰色に設定
+                b_kakutei.Enabled = false;
+                b_kakutei.BackColor = SystemColors.ControlDark;
+            }
+            else
+            {
+                b_upd.Enabled = true;
+                b_upd.BackColor = Color.FromArgb(212, 222, 255); // 色コード255, 224, 192に設定
+                b_kakutei.Enabled = true;
+                b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            }
+        }
+        private void UpdateClose_Chan()
+        {
+            b_upd.Enabled = true;
+            b_upd.BackColor = Color.FromArgb(212, 222, 255); // 色コード255, 224, 192に設定
+            b_kakutei.Enabled = true;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+        }
+
         private void ResetYellowBackgrounds(Control parent)
         {
             foreach (Control control in parent.Controls)

@@ -116,12 +116,15 @@ namespace SalesManagement_SysDev
                 TBShainID.Text = "";
             }
             ResetYellowBackgrounds(this);
+            UpdateClose_kun(orderFlag);
+            UpdateClose_Chan();
         }
         private void b_ser_Click(object sender, EventArgs e)
         {
             PerformSearch();
             tbtrue();
             TyumonFlag.Enabled = false;
+            UpdateClose_kun(orderFlag);
         }
         private void PerformSearch()
         {
@@ -134,6 +137,7 @@ namespace SalesManagement_SysDev
             UpdateStatus();
             tbtrue();
             TyumonFlag.Enabled = true;
+            UpdateClose_kun(orderFlag);
         }
         private void UpdateStatus()
         {
@@ -146,6 +150,7 @@ namespace SalesManagement_SysDev
             RegisterStatus();
             tbfalse();
             TyumonFlag.Enabled = false;
+            UpdateClose_kun(orderFlag);
         }
 
         private void RegisterStatus()
@@ -158,6 +163,7 @@ namespace SalesManagement_SysDev
         {
             ListStatus();
             tbtrue();
+            UpdateClose_kun(orderFlag);
         }
         private void ListStatus()
         {
@@ -244,7 +250,8 @@ namespace SalesManagement_SysDev
             switch (CurrentStatus.CurrentStatusValue)
             {
                 case CurrentStatus.Status.更新:
-                    UpdateOrderDetails();
+                    MessageBox.Show(":100\n無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //UpdateOrderDetails();
                     break;
                 case CurrentStatus.Status.登録:
                     RegisterOrderDetails();
@@ -1069,6 +1076,7 @@ namespace SalesManagement_SysDev
         {
             isOrderSelected = !isOrderSelected;
             orderFlag = isOrderSelected ? "←通常" : "詳細→";
+            
 
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
@@ -1081,10 +1089,12 @@ namespace SalesManagement_SysDev
 
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
+            
             // 状態を切り替える処理
             ToggleOrderSelection();
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
+            UpdateClose_kun(orderFlag);
         }
 
         private void UpdateFlagButtonText()
@@ -1123,6 +1133,7 @@ namespace SalesManagement_SysDev
                                  ? Convert.ToDateTime(row.Cells["注文日"].Value)
                                  : DateTime.Now; // nullの場合は現在の日付を設定
                     UpdateTextBoxState(checkBoxSyain.Checked);
+                    UpdateClose_kun(orderFlag);
                 }
             }
             catch (Exception ex)
@@ -1154,6 +1165,7 @@ namespace SalesManagement_SysDev
                 TBSyohinID.Text = row.Cells["商品ID"].Value.ToString() ?? string.Empty;
                 TBSuryou.Text = row.Cells["数量"].Value.ToString() ?? string.Empty;
             }
+            UpdateClose_kun(orderFlag);
         }
 
         private void OrdersConfirm(int JyutyuID, int ChID, int SyFlag, string SyHidden, int fla, int shortageQuantity)
@@ -1351,6 +1363,7 @@ namespace SalesManagement_SysDev
                 ToggleOrderSelection();
                 UpdateFlagButtonText();
                 lastFocusedPanelID = panelID; // 現在のパネルIDを更新
+                UpdateClose_kun(orderFlag);
             }
         }
         //↓以下北島匙投げゾーン
@@ -1671,6 +1684,30 @@ namespace SalesManagement_SysDev
             isProgrammaticChange = false;
         }
 
+        private void UpdateClose_kun(string orderFlag)
+        {
+            if (orderFlag == "詳細→")
+            {
+                b_upd.Enabled = false;
+                b_upd.BackColor = SystemColors.ControlDark; // 灰色に設定
+                b_kakutei.Enabled = false;
+                b_kakutei.BackColor = SystemColors.ControlDark;
+            }
+            else
+            {
+                b_upd.Enabled = true;
+                b_upd.BackColor = Color.FromArgb(255, 224, 192); // 色コード255, 224, 192に設定
+                b_kakutei.Enabled = true;
+                b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            }
+        }
+        private void UpdateClose_Chan()
+        {
+            b_upd.Enabled = true;
+            b_upd.BackColor = Color.FromArgb(255, 224, 192); // 色コード255, 224, 192に設定
+            b_kakutei.Enabled = true;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+        }
 
         private void ResetYellowBackgrounds(Control parent)
         {
