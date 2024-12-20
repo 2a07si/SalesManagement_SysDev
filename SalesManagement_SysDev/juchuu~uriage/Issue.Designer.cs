@@ -669,6 +669,7 @@
             checkBox1.Text = "降順切替";
             checkBox1.UseVisualStyleBackColor = true;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            checkBox1.Checked = true;
             // 
             // issue
             // 

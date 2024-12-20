@@ -177,9 +177,9 @@ namespace SalesManagement_SysDev
             bool stflag = StFlag.Checked;
 
             // 共通の入力チェックメソッド
-            if (!CheckRequiredField(TBZaikoID, zaikoID, "在庫ID"));
-            if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID"));
-            if (!CheckRequiredField(TBZaiko, zaiko, "在庫数量"));
+            if (!CheckRequiredField(TBZaikoID, zaikoID, "在庫ID"))
+            if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID"))
+            if (!CheckRequiredField(TBZaiko, zaiko, "在庫数量"))
             if (Kuraberu_kun.Kuraberu_chan("在庫", null, "更新", int.Parse(zaikoID), timestamp) == false)
             { return; }
 

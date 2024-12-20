@@ -697,6 +697,8 @@ namespace SalesManagement_SysDev
             // checkBox1
             // 
             checkBox1.AutoSize = true;
+            checkBox1.Checked = true;
+            checkBox1.CheckState = CheckState.Checked;
             checkBox1.Location = new Point(1176, 17);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(110, 29);

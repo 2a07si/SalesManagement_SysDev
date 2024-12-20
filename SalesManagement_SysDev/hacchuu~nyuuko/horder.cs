@@ -77,10 +77,11 @@ namespace SalesManagement_SysDev
             DisplayHattyus();
             DisplayHattyuDetails();
             SetupNumericOnlyTextBoxes();
-            CurrentStatus.UpDateStatus(label2);
-            UpdateStatus();
-            b_reg.Enabled = false;
-            b_reg.BackColor = Color.Gray;
+            CurrentStatus.RegistrationStatus(label2);
+            RegisterStatus();
+            //b_reg.Enabled = false;
+            //_reg.BackColor = Color.Gray;
+            tbfalse();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -648,7 +649,7 @@ namespace SalesManagement_SysDev
                 int syousai;
                 if (!int.TryParse(hattyuuID, out syousai) || !context.THattyuDetails.Any(h => h.HaDetailID == syousai))
                 {
-                    NotFound(TBHattyuuSyosaiID, "発注詳細ID", hattyuuID); 
+                    NotFound(TBHattyuuSyosaiID, "発注詳細ID", hattyuuID);
                     return;
                 }
 
@@ -656,7 +657,7 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    NotFound(TBHattyuIDS, "発注ID", hattyuuID); 
+                    NotFound(TBHattyuIDS, "発注ID", hattyuuID);
                     return;
                 }
 
@@ -664,7 +665,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound(TBSyohinID, "商品ID", syohinID); 
+                    NotFound(TBSyohinID, "商品ID", syohinID);
                     return;
                 }
 
@@ -707,7 +708,7 @@ namespace SalesManagement_SysDev
                 int hattyuIDInt;
                 if (!int.TryParse(hattyuuID, out hattyuIDInt) || !context.THattyus.Any(h => h.HaID == hattyuIDInt))
                 {
-                    NotFound(TBHattyuIDS, "発注ID", hattyuuID); 
+                    NotFound(TBHattyuIDS, "発注ID", hattyuuID);
                     return;
                 }
 
@@ -715,7 +716,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound(TBSyohinID, "商品ID", syohinID); 
+                    NotFound(TBSyohinID, "商品ID", syohinID);
                     return;
                 }
 

@@ -668,6 +668,7 @@
             checkBox1.TabIndex = 276;
             checkBox1.Text = "降順切替";
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.Checked = true;
             // 
             // order
             // 
