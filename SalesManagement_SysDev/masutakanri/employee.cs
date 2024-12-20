@@ -78,7 +78,7 @@ namespace SalesManagement_SysDev
             DisplayEmployee();
             SetupNumericOnlyTextBoxes();
             CurrentStatus.RegistrationStatus(label2);
-           
+
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -138,8 +138,8 @@ namespace SalesManagement_SysDev
 
         private void b_kakutei_Click(object sender, EventArgs e)
         {
-            
-           colorReset();
+
+            colorReset();
             HandleOrderOperation();
         }
 
@@ -209,12 +209,12 @@ namespace SalesManagement_SysDev
             string riyuu = TBRiyuu.Text;
 
             // 必須項目のチェック
-            if (CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
+            if (CheckTBValue(TBSyainID, ShainID, "社員ID")) return;
             if (CheckTBValue(TBSyainName, ShainName, "社員名")) return;
-            if (CheckTBValue(TBShopID, ShopID, "営業所ID"))       return;
-            if (CheckTBValue(TBJobID, JobID, "役職ID"))         return;
-            if (CheckTBValue(TBPass, Pass, "パスワード"))       return;
-            if (CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
+            if (CheckTBValue(TBShopID, ShopID, "営業所ID")) return;
+            if (CheckTBValue(TBJobID, JobID, "役職ID")) return;
+            if (CheckTBValue(TBPass, Pass, "パスワード")) return;
+            if (CheckTBValue(TBTellNo, TelNo, "電話番号")) return;
             if (Kuraberu_kun.Kuraberu_chan("社員", null, "更新", int.Parse(ShainID), timestamp) == false)
             { return; }
 
@@ -283,12 +283,12 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
 
             // 必須項目のチェック
-            if (CheckTBValue(TBSyainID, ShainID, "社員ID"))     return;
+            if (CheckTBValue(TBSyainID, ShainID, "社員ID")) return;
             if (CheckTBValue(TBSyainName, ShainName, "社員名")) return;
-            if (CheckTBValue(TBShopID, ShopID, "営業所ID"))       return;
-            if (CheckTBValue(TBJobID, JobID, "役職ID"))         return;
-            if (CheckTBValue(TBPass, Pass, "パスワード"))       return;
-            if (CheckTBValue(TBTellNo, TelNo, "電話番号"))      return;
+            if (CheckTBValue(TBShopID, ShopID, "営業所ID")) return;
+            if (CheckTBValue(TBJobID, JobID, "役職ID")) return;
+            if (CheckTBValue(TBPass, Pass, "パスワード")) return;
+            if (CheckTBValue(TBTellNo, TelNo, "電話番号")) return;
 
             using (var context = new SalesManagementContext())
             {
@@ -305,14 +305,14 @@ namespace SalesManagement_SysDev
                 int shop;
                 if (!int.TryParse(ShopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    NotFound(TBShopID,"営業所ID", ShopID);
+                    NotFound(TBShopID, "営業所ID", ShopID);
                     return;
                 }
 
                 int job;
                 if (!int.TryParse(JobID, out job) || !context.MPositions.Any(e => e.PoID == job))
                 {
-                    NotFound(TBJobID,"役職ID", JobID);
+                    NotFound(TBJobID, "役職ID", JobID);
                     return;
                 }
 

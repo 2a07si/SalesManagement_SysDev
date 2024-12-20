@@ -957,7 +957,7 @@ namespace SalesManagement_SysDev
                         出荷ID = sh.ShID,
                         商品ID = sh.PrID,
                         数量 = sh.ShQuantity.ToString("N0")
-                        
+
                     }).ToList();
                 }
             }

@@ -305,9 +305,9 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBShopID, shopID, "店舗ID")) return;
             if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
             if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
-            if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID"))return;
+            if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
             {
-                 // 入力が足りない場合は処理を終了
+                // 入力が足りない場合は処理を終了
             }
 
             // ログインIDとの照合
@@ -419,9 +419,9 @@ namespace SalesManagement_SysDev
 
                 // 入力が不足している項目をチェック
                 if (CheckTBValue(TBShopID, shopID, "店舗ID")) return;
-                if (CheckTBValue(TBShainID, shainID, "社員ID"))return;
-                if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID"))return;
-                if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID"))return;
+                if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
+                if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
+                if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
 
                 // ログインIDとの照合
                 if (shainID != empID)
@@ -655,7 +655,7 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
             if (CheckTBValue(TBSuryou, suryou, "数量")) return;
             if (CheckTBValue(TBTotal, total, "合計")) return;
- 
+
             // 競合チェック（売上詳細データの更新）
             if (Kuraberu_kun.Kuraberu_chan("売上", "詳細", "更新", int.Parse(UriageSyosaiID), timestamp) == false)
             {
@@ -724,9 +724,9 @@ namespace SalesManagement_SysDev
 
                 // 入力チェック
                 if (CheckTBValue(TBUriageIDS, uriageID, "売上ID"))
-                if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))return;
-                if (CheckTBValue(TBSuryou, suryou, "数量"))return;
-                
+                    if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+                if (CheckTBValue(TBSuryou, suryou, "数量")) return;
+
                 using (var context = new SalesManagementContext())
                 {
                     // 売上IDの検証

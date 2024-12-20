@@ -260,7 +260,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
-         private bool CheckTBValue(TextBox textBox, string value, string fieldName)
+        private bool CheckTBValue(TextBox textBox, string value, string fieldName)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -295,11 +295,11 @@ namespace SalesManagement_SysDev
             DateTime Orderdate = date.Value;
 
             if (CheckTBValue(TBTyumonID, OrderID, "注文ID")) return;
-            if(CheckTBValue(TBShopID, ShopID, "ショップID") ) return;
-            if(CheckTBValue(TBShainID, ShainID, "社員ID") ) return;
-            if(CheckTBValue(TBKokyakuID, KokyakuID, "顧客ID") ) return;
-            if(CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
-           
+            if (CheckTBValue(TBShopID, ShopID, "ショップID")) return;
+            if (CheckTBValue(TBShainID, ShainID, "社員ID")) return;
+            if (CheckTBValue(TBKokyakuID, KokyakuID, "顧客ID")) return;
+            if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
+
             // ログイン時に使用した社員IDが一致しているかをチェック
             if (TBShainID.Text != empID)
             {
@@ -847,7 +847,7 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBTyumonIDS, TyumonID, "注文ID")) return;
             if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
             if (CheckTBValue(TBSuryou, suryou, "数量")) return;
-         
+
             // 注文詳細IDの整合性チェック
             if (Kuraberu_kun.Kuraberu_chan("注文", "詳細", "更新", int.Parse(TyumonSyosaiID), timestamp) == false)
             {

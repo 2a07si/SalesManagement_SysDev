@@ -30,7 +30,7 @@ namespace SalesManagement_SysDev
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            
+
         }
         private void customer_Load(object sender, EventArgs e)
         {
@@ -175,23 +175,23 @@ namespace SalesManagement_SysDev
 
         private void UpdateCustomer()
         {
-            string kokyakuID    = TBKokyakuID.Text;
-            string shopID       = TBShopID.Text;
-            string kokyakuname  = TBKokyakuName.Text;
-            string juusho       = TBJyusyo.Text;
+            string kokyakuID = TBKokyakuID.Text;
+            string shopID = TBShopID.Text;
+            string kokyakuname = TBKokyakuName.Text;
+            string juusho = TBJyusyo.Text;
             string yuubinbangou = TBYuubinNo.Text;
-            string tel          = TBTellNo.Text;
-            string fax          = TBFax.Text;
-            bool flag           = DelFlag.Checked;
+            string tel = TBTellNo.Text;
+            string fax = TBFax.Text;
+            bool flag = DelFlag.Checked;
 
             // 必須項目のチェック
-            if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID"))     return;
-            if (CheckTBValue(TBShopID, shopID, "営業所ID"))         return;
+            if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
+            if (CheckTBValue(TBShopID, shopID, "営業所ID")) return;
             if (CheckTBValue(TBKokyakuName, kokyakuname, "顧客名")) return;
             if (CheckTBValue(TBYuubinNo, yuubinbangou, "郵便番号")) return;
-            if (CheckTBValue(TBJyusyo, juusho, "住所"))             return;
-            if (CheckTBValue(TBTellNo, tel, "電話番号"))            return;
-            if (CheckTBValue(TBFax, fax, "FAX"))                    return;
+            if (CheckTBValue(TBJyusyo, juusho, "住所")) return;
+            if (CheckTBValue(TBTellNo, tel, "電話番号")) return;
+            if (CheckTBValue(TBFax, fax, "FAX")) return;
             if (Kuraberu_kun.Kuraberu_chan("顧客", null, "更新", int.Parse(kokyakuID), timestamp) == false)
             { return; }
 
@@ -200,15 +200,15 @@ namespace SalesManagement_SysDev
                 var customer = context.MClients.SingleOrDefault(c => c.ClID.ToString() == kokyakuID);
                 if (customer != null)
                 {
-                    customer.SoID      = int.Parse(shopID);
-                    customer.ClPostal  = yuubinbangou;
-                    customer.ClName    = kokyakuname;
-                    customer.ClID      = int.Parse(kokyakuID);
+                    customer.SoID = int.Parse(shopID);
+                    customer.ClPostal = yuubinbangou;
+                    customer.ClName = kokyakuname;
+                    customer.ClID = int.Parse(kokyakuID);
                     customer.ClAddress = juusho;
-                    customer.ClPhone   = tel;
-                    customer.ClFax     = fax;
-                    customer.ClFlag    = flag ? 1 : 0;
-                    customer.ClHidden  = TBRiyuu.Text;
+                    customer.ClPhone = tel;
+                    customer.ClFax = fax;
+                    customer.ClFlag = flag ? 1 : 0;
+                    customer.ClHidden = TBRiyuu.Text;
 
                     context.SaveChanges();
                     MessageBox.Show("更新が成功しました。");
@@ -236,12 +236,12 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
 
             // 必須項目のチェック
-            if (CheckTBValue(TBShopID, shopID, "営業所ID"))         return;
+            if (CheckTBValue(TBShopID, shopID, "営業所ID")) return;
             if (CheckTBValue(TBKokyakuName, kokyakuname, "顧客名")) return;
             if (CheckTBValue(TBYuubinNo, yuubinbangou, "郵便番号")) return;
-            if (CheckTBValue(TBJyusyo, juusho, "住所"))             return;
-            if (CheckTBValue(TBTellNo, tel, "電話番号"))            return;
-            if (CheckTBValue(TBFax, fax, "FAX"))                    return;
+            if (CheckTBValue(TBJyusyo, juusho, "住所")) return;
+            if (CheckTBValue(TBTellNo, tel, "電話番号")) return;
+            if (CheckTBValue(TBFax, fax, "FAX")) return;
 
             using (var context = new SalesManagementContext())
             {

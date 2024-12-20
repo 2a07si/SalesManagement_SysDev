@@ -222,7 +222,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(makerID, out int parsedMakerID) ||
                         !context.MMakers.Any(m => m.MaID == parsedMakerID))
                     {
-                        NotFound(TBMakerID,"メーカーID", makerID);
+                        NotFound(TBMakerID, "メーカーID", makerID);
                         return;
                     }
 
@@ -230,7 +230,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(sclass, out int parsedSClassID) ||
                         !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
                     {
-                        NotFound(TBSyoubunrui,"小分類ID", sclass);
+                        NotFound(TBSyoubunrui, "小分類ID", sclass);
                         return;
                     }
 
@@ -257,7 +257,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        NotFound(TBSyohinID,"商品ID", syohinID);
+                        NotFound(TBSyohinID, "商品ID", syohinID);
                     }
                 }
                 catch (FormatException ex)
