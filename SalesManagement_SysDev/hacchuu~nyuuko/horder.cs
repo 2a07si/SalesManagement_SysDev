@@ -530,7 +530,7 @@ namespace SalesManagement_SysDev
                         発注年月日 = h.HaDate,
                         状態フラグ = h.WaWarehouseFlag,
                         非表示フラグ = h.HaFlag,
-                        非表示理由 = h.HaHidden
+                        備考 = h.HaHidden
                     }).ToList();
                 }
             }
@@ -617,7 +617,7 @@ namespace SalesManagement_SysDev
                         発注年月日 = h.HaDate,
                         発注状態 = h.WaWarehouseFlag,        // 発注フラグの表示
                         削除フラグ = h.HaFlag,           // 管理フラグ
-                        理由 = h.HaHidden               // 非表示理由
+                        理由 = h.HaHidden               // 備考
                     }).ToList();
                 }
                 else
@@ -929,7 +929,7 @@ namespace SalesManagement_SysDev
                     // 入庫状態や非表示フラグも必要に応じて設定 
                     // 例: NyuukoFlag.Checked = (row.Cells["入庫状態"].Value.ToString() == "1"); 
                     // 例: DelFlag.Checked = (row.Cells["非表示フラグ"].Value.ToString() == "1"); 
-                    // 例: TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString(); 
+                    // 例: TBRiyuu.Text = row.Cells["備考"].Value.ToString(); 
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }
 

@@ -222,7 +222,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(makerID, out int parsedMakerID) ||
                         !context.MMakers.Any(m => m.MaID == parsedMakerID))
                     {
-                        NotFound(TBMakerID,"メーカーID", makerID);
+                        NotFound(TBMakerID, "メーカーID", makerID);
                         return;
                     }
 
@@ -230,7 +230,7 @@ namespace SalesManagement_SysDev
                     if (!int.TryParse(sclass, out int parsedSClassID) ||
                         !context.MSmallClassifications.Any(sc => sc.ScID == parsedSClassID))
                     {
-                        NotFound(TBSyoubunrui,"小分類ID", sclass);
+                        NotFound(TBSyoubunrui, "小分類ID", sclass);
                         return;
                     }
 
@@ -257,7 +257,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        NotFound(TBSyohinID,"商品ID", syohinID);
+                        NotFound(TBSyohinID, "商品ID", syohinID);
                     }
                 }
                 catch (FormatException ex)
@@ -406,7 +406,7 @@ namespace SalesManagement_SysDev
                         色 = m.PrColor,
                         発売日 = m.PrReleaseDate,
                         非表示フラグ = m.PrFlag,
-                        非表示理由 = m.PrHidden
+                        備考 = m.PrHidden
                     }).ToList();
                 }
             }
@@ -507,7 +507,7 @@ namespace SalesManagement_SysDev
                         色 = m.PrColor,
                         発売日 = m.PrReleaseDate,
                         非表示フラグ = m.PrFlag,
-                        非表示理由 = m.PrHidden,
+                        備考 = m.PrHidden,
                         削除フラグ = DelFlag.Checked ? 1 : 0
                     }).ToList();
                 }
@@ -547,10 +547,10 @@ namespace SalesManagement_SysDev
                     TBSyoubunrui.Text = row.Cells["小分類ID"].Value.ToString();
                     TBModel.Text = row.Cells["型番"].Value.ToString();
                     TBColor.Text = row.Cells["色"].Value.ToString();
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                 }
             }
             catch (Exception ex)

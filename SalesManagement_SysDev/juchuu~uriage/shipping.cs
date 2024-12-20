@@ -763,7 +763,7 @@ namespace SalesManagement_SysDev
                         出荷終了日 = sh.ShFinishDate,
                         出荷フラグ = sh.ShStateFlag,  // 出荷フラグの表示 
                         削除フラグ = sh.ShFlag,       // 管理フラグ
-                        理由 = sh.ShHidden           // 非表示理由
+                        理由 = sh.ShHidden           // 備考
                     }).ToList();
                 }
                 else
@@ -1090,10 +1090,10 @@ namespace SalesManagement_SysDev
                                  ? Convert.ToDateTime(row.Cells["出荷終了日"].Value)
                                  : DateTime.Now; // nullの場合は現在の日付を設定
                     ;
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }

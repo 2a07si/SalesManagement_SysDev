@@ -535,7 +535,7 @@ namespace SalesManagement_SysDev
                         入庫年月日 = ws.WaDate,
                         入庫済フラグ = ws.WaShelfFlag,
                         非表示フラグ = ws.WaFlag,
-                        非表示理由 = ws.WaHidden
+                        備考 = ws.WaHidden
 
                     }).ToList();
                 }
