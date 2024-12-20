@@ -397,7 +397,7 @@ namespace SalesManagement_SysDev
                         // 対応するすべての注文詳細を取得 
                         var details = context.TChumonDetails.Where(d => d.ChID == int.Parse(ChumonID)).ToList();
                         bool hasShortage = false; // 在庫不足が1つでもあれば true にする
-                        string hiddenReason = null; // 非表示理由
+                        string hiddenReason = null; // 備考
                         int hiddenFlag = 0; // 非表示フラグ
                         int totalShortage = 0; // 総不足数
 
@@ -722,7 +722,7 @@ namespace SalesManagement_SysDev
                         注文日 = o.ChDate,         // 注文日 
                         状態フラグ = o.ChStateFlag,// 注文状態フラグ 
                         非表示フラグ = o.ChFlag,  // 削除フラグ 
-                        非表示理由 = o.ChHidden  // 非表示理由 
+                        備考 = o.ChHidden  // 備考 
                     }).ToList();
                 }
             }
@@ -824,7 +824,7 @@ namespace SalesManagement_SysDev
                         注文日 = o.ChDate,         // 注文日
                         状態フラグ = o.ChStateFlag, // 注文状態フラグ
                         非表示フラグ = o.ChFlag,   // 削除フラグ
-                        非表示理由 = o.ChHidden    // 理由
+                        備考 = o.ChHidden    // 理由
                     }).ToList();
                 }
                 else
@@ -1182,7 +1182,7 @@ namespace SalesManagement_SysDev
                     ClID = order.ClID,
                     OrID = order.OrID,
                     SyFlag = SyFlag,                  // ここでフラグを設定
-                    SyHidden = SyHidden,              // 非表示理由も設定
+                    SyHidden = SyHidden,              // 備考も設定
                     SyDate = null,
                     SyStateFlag = 0
                 };

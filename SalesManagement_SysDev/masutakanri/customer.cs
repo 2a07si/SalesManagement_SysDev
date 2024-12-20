@@ -311,7 +311,7 @@ namespace SalesManagement_SysDev
                         電話番号 = c.ClPhone,
                         FAX = c.ClFax,
                         顧客管理フラグ = c.ClFlag,
-                        非表示理由 = c.ClHidden
+                        備考 = c.ClHidden
                     }).ToList();
                 }
             }
@@ -395,7 +395,7 @@ namespace SalesManagement_SysDev
                         電話番号 = c.ClPhone,
                         FAX = c.ClFax,
                         顧客管理フラグ = c.ClFlag,
-                        非表示理由 = c.ClHidden
+                        備考 = c.ClHidden
                     }).ToList();
                 }
                 else
@@ -434,10 +434,10 @@ namespace SalesManagement_SysDev
                     TBYuubinNo.Text = row.Cells["郵便番号"].Value.ToString();
                     TBTellNo.Text = row.Cells["電話番号"].Value.ToString();
                     TBFax.Text = row.Cells["FAX"].Value.ToString();
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                 }
             }
             catch (Exception ex)

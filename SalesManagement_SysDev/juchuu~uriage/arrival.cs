@@ -596,7 +596,7 @@ namespace SalesManagement_SysDev
                         入荷日 = o.ArDate,        // 入荷日
                         状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
                         非表示フラグ = o.ArFlag,         // 削除フラグ
-                        非表示理由 = o.ArHidden            // 理由
+                        備考 = o.ArHidden            // 理由
                     }).ToList();
                 }
             }
@@ -704,7 +704,7 @@ namespace SalesManagement_SysDev
                         入荷日 = o.ArDate,         // 入荷日
                         状態フラグ = o.ArStateFlag, // 入荷状態フラグ
                         非表示フラグ = o.ArFlag,   // 削除フラグ
-                        非表示理由 = o.ArHidden    // 理由
+                        備考 = o.ArHidden    // 理由
                     }).ToList();
                 }
                 else
@@ -1001,7 +1001,7 @@ namespace SalesManagement_SysDev
                         DelFlag.Checked = true;
                     else
                         DelFlag.Checked = false;
-                    TBRiyuu.Text = row.Cells["非表示理由"].Value?.ToString() ?? string.Empty;
+                    TBRiyuu.Text = row.Cells["備考"].Value?.ToString() ?? string.Empty;
 
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }

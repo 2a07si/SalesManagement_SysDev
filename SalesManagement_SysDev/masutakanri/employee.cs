@@ -364,7 +364,7 @@ namespace SalesManagement_SysDev
                         パスワード = e.EmPassword,
                         電話番号 = e.EmPhone,
                         非表示フラグ = e.EmFlag,
-                        非表示理由 = e.EmHidden
+                        備考 = e.EmHidden
                     }).ToList();
                 }
             }
@@ -443,7 +443,7 @@ namespace SalesManagement_SysDev
                         入社年月日 = employee.EmHiredate,
                         パスワード = employee.EmPassword,
                         電話番号 = employee.EmPhone,
-                        非表示理由 = employee.EmHidden,
+                        備考 = employee.EmHidden,
                         削除フラグ = DelFlag.Checked ? 1 : 0
                     }).ToList();
                 }
@@ -477,10 +477,10 @@ namespace SalesManagement_SysDev
                     date.Value = Convert.ToDateTime(row.Cells["入社年月日"].Value);
                     TBPass.Text = row.Cells["パスワード"].Value.ToString();
                     TBTellNo.Text = row.Cells["電話番号"].Value.ToString();
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                 }
             }
             catch (Exception ex)

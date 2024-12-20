@@ -341,7 +341,7 @@
             label17.Name = "label17";
             label17.Size = new Size(102, 25);
             label17.TabIndex = 14;
-            label17.Text = "非表示理由";
+            label17.Text = "備考";
             // 
             // TBShopID
             // 

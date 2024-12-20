@@ -596,7 +596,7 @@ namespace SalesManagement_SysDev
                         受注日 = o.OrDate,
                         状態フラグ = o.OrStateFlag,
                         非表示フラグ = o.OrFlag,
-                        非表示理由 = o.OrHidden
+                        備考 = o.OrHidden
                     }).ToList();
                 }
             }

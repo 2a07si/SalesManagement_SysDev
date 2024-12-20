@@ -538,7 +538,7 @@ namespace SalesManagement_SysDev
                         受注ID = s.OrID,
                         売上日 = s.SaDate,
                         売上フラグ = s.SaFlag,
-                        非表示理由 = s.SaHidden
+                        備考 = s.SaHidden
                     }).ToList();
                 }
             }
@@ -972,10 +972,10 @@ namespace SalesManagement_SysDev
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                     TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
                     date.Value = Convert.ToDateTime(row.Cells["売上日"].Value);
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
