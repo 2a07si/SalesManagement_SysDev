@@ -585,7 +585,7 @@ namespace SalesManagement_SysDev
                         出庫日 = o.SyDate,        // 出庫日
                         状態フラグ = o.SyStateFlag,     // 出庫状態フラグ
                         非表示フラグ = o.SyFlag,         // 削除フラグ
-                        非表示理由 = o.SyHidden            // 理由
+                        備考 = o.SyHidden            // 理由
                     }).ToList();
                 }
             }
@@ -688,7 +688,7 @@ namespace SalesManagement_SysDev
                         出庫日 = issue.SyDate,   // 出庫日
                         状態フラグ = issue.SyStateFlag, // 出庫状態フラグ
                         非表示フラグ = issue.SyFlag,    // 削除フラグ
-                        非表示理由 = issue.SyHidden     // 理由
+                        備考 = issue.SyHidden     // 理由
                     }).ToList();
                 }
                 else

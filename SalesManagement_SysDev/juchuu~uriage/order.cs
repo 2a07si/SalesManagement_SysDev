@@ -267,7 +267,7 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
-         private bool CheckTBValue(TextBox textBox, string value, string fieldName)
+        private bool CheckTBValue(TextBox textBox, string value, string fieldName)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -302,11 +302,11 @@ namespace SalesManagement_SysDev
             DateTime Orderdate = date.Value;
 
             if (CheckTBValue(TBTyumonID, OrderID, "注文ID")) return;
-            if(CheckTBValue(TBShopID, ShopID, "ショップID") ) return;
-            if(CheckTBValue(TBShainID, ShainID, "社員ID") ) return;
-            if(CheckTBValue(TBKokyakuID, KokyakuID, "顧客ID") ) return;
-            if(CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
-           
+            if (CheckTBValue(TBShopID, ShopID, "ショップID")) return;
+            if (CheckTBValue(TBShainID, ShainID, "社員ID")) return;
+            if (CheckTBValue(TBKokyakuID, KokyakuID, "顧客ID")) return;
+            if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
+
             // ログイン時に使用した社員IDが一致しているかをチェック
             if (TBShainID.Text != empID)
             {
@@ -404,7 +404,7 @@ namespace SalesManagement_SysDev
                         // 対応するすべての注文詳細を取得 
                         var details = context.TChumonDetails.Where(d => d.ChID == int.Parse(ChumonID)).ToList();
                         bool hasShortage = false; // 在庫不足が1つでもあれば true にする
-                        string hiddenReason = null; // 非表示理由
+                        string hiddenReason = null; // 備考
                         int hiddenFlag = 0; // 非表示フラグ
                         int totalShortage = 0; // 総不足数
 
@@ -729,7 +729,7 @@ namespace SalesManagement_SysDev
                         注文日 = o.ChDate,         // 注文日 
                         状態フラグ = o.ChStateFlag,// 注文状態フラグ 
                         非表示フラグ = o.ChFlag,  // 削除フラグ 
-                        非表示理由 = o.ChHidden  // 非表示理由 
+                        備考 = o.ChHidden  // 備考 
                     }).ToList();
                 }
             }
@@ -831,7 +831,7 @@ namespace SalesManagement_SysDev
                         注文日 = o.ChDate,         // 注文日
                         状態フラグ = o.ChStateFlag, // 注文状態フラグ
                         非表示フラグ = o.ChFlag,   // 削除フラグ
-                        非表示理由 = o.ChHidden    // 理由
+                        備考 = o.ChHidden    // 理由
                     }).ToList();
                 }
                 else
@@ -854,7 +854,7 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBTyumonIDS, TyumonID, "注文ID")) return;
             if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
             if (CheckTBValue(TBSuryou, suryou, "数量")) return;
-         
+
             // 注文詳細IDの整合性チェック
             if (Kuraberu_kun.Kuraberu_chan("注文", "詳細", "更新", int.Parse(TyumonSyosaiID), timestamp) == false)
             {
@@ -1194,7 +1194,7 @@ namespace SalesManagement_SysDev
                     ClID = order.ClID,
                     OrID = order.OrID,
                     SyFlag = SyFlag,                  // ここでフラグを設定
-                    SyHidden = SyHidden,              // 非表示理由も設定
+                    SyHidden = SyHidden,              // 備考も設定
                     SyDate = null,
                     SyStateFlag = 0
                 };

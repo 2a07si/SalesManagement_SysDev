@@ -341,7 +341,7 @@ namespace SalesManagement_SysDev
                 // 営業所IDの存在確認
                 if (!int.TryParse(ShopID, out int shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    NotFound(TBShopID,"営業所ID", ShopID);
+                    NotFound(TBShopID, "営業所ID", ShopID);
                     return;
                 }
 
@@ -362,7 +362,7 @@ namespace SalesManagement_SysDev
                 // 受注IDの存在確認
                 if (!int.TryParse(JyutyuID, out int juchu) || !context.TOrders.Any(j => j.OrID == juchu))
                 {
-                    NotFound(TBJyutyuID,"受注ID", JyutyuID);
+                    NotFound(TBJyutyuID, "受注ID", JyutyuID);
                     return;
                 }
 
@@ -392,7 +392,7 @@ namespace SalesManagement_SysDev
                         // 入荷詳細の確認
                         if (!context.TArrivalDetails.Any(ad => ad.ArID == arrival.ArID))
                         {
-                            NotFound(TBNyuukaID,"入荷詳細ID", arrival.ArID.ToString());
+                            NotFound(TBNyuukaID, "入荷詳細ID", arrival.ArID.ToString());
                             return;
                         }
 
@@ -431,7 +431,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    NotFound(TBNyuukaID,"入荷ID", ArID);
+                    NotFound(TBNyuukaID, "入荷ID", ArID);
                 }
             }
 
@@ -463,21 +463,21 @@ namespace SalesManagement_SysDev
                 // 入力値の存在チェック
                 if (!int.TryParse(ShopID, out int shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    NotFound(TBShopID,"営業所ID", ShopID);
+                    NotFound(TBShopID, "営業所ID", ShopID);
                     return;
                 }
 
                 // 社員IDの存在確認
                 if (!int.TryParse(ShainID, out int employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    NotFound(TBShainID,"社員ID", ShainID);
+                    NotFound(TBShainID, "社員ID", ShainID);
                     return;
                 }
 
                 // 顧客IDの存在確認
                 if (!int.TryParse(KokyakuID, out int kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
                 {
-                    NotFound(TBKokyakuID,"顧客ID", KokyakuID);
+                    NotFound(TBKokyakuID, "顧客ID", KokyakuID);
                     return;
                 }
 
@@ -598,7 +598,7 @@ namespace SalesManagement_SysDev
                         入荷日 = o.ArDate,        // 入荷日
                         状態フラグ = o.ArStateFlag,     // 入荷状態フラグ
                         非表示フラグ = o.ArFlag,         // 削除フラグ
-                        非表示理由 = o.ArHidden            // 理由
+                        備考 = o.ArHidden            // 理由
                     }).ToList();
                 }
             }
@@ -706,7 +706,7 @@ namespace SalesManagement_SysDev
                         入荷日 = o.ArDate,         // 入荷日
                         状態フラグ = o.ArStateFlag, // 入荷状態フラグ
                         非表示フラグ = o.ArFlag,   // 削除フラグ
-                        非表示理由 = o.ArHidden    // 理由
+                        備考 = o.ArHidden    // 理由
                     }).ToList();
                 }
                 else
@@ -727,7 +727,7 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBNyukaSyosaiID, nyuukaSyosaiID, "入荷詳細ID")) return;
             if (CheckTBValue(TBNyuukaIDS, nyuukaID, "入荷ID")) return;
             if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
-            if (CheckTBValue(TBSuryou, suryou, "数量"))return;
+            if (CheckTBValue(TBSuryou, suryou, "数量")) return;
 
             if (!Kuraberu_kun.Kuraberu_chan("入荷", "詳細", "更新", int.Parse(nyuukaSyosaiID), timesamp))
             {
@@ -788,9 +788,9 @@ namespace SalesManagement_SysDev
 
             // 必須項目の入力チェック
             if (CheckTBValue(TBNyuukaIDS, nyuukaID, "入荷ID")) return;
-            if (CheckTBValue(TBSyohinID, syohinID, "商品ID") )return;
-            if (CheckTBValue(TBSuryou, suryou, "数量"))return;
-            
+            if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+            if (CheckTBValue(TBSuryou, suryou, "数量")) return;
+
             using (var context = new SalesManagementContext())
             {
                 // 入荷IDの検証
@@ -1004,7 +1004,7 @@ namespace SalesManagement_SysDev
                         DelFlag.Checked = true;
                     else
                         DelFlag.Checked = false;
-                    TBRiyuu.Text = row.Cells["非表示理由"].Value?.ToString() ?? string.Empty;
+                    TBRiyuu.Text = row.Cells["備考"].Value?.ToString() ?? string.Empty;
 
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }

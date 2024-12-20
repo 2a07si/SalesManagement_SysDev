@@ -318,9 +318,9 @@ namespace SalesManagement_SysDev
                 string riyuu = TBRiyuu.Text;
 
                 // 条件精査（CheckTBValueメソッドを使用）
-                if(CheckTBValue(TBJyutyuID, jyutyuID, "受注ID"))    return;
-                if (CheckTBValue(TBShopID, shopID, "営業所ID"))       return;
-                if (CheckTBValue(TBShainID, shainID, "社員ID"))     return; 
+                if (CheckTBValue(TBJyutyuID, jyutyuID, "受注ID")) return;
+                if (CheckTBValue(TBShopID, shopID, "営業所ID")) return;
+                if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
                 if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
 
 
@@ -349,7 +349,7 @@ namespace SalesManagement_SysDev
                     }
                 }
                 if (Kuraberu_kun.Kuraberu_chan("受注", "通常", "更新", int.Parse(jyutyuID), timestamp) == false)
-                {  }
+                { }
 
                 using (var context = new SalesManagementContext())
                 {
@@ -362,17 +362,17 @@ namespace SalesManagement_SysDev
 
                     if (!int.TryParse(shopID, out int eigyou) || !context.TOrders.Any(s => s.SoID == eigyou))
                     {
-                        NotFound(TBShopID,"営業所ID", shopID);
+                        NotFound(TBShopID, "営業所ID", shopID);
                         return;
                     }
                     if (!int.TryParse(shainID, out int shain) || !context.TOrders.Any(s => s.EmID == shain))
                     {
-                        NotFound(TBShainID,"社員ID", shainID);
+                        NotFound(TBShainID, "社員ID", shainID);
                         return;
                     }
                     if (!int.TryParse(kokyakuID, out int kokyaku) || !context.TOrders.Any(s => s.ClID == kokyaku))
                     {
-                        NotFound(TBKokyakuID,"顧客ID", kokyakuID);
+                        NotFound(TBKokyakuID, "顧客ID", kokyakuID);
                         return;
                     }
 
@@ -396,7 +396,7 @@ namespace SalesManagement_SysDev
                             var orderDetailsExist = context.TOrderDetails.Any(od => od.OrID == order.OrID);
                             if (!orderDetailsExist)
                             {
-                                NotFound(TBJyutyuID,"受注詳細ID", order.OrID.ToString());
+                                NotFound(TBJyutyuID, "受注詳細ID", order.OrID.ToString());
                                 return;
                             }
                             order.OrFlag = 1;
@@ -447,7 +447,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        NotFound(TBJyutyuID,"受注ID", jyutyuID);
+                        NotFound(TBJyutyuID, "受注ID", jyutyuID);
                         TBJyutyuID.BackColor = Color.Yellow;
                         TBJyutyuID.Focus();
                     }
@@ -479,8 +479,8 @@ namespace SalesManagement_SysDev
                 bool tyumonFlag = TyumonFlag.Checked;
                 bool delFlag = DelFlag.Checked;
 
-                if (CheckTBValue(TBShopID, shopID, "営業所ID"))       return;
-                if (CheckTBValue(TBShainID, shainID, "社員ID"))     return;
+                if (CheckTBValue(TBShopID, shopID, "営業所ID")) return;
+                if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
                 if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
 
                 // 社員IDが一致しない場合の処理
@@ -512,12 +512,12 @@ namespace SalesManagement_SysDev
                 {
                     if (!int.TryParse(shopID, out int eigyou) || !context.TOrders.Any(s => s.SoID == eigyou))
                     {
-                        NotFound(TBShopID,"営業所ID", shopID);
+                        NotFound(TBShopID, "営業所ID", shopID);
                         return;
                     }
                     if (!int.TryParse(shainID, out int shain) || !context.MEmployees.Any(e => e.EmID == shain))
                     {
-                        NotFound(TBShainID,"社員ID", shainID);
+                        NotFound(TBShainID, "社員ID", shainID);
                         return;
                     }
 
@@ -596,7 +596,7 @@ namespace SalesManagement_SysDev
                         受注日 = o.OrDate,
                         状態フラグ = o.OrStateFlag,
                         非表示フラグ = o.OrFlag,
-                        非表示理由 = o.OrHidden
+                        備考 = o.OrHidden
                     }).ToList();
                 }
             }
@@ -853,7 +853,7 @@ namespace SalesManagement_SysDev
                         }
                         else
                         {
-                            NotFound(TBSyohinID,"商品ID", syohinID);
+                            NotFound(TBSyohinID, "商品ID", syohinID);
                             return;
                         }
                     }

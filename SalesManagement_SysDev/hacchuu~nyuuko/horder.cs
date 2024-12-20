@@ -77,10 +77,11 @@ namespace SalesManagement_SysDev
             DisplayHattyus();
             DisplayHattyuDetails();
             SetupNumericOnlyTextBoxes();
-            CurrentStatus.UpDateStatus(label2);
-            UpdateStatus();
-            b_reg.Enabled = false;
-            b_reg.BackColor = Color.Gray;
+            CurrentStatus.RegistrationStatus(label2);
+            RegisterStatus();
+            //b_reg.Enabled = false;
+            //_reg.BackColor = Color.Gray;
+            tbfalse();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -529,7 +530,7 @@ namespace SalesManagement_SysDev
                         発注年月日 = h.HaDate,
                         状態フラグ = h.WaWarehouseFlag,
                         非表示フラグ = h.HaFlag,
-                        非表示理由 = h.HaHidden
+                        備考 = h.HaHidden
                     }).ToList();
                 }
             }
@@ -616,7 +617,7 @@ namespace SalesManagement_SysDev
                         発注年月日 = h.HaDate,
                         発注状態 = h.WaWarehouseFlag,        // 発注フラグの表示
                         削除フラグ = h.HaFlag,           // 管理フラグ
-                        理由 = h.HaHidden               // 非表示理由
+                        理由 = h.HaHidden               // 備考
                     }).ToList();
                 }
                 else
@@ -648,7 +649,7 @@ namespace SalesManagement_SysDev
                 int syousai;
                 if (!int.TryParse(hattyuuID, out syousai) || !context.THattyuDetails.Any(h => h.HaDetailID == syousai))
                 {
-                    NotFound(TBHattyuuSyosaiID, "発注詳細ID", hattyuuID); 
+                    NotFound(TBHattyuuSyosaiID, "発注詳細ID", hattyuuID);
                     return;
                 }
 
@@ -656,7 +657,7 @@ namespace SalesManagement_SysDev
                 int hattyuID;
                 if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    NotFound(TBHattyuIDS, "発注ID", hattyuuID); 
+                    NotFound(TBHattyuIDS, "発注ID", hattyuuID);
                     return;
                 }
 
@@ -664,7 +665,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound(TBSyohinID, "商品ID", syohinID); 
+                    NotFound(TBSyohinID, "商品ID", syohinID);
                     return;
                 }
 
@@ -707,7 +708,7 @@ namespace SalesManagement_SysDev
                 int hattyuIDInt;
                 if (!int.TryParse(hattyuuID, out hattyuIDInt) || !context.THattyus.Any(h => h.HaID == hattyuIDInt))
                 {
-                    NotFound(TBHattyuIDS, "発注ID", hattyuuID); 
+                    NotFound(TBHattyuIDS, "発注ID", hattyuuID);
                     return;
                 }
 
@@ -715,7 +716,7 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    NotFound(TBSyohinID, "商品ID", syohinID); 
+                    NotFound(TBSyohinID, "商品ID", syohinID);
                     return;
                 }
 
@@ -928,7 +929,7 @@ namespace SalesManagement_SysDev
                     // 入庫状態や非表示フラグも必要に応じて設定 
                     // 例: NyuukoFlag.Checked = (row.Cells["入庫状態"].Value.ToString() == "1"); 
                     // 例: DelFlag.Checked = (row.Cells["非表示フラグ"].Value.ToString() == "1"); 
-                    // 例: TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString(); 
+                    // 例: TBRiyuu.Text = row.Cells["備考"].Value.ToString(); 
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }
 

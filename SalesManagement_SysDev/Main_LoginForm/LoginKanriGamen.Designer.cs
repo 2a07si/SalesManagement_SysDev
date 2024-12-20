@@ -61,7 +61,7 @@
             close.Location = new Point(1264, 42);
             close.Name = "close";
             close.Size = new Size(136, 70);
-            close.TabIndex = 245;
+            close.TabIndex = 2;
             close.Text = "閉じる";
             close.UseVisualStyleBackColor = true;
             close.Click += close_Click;
@@ -89,7 +89,7 @@
             ComboLog.Location = new Point(16, 18);
             ComboLog.Name = "ComboLog";
             ComboLog.Size = new Size(248, 54);
-            ComboLog.TabIndex = 255;
+            ComboLog.TabIndex = 2;
             // 
             // LoginKensaku
             // 
@@ -98,7 +98,7 @@
             LoginKensaku.Location = new Point(354, 18);
             LoginKensaku.Name = "LoginKensaku";
             LoginKensaku.Size = new Size(113, 113);
-            LoginKensaku.TabIndex = 251;
+            LoginKensaku.TabIndex = 6;
             LoginKensaku.Text = "検索";
             LoginKensaku.UseVisualStyleBackColor = false;
             LoginKensaku.Click += LoginKensaku_Click;
@@ -135,7 +135,7 @@
             TB_EmpID.Location = new Point(16, 78);
             TB_EmpID.Name = "TB_EmpID";
             TB_EmpID.Size = new Size(246, 53);
-            TB_EmpID.TabIndex = 259;
+            TB_EmpID.TabIndex = 5;
             // 
             // dateTimePicker1
             // 
@@ -219,7 +219,7 @@
             TB_ID.Location = new Point(508, 78);
             TB_ID.Name = "TB_ID";
             TB_ID.Size = new Size(100, 53);
-            TB_ID.TabIndex = 258;
+            TB_ID.TabIndex = 3;
             TB_ID.TextChanged += TB_ID_TextChanged;
             // 
             // ShousaiKensaku
@@ -229,7 +229,7 @@
             ShousaiKensaku.Location = new Point(619, 18);
             ShousaiKensaku.Name = "ShousaiKensaku";
             ShousaiKensaku.Size = new Size(113, 113);
-            ShousaiKensaku.TabIndex = 252;
+            ShousaiKensaku.TabIndex = 4;
             ShousaiKensaku.Text = "検索";
             ShousaiKensaku.UseVisualStyleBackColor = false;
             ShousaiKensaku.Click += ShousaiKensaku_Click;
@@ -257,7 +257,7 @@
             ComboGamen.Location = new Point(19, 77);
             ComboGamen.Name = "ComboGamen";
             ComboGamen.Size = new Size(150, 54);
-            ComboGamen.TabIndex = 255;
+            ComboGamen.TabIndex = 0;
             // 
             // ComboMode
             // 
@@ -267,7 +267,7 @@
             ComboMode.Location = new Point(183, 77);
             ComboMode.Name = "ComboMode";
             ComboMode.Size = new Size(150, 54);
-            ComboMode.TabIndex = 256;
+            ComboMode.TabIndex = 1;
             // 
             // ComboShori
             // 
@@ -277,7 +277,7 @@
             ComboShori.Location = new Point(345, 77);
             ComboShori.Name = "ComboShori";
             ComboShori.Size = new Size(150, 54);
-            ComboShori.TabIndex = 257;
+            ComboShori.TabIndex = 2;
             // 
             // label1
             // 
@@ -286,7 +286,7 @@
             label1.Location = new Point(160, 42);
             label1.Name = "label1";
             label1.Size = new Size(246, 54);
-            label1.TabIndex = 252;
+            label1.TabIndex = 0;
             label1.Text = "ログ履歴画面";
             label1.Click += label1_Click;
             // 
@@ -296,7 +296,7 @@
             clear.Location = new Point(1093, 42);
             clear.Name = "clear";
             clear.Size = new Size(150, 70);
-            clear.TabIndex = 253;
+            clear.TabIndex = 1;
             clear.Text = "クリア";
             clear.UseVisualStyleBackColor = true;
             clear.Click += clear_Click_1;

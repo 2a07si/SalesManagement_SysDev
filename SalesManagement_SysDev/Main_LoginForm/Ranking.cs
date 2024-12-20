@@ -268,7 +268,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                         {
                             顧客ID = g.Key.ClID,
                             顧客名 = g.Key.ClName,
-                            取引回数 = g.Count(),                           // 取引回数（顧客IDの出現回数）
+                            購入回数 = g.Count(),                           // 取引回数（顧客IDの出現回数）
                             合計金額 = g.Sum(x => x.SaPrTotalPrice),        // 購入金額の合計
                             売上日 = g.Select(x => x.SaDate).FirstOrDefault() // 最初の売上日の取得
                         });
@@ -325,7 +325,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                     {
                         if (int.TryParse(TBKagen1.Text, out int minQuantity) && int.TryParse(TBJyogen1.Text, out int maxQuantity))
                         {
-                            query = query.Where(x => x.取引回数 >= minQuantity && x.取引回数 <= maxQuantity);
+                            query = query.Where(x => x.購入回数 >= minQuantity && x.購入回数 <= maxQuantity);
                         }
                         else
                         {
@@ -340,7 +340,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                             query = query.OrderBy(x => x.顧客ID);
                             break;
                         case 2: // 取引回数順
-                            query = query.OrderByDescending(x => x.取引回数);
+                            query = query.OrderByDescending(x => x.購入回数);
                             break;
                         case 3: // 購入金額順
                             query = query.OrderByDescending(x => x.合計金額);
@@ -356,7 +356,7 @@ namespace SalesManagement_SysDev.Main_LoginForm
                         {
                             x.顧客ID,
                             x.顧客名,
-                            取引回数 = string.Format("{0:N0}", x.取引回数),   // 3桁区切り
+                            購入回数 = string.Format("{0:N0}", x.購入回数),   // 3桁区切り
                             合計金額 = string.Format("{0:N0}", x.合計金額)     // 3桁区切り
                         })
                         .ToList();

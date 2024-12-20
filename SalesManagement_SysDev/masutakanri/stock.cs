@@ -177,9 +177,9 @@ namespace SalesManagement_SysDev
             bool stflag = StFlag.Checked;
 
             // 共通の入力チェックメソッド
-            if (!CheckRequiredField(TBZaikoID, zaikoID, "在庫ID"));
-            if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID"));
-            if (!CheckRequiredField(TBZaiko, zaiko, "在庫数量"));
+            if (!CheckRequiredField(TBZaikoID, zaikoID, "在庫ID"))
+            if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID"))
+            if (!CheckRequiredField(TBZaiko, zaiko, "在庫数量"))
             if (Kuraberu_kun.Kuraberu_chan("在庫", null, "更新", int.Parse(zaikoID), timestamp) == false)
             { return; }
 
@@ -428,10 +428,10 @@ namespace SalesManagement_SysDev
                     // 各テキストボックスにデータを入力
                     TBSyohinID.Text = row.Cells["商品ID"].Value.ToString();
                     TBZaiko.Text = row.Cells["在庫数"].Value.ToString();
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                 }
             }
             catch (Exception ex)

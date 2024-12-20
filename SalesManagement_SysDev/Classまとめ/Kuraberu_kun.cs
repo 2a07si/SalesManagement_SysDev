@@ -176,7 +176,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var acc = context.TOrders.FirstOrDefault(o => o.OrID == id);
-                data = "受注ID:" + acc.OrID + "営業所ID:" + acc.SoID + "社員ID:" +  acc.EmID + "顧客ID:" +  acc.ClID + "顧客担当者名:" + acc.ClCharge + "受注日:" + acc.OrDate + "受注状態:" +  acc.OrStateFlag + "管理フラグ:" + acc.OrFlag + "非表示理由:" +  acc.OrHidden;
+                data = "受注ID:" + acc.OrID + "営業所ID:" + acc.SoID + "社員ID:" +  acc.EmID + "顧客ID:" +  acc.ClID + "顧客担当者名:" + acc.ClCharge + "受注日:" + acc.OrDate + "受注状態:" +  acc.OrStateFlag + "管理フラグ:" + acc.OrFlag + "備考:" +  acc.OrHidden;
                 return data;
             }
         }
@@ -194,7 +194,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var a = context.TChumons.FirstOrDefault(o => o.ChID == id);
-                data = "注文ID:" + a.ChID + "営業所ID:" + a.SoID + "社員ID:" + a.EmID + "顧客ID:" + a.ClID + "受注ID:" + a.OrID + "注文日:" + a.OrID + "注文状態:" + a.ChStateFlag + "注文管理:" + a.ChFlag + "非表示理由:" + a.ChHidden;
+                data = "注文ID:" + a.ChID + "営業所ID:" + a.SoID + "社員ID:" + a.EmID + "顧客ID:" + a.ClID + "受注ID:" + a.OrID + "注文日:" + a.OrID + "注文状態:" + a.ChStateFlag + "注文管理:" + a.ChFlag + "備考:" + a.ChHidden;
                 return data;
             }
         }
@@ -212,7 +212,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var a = context.TSyukkos.FirstOrDefault(o => o.SyID == id);
-                data = "出庫ID:" + a.SyID + "社員ID:" + a.EmID + "顧客ID:" + a.ClID + "営業所ID:" + a.SoID + "受注ID:" + a.OrID + "出庫日:" + a.SyDate + "出庫状態:" + a.SyStateFlag + "出庫管理:" + a.SyFlag + "非表示理由:" + a.SyHidden;
+                data = "出庫ID:" + a.SyID + "社員ID:" + a.EmID + "顧客ID:" + a.ClID + "営業所ID:" + a.SoID + "受注ID:" + a.OrID + "出庫日:" + a.SyDate + "出庫状態:" + a.SyStateFlag + "出庫管理:" + a.SyFlag + "備考:" + a.SyHidden;
                 return data;
             }
         }
@@ -230,7 +230,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var a = context.TArrivals.FirstOrDefault(o => o.ArID == id);
-                data = "入荷ID:" + a.ArID + "営業所ID:" + a.SoID + "社員ID:" + a.EmID + "顧客ID:" + a.ClID + "受注ID:" + a.OrID + "入荷日:" + a.ArDate + "入荷状態:" + a.ArStateFlag + "入荷管理:" + a.ArFlag + "非表示理由:" + a.ArHidden;
+                data = "入荷ID:" + a.ArID + "営業所ID:" + a.SoID + "社員ID:" + a.EmID + "顧客ID:" + a.ClID + "受注ID:" + a.OrID + "入荷日:" + a.ArDate + "入荷状態:" + a.ArStateFlag + "入荷管理:" + a.ArFlag + "備考:" + a.ArHidden;
                 return data;
             }
         }
@@ -248,7 +248,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var a = context.TShipments.FirstOrDefault(o => o.ShID == id);
-                data = "出荷ID:" + a.ShID + "顧客ID:" + a.ClID + "社員ID:" + a.EmID + "営業所ID:" + a.SoID + "受注ID:" + a.OrID + "出荷状態:" + a.ShStateFlag + "出荷管理:" + a.ShFlag + "非表示理由:" + a.ShHidden; 
+                data = "出荷ID:" + a.ShID + "顧客ID:" + a.ClID + "社員ID:" + a.EmID + "営業所ID:" + a.SoID + "受注ID:" + a.OrID + "出荷状態:" + a.ShStateFlag + "出荷管理:" + a.ShFlag + "備考:" + a.ShHidden; 
                 return data;
             }
         }
@@ -284,7 +284,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var a = context.THattyus.FirstOrDefault(o => o.HaID == id);
-                data = "発注ID:" + a.HaID + "メーカーID:" + a.MaID + "社員ID:" + a.EmID + "発注日:" + a.HaDate + "入庫状態:" + a.WaWarehouseFlag + "発注管理:" + a.HaFlag + "非表示理由:" + a.HaHidden;
+                data = "発注ID:" + a.HaID + "メーカーID:" + a.MaID + "社員ID:" + a.EmID + "発注日:" + a.HaDate + "入庫状態:" + a.WaWarehouseFlag + "発注管理:" + a.HaFlag + "備考:" + a.HaHidden;
                  return data;
             }
         }
@@ -302,7 +302,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var a = context.TWarehousings.FirstOrDefault(o => o.WaID == id);
-                data = "入庫ID:" + a.WaID + "発注ID:" + a.HaID + "社員ID:" + a.EmID + "入庫日:" + a.WaDate + "入庫完了:" + a.WaShelfFlag + "入庫管理:" + a.WaFlag + "非表示理由:" + a.WaHidden;
+                data = "入庫ID:" + a.WaID + "発注ID:" + a.HaID + "社員ID:" + a.EmID + "入庫日:" + a.WaDate + "入庫完了:" + a.WaShelfFlag + "入庫管理:" + a.WaFlag + "備考:" + a.WaHidden;
                 return data;
             }
         }
@@ -320,7 +320,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var a = context.MProducts.FirstOrDefault(o => o.PrID == id);
-                data = "商品ID:" + a.PrID + "メーカーID:" + a.MaID + "商品名:" + a.PrName + "価格:" + a.Price + "JANコード:" + a.PrJcode + "安全在庫数:" +  a.PrSafetyStock + "小分類ID:" + a.ScID + "型番:" + a.PrModelNumber + "色:" + a.PrColor + "発売日:" + a.PrReleaseDate + "商品管理:" + a.PrFlag + "非表示理由:" + a.PrHidden;
+                data = "商品ID:" + a.PrID + "メーカーID:" + a.MaID + "商品名:" + a.PrName + "価格:" + a.Price + "JANコード:" + a.PrJcode + "安全在庫数:" +  a.PrSafetyStock + "小分類ID:" + a.ScID + "型番:" + a.PrModelNumber + "色:" + a.PrColor + "発売日:" + a.PrReleaseDate + "商品管理:" + a.PrFlag + "備考:" + a.PrHidden;
                 return data;
             }
         }
@@ -329,7 +329,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var a = context.MClients.FirstOrDefault(o => o.ClID == id);
-                data = "顧客ID:" + a.ClID + "営業所ID:" + a.SoID + "顧客名:" + a.ClName + "住所:" + a.ClAddress + "電話番号:" + a.ClPhone + "郵便番号:" + a.ClPostal + "FAX:" + a.ClFax + "顧客管理:" + a.ClFlag + "非表示理由:" + a.ClHidden;  
+                data = "顧客ID:" + a.ClID + "営業所ID:" + a.SoID + "顧客名:" + a.ClName + "住所:" + a.ClAddress + "電話番号:" + a.ClPhone + "郵便番号:" + a.ClPostal + "FAX:" + a.ClFax + "顧客管理:" + a.ClFlag + "備考:" + a.ClHidden;  
                 return data;
             }
         }
@@ -347,7 +347,7 @@ namespace SalesManagement_SysDev.Classまとめ
             using (var context = new SalesManagementContext())
             {
                 var a = context.MEmployees.FirstOrDefault(o => o.EmID == id);
-                data = "社員ID:" + a.EmID + "社員名:" + a.EmName + "営業所ID:" + a.SoID + "役職ID:" + a.PoID + "入社年月日:" + a.EmHiredate + "パスワード:" + a.EmPassword + "電話番号:" + a.EmPhone + "社員管理:" + a.EmFlag + "非表示理由:" + a.EmHidden;
+                data = "社員ID:" + a.EmID + "社員名:" + a.EmName + "営業所ID:" + a.SoID + "役職ID:" + a.PoID + "入社年月日:" + a.EmHiredate + "パスワード:" + a.EmPassword + "電話番号:" + a.EmPhone + "社員管理:" + a.EmFlag + "備考:" + a.EmHidden;
                 return data;
             }
         }

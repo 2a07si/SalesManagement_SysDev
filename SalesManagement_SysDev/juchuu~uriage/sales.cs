@@ -178,7 +178,7 @@ namespace SalesManagement_SysDev
                 TBShainID.Text = "";
             }
             ResetYellowBackgrounds(this);
-            
+
         }
 
         private void tbfalse()
@@ -308,9 +308,9 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBShopID, shopID, "店舗ID")) return;
             if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
             if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
-            if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID"))return;
+            if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
             {
-                 // 入力が足りない場合は処理を終了
+                // 入力が足りない場合は処理を終了
             }
 
             // ログインIDとの照合
@@ -422,9 +422,9 @@ namespace SalesManagement_SysDev
 
                 // 入力が不足している項目をチェック
                 if (CheckTBValue(TBShopID, shopID, "店舗ID")) return;
-                if (CheckTBValue(TBShainID, shainID, "社員ID"))return;
-                if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID"))return;
-                if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID"))return;
+                if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
+                if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
+                if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
 
                 // ログインIDとの照合
                 if (shainID != empID)
@@ -541,7 +541,7 @@ namespace SalesManagement_SysDev
                         受注ID = s.OrID,
                         売上日 = s.SaDate,
                         売上フラグ = s.SaFlag,
-                        非表示理由 = s.SaHidden
+                        備考 = s.SaHidden
                     }).ToList();
                 }
             }
@@ -658,7 +658,7 @@ namespace SalesManagement_SysDev
             if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
             if (CheckTBValue(TBSuryou, suryou, "数量")) return;
             if (CheckTBValue(TBTotal, total, "合計")) return;
- 
+
             // 競合チェック（売上詳細データの更新）
             if (Kuraberu_kun.Kuraberu_chan("売上", "詳細", "更新", int.Parse(UriageSyosaiID), timestamp) == false)
             {
@@ -727,9 +727,9 @@ namespace SalesManagement_SysDev
 
                 // 入力チェック
                 if (CheckTBValue(TBUriageIDS, uriageID, "売上ID"))
-                if (CheckTBValue(TBSyohinID, syohinID, "商品ID"))return;
-                if (CheckTBValue(TBSuryou, suryou, "数量"))return;
-                
+                    if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+                if (CheckTBValue(TBSuryou, suryou, "数量")) return;
+
                 using (var context = new SalesManagementContext())
                 {
                     // 売上IDの検証
@@ -976,10 +976,10 @@ namespace SalesManagement_SysDev
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                     TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
                     date.Value = Convert.ToDateTime(row.Cells["売上日"].Value);
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
@@ -1415,7 +1415,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
-        
+
     }
 
 
