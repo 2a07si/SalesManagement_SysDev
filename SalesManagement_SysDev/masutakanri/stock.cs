@@ -332,17 +332,17 @@ namespace SalesManagement_SysDev
                         // チェックされていなければ、StFlagが1のものを除外して並べ替え
                         : context.TStocks.Where(s => s.StFlag != 1).OrderBy(s => s.PrID).ToList();
 
-                    // DataGridView にデータをバインド
+                    // DataGridView にデータをバインド 
                     dataGridView1.DataSource = stock.Select(s => new
                     {
                         在庫ID = s.StID,
                         商品ID = s.PrID,
-                        在庫数 = s.StQuantity,
+                        在庫数 = s.StQuantity.ToString("N0"), // 3桁ごとにカンマを付けてフォーマット
                         管理フラグ = s.StFlag
                     }).ToList();
-                }
 
-            }
+                }
+                }
             catch (Exception ex)
             {
                 MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -598,6 +598,7 @@
             Controls.Add(b_hor);
             Controls.Add(b_rec);
             Controls.Add(panel1);
+            KeyPreview = true;
             Name = "horder";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "発注";
