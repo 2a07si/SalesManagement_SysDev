@@ -178,10 +178,10 @@ namespace SalesManagement_SysDev
 
             // 共通の入力チェックメソッド
             if (!CheckRequiredField(TBZaikoID, zaikoID, "在庫ID"))
-            if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID"))
-            if (!CheckRequiredField(TBZaiko, zaiko, "在庫数量"))
-            if (Kuraberu_kun.Kuraberu_chan("在庫", null, "更新", int.Parse(zaikoID), timestamp) == false)
-            { return; }
+                if (!CheckRequiredField(TBSyohinID, syohinID, "商品ID"))
+                    if (!CheckRequiredField(TBZaiko, zaiko, "在庫数量"))
+                        if (Kuraberu_kun.Kuraberu_chan("在庫", null, "更新", int.Parse(zaikoID), timestamp) == false)
+                        { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -342,7 +342,7 @@ namespace SalesManagement_SysDev
                     }).ToList();
 
                 }
-                }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
