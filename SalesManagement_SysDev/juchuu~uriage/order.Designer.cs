@@ -448,7 +448,7 @@
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
             b_kakutei.TabIndex = 6;
-            b_kakutei.Text = "確定";
+            b_kakutei.Text = "確定[&S]";
             b_kakutei.UseVisualStyleBackColor = false;
             b_kakutei.Click += b_kakutei_Click;
             // 
@@ -662,13 +662,14 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
+            checkBox1.Checked = true;
+            checkBox1.CheckState = CheckState.Checked;
             checkBox1.Location = new Point(1176, 17);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(110, 29);
             checkBox1.TabIndex = 276;
             checkBox1.Text = "降順切替";
             checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.Checked = true;
             // 
             // order
             // 

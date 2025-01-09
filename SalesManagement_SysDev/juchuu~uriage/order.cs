@@ -1076,7 +1076,7 @@ namespace SalesManagement_SysDev
         {
             isOrderSelected = !isOrderSelected;
             orderFlag = isOrderSelected ? "←通常" : "詳細→";
-            
+
 
             // CurrentStatusのモードを切り替える
             CurrentStatus.SetMode(isOrderSelected ? CurrentStatus.Mode.通常 : CurrentStatus.Mode.詳細);
@@ -1089,7 +1089,7 @@ namespace SalesManagement_SysDev
 
         private void b_FormSelector_Click(object sender, EventArgs e)
         {
-            
+
             // 状態を切り替える処理
             ToggleOrderSelection();
             // b_FormSelectorのテキストを現在の状態に更新
