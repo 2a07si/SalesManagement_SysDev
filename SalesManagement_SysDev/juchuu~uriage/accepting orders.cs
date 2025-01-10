@@ -391,7 +391,7 @@ namespace SalesManagement_SysDev
                         var originalOrFlag = order.OrFlag;
 
                         // checkBox_2がチェックされている場合にOrFlagを1に設定
-                        if (checkBox_2.Checked)
+                        if (TyumonFlag.Checked)
                         {
                             var orderDetailsExist = context.TOrderDetails.Any(od => od.OrID == order.OrID);
                             if (!orderDetailsExist)
