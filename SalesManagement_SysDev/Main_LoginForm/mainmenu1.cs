@@ -27,12 +27,12 @@ namespace SalesManagement_SysDev
             {
                 // グローバル変数からEmployeeIDを取得し、該当する従業員を取得  
                 var employee = context.MEmployees
-                    .Include(e => e.Po) // 職位情報を含めて取得
+                    .Include(e => e.Po) // 役職情報を含めて取得
                     .SingleOrDefault(e => e.EmID == Global.EmployeeID); // EmployeeIDを直接比較  
 
                 if (employee != null)
                 {
-                    label_id.Text = employee.Po.PoName; // 職位名をラベルに表示  
+                    label_id.Text = employee.Po.PoName; // 役職名をラベルに表示  
                 }
                 else
                 {

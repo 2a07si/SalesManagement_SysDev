@@ -68,6 +68,7 @@
             label1 = new Label();
             checkBox_2 = new CheckBox();
             dateCheckBox = new CheckBox();
+            checkBox1 = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -321,9 +322,9 @@
             // 
             // TBRiyuu
             // 
-            TBRiyuu.Location = new Point(230, 120);
+            TBRiyuu.Location = new Point(70, 120);
             TBRiyuu.Name = "TBRiyuu";
-            TBRiyuu.Size = new Size(325, 31);
+            TBRiyuu.Size = new Size(420, 31);
             TBRiyuu.TabIndex = 16;
             // 
             // label8
@@ -358,11 +359,11 @@
             label17.AutoSize = true;
             label17.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label17.ForeColor = Color.Black;
-            label17.Location = new Point(120, 120);
+            label17.Location = new Point(20, 120);
             label17.Name = "label17";
-            label17.Size = new Size(102, 25);
+            label17.Size = new Size(48, 25);
             label17.TabIndex = 15;
-            label17.Text = "非表示理由";
+            label17.Text = "備考";
             // 
             // label7
             // 
@@ -395,7 +396,7 @@
             DelFlag.AutoSize = true;
             DelFlag.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             DelFlag.ForeColor = Color.Black;
-            DelFlag.Location = new Point(20, 120);
+            DelFlag.Location = new Point(500, 120);
             DelFlag.Name = "DelFlag";
             DelFlag.Size = new Size(92, 29);
             DelFlag.TabIndex = 14;
@@ -409,8 +410,8 @@
             b_kakutei.Location = new Point(1200, 70);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
-            b_kakutei.TabIndex = 8;
-            b_kakutei.Text = "確定";
+            b_kakutei.TabIndex = 5;
+            b_kakutei.Text = "確定[&S]";
             b_kakutei.UseVisualStyleBackColor = false;
             b_kakutei.Click += b_kakutei_Click;
             // 
@@ -484,12 +485,24 @@
             // dateCheckBox
             // 
             dateCheckBox.AutoSize = true;
-            dateCheckBox.Location = new Point(975, 12);
+            dateCheckBox.Location = new Point(945, 9);
             dateCheckBox.Name = "dateCheckBox";
             dateCheckBox.Size = new Size(225, 29);
             dateCheckBox.TabIndex = 6;
             dateCheckBox.Text = "入社年月日を検索に含む";
             dateCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Checked = true;
+            checkBox1.CheckState = CheckState.Checked;
+            checkBox1.Location = new Point(1188, 9);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(141, 29);
+            checkBox1.TabIndex = 296;
+            checkBox1.Text = "パスワード表示";
+            checkBox1.UseVisualStyleBackColor = true;
             // 
             // employee
             // 
@@ -499,6 +512,7 @@
             AutoScroll = true;
             CancelButton = close;
             ClientSize = new Size(1578, 844);
+            Controls.Add(checkBox1);
             Controls.Add(dateCheckBox);
             Controls.Add(checkBox_2);
             Controls.Add(label2);
@@ -577,5 +591,6 @@
         private Label label9;
         private CheckBox checkBox_2;
         private CheckBox dateCheckBox;
+        private CheckBox checkBox1;
     }
 }

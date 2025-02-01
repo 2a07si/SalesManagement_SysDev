@@ -15,12 +15,11 @@ namespace SalesManagement_SysDev
 {
     public partial class customer : Form
     {
-
-
         private Form mainForm;
         private ClassChangeForms formChanger;
         private ClassDateNamelabel dateNamelabel;
         private ClassAccessManager accessManager;
+        private DateTime timestamp = DateTime.Now;
         public customer()
         {
             InitializeComponent();
@@ -29,6 +28,8 @@ namespace SalesManagement_SysDev
             this.dateNamelabel = new ClassDateNamelabel(label_id, label_ename);
             this.formChanger = new ClassChangeForms(this);
             this.accessManager = new ClassAccessManager(Global.EmployeePermission); // 権限をセット
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
 
         }
         private void customer_Load(object sender, EventArgs e)
@@ -146,12 +147,31 @@ namespace SalesManagement_SysDev
                     SearchCustomer();
                     break;
                 default:
-                    MessageBox.Show("無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":100\n無効な操作です。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
         //
+        private bool CheckTBValue(TextBox textBox, string value, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                textBox.BackColor = Color.Yellow;
+                textBox.Focus();
+                MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
+            return true;
+        }
 
+        private void NotFound(TextBox textBox, string itemName, string itemId)
+        {
+            textBox.BackColor = Color.Yellow;
+            textBox.Focus();
+            MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
+                            "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         private void UpdateCustomer()
         {
@@ -164,59 +184,16 @@ namespace SalesManagement_SysDev
             string fax = TBFax.Text;
             bool flag = DelFlag.Checked;
 
-
-            if (TBKokyakuID.Text == "")
-            {
-                TBKokyakuID.BackColor = Color.Yellow;
-                TBKokyakuID.Focus();
-                MessageBox.Show("顧客IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBShopID.Text == "")
-            {
-                TBShopID.BackColor = Color.Yellow;
-                TBShopID.Focus();
-                MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBKokyakuName.Text == "")
-            {
-                TBKokyakuName.BackColor = Color.Yellow;
-                TBKokyakuName.Focus();
-                MessageBox.Show("顧客名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBYuubinNo.Text == "")
-            {
-                TBYuubinNo.BackColor = Color.Yellow;
-                TBYuubinNo.Focus();
-                MessageBox.Show("郵便番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBJyusyo.Text == "")
-            {
-                TBJyusyo.BackColor = Color.Yellow;
-                TBJyusyo.Focus();
-                MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBTellNo.Text == "")
-            {
-                TBTellNo.BackColor = Color.Yellow;
-                TBTellNo.Focus();
-                MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBFax.Text == "")
-            {
-                TBFax.BackColor = Color.Yellow;
-                TBFax.Focus();
-                MessageBox.Show("FAXを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
+            // 必須項目のチェック
+            if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
+            if (CheckTBValue(TBShopID, shopID, "営業所ID")) return;
+            if (CheckTBValue(TBKokyakuName, kokyakuname, "顧客名")) return;
+            if (CheckTBValue(TBYuubinNo, yuubinbangou, "郵便番号")) return;
+            if (CheckTBValue(TBJyusyo, juusho, "住所")) return;
+            if (CheckTBValue(TBTellNo, tel, "電話番号")) return;
+            if (CheckTBValue(TBFax, fax, "FAX")) return;
+            if (Kuraberu_kun.Kuraberu_chan("顧客", null, "更新", int.Parse(kokyakuID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -241,7 +218,7 @@ namespace SalesManagement_SysDev
                 }
                 else
                 {
-                    MessageBox.Show("該当する顧客情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBKokyakuID, "顧客ID", kokyakuID);
                 }
             }
         }
@@ -258,60 +235,24 @@ namespace SalesManagement_SysDev
             bool CusFlag = DelFlag.Checked;
             bool delFlag = DelFlag.Checked;
 
+            // 必須項目のチェック
+            if (CheckTBValue(TBShopID, shopID, "営業所ID")) return;
+            if (CheckTBValue(TBKokyakuName, kokyakuname, "顧客名")) return;
+            if (CheckTBValue(TBYuubinNo, yuubinbangou, "郵便番号")) return;
+            if (CheckTBValue(TBJyusyo, juusho, "住所")) return;
+            if (CheckTBValue(TBTellNo, tel, "電話番号")) return;
+            if (CheckTBValue(TBFax, fax, "FAX")) return;
+
             using (var context = new SalesManagementContext())
             {
                 int shop;
 
-                if (TBShopID.Text == "")
+                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    TBShopID.BackColor = Color.Yellow;
-                    TBShopID.Focus();
-                    MessageBox.Show("営業所IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBKokyakuName.Text == "")
-                {
-                    TBKokyakuName.BackColor = Color.Yellow;
-                    TBKokyakuName.Focus();
-                    MessageBox.Show("顧客名を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBShopID, "営業所ID", shopID);
                     return;
                 }
 
-                if (TBYuubinNo.Text == "")
-                {
-                    TBYuubinNo.BackColor = Color.Yellow;
-                    TBYuubinNo.Focus();
-                    MessageBox.Show("郵便番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBJyusyo.Text == "")
-                {
-                    TBJyusyo.BackColor = Color.Yellow;
-                    TBJyusyo.Focus();
-                    MessageBox.Show("住所を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBTellNo.Text == "")
-                {
-                    TBTellNo.BackColor = Color.Yellow;
-                    TBTellNo.Focus();
-                    MessageBox.Show("電話番号を入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (TBFax.Text == "")
-                {
-                    TBFax.BackColor = Color.Yellow;
-                    TBFax.Focus();
-                    MessageBox.Show("FAXを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
-                {
-                    TBShopID.BackColor = Color.Yellow;
-                    TBShopID.Focus();
-                    MessageBox.Show("営業所IDが見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
                 var newcustomer = new MClient
                 {
                     SoID = int.Parse(shopID),
@@ -320,33 +261,31 @@ namespace SalesManagement_SysDev
                     ClName = kokyakuname,
                     ClPhone = tel,
                     ClFax = fax,
-
                 };
 
                 context.MClients.Add(newcustomer);
                 try
                 {
-                    context.SaveChanges(); MessageBox.Show("登録が成功しました。");
+                    context.SaveChanges();
+                    MessageBox.Show("登録が成功しました。");
                     DisplayCustomer();
                     Log_Customer(newcustomer.ClID);
                     ResetYellowBackgrounds(this);
                 }
                 catch (DbUpdateException ex)
                 {
-                    // inner exception の詳細を表示する
                     if (ex.InnerException != null)
                     {
                         MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
                     }
                     else
                     {
-                        MessageBox.Show("エンティティの変更を保存中にエラーが発生しました。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(":201\n登録操作が失敗しました。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    // その他のエラーに対処する
-                    MessageBox.Show("エラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -372,13 +311,13 @@ namespace SalesManagement_SysDev
                         電話番号 = c.ClPhone,
                         FAX = c.ClFax,
                         顧客管理フラグ = c.ClFlag,
-                        非表示理由 = c.ClHidden
+                        備考 = c.ClHidden
                     }).ToList();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("エラー: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -456,12 +395,12 @@ namespace SalesManagement_SysDev
                         電話番号 = c.ClPhone,
                         FAX = c.ClFax,
                         顧客管理フラグ = c.ClFlag,
-                        非表示理由 = c.ClHidden
+                        備考 = c.ClHidden
                     }).ToList();
                 }
                 else
                 {
-                    MessageBox.Show("該当する顧客情報が見つかりません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dataGridView1.DataSource = null; // 結果がない場合はデータソースをクリア 
                 }
             }
@@ -495,15 +434,15 @@ namespace SalesManagement_SysDev
                     TBYuubinNo.Text = row.Cells["郵便番号"].Value.ToString();
                     TBTellNo.Text = row.Cells["電話番号"].Value.ToString();
                     TBFax.Text = row.Cells["FAX"].Value.ToString();
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("セルのクリック中にエラーが発生しました: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -640,7 +579,7 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        MessageBox.Show("最新のログ履歴が見つかりませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("最新のログ履歴が見つかりませんでした。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

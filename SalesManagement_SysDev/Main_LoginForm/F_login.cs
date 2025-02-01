@@ -859,7 +859,7 @@ namespace SalesManagement_SysDev
         // PoIDに基づいて権限を決定する関数  
         private int GetPermissionByPoID(int poID)
         {
-            // 職位IDに基づいて権限レベルを返す（例: 1, 2, 3）  
+            // 役職IDに基づいて権限レベルを返す（例: 1, 2, 3）  
             switch (poID)
             {
                 case 1: return 1; // 権限1  
@@ -898,95 +898,6 @@ namespace SalesManagement_SysDev
             dateNameLabel.UpdateDateTime();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            tb_ID.Text = "1111";
-            tb_Pass.Text = "999";
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-            tb_ID.Text = "1007";
-            tb_Pass.Text = "1007";
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            tb_ID.Text = "1227";
-            tb_Pass.Text = "1227";
-
-            try
-            {
-                // 入力検証
-                if (!InputValidator.IsNotEmpty(tb_ID.Text) || !InputValidator.IsValidEmployeeID(tb_ID.Text, out int empID))
-                {
-                    MessageBox.Show("社員IDを正しく入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    tb_ID.Focus(); // ID テキストボックスにフォーカス 
-                    return;
-                }
-
-                // 社員IDが3～4桁の数字かどうかをチェック 
-                if (tb_ID.Text.Length < 3 || tb_ID.Text.Length > 4 || !Regex.IsMatch(tb_ID.Text, @"^\d+$"))
-                {
-                    MessageBox.Show("社員IDは3～4桁の数字で入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    tb_ID.Focus(); // ID テキストボックスにフォーカス 
-                    return;
-                }
-
-                if (!InputValidator.IsNotEmpty(tb_Pass.Text))
-                {
-                    MessageBox.Show("パスワードを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
-                    return;
-                }
-
-                // パスワードが10文字以下かつ英数字で構成されているかどうかをチェック
-                if (tb_Pass.Text.Length > 10 || !Regex.IsMatch(tb_Pass.Text, @"^[a-zA-Z0-9]+$"))
-                {
-                    MessageBox.Show("パスワードは10文字以下の英数字で入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
-                    return;
-                }
-
-
-                string pass = tb_Pass.Text;
-                bool isLoginSuccessful = false; // 初期化して成功状態を保存する変数  
-
-                using (var context = new SalesManagementContext())
-                {
-                    var employeeService = new EmployeeService(context);
-                    if (employeeService.ValidateEmployee(empID, pass, out string employeeName, out string positionName, out int poID))
-                    {
-                        AddLoginLog(employeeName);
-                        HandleSuccessfulLogin(empID, employeeName, positionName, poID);
-                    }
-                    else
-                    {
-                        MessageBox.Show("社員IDとパスワードが一致していません", "認証エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        tb_Pass.Focus(); // パスワード テキストボックスにフォーカス 
-                        return;
-                    }
-                }
-            }
-            catch (SqlException ex) when (ex.Number == -2) // タイムアウトエラー 
-            {
-                MessageBox.Show("データベース接続がタイムアウトしました。ネットワーク状態を確認し、再試行してください。", "接続タイムアウト", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("データベースに接続できません。ネットワーク状態を確認してください: " + ex.Message, "接続エラー" + "\nスタックトレース: " + ex.StackTrace, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (InvalidOperationException ex)
-            {
-                MessageBox.Show("データベース操作中にエラーが発生しました: " + ex.Message, "データベースエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("予期しないエラーが発生しました。システム管理者にお問い合わせください。", "システムエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
 
         private void AddLoginLog(string empname)
         {

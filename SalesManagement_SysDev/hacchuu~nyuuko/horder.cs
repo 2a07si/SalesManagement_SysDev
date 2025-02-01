@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using SalesManagement_SysDev.Entity;
 using System.Text.RegularExpressions;
 using System.Diagnostics.Metrics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace SalesManagement_SysDev
 {
@@ -28,7 +29,7 @@ namespace SalesManagement_SysDev
         private ClassAccessManager accessManager; // アクセスマネージャのインスタンス
 
         private int lastFocusedPanelID = 1;
-
+        private DateTime timestamp = DateTime.Now;
 
         public horder()
         {
@@ -41,6 +42,11 @@ namespace SalesManagement_SysDev
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel3, 2);  // パネル2の場合
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView2.AllowUserToResizeColumns = false;
+            dataGridView2.AllowUserToResizeRows = false;
+
         }
 
 
@@ -71,10 +77,11 @@ namespace SalesManagement_SysDev
             DisplayHattyus();
             DisplayHattyuDetails();
             SetupNumericOnlyTextBoxes();
-            CurrentStatus.UpDateStatus(label2);
-            UpdateStatus();
-            b_reg.Enabled = false;
-            b_reg.BackColor = Color.Gray;
+            CurrentStatus.RegistrationStatus(label2);
+            RegisterStatus();
+            //b_reg.Enabled = false;
+            //_reg.BackColor = Color.Gray;
+            tbfalse();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -106,6 +113,8 @@ namespace SalesManagement_SysDev
                 TBShainID.Text = "";
             }
             ResetYellowBackgrounds(this);
+            UpdateClose_kun(orderFlag);
+            UpdateClose_Chan();
         }
 
 
@@ -253,7 +262,24 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+        private bool CheckTBValue(TextBox textBox, string value, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                textBox.BackColor = Color.Yellow;
+                textBox.Focus();
+                MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
+            return false;
+        }
 
+        private void NotFound(TextBox textBox, string itemName, string itemId)
+        {
+            MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
+                            "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         private void UpdateHattyu()
         {
             string hattyuuID = TBHattyuuID.Text;
@@ -264,30 +290,13 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string riyuu = TBRiyuu.Text;
 
-            if (TBHattyuuID.Text == "")
-            {
-                TBHattyuuID.BackColor = Color.Yellow;
-                TBHattyuuID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // 必須項目のチェック
+            if (CheckTBValue(TBHattyuuID, hattyuuID, "発注ID")) return;
+            if (CheckTBValue(TBMakerID, makerID, "メーカーID")) return;
+            if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
 
-            if (TBMakerID.Text == "")
-            {
-                TBMakerID.BackColor = Color.Yellow;
-                TBMakerID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBShainID.Text == "")
-            {
-                TBShainID.BackColor = Color.Yellow;
-                TBShainID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (date.Value > DateTime.Now)
+            // 売上日が未来の場合の確認
+            if (hattyuuDate > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "売上日が未来を指していますが、よろしいですか？",
@@ -301,9 +310,12 @@ namespace SalesManagement_SysDev
                     return; // 処理を中断
                 }
             }
+            if (Kuraberu_kun.Kuraberu_chan("発注", "通常", "更新", int.Parse(hattyuuID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
+                // 発注IDの確認
                 int hor;
                 if (!int.TryParse(hattyuuID, out hor) || !context.THattyus.Any(m => m.HaID == hor))
                 {
@@ -312,26 +324,26 @@ namespace SalesManagement_SysDev
                     return;
                 }
 
+                // メーカーIDの確認
                 int maker;
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
                 {
-                    MessageBox.Show(":204\nメーカーIDが存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBMakerID.BackColor = Color.Yellow;
+                    NotFound(TBMakerID, "メーカーID", makerID);
                     return;
                 }
 
-                // EmIDがMEmployeeテーブルに存在するか確認
+                // 社員IDの確認
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    MessageBox.Show(":204\n社員IDが存在しません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    TBShainID.BackColor = Color.Yellow;
+                    NotFound(TBShainID, "社員ID", shainID);
                     return;
                 }
 
                 var hattyu = context.THattyus.FirstOrDefault(h => h.HaID.ToString() == hattyuuID);
                 if (hattyu != null)
                 {
+                    // 更新処理
                     hattyu.MaID = int.Parse(makerID);
                     hattyu.EmID = int.Parse(shainID);
                     hattyu.HaDate = hattyuuDate;
@@ -339,23 +351,20 @@ namespace SalesManagement_SysDev
                     hattyu.HaFlag = delFlag ? 1 : 0;              // 削除フラグ
                     hattyu.HaHidden = riyuu;
 
-                    // 入庫フラグがチェックされている場合、発注詳細の確認を行う
+                    // 入庫フラグがチェックされている場合、発注詳細の確認
                     if (hattyuFlag)
                     {
                         // 発注詳細が存在するか確認
                         var hattyuDetailsExist = context.THattyuDetails
-                            .Any(hd => hd.HaID == hattyu.HaID); // HaID が一致する発注詳細が存在するか確認
+                            .Any(hd => hd.HaID == hattyu.HaID);
 
                         if (!hattyuDetailsExist)
                         {
-                            // 発注詳細が存在しない場合はエラーメッセージを表示
-
                             MessageBox.Show(":104\n発注詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return; // 処理を中断
                         }
 
                         // 発注詳細が存在する場合、発注確認処理を実行
-
                         hattyu.HaFlag = 1;
                         hattyu.HaHidden = "発注確定処理済";
 
@@ -371,7 +380,6 @@ namespace SalesManagement_SysDev
                     // 更新を保存
                     try
                     {
-
                         context.SaveChanges();
                         MessageBox.Show("更新が成功しました。");
                         DisplayHattyus(); // 更新後に発注情報を再表示
@@ -381,19 +389,10 @@ namespace SalesManagement_SysDev
                     }
                     catch (DbUpdateException ex)
                     {
-                        // inner exception の詳細を表示
-                        if (ex.InnerException != null)
-                        {
-                            MessageBox.Show($"エラーの詳細: {ex.InnerException.Message}");
-                        }
-                        else
-                        {
-                            MessageBox.Show(":500\n不明なエラーが発生しました。\n" + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        MessageBox.Show($"エラーの詳細: {ex.InnerException?.Message ?? ex.Message}", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (Exception ex)
                     {
-                        // その他のエラーに対処する
                         MessageBox.Show(":500\n不明なエラーが発生しました。\n" + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -401,11 +400,12 @@ namespace SalesManagement_SysDev
                 {
                     MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
+
             countFlag();
             FlagCount();
         }
+
 
         private void RegisterHattyu()
         {
@@ -418,38 +418,27 @@ namespace SalesManagement_SysDev
 
             using (var context = new SalesManagementContext())
             {
-                // メーカーIDがMMakerテーブルに存在するか確認
+                if (CheckTBValue(TBMakerID, makerID, "メーカーID")) return;
+                if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
+
+                // メーカーIDが存在するか確認
                 int maker;
-                if (TBMakerID.Text == "")
-                {
-                    TBMakerID.BackColor = Color.Yellow;
-                    TBMakerID.Focus();
-                    MessageBox.Show(":101\nメーカーIDを入力して下さい", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (TBShainID.Text == "")
-                {
-                    TBShainID.BackColor = Color.Yellow;
-                    TBShainID.Focus();
-                    MessageBox.Show(":101\n社員IDを入力して下さい。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 if (!int.TryParse(makerID, out maker) || !context.MMakers.Any(m => m.MaID == maker))
                 {
-                    MessageBox.Show(":101\nメーカーIDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBMakerID, "メーカーID", makerID); // メーカーが見つからない場合
                     return;
                 }
 
-                // EmIDがMEmployeeテーブルに存在するか確認
+                // 社員IDが存在するか確認
                 int employeeID;
                 if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    MessageBox.Show(":101\n社員IDが存在しません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBShainID, "社員ID", shainID); // 社員が見つからない場合
                     return;
                 }
-                if (date.Value > DateTime.Now)
+
+                // 日付が未来の日付でないか確認
+                if (hattyuuDate > DateTime.Now)
                 {
                     var result = MessageBox.Show(
                         "売上日が未来を指していますが、よろしいですか？",
@@ -463,18 +452,18 @@ namespace SalesManagement_SysDev
                         return; // 処理を中断
                     }
                 }
+
                 // 新しい発注情報を作成
                 var newHattyu = new THattyu
                 {
-                    MaID = int.Parse(makerID),
-                    EmID = employeeID,               // 確認済みの社員ID
-                    HaDate = hattyuuDate,            // 発注日
-                    WaWarehouseFlag = nyuukoFlag ? 2 : 0, // 入庫状態フラグ
-                    HaFlag = delFlag ? 1 : 0,        // 削除フラグ
-                    HaHidden = riyuu                 // 非表示理由
+                    MaID = maker,
+                    EmID = employeeID,
+                    HaDate = hattyuuDate,
+                    WaWarehouseFlag = nyuukoFlag ? 2 : 0,
+                    HaFlag = delFlag ? 1 : 0,
+                    HaHidden = riyuu
                 };
 
-                // 発注情報をコンテキストに追加
                 context.THattyus.Add(newHattyu);
                 context.SaveChanges();
 
@@ -484,6 +473,7 @@ namespace SalesManagement_SysDev
                 MessageBox.Show("登録が成功しました。");
                 DisplayHattyus(); // 新規登録後の発注情報を再表示
                 ResetYellowBackgrounds(this);
+
                 // 入庫フラグがチェックされている場合、発注詳細の確認を行う
                 if (nyuukoFlag)
                 {
@@ -504,17 +494,34 @@ namespace SalesManagement_SysDev
             }
         }
 
+
+
         private void DisplayHattyus()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
+                    // checkBox1 がチェックされている場合、昇順・降順の切り替え
+                    var OrderDetails = checkBox1.Checked
+                        ? context.THattyus.OrderByDescending(od => od.HaID).ToList() // 降順 
+                        : context.THattyus.OrderBy(od => od.HaID).ToList();          // 昇順 
 
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての注文を表示 
                     var hattyus = checkBox_2.Checked
-                        ? context.THattyus.ToList()  // チェックされていれば全ての注文を表示
-                        : context.THattyus.Where(o => o.HaFlag != 1 && o.WaWarehouseFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        ? (checkBox1.Checked
+                            ? context.THattyus.OrderByDescending(o => o.HaID).ToList() // 降順
+                            : context.THattyus.OrderBy(o => o.HaID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.THattyus
+                                .Where(o => o.HaFlag != 1 && o.WaWarehouseFlag != 2)
+                                .OrderByDescending(o => o.HaID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.THattyus
+                                .Where(o => o.HaFlag != 1 && o.WaWarehouseFlag != 2)
+                                .OrderBy(o => o.HaID)          // 条件に合致するものを昇順で取得
+                                .ToList());
+
                     dataGridView1.DataSource = hattyus.Select(h => new
                     {
                         発注ID = h.HaID,
@@ -523,7 +530,7 @@ namespace SalesManagement_SysDev
                         発注年月日 = h.HaDate,
                         状態フラグ = h.WaWarehouseFlag,
                         非表示フラグ = h.HaFlag,
-                        非表示理由 = h.HaHidden
+                        備考 = h.HaHidden
                     }).ToList();
                 }
             }
@@ -610,7 +617,7 @@ namespace SalesManagement_SysDev
                         発注年月日 = h.HaDate,
                         発注状態 = h.WaWarehouseFlag,        // 発注フラグの表示
                         削除フラグ = h.HaFlag,           // 管理フラグ
-                        理由 = h.HaHidden               // 非表示理由
+                        理由 = h.HaHidden               // 備考
                     }).ToList();
                 }
                 else
@@ -628,62 +635,37 @@ namespace SalesManagement_SysDev
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
-            if (TBHattyuuSyosaiID.Text == "")
-            {
-                TBHattyuuSyosaiID.BackColor = Color.Yellow;
-                TBHattyuuSyosaiID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBHattyuIDS.Text == "")
-            {
-                TBHattyuIDS.BackColor = Color.Yellow;
-                TBHattyuIDS.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-            if (TBSyohinID.Text == "")
-            {
-                TBSyohinID.BackColor = Color.Yellow;
-                TBSyohinID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBSuryou.Text == "")
-            {
-                TBSuryou.BackColor = Color.Yellow;
-                TBSuryou.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
+            // 各TextBoxの入力値をチェック
+            if (CheckTBValue(TBHattyuuSyosaiID, hattyuuSyosaiID, "発注詳細ID")) return;
+            if (CheckTBValue(TBHattyuIDS, hattyuuID, "発注ID")) return;
+            if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+            if (CheckTBValue(TBSuryou, suryou, "数量")) return;
+            if (Kuraberu_kun.Kuraberu_chan("発注", "詳細", "更新", int.Parse(hattyuuSyosaiID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
+                // 発注詳細IDが存在するか確認
                 int syousai;
                 if (!int.TryParse(hattyuuID, out syousai) || !context.THattyuDetails.Any(h => h.HaDetailID == syousai))
                 {
-                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBHattyuuSyosaiID, "発注詳細ID", hattyuuID);
                     return;
                 }
 
+                // 発注IDが存在するか確認
                 int hattyuID;
                 if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
                 {
-                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBHattyuIDS, "発注ID", hattyuuID);
                     return;
                 }
 
-                // PrID（商品ID）がMProductテーブルに存在するか確認
+                // 商品IDがMProductテーブルに存在するか確認
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    MessageBox.Show(":204\n項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBSyohinID, "商品ID", syohinID);
                     return;
                 }
 
@@ -707,43 +689,26 @@ namespace SalesManagement_SysDev
             }
         }
 
+
+
         private void RegisterHattyuDetails()
         {
             string hattyuuID = TBHattyuIDS.Text;
             string syohinID = TBSyohinID.Text;
             string suryou = TBSuryou.Text;
 
+            // 各TextBoxの入力値をチェック
+            if (CheckTBValue(TBHattyuIDS, hattyuuID, "発注ID")) return;
+            if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+            if (CheckTBValue(TBSuryou, suryou, "数量")) return;
+
             using (var context = new SalesManagementContext())
             {
                 // HaID（発注ID）がTHattyuテーブルに存在するか確認
-                int hattyuID;
-                if (TBHattyuIDS.Text == "")
+                int hattyuIDInt;
+                if (!int.TryParse(hattyuuID, out hattyuIDInt) || !context.THattyus.Any(h => h.HaID == hattyuIDInt))
                 {
-                    TBHattyuIDS.BackColor = Color.Yellow;
-                    TBHattyuIDS.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
-                if (TBSyohinID.Text == "")
-                {
-                    TBSyohinID.BackColor = Color.Yellow;
-                    TBSyohinID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (TBSuryou.Text == "")
-                {
-                    TBSuryou.BackColor = Color.Yellow;
-                    TBSuryou.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (!int.TryParse(hattyuuID, out hattyuID) || !context.THattyus.Any(h => h.HaID == hattyuID))
-                {
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBHattyuIDS, "発注ID", hattyuuID);
                     return;
                 }
 
@@ -751,28 +716,30 @@ namespace SalesManagement_SysDev
                 int productID;
                 if (!int.TryParse(syohinID, out productID) || !context.MProducts.Any(p => p.PrID == productID))
                 {
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBSyohinID, "商品ID", syohinID);
                     return;
                 }
 
-                // 数量のパース
+                // 数量のパースと検証
                 int quantity;
                 if (!int.TryParse(suryou, out quantity) || quantity <= 0)
                 {
-                    MessageBox.Show(":102\n入力形式が正しくありません。。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(":102\n入力形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-
-                var existingOrderDetail = context.THattyuDetails.FirstOrDefault(o => o.HaID == hattyuID);
+                // 発注詳細の重複確認
+                var existingOrderDetail = context.THattyuDetails.FirstOrDefault(o => o.HaID == hattyuIDInt);
                 if (existingOrderDetail != null)
                 {
                     MessageBox.Show(":203\n既存データとの重複が発生しました。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return; // 処理を終了
                 }
+
+                // 新規発注詳細の登録
                 var newOrderDetail = new THattyuDetail
                 {
-                    HaID = hattyuID,
+                    HaID = hattyuIDInt,
                     PrID = productID,
                     HaQuantity = quantity
                 };
@@ -783,14 +750,16 @@ namespace SalesManagement_SysDev
                 DisplayHattyuDetails();
                 Log_Horder(newOrderDetail.HaDetailID);
                 ResetYellowBackgrounds(this);
+
+                // 登録完了後の確認メッセージ
                 DialogResult result = MessageBox.Show("発注詳細の登録が完了しました。\n発注処理を確定させますか？",
-                                     "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                     "登録完了", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 // Yes/Noでの分岐処理
                 if (result == DialogResult.Yes)
                 {
                     // Yesが選ばれた場合の処理（受注処理確定）
-                    UpdateHattyuAccept(hattyuID.ToString());
+                    UpdateHattyuAccept(hattyuIDInt.ToString());
                 }
                 else
                 {
@@ -800,6 +769,7 @@ namespace SalesManagement_SysDev
             }
         }
 
+
         private void DisplayHattyuDetails()
         {
             try
@@ -808,9 +778,13 @@ namespace SalesManagement_SysDev
                 {
                     var HattyuDetails = context.THattyuDetails.ToList();
 
+                    var OrderDetails = checkBox1.Checked
+                        ? context.THattyuDetails.OrderByDescending(od => od.HaID).ToList() // 降順 
+                        : context.THattyuDetails.OrderBy(od => od.HaID).ToList();          // 昇順 
+
                     var visibleHattyuDetails = checkBox_2.Checked
-                        ? HattyuDetails
-                        : HattyuDetails.Where(od =>
+                        ? OrderDetails // チェックされていれば全て表示（並び替え済み）
+                        : OrderDetails.Where(od =>
                         {
                             var Hattyu = context.THattyus.FirstOrDefault(o => o.HaID == od.HaID);
 
@@ -916,6 +890,7 @@ namespace SalesManagement_SysDev
                 lastFocusedPanelID = 1;
             else if (orderFlag == "詳細→")
                 lastFocusedPanelID = 2;
+            UpdateClose_kun(orderFlag);
         }
 
 
@@ -954,7 +929,7 @@ namespace SalesManagement_SysDev
                     // 入庫状態や非表示フラグも必要に応じて設定 
                     // 例: NyuukoFlag.Checked = (row.Cells["入庫状態"].Value.ToString() == "1"); 
                     // 例: DelFlag.Checked = (row.Cells["非表示フラグ"].Value.ToString() == "1"); 
-                    // 例: TBRiyuu.Text = row.Cells["非表示理由"].Value.ToString(); 
+                    // 例: TBRiyuu.Text = row.Cells["備考"].Value.ToString(); 
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }
 
@@ -1000,7 +975,6 @@ namespace SalesManagement_SysDev
         }
         private void HorderConfirm(int HaID)
         {
-            MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
@@ -1075,6 +1049,7 @@ namespace SalesManagement_SysDev
                 ToggleHattyuSelection();
                 UpdateFlagButtonText();
                 lastFocusedPanelID = panelID; // 現在のパネルIDを更新
+                UpdateClose_kun(orderFlag);
             }
         }
         //↓以下北島匙投げゾーン
@@ -1378,6 +1353,33 @@ namespace SalesManagement_SysDev
             countFlag();
             FlagCount();
         }
+
+
+        private void UpdateClose_kun(string orderFlag)
+        {
+            if (orderFlag == "詳細→")
+            {
+                b_upd.Enabled = false;
+                b_upd.BackColor = SystemColors.ControlDark; // 灰色に設定
+                b_kakutei.Enabled = false;
+                b_kakutei.BackColor = SystemColors.ControlDark;
+            }
+            else
+            {
+                b_upd.Enabled = true;
+                b_upd.BackColor = Color.FromArgb(212, 222, 255); // 色コード255, 224, 192に設定
+                b_kakutei.Enabled = true;
+                b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            }
+        }
+        private void UpdateClose_Chan()
+        {
+            b_upd.Enabled = true;
+            b_upd.BackColor = Color.FromArgb(212, 222, 255); // 色コード255, 224, 192に設定
+            b_kakutei.Enabled = true;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+        }
+
         private void ResetYellowBackgrounds(Control parent)
         {
             foreach (Control control in parent.Controls)
@@ -1395,6 +1397,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
     }
 
 }

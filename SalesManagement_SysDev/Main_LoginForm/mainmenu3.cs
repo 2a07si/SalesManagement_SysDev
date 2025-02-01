@@ -40,9 +40,6 @@ namespace SalesManagement_SysDev.Main_LoginForm
             LoadLogData(Global.EmployeePermission);
             listViewLog.Scrollable = false;
 
-
-
-
         }
         // 従業員名をデータベースから取得して表示するメソッド
         private void LoadEmployeeName()
@@ -53,13 +50,13 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 {
                     // Global.EmployeeIDに基づいて従業員情報を取得
                     var employee = context.MEmployees
-                        .Include(e => e.Po) // 職位情報を含めて取得 
+                        .Include(e => e.Po) // 役職情報を含めて取得 
                         .SingleOrDefault(e => e.EmID == Global.EmployeeID); // EmployeeIDを直接比較 
 
                     // 従業員が見つかった場合
                     if (employee != null)
                     {
-                        label_id.Text = employee.Po.PoName; // 職位名をラベルに表示   
+                        label_id.Text = employee.Po.PoName; // 役職名をラベルに表示   
                     }
                     else
                     {
@@ -150,6 +147,9 @@ namespace SalesManagement_SysDev.Main_LoginForm
                 Global.EmployeeName = string.Empty;
                 Global.PositionName = string.Empty;
                 Global.EmployeePermission = 0;
+                GlobalEmp.EmployeeID = null;
+                GlobalEmp.EmployeeName = string.Empty;
+                
                 this.Close(); // 現在のフォームを閉じる 
                 Log_Out();
                 F_login loginForm = new F_login(); // ログインフォームを作成 

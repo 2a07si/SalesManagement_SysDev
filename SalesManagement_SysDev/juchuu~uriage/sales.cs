@@ -22,7 +22,7 @@ namespace SalesManagement_SysDev
         private ClassChangeForms formChanger; // 画面遷移管理クラス 
         private ClassTimerManager timerManager; // タイマー管理クラス 
         private ClassAccessManager accessManager;
-
+        private DateTime timestamp = DateTime.Now;
         private int lastFocusedPanelID = 1;
         public sales()
         {
@@ -34,7 +34,12 @@ namespace SalesManagement_SysDev
 
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
-            AddControlEventHandlers(panel3, 2);  // パネル2の場合
+            AddControlEventHandlers(panel4, 2);  // パネル2の場合
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView2.AllowUserToResizeColumns = false;
+            dataGridView2.AllowUserToResizeRows = false;
+
         }
 
         private void sales_Load(object sender, EventArgs e)
@@ -144,6 +149,8 @@ namespace SalesManagement_SysDev
         private void clear_Click(object sender, EventArgs e)
         {
             cleartext();
+            UpdateClose_kun(saleFlag);
+            UpdateClose_Chan();
         }
         private void cleartext()
         {
@@ -171,6 +178,7 @@ namespace SalesManagement_SysDev
                 TBShainID.Text = "";
             }
             ResetYellowBackgrounds(this);
+
         }
 
         private void tbfalse()
@@ -263,6 +271,26 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
+        private bool CheckTBValue(TextBox textBox, string value, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                textBox.BackColor = Color.Yellow;
+                textBox.Focus();
+                MessageBox.Show($":101\n必要な入力がありません。（{fieldName}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            textBox.BackColor = SystemColors.Window; // 問題ない場合、背景色をリセット
+            return false;
+        }
+
+        private void NotFound(TextBox textBox, string itemName, string itemId)
+        {
+            textBox.BackColor = Color.Yellow;
+            textBox.Focus();
+            MessageBox.Show($":204\n該当の{itemName}が見つかりません。（{itemName}ID: {itemId}）",
+                            "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         private void UpdateSale()
         {
@@ -275,53 +303,27 @@ namespace SalesManagement_SysDev
             bool delFlag = DelFlag.Checked;
             string Riyuu = TBRiyuu.Text;
 
-            if (TBSalesID.Text == "")
+            // 必要な入力チェックを行う
+            if (CheckTBValue(TBSalesID, salesID, "売上ID")) return;
+            if (CheckTBValue(TBShopID, shopID, "店舗ID")) return;
+            if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
+            if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
+            if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
             {
-                TBSalesID.BackColor = Color.Yellow;
-                TBSalesID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                // 入力が足りない場合は処理を終了
             }
 
-            if (TBShopID.Text == "")
-            {
-                TBShopID.BackColor = Color.Yellow;
-                TBShopID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBShainID.Text == "")
-            {
-                TBShainID.BackColor = Color.Yellow;
-                TBShopID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBKokyakuID.Text == "")
-            {
-                TBKokyakuID.BackColor = Color.Yellow;
-                TBKokyakuID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBJyutyuID.Text == "")
-            {
-                TBJyutyuID.BackColor = Color.Yellow;
-                TBJyutyuID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TBShainID.Text != empID)
+            // ログインIDとの照合
+            if (shainID != empID)
             {
                 MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
                 TBShainID.BackColor = Color.Yellow;
                 TBShainID.Focus();
                 return;
             }
-            if (date.Value > DateTime.Now)
+
+            // 売上日が未来日付の場合の確認
+            if (salesDate > DateTime.Now)
             {
                 var result = MessageBox.Show(
                     "売上日が未来を指していますが、よろしいですか？",
@@ -336,53 +338,51 @@ namespace SalesManagement_SysDev
                 }
             }
 
+            // 競合チェック（売上データの更新）
+            if (Kuraberu_kun.Kuraberu_chan("売上", "通常", "更新", int.Parse(salesID), timestamp) == false)
+            {
+                return;
+            }
+
+            // DBでの各項目の存在確認
             using (var context = new SalesManagementContext())
             {
-                int sale;
-                if (!int.TryParse(salesID, out sale) || !context.TSales.Any(s => s.SaID == sale))
+                // 売上IDが存在するか確認
+                if (!int.TryParse(salesID, out int sale) || !context.TSales.Any(s => s.SaID == sale))
                 {
-                    TBSalesID.BackColor = Color.Yellow;
-                    TBSalesID.Focus();
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBSalesID, "売上", salesID);
                     return;
                 }
 
-                int shop;
-                if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
+                // 店舗IDが存在するか確認
+                if (!int.TryParse(shopID, out int shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                 {
-                    TBShopID.BackColor = Color.Yellow;
-                    TBShopID.Focus();
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBShopID, "店舗", shopID);
                     return;
                 }
 
-                int employeeID;
-                if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
+                // 社員IDが存在するか確認
+                if (!int.TryParse(shainID, out int employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                 {
-                    TBShainID.BackColor = Color.Yellow;
-                    TBShainID.Focus();
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBShainID, "社員", shainID);
                     return;
                 }
 
-                int kokyaku;
-                if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
+                // 顧客IDが存在するか確認
+                if (!int.TryParse(kokyakuID, out int kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
                 {
-                    TBKokyakuID.BackColor = Color.Yellow;
-                    TBKokyakuID.Focus();
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBKokyakuID, "顧客", kokyakuID);
                     return;
                 }
 
-                int juchu;
-                if (!int.TryParse(JyutyuID, out juchu) || !context.TOrders.Any(j => j.OrID == juchu))
+                // 受注IDが存在するか確認
+                if (!int.TryParse(JyutyuID, out int juchu) || !context.TOrders.Any(j => j.OrID == juchu))
                 {
-                    TBJyutyuID.BackColor = Color.Yellow;
-                    TBJyutyuID.Focus();
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBJyutyuID, "受注", JyutyuID);
                     return;
                 }
 
+                // 売上情報の更新
                 var sales = context.TSales.SingleOrDefault(s => s.SaID.ToString() == salesID);
                 if (sales != null)
                 {
@@ -420,97 +420,69 @@ namespace SalesManagement_SysDev
                 DateTime salesDate = date.Value;
                 bool delFlag = DelFlag.Checked;
 
+                // 入力が不足している項目をチェック
+                if (CheckTBValue(TBShopID, shopID, "店舗ID")) return;
+                if (CheckTBValue(TBShainID, shainID, "社員ID")) return;
+                if (CheckTBValue(TBKokyakuID, kokyakuID, "顧客ID")) return;
+                if (CheckTBValue(TBJyutyuID, JyutyuID, "受注ID")) return;
+
+                // ログインIDとの照合
+                if (shainID != empID)
+                {
+                    MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
+                    TBShainID.BackColor = Color.Yellow;
+                    TBShainID.Focus();
+                    return;
+                }
+
+                // 売上日が未来日付の場合の確認
+                if (salesDate > DateTime.Now)
+                {
+                    var result = MessageBox.Show(
+                        "売上日が未来を指していますが、よろしいですか？",
+                        "確認",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.No)
+                    {
+                        return; // 処理を中断
+                    }
+                }
+
+                // DBでの各項目の存在確認
                 using (var context = new SalesManagementContext())
                 {
-                    int shop;
-                    if (TBShopID.Text == "")
+                    // 店舗IDが存在するか確認
+                    if (!int.TryParse(shopID, out int shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
                     {
-                        TBaaaaaID.BackColor = Color.Yellow;
-                        TBaaaaaID.Focus();
-                        MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        NotFound(TBShopID, "店舗", shopID);
                         return;
                     }
 
-                    if (TBShainID.Text == "")
+                    // 社員IDが存在するか確認
+                    if (!int.TryParse(shainID, out int employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
                     {
-                        TBShainID.BackColor = Color.Yellow;
-                        TBShainID.Focus();
-                        MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        NotFound(TBShainID, "社員", shainID);
                         return;
                     }
 
-                    if (TBKokyakuID.Text == "")
+                    // 顧客IDが存在するか確認
+                    if (!int.TryParse(kokyakuID, out int kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
                     {
-                        TBKokyakuID.BackColor = Color.Yellow;
-                        TBKokyakuID.Focus();
-                        MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        NotFound(TBKokyakuID, "顧客", kokyakuID);
                         return;
                     }
 
-                    if (TBJyutyuID.Text == "")
+                    // 受注IDが存在するか確認
+                    if (!int.TryParse(JyutyuID, out int juchu) || !context.TOrders.Any(j => j.OrID == juchu))
                     {
-                        TBJyutyuID.BackColor = Color.Yellow;
-                        TBJyutyuID.Focus();
-                        MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (TBShainID.Text != empID)
-                    {
-                        MessageBox.Show("ログイン時に使用した社員IDを入力して下さい。");
-                        TBShainID.BackColor = Color.Yellow;
-                        TBShainID.Focus();
-                        return;
-                    }
-                    if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
-                    {
-                        TBShopID.BackColor = Color.Yellow;
-                        TBShopID.Focus();
-                        MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        NotFound(TBJyutyuID, "受注", JyutyuID);
                         return;
                     }
 
-                    int employeeID;
-                    if (!int.TryParse(shainID, out employeeID) || !context.MEmployees.Any(e => e.EmID == employeeID))
-                    {
-                        TBShainID.BackColor = Color.Yellow;
-                        TBShainID.Focus();
-                        MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    int kokyaku;
-                    if (!int.TryParse(kokyakuID, out kokyaku) || !context.MClients.Any(k => k.ClID == kokyaku))
-                    {
-                        TBKokyakuID.BackColor = Color.Yellow;
-                        TBKokyakuID.Focus();
-                        MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    int juchu;
-                    if (!int.TryParse(JyutyuID, out juchu) || !context.TOrders.Any(j => j.OrID == juchu))
-                    {
-                        TBJyutyuID.BackColor = Color.Yellow;
-                        TBJyutyuID.Focus();
-                        MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (date.Value > DateTime.Now)
-                    {
-                        var result = MessageBox.Show(
-                            "売上日が未来を指していますが、よろしいですか？",
-                            "確認",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Warning
-                        );
-
-                        if (result == DialogResult.No)
-                        {
-                            return; // 処理を中断
-                        }
-                    }
-
-
+                    // 新規売上の登録
                     var newSale = new TSale
                     {
                         SoID = shop,
@@ -539,15 +511,26 @@ namespace SalesManagement_SysDev
             }
         }
 
+
         private void DisplaySales()
         {
             try
             {
                 using (var context = new SalesManagementContext())
-                {
+                {// checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての売上を表示
                     var sales = checkBox_2.Checked
-                        ? context.TSales.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TSales.Where(s => s.SaFlag != 1).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        ? (checkBox1.Checked
+                            ? context.TSales.OrderByDescending(s => s.SaID).ToList() // 降順
+                            : context.TSales.OrderBy(s => s.SaID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.TSales
+                                .Where(s => s.SaFlag != 1)
+                                .OrderByDescending(s => s.SaID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.TSales
+                                .Where(s => s.SaFlag != 1)
+                                .OrderBy(s => s.SaID)          // 条件に合致するものを昇順で取得
+                                .ToList());
 
                     dataGridView1.DataSource = sales.Select(s => new
                     {
@@ -558,7 +541,7 @@ namespace SalesManagement_SysDev
                         受注ID = s.OrID,
                         売上日 = s.SaDate,
                         売上フラグ = s.SaFlag,
-                        非表示理由 = s.SaHidden
+                        備考 = s.SaHidden
                     }).ToList();
                 }
             }
@@ -661,8 +644,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-
         private void UpdateSaleDetails()
         {
             string UriageSyosaiID = TBUriageSyosaiID.Text;
@@ -671,53 +652,48 @@ namespace SalesManagement_SysDev
             string suryou = TBSuryou.Text;
             string total = TBTotal.Text;
 
-            if (TBUriageSyosaiID.Text == "")
+            // 入力チェックを行う
+            if (CheckTBValue(TBUriageSyosaiID, UriageSyosaiID, "売上詳細ID")) return;
+            if (CheckTBValue(TBUriageIDS, uriageID, "売上ID")) return;
+            if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+            if (CheckTBValue(TBSuryou, suryou, "数量")) return;
+            if (CheckTBValue(TBTotal, total, "合計")) return;
+
+            // 競合チェック（売上詳細データの更新）
+            if (Kuraberu_kun.Kuraberu_chan("売上", "詳細", "更新", int.Parse(UriageSyosaiID), timestamp) == false)
             {
-                TBUriageIDS.BackColor = Color.Yellow;
-                TBUriageIDS.Focus();
-                MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (TBUriageIDS.Text == "")
-            {
-                MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-            if (TBSyohinID.Text == "")
-            {
-                MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (TBSuryou.Text == "")
-            {
-                MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
+            // DBでの各項目の存在確認
             using (var context = new SalesManagementContext())
             {
-                if (!int.TryParse(UriageSyosaiID, out int syosai) || !context.TSaleDetails.Any(s => s.SaDetailID == syosai))
+                // 売上詳細IDが存在するか確認
+                int syosai;
+                if (!int.TryParse(UriageSyosaiID, out syosai) || !context.TSaleDetails.Any(s => s.SaDetailID == syosai))
                 {
                     MessageBox.Show(":104\n詳細が登録されていません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (!int.TryParse(uriageID, out int uriage) || !context.TSales.Any(s => s.SaID == uriage))
+
+                // 売上IDが存在するか確認
+                // 売上IDが存在しない場合
+                int uriage;
+                if (!int.TryParse(uriageID, out uriage) || !context.TSales.Any(s => s.SaID == uriage))
                 {
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBUriageIDS, "売上", uriageID);
                     return;
                 }
 
-                // 商品IDの検証
-                if (!int.TryParse(syohinID, out int shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
+                // 商品IDが存在しない場合
+                int shouhin;
+                if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                 {
-                    MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NotFound(TBSyohinID, "商品", syohinID);
                     return;
                 }
 
+                // 売上詳細の更新
                 var saleDetail = context.TSaleDetails.SingleOrDefault(sa => sa.SaDetailID.ToString() == UriageSyosaiID);
                 if (saleDetail != null)
                 {
@@ -749,62 +725,47 @@ namespace SalesManagement_SysDev
                 string suryou = TBSuryou.Text;
                 string total = TBTotal.Text;
 
-
+                // 入力チェック
+                if (CheckTBValue(TBUriageIDS, uriageID, "売上ID"))
+                    if (CheckTBValue(TBSyohinID, syohinID, "商品ID")) return;
+                if (CheckTBValue(TBSuryou, suryou, "数量")) return;
 
                 using (var context = new SalesManagementContext())
                 {
-                    if (TBUriageIDS.Text == "")
-                    {
-                        TBUriageIDS.BackColor = Color.Yellow;
-                        MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-
-                    if (TBSyohinID.Text == "")
-                    {
-                        TBSyohinID.BackColor = Color.Yellow;
-                        MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (TBSuryou.Text == "")
-                    {
-                        TBSuryou.BackColor = Color.Yellow;
-                        MessageBox.Show(":101\n必要な入力がありません", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
                     // 売上IDの検証
-                    if (!int.TryParse(uriageID, out int uriage) || !context.TSales.Any(s => s.SaID == uriage))
+                    int uriage;
+                    if (!int.TryParse(uriageID, out uriage) || !context.TSales.Any(s => s.SaID == uriage))
                     {
-                        MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        NotFound(TBUriageIDS, "売上", uriageID);
                         return;
                     }
 
-                    // 商品IDの検証
-                    if (!int.TryParse(syohinID, out int shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
+                    // 商品IDが存在しない場合
+                    int shouhin;
+                    if (!int.TryParse(syohinID, out shouhin) || !context.MProducts.Any(s => s.PrID == shouhin))
                     {
-                        MessageBox.Show(":204\n該当の項目が見つかりません。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        NotFound(TBSyohinID, "商品", syohinID);
                         return;
                     }
 
                     // 数量の検証
-                    if (!int.TryParse(suryou, out int quantity) || quantity <= 0)
+                    int quantity;
+                    if (!int.TryParse(suryou, out quantity) || quantity <= 0)
                     {
                         MessageBox.Show(":102\n入力形式が正しくありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-
-                    var existingOrderDetail = context.TSaleDetails.FirstOrDefault(o => o.SaID == uriage);
+                    // 売上詳細が既に登録されていないか確認
+                    var existingOrderDetail = context.TSaleDetails.FirstOrDefault(o => o.SaID == uriage && o.PrID == shouhin);
                     if (existingOrderDetail != null)
                     {
                         MessageBox.Show(":203\n既存データとの重複が発生しました。", "DBエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return; // 処理を終了
+                        return;
                     }
+
                     var newSaleDetail = new TSaleDetail
                     {
-
                         SaID = uriage,
                         PrID = shouhin,
                         SaQuantity = quantity
@@ -841,16 +802,6 @@ namespace SalesManagement_SysDev
                     DisplaySaleDetails();
                     Log_Sale(newSaleDetail.SaDetailID);
                     ResetYellowBackgrounds(this);
-
-                    // DisplaySaleDetailsの呼び出し
-                    try
-                    {
-                        DisplaySaleDetails();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(":500\n不明なエラーが発生しました。\n: " + ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
             }
             catch (FormatException)
@@ -863,19 +814,25 @@ namespace SalesManagement_SysDev
             }
         }
 
+
+
         private void DisplaySaleDetails()
         {
             try
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var saleDetails = context.TSaleDetails.ToList();
+                    // 売上詳細のリストを取得（checkBox1の状態に応じて並べ替え）
+                    var saleDetails = checkBox1.Checked
+                        ? context.TSaleDetails.OrderByDescending(sd => sd.SaID).ToList() // 降順
+                        : context.TSaleDetails.OrderBy(sd => sd.SaID).ToList();          // 昇順
 
+                    // checkBox_2がチェックされている場合、フィルタリングを無視してすべての詳細を表示
                     var visibleUriageDetails = checkBox_2.Checked
-                        ? saleDetails
-                        : saleDetails.Where(od =>
+                        ? saleDetails // チェックされていれば全て表示（並び替え済み）
+                        : saleDetails.Where(sd =>
                         {
-                            var Sale = context.TSales.FirstOrDefault(o => o.SaID == od.SaID);
+                            var Sale = context.TSales.FirstOrDefault(s => s.SaID == sd.SaID);
                             return Sale == null || (Sale.SaFlag != 1);
                         }).ToList();
 
@@ -983,6 +940,7 @@ namespace SalesManagement_SysDev
 
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
+            UpdateClose_kun(saleFlag);
         }
 
         private void UpdateFlagButtonText()
@@ -1018,10 +976,10 @@ namespace SalesManagement_SysDev
                     TBShainID.Text = row.Cells["社員ID"].Value.ToString();
                     TBJyutyuID.Text = row.Cells["受注ID"].Value.ToString();
                     date.Value = Convert.ToDateTime(row.Cells["売上日"].Value);
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
@@ -1123,6 +1081,7 @@ namespace SalesManagement_SysDev
                 ToggleSaleSelection();
                 UpdateFlagButtonText();
                 lastFocusedPanelID = panelID; // 現在のパネルIDを更新
+                UpdateClose_kun(saleFlag);
             }
         }
         //↓以下北島匙投げゾーン
@@ -1413,6 +1372,32 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
+
+        private void UpdateClose_kun(string orderFlag)
+        {
+            if (orderFlag == "詳細→")
+            {
+                b_upd.Enabled = false;
+                b_upd.BackColor = SystemColors.ControlDark; // 灰色に設定
+                b_kakutei.Enabled = false;
+                b_kakutei.BackColor = SystemColors.ControlDark;
+            }
+            else
+            {
+                b_upd.Enabled = true;
+                b_upd.BackColor = Color.FromArgb(255, 224, 192); // 色コード255, 224, 192に設定
+                b_kakutei.Enabled = true;
+                b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            }
+        }
+        private void UpdateClose_Chan()
+        {
+            b_upd.Enabled = true;
+            b_upd.BackColor = Color.FromArgb(255, 224, 192); // 色コード255, 224, 192に設定
+            b_kakutei.Enabled = true;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+        }
+
         private void ResetYellowBackgrounds(Control parent)
         {
             foreach (Control control in parent.Controls)
@@ -1430,6 +1415,7 @@ namespace SalesManagement_SysDev
                 }
             }
         }
+
     }
 
 

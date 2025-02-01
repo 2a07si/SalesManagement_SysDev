@@ -294,8 +294,8 @@
             b_kakutei.Location = new Point(1218, 69);
             b_kakutei.Name = "b_kakutei";
             b_kakutei.Size = new Size(150, 70);
-            b_kakutei.TabIndex = 6;
-            b_kakutei.Text = "確定";
+            b_kakutei.TabIndex = 5;
+            b_kakutei.Text = "確定[&S]";
             b_kakutei.UseVisualStyleBackColor = false;
             b_kakutei.Click += b_kakutei_Click;
             // 

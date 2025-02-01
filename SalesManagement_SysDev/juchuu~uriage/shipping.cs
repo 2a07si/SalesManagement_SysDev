@@ -24,7 +24,7 @@ namespace SalesManagement_SysDev
         private ClassAccessManager accessManager;
 
         private int lastFocusedPanelID = 1;
-
+        private DateTime timestamp = DateTime.Now;
         // コンストラクターでmainFormを引数として受け取る 
         public shipping(Form mainForm)
         {
@@ -37,6 +37,11 @@ namespace SalesManagement_SysDev
             // パネル1とパネル2のコントロールにイベントを設定
             AddControlEventHandlers(panel1, 1);  // パネル1の場合
             AddControlEventHandlers(panel3, 2);  // パネル2の場合
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView2.AllowUserToResizeColumns = false;
+            dataGridView2.AllowUserToResizeRows = false;
+
 
         }
 
@@ -164,6 +169,8 @@ namespace SalesManagement_SysDev
                 TBShainID.Text = "";
             }
             ResetYellowBackgrounds(this);
+            UpdateClose_kun(shippingFlag);
+            UpdateClose_Chan();
         }
 
         private void tbfalse()
@@ -271,7 +278,7 @@ namespace SalesManagement_SysDev
             {
                 TBSyukkaID.BackColor = Color.Yellow;
                 TBSyukkaID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -279,7 +286,7 @@ namespace SalesManagement_SysDev
             {
                 TBShopID.BackColor = Color.Yellow;
                 TBShopID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -287,7 +294,7 @@ namespace SalesManagement_SysDev
             {
                 TBShainID.BackColor = Color.Yellow;
                 TBShainID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -295,7 +302,7 @@ namespace SalesManagement_SysDev
             {
                 TBKokyakuID.BackColor = Color.Yellow;
                 TBKokyakuID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -303,7 +310,7 @@ namespace SalesManagement_SysDev
             {
                 TBJyutyuID.BackColor = Color.Yellow;
                 TBJyutyuID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TBShainID.Text != empID)
@@ -328,6 +335,8 @@ namespace SalesManagement_SysDev
                     return; // 処理を中断
                 }
             }
+            if (Kuraberu_kun.Kuraberu_chan("出荷", "通常", "更新", int.Parse(SyukkaID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -468,28 +477,28 @@ namespace SalesManagement_SysDev
                 {
                     TBKokyakuID.BackColor = Color.Yellow;
                     TBKokyakuID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBShainID.Text == "")
                 {
                     TBShainID.BackColor = Color.Yellow;
                     TBShainID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBShopID.Text == "")
                 {
                     TBShopID.BackColor = Color.Yellow;
                     TBShopID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (TBJyutyuID.Text == "")
                 {
                     TBJyutyuID.BackColor = Color.Yellow;
                     TBJyutyuID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (!int.TryParse(shopID, out shop) || !context.MSalesOffices.Any(s => s.SoID == shop))
@@ -557,7 +566,7 @@ namespace SalesManagement_SysDev
                         // 新しい出荷情報を作成
                         var newShipping = new TShipment
                         {
-                            SoID = int.Parse(shopID),                  // 店舗ID
+                            SoID = int.Parse(shopID),                  // 営業所ID
                             EmID = int.Parse(shainID),                 // 社員ID
                             ClID = int.Parse(kokyakuID),               // 顧客ID
                             OrID = int.Parse(JyutyuID),                // 受注ID
@@ -627,11 +636,21 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-
-                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての受注を表示
+                    // checkBox_2 がチェックされている場合、非表示フラグに関係なくすべての出荷を表示
                     var shipping = checkBox_2.Checked
-                        ? context.TShipments.ToList()  // チェックされていれば全ての注文を表示
-                        : context.TShipments.Where(o => o.ShFlag != 1 && o.ShStateFlag != 2).ToList();  // チェックされていなければ非表示フラグが "1" のものを除外
+                        ? (checkBox1.Checked
+                            ? context.TShipments.OrderByDescending(s => s.ShID).ToList() // 降順
+                            : context.TShipments.OrderBy(s => s.ShID).ToList())          // 昇順
+                        : (checkBox1.Checked
+                            ? context.TShipments
+                                .Where(s => s.ShFlag != 1 && s.ShStateFlag != 2)
+                                .OrderByDescending(s => s.ShID) // 条件に合致するものを降順で取得
+                                .ToList()
+                            : context.TShipments
+                                .Where(s => s.ShFlag != 1 && s.ShStateFlag != 2)
+                                .OrderBy(s => s.ShID)          // 条件に合致するものを昇順で取得
+                                .ToList());
+
                     dataGridView1.DataSource = shipping.Select(sh => new
                     {
                         出荷ID = sh.ShID,
@@ -744,7 +763,7 @@ namespace SalesManagement_SysDev
                         出荷終了日 = sh.ShFinishDate,
                         出荷フラグ = sh.ShStateFlag,  // 出荷フラグの表示 
                         削除フラグ = sh.ShFlag,       // 管理フラグ
-                        理由 = sh.ShHidden           // 非表示理由
+                        理由 = sh.ShHidden           // 備考
                     }).ToList();
                 }
                 else
@@ -768,7 +787,7 @@ namespace SalesManagement_SysDev
             {
                 TBSyukkaSyosaiID.BackColor = Color.Yellow;
                 TBSyukkaSyosaiID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -776,7 +795,7 @@ namespace SalesManagement_SysDev
             {
                 TBSyukkaIDS.BackColor = Color.Yellow;
                 TBSyukkaIDS.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -785,7 +804,7 @@ namespace SalesManagement_SysDev
             {
                 TBSyohinID.BackColor = Color.Yellow;
                 TBSyohinID.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -793,9 +812,11 @@ namespace SalesManagement_SysDev
             {
                 TBSuryou.BackColor = Color.Yellow;
                 TBSuryou.Focus();
-                MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (Kuraberu_kun.Kuraberu_chan("出荷", "詳細", "更新", int.Parse(shukkasyosaiID), timestamp) == false)
+            { return; }
 
             using (var context = new SalesManagementContext())
             {
@@ -854,7 +875,7 @@ namespace SalesManagement_SysDev
                 {
                     TBSyukkaIDS.BackColor = Color.Yellow;
                     TBSyukkaIDS.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -863,7 +884,7 @@ namespace SalesManagement_SysDev
                 {
                     TBSyohinID.BackColor = Color.Yellow;
                     TBSyohinID.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -871,7 +892,7 @@ namespace SalesManagement_SysDev
                 {
                     TBSuryou.BackColor = Color.Yellow;
                     TBSuryou.Focus();
-                    MessageBox.Show(":101\n必要な入力がありません。", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("$:101\n必要な入力がありません。（ID: {}）", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (!int.TryParse(shukkaID, out shukka) || !context.TShipments.Any(s => s.ShID == shukka))
@@ -917,13 +938,17 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagementContext())
                 {
-                    var ShipmentDetails = context.TShipmentDetails.ToList();
+                    // 出荷詳細のリストを取得（checkBox1の状態に応じて並べ替え）
+                    var ShipmentDetails = checkBox1.Checked
+                        ? context.TShipmentDetails.OrderByDescending(sd => sd.ShID).ToList() // 降順
+                        : context.TShipmentDetails.OrderBy(sd => sd.ShID).ToList();          // 昇順
 
+                    // checkBox_2がチェックされている場合、フィルタリングを無視してすべての詳細を表示
                     var visibleShipmentDetails = checkBox_2.Checked
-                        ? ShipmentDetails
-                        : ShipmentDetails.Where(od =>
+                        ? ShipmentDetails // チェックされていれば全て表示（並び替え済み）
+                        : ShipmentDetails.Where(sd =>
                         {
-                            var Shipment = context.TShipments.FirstOrDefault(o => o.ShID == od.ShID);
+                            var Shipment = context.TShipments.FirstOrDefault(s => s.ShID == sd.ShID);
 
                             return Shipment == null || (Shipment.ShFlag != 1 && Shipment.ShStateFlag != 2);
                         }).ToList();
@@ -931,9 +956,10 @@ namespace SalesManagement_SysDev
                     dataGridView2.DataSource = visibleShipmentDetails.Select(sh => new
                     {
                         出荷詳細ID = sh.ShDetailID,
+                        出荷ID = sh.ShID,
                         商品ID = sh.PrID,
-                        数量 = sh.ShQuantity.ToString("N0"),
-                        出荷ID = sh.ShID
+                        数量 = sh.ShQuantity.ToString("N0")
+
                     }).ToList();
                 }
             }
@@ -1022,7 +1048,7 @@ namespace SalesManagement_SysDev
 
             // b_FormSelectorのテキストを現在の状態に更新
             UpdateFlagButtonText();
-
+            UpdateClose_kun(shippingFlag);
 
         }
 
@@ -1064,10 +1090,10 @@ namespace SalesManagement_SysDev
                                  ? Convert.ToDateTime(row.Cells["出荷終了日"].Value)
                                  : DateTime.Now; // nullの場合は現在の日付を設定
                     ;
-                    // 注文状態や非表示ボタン、非表示理由も必要に応じて設定
-                    // 非表示ボタンや非表示理由もここで設定
+                    // 注文状態や非表示ボタン、備考も必要に応じて設定
+                    // 非表示ボタンや備考もここで設定
                     // 例: hiddenButton.Text = row.Cells["非表示ボタン"].Value.ToString();
-                    // 例: hiddenReason.Text = row.Cells["非表示理由"].Value.ToString();
+                    // 例: hiddenReason.Text = row.Cells["備考"].Value.ToString();
                     UpdateTextBoxState(checkBoxSyain.Checked);
                 }
             }
@@ -1112,7 +1138,6 @@ namespace SalesManagement_SysDev
 
         private void ShippingConfirm(int ShID)
         {
-            MessageBox.Show("登録開始します");
             using (var context = new SalesManagementContext())
             {
                 // 引き継ぐ情報を宣言 
@@ -1214,6 +1239,7 @@ namespace SalesManagement_SysDev
                 ToggleShippingSelection();
                 UpdateFlagButtonText();
                 lastFocusedPanelID = panelID; // 現在のパネルIDを更新
+                UpdateClose_kun(shippingFlag);
             }
         }
 
@@ -1522,6 +1548,32 @@ namespace SalesManagement_SysDev
             // フラグをオフに戻す
             isProgrammaticChange = false;
         }
+
+        private void UpdateClose_kun(string orderFlag)
+        {
+            if (orderFlag == "詳細→")
+            {
+                b_upd.Enabled = false;
+                b_upd.BackColor = SystemColors.ControlDark; // 灰色に設定
+                b_kakutei.Enabled = false;
+                b_kakutei.BackColor = SystemColors.ControlDark;
+            }
+            else
+            {
+                b_upd.Enabled = true;
+                b_upd.BackColor = Color.FromArgb(255, 224, 192); // 色コード255, 224, 192に設定
+                b_kakutei.Enabled = true;
+                b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+            }
+        }
+        private void UpdateClose_Chan()
+        {
+            b_upd.Enabled = true;
+            b_upd.BackColor = Color.FromArgb(255, 224, 192); // 色コード255, 224, 192に設定
+            b_kakutei.Enabled = true;
+            b_kakutei.BackColor = Color.FromArgb(255, 192, 192);
+        }
+
         private void ResetYellowBackgrounds(Control parent)
         {
             foreach (Control control in parent.Controls)
